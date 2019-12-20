@@ -1,5 +1,4 @@
-import React, { FormEvent, useState } from 'react'
-import {RouteComponentProps} from 'react-router-dom'
+import React, { useState } from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -36,15 +35,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SignUp: React.FC<RouteComponentProps> = ({history}) => {
+const SignUp = ({history}) => {
   const classes = useStyles();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password_confirmation, setPassword_confirmation] = useState('');
-  const [inputErrors, setInputErrors] = useState<{name?: string,email?: string, password?: string}>({});
+  const [inputErrors, setInputErrors] = useState({});
 
-  const handle = (e: FormEvent) => {
+  const handle = e => {
     e.preventDefault();
     axios
       .post("user/sign-up", {

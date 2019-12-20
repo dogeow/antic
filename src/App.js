@@ -4,7 +4,7 @@ import Routes from './routes'
 
 require('./bootstrap');
 
-const App: React.FC = () => (
+const App = () => (
   <Routes/>
 );
 

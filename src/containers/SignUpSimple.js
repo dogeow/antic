@@ -1,4 +1,4 @@
-import React, {FormEvent, useState} from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import credentialsTest from '../resources/credentialsTest.json'
 
@@ -7,7 +7,7 @@ function SignUpSimple() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignUp = (e: FormEvent) => {
+  const handleSignUp = e => {
     e.preventDefault();
     axios.post('user/register', {
       name: name,

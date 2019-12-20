@@ -7,7 +7,7 @@ function SignInSimple() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignIn = (e: FormEvent) => {
+  const handleSignIn = (e) => {
     e.preventDefault();
     axios.post('user/login', {
       email: email,

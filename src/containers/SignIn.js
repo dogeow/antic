@@ -1,4 +1,4 @@
-import React, { FormEvent, useState} from 'react'
+import React, { useState} from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -58,9 +58,9 @@ export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember_me, setRemember_me] = useState(false);
-  const [inputErrors, setInputErrors] = useState<{email?: string, password?: string}>({});
+  const [inputErrors, setInputErrors] = useState({});
 
-  const handle = (e: FormEvent) => {
+  const handle = (e) => {
     e.preventDefault();
     axios
       .post("user/login", {
