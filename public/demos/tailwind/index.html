@@ -1,0 +1,347 @@
+<!doctype html>
+<html>
+<head>
+    <title>测试 Tailwind CSS</title>
+    <meta charset="UTF-8"/>
+    <link href="tailwind.min.css" rel="stylesheet">
+    <style>
+        #category ol {
+            list-style-type: decimal;
+            margin: 2px 0 2px 10px;
+            padding: 0 0 0 15px;
+        }
+
+        .list > div {
+            border-bottom: 1px dashed gray;
+            padding-bottom: 12px;
+            padding-top: 12px;
+        }
+    </style>
+    <script src="jquery-3.4.1.min.js"></script>
+</head>
+<body>
+<div id="root" class="flex flex-row">
+    <div id="menu" class="fixed top-0 left-0 w-56 p-2">
+        <div class="text-3xl mb-2">目录</div>
+        <ol id="category"></ol>
+    </div>
+    <div id="content" class="ml-56 h-screen p-2">
+        <div>
+            <h2 class="text-blue-500 mb-2 text-3xl">Flex</h2>
+            <div class="list">
+                <div>
+                    <h3 class="text-blue-500">Flex 方向</h3>
+                    <ul>
+                        <li>.flex-row(默认)</li>
+                        <li>.flex-row-reverse</li>
+                        <li>.flex-col</li>
+                        <li>.flex-col-reverse(当前)</li>
+                    </ul>
+                    <div class="flex flex-col-reverse">
+                        <div class="bg-blue-300">Flex Col 1</div>
+                        <div class="bg-blue-500">Flex Col 2</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-blue-500 mb-2">Flex 宽度 w-宽度</h3>
+                    <div class="flex">
+                        <div class="w-1/6 bg-blue-300">flex 宽度 1/6</div>
+                        <div class="w-5/6 bg-blue-500">flex 宽度 5/6</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-blue-500 mb-2">Flex 宽度 flex-百分比</h3>
+                    <div>.flex-initial(适应内容大小) .flex-1(均等) .flex-auuto(div 拉伸) .flex-none</div>
+                    <div class="flex">
+                        <div class="flex-1 bg-blue-300">flex flex-1</div>
+                        <div class="flex-1 bg-blue-500">
+                            多行文本<br/>
+                            多行文本，多行文本，
+                            多行文本，多行文本，
+                            多行文本，多行文本，
+                            多行文本，多行文本，
+                            多行文本，多行文本，
+                            多行文本，多行文本，
+                            多行文本，多行文本，
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-blue-500">Flex Wrap</h3>
+                    <div>.flex-no-wrap(默认、当前) .flex-wrap .flex-wrap-reverse</div>
+                    <div class="flex flex-no-wrap bg-gray-200">
+                        <div class="w-2/5 flex-none p-2">
+                            <div class="text-gray-700 text-center bg-gray-400 p-2">1</div>
+                        </div>
+                        <div class="w-2/5 flex-none p-2">
+                            <div class="text-gray-700 text-center bg-gray-400 p-2">2</div>
+                        </div>
+                        <div class="w-2/5 flex-none p-2">
+                            <div class="text-gray-700 text-center bg-gray-400 p-2">3</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-blue-500">Flex Align Items</h3>
+                    <div>.items-stretch(默认) .items-start .items-center .items-end .items-baseline(当前)</div>
+                    <div class="flex items-baseline bg-gray-200 h-24">
+                        <div class="flex-1 text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 text-base">1</div>
+                        <div class="flex-1 text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 text-2xl">2</div>
+                        <div class="flex-1 text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 text-lg">3</div>
+                    </div>
+                </div>
+
+                <div>
+                    <div>Align Content</div>
+                    <div class="flex items-center flex-wrap bg-gray-300 h-48">
+                        <div class="w-1/3 p-2">
+                            <div class="text-gray-700 text-center bg-gray-400 p-2">1</div>
+                        </div>
+                        <div class="w-1/3 p-2">
+                            <div class="text-gray-700 text-center bg-gray-400 p-2">2</div>
+                        </div>
+                        <div class="w-1/3 p-2">
+                            <div class="text-gray-700 text-center bg-gray-400 p-2">3</div>
+                        </div>
+                        <div class="w-1/3 p-2">
+                            <div class="text-gray-700 text-center bg-gray-400 p-2">4</div>
+                        </div>
+                        <div class="w-1/3 p-2">
+                            <div class="text-gray-700 text-center bg-gray-400 p-2">5</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-blue-500">游标样式</h3>
+                    <div class="flex justify-center">
+                        <div class="cursor-auto m-2">自动</div>
+                        <div class="cursor-default m-2">默认</div>
+                        <div class="cursor-wait m-2">等待</div>
+                        <div class="cursor-pointer m-2">点击</div>
+                        <div class="cursor-move m-2">移动</div>
+                        <div class="cursor-not-allowed m-2">禁止</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2 class="text-blue-500 mb-2 text-3xl">边框</h2>
+            <div class="list">
+                <div>
+                    <h3 class="text-blue-500">边框</h3>
+                    <div class="flex justify-around p-2 bg-gray-500">
+                        <div class="cursor-auto w-1/6 bg-blue-400 border">border</div>
+                        <div class="cursor-default w-1/6 bg-blue-400 border border-white">白色</div>
+                        <div class="cursor-wait w-1/6 bg-blue-400 border border-transparent">透明</div>
+                        <div class="cursor-pointer w-1/6 bg-blue-400 border border-black">黑色</div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-blue-500">边框样式</h3>
+                    <div class="flex justify-center text-center">
+                        <div class="border-solid border-2 border-gray-600 w-16 h-16 m-2">实线</div>
+                        <div class="border-dashed border-2 border-gray-600 w-16 h-16 m-2">虚线</div>
+                        <div class="border-dotted border-2 border-gray-600 w-16 h-16 m-2">点</div>
+                        <div class="border-none border-2 border-gray-600 w-16 h-16 m-2">无</div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-blue-500">边框宽度</h3>
+                    <div class="flex justify-center">
+                        <div class="cursor-auto bg-gray-400 border-r-2 border-blue-500 m-2">右边 2px</div>
+                        <div class="cursor-default bg-gray-400 border-b-2 border-blue-500 m-2">底部 2px</div>
+                        <div class="cursor-wait bg-gray-400 border-l-2 border-blue-500 m-2">左边 2px</div>
+                        <div class="cursor-pointer bg-gray-400 border-t-2 border-blue-500 m-2">上边 2px</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2 class="text-blue-500 mb-2 text-3xl">字体</h2>
+            <div class="list">
+                <div>
+                    <h3 class="text-blue-500">字体大小</h3>
+                    <ul>
+                        <li>.text-xs</li>
+                        <li>.text-sm</li>
+                        <li>.text-base</li>
+                        <li>.text-lg</li>
+                        <li>.text-xl - .text-6xl</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-blue-500">字体颜色</h3>
+                    <ul>
+                        <li>.text-transparent</li>
+                        <li>.text-black</li>
+                        <li>.text-white</li>
+                        <li>.text-[gray, red, orange, yellow, green, teal, blue, indigo, purple, pink]-*</li>
+                        <li>.text-gray-100 - .text-gray-900</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-blue-500">字体装饰</h3>
+                    <ul>
+                        <li>.underline</li>
+                        <li>.lin-through</li>
+                        <li>.no-underline</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-blue-500">分词</h3>
+                    <ul>
+                        <li>.break-normal</li>
+                        <li>.break-words</li>
+                        <li>.truncate</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2 class="text-blue-500 mb-2 text-3xl">显示</h2>
+            <div class="list">
+                <div>
+                    <h3 class="text-blue-500">表格</h3>
+                    <div class="table w-full">
+                        <div class="table-row">
+                            <div class="tabletable-row-cell bg-gray-400 text-gray-700 px-4 py-2 text-sm">A cell with
+                                more content
+                            </div>
+                            <div class="table-cell bg-gray-200 text-gray-700 px-4 py-2 text-sm">Cell 2</div>
+                            <div class="table-cell bg-gray-400 text-gray-700 px-4 py-2 text-sm">Cell 3</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell bg-gray-200 text-gray-700 px-4 py-2 text-sm">Cell 4</div>
+                            <div class="table-cell bg-gray-400 text-gray-700 px-4 py-2 text-sm">A cell with more
+                                content
+                            </div>
+                            <div class="table-cell bg-gray-200 text-gray-700 px-4 py-2 text-sm">Cell 6</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2 class="text-blue-500 mb-2 text-3xl">交互</h2>
+            <div class="list">
+                <div class="bg-blue-100">
+                    <h3 class="text-blue-500">Outline 轮廓</h3>
+                    <input type="text"
+                           placeholder="Focus me (custom)"
+                           class="outline-none focus:shadow-outline focus:bg-blue-100"/>
+                </div>
+                <div>
+                    <select>
+                        <option>Indiana</option>
+                        <option>Michigan</option>
+                        <option>Ohio</option>
+                    </select>
+                    <div class="pointer-events-none">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2 class="text-blue-500 mb-2 text-3xl">组件</h2>
+            <div class="list">
+                <div class="bg-blue-100">
+                    <h3 class="text-blue-500">Grid</h3>
+                    <input type="text"
+                           placeholder="Focus me (custom)"
+                           class="outline-none focus:shadow-outline focus:bg-blue-100"/>
+                </div>
+                <div class="flex flex-wrap">
+                    <div class="w-1/3 ml-auto bg-gray-500 h-12"></div>
+                    <div class="w-1/3 mr-auto bg-gray-400 h-12"></div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2 class="text-blue-500 mb-2 text-3xl">SVG</h2>
+            <div class="list">
+                <div>
+                    <h3 class="text-blue-500">SVG</h3>
+                    <svg class="fill-current text-blue-500 inline-block h-12 w-12" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="8" cy="21" r="2"></circle>
+                        <circle cx="20" cy="21" r="2"></circle>
+                        <path d="M5.67 6H23l-1.68 8.39a2 2 0 0 1-2 1.61H8.75a2 2 0 0 1-2-1.74L5.23 2.74A2 2 0 0 0 3.25 1H1"></path>
+                    </svg>
+                    <svg class="stroke-current text-blue-500 inline-block h-12 w-12" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <circle cx="8" cy="21" r="2"></circle>
+                        <circle cx="20" cy="21" r="2"></circle>
+                        <path d="M5.67 6H23l-1.68 8.39a2 2 0 0 1-2 1.61H8.75a2 2 0 0 1-2-1.74L5.23 2.74A2 2 0 0 0 3.25 1H1"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="position: sticky;top: 70px;height: calc(100vh - 70px);">233</div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function () {
+    let id_name = '#root';
+    buildCTable(id_name);
+
+    $('.nav_title').click(function () {
+      let id = $(this).attr('data-id');
+      let obj = document.getElementById(id);
+      let oPos = obj.offsetTop;
+      return window.scrollTo(0, oPos - 10);
+    })
+  });
+
+  function buildCTable(id_name) {
+    let hs = $(id_name).find('h1,h2,h3,h4,h5,h6');
+    if (hs.length < 2)
+      return;
+    let s = '';
+    let old_h = 0, ol_cnt = 0;
+    for (let i = 0; i < hs.length; i++) {
+      let h = parseInt(hs[i].tagName.substr(1), 10);
+      if (!old_h)
+        old_h = h;
+      if (h > old_h) {
+        s += '<ol>';
+        ol_cnt++;
+      } else if (h < old_h && ol_cnt > 0) {
+        s += '</ol>';
+        ol_cnt--;
+      }
+      if (h === 1) {
+        while (ol_cnt > 0) {
+          s += '</ol>';
+          ol_cnt--;
+        }
+      }
+      old_h = h;
+      let tit = hs.eq(i).text().replace(/^\d+[.、\s]+/g, '');
+      tit = tit.replace(/[^a-zA-Z0-9_\-\s\u4e00-\u9fa5]+/g, '');
+
+      if (tit.length < 100) {
+        s += '<li><a href="javascript:void(0);" class="nav_title" data-id=love' + i + ' >' + tit + '</a></li>';
+        hs.eq(i).html('<a id="love' + i + '"></a>' + hs.eq(i).html());
+      }
+    }
+    while (ol_cnt > 0) {
+      s += '</ol>';
+      ol_cnt--;
+    }
+    $("#category").append(s);
+  }
+</script>
+</body>
+</html>

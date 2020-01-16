@@ -1,9 +1,25 @@
-import React from 'react'
+import { connect } from 'react-redux'
+import { toggleSnackbar, toggleDrawer, toggleTheme } from '../actions'
+import Header from '../components/Header'
 
-const Header = () => (
-  <div>
-    Header
-  </div>
-);
+const mapStateToProps = (state, ownProps) => ({
+  toggle_snackbar: state.lab.toggle_snackbar,
+  toggle_drawer: state.lab.toggle_drawer,
+  themePaletteType: state.lab.themePaletteType,
+  access_token: state.lab.access_token,
+  user_name: state.lab.user_name,
+  lab: state.lab
+});
 
-export default Header
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onClickSnackbar: () => dispatch(toggleSnackbar(ownProps.toggle_snackbar)),
+  onClickDrawer: () => dispatch(toggleDrawer(ownProps.toggle_drawer)),
+  onThemeClick: () => {
+    dispatch(toggleTheme())
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header)

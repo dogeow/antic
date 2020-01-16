@@ -1,19 +1,17 @@
 import React, { useState } from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
-import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
 import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
-
-import Copyright from "../components/Copyright"
-import axios from 'axios'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import { makeStyles } from '@material-ui/core/styles'
 import Swal from 'sweetalert2'
+
+import Copyright from './Copyright';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -35,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const SignUp = ({history}) => {
+export default function Register({history}) {
   const classes = useStyles();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -43,27 +41,41 @@ const SignUp = ({history}) => {
   const [password_confirmation, setPassword_confirmation] = useState('');
   const [inputErrors, setInputErrors] = useState({});
 
-  const handle = e => {
+  const handle = (e) => {
     e.preventDefault();
     axios
-      .post("user/sign-up", {
+      .post("auth/signup", {
         name: name,
         email: email,
         password: password,
         password_confirmation: password_confirmation
       })
       .then(response => {
-        if (response.status === 201) {
-          Swal.fire('成功', '注册成功，请尝试登录！', 'success');
-          history.push('/sign-in');
-        }
-        setInputErrors(response.data.errors);
+        console.log(response);
+        return response;
       })
+      .then(json => {
+        if (json.status === 201) {
+          Swal.fire({
+            position: 'top-end',
+            type: 'success',
+            title: '注册成功，请尝试登录！',
+            showConfirmButton: false,
+            timer: 2000
+          });
+          history.push('/login');
+        } else {
+          alert('注册失败！');
+        }
+      })
+      .catch((error) => {
+        setInputErrors(error.errors);
+        console.log(error);
+      });
   };
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline/>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon/>
@@ -73,22 +85,22 @@ const SignUp = ({history}) => {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
                 fullWidth
                 id="name"
-                label="昵称"
+                label="名称"
                 name="name"
                 autoComplete="name"
                 onChange={(e) => setName(e.target.value)}
                 error={!!inputErrors.name}
-                placeholder={inputErrors.name ? inputErrors.name[0] : undefined}
+                placeholder={inputErrors.name ? inputErrors.name : null}
                 InputLabelProps={
                   inputErrors.name ? {shrink: true} : {}
                 }
-                helperText={inputErrors.name ? inputErrors.name[0] : undefined}
+                helperText={inputErrors.name ? inputErrors.name[0] : ''}
               />
             </Grid>
             <Grid item xs={12}>
@@ -102,11 +114,11 @@ const SignUp = ({history}) => {
                 autoComplete="email"
                 onChange={(e) => setEmail(e.target.value)}
                 error={!!inputErrors.email}
-                placeholder={inputErrors.email ? inputErrors.email[0] : undefined}
+                placeholder={inputErrors.email ? inputErrors.email : null}
                 InputLabelProps={
                   inputErrors.email ? {shrink: true} : {}
                 }
-                helperText={inputErrors.email ? inputErrors.email[0] : undefined}
+                helperText={inputErrors.email ? inputErrors.email[0] : null}
               />
             </Grid>
             <Grid item xs={12}>
@@ -118,14 +130,14 @@ const SignUp = ({history}) => {
                 label="密码"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+                autoComplete="password"
                 onChange={(e) => setPassword(e.target.value)}
                 error={!!inputErrors.password}
-                placeholder={inputErrors.password ? inputErrors.password[0] : undefined}
+                placeholder={inputErrors.password ? inputErrors.password : null}
                 InputLabelProps={
                   inputErrors.password ? {shrink: true} : {}
                 }
-                helperText={inputErrors.password ? inputErrors.password[0] : undefined}
+                helperText={inputErrors.password ? inputErrors.password[0] : null}
               />
             </Grid>
             <Grid item xs={12}>
@@ -137,7 +149,7 @@ const SignUp = ({history}) => {
                 label="确认密码"
                 type="password"
                 id="password_confirmation"
-                autoComplete="current-password-confirmation"
+                autoComplete="password_confirmation"
                 onChange={(e) => setPassword_confirmation(e.target.value)}
               />
             </Grid>
@@ -148,15 +160,13 @@ const SignUp = ({history}) => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={e => handle(e)}
+            onClick={handle}
           >
             注册
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link onClick={() => {
-                history.push('/sign-in')
-              }} variant="body2">
+              <Link onClick={() => {history.push('/login')}} variant="body2">
                 已经有账户？登录！
               </Link>
             </Grid>
@@ -169,5 +179,3 @@ const SignUp = ({history}) => {
     </Container>
   );
 }
-
-export default SignUp

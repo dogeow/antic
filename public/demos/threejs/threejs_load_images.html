@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>test</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+<script src="js/three.min.js"></script>
+<script src="js/tween.min.js"></script>
+<script src="js/TrackballControls.js"></script>
+<script src="js/CSS3DRenderer.js"></script>
+
+<div id="container"></div>
+
+<script>
+  var camera, scene, renderer;
+
+  init();
+  animate();
+
+  function init() {
+    camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 10000);
+    camera.position.z = 666;
+
+    scene = new THREE.Scene();
+    var element = document.createElement('div');
+    element.className = 'element';
+    var img = new Image();
+    img.src = "https://cdn.gugelong.com/emoji/[游戏]_[跳舞]-旋转.gif";
+    img.width = 140;
+    element.appendChild(img);
+    var object = new THREE.CSS3DObject(element);
+    scene.add(object);
+
+    renderer = new THREE.CSS3DRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('container').appendChild(renderer.domElement);
+    renderer.render(scene, camera);
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+  }
+
+  function render() {
+    renderer.render(scene, camera);
+  }
+</script>
+</body>
+</html>

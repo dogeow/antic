@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const logged = access_token => {
   localStorage.access_token = access_token;

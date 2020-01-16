@@ -1,0 +1,14 @@
+import React from 'react'
+import Grid from '@material-ui/core/Grid'
+
+const FilterStatistics = (props) => {
+  const {filterNum, currentPage, pageLimit} = props;
+
+  return (
+    <Grid container spacing={0} justify="center" style={{marginTop: 5, marginBottom: 1}}>
+      筛选结果：共 {filterNum} 张，共 {Math.ceil(filterNum / pageLimit)} 页，当前第 {currentPage} 页。
+    </Grid>
+  )
+};
+
+export default FilterStatistics;

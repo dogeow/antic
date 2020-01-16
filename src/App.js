@@ -1,11 +1,6 @@
-import React from 'react'
-import './App.css'
-import Routes from './routes'
+// import WrapWithLoadData from './Log'
+import App from './containers/App'
 
 require('./bootstrap');
-
-const App = () => (
-  <Routes/>
-);
 
 export default App;

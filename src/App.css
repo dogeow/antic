@@ -1,38 +1,96 @@
-.App {
-  text-align: center;
+/* 更改默认行为 start */
+
+a:link {
+  text-decoration: none;
+  color: unset
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a:active {
+  text-decoration: none;
+  color: unset
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+a:hover {
+  text-decoration: none;
+  color: unset
+}
+
+a:visited {
+  text-decoration: none;
+  color: unset
+}
+/* 更改默认行为 end */
+
+/* 鼠标样式 start */
+html {
+  cursor: url('./resources/blur.cur'), auto;
+}
+
+a:hover, button:hover {
+  cursor: url('./resources/fcous.cur'), auto;
+}
+
+li.MuiListItem-button {
+  cursor: url('./resources/fcous.cur'), auto;
+}
+
+/* 鼠标样式 end */
+
+/* 微博热搜榜 start */
+
+.boil {
+  border-left: 1px solid red
+}
+
+.hot {
+  border-left: 1px solid orange
+}
+
+.new {
+  border-left: 1px solid green
+}
+
+/* 微博热搜榜 end */
+
+/* 雷姆 start */
+
+.sidebar_wo {
+  position: fixed;
+  line-height: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+#leimu {
+  left: 0;
+  transition: all .3s ease-in-out;
+  transform: translate(-7px, 7px);
+}
+
+#lamu {
+  transition: all .3s ease-in-out;
+  transform: translate(7px, 7px);
+  right: 0
+}
+
+#leimu:hover {
+  transform: translate(0, 0);
+}
+
+#lamu:hover {
+  transform: translate(0, 0);
+}
+
+@media only screen and (max-width: 1024px) {
+  .sidebar_wo {
+    display: none
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+/* 雷姆 end */
 
-.App-link {
-  color: #61dafb;
-}
+/* 3D */
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ThreeDee {
+  text-shadow: 0px 0px 0 rgb(-51, -51, -51), 1px 1px 0 rgb(-102, -102, -102), 2px 2px 0 rgb(-153, -153, -153), 3px 3px 0 rgb(-204, -204, -204), 4px 4px 0 rgb(-255, -255, -255), 5px 5px 0 rgb(-306, -306, -306), 6px 6px 5px rgba(0, 0, 0, 1), 6px 6px 1px rgba(0, 0, 0, 0.5), 0px 0px 5px rgba(0, 0, 0, .2);
 }
