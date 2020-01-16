@@ -103,7 +103,7 @@ window.Echo = new Echo({
   host: window.location.hostname + ':6001'
 });
 
-window.Echo.channel('push')
+window.Echo.channel('antic_api_database_push')
   .listen('TestBroadcastingEvent', (e) => {
     console.log(e);
   });
