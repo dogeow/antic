@@ -1,5 +1,7 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import Echo from 'laravel-echo'
+
 import ConsoleInfo from './components/ConsoleInfo'
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -67,3 +69,50 @@ axios.interceptors.response.use(
 );
 
 ConsoleInfo();
+
+//网页当前状态判断
+let state, visibilityChange;
+if (typeof document.hidden !== "undefined") {
+  visibilityChange = "visibilitychange";
+  state = "visibilityState";
+} else if (typeof document.mozHidden !== "undefined") {
+  visibilityChange = "mozvisibilitychange";
+  state = "mozVisibilityState";
+} else if (typeof document.msHidden !== "undefined") {
+  visibilityChange = "msvisibilitychange";
+  state = "msVisibilityState";
+} else if (typeof document.webkitHidden !== "undefined") {
+  visibilityChange = "webkitvisibilitychange";
+  state = "webkitVisibilityState";
+}
+// 添加监听器，在title里显示状态变化
+document.addEventListener(visibilityChange, function () {
+  document.title = document[state] === 'hidden' ? '记得回来！- 滑稽实验室' : '欢迎回来！- 滑稽实验室';
+}, false);
+
+/**
+ * Echo exposes an expressive API for subscribing to channels and listening
+ * for events that are broadcast by Laravel. Echo and event broadcasting
+ * allows your team to easily build robust real-time web applications.
+ */
+
+window.io = require('socket.io-client');
+
+window.Echo = new Echo({
+  broadcaster: 'socket.io',
+  host: window.location.hostname + ':6001'
+});
+
+window.Echo.channel('push')
+  .listen('TestBroadcastingEvent', (e) => {
+    console.log(e);
+  });
+
+
+// window.Pusher = require('pusher-js');
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     encrypted: true
+// });
