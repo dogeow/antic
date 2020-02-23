@@ -1,8 +1,11 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import Echo from 'laravel-echo'
+// import Echo from 'laravel-echo'
 
 import ConsoleInfo from './components/ConsoleInfo'
+
+window.fundebug = require("fundebug-javascript");
+window.fundebug.apikey = "00d964bf0c3ea882a1c533c07a943fe2b427cfc7b9ad94e0d7febd5c1da659de";
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 axios.defaults.baseURL = `http://127.0.0.1:8000/api/`;
@@ -49,7 +52,7 @@ axios.interceptors.response.use(
     return response;
   },
   error => {
-    if(error.response){
+    if (error.response) {
       switch (error.response.status) {
         case 401: // 清除 token 信息并跳转到登录页面
           Swal.fire('提示️', '登录状态过期', 'warning');
@@ -96,17 +99,17 @@ document.addEventListener(visibilityChange, function () {
  * allows your team to easily build robust real-time web applications.
  */
 
-window.io = require('socket.io-client');
-
-window.Echo = new Echo({
-  broadcaster: 'socket.io',
-  host: window.location.hostname + ':6001'
-});
-
-window.Echo.channel('antic_api_database_push')
-  .listen('TestBroadcastingEvent', (e) => {
-    console.log(e);
-  });
+// window.io = require('socket.io-client');
+//
+// window.Echo = new Echo({
+//   broadcaster: 'socket.io',
+//   host: window.location.hostname + ':6001'
+// });
+//
+// window.Echo.channel('antic_api_database_push')
+//   .listen('TestBroadcastingEvent', (e) => {
+//     console.log(e);
+//   });
 
 
 // window.Pusher = require('pusher-js');

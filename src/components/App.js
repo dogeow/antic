@@ -9,7 +9,7 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 // 此 PC 版的登录界面不用 Header 和 Footer
-import Login from './Login'
+import Login from '../containers/Login'
 
 // Spa
 import Spa from '../routes/Spa'

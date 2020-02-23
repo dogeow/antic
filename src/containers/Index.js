@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import axios from 'axios'
 
 // UI
-import { makeStyles } from '@material-ui/core/styles'
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import Button from '@material-ui/core/Button'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -15,6 +15,7 @@ import Paper from '@material-ui/core/Paper'
 import Footer from '../containers/Footer'
 import { logged } from '../helpers'
 import Skeleton from '@material-ui/lab/Skeleton'
+import { loginAction } from "../actions";
 
 const useStyles = makeStyles(theme => ({
   hr: {
@@ -54,10 +55,17 @@ const Index = () => {
       email: 'test@test.com',
       password: 'test@test.com',
       rememberMe: true
-    }).then(({data}) => {
-      let {access_token} = data;
+    }).then(response => {
+      let {access_token} = response.data;
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
       logged(access_token);
-      dispatch({type: 'LOGIN', access_token});
+      axios
+        .post("user/profile")
+        .then(response2 => {
+          console.log(response2);
+          let {id, name, email} = response2.data.user;
+          dispatch(loginAction(access_token, id, name, email));
+        });
     })
   };
 

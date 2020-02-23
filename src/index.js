@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
 import store from "./store";
 import './index.css'
-import App from './App';
+import App from './containers/App';
 import Wrap from './middleware/lifecycle'
+import ErrorBoundary from "./enhancers/ErrorBoundary";
 import * as serviceWorker from './serviceWorker';
 
 // 日期
@@ -13,16 +14,21 @@ import MomentUtils from '@date-io/moment' // 导入一些 moment 实用工具
 import 'moment/locale/zh-cn' // 导入简体中文
 import moment from 'moment'
 
+require('./bootstrap');
+require('fundebug-revideo');
+
 moment.locale("zh-cn"); // 使用简体中文
 
 const WrapApp = Wrap(App);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <MuiPickersUtilsProvider utils={MomentUtils} libInstance={moment} locale={'zh-cn'}>
-      <WrapApp/>
-    </MuiPickersUtilsProvider>
-  </Provider>,
+  <ErrorBoundary>
+    <Provider store={store}>
+      <MuiPickersUtilsProvider utils={MomentUtils} libInstance={moment} locale={'zh-cn'}>
+        <WrapApp/>
+      </MuiPickersUtilsProvider>
+    </Provider>
+  </ErrorBoundary>,
   document.getElementById('root')
 );
 

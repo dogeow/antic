@@ -4,14 +4,24 @@ import Dialog from '@material-ui/core/Dialog'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Switch from '@material-ui/core/Switch'
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    padding: 10
+  },
+}));
 
 const Settings = (props) => {
+  const classes = useStyles();
   function handleClose() {
     props.onClose();
   }
 
   return (
-    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={props.open}>
+    <Dialog onClose={handleClose} aria-labelledby="simple-dialog" open={props.open} classes={{
+      root: classes.root
+    }}>
       <DialogTitle id="simple-dialog-title">设置</DialogTitle>
       <FormControl>
         <FormControlLabel

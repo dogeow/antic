@@ -72,7 +72,6 @@ const Spa = ({match}) => {
           <Route path="/hall_of_fame" component={HallOfFame}/>
           <Route path="/nav" component={Nav}/>
           <Route path="/piano" component={Piano}/>
-          <Route path="/parking" component={Parking}/>
           <Route path="/bookmarks" component={Bookmarks}/>
           <Route path="/search" component={Search}/>
           <Route path="/user/:id" component={User}/>
@@ -81,6 +80,7 @@ const Spa = ({match}) => {
           <Route path="/demos/clock" component={Clock}/>
           <Route path="/demos/calculator" component={Calculator}/>
           <Route path="/demos/topics" component={Topics}/>
+          <Route path="/demos/parking" component={Parking}/>
           <Route path="/test" component={Test}/>
           <Route component={NoMatch}/>
         </Switch>

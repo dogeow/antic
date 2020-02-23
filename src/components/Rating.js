@@ -3,7 +3,7 @@ import RatingUi from '@material-ui/lab/Rating'
 import PropTypes from 'prop-types'
 import Tooltip from '@material-ui/core/Tooltip'
 import Box from '@material-ui/core/Box'
-import { makeStyles } from '@material-ui/core/styles'
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles(theme => ({
   rating: {

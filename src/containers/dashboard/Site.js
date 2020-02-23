@@ -5,7 +5,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import RadioButtonChecked from '@material-ui/icons/RadioButtonChecked';
 import Check from '@material-ui/icons/Check';
 import Close from '@material-ui/icons/Close';

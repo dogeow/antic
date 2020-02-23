@@ -12,6 +12,7 @@ const Demos = () => {
         {/*<li><a href="/demos/tailwind" target="_blank">Tailwind CSS 学习</a></li>*/}
         <li><a href="/demos/clock">Time</a></li>
         <li><a href="/demos/calculator">🌡摄氏度、华氏度转换（React 官方 Example）</a></li>
+        <li><a href="/demos/parking">停车（爬虫）</a></li>
       </ul>
     </>
   );
