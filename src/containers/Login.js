@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: `url(http://127.0.0.1:8000/api/random)`,
+    backgroundImage: `url(https://api.233.sx/api/v1/random)`,
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
