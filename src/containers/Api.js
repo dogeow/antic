@@ -12,7 +12,7 @@ const Api = () => {
       </Grid>
       <Grid item xs={12}>
         <Typography>
-          {process.env.MIX_APP_URL}/ + 功能，比如{process.env.MIX_APP_URL}/ip/127.0.0.1
+          https://api.233.sx/api/ip
         </Typography>
       </Grid>
       <Grid item xs={12}>
