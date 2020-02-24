@@ -35,6 +35,7 @@ import Clock from '../demo/Clock'
 import Calculator from '../demo/Calculator/'
 import Topics from '../demo/Topics'
 import Chess from '../containers/Chess'
+import Mv from '../demo/Mv'
 
 import Test from '../components/Test'
 
@@ -81,6 +82,7 @@ const Spa = ({match}) => {
           <Route path="/demos/calculator" component={Calculator}/>
           <Route path="/demos/topics" component={Topics}/>
           <Route path="/demos/parking" component={Parking}/>
+          <Route path="/demos/mv" component={Mv}/>
           <Route path="/test" component={Test}/>
           <Route component={NoMatch}/>
         </Switch>

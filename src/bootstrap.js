@@ -8,7 +8,7 @@ window.fundebug = require("fundebug-javascript");
 window.fundebug.apikey = "00d964bf0c3ea882a1c533c07a943fe2b427cfc7b9ad94e0d7febd5c1da659de";
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.baseURL = `https://api.233.sx/api/`;
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 const access_token = localStorage["access_token"];
 if (access_token) {

@@ -12,7 +12,7 @@ const Api = () => {
       </Grid>
       <Grid item xs={12}>
         <Typography>
-          https://api.233.sx/api/ip
+          {process.env.REACT_APP_API_URL}ip
         </Typography>
       </Grid>
       <Grid item xs={12}>
