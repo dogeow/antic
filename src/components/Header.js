@@ -78,7 +78,7 @@ const Header = ({lab, access_token, onClickDrawer, toggle_snackbar, toggle_drawe
     setAnchorElMyself(null);
     dispatch({type: 'LOGOUT'});
     logout();
-    axios.get("user/logout")
+    axios.post("user/logout")
       .then(() => {
         Swal.fire('注销成功！')
       });
