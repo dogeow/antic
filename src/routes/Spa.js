@@ -36,6 +36,8 @@ import Calculator from '../demo/Calculator/'
 import Topics from '../demo/Topics'
 import Chess from '../containers/Chess'
 import Mv from '../demo/Mv'
+import Markdown from '../demo/Markdown'
+import MarkdownEditor from '../demo/MarkdownEditor'
 
 import Test from '../components/Test'
 
@@ -83,6 +85,8 @@ const Spa = ({match}) => {
           <Route path="/demos/topics" component={Topics}/>
           <Route path="/demos/parking" component={Parking}/>
           <Route path="/demos/mv" component={Mv}/>
+          <Route path="/demos/markdown" component={Markdown}/>
+          <Route path="/demos/markdown-editor" component={MarkdownEditor}/>
           <Route path="/test" component={Test}/>
           <Route component={NoMatch}/>
         </Switch>
