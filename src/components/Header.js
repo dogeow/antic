@@ -24,6 +24,8 @@ import Drawer from './Drawer'
 import Snackbar from './Snackbar'
 import Settings from './Settings'
 
+import {logout} from '../helpers/index'
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -72,13 +74,14 @@ const Header = ({lab, access_token, onClickDrawer, toggle_snackbar, toggle_drawe
     setAnchorElMyself(null);
   };
 
-  const logout = () => {
+  const handleLogout = () => {
     setAnchorElMyself(null);
-    logout();
     dispatch({type: 'LOGOUT'});
-    axios.get("auth/logout").then(() => {
-      Swal.fire('注销成功！')
-    });
+    logout();
+    axios.get("user/logout")
+      .then(() => {
+        Swal.fire('注销成功！')
+      });
   };
 
   return (
@@ -140,7 +143,7 @@ const Header = ({lab, access_token, onClickDrawer, toggle_snackbar, toggle_drawe
                   <Link to={`/user/${lab.user_id}`} onClick={() => handleCloseMyself()}>
                     <MenuItem>{lab.user_name}</MenuItem>
                   </Link>
-                  <MenuItem onClick={logout}>注销</MenuItem>
+                  <MenuItem onClick={handleLogout}>注销</MenuItem>
                 </Menu>
               </div>
             ) : (

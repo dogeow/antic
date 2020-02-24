@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Swal from 'sweetalert2'
+import axios from 'axios'
 
 import Copyright from './Copyright';
 
@@ -44,7 +45,7 @@ export default function Register({history}) {
   const handle = (e) => {
     e.preventDefault();
     axios
-      .post("auth/signup", {
+      .post("user/signup", {
         name: name,
         email: email,
         password: password,
