@@ -24,7 +24,7 @@ import Sqg from '../components/Sqg'
 import Piano from '../components/Piano'
 import Parking from '../containers/Parking'
 import HallOfFame from '../containers/HallOfFame'
-import Demos from '../containers/Demos'
+import Demo from '../containers/Demo'
 
 // Layouts
 import Header from '../containers/Header'
@@ -78,7 +78,7 @@ const Spa = ({match}) => {
           <Route path="/bookmarks" component={Bookmarks}/>
           <Route path="/search" component={Search}/>
           <Route path="/user/:id" component={User}/>
-          <Route exact path="/demos" component={Demos}/>
+          <Route exact path="/demo" component={Demo}/>
           <Route path="/demos/chess" component={Chess}/>
           <Route path="/demos/clock" component={Clock}/>
           <Route path="/demos/calculator" component={Calculator}/>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Demos = () => {
+const Demo = () => {
   return (
     <>
       <ul>
@@ -19,4 +19,4 @@ const Demos = () => {
   );
 };
 
-export default Demos
+export default Demo
