@@ -26,8 +26,8 @@ const menus = [
   {'name': '⚙️便民 API', 'url': '/api'},
   {'name': '📋Todo', 'url': '/todo'},
   {'name': '🤔自言自语', 'url': '/self-talk'},
-  {'name': '☀️名人堂', 'url': '/hall_of_f·ame'},
-  {'name': '📦一些 Demo', 'url': '/demos'},
+  {'name': '☀️名人堂', 'url': '/hall_of_fame'},
+  {'name': '📦一些 Demo', 'url': '/demo'},
 ];
 
 const externalMenus = [
