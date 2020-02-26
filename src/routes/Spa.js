@@ -40,6 +40,7 @@ import Markdown from '../demo/Markdown'
 import MarkdownEditor from '../demo/MarkdownEditor'
 
 import Test from '../components/Test'
+import Test233 from '../components/Test233'
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -88,6 +89,7 @@ const Spa = ({match}) => {
           <Route path="/demos/markdown" component={Markdown}/>
           <Route path="/demos/markdown-editor" component={MarkdownEditor}/>
           <Route path="/test" component={Test}/>
+          <Route path="/test233" component={Test233}/>
           <Route component={NoMatch}/>
         </Switch>
       </Container>

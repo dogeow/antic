@@ -5,19 +5,20 @@ const SelfTalk = () => {
   const [quotes, setQuotes] = useState([]);
 
   useEffect(() => {
-    axios.get('quotes')
-      .then(response => {
-        setQuotes(response.data);
-      })
+    axios.get('quotes').then(response => {
+      setQuotes(response.data);
+    })
   }, []);
 
-  return <ul style={{paddingInlineStart: 10}}>
-    {
-      quotes.map((quote, index) => (
-        <li key={index} style={{margin: '5px 0'}}>{quote.content}</li>
-      ))
-    }
-  </ul>;
+  return (
+    <ul style={{paddingInlineStart: 10}}>
+      {
+        quotes.map((quote, index) => (
+          <li key={index} style={{margin: '5px 0'}}>{quote.content}</li>
+        ))
+      }
+    </ul>
+  );
 };
 
 export default SelfTalk;

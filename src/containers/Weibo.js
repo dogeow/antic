@@ -32,16 +32,15 @@ const Weibo = () => {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   useEffect(() => {
-    axios
-      .get("weibo/30")
-      .then(response => {
-        setData(response.data);
-      })
+    axios.get("weibo/30").then(response => {
+      setData(response.data);
+    })
   }, []);
 
   return (
     <div className={classes.root}>
-      <DatePicker className={classes.picker} style={{marginBottom: 20}} value={selectedDate} onChange={handleDateChange}/>
+      <DatePicker className={classes.picker} style={{marginBottom: 20}} value={selectedDate}
+                  onChange={handleDateChange}/>
       <div>
         <table>
           <thead>
@@ -53,15 +52,15 @@ const Weibo = () => {
           </tr>
           </thead>
           <tbody>
-          {data.map((news, index) => (
-            <tr key={index} className={news.status}>
+          {data.map((item, index) => (
+            <tr key={index} className={item.status}>
               <td>{index + 1}</td>
               <td>
-                <span style={{float: "left"}}><a href={`https://s.weibo.com${news.url}`}>{news.title}</a></span>
-                {news.emoji && <span dangerouslySetInnerHTML={{__html: news.emoji}}/>}
+                <span style={{float: "left"}}><a href={`https://s.weibo.com${item.url}`}>{item.title}</a></span>
+                {item.emoji && <span dangerouslySetInnerHTML={{__html: item.emoji}}/>}
               </td>
-              <td>{news.rank}</td>
-              <td style={{textAlign: "right"}}>{news.updated_at}</td>
+              <td>{item.rank}</td>
+              <td style={{textAlign: "right"}}>{item.updated_at}</td>
             </tr>
           ))}
           </tbody>

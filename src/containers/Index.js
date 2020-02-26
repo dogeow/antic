@@ -42,12 +42,10 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get("todo")
-      .then(response => {
-        setTodo(response.data);
-        setLoading(false);
-      })
+    axios.get("todo").then(response => {
+      setTodo(response.data);
+      setLoading(false);
+    })
   }, []);
 
   const testLogin = () => {
@@ -59,13 +57,10 @@ const Index = () => {
       let {access_token} = response.data;
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
       logged(access_token);
-      axios
-        .post("user/profile")
-        .then(response2 => {
-          console.log(response2);
-          let {id, name, email} = response2.data.user;
-          dispatch(loginAction(access_token, id, name, email));
-        });
+      axios.post("user/profile").then(response2 => {
+        let {id, name, email} = response2.data.user;
+        dispatch(loginAction(access_token, id, name, email));
+      });
     })
   };
 

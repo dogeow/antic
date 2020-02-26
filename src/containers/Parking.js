@@ -5,10 +5,9 @@ const Parking = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('parking')
-      .then(response => {
-        setData(response.data);
-      })
+    axios.get('parking').then(response => {
+      setData(response.data);
+    })
   }, []);
 
   return (
@@ -17,7 +16,7 @@ const Parking = () => {
         <ul style={{paddingInlineStart: 'inherit'}}>
           {
             data.map((item, index) => (
-              <li style={{color: item.status ? 'green' : 'red'}} key={index}>{item.id}</li>
+              <li key={index} style={{color: item.status ? 'green' : 'red'}}>{item.id}</li>
             ))
           }
         </ul>

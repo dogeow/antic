@@ -8,16 +8,16 @@ import Wrap from './middleware/lifecycle'
 import ErrorBoundary from "./enhancers/ErrorBoundary";
 import * as serviceWorker from './serviceWorker';
 
-// 日期
+// Material-UI pickers 日期，使用 moment
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
 import MomentUtils from '@date-io/moment' // 导入一些 moment 实用工具
-import 'moment/locale/zh-cn' // 导入简体中文
 import moment from 'moment'
+import 'moment/locale/zh-cn' // 导入简体中文
 
 require('./bootstrap');
 require('fundebug-revideo');
 
-moment.locale("zh-cn"); // 使用简体中文
+moment.locale("zh-cn"); // moment 使用简体中文
 
 const WrapApp = Wrap(App);
 

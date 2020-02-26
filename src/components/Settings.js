@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
 
 const Settings = (props) => {
   const classes = useStyles();
+
   function handleClose() {
     props.onClose();
   }

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Grid from '@material-ui/core/Grid'
 import axios from 'axios'
 
 const About = () => {
@@ -13,17 +12,15 @@ const About = () => {
   }, []);
 
   return (
-    <Grid container spacing={2}>
-      <Grid item>
-        <ul style={{paddingInlineStart: 'inherit'}}>
-          {
-            aboutMe.map((about, index) => (
-              <li key={index} dangerouslySetInnerHTML={{__html: about.content}}/>
-            ))
-          }
-        </ul>
-      </Grid>
-    </Grid>
+    <div>
+      <ul style={{paddingInlineStart: 'inherit'}}>
+        {
+          aboutMe.map((item, index) => (
+            <li key={index} dangerouslySetInnerHTML={{__html: item.content}}/>
+          ))
+        }
+      </ul>
+    </div>
   )
 };
 

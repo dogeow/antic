@@ -7,18 +7,12 @@ import monitorReducerEnhancer from './enhancers/monitorReducer'
 const middlewareEnhancer = applyMiddleware(loggerMiddleware, thunkMiddleware);
 
 // 正式环境不记录 https://github.com/reduxjs/redux/issues/2359
-let composedEnhancers;
-const devTools = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__() : null;
-if (devTools) {
+let composedEnhancers = undefined;
+if (process.env.NODE_ENV === 'development') {
   composedEnhancers = compose(
     middlewareEnhancer,
     monitorReducerEnhancer,
-    devTools
-  );
-} else {
-  composedEnhancers = compose(
-    middlewareEnhancer,
-    monitorReducerEnhancer,
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
   );
 }
 
