@@ -27,7 +27,7 @@ class CodeBlock extends PureComponent {
     const { language, value } = this.props;
     return (
       <figure className="highlight">
-        <SyntaxHighlighter language={language} style={coy} showLineNumbers>
+        <SyntaxHighlighter language={language} style={coy}>
           {value}
         </SyntaxHighlighter>
       </figure>

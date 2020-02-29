@@ -31,10 +31,7 @@ const menus = [
 ];
 
 const externalMenus = [
-  {
-    'name': '📝学习笔记（博客）',
-    'url': 'https://www.kunyan.li'
-  },
+  {'name': '📝学习笔记（博客）', 'url': 'https://www.kunyan.li'},
   {'name': '🗂️学习笔记（维基）', 'url': 'https://wiki.kunyan.li'},
   {'name': '🖌️Canvas 学习', 'url': 'http://canvas.kunyan.li'},
 ];

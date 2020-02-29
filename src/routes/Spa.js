@@ -37,7 +37,6 @@ import Topics from '../demo/Topics'
 import Chess from '../containers/Chess'
 import Mv from '../demo/Mv'
 import Markdown from '../demo/Markdown'
-import MarkdownEditor from '../demo/MarkdownEditor'
 
 import Test from '../components/Test'
 import Test233 from '../components/Test233'
@@ -87,7 +86,6 @@ const Spa = ({match}) => {
           <Route path="/demos/parking" component={Parking}/>
           <Route path="/demos/mv" component={Mv}/>
           <Route path="/demos/markdown" component={Markdown}/>
-          <Route path="/demos/markdown-editor" component={MarkdownEditor}/>
           <Route path="/test" component={Test}/>
           <Route path="/test233" component={Test233}/>
           <Route component={NoMatch}/>
