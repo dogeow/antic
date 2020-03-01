@@ -13,7 +13,7 @@ const About = () => {
 
   return (
     <div>
-      <ul style={{paddingInlineStart: 'inherit'}}>
+      <ul>
         {
           aboutMe.map((item, index) => (
             <li key={index} dangerouslySetInnerHTML={{__html: item.content}}/>

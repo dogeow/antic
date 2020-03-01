@@ -27,6 +27,7 @@ const EmojiPost = () => {
         }
       }
     }).then(function (resp) {
+      console.log(resp.data);
       setData(resp.data);
     })
   }, []);
