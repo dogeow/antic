@@ -5,7 +5,6 @@ import store from "./store";
 import './index.css'
 import App from './containers/App';
 import Wrap from './middleware/lifecycle'
-import ErrorBoundary from "./enhancers/ErrorBoundary";
 import * as serviceWorker from './serviceWorker';
 
 // Material-UI pickers 日期，使用 moment
@@ -15,20 +14,17 @@ import moment from 'moment'
 import 'moment/locale/zh-cn' // 导入简体中文
 
 require('./bootstrap');
-require('fundebug-revideo');
 
 moment.locale("zh-cn"); // moment 使用简体中文
 
 const WrapApp = Wrap(App);
 
 ReactDOM.render(
-  <ErrorBoundary>
-    <Provider store={store}>
-      <MuiPickersUtilsProvider utils={MomentUtils} libInstance={moment} locale={'zh-cn'}>
-        <WrapApp/>
-      </MuiPickersUtilsProvider>
-    </Provider>
-  </ErrorBoundary>,
+  <Provider store={store}>
+    <MuiPickersUtilsProvider utils={MomentUtils} libInstance={moment} locale={'zh-cn'}>
+      <WrapApp/>
+    </MuiPickersUtilsProvider>
+  </Provider>,
   document.getElementById('root')
 );
 

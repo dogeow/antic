@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container'
 // Pages
 import Post from '../containers/Post'
 import PostSingle from '../containers/PostSingle'
+import PostCreate from '../components/PostCreate'
 import Register from '../containers/Register'
 import Index from '../containers/Index'
 import About from '../containers/About'
@@ -63,6 +64,7 @@ const Spa = ({match}) => {
         <Switch>
           <Route exact path="/" component={Index}/>
           <Route exact path="/post" component={Post}/>
+          <Route path="/post/create" component={PostCreate}/>
           <Route path="/post/:id" component={PostSingle}/>
           <Route path="/register" component={Register}/>
           <Route path="/about" component={About}/>
