@@ -146,7 +146,7 @@ const SignInSide = ({dispatch}) => {
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  忘记密码？
+                  <s>忘记密码？</s>
                 </Link>
               </Grid>
               <Grid item>
