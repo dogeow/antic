@@ -4,10 +4,6 @@ import Swal from 'sweetalert2'
 
 import ConsoleInfo from './components/ConsoleInfo'
 
-// fundebug
-window.fundebug = require("fundebug-javascript");
-window.fundebug.apikey = process.env.REACT_APP_FUNDEBUG_API_KEY;
-
 const access_token = localStorage["access_token"];
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
