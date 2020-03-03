@@ -1,8 +1,13 @@
-import axios from 'axios';
+import axios from 'axios'
+import moment from 'moment'
 
-export const logged = access_token => {
-  localStorage.access_token = access_token;
-  axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
+export const logged = (token, user) => {
+  localStorage.access_token = token.access_token;
+  localStorage.access_token_expired_at = moment().unix() + token.expires_in;
+  localStorage.user_id = user.id;
+  localStorage.user_name = user.name;
+  localStorage.user_email = user.email;
+  axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.access_token;
 };
 
 export const logout = () => {

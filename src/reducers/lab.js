@@ -1,11 +1,18 @@
+import moment from 'moment'
+
+// 判断是否登录过期
+let access_token_expired_at = localStorage.access_token_expired_at;
+let isExpired = !!(access_token_expired_at && moment().isAfter(moment.unix(access_token_expired_at)));
+
 const defaultState = {
   toggle_snackbar: false,
   toggle_drawer: false,
   themePaletteType: 'light',
-  access_token: localStorage.getItem('access_token') | '',
-  user_id: localStorage.getItem('user_id') | '',
-  user_name: localStorage.getItem('user_name') | '',
-  user_email: localStorage.getItem('user_email') | '',
+  is_expired: isExpired,
+  access_token: localStorage.getItem('access_token') || null,
+  user_id: localStorage.getItem('user_id') || null,
+  user_name: localStorage.getItem('user_name') || null,
+  user_email: localStorage.getItem('user_email') || null,
 };
 
 const lab = (state = defaultState, action) => {

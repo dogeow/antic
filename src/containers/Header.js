@@ -6,7 +6,7 @@ const mapStateToProps = (state, ownProps) => ({
   toggle_snackbar: state.lab.toggle_snackbar,
   toggle_drawer: state.lab.toggle_drawer,
   themePaletteType: state.lab.themePaletteType,
-  access_token: state.lab.access_token,
+  is_expired: state.lab.is_expired,
   user_name: state.lab.user_name,
   lab: state.lab
 });
