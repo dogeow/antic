@@ -1,8 +1,11 @@
 import moment from 'moment'
 
 // 判断是否登录过期
+let isExpired = true;
 let access_token_expired_at = localStorage.access_token_expired_at;
-let isExpired = !!(access_token_expired_at && moment().isAfter(moment.unix(access_token_expired_at)));
+if (access_token_expired_at && moment().isBefore(moment.unix(access_token_expired_at))) {
+  isExpired = false;
+}
 
 const defaultState = {
   toggle_snackbar: false,
