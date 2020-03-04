@@ -47,6 +47,7 @@ const Weibo = () => {
         id="date-picker-dialog"
         label="日期"
         format="Y-MM-DD"
+        disableFuture={true}
         value={selectedDate}
         onChange={handleDateChange}
         KeyboardButtonProps={{
