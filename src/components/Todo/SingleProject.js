@@ -5,6 +5,8 @@ import Input from '@material-ui/core/Input/Input'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import axios from 'axios'
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const SingleProject = () => {
   const history = useHistory();
@@ -75,8 +77,9 @@ const SingleProject = () => {
           </Typography>
         </Grid>
         <Grid item>
-          <Button variant="contained" color="primary"
-                  onClick={() => handleMarkProjectAsCompleted(project.id)}>结束项目</Button>
+          <IconButton aria-label="delete" onClick={() => handleMarkProjectAsCompleted(project.id)}>
+            <DeleteIcon />
+          </IconButton>
         </Grid>
       </Grid>
       <Typography variant="h6" component="h2">
@@ -120,7 +123,7 @@ const SingleProject = () => {
               </Typography>
             </Grid>
             <Grid item>
-              <Button variant="contained" color="primary" onClick={() => handleMarkTaskAsCompleted(task.id)}>
+              <Button variant="outlined" size="small" onClick={() => handleMarkTaskAsCompleted(task.id)}>
                 完成
               </Button>
             </Grid>
