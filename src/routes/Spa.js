@@ -36,13 +36,11 @@ import NoMatch from '../containers/NoMatch'
 // Demos
 import Clock from '../demo/Clock'
 import Calculator from '../demo/Calculator/'
-import Topics from '../demo/Topics'
 import Chess from '../containers/Chess'
 import Font from '../demo/Font'
 import Markdown from '../demo/Markdown'
 
 import Test from '../components/Test'
-import Test233 from '../components/Test233'
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -93,7 +91,6 @@ const Spa = ({match}) => {
           <Route path="/demos/markdown" component={Markdown}/>
           <Route path="/demos/font" component={Font}/>
           <Route path="/test" component={Test}/>
-          <Route path="/test233" component={Test233}/>
           <Route component={NoMatch}/>
         </Switch>
       </Container>

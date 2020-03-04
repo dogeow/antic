@@ -21,7 +21,6 @@ import Container from '@material-ui/core/Container'
 // 组件
 import Logo from '../components/Logo'
 import Drawer from './Drawer'
-import Snackbar from './Snackbar'
 import Settings from './Settings'
 
 import {logout} from '../helpers/index'

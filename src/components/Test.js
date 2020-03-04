@@ -1,18 +1,27 @@
-import React from 'react'
-import Button from '@material-ui/core/Button'
-import { useSnackbar } from 'notistack'
+import React, {useReducer} from 'react'
 
-const Test = () => {
-  const {enqueueSnackbar} = useSnackbar();
-  const handleClick = () => {
-    enqueueSnackbar('I love hooks', {
-      variant: 'success',
-    });
-  };
+const initialState = {count: 0};
 
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return {count: state.count + 1};
+    case 'decrement':
+      return {count: state.count - 1};
+    default:
+      throw new Error();
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <Button variant="contained" color="primary" onClick={handleClick}>Show snackbar</Button>
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
+    </>
   );
-};
+}
 
-export default Test;
+export default Counter;
