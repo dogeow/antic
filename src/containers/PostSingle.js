@@ -6,8 +6,8 @@ import Typography from '@material-ui/core/Typography'
 import Tooltip from '@material-ui/core/Tooltip'
 import moment from 'moment'
 import ReactMarkdown from "react-markdown/with-html";
-import CodeBlock from "../demo/CodeBlock";
-import HeadingBlock from "../demo/HeadingBlock";
+import CodeBlock from "../components/CodeBlock";
+import HeadingBlock from "../components/HeadingBlock";
 
 const PostSingle = () => {
   const [post, setPost] = useState([]);

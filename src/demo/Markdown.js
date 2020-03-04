@@ -4,8 +4,8 @@ import MdEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css';
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
-import CodeBlock from "./CodeBlock";
-import HeadingBlock from "./HeadingBlock";
+import CodeBlock from "../components/CodeBlock";
+import HeadingBlock from "../components/HeadingBlock";
 
 const PLUGINS = undefined;
 
