@@ -29,9 +29,9 @@ const Api = () => {
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
-              <TableCell align="right">api</TableCell>
-              <TableCell align="right">介绍</TableCell>
-              <TableCell align="right">举例</TableCell>
+              <TableCell>api</TableCell>
+              <TableCell>介绍</TableCell>
+              <TableCell>举例</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -40,9 +40,9 @@ const Api = () => {
                 <TableCell component="th" scope="row">
                   {row.id}
                 </TableCell>
-                <TableCell align="right">{row.endpoint}</TableCell>
-                <TableCell align="right">{row.content}</TableCell>
-                <TableCell align="right">{row.example}</TableCell>
+                <TableCell>{row.endpoint}</TableCell>
+                <TableCell>{row.content}</TableCell>
+                <TableCell>{row.example}</TableCell>
               </TableRow>
             ))}
           </TableBody>
