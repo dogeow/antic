@@ -1,44 +1,16 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 
+const type = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'subtitle2', 'body1', 'body2', 'button', 'caption', 'overline'];
+
 const Font = () => (
   <div>
-    <Typography variant="h1" component="h2">
-      世界、🌍，By 2020
-    </Typography>
-    <Typography variant="h2" component="h2">
-      世界、🌍，By 2020
-    </Typography>
-    <Typography variant="h3" component="h2">
-      世界、🌍，By 2020
-    </Typography>
-    <Typography variant="h4" component="h2">
-      世界、🌍，By 2020
-    </Typography>
-    <Typography variant="h5" component="h2">
-      世界、🌍，By 2020
-    </Typography>
-    <Typography variant="h6" component="h2">
-      世界、🌍，By 2020
-    </Typography>
-    <Typography variant="subtitle1" component="h2">
-      世界、🌍，By 2020
-    </Typography>
-    <Typography variant="subtitle2" component="h2">
-      世界、🌍，By 2020
-    </Typography>
-    <Typography variant="body1" component="h2">
-      世界、🌍，By 2020
-    </Typography>
-    <Typography variant="body2" component="h2">
-      世界、🌍，By 2020
-    </Typography>
-    <Typography variant="caption" component="h2">
-      世界、🌍，By 2020
-    </Typography>
-    <Typography variant="overline" component="h2">
-      世界、🌍，By 2020
-    </Typography>
+    {type.map((item) => (
+      <Typography variant={item} component="h2">
+        马斯克的<span role="img" aria-label="火箭飞离地球">🌍🚀</span>是人类未来的基石，Written in 2020。
+      </Typography>
+    ))
+    }
   </div>
 );
 
