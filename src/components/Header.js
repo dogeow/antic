@@ -23,7 +23,7 @@ import Logo from '../components/Logo'
 import Drawer from './Drawer'
 import Settings from './Settings'
 
-import {logout} from '../helpers/index'
+import { logout } from '../helpers/index'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -77,10 +77,9 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
     setAnchorElMyself(null);
     logout();
     dispatch({type: 'LOGOUT'});
-    axios.post("user/logout")
-      .then(() => {
-        Swal.fire('注销成功！')
-      });
+    axios.post("user/logout").then(() => {
+      Swal.fire('注销成功！')
+    });
   };
 
   return (
@@ -109,44 +108,46 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
             <Link to={'/'} className={classes.title}>
               <Logo/>
             </Link>
-            {lab.is_expired ? (
-              <Link to={'/login'}><Button color="inherit">登录</Button></Link>
-            ) : (
-              <div>
-              <IconButton
-              aria-label="account of current user"
-              aria-controls="myself-appbar"
-              aria-haspopup="true"
-              color="inherit"
-              onClick={handleMenuMyself}
-              >
-              <Avatar
-              alt={lab.user_name}
-              src={`https://gravatar.loli.net/avatar/${md5(lab.user_email)}.jpg?d=mp&s=80`}
-              />
-              </IconButton>
-              <Menu
-              id="myself-appbar"
-              anchorEl={anchorElMyself}
-              anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right'
-              }}
-              keepMounted
-              transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-              }}
-              open={openMyself}
-              onClose={handleCloseMyself}
-              >
-              <Link to={`/user/${lab.user_id}`} onClick={() => handleCloseMyself()}>
-              <MenuItem>{lab.user_name}</MenuItem>
-              </Link>
-              <MenuItem onClick={handleLogout}>注销</MenuItem>
-              </Menu>
-              </div>
-            )}
+            {
+              lab.is_expired ? (
+                <Link to={'/login'}><Button color="inherit">登录</Button></Link>
+              ) : (
+                <div>
+                  <IconButton
+                    aria-label="account of current user"
+                    aria-controls="myself-appbar"
+                    aria-haspopup="true"
+                    color="inherit"
+                    onClick={handleMenuMyself}
+                  >
+                    <Avatar
+                      alt={lab.user_name}
+                      src={`https://gravatar.loli.net/avatar/${md5(lab.user_email)}.jpg?d=mp&s=80`}
+                    />
+                  </IconButton>
+                  <Menu
+                    id="myself-appbar"
+                    anchorEl={anchorElMyself}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right'
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    open={openMyself}
+                    onClose={handleCloseMyself}
+                  >
+                    <Link to={`/user/${lab.user_id}`} onClick={() => handleCloseMyself()}>
+                      <MenuItem>{lab.user_name}</MenuItem>
+                    </Link>
+                    <MenuItem onClick={handleLogout}>注销</MenuItem>
+                  </Menu>
+                </div>
+              )
+            }
             <IconButton
               aria-label="show more"
               aria-controls="menu-appbar"
@@ -172,8 +173,11 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
               onClose={handleClose}
             >
               <MenuItem onClick={handleSettingOpen}>设置</MenuItem>
-              <MenuItem onClick={onThemeClick}>
-                {lab.themePaletteType === "dark" ? "黑夜🌌" : "白天☀️️"}模式
+              <MenuItem onClick={() => {
+                setAnchorEl(null);
+                onThemeClick();
+              }}>
+                切换为{lab.themePaletteType === "dark" ? "白天☀️️" : "黑夜🌌"}模式
               </MenuItem>
             </Menu>
           </Toolbar>
