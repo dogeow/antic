@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import makeStyles from "@material-ui/core/styles/makeStyles"
-import { DatePicker, } from '@material-ui/pickers'
+import { KeyboardDatePicker } from '@material-ui/pickers'
 import axios from 'axios'
 import moment from 'moment'
 
@@ -42,11 +42,18 @@ const Weibo = () => {
 
   return (
     <div className={classes.root}>
-      <DatePicker
-        className={classes.picker}
-        style={{marginBottom: 20}}
+      <KeyboardDatePicker
+        margin="normal"
+        id="date-picker-dialog"
+        label="日期"
+        format="Y-MM-DD"
         value={selectedDate}
-        onChange={handleDateChange}/>
+        onChange={handleDateChange}
+        KeyboardButtonProps={{
+          'aria-label': 'change date',
+        }}
+        style={{marginLeft: 12}}
+      />
       <div>
         <table>
           <thead>
