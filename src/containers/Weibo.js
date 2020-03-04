@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import makeStyles from "@material-ui/core/styles/makeStyles"
 import { DatePicker, } from '@material-ui/pickers'
 import axios from 'axios'
+import moment from 'moment'
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -32,10 +33,12 @@ const Weibo = () => {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   useEffect(() => {
-    axios.get("weibo/30").then(response => {
+    axios.post("weibo", {
+      date: moment(selectedDate).format('Y-MM-DD')
+    }).then(response => {
       setData(response.data);
     })
-  }, []);
+  }, [selectedDate]);
 
   return (
     <div className={classes.root}>
