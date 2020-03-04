@@ -3,6 +3,8 @@ import makeStyles from "@material-ui/core/styles/makeStyles"
 import { KeyboardDatePicker } from '@material-ui/pickers'
 import axios from 'axios'
 import moment from 'moment'
+import ErrorOutline from '@material-ui/icons/ErrorOutline'
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -42,19 +44,24 @@ const Weibo = () => {
 
   return (
     <div className={classes.root}>
-      <KeyboardDatePicker
-        margin="normal"
-        id="date-picker-dialog"
-        label="日期"
-        format="Y-MM-DD"
-        disableFuture={true}
-        value={selectedDate}
-        onChange={handleDateChange}
-        KeyboardButtonProps={{
-          'aria-label': 'change date',
-        }}
-        style={{marginLeft: 12}}
-      />
+      <div>
+        <KeyboardDatePicker
+          margin="normal"
+          id="date-picker-dialog"
+          label="日期"
+          format="Y-MM-DD"
+          disableFuture={true}
+          value={selectedDate}
+          onChange={handleDateChange}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+          style={{marginLeft: 12}}
+        />
+        <div style={{float: 'right', marginRight: 12}}>
+          <Link to={'weibo/about'}><ErrorOutline/></Link>
+        </div>
+      </div>
       <div>
         <table>
           <thead>

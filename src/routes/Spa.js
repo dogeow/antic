@@ -18,6 +18,7 @@ import Todo from '../components/Todo/ProjectsList'
 import CreateTodoProject from '../components/Todo/NewProject'
 import TodoProject from '../components/Todo/SingleProject'
 import Weibo from '../containers/Weibo'
+import WeiboAbout from '../containers/WeiboAbout'
 import SelfTalk from '../containers/SelfTalk'
 import Emoji from '../components/Emoji'
 import EmojiPost from '../components/Emoji/EmojiPost'
@@ -69,7 +70,8 @@ const Spa = ({match}) => {
           <Route exact path="/api" component={Api}/>
           <Route path="/sqg" component={Sqg}/>
           <Route path="/about" component={About}/>
-          <Route path="/weibo" component={Weibo}/>
+          <Route exact path="/weibo" component={Weibo}/>
+          <Route path="/weibo/about" component={WeiboAbout}/>
           <Route exact path="/emoji" component={Emoji}/>
           <Route path="/emoji/post" component={EmojiPost}/>
           <Route exact path="/todo" component={Todo}/>
