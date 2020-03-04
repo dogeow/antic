@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown/with-html'
 import MdEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css';
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
-import CodeBlock from "../demo/CodeBlock";
-import HeadingBlock from "../demo/HeadingBlock";
+import CodeBlock from "../components/CodeBlock";
+import HeadingBlock from "../components/HeadingBlock";
 import Input from '@material-ui/core/Input';
-
-const PLUGINS = undefined;
 
 const PostCreate = () => {
   const [id, setId] = useState();
-  const [mdEditor, setMdEditor] = useState();
   const [title, setTitle] = React.useState();
-  const handleChange = event => {
-    setTitle(event.target.value);
-  };
+  const [content, setContent] = useState();
 
   const handlePost = () => {
     let url = id ? `post/${id}` : 'post';
@@ -26,7 +21,7 @@ const PostCreate = () => {
       url: url,
       data: {
         title: title,
-        content: mdEditor
+        content: content
       }
     }).then(resp => {
       setId(resp.data.id);
@@ -68,19 +63,22 @@ const PostCreate = () => {
   };
 
   const handleEditorChange = (it, event) => {
-    setMdEditor(it.text);
+    setContent(it.text);
     // console.log('handleEditorChange', it.text, it.html, event);
+  };
+
+  const handleTitleChange = event => {
+    setTitle(event.target.value);
   };
 
   return (
     <div className="demo-wrap">
-      <div><Input placeholder="请输入标题" inputProps={{'aria-label': 'description'}} onChange={handleChange}/></div>
+      <div><Input placeholder="请输入标题" inputProps={{'aria-label': 'description'}} onChange={handleTitleChange}/></div>
       <div className="editor-wrap">
         <MdEditor
-          value={mdEditor}
+          value={content}
           style={{height: '500px', width: '100%'}}
           renderHTML={renderHTML}
-          plugins={PLUGINS}
           config={{
             view: {
               menu: true,
