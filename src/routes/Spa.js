@@ -86,7 +86,6 @@ const Spa = ({match}) => {
           <Route path="/demos/chess" component={Chess}/>
           <Route path="/demos/clock" component={Clock}/>
           <Route path="/demos/calculator" component={Calculator}/>
-          <Route path="/demos/topics" component={Topics}/>
           <Route path="/demos/parking" component={Parking}/>
           <Route path="/demos/markdown" component={Markdown}/>
           <Route path="/demos/font" component={Font}/>
