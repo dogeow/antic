@@ -1,8 +1,3 @@
-export const toggleSnackbar = toggle_snackbar => ({
-  type: 'TOGGLE_SNACKBAR',
-  toggle_snackbar
-});
-
 export const toggleDrawer = toggle_drawer => ({
   type: 'TOGGLE_DRAWER',
   toggle_drawer

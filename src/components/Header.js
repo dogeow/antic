@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Header = ({lab, is_expired, onClickDrawer, toggle_snackbar, toggle_drawer, onThemeClick, themePaletteType}) => {
+const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteType}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -111,7 +111,7 @@ const Header = ({lab, is_expired, onClickDrawer, toggle_snackbar, toggle_drawer,
             <Link to={'/'} className={classes.title}>
               <Logo/>
             </Link>
-            {is_expired ? (
+            {lab.is_expired ? (
               <Link to={'/login'}><Button color="inherit">登录</Button></Link>
             ) : (
               <div>

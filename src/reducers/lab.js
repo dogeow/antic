@@ -1,7 +1,6 @@
 import {isExpired} from '../helpers'
 
 const defaultState = {
-  toggle_snackbar: false,
   toggle_drawer: false,
   themePaletteType: 'light',
   is_expired: isExpired(),
@@ -20,10 +19,6 @@ const lab = (state = defaultState, action) => {
         user_id: action.user_id,
         user_name: action.user_name,
         user_email: action.user_email,
-      });
-    case 'TOGGLE_SNACKBAR':
-      return Object.assign({}, state, {
-        toggle_snackbar: !state.toggle_snackbar
       });
     case 'TOGGLE_DRAWER':
       return Object.assign({}, state, {
