@@ -93,7 +93,6 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
         themePaletteType={themePaletteType}
       />
       <Drawer open={toggle_drawer} onClick={onClickDrawer}/>
-      <Snackbar toggle_snackbar={toggle_snackbar}/>
       <AppBar position="static">
         <Container maxWidth="lg" classes={{
           root: classes.containerRoot
