@@ -7,9 +7,7 @@ const HallOfFame = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('thing/love').then(function (resp) {
-      setData(resp.data.files);
-    })
+    axios.get('thing/love').then(resp => setData(resp.data.files))
   }, []);
 
   return (

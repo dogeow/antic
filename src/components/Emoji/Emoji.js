@@ -28,17 +28,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Emoji = ({
-                 faceIsLoading, data, displayImg, pageLimit, currentPage, filterNum, select_tag, toggleTag,
-                 toggleCategory, select_category, displayTag, which_page, toggle_display_img, expandCategory,
-                 toggle_spin, selectedCategory, selectedTag, search, expandTag
-               }) => {
+const Emoji = (
+  {
+    faceIsLoading, data, displayImg, pageLimit, currentPage, filterNum, select_tag, toggleTag,
+    toggleCategory, select_category, displayTag, which_page, toggle_display_img, expandCategory, selectedCategory, selectedTag, search, expandTag
+  }) => {
   const [visible, setVisible] = React.useState(false);
   const [index, setIndex] = React.useState(0);
   const classes = useStyles();
 
   face.map(item => {
-    item.src = 'https://cdn.gugelong.com/emoji/' +  item.fileName;
+    item.src = `${process.env.REACT_APP_CDN_URL}emoji/` + item.fileName;
     item.alt = item.fileName;
 
     return item;
@@ -93,7 +93,7 @@ const Emoji = ({
           data.length > 0 ? (
             data.map((single, index) =>
               <Grid key={index} item xs={4} style={{textAlign: 'center'}}>
-                <img id={index} src={"https://cdn.gugelong.com/emoji/" + single["fileName"]} alt={single["name"]}
+                <img id={index} src={`${process.env.REACT_APP_CDN_URL}emoji/` + single["fileName"]} alt={single["name"]}
                      width="100" onLoad={() => imgLoaded(index)}
                      style={displayImg[index] === true ? {} : {visibility: "hidden"}}
                      onClick={() => {
@@ -109,20 +109,9 @@ const Emoji = ({
           ) : (<Grid item style={{margin: '20px 0'}}><h3>没有找到</h3></Grid>)
         }
       </Grid>
-      <Viewer
-        visible={visible}
-        onClose={() => {
-          setVisible(false);
-        }}
-        images={face}
-        activeIndex={index}
-      />
-      <BootNav filterNum={filterNum} currentPage={currentPage}
-               which_page={which_page} pageLimit={pageLimit}/>
-      <Spinner
-        loaded={!faceIsLoading}
-        config={customSpinConfig}
-      />
+      <Viewer visible={visible} onClose={setVisible(false)} images={face} activeIndex={index}/>
+      <BootNav filterNum={filterNum} currentPage={currentPage} which_page={which_page} pageLimit={pageLimit}/>
+      <Spinner loaded={!faceIsLoading} config={customSpinConfig}/>
     </Grid>
   )
 };
