@@ -5,7 +5,7 @@ const WeiboAbout = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('weibo/about').then((resp) => {
+    axios.post('weibo/about').then((resp) => {
       setData(resp.data);
     })
   }, []);
