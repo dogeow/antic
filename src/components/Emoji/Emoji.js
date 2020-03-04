@@ -1,15 +1,15 @@
 import Swal from 'sweetalert2'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
-import Filter from '../Filter'
-import FilterStatistics from '../FilterStatistics'
-import BootNav from '../BootNav'
+import Filter from './Filter'
+import FilterStatistics from './FilterStatistics'
+import BootNav from './BootNav'
 import Spinner from 'react-spinner-children'
 import React from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Typography from '@material-ui/core/Typography'
 import Viewer from 'react-viewer'
-import face from '../../../resources/face.json'
+import face from '../../resources/face.json'
 
 const customSpinConfig = {
   lines: 10,
