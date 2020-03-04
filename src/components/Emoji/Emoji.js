@@ -109,7 +109,7 @@ const Emoji = (
           ) : (<Grid item style={{margin: '20px 0'}}><h3>没有找到</h3></Grid>)
         }
       </Grid>
-      <Viewer visible={visible} onClose={setVisible(false)} images={face} activeIndex={index}/>
+      <Viewer visible={visible} onClose={() => setVisible(false)} images={face} activeIndex={index}/>
       <BootNav filterNum={filterNum} currentPage={currentPage} which_page={which_page} pageLimit={pageLimit}/>
       <Spinner loaded={!faceIsLoading} config={customSpinConfig}/>
     </Grid>
