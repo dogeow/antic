@@ -1,7 +1,6 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 
-
 const Font = () => (
   <div>
     <Typography variant="h1" component="h2">
