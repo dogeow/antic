@@ -1,45 +1,55 @@
-import React from 'react'
-import Grid from '@material-ui/core/Grid'
+import React, { useState, useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import axios from 'axios'
 
-const Api = () => (
-  <Grid container>
-    <Grid item xs={12}>
-      <Typography component="h2" variant="h2">
-        API
+const Api = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.post('api').then((resp) => {
+      setData(resp.data);
+    })
+  }, []);
+
+  return (
+    <div>
+      <Typography component="h3" variant="h6">
+        前缀：{process.env.REACT_APP_API_URL}
       </Typography>
-    </Grid>
-    <Grid item xs={12}>
-      <Typography>
-        {process.env.REACT_APP_API_URL}ip
-      </Typography>
-    </Grid>
-    <Grid item xs={12}>
-      <Typography component="h3" variant="h3">
-        所有 API
-      </Typography>
-    </Grid>
-    <Grid item xs={12}>
-      <Typography component="ul">
-        <li>html_sc/{`<string>`}</li>
-        <li>secret/{`<string>`}</li>
-        <li>md5/{`<md5>`}</li>
-        <li>ip/[ip]</li>
-        <li>timestamp/[timestamp]</li>
-        <li>hash/{`<hash>`}</li>
-        <li>date/[date]</li>
-        <li>银行卡 银行卡查询 /bankcard/{`<cardNo>`}</li>
-        <li>图片 图片下载或获取 URL image/{`<action=download|url>`}</li>
-        <li>/base64_encode/{`<string>`}</li>
-        <li>/base64_decode/{`<string>`}</li>
-        <li>/url_encode/{`<string>`}</li>
-        <li>/url_decode/{`<string>`}</li>
-        <li>/utf8_to_unicode/{`<string>`}</li>
-        <li>/unicode_to_utf8/{`<string>`}</li>
-        <li>中文域名转码 /punycode/{`<string>`}</li>
-      </Typography>
-    </Grid>
-  </Grid>
-);
+
+      <TableContainer component={Paper}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell align="right">api</TableCell>
+              <TableCell align="right">介绍</TableCell>
+              <TableCell align="right">举例</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map(row => (
+              <TableRow key={row.name}>
+                <TableCell component="th" scope="row">
+                  {row.id}
+                </TableCell>
+                <TableCell align="right">{row.endpoint}</TableCell>
+                <TableCell align="right">{row.content}</TableCell>
+                <TableCell align="right">{row.example}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
+  )
+};
 
 export default Api;
