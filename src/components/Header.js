@@ -76,8 +76,8 @@ const Header = ({lab, is_expired, onClickDrawer, toggle_snackbar, toggle_drawer,
 
   const handleLogout = () => {
     setAnchorElMyself(null);
-    dispatch({type: 'LOGOUT'});
     logout();
+    dispatch({type: 'LOGOUT'});
     axios.post("user/logout")
       .then(() => {
         Swal.fire('注销成功！')
