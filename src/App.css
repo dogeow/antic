@@ -20,6 +20,20 @@ a:visited {
   color: unset
 }
 
+figure {
+  margin: 0;
+}
+
+blockquote {
+  position: relative;
+  margin: 16px 0;
+  padding: 5px 8px 5px 30px;
+  background: none repeat scroll 0 0 rgba(102,128,153,.05);
+  color: #333;
+  border: none;
+  border-left: 10px solid #d6dbdf;
+}
+
 /* 更改默认行为 end */
 
 /* 鼠标样式 start */
