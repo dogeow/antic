@@ -12,7 +12,6 @@ const PLUGINS = undefined;
 const Demo = () => {
   const [mdEditor, setMdEditor] = useState();
   const [id, setId] = useState();
-  const [selectedFile, setSelectedFile] = useState();
 
   useEffect(() => {
     axios.get('post/1').then(resp => {
