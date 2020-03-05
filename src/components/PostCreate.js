@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown/with-html'
 import MdEditor from 'react-markdown-editor-lite'
-import 'react-markdown-editor-lite/lib/index.css';
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
 import CodeBlock from "../components/CodeBlock";

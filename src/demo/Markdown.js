@@ -1,14 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import 'react-markdown-editor-lite/lib/index.css';
 import ReactMarkdown from 'react-markdown/with-html'
 import MdEditor from 'react-markdown-editor-lite'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
 import CodeBlock from "../components/CodeBlock";
 import HeadingBlock from "../components/HeadingBlock";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import { useStore } from 'react-redux'
 
 const PLUGINS = undefined;
 
+const useStyles = makeStyles(theme => ({
+  '@global': {
+    '.section-container': {
+      background: theme.palette.type === 'dark' && '#303030',
+      color: theme.palette.type === 'dark' && 'white',
+    },
+  },
+}));
+
 const Demo = () => {
+  useStyles();
+  const store = useStore();
+  const state = store.getState();
   const [mdEditor, setMdEditor] = useState();
   const [id, setId] = useState();
 
@@ -67,36 +82,38 @@ const Demo = () => {
   };
 
   return (
-      <div className="demo-wrap">
-        <div className="editor-wrap">
-          <MdEditor
-            value={mdEditor}
-            style={{height: '500px', width: '100%'}}
-            renderHTML={renderHTML}
-            plugins={PLUGINS}
-            config={{
-              view: {
-                menu: true,
-                md: true,
-                html: true,
-                fullScreen: true,
-                hideMenu: true,
-              },
-              table: {
-                maxRow: 5,
-                maxCol: 6,
-              },
-              imageUrl: 'https://octodex.github.com/images/minion.png',
-              syncScrollMode: ['leftFollowRight', 'rightFollowLeft'],
-            }}
-            onChange={handleEditorChange}
-            onImageUpload={handleImageUpload}
-          />
-        </div>
-        <div style={{paddingTop: 20, textAlign: 'center'}}>
-          <Button variant="contained" color="primary" onClick={handlePost}>提交</Button>
-        </div>
+    <div className="demo-wrap">
+      <div className="editor-wrap">
+        <MdEditor
+          value={mdEditor}
+          style={{height: '500px', width: '100%'}}
+          renderHTML={renderHTML}
+          plugins={PLUGINS}
+          config={{
+            htmlClass: 'none',
+            markdownClass: state.lab.themePaletteType === 'dark' && 'dark',
+            view: {
+              menu: true,
+              md: true,
+              html: true,
+              fullScreen: true,
+              hideMenu: true,
+            },
+            table: {
+              maxRow: 5,
+              maxCol: 6,
+            },
+            imageUrl: 'https://octodex.github.com/images/minion.png',
+            syncScrollMode: ['leftFollowRight', 'rightFollowLeft'],
+          }}
+          onChange={handleEditorChange}
+          onImageUpload={handleImageUpload}
+        />
       </div>
+      <div style={{paddingTop: 20, textAlign: 'center'}}>
+        <Button variant="contained" color="primary" onClick={handlePost}>提交</Button>
+      </div>
+    </div>
   );
 };
 
