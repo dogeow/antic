@@ -1,23 +1,23 @@
-import React, { useEffect } from "react";
-import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import React from "react";
+import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/prism-light";
+
 // 设置高亮样式
-import { coy } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 // 设置高亮的语言
-import { jsx, javascript } from "react-syntax-highlighter/dist/esm/languages/prism";
+import { jsx, javascript, php, bash, css, json, nginx } from "react-syntax-highlighter/dist/esm/languages/prism";
+
+SyntaxHighlighter.registerLanguage("jsx", jsx);
+SyntaxHighlighter.registerLanguage("javascript", javascript);
+SyntaxHighlighter.registerLanguage("php", php);
+SyntaxHighlighter.registerLanguage("bash", bash);
+SyntaxHighlighter.registerLanguage("css", css);
+SyntaxHighlighter.registerLanguage("json", json);
+SyntaxHighlighter.registerLanguage("nginx", nginx);
 
 const CodeBlock = ({language, value}) => {
-  console.log(language);
-  console.log(value);
-  useEffect(() => {
-    // 注册要高亮的语法，
-    // 注意：如果不设置打包后供第三方使用是不起作用的
-    SyntaxHighlighter.registerLanguage("jsx", jsx);
-    SyntaxHighlighter.registerLanguage("javascript", javascript);
-  }, []);
-
   return (
     <figure className="highlight">
-      <SyntaxHighlighter language={language} style={coy}>
+      <SyntaxHighlighter language={language} style={atomDark}>
         {value}
       </SyntaxHighlighter>
     </figure>
