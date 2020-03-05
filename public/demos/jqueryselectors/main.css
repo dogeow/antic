@@ -1,0 +1,76 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 62.5% Verdana, Helvetica, Arial, sans-serif;
+  color: #000;
+  background: #fff;
+}
+#container {
+  font-size: 1.2em;
+  margin: 10px 2em;
+}
+
+h2 {
+  font-size: 1.3em;
+  margin-bottom: .5em;
+}
+h2.subtitle {
+  font: italic normal 1em "Times New Roman", Times, serif;
+  margin-top: 0;
+  margin-bottom: .5em;
+}
+h3 {
+  font-size: 1.1em;
+  margin-bottom: 0;
+}
+code {
+  font-family: "Gill Sans";
+  line-height: 1.8em;
+  font-size: 1.5em;
+}
+
+table {
+  border: 1px solid #777;
+  border-collapse: collapse;
+}
+th {
+  text-align: left;
+}
+th, td {
+  padding: 2px 4px;
+}
+
+.alt {
+  background-color: #ccf;
+}
+
+.pdf {
+  padding: 2px;
+  background-color: #900;
+  color: #fff;
+}
+
+form {
+  width: 600px;
+  padding: 1em;
+}
+fieldset {
+  border: 1px solid #ccf;
+}
+p label {
+  width: 100px;
+  float: left;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.faded {
+  color: #bbb;
+}
+
+a {
+  color: #343299;
+}

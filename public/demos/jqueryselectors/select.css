@@ -1,0 +1,92 @@
+@import url(main.css);
+
+#container .highlight {
+  background-color: #ff6;
+  color: #c00;
+  position: relative;
+}
+
+#container {
+  margin-bottom: 48px;
+}
+
+h1 {
+  clear: both;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  background: #e3e3e3;
+  padding: 3px 3px 3px 10px;
+  cursor: pointer;
+}
+
+.example {
+  overflow: hidden;
+  margin-bottom: 1em;
+  padding: 5px;
+  border: 1px solid #ccc;
+  width: 35%;
+  margin-right: 15px;
+}
+.domtree, .domsource {
+  background-color: #fff;
+  float: right;
+  width:60%;
+  border: 1px solid #e3e3e3;
+  padding: 5px;
+  margin-bottom: 1em;
+  position: fixed;
+  top: 95px;
+  right: 12px;
+}
+.domtree {
+  font-size: 1.0em;
+}
+
+.domtree code {
+  font-size: 1.0em;
+  line-height: 1.0em;
+}
+
+
+#myid {
+  margin-top: 1em;
+}
+.example h3 {
+  margin: 0;
+  cursor: pointer;
+}
+
+.example .content {
+  margin-top: 1em;
+}
+.example .content input {
+  float: left;
+  display: block;
+  margin: .85em 0 0 10px;
+}
+ 
+.sample-code {
+  float: left;
+  clear: left;
+  margin-top: .5em;
+  margin-right: .25em;
+  color: #060;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+
+.left {
+  float: left;
+  padding-right: 10px;
+}
+.clear-left {
+  clear: left;
+}
+label {
+  display: block;
+}
+
+form {
+  overflow: hidden;
+}
