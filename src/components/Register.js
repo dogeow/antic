@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Register({history}) {
+const Register = ({history}) =>  {
   const classes = useStyles();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -179,4 +179,6 @@ export default function Register({history}) {
       </Box>
     </Container>
   );
-}
+};
+
+export default Register;

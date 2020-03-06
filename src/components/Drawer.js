@@ -37,7 +37,7 @@ const externalMenus = [
   {'name': '🖌️Canvas 学习', 'url': 'http://canvas.kunyan.li'},
 ];
 
-export default function TemporaryDrawer(props) {
+const TemporaryDrawer = (props) => {
   const classes = useStyles();
 
   const toggleDrawer = () => event => {
@@ -82,4 +82,6 @@ export default function TemporaryDrawer(props) {
       </Drawer>
     </div>
   );
-}
+};
+
+export default TemporaryDrawer;
