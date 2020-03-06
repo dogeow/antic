@@ -88,7 +88,7 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
     axios.post("user/login", {
       email: 'test@test.com',
       password: 'test@test.com',
-      remember_me: false
+      remember_me: true
     }).then(response => {
       let {access_token} = response.data;
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
