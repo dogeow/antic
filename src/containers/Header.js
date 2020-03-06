@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 import md5 from 'md5'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { logged } from '../helpers'
+import { loginAction } from "../actions";
 
 // Material-UI
 import makeStyles from '@material-ui/core/styles/makeStyles'
@@ -80,6 +82,22 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
     axios.post("user/logout").then(() => {
       Swal.fire('注销成功！')
     });
+  };
+
+  const testLogin = () => {
+    axios.post("user/login", {
+      email: 'test@test.com',
+      password: 'test@test.com',
+      remember_me: false
+    }).then(response => {
+      let {access_token} = response.data;
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
+      axios.post("user/profile").then(response2 => {
+        let {id, name, email} = response2.data.user;
+        logged(response.data, response2.data.user);
+        dispatch(loginAction(access_token, id, name, email));
+      });
+    })
   };
 
   return (
@@ -172,13 +190,17 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleSettingOpen}>设置</MenuItem>
               <MenuItem onClick={() => {
                 setAnchorEl(null);
                 onThemeClick();
               }}>
                 切换为{lab.themePaletteType === "dark" ? "白天☀️️" : "黑夜🌌"}模式
               </MenuItem>
+              <MenuItem onClick={() => {
+                setAnchorEl(null);
+                testLogin();
+              }}>测试账号登录</MenuItem>
+              <MenuItem onClick={handleSettingOpen}>设置</MenuItem>
             </Menu>
           </Toolbar>
         </Container>
