@@ -29,6 +29,7 @@ import Piano from '../components/Piano'
 import Parking from '../containers/Parking'
 import HallOfFame from '../containers/HallOfFame'
 import Demo from '../containers/Demo'
+import Algolia from '../containers/Algolia'
 
 // Layouts
 import Header from '../components/Header'
@@ -62,6 +63,7 @@ const Spa = ({match}) => {
         classes={["/nav"].includes(match.url) ? {root: classes.main} : null}>
         <Switch>
           <Route exact path="/" component={Index}/>
+          <Route path="/algolia" component={Algolia}/>
           <Route exact path="/post" component={Post}/>
           <Route path="/post/create" component={PostCreate}/>
           <Route path="/post/:id" component={PostSingle}/>

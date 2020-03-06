@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { toggleDrawer, toggleTheme } from '../actions'
+import { toggleDrawer } from '../actions'
 import Header from '../containers/Header'
 
 const mapStateToProps = (state, ownProps) => ({
@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onClickDrawer: () => dispatch(toggleDrawer(ownProps.toggle_drawer)),
-  onThemeClick: () => dispatch(toggleTheme())
+  onThemeClick: () => dispatch({type: 'TOGGLE_THEME'})
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

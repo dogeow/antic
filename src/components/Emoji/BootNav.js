@@ -1,5 +1,5 @@
 import React from 'react'
-import {BottomNavigation, BottomNavigationAction} from '@material-ui/core'
+import { BottomNavigation, BottomNavigationAction } from '@material-ui/core'
 import FirstPage from '@material-ui/icons/FirstPage'
 import LastPage from '@material-ui/icons/LastPage'
 import scrollToElement from 'scroll-to-element'
@@ -39,8 +39,10 @@ const BootNav = (props) => {
   };
 
   return (
-    <BottomNavigation showLabels value={-1}
-                      style={{backgroundColor: "#cccccc", right: 0, left: 0, bottom: 0, position: 'fixed'}}>
+    <BottomNavigation
+      showLabels
+      value={-1}
+      style={{backgroundColor: "#cccccc", right: 0, left: 0, bottom: 0, position: 'fixed'}}>
       <BottomNavigationAction label="上页" icon={<FirstPage/>} onClick={() => handlePageSwitch("Previous")}/>
       <BottomNavigationAction label="下页" icon={<LastPage/>} onClick={() => handlePageSwitch("Next")}/>
     </BottomNavigation>

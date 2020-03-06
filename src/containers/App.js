@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { toggleTheme } from '../actions'
 import App from '../components/App'
 
 const mapStateToProps = (state, ownProps) => ({
@@ -8,7 +7,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onClick: () => {
-    dispatch(toggleTheme(ownProps.themePaletteType))
+    dispatch({type: 'TOGGLE_THEME', value: ownProps.themePaletteType})
   }
 });
 

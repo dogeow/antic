@@ -9,22 +9,16 @@ const Tag = (props) => {
   return (
     <Grid container alignItems="center">
       <Grid item>
-        <Button
-          variant="contained" color={"primary"}
-          onClick={() => props.toggleTag()}
-        >
+        <Button variant="contained" color={"primary"} onClick={() => props.toggleTag()}>
           {props.expandTag ? "标签 <<" : "标签 >>"}
         </Button>
       </Grid>
       <Grid item>
-      ：
+        ：
         {
           props.expandTag
             ?
-            <Button
-              variant="contained" color={color}
-              onClick={() => props.select_tag("全部")}
-            >
+            <Button variant="contained" color={color} onClick={() => props.select_tag("全部")}>
               全部
             </Button>
             :
