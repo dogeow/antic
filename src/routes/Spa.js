@@ -39,7 +39,7 @@ import Clock from '../demo/Clock'
 import Calculator from '../demo/Calculator/'
 import Chess from '../containers/Chess'
 import Font from '../demo/Font'
-import Markdown from '../demo/Markdown'
+import Markdown from '../containers/Markdown'
 
 import Test from '../components/Test'
 
@@ -57,7 +57,7 @@ const Spa = ({match}) => {
     <>
       <Header/>
       <Container
-        maxWidth="lg"
+        maxWidth={['/markdown'].includes(match.url) ? null : 'lg'}
         style={{marginTop: 20}}
         classes={["/nav"].includes(match.url) ? {root: classes.main} : null}>
         <Switch>
@@ -89,7 +89,7 @@ const Spa = ({match}) => {
           <Route path="/demos/clock" component={Clock}/>
           <Route path="/demos/calculator" component={Calculator}/>
           <Route path="/demos/parking" component={Parking}/>
-          <Route path="/demos/markdown" component={Markdown}/>
+          <Route path="/markdown" component={Markdown}/>
           <Route path="/demos/font" component={Font}/>
           <Route path="/test" component={Test}/>
           <Route component={NoMatch}/>

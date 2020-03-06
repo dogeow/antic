@@ -7,13 +7,12 @@ import axios from 'axios'
 import CodeBlock from "../components/CodeBlock";
 import HeadingBlock from "../components/HeadingBlock";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import { useStore } from 'react-redux'
 
 const PLUGINS = undefined;
 
 const useStyles = makeStyles(theme => ({
   '@global': {
-    '.section-container': {
+    '.section-container, .rc-md-editor .editor-container .sec-md .input': {
       background: theme.palette.type === 'dark' && '#303030',
       color: theme.palette.type === 'dark' && 'white',
     },
@@ -22,8 +21,6 @@ const useStyles = makeStyles(theme => ({
 
 const Demo = () => {
   useStyles();
-  const store = useStore();
-  const state = store.getState();
   const [mdEditor, setMdEditor] = useState();
   const [id, setId] = useState();
 
@@ -86,12 +83,11 @@ const Demo = () => {
       <div className="editor-wrap">
         <MdEditor
           value={mdEditor}
-          style={{height: '500px', width: '100%'}}
+          style={{height: '700px', width: '100%'}}
           renderHTML={renderHTML}
           plugins={PLUGINS}
           config={{
             htmlClass: 'none',
-            markdownClass: state.lab.themePaletteType === 'dark' && 'dark',
             view: {
               menu: true,
               md: true,
