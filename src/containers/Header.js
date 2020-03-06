@@ -20,8 +20,8 @@ import Container from '@material-ui/core/Container'
 
 // 组件
 import Logo from '../components/Logo'
-import Drawer from './Drawer'
-import Settings from './Settings'
+import Drawer from '../components/Drawer'
+import Settings from '../components/Settings'
 
 import { logout } from '../helpers/index'
 

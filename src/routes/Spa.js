@@ -31,7 +31,7 @@ import HallOfFame from '../containers/HallOfFame'
 import Demo from '../containers/Demo'
 
 // Layouts
-import Header from '../containers/Header'
+import Header from '../components/Header'
 import NoMatch from '../containers/NoMatch'
 
 // Demos

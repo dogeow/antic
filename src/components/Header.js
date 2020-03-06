@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { toggleDrawer, toggleTheme } from '../actions'
-import Header from '../components/Header'
+import Header from '../containers/Header'
 
 const mapStateToProps = (state, ownProps) => ({
   toggle_drawer: state.lab.toggle_drawer,
