@@ -22,7 +22,6 @@ const BootNav = (props) => {
       which_page(currentPage - 1);
     }
     if (action === "Next") {
-      console.log(filterNum);
       if (currentPage >= Math.ceil(filterNum / pageLimit)) {
         Swal.fire({
           position: 'center',

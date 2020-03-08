@@ -11,20 +11,17 @@ if (access_token) {
   axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
 }
 
-axios.interceptors.request.use(
-  request => {
+axios.interceptors.request.use(request => {
     console.log('请求了：');
     console.log(request);
 
     return request;
-  },
-  error => {
+  }, error => {
     return Promise.reject(error);
   }
 );
 
-axios.interceptors.response.use(
-  response => {
+axios.interceptors.response.use(response => {
     console.log('返回了：');
     console.log(response);
 
@@ -46,8 +43,7 @@ axios.interceptors.response.use(
     }
 
     return response;
-  },
-  error => {
+  }, error => {
     if (error.response) {
       switch (error.response.status) {
         case 401: // 清除 token 信息并跳转到登录页面

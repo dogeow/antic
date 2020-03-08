@@ -77,19 +77,9 @@ function getCategoryAndTagData(data, selectedCategory, selectedTag) {
   return tagFilter(categoryFilter(data, selectedCategory), selectedTag);
 }
 
-function getDisplayImgObj(data) {
-  let displayImgObj = {};
-  for (let i = 0; i < data.length; i++) {
-    displayImgObj[i] = false;
-  }
-
-  return displayImgObj;
-}
-
 const defaultState = {
   // Data
   data: face.slice(0, 9), // 表情数据
-  displayImg: Array(9).fill(false),
   // Selected
   selectedCategory: "全部",
   selectedTag: "全部",
@@ -104,12 +94,17 @@ const defaultState = {
   // Switch Status
   expandCategory: !isMobile, // 展开分类？
   expandTag: !isMobile, // 展开标签？
-  faceIsLoading: false, // 表情图片正在加载中？
+  faceIsLoading: true, // 表情图片正在加载中？
 };
 
 export default (state = defaultState, action) => {
   let data = {};
   switch (action.type) {
+    case 'TOGGLE_LOADING':
+      return {
+        ...state,
+        faceIsLoading: !state.faceIsLoading
+      };
     case 'SELECT_CATEGORY':
       let selectedCategory = action.value;
       if (selectedCategory === state.selectedCategory) { // 分类多次点击原样返回
@@ -128,8 +123,7 @@ export default (state = defaultState, action) => {
         currentPage: 1, // 点击分类后都切换到第一页
         filterNum: categoryData.length,
         faceIsLoading: selectedCategory !== state.selectedCategory,
-        expandCategory: !isMobile,
-        displayImg: getDisplayImgObj(data)
+        expandCategory: !isMobile
       };
     case 'SELECT_TAG':
       let selectedTag = action.value;
@@ -150,8 +144,7 @@ export default (state = defaultState, action) => {
           filterNum: tagData.length,
           currentPage: 1,
           faceIsLoading: action.value !== state.selectedTag,
-          expandTag: !isMobile,
-          displayImg: getDisplayImgObj(data)
+          expandTag: !isMobile
         };
       }
     case 'EXPAND_CATEGORY':
@@ -183,8 +176,7 @@ export default (state = defaultState, action) => {
         ...state,
         data: data,
         currentPage: action.value,
-        faceIsLoading: true,
-        displayImg: getDisplayImgObj(data)
+        faceIsLoading: true
       };
     case 'SEARCH':
       let filter = [];
@@ -217,28 +209,6 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         openSideBar: !state.openSideBar
-      };
-    case 'TOGGLE_DISPLAY_IMG':
-      let new_displayImg = state.displayImg;
-      new_displayImg[action.value] = true;
-
-      // 多少张图片显示状态为 false 的，为未加载状态。
-      let num = 0;
-      let faceIsLoading = true;
-      for (let i in new_displayImg) {
-        if (new_displayImg[i] === false) {
-          num++;
-        }
-      }
-      // 当前页面已经全部加载，关闭 spin
-      if (num === 0) {
-        faceIsLoading = false;
-      }
-
-      return {
-        ...state,
-        displayImg: new_displayImg,
-        faceIsLoading: faceIsLoading
       };
     case 'ALL_EMOJI':
       let filterAllEmoji = [];

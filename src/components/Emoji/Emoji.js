@@ -5,11 +5,12 @@ import Filter from './Filter'
 import FilterStatistics from './FilterStatistics'
 import BootNav from './BootNav'
 import Spinner from 'react-spinner-children'
-import React from 'react'
+import React, { useEffect } from 'react'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Typography from '@material-ui/core/Typography'
 import Viewer from 'react-viewer'
 import face from '../../resources/face.json'
+import imagesLoaded from 'imagesloaded'
 
 const customSpinConfig = {
   lines: 10,
@@ -30,12 +31,19 @@ const useStyles = makeStyles(theme => ({
 
 const Emoji = (
   {
-    faceIsLoading, data, displayImg, pageLimit, currentPage, filterNum, select_tag, toggleTag,
-    toggleCategory, select_category, displayTag, which_page, toggle_display_img, expandCategory, selectedCategory, selectedTag, search, expandTag
+    faceIsLoading, data, pageLimit, currentPage, filterNum, select_tag, toggleTag, toggle_loading,
+    toggleCategory, select_category, displayTag, which_page, expandCategory, selectedCategory, selectedTag, search, expandTag
   }) => {
   const [visible, setVisible] = React.useState(false);
   const [index, setIndex] = React.useState(0);
   const classes = useStyles();
+  
+  useEffect(() => {
+    const imgLoad = imagesLoaded('#emoji');
+    imgLoad.on('always', () => (toggle_loading()));
+
+    return () => (imgLoad.off('always'));
+  }, [toggle_loading, currentPage]);
 
   face.map(item => {
     item.src = `${process.env.REACT_APP_CDN_URL}emoji/` + item.fileName;
@@ -59,14 +67,6 @@ const Emoji = (
         }
       }
     });
-  };
-
-  /**
-   * 图片加载完毕，设置 state
-   * @param index 第几张图片
-   */
-  const imgLoaded = (index) => {
-    toggle_display_img(index);
   };
 
   return (
@@ -94,8 +94,7 @@ const Emoji = (
             data.map((single, index) =>
               <Grid key={index} item xs={4} style={{textAlign: 'center'}}>
                 <img id={index} src={`${process.env.REACT_APP_CDN_URL}emoji/` + single["fileName"]} alt={single["name"]}
-                     width="100" onLoad={() => imgLoaded(index)}
-                     style={displayImg[index] === true ? {} : {visibility: "hidden"}}
+                     width="100"
                      onClick={() => {
                        setVisible(true);
                        setIndex((currentPage - 1) * pageLimit + index);

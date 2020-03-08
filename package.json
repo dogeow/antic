@@ -19,6 +19,7 @@
     "draftjs-to-html": "^0.9.1",
     "fundebug-javascript": "^2.0.0",
     "fundebug-revideo": "^0.6.1",
+    "imagesloaded": "^4.1.4",
     "immutable": "^4.0.0-rc.12",
     "laravel-echo": "^1.6.1",
     "lodash": "^4.17.15",

@@ -6,29 +6,29 @@ const mapStateToProps = (state, ownProps) => (
 );
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  toggle_display_img: (index) => {
-    dispatch({type: "TOGGLE_DISPLAY_IMG", value: index});
-  },
   toggle_spin: (value) => {
-    dispatch({type: "TOGGLE_SPIN", value: value});
+    dispatch({type: "TOGGLE_SPIN", value});
   },
   search: (value) => {
-    dispatch({type: "SEARCH", value: value});
+    dispatch({type: "SEARCH", value});
   },
   toggleTag: () => {
     dispatch({type: "EXPAND_TAG", value: !ownProps.expandTag})
   },
   select_tag: (value) => {
-    dispatch({type: "SELECT_TAG", value: value})
+    dispatch({type: "SELECT_TAG", value})
   },
   toggleCategory: (value) => {
     dispatch({type: "EXPAND_CATEGORY", value: !ownProps.expandCategory});
   },
   select_category: (value) => {
-    dispatch({type: "SELECT_CATEGORY", value: value});
+    dispatch({type: "SELECT_CATEGORY", value});
   },
   which_page: (value) => {
-    dispatch({type: "WHICH_PAGE", value: value});
+    dispatch({type: "WHICH_PAGE", value});
+  },
+  toggle_loading: () => {
+    dispatch({type: "TOGGLE_LOADING"});
   }
 });
 
