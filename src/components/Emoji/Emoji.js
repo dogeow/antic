@@ -37,7 +37,7 @@ const Emoji = (
   const [visible, setVisible] = React.useState(false);
   const [index, setIndex] = React.useState(0);
   const classes = useStyles();
-  
+
   useEffect(() => {
     const imgLoad = imagesLoaded('#emoji');
     imgLoad.on('always', () => (toggle_loading()));
