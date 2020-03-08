@@ -16,7 +16,7 @@ const About = () => {
       {
         aboutMe.map((item, index) => (
           <div>
-            <div>{item.category}</div>
+            <div><h3>{item.category}</h3></div>
             <div key={index}>
               <ul>
                 {
