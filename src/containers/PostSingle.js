@@ -39,7 +39,7 @@ const PostSingle = () => {
         {
           post ?
             <Tooltip title={post.created_at} placement="top">
-              <div>创建于 {moment(post.created_at).fromNow()}</div>
+              <div>创建于 <time>{moment(post.created_at).fromNow()}</time></div>
             </Tooltip>
             :
             <Skeleton variant="rect" height={20}/>
@@ -49,7 +49,7 @@ const PostSingle = () => {
         {
           post ?
             <Tooltip title={post.updated_at} placement="top">
-              <div>更新于 {moment(post.updated_at).fromNow()}</div>
+              <div>更新于 <time>{moment(post.updated_at).fromNow()}</time></div>
             </Tooltip>
             :
             <Skeleton variant="rect" height={20}/>
