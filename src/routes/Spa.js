@@ -30,6 +30,7 @@ import Parking from '../containers/Parking'
 import HallOfFame from '../containers/HallOfFame'
 import Demo from '../containers/Demo'
 import Algolia from '../containers/Algolia'
+import Footer from '../containers/Footer'
 
 // Layouts
 import Header from '../components/Header'
@@ -97,6 +98,7 @@ const Spa = ({match}) => {
           <Route component={NoMatch}/>
         </Switch>
       </Container>
+      {['/'].includes(match.url) && <Footer/>}
     </>
   )
 };

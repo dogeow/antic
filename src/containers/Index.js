@@ -10,16 +10,9 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 
-import Footer from '../containers/Footer'
 import Skeleton from '@material-ui/lab/Skeleton'
 
 const useStyles = makeStyles(theme => ({
-  hr: {
-    border: 'none',
-    borderBottom: '1px dashed #DaDaDa',
-    height: '1px',
-    margin: '10px 10px'
-  },
   tableRoot: {
     overflowX: 'auto',
   }
@@ -57,8 +50,6 @@ const Index = () => {
           </TableBody>
         </Table>
       </Paper>
-      <hr className={classes.hr}/>
-      <Footer/>
     </>
   )
 };
