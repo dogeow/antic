@@ -100,11 +100,9 @@ const Spa = ({match}) => {
         </Switch>
       </Container>
       {['/'].includes(match.url) && <Footer/>}
-      <Container maxWidth='lg'>
-        <div id="back_top" className="back-to-top-wrapper">
-          <LocalAirportIcon alt="Back to top arrow"/>
-        </div>
-      </Container>
+      <div id="back_top" className="back-to-top-wrapper">
+        <LocalAirportIcon alt="Back to top arrow"/>
+      </div>
     </>
   )
 };
