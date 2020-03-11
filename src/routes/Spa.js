@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import Container from '@material-ui/core/Container'
+import LocalAirportIcon from '@material-ui/icons/LocalAirport';
 
 // Pages
 import Post from '../containers/Post'
@@ -43,7 +44,7 @@ import Chess from '../containers/Chess'
 import Font from '../demo/Font'
 import Markdown from '../containers/Markdown'
 
-import Test from '../components/Test'
+import Test from '../containers/Test'
 
 const useStyles = makeStyles(theme => ({
   main: {
@@ -99,6 +100,9 @@ const Spa = ({match}) => {
         </Switch>
       </Container>
       {['/'].includes(match.url) && <Footer/>}
+      <div id="back_top" className="back-to-top-wrapper">
+        <LocalAirportIcon alt="Back to top arrow"/>
+      </div>
     </>
   )
 };

@@ -28,7 +28,7 @@ blockquote {
   position: relative;
   margin: 16px 0;
   padding: 5px 8px 5px 30px;
-  background: none repeat scroll 0 0 rgba(102,128,153,.05);
+  background: none repeat scroll 0 0 rgba(102, 128, 153, .05);
   border: none;
   border-left: 10px solid #d6dbdf;
 }
@@ -124,11 +124,19 @@ li.MuiListItem-button {
   text-shadow: 0 0 0 rgb(-51, -51, -51), 1px 1px 0 rgb(-102, -102, -102), 2px 2px 0 rgb(-153, -153, -153), 3px 3px 0 rgb(-204, -204, -204), 4px 4px 0 rgb(-255, -255, -255), 5px 5px 0 rgb(-306, -306, -306), 6px 6px 5px rgba(0, 0, 0, 1), 6px 6px 1px rgba(0, 0, 0, 0.5), 0px 0px 5px rgba(0, 0, 0, .2);
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
   .main-footer {
-    padding-bottom: 3em;
     background-image: url(/favicon.ico);
-    background-position: right ;
+    background-position: right;
     background-repeat: no-repeat;
   }
+}
+
+.back-to-top-wrapper {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
 }
