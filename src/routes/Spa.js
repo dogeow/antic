@@ -101,7 +101,7 @@ const Spa = ({match}) => {
       </Container>
       {['/'].includes(match.url) && <Footer/>}
       <div id="back_top" className="back-to-top-wrapper">
-        <LocalAirportIcon alt="Back to top arrow"/>
+        <a href="#root"><LocalAirportIcon alt="Back to top arrow"/></a>
       </div>
     </>
   )
