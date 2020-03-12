@@ -5,6 +5,7 @@ import store from "./store";
 import App from './containers/App';
 import Wrap from './middleware/lifecycle'
 import * as serviceWorker from './serviceWorker';
+import 'typeface-roboto';
 
 // Material-UI pickers 日期，使用 moment
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'

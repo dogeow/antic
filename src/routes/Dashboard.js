@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { CssBaseline, makeStyles } from '@material-ui/core'
+import makeStyles from '@material-ui/core/styles/makeStyles'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 // page
 import Home from '../containers/dashboard/Home'
