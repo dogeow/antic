@@ -15,6 +15,11 @@ const useStyles = makeStyles(theme => ({
   green: {
     color: 'green',
   },
+  '@global': {
+    'h3': {
+      borderBottom: '#e0e0e0 1px solid'
+    },
+  },
 }));
 
 const SingleProject = () => {
