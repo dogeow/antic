@@ -7,8 +7,18 @@ import Typography from '@material-ui/core/Typography'
 import axios from 'axios'
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import RadioButtonChecked from '@material-ui/icons/RadioButtonChecked';
+import RadioButtonUnchecked from '@material-ui/icons/RadioButtonUnchecked';
+import makeStyles from "@material-ui/core/styles/makeStyles";
+
+const useStyles = makeStyles(theme => ({
+  green: {
+    color: 'green',
+  },
+}));
 
 const SingleProject = () => {
+  const classes = useStyles();
   const history = useHistory();
   const match = useRouteMatch();
   const projectId = match.params.id;
@@ -52,17 +62,13 @@ const SingleProject = () => {
       })
   };
 
-  const handleMarkProjectAsCompleted = (project_id) => {
-    axios
-      .put(`projects/${project_id}`)
-      .then(response => history.push('/todo'))
-  };
-
   const handleMarkTaskAsCompleted = (taskId) => {
+    const newValues = tasks.map(item => {
+      if (item.id !== taskId) return item;
+      return {...item, is_completed: 1}
+    });
+    setTasks(newValues);
     axios.put(`tasks/${taskId}`).then(response => {
-      setTasks(tasks.filter(task => {
-        return task.id !== taskId
-      }));
     })
   };
 
@@ -77,8 +83,8 @@ const SingleProject = () => {
           </Typography>
         </Grid>
         <Grid item>
-          <IconButton aria-label="delete" onClick={() => handleMarkProjectAsCompleted(project.id)}>
-            <DeleteIcon />
+          <IconButton aria-label="delete" onClick={() => handleMarkTaskAsCompleted(project.id)}>
+            <DeleteIcon/>
           </IconButton>
         </Grid>
       </Grid>
@@ -115,17 +121,21 @@ const SingleProject = () => {
         <Typography variant="h6" component="h2">
           Todo
         </Typography>
-        {tasks.map(task => (
-          <Grid container spacing={2} key={task.id} justify="space-between" alignItems="center">
+
+        {tasks.map((task, index) => (
+          <Grid key={task.id} container spacing={2} alignContent="center">
             <Grid item>
+              {
+                task.is_completed ?
+                  <RadioButtonChecked className={classes.green}/>
+                  :
+                  <RadioButtonUnchecked onClick={() => handleMarkTaskAsCompleted(task.id)}/>
+              }
+            </Grid>
+            <Grid item xs>
               <Typography variant="body1" component="h3">
                 {task.title}
               </Typography>
-            </Grid>
-            <Grid item>
-              <Button variant="outlined" size="small" onClick={() => handleMarkTaskAsCompleted(task.id)}>
-                完成
-              </Button>
             </Grid>
           </Grid>
         ))}
