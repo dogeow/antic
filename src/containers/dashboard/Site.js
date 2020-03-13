@@ -27,9 +27,6 @@ const Site = () => {
   useEffect(() => {
     axios
       .get("site")
-      .then(response => {
-        return response;
-      })
       .then(json => {
         setSites(json.data.sites)
       })
