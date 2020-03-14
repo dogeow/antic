@@ -13,11 +13,9 @@ const Footer = () => (
           Powered by
         </Typography>
         <ul>
-          <li><a href="https://laravel.com" target="_blank" rel="noopener noreferrer">Laravel</a></li>
           <li><a href="https://zh-hans.reactjs.org/" target="_blank" rel="noopener noreferrer">React</a></li>
           <li><a href="https://material-ui.com/zh/" target="_blank" rel="noopener noreferrer">Material-UI</a></li>
-          <li><a href="https://voyager-docs.devdojo.com/" target="_blank" rel="noopener noreferrer">Voyager</a></li>
-          <li><a href="https://www.nextjs.cn/" target="_blank" rel="noopener noreferrer">Next.js</a></li>
+          <li><a href="https://laravel.com" target="_blank" rel="noopener noreferrer">Laravel</a></li>
         </ul>
       </Grid>
       <Grid item xs={12} md={4}>
