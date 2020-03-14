@@ -14,7 +14,7 @@ const SelfTalk = () => {
     <ul style={{paddingInlineStart: 10}}>
       {
         quotes.map((quote, index) => (
-          <li key={index} style={{margin: '5px 0'}}>{quote.content}</li>
+          <li key={index} className="quote" style={{margin: '5px 0'}}>{quote.content}</li>
         ))
       }
     </ul>

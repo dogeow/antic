@@ -140,3 +140,10 @@ li.MuiListItem-button {
   bottom: 0;
   z-index: 9;
 }
+
+.quote {
+  font-family: cursive;
+  color: #e243de;
+  font-size: 24px;
+  padding-bottom: 10px;
+}
