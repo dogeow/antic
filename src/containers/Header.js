@@ -8,7 +8,7 @@ import { logged } from '../helpers'
 import { loginAction } from "../actions";
 
 // Material-UI
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import {makeStyles} from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import MenuIcon from '@material-ui/icons/Menu'
 import MoreIcon from '@material-ui/icons/MoreVert'

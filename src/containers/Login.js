@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography'
 import axios from 'axios'
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import {makeStyles} from '@material-ui/core/styles'
 import Copyright from '../components/Copyright'
 import { loginAction } from '../actions'
 import { connect } from 'react-redux'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link as RouteLink } from 'react-router-dom'
-import makeStyles from '@material-ui/core/styles/makeStyles'
+import {makeStyles} from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 import Drawer from '@material-ui/core/Drawer'
 import Divider from '@material-ui/core/Divider'
