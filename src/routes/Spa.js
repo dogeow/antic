@@ -7,6 +7,7 @@ import LocalAirportIcon from '@material-ui/icons/LocalAirport';
 
 // Pages
 import Post from '../containers/Post'
+import PostEdit from '../containers/PostEdit'
 import PostSingle from '../containers/PostSingle'
 import PostCreate from '../components/PostCreate'
 import Register from '../containers/Register'
@@ -67,6 +68,7 @@ const Spa = ({match}) => {
           <Route path="/algolia" component={Algolia}/>
           <Route exact path="/post" component={Post}/>
           <Route path="/post/create" component={PostCreate}/>
+          <Route path="/post/:id/edit" component={PostEdit}/>
           <Route path="/post/:id" component={PostSingle}/>
           <Route path="/register" component={Register}/>
           <Route path="/about" component={About}/>
