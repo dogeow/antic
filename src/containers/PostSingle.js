@@ -35,9 +35,9 @@ const PostSingle = () => {
             <Skeleton variant="rect" height={56}/>
         }
       </Grid>
-      <Grid item xs={6}>
+      <Grid item>
         {
-          post ?
+          post?
             <Tooltip title={post.created_at} placement="top">
               <div>创建于 <time>{moment(post.created_at).fromNow()}</time></div>
             </Tooltip>
@@ -45,7 +45,7 @@ const PostSingle = () => {
             <Skeleton variant="rect" height={20}/>
         }
       </Grid>
-      <Grid item xs={6}>
+      <Grid item>
         {
           post ?
             <Tooltip title={post.updated_at} placement="top">
@@ -54,6 +54,9 @@ const PostSingle = () => {
             :
             <Skeleton variant="rect" height={20}/>
         }
+      </Grid>
+      <Grid item>
+        （ 编辑｜删除 ）
       </Grid>
       <Grid item xs={12}>
         {
