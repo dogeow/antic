@@ -16,6 +16,7 @@ import {green, red} from '@material-ui/core/colors';
 import clsx from 'clsx';
 import 'react-markdown-editor-lite/lib/index.css';
 import Swal from 'sweetalert2';
+import {useRouteMatch} from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -46,6 +47,8 @@ const useStyles = makeStyles(theme => ({
 
 const PostCreate = () => {
   const classes = useStyles();
+  const match = useRouteMatch();
+  console.log(JSON.stringify(match));
   const [id, setId] = useState();
   const [title, setTitle] = React.useState();
   const [content, setContent] = useState();
