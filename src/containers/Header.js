@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import md5 from 'md5'
 import axios from 'axios'
@@ -43,6 +43,7 @@ const useStyles = makeStyles(theme => ({
 const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteType}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorElMyself, setAnchorElMyself] = React.useState(null);
@@ -200,6 +201,10 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
                 setAnchorEl(null);
                 testLogin();
               }}>测试账号登录</MenuItem>
+              <MenuItem onClick={() => {
+                setAnchorEl(null);
+                history.push('/post/create');
+              }}>新建文章</MenuItem>
               <MenuItem onClick={handleSettingOpen}>设置</MenuItem>
             </Menu>
           </Toolbar>
