@@ -44,7 +44,6 @@ import Clock from '../demo/Clock'
 import Calculator from '../demo/Calculator/'
 import Chess from '../containers/Chess'
 import Font from '../demo/Font'
-import Markdown from '../containers/Markdown'
 
 import Test from '../containers/Test'
 
@@ -61,7 +60,7 @@ const Spa = ({match}) => {
     <>
       <Header/>
       <Container
-        maxWidth={['/markdown'].includes(match.url) ? null : 'lg'}
+        maxWidth={['/post/create'].includes(match.url) ? null : 'lg'}
         style={{marginTop: 20}}
         classes={["/nav"].includes(match.url) ? {root: classes.main} : null}>
         <Switch>

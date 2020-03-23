@@ -8,11 +8,14 @@ import Input from '@material-ui/core/Input';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
 import CheckIcon from '@material-ui/icons/Check';
+import ErrorIcon from '@material-ui/icons/ErrorOutline';
 import SaveIcon from '@material-ui/icons/Save';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {makeStyles} from '@material-ui/core/styles';
-import {green} from '@material-ui/core/colors';
+import {green, red} from '@material-ui/core/colors';
 import clsx from 'clsx';
+import 'react-markdown-editor-lite/lib/index.css';
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -25,6 +28,12 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: green[500],
     '&:hover': {
       backgroundColor: green[700],
+    },
+  },
+  buttonError: {
+    backgroundColor: red[500],
+    '&:hover': {
+      backgroundColor: red[700],
     },
   },
   fabProgress: {
@@ -42,6 +51,7 @@ const PostCreate = () => {
   const [content, setContent] = useState();
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
+  const [errors, setErrors] = React.useState(false);
 
   const handlePost = () => {
     if (!loading) {
@@ -61,6 +71,15 @@ const PostCreate = () => {
     }).then(resp => {
       setId(resp.data.id);
       setSuccess(true);
+      setLoading(false);
+    }).catch(error => {
+      let errors = error.response.data.errors;
+      setErrors(errors);
+      Swal.fire(error.response.data.message,
+        (errors.title !== undefined ? errors.title[0] : '') +
+        (errors.content !== undefined ? errors.content[0] : ''),
+        'error');
+      setSuccess(false);
       setLoading(false);
     });
   };
@@ -109,20 +128,27 @@ const PostCreate = () => {
     setTitle(event.target.value);
   };
 
-  const buttonClassname = clsx({
-    [classes.buttonSuccess]: success,
-  });
+  const buttonClassname = errors ?
+    clsx({
+      [classes.buttonError]: errors,
+    })
+    :
+    clsx({
+      [classes.buttonSuccess]: success,
+    })
+  ;
 
   return (
-    <Grid container spacing={4} className="demo-wrap">
-      <Grid item xs={12} style={{textAlign: 'center'}}>
+    <Grid container spacing={2} justify={'center'} className="demo-wrap">
+      <Grid item xs={4}>
         <Input
+          fullWidth
           placeholder="请输入标题"
           inputProps={{'aria-label': 'description'}}
           onChange={handleTitleChange}
         />
       </Grid>
-      <Grid xs={12} className="editor-wrap">
+      <Grid item xs={12} className="editor-wrap">
         <MdEditor
           value={content}
           style={{height: '700px', width: '100%'}}
@@ -154,7 +180,7 @@ const PostCreate = () => {
           className={buttonClassname}
           onClick={handlePost}
         >
-          {success ? <CheckIcon/> : <SaveIcon/>}
+          {success ? <CheckIcon/> : (errors ? <ErrorIcon/> : <SaveIcon/>)}
         </Fab>
         <CircularProgress
           size={68}
