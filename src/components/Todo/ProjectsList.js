@@ -42,8 +42,8 @@ const ProjectsList = () => {
       </Grid>
       <List component="nav" aria-label="secondary mailbox folders">
         {
-          projects.map(project => (
-            <div>
+          projects.map((project, index) => (
+            <div key={index}>
               <Badge color="primary" badgeContent={project.tasks_count} className={classes.margin}>
                 <Link to={`todo/${project.id}`} key={project.id}>
                   <ListItem button>

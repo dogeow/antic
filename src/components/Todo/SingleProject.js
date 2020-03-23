@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 
 const SingleProject = () => {
   const classes = useStyles();
-  const history = useHistory();
+  let history = useHistory();
   const match = useRouteMatch();
   const projectId = match.params.id;
 
@@ -77,6 +77,12 @@ const SingleProject = () => {
     })
   };
 
+  const handleMarkProjectAsCompleted = () => {
+    axios.delete(`todo/${projectId}`).then(response => {
+    });
+    history.put("/todo");
+  };
+
   return (
 
     <div>
@@ -88,7 +94,7 @@ const SingleProject = () => {
           </Typography>
         </Grid>
         <Grid item>
-          <IconButton aria-label="delete" onClick={() => handleMarkTaskAsCompleted(project.id)}>
+          <IconButton aria-label="delete" onClick={() => handleMarkProjectAsCompleted()}>
             <DeleteIcon/>
           </IconButton>
         </Grid>

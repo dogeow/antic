@@ -33,6 +33,7 @@ import HallOfFame from '../containers/HallOfFame'
 import Demo from '../containers/Demo'
 import Algolia from '../containers/Algolia'
 import Footer from '../containers/Footer'
+import Game from '../containers/Game'
 
 // Layouts
 import Header from '../components/Header'
@@ -65,6 +66,7 @@ const Spa = ({match}) => {
         classes={["/nav"].includes(match.url) ? {root: classes.main} : null}>
         <Switch>
           <Route exact path="/" component={Index}/>
+          <Route path="/game" component={Game}/>
           <Route path="/algolia" component={Algolia}/>
           <Route exact path="/post" component={Post}/>
           <Route path="/post/create" component={PostCreate}/>
