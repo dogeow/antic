@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import ReactMarkdown from 'react-markdown/with-html';
 import MdEditor from 'react-markdown-editor-lite';
-import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import CodeBlock from '../components/CodeBlock';
 import HeadingBlock from '../components/HeadingBlock';
@@ -16,6 +15,12 @@ import {green} from '@material-ui/core/colors';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
+  '@global': {
+    '.section-container, .rc-md-editor .editor-container .sec-md .input': {
+      background: theme.palette.type === 'dark' && '#303030',
+      color: theme.palette.type === 'dark' && 'white',
+    },
+  },
   buttonSuccess: {
     backgroundColor: green[500],
     '&:hover': {
@@ -120,9 +125,10 @@ const PostCreate = () => {
       <Grid xs={12} className="editor-wrap">
         <MdEditor
           value={content}
-          style={{height: '500px', width: '100%'}}
+          style={{height: '700px', width: '100%'}}
           renderHTML={renderHTML}
           config={{
+            htmlClass: 'none',
             view: {
               menu: true,
               md: true,
