@@ -6,13 +6,9 @@ import Container from '@material-ui/core/Container';
 import LocalAirportIcon from '@material-ui/icons/LocalAirport';
 
 // Pages
-import Post from '../containers/Post';
-import PostSingle from '../containers/PostSingle';
-import PostCreate from '../components/PostCreate';
 import Register from '../containers/Register';
 import Index from '../containers/Index';
 import About from '../containers/About';
-import Nav from '../components/Nav';
 import Api from '../containers/Api';
 import Todo from '../components/Todo/ProjectsList';
 import CreateTodoProject from '../components/Todo/NewProject';
@@ -21,7 +17,6 @@ import WeiboAbout from '../containers/WeiboAbout';
 import SelfTalk from '../containers/SelfTalk';
 import EmojiPost from '../components/Emoji/EmojiPost';
 import User from '../containers/User';
-import HallOfFame from '../containers/HallOfFame';
 import Footer from '../containers/Footer';
 
 // Layouts
@@ -58,10 +53,10 @@ const Spa = ({match}) => {
                  component={loadable(() => import('../containers/Game'))}/>
           <Route path="/algolia"
                  component={loadable(() => import('../containers/Algolia'))}/>
-          <Route exact path="/post" component={Post}/>
-          <Route path="/post/create" component={PostCreate}/>
-          <Route path="/post/:id/edit" component={PostCreate}/>
-          <Route path="/post/:id" component={PostSingle}/>
+          <Route exact path="/post" component={loadable(() => import('../containers/Post'))}/>
+          <Route path="/post/create" component={loadable(() => import('../components/PostCreate'))}/>
+          <Route path="/post/:id/edit" component={loadable(() => import('../components/PostCreate'))}/>
+          <Route path="/post/:id" component={loadable(() => import('../containers/PostSingle'))}/>
           <Route path="/register" component={Register}/>
           <Route path="/about" component={About}/>
           <Route exact path="/api" component={Api}/>
@@ -78,8 +73,9 @@ const Spa = ({match}) => {
           <Route path="/todo/create" component={CreateTodoProject}/>
           <Route path="/todo/:id" component={TodoProject}/>
           <Route path="/self-talk" component={SelfTalk}/>
-          <Route path="/hall_of_fame" component={HallOfFame}/>
-          <Route path="/nav" component={Nav}/>
+          <Route path="/hall_of_fame" component={loadable(
+            () => import('../containers/HallOfFame'))}/>
+          <Route path="/nav" component={loadable(() => import('../components/Nav'))}/>
           <Route path="/piano"
                  component={loadable(() => import('../components/Piano'))}/>
           <Route path="/bookmarks"
