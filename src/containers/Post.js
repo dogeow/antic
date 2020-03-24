@@ -26,12 +26,12 @@ const Post = () => {
             <ListItem key={index}>
               <ListItemAvatar>
                 <Avatar>
-                  {item.categories[0].name}
+                  {item.categories.length !== 0 && item.categories[0].name}
                 </Avatar>
               </ListItemAvatar>
               <Link to={`/post/${item.id}`}>
                 <ListItemText primary={item.title} secondary={
-                  item.tags.map((tag, index) => (
+                  item.tags.length !== 0 && item.tags.map((tag, index) => (
                     <Chip
                       variant="outlined"
                       size="small"
