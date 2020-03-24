@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactMarkdown from 'react-markdown/with-html';
 import MdEditor from 'react-markdown-editor-lite';
 import axios from 'axios';
@@ -48,13 +48,24 @@ const useStyles = makeStyles(theme => ({
 const PostCreate = () => {
   const classes = useStyles();
   const match = useRouteMatch();
-  console.log(JSON.stringify(match));
   const [id, setId] = useState();
   const [title, setTitle] = React.useState();
   const [content, setContent] = useState();
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [errors, setErrors] = React.useState(false);
+  // const isEdit = match.path.indexOf('edit') !== -1;
+
+  useEffect(() => {
+    if (match.params.id) {
+      setId(match.params.id);
+
+      axios.get(`post/${match.params.id}`).then(response => {
+        setTitle(response.data.title);
+        setContent(response.data.content);
+      });
+    }
+  }, [match.params.id]);
 
   const handlePost = () => {
     if (!loading) {
@@ -146,6 +157,7 @@ const PostCreate = () => {
       <Grid item xs={4}>
         <Input
           fullWidth
+          value={title}
           placeholder="请输入标题"
           inputProps={{'aria-label': 'description'}}
           onChange={handleTitleChange}
