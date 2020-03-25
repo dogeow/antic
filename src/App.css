@@ -42,15 +42,15 @@ blockquote {
 
 /* 鼠标样式 start */
 html {
-  cursor: url('./resources/blur.cur'), auto;
+  cursor: url('./resources/link.cur'), auto;
 }
 
 a:hover, button:hover {
-  cursor: url('./resources/fcous.cur'), auto;
+  cursor: url('./resources/pointer.cur'), auto;
 }
 
 li.MuiListItem-button {
-  cursor: url('./resources/fcous.cur'), auto;
+  cursor: url('./resources/pointer.cur'), auto;
 }
 
 /* 鼠标样式 end */
