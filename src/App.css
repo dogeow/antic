@@ -129,6 +129,7 @@ li.MuiListItem-button {
     background-image: url(/favicon.ico);
     background-position: right;
     background-repeat: no-repeat;
+    background-size: 100px auto;
   }
 }
 

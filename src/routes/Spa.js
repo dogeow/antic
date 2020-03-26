@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
 
 const Spa = ({match}) => {
   const classes = useStyles();
+
   return (
     <>
       <Header/>
