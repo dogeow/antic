@@ -150,15 +150,18 @@ li.MuiListItem-button {
 
 #favicon {
   position: relative;
-  animation: antic 4s;
-  animation-delay: 2s;
+  animation: antic 4s 1s;
+  animation-direction: alternate;
 }
 
 @keyframes antic {
-  from {
+  0% {
     left: 0;
   }
-  to {
+  50% {
     left: 233px;
+  }
+  100% {
+    left: 0;
   }
 }
