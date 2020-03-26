@@ -146,3 +146,14 @@ li.MuiListItem-button {
   font-size: 18px;
   padding-bottom: 10px;
 }
+
+
+#favicon {
+  position: relative;
+  animation: mymove 3s;
+}
+
+@keyframes mymove {
+  from {left: 0;}
+  to {left: 233px;}
+}
