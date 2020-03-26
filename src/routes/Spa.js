@@ -15,6 +15,14 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: 0,
     paddingRight: 0,
   },
+  backToTop: {
+    width: 50,
+    height: 50,
+    position: 'fixed',
+    right: 0,
+    bottom: 0,
+    zIndex: 9,
+  },
 }));
 
 const Spa = ({match}) => {
@@ -96,7 +104,7 @@ const Spa = ({match}) => {
         </Switch>
       </Container>
       {['/'].includes(match.url) && <Footer/>}
-      <div id="back_top" className="back-to-top-wrapper">
+      <div id="back_top" className={classes.backToTop}>
         <a href="#root"><LocalAirportIcon alt="Back to top arrow"/></a>
       </div>
     </>

@@ -45,12 +45,12 @@ html {
   cursor: url('./resources/pointer.cur'), auto;
 }
 
-a:hover, button:hover {
+a:hover, button:hover, li.MuiListItem-button, input.MuiSwitch-input {
   cursor: url('./resources/link.cur'), auto;
 }
 
-li.MuiListItem-button {
-  cursor: url('./resources/link.cur'), auto;
+input {
+  cursor: url('./resources/text.cur'), auto;
 }
 
 /* 鼠标样式 end */
@@ -131,15 +131,6 @@ li.MuiListItem-button {
     background-repeat: no-repeat;
     background-size: 100px auto;
   }
-}
-
-.back-to-top-wrapper {
-  width: 50px;
-  height: 50px;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  z-index: 9;
 }
 
 .quote {
