@@ -101,6 +101,7 @@ const Api = () => {
               <TableRow>
                 <TableCell>ID</TableCell>
                 <TableCell>api</TableCell>
+                <TableCell>参数</TableCell>
                 <TableCell>介绍</TableCell>
                 <TableCell>举例</TableCell>
               </TableRow>
@@ -112,6 +113,7 @@ const Api = () => {
                     {row.id}
                   </TableCell>
                   <TableCell>{row.endpoint}</TableCell>
+                  <TableCell>{row.param}</TableCell>
                   <TableCell>{row.content}</TableCell>
                   <TableCell>{row.example}</TableCell>
                 </TableRow>
