@@ -5,7 +5,7 @@ import Filter from './Filter'
 import FilterStatistics from './FilterStatistics'
 import BootNav from './BootNav'
 import Spinner from 'react-spinner-children'
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import {makeStyles} from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Viewer from 'react-viewer'
@@ -34,8 +34,8 @@ const Emoji = (
     faceIsLoading, data, pageLimit, currentPage, filterNum, select_tag, toggleTag, toggle_loading,
     toggleCategory, select_category, displayTag, which_page, expandCategory, selectedCategory, selectedTag, search, expandTag
   }) => {
-  const [visible, setVisible] = React.useState(false);
-  const [index, setIndex] = React.useState(0);
+  const [visible, setVisible] = useState(false);
+  const [index, setIndex] = useState(0);
   const classes = useStyles();
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const Emoji = (
   }, [toggle_loading, currentPage]);
 
   face.map(item => {
-    item.src = `${process.env.REACT_APP_CDN_URL}emoji/` + item.fileName;
+    item.src = `${process.env.REACT_APP_CDN_URL}emoji/${item.fileName}`;
     item.alt = item.fileName;
 
     return item;
@@ -87,7 +87,7 @@ const Emoji = (
         justify="center"
         alignItems="flex-end"
         spacing={2}
-        style={{marginBottom: 50}}
+        style={{marginBottom: 80}}
       >
         {
           data.length > 0 ? (
