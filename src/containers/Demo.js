@@ -15,6 +15,7 @@ const Demo = () => (
         <li><Link to="/demos/calculator">🌡摄氏度、华氏度转换（React 官方 Example）</Link></li>
         <li><Link to="/demos/parking">停车（爬虫)</Link></li>
         <li><Link to="/demos/font">Typography 字体展示</Link></li>
+        <li><Link to="/a-z">A-Z</Link></li>
       </ul>
     </div>
 );
