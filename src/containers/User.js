@@ -10,13 +10,13 @@ const User = () => {
   const state = store.getState();
 
   return (
-    <Grid container spacing={1}>
-      <Grid item xs={6}>
+    <Grid container spacing={2}>
+      <Grid item>
         <img alt={state.lab.user_name}
              src={`https://gravatar.loli.net/avatar/${md5(state.lab.user_email)}.jpg?d=mp&s=300`}
-             style={{width: 150, height: 150}}/>
+             style={{width: '150px'}}/>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item>
         <Grid>ID：{state.lab.user_id}</Grid>
         <Grid>昵称：{state.lab.user_name}</Grid>
         <Grid>邮箱：{state.lab.user_email}</Grid>
