@@ -43,7 +43,7 @@ const Emoji = (
     imgLoad.on('always', () => (toggle_loading()));
 
     return () => (imgLoad.off('always'));
-  }, [toggle_loading, currentPage]);
+  }, [toggle_loading, data]);
 
   face.map(item => {
     item.src = `${process.env.REACT_APP_CDN_URL}emoji/${item.fileName}`;
