@@ -14,7 +14,6 @@ const Piano = () => {
 
       <Grid item xs={4}>
         <h1>E调《卡农》修改版</h1>
-        <p>谷歌浏览器从 2020 年 12 月开始，不再支持 Flash 播放。</p>
         <pre>{`
 低音 中音 高音 超高
 abcdefg hijklmn opqrstu vwxyz
