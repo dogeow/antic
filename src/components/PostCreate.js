@@ -21,8 +21,8 @@ import {useRouteMatch} from 'react-router-dom';
 const useStyles = makeStyles(theme => ({
   '@global': {
     '.section-container, .rc-md-editor .editor-container .sec-md .input': {
-      background: theme.palette.type === 'dark' && '#303030',
-      color: theme.palette.type === 'dark' && 'white',
+      background: theme.palette.type === 'dark' && '#303030 !important',
+      color: theme.palette.type === 'dark' && 'white !important',
     },
   },
   buttonSuccess: {
