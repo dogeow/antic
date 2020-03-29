@@ -7,7 +7,7 @@ import Container from '@material-ui/core/Container';
 import {Link as RouteLink} from 'react-router-dom';
 
 const Footer = () => (
-  <Container component="footer" className="main-footer" style={{marginTop: 20}}>
+  <Container component="footer" className="main-footer" style={{marginTop: 20, minHeight: 200}}>
     <Grid container spacing={0}>
       <Grid item xs={12} md>
         <Typography variant="h5" component="h3">
