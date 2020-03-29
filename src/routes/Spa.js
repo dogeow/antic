@@ -41,7 +41,7 @@ const Spa = ({match}) => {
           <Route path="/algolia"
                  component={loadable(() => import('../containers/Algolia'))}/>
           <Route exact path="/post"
-                 component={loadable(() => import('../containers/Post'))}/>
+                 component={loadable(() => import('../components/PostList'))}/>
           <Route path="/post/create" component={loadable(
             () => import('../components/PostCreate'))}/>
           <Route path="/post/:id/edit" component={loadable(

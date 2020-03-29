@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Post = () => {
+const PostList = () => {
   const [post, setPost] = useState([]);
   const classes = useStyles();
 
@@ -26,11 +26,11 @@ const Post = () => {
   }, []);
 
   return (
-    <Grid container spacing={2}>
-      {
-        post.map((item, index) => (
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>
+    <Paper className={classes.paper}>
+      <Grid container spacing={2}>
+        {
+          post.map((item, index) => (
+            <Grid item xs={12}>
               <Grid container spacing={2} alignItems={'center'}>
                 <Grid item>
                   <Avatar>
@@ -57,12 +57,12 @@ const Post = () => {
                   </Grid>
                 </Grid>
               </Grid>
-            </Paper>
-          </Grid>
-        ))
-      }
-    </Grid>
+            </Grid>
+          ))
+        }
+      </Grid>
+    </Paper>
   );
 };
 
-export default Post;
+export default PostList;

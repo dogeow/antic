@@ -9,7 +9,7 @@ import {Link as RouteLink} from 'react-router-dom';
 const Footer = () => (
   <Container component="footer" className="main-footer" style={{marginTop: 20}}>
     <Grid container spacing={0}>
-      <Grid item xs={12} md={4}>
+      <Grid item xs={12} md>
         <Typography variant="h5" component="h3">
           Powered by
         </Typography>
@@ -46,7 +46,7 @@ const Footer = () => (
           </li>
         </ul>
       </Grid>
-      <Grid item xs={12} md={4}>
+      <Grid item xs={12} md>
         <Typography variant="h5" component="h3">
           Build by
         </Typography>
@@ -54,7 +54,7 @@ const Footer = () => (
           小李世界 with <span role="img" aria-label="❤">❤️</span>
         </Typography>
       </Grid>
-      <Grid item xs={12} md={4}>
+      <Grid item xs={12} md>
         <Typography variant="h5" component="h3">
           Follow me in
         </Typography>
