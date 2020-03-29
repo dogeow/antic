@@ -30,7 +30,7 @@ const PostList = () => {
       <Grid container spacing={2}>
         {
           post.map((item, index) => (
-            <Grid item xs={12}>
+            <Grid item xs={12} key={index}>
               <Grid container spacing={2} alignItems={'center'}>
                 <Grid item>
                   <Avatar>
@@ -46,12 +46,12 @@ const PostList = () => {
                 <Grid item>
                   <Grid container spacing={1}>
                     {item.tags.length !== 0 && item.tags.map((tag, index) => (
-                      <Grid item>
+                      <Grid item key={index}>
                         <Chip
                           variant="outlined"
                           size="small"
                           label={tag.name}
-                          key={index}/>
+                          />
                       </Grid>
                     ))}
                   </Grid>
