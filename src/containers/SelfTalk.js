@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {makeStyles} from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
   quote: {
@@ -23,13 +24,15 @@ const SelfTalk = () => {
   }, []);
 
   return (
-    <ul style={{paddingInlineStart: 10}}>
+    <div className={classes.quote}>
       {
         quotes.map((quote, i) =>
-          <li key={i} className={classes.quote}>{quote.content}</li>,
+          <Typography component={'div'} key={i}>
+            {quote.content}
+          </Typography>,
         )
       }
-    </ul>
+    </div>
   );
 };
 
