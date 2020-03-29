@@ -1,16 +1,17 @@
-import axios from 'axios'
-import moment from 'moment'
+import axios from 'axios';
+import moment from 'moment';
 
 // 判断是否登录过期
 export const isExpired = () => {
   let isExpired = true;
   let access_token_expired_at = localStorage.access_token_expired_at;
-  if (access_token_expired_at && moment().isBefore(moment.unix(access_token_expired_at))) {
+  if (access_token_expired_at &&
+    moment().isBefore(moment.unix(access_token_expired_at))) {
     isExpired = false;
   }
 
   return isExpired;
-}
+};
 
 export const logged = (token, user) => {
   localStorage.access_token = token.access_token;
@@ -18,7 +19,8 @@ export const logged = (token, user) => {
   localStorage.user_id = user.id;
   localStorage.user_name = user.name;
   localStorage.user_email = user.email;
-  axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.access_token;
+  axios.defaults.headers.common['Authorization'] = 'Bearer ' +
+    token.access_token;
 };
 
 export const logout = () => {

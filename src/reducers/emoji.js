@@ -192,7 +192,8 @@ export default (state = defaultState, action) => {
         ...state,
         data: filter,
         filterNum: filter.length,
-        currentPage: 1
+        currentPage: 1,
+        faceIsLoading: true
       };
     case 'OPEN_SETTING':
       return {
