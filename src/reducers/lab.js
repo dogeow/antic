@@ -1,8 +1,14 @@
-import {isExpired} from '../helpers'
+import {isExpired} from '../helpers';
+
+let today = new Date();
+let now = today.getHours();
+let themePaletteType = ((now >= 18 && now <= 24) || (now >= 0 && now <= 6))
+  ? 'dark'
+  : 'light';
 
 const defaultState = {
   toggle_drawer: false,
-  themePaletteType: 'light',
+  themePaletteType: themePaletteType,
   is_expired: isExpired(),
   access_token: localStorage.getItem('access_token') || null,
   user_id: localStorage.getItem('user_id') || null,
@@ -22,15 +28,15 @@ const lab = (state = defaultState, action) => {
       });
     case 'TOGGLE_DRAWER':
       return Object.assign({}, state, {
-        toggle_drawer: !state.toggle_drawer
+        toggle_drawer: !state.toggle_drawer,
       });
     case 'ACCESS_TOKEN':
       return Object.assign({}, state, {
-        access_token: action.access_token
+        access_token: action.access_token,
       });
     case 'TOGGLE_THEME':
       return Object.assign({}, state, {
-        themePaletteType: state.themePaletteType === "dark" ? "light" : "dark"
+        themePaletteType: state.themePaletteType === 'dark' ? 'light' : 'dark',
       });
     case 'LOGOUT':
       return Object.assign({}, state, {
@@ -41,8 +47,8 @@ const lab = (state = defaultState, action) => {
         user_email: null,
       });
     default:
-      return state
+      return state;
   }
 };
 
-export default lab
+export default lab;
