@@ -1,6 +1,6 @@
 import {isExpired} from '../helpers';
 
-let hour = new Date().getHours;
+let hour = new Date().getHours();
 let themePaletteType = (hour >= 18 && hour <= 24) || (hour >= 0 && hour <= 6)
   ? 'dark'
   : 'light';
