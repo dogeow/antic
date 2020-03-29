@@ -5,7 +5,6 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import LocalAirportIcon from '@material-ui/icons/LocalAirport';
 
-// Pages
 import Index from '../containers/Index';
 import Header from '../components/Header';
 import Footer from '../containers/Footer';
@@ -100,6 +99,8 @@ const Spa = ({match}) => {
                  component={loadable(() => import('../containers/Parking'))}/>
           <Route path="/demos/font"
                  component={loadable(() => import('../demo/Font'))}/>
+          <Route path="/powered-by"
+                 component={loadable(() => import('../containers/PoweredBy'))}/>
           <Route path="/test"
                  component={loadable(() => import('../containers/Test'))}/>
           <Route component={loadable(() => import('../containers/NoMatch'))}/>

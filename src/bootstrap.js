@@ -1,10 +1,10 @@
-import axios from 'axios'
-import Swal from 'sweetalert2'
+import axios from 'axios';
+import Swal from 'sweetalert2';
 // import Echo from 'laravel-echo'
 
-import ConsoleInfo from './components/ConsoleInfo'
+import ConsoleInfo from './components/ConsoleInfo';
 
-const access_token = localStorage["access_token"];
+const access_token = localStorage['access_token'];
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 if (access_token) {
@@ -12,13 +12,14 @@ if (access_token) {
 }
 
 axios.interceptors.request.use(request => {
+    window.request = true;
     console.log('请求了：');
     console.log(request);
 
     return request;
   }, error => {
     return Promise.reject(error);
-  }
+  },
 );
 
 axios.interceptors.response.use(response => {
@@ -31,8 +32,8 @@ axios.interceptors.response.use(response => {
         error => {
           error.forEach(errorMessage => {
             Swal.fire('提示️', errorMessage, 'warning');
-          })
-        }
+          });
+        },
       );
     }
 
@@ -59,30 +60,32 @@ axios.interceptors.response.use(response => {
       }
     }
 
-    return Promise.reject(error)
-  }
+    return Promise.reject(error);
+  },
 );
 
 ConsoleInfo();
 
 //网页当前状态判断
 let state, visibilityChange;
-if (typeof document.hidden !== "undefined") {
-  visibilityChange = "visibilitychange";
-  state = "visibilityState";
-} else if (typeof document.mozHidden !== "undefined") {
-  visibilityChange = "mozvisibilitychange";
-  state = "mozVisibilityState";
-} else if (typeof document.msHidden !== "undefined") {
-  visibilityChange = "msvisibilitychange";
-  state = "msVisibilityState";
-} else if (typeof document.webkitHidden !== "undefined") {
-  visibilityChange = "webkitvisibilitychange";
-  state = "webkitVisibilityState";
+if (typeof document.hidden !== 'undefined') {
+  visibilityChange = 'visibilitychange';
+  state = 'visibilityState';
+} else if (typeof document.mozHidden !== 'undefined') {
+  visibilityChange = 'mozvisibilitychange';
+  state = 'mozVisibilityState';
+} else if (typeof document.msHidden !== 'undefined') {
+  visibilityChange = 'msvisibilitychange';
+  state = 'msVisibilityState';
+} else if (typeof document.webkitHidden !== 'undefined') {
+  visibilityChange = 'webkitvisibilitychange';
+  state = 'webkitVisibilityState';
 }
 // 添加监听器，在title里显示状态变化
-document.addEventListener(visibilityChange, function () {
-  document.title = document[state] === 'hidden' ? '记得回来！- 滑稽实验室' : '欢迎回来！- 滑稽实验室';
+document.addEventListener(visibilityChange, function() {
+  document.title = document[state] === 'hidden'
+    ? '记得回来！- 滑稽实验室'
+    : '欢迎回来！- 滑稽实验室';
 }, false);
 
 /**
@@ -102,7 +105,6 @@ document.addEventListener(visibilityChange, function () {
 //   .listen('TestBroadcastingEvent', (e) => {
 //     console.log(e);
 //   });
-
 
 // window.Pusher = require('pusher-js');
 // window.Echo = new Echo({
