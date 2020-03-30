@@ -9,11 +9,13 @@ import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   footer: {
-    [theme.breakpoints.up('sm')]: {
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      left: 0,
+    '@media (min-height: 666px)': {
+      [theme.breakpoints.up('md')]: {
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        left: 0,
+      },
     },
     backgroundImage: theme.palette.type === 'dark'
       ? 'url(/images/tesla-vector-roadster-4.png)'
@@ -28,8 +30,11 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <Container component="footer" className={classes.footer}
-               style={{marginTop: 20, minHeight: 200}}>
+    <Container
+      component="footer"
+      className={classes.footer}
+      style={{marginTop: 20, minHeight: 200}}
+    >
       <Grid container spacing={0}>
         <Grid item xs={12} sm>
           <Typography variant="h5" component="h3">
