@@ -15,9 +15,6 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    minWidth: 300,
-  },
   media: {
     height: 0,
     paddingTop: '100%', // 16:9
@@ -46,7 +43,7 @@ export default function RecipeReviewCard({title, subHeader, img, link, intro, fe
   };
 
   return (
-    <Card className={classes.root}>
+    <Card>
       <CardHeader
         title={title}
         subheader={subHeader}

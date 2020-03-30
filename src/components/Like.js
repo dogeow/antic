@@ -14,7 +14,7 @@ const Like = () => {
   }, []);
 
   return (
-    <Grid container spacing={8} justify={'center'}>
+    <Grid container spacing={2} justify={'flex-start'}>
       {
         data.map((item, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3}>
