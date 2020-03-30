@@ -41,7 +41,6 @@ const PostEdit = ({post, handleEdit}) => {
       <Grid item>
         <ButtonGroup
           size="small"
-          variant="text"
           color="primary"
           aria-label="text primary button group"
         >

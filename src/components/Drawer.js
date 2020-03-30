@@ -26,7 +26,7 @@ const menus = [
   {'name': '⚙️便民 API', 'url': '/api'},
   {'name': '📋Todo', 'url': '/todo'},
   {'name': '🤔自言自语', 'url': '/self-talk'},
-  {'name': '☀️名人堂', 'url': '/hall_of_fame'},
+  {'name': '💗喜欢的', 'url': '/like'},
   {'name': '📦一些 Demo', 'url': '/demo'},
   {'name': '📄文章', 'url': '/post'},
 ];

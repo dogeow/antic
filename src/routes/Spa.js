@@ -72,9 +72,9 @@ const Spa = ({match}) => {
             () => import('../components/Todo/SingleProject'))}/>
           <Route path="/self-talk"
                  component={loadable(() => import('../containers/SelfTalk'))}/>
-          <Route path="/hall_of_fame"
+          <Route path="/like"
                  component={loadable(
-                   () => import('../containers/HallOfFame'))}/>
+                   () => import('../components/Like'))}/>
           <Route path="/nav"
                  component={loadable(() => import('../components/Nav'))}/>
           <Route path="/a-z"
@@ -101,6 +101,8 @@ const Spa = ({match}) => {
                  component={loadable(() => import('../demo/Font'))}/>
           <Route path="/powered-by"
                  component={loadable(() => import('../containers/PoweredBy'))}/>
+          <Route path="/like"
+                 component={loadable(() => import('../components/Like'))}/>
           <Route path="/test"
                  component={loadable(() => import('../containers/Test'))}/>
           <Route component={loadable(() => import('../containers/NoMatch'))}/>
