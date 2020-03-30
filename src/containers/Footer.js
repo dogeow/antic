@@ -12,6 +12,8 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       position: 'absolute',
       bottom: 0,
+      right: 0,
+      left: 0,
     },
     backgroundImage: theme.palette.type === 'dark'
       ? 'url(/images/tesla-vector-roadster-4.png)'
