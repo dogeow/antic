@@ -6,10 +6,12 @@ import Grid from '@material-ui/core/Grid';
 const Index = () => {
   return (
     <Grid container spacing={6}>
-      <Grid item xs={12} sm>
+      <Grid item xs={12} md>
+        <h2>待办事项</h2>
         <TodoList/>
       </Grid>
-      <Grid item xs={12} sm>
+      <Grid item xs={12} md>
+        <h2>文章</h2>
         <PostList/>
       </Grid>
     </Grid>

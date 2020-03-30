@@ -7,9 +7,15 @@ import Container from '@material-ui/core/Container';
 import {Link as RouteLink} from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   footer: {
-    backgroundImage: theme.palette.type === 'dark' ? 'url(/images/tesla-vector-roadster-4.png)' : 'url(/images/tesla-transparent-care-5.png)',
+    [theme.breakpoints.up('sm')]: {
+      position: 'absolute',
+      bottom: 0,
+    },
+    backgroundImage: theme.palette.type === 'dark'
+      ? 'url(/images/tesla-vector-roadster-4.png)'
+      : 'url(/images/tesla-transparent-care-5.png)',
     backgroundPosition: 'right',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 200,
@@ -23,7 +29,7 @@ const Footer = () => {
     <Container component="footer" className={classes.footer}
                style={{marginTop: 20, minHeight: 200}}>
       <Grid container spacing={0}>
-        <Grid item xs={12} md>
+        <Grid item xs={12} sm>
           <Typography variant="h5" component="h3">
             Powered by
           </Typography>
@@ -60,7 +66,7 @@ const Footer = () => {
             </li>
           </ul>
         </Grid>
-        <Grid item xs={12} md>
+        <Grid item xs={12} sm>
           <Typography variant="h5" component="h3">
             Build by
           </Typography>
@@ -68,7 +74,7 @@ const Footer = () => {
             小李世界 with <span role="img" aria-label="❤">❤️</span>
           </Typography>
         </Grid>
-        <Grid item xs={12} md>
+        <Grid item xs={12} sm>
           <Typography variant="h5" component="h3">
             Follow me in
           </Typography>
