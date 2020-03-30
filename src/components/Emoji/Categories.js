@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button'
 import CategoriesElem from './CategoriesElem'
 
 const Category = (props) => {
-  const color = props.selectedCategory === "全部" ? "primary" : "default";
+  const color = props.selectedCategory === "全部" ? "secondary" : "default";
 
   return (
     <Grid container alignItems="center">
@@ -19,7 +19,8 @@ const Category = (props) => {
           props.expandCategory
             ?
             <Button
-              variant="contained" color={color}
+              variant={props.lab.themePaletteType === 'dark' ? 'outlined' : 'contained'}
+              color={color}
               onClick={() => props.select_category('全部')}
             >
               全部

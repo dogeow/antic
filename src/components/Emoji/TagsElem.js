@@ -20,8 +20,8 @@ const TagsElem = (props) => {
       <div key={tag} style={{display: "inline-block", position: "relative"}}>
         <Badge badgeContent={total[tag]}>
           <Button
-            variant="contained"
-            color={props.selectedTag.indexOf(tag) !== -1 ? "primary" : "default"}
+            variant={props.lab.themePaletteType === 'dark' ? 'outlined' : 'contained'}
+            color={props.selectedTag.indexOf(tag) !== -1 ? "secondary" : "default"}
             key={tag}
             onClick={() => props.select_tag(tag)}
           >

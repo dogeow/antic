@@ -20,8 +20,8 @@ const CategoriesElem = (props) => {
       <Grid item key={category} style={{display: "inline-block", position: "relative"}}>
         <Badge badgeContent={total[category]}>
           <Button
-            variant="contained"
-            color={props.selectedCategory.indexOf(category) !== -1 ? "primary" : "default"}
+            variant={props.lab.themePaletteType === 'dark' ? 'outlined' : 'contained'}
+            color={props.selectedCategory.indexOf(category) !== -1 ? "secondary" : "default"}
             key={category}
             onClick={() => props.select_category(category)}
           >

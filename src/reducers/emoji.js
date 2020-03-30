@@ -157,16 +157,6 @@ export default (state = defaultState, action) => {
         ...state,
         expandTag: !state.expandTag
       };
-    case 'TOGGLE_SPIN':
-      return {
-        ...state,
-        faceIsLoading: action.value
-      };
-    case 'TOGGLE_THEME':
-      return {
-        ...state,
-        theme: action.value,
-      };
     case 'WHICH_PAGE':
       let whichPageData = getCategoryAndTagData(face, state.selectedCategory, state.selectedTag);
       let whichPageDataRange = offset(action.value, state.pageLimit);

@@ -42,7 +42,7 @@ const BootNav = (props) => {
     <BottomNavigation
       showLabels
       value={-1}
-      style={{backgroundColor: "#cccccc", right: 0, left: 0, bottom: 0, position: 'fixed'}}>
+      style={{right: 0, left: 0, bottom: 0, position: 'fixed'}}>
       <BottomNavigationAction label="上页" icon={<FirstPage/>} onClick={() => handlePageSwitch("Previous")}/>
       <BottomNavigationAction label="下页" icon={<LastPage/>} onClick={() => handlePageSwitch("Next")}/>
     </BottomNavigation>
