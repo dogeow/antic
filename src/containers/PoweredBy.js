@@ -38,6 +38,16 @@ const PoweredBy = () => {
           <li>MySQL 5.7</li>
         </ul>
       </div>
+      <div>
+        <p>
+          <a href="http://jigsaw.w3.org/css-validator/validator?uri=233.sx&profile=css3svg&usermedium=all&warning=1&vextwarning="
+             target={'_blank'}>
+            <img style={{border: 0, width: 88, height: 31}}
+                 src="http://jigsaw.w3.org/css-validator/images/vcss"
+                 alt="Valid CSS!"/>
+          </a>
+        </p>
+      </div>
     </div>
   );
 };
