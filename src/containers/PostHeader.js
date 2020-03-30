@@ -12,6 +12,8 @@ const PostEdit = ({post, handleEdit}) => {
     <>
       <Grid item>
         <Tooltip
+          disableFocusListener
+          disableTouchListener
           title={post.created_at}
           placement="top"
           enterDelay={200}
@@ -23,6 +25,8 @@ const PostEdit = ({post, handleEdit}) => {
       </Grid>
       <Grid item>
         <Tooltip
+          disableFocusListener
+          disableTouchListener
           title={post.updated_at}
           placement="top"
           enterDelay={200}
