@@ -9,7 +9,7 @@ import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   footer: {
-    '@media (min-height: 666px)': {
+    '@media (min-height: 777px)': {
       [theme.breakpoints.up('md')]: {
         position: 'absolute',
         bottom: 0,
