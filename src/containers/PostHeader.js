@@ -12,12 +12,13 @@ const PostEdit = ({post, handleEdit}) => {
     <>
       <Grid item>
         <Tooltip
-          disableFocusListener
-          disableTouchListener
           title={post.created_at}
           placement="top"
           enterDelay={200}
+          disableFocusListener
+          disableTouchListener
           TransitionComponent={Zoom}
+          arrow
           interactive
         >
           <div>创建于 <time>{moment(post.created_at).fromNow()}</time></div>
@@ -25,12 +26,13 @@ const PostEdit = ({post, handleEdit}) => {
       </Grid>
       <Grid item>
         <Tooltip
-          disableFocusListener
-          disableTouchListener
           title={post.updated_at}
           placement="top"
           enterDelay={200}
+          disableFocusListener
+          disableTouchListener
           TransitionComponent={Zoom}
+          arrow
           interactive
         >
           <div>更新于 <time>{moment(post.updated_at).fromNow()}</time></div>
