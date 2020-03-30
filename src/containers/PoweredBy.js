@@ -40,8 +40,15 @@ const PoweredBy = () => {
       </div>
       <div>
         <p>
-          <a href="http://jigsaw.w3.org/css-validator/validator?uri=233.sx&profile=css3svg&usermedium=all&warning=1&vextwarning="
+          <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2F233.sx%2F"
              target={'_blank'}>
+            <img style={{border: 0, width: 88, height: 31}}
+                 src="https://www.w3.org/Icons/valid-xhtml20.gif"
+                 alt="Valid HTML!"/>
+          </a>
+          <a
+            href="http://jigsaw.w3.org/css-validator/validator?uri=233.sx&profile=css3svg&usermedium=all&warning=1&vextwarning="
+            target={'_blank'}>
             <img style={{border: 0, width: 88, height: 31}}
                  src="http://jigsaw.w3.org/css-validator/images/vcss"
                  alt="Valid CSS!"/>
