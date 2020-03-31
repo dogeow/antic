@@ -13,6 +13,11 @@ import Container from '@material-ui/core/Container';
 import Copyright from '../components/Copyright';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -38,6 +43,7 @@ const Register = ({history}) => {
   const classes = useStyles();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [password_confirmation, setPassword_confirmation] = useState('');
   const [inputErrors, setInputErrors] = useState({});
@@ -56,6 +62,10 @@ const Register = ({history}) => {
       }
       setInputErrors(response.data.errors);
     });
+  };
+
+  const handlePassword = () => {
+    setDisplayPassword(!displayPassword);
   };
 
   return (
@@ -90,6 +100,13 @@ const Register = ({history}) => {
                 helperText={!!inputErrors.name
                   ? inputErrors.name[0]
                   : undefined}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <AccountCircle/>
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -112,6 +129,13 @@ const Register = ({history}) => {
                 helperText={inputErrors.email
                   ? inputErrors.email[0]
                   : undefined}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <MailOutlineIcon/>
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -121,7 +145,7 @@ const Register = ({history}) => {
                 fullWidth
                 name="password"
                 label="密码"
-                type="password"
+                type={displayPassword ? 'text' : 'password'}
                 id="password"
                 autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
@@ -135,6 +159,20 @@ const Register = ({history}) => {
                 helperText={inputErrors.password
                   ? inputErrors.password[0]
                   : undefined}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      {
+                        displayPassword ?
+                          <VisibilityIcon onClick={handlePassword}
+                                          className="pointer"/>
+                          :
+                          <VisibilityOffIcon onClick={handlePassword}
+                                             className="pointer"/>
+                      }
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -144,10 +182,24 @@ const Register = ({history}) => {
                 fullWidth
                 name="password_confirmation"
                 label="确认密码"
-                type="password"
+                type={displayPassword ? 'text' : 'password'}
                 id="password_confirmation"
                 autoComplete="current-password-confirmation"
-                onChange={(e) => setPassword_confirmation(e.target.value)}
+                onChange={e => setPassword_confirmation(e.target.value)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      {
+                        displayPassword ?
+                          <VisibilityIcon onClick={handlePassword}
+                                          className="pointer"/>
+                          :
+                          <VisibilityOffIcon onClick={handlePassword}
+                                             className="pointer"/>
+                      }
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Grid>
           </Grid>

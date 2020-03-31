@@ -45,7 +45,7 @@ html {
   cursor: url('./resources/pointer.cur'), auto;
 }
 
-a:hover, button:hover, li.MuiListItem-button, input.MuiSwitch-input {
+a:hover, button:hover, li.MuiListItem-button, input.MuiSwitch-input, .pointer {
   cursor: url('./resources/link.cur'), auto;
 }
 
