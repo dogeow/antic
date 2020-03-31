@@ -56,7 +56,9 @@ axios.interceptors.response.use(response => {
           // todo
           break;
         default:
-          Swal.fire('提示️', error.response.statusText, 'error');
+          Swal.fire('提示️',
+            error.response.statusText || error.response.message,
+            'error');
       }
     }
 
