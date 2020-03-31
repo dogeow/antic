@@ -10,6 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import RadioButtonChecked from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUnchecked from '@material-ui/icons/RadioButtonUnchecked';
 import {makeStyles} from '@material-ui/core/styles';
+import AlertDialog from '../AlertDialog';
 
 const useStyles = makeStyles(theme => ({
   green: {
@@ -37,6 +38,7 @@ const SingleProject = () => {
   const [errors, setErrors] = useState([]);
 
   const [editId, setEditId] = useState();
+  const [alert, setAlert] = useState(false);
 
   useEffect(() => {
     axios.get(`projects/${projectId}`).then(response => {
@@ -77,9 +79,8 @@ const SingleProject = () => {
   };
 
   const handleMarkProjectAsCompleted = () => {
-    axios.delete(`todo/${projectId}`).then(response => {
-    });
-    history.put('/todo');
+    axios.delete(`todo/${projectId}`);
+    history.push('/todo');
   };
 
   const handleEdit = (index) => {
@@ -98,93 +99,104 @@ const SingleProject = () => {
     });
   };
 
+  const handleDelete = () => {
+    setAlert(!alert);
+  };
+
   return (
-    <Grid container spacing={2} justify="space-between">
-      <Grid item>
-        <Typography variant="h4" component="h1">{project.name}</Typography>
-        <Typography variant="subtitle1" component="h2">
-          {project.description}
-        </Typography>
-      </Grid>
-      <Grid item>
-        <IconButton
-          aria-label="delete"
-          onClick={() => handleMarkProjectAsCompleted()}>
-          <DeleteIcon/>
-        </IconButton>
-      </Grid>
-      <Grid item xs={12}>
-        <form onSubmit={handleAddNewTask}>
-          <Grid container spacing={2} justify="space-between">
-            <Grid item>
-              <Input
-                placeholder="任务"
-                inputProps={{
-                  'aria-label': 'Description',
-                }}
-                name='title'
-                className={`form-control ${errors['title']
-                  ? 'is-invalid'
-                  : ''}`}
-                value={title}
-                onChange={handleFieldChange}
-              />
-              {
-                errors['name'] && (
-                  <span className='invalid-feedback'>
+    <>
+      <AlertDialog
+        open={alert} handleClose={handleDelete}
+        title={'删除项目！'} content={'删除后，任务也将一同被删除！'}
+        agree={handleMarkProjectAsCompleted}/>
+      <Grid container spacing={2} justify="space-between">
+        <Grid item>
+          <Typography variant="h4" component="h1">{project.name}</Typography>
+          <Typography variant="subtitle1" component="h2">
+            {project.description}
+          </Typography>
+        </Grid>
+        <Grid item>
+          <IconButton
+            aria-label="delete"
+            onClick={handleDelete}>
+            <DeleteIcon/>
+          </IconButton>
+        </Grid>
+        <Grid item xs={12}>
+          <form onSubmit={handleAddNewTask}>
+            <Grid container spacing={2} justify="space-between">
+              <Grid item>
+                <Input
+                  placeholder="任务"
+                  inputProps={{
+                    'aria-label': 'Description',
+                  }}
+                  name='title'
+                  className={`form-control ${errors['title']
+                    ? 'is-invalid'
+                    : ''}`}
+                  value={title}
+                  onChange={handleFieldChange}
+                />
+                {
+                  errors['name'] && (
+                    <span className='invalid-feedback'>
                 <strong>{errors['title'][0]}</strong>
                 </span>
-                )
-              }
+                  )
+                }
+              </Grid>
+              <Grid item>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary">
+                  添加
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary">
-                添加
-              </Button>
+          </form>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h6" component="h2">
+            Todo
+          </Typography>
+          {tasks.map((task, index) => (
+            <Grid key={task.id} container spacing={2} alignContent="center">
+              <Grid item>
+                {
+                  task.is_completed ?
+                    <RadioButtonChecked className={classes.green}/>
+                    :
+                    <RadioButtonUnchecked
+                      onClick={() => handleMarkTaskAsCompleted(task.id)}
+                    />
+                }
+              </Grid>
+              <Grid item xs>
+                {
+                  index === editId ?
+                    <Input
+                      fullWidth
+                      classes={{input: classes.input}}
+                      value={task.title}
+                      onBlur={() => handleEditPut(task)}
+                      onChange={(event) => handleEditChange(event, index,
+                        task)}
+                    />
+                    :
+                    <Typography component="h3"
+                                onClick={() => handleEdit(index)}>
+                      {task.title}
+                    </Typography>
+                }
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
+          ))}
+        </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <Typography variant="h6" component="h2">
-          Todo
-        </Typography>
-        {tasks.map((task, index) => (
-          <Grid key={task.id} container spacing={2} alignContent="center">
-            <Grid item>
-              {
-                task.is_completed ?
-                  <RadioButtonChecked className={classes.green}/>
-                  :
-                  <RadioButtonUnchecked
-                    onClick={() => handleMarkTaskAsCompleted(task.id)}
-                  />
-              }
-            </Grid>
-            <Grid item xs>
-              {
-                index === editId ?
-                  <Input
-                    fullWidth
-                    classes={{input: classes.input}}
-                    value={task.title}
-                    onBlur={() => handleEditPut(task)}
-                    onChange={(event) => handleEditChange(event, index,
-                      task)}
-                  />
-                  :
-                  <Typography component="h3" onClick={() => handleEdit(index)}>
-                    {task.title}
-                  </Typography>
-              }
-            </Grid>
-          </Grid>
-        ))}
-      </Grid>
-    </Grid>
+    </>
   );
 };
 
