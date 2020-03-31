@@ -165,7 +165,7 @@ const Register = ({history}) => {
             <Grid item>
               <Link onClick={() => {
                 history.push('/login');
-              }} variant="body2">
+              }} variant="body2" color="secondary">
                 已经有账户？登录！
               </Link>
             </Grid>

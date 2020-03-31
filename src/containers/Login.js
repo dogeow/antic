@@ -162,7 +162,7 @@ const SignInSide = ({dispatch}) => {
               </Grid>
               <Grid item>
                 <Link onClick={() => {history.push('/register');}}
-                      variant="body2">
+                      variant="body2" color="secondary">
                   {'没有账户？注册！'}
                 </Link>
               </Grid>
