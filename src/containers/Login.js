@@ -60,7 +60,7 @@ const SignInSide = ({dispatch}) => {
   const [remember_me, setRemember_me] = useState(false);
   const [inputErrors, setInputErrors] = useState(false);
 
-  const handle = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     axios.post('user/login', {
       email: email,
@@ -148,7 +148,7 @@ const SignInSide = ({dispatch}) => {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={handle}
+              onClick={handleLogin}
             >
               登录
             </Button>
