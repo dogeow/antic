@@ -79,13 +79,17 @@ const Register = ({history}) => {
                 label="昵称"
                 name="name"
                 autoComplete="name"
-                onChange={(e) => setName(e.target.value)}
+                onChange={e => setName(e.target.value)}
                 error={!!inputErrors.name}
-                placeholder={inputErrors.name ? inputErrors.name[0] : undefined}
+                placeholder={!!inputErrors.name
+                  ? inputErrors.name[0]
+                  : undefined}
                 InputLabelProps={
-                  inputErrors.name ? {shrink: true} : {}
+                  !!inputErrors.name ? {shrink: true} : {}
                 }
-                helperText={inputErrors.name ? inputErrors.name[0] : undefined}
+                helperText={!!inputErrors.name
+                  ? inputErrors.name[0]
+                  : undefined}
               />
             </Grid>
             <Grid item xs={12}>
