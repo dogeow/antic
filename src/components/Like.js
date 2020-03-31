@@ -9,7 +9,6 @@ const Like = () => {
   useEffect(() => {
     axios.get('like').then(({data}) => {
       setData(data);
-      console.log(data);
     });
   }, []);
 
@@ -17,7 +16,7 @@ const Like = () => {
     <Grid container spacing={2} justify={'flex-start'}>
       {
         data.map((item, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
             <Card title={item.name} subHeader={item.sub_header}
                   img={item.img} link={item.link} intro={item.intro}
                   feeling={item.feeling} key={index}/>
