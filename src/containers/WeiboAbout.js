@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 
 const WeiboAbout = () => {
   const [data, setData] = useState([]);
@@ -7,7 +7,7 @@ const WeiboAbout = () => {
   useEffect(() => {
     axios.post('weibo/about').then((resp) => {
       setData(resp.data);
-    })
+    });
   }, []);
 
   return (
@@ -16,7 +16,7 @@ const WeiboAbout = () => {
       <div>最早：{data.startDate}</div>
       <div>目前：{data.endDate}</div>
     </div>
-  )
+  );
 };
 
 export default WeiboAbout;

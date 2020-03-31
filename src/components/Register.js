@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import Avatar from '@material-ui/core/Avatar'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import Link from '@material-ui/core/Link'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/Box'
-import Container from '@material-ui/core/Container'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import Swal from 'sweetalert2'
-import axios from 'axios'
+import React, {useState} from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 import Copyright from './Copyright';
 
@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Register = ({history}) =>  {
+const Register = ({history}) => {
   const classes = useStyles();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -44,35 +44,31 @@ const Register = ({history}) =>  {
 
   const handle = (e) => {
     e.preventDefault();
-    axios
-      .post("user/signup", {
-        name: name,
-        email: email,
-        password: password,
-        password_confirmation: password_confirmation
-      })
-      .then(response => {
-        console.log(response);
-        return response;
-      })
-      .then(json => {
-        if (json.status === 201) {
-          Swal.fire({
-            position: 'top-end',
-            type: 'success',
-            title: '注册成功，请尝试登录！',
-            showConfirmButton: false,
-            timer: 2000
-          });
-          history.push('/login');
-        } else {
-          alert('注册失败！');
-        }
-      })
-      .catch((error) => {
-        setInputErrors(error.errors);
-        console.log(error);
-      });
+    axios.post('user/signup', {
+      name: name,
+      email: email,
+      password: password,
+      password_confirmation: password_confirmation,
+    }).then(response => {
+      console.log(response);
+      return response;
+    }).then(json => {
+      if (json.status === 201) {
+        Swal.fire({
+          position: 'top-end',
+          type: 'success',
+          title: '注册成功，请尝试登录！',
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        history.push('/login');
+      } else {
+        alert('注册失败！');
+      }
+    }).catch((error) => {
+      setInputErrors(error.errors);
+      console.log(error);
+    });
   };
 
   return (
@@ -138,7 +134,9 @@ const Register = ({history}) =>  {
                 InputLabelProps={
                   inputErrors.password ? {shrink: true} : {}
                 }
-                helperText={inputErrors.password ? inputErrors.password[0] : null}
+                helperText={inputErrors.password
+                  ? inputErrors.password[0]
+                  : null}
               />
             </Grid>
             <Grid item xs={12}>
@@ -167,7 +165,7 @@ const Register = ({history}) =>  {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link onClick={() => {history.push('/login')}} variant="body2">
+              <Link onClick={() => {history.push('/login');}} variant="body2">
                 已经有账户？登录！
               </Link>
             </Grid>

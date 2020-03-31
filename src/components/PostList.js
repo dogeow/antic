@@ -51,7 +51,7 @@ const PostList = () => {
                           variant="outlined"
                           size="small"
                           label={tag.name}
-                          />
+                        />
                       </Grid>
                     ))}
                   </Grid>

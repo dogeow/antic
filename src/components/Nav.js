@@ -1,15 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
-import SubNav from './Nav/SubNav'
-import chromeBookmarks from '../resources/Bookmarks'
+import React from 'react';
+import PropTypes from 'prop-types';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import SubNav from './Nav/SubNav';
+import chromeBookmarks from '../resources/Bookmarks';
 
 const bookmarks = chromeBookmarks['roots']['bookmark_bar']['children'];
+
 // const other = chromeBookmarks['roots']['other']['children'];
 
 function TabPanel(props) {
@@ -49,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
-  }
+  },
 }));
 
 export default function Nav() {
@@ -72,13 +73,14 @@ export default function Nav() {
           className={classes.tabs}
         >
           {bookmarks.map((project, index) => (
-            project.type === "folder" && <Tab key={index} label={project.name} {...a11yProps(index)} />
+            project.type === 'folder' &&
+            <Tab key={index} label={project.name} {...a11yProps(index)} />
           ))}
         </Tabs>
       </Grid>
       <Grid item xs={8} sm={9} md={10}>
         {bookmarks.map((project, index) => (
-          project.type === "folder" && (
+          project.type === 'folder' && (
             <TabPanel key={index} value={value} index={index}>
               <SubNav data={project.children}/>
             </TabPanel>

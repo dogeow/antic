@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 
 const About = () => {
   const [aboutMe, setAboutMe] = useState([]);
 
   useEffect(() => {
-    axios.get('about_me')
-      .then(response => {
-        setAboutMe(response.data);
-      })
+    axios.get('about_me').then(response => {
+      setAboutMe(response.data);
+    });
   }, []);
 
   return (
@@ -21,7 +20,8 @@ const About = () => {
               <ul>
                 {
                   item.list.map((subItem, index) => (
-                    <li key={index} dangerouslySetInnerHTML={{__html: subItem.content}}/>
+                    <li key={index}
+                        dangerouslySetInnerHTML={{__html: subItem.content}}/>
                   ))
                 }
               </ul>
@@ -30,7 +30,7 @@ const About = () => {
         ))
       }
     </div>
-  )
+  );
 };
 
 export default About;

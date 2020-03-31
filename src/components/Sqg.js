@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import Input from '@material-ui/core/Input'
-import SearchIcon from '@material-ui/icons/Search'
-import IconButton from '@material-ui/core/IconButton'
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
-import Popover from '@material-ui/core/Popover'
-import ClipboardJS from 'clipboard'
-import Typography from '@material-ui/core/Typography'
-import axios from 'axios'
+import React, {useState, useEffect} from 'react';
+import Input from '@material-ui/core/Input';
+import SearchIcon from '@material-ui/icons/Search';
+import IconButton from '@material-ui/core/IconButton';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Popover from '@material-ui/core/Popover';
+import ClipboardJS from 'clipboard';
+import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,12 +35,12 @@ const Sqg = () => {
   useEffect(() => {
     let clipboard = new ClipboardJS('.btn',
       {
-        text: function () {
+        text: function() {
           return `${title}\n【❥自己买】：${itemprice}元\n【❥跟我买】：${itemendprice}元\n长按複製❥ ${taokouling} 打開taobao`;
-        }
+        },
       });
 
-    clipboard.on('success', function (e) {
+    clipboard.on('success', function(e) {
       setPopover('复制成功☑️');
       console.info('Action:', e.action);
       console.info('Text:', e.text);
@@ -49,7 +49,7 @@ const Sqg = () => {
       e.clearSelection();
     });
 
-    clipboard.on('error', function (e) {
+    clipboard.on('error', function(e) {
       setPopover('复制失败✖️');
       console.error('Action:', e.action);
       console.error('Trigger:', e.trigger);
@@ -60,18 +60,19 @@ const Sqg = () => {
     let data = new FormData();
     data.append('keyword', value);
 
-    axios.post('http://admin.sqg.tewan.com/api/search/search_goods_list', data, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      }
-    }).then((resp) => {
+    axios.post('http://admin.sqg.tewan.com/api/search/search_goods_list', data,
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        },
+      }).then((resp) => {
       console.log(resp.data);
       setData(resp.data.data);
       setTitle(null);
       setItemprice(null);
       setItemendprice(null);
       setTaokouling(null);
-    })
+    });
   };
 
   const getTaokouling = (itemid, title, itemendprice, itemprice) => {
@@ -79,17 +80,18 @@ const Sqg = () => {
     data.append('itemid', itemid);
     data.append('title', title);
 
-    axios.post('http://admin.sqg.tewan.com/api/goods/create_tao_kouling', data, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-      }
-    }).then((resp) => {
+    axios.post('http://admin.sqg.tewan.com/api/goods/create_tao_kouling', data,
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        },
+      }).then((resp) => {
       console.log(resp.data);
       setTitle(title);
       setItemendprice(itemendprice);
       setItemprice(itemprice);
       setTaokouling(resp.data.data);
-    })
+    });
   };
 
   const handleClick = event => {
@@ -105,7 +107,7 @@ const Sqg = () => {
 
   return (
     <div>
-      <Grid container spacing={3} alignItems={"center"}>
+      <Grid container spacing={3} alignItems={'center'}>
         <Grid item>
           <Input
             value={value}
@@ -121,7 +123,8 @@ const Sqg = () => {
         </Grid>
         <Grid item><Typography>淘口令：{taokouling}</Typography></Grid>
         <Grid item>
-          <Button className={'btn'} variant="contained" color="primary" onClick={handleClick}>复制淘口令</Button>
+          <Button className={'btn'} variant="contained" color="primary"
+                  onClick={handleClick}>复制淘口令</Button>
           <Popover
             id={id} open={open} anchorEl={anchorEl} onClose={handleClose}
             anchorOrigin={{
@@ -132,7 +135,8 @@ const Sqg = () => {
               vertical: 'top',
               horizontal: 'center',
             }}>
-            <div className={classes.paper}><Typography>{popover}</Typography></div>
+            <div className={classes.paper}><Typography>{popover}</Typography>
+            </div>
           </Popover>
         </Grid>
       </Grid>
@@ -142,34 +146,47 @@ const Sqg = () => {
             return (
               <Grid item xs={12} sm={6} md={3} lg={3} key={index}>
                 <div>
-                  <img src={item.image} width={155} alt={item.itemtitle} style={{maxWidth: '100%'}}
-                       onClick={() => getTaokouling(item.itemid, item.itemtitle, item.itemendprice, item.itemprice)}
+                  <img src={item.image} width={155} alt={item.itemtitle}
+                       style={{maxWidth: '100%'}}
+                       onClick={() => getTaokouling(item.itemid, item.itemtitle,
+                         item.itemendprice, item.itemprice)}
                        data-clipboard-text={taokouling}
                   />
                 </div>
                 <div>{item.shoptype === 'c' ?
-                  <img src="/images/sqg/platform/taobao.png" width="20px" alt="淘宝"/>
+                  <img src="/images/sqg/platform/taobao.png" width="20px"
+                       alt="淘宝"/>
                   :
-                  <img src="/images/sqg/platform/tmall.png" width="20px" alt="天猫"/>}
+                  <img src="/images/sqg/platform/tmall.png" width="20px"
+                       alt="天猫"/>}
                   {item.itemtitle}</div>
                 <div>月销：{item.itemsale}</div>
                 <div>
                   <strong style={{color: 'red'}}>¥{item.itemendprice}</strong>
-                  <del style={{color: '#3c3c3c', paddingLeft: 20}}>¥{item.itemprice}</del>
+                  <del style={{
+                    color: '#3c3c3c',
+                    paddingLeft: 20,
+                  }}>¥{item.itemprice}</del>
                   <span style={{float: 'right'}}>{item.couponmoney}</span>
                 </div>
                 <Grid container>
-                  <Grid item xs={6} style={{color: 'white', backgroundColor: 'black'}}>分享赚¥{item.common_money}</Grid>
-                  <Grid item xs={6} style={{color: 'white', backgroundColor: 'red'}}>升级赚¥{item.high_money}</Grid>
+                  <Grid item xs={6} style={{
+                    color: 'white',
+                    backgroundColor: 'black',
+                  }}>分享赚¥{item.common_money}</Grid>
+                  <Grid item xs={6} style={{
+                    color: 'white',
+                    backgroundColor: 'red',
+                  }}>升级赚¥{item.high_money}</Grid>
                 </Grid>
                 <div>{item.shopname}</div>
               </Grid>
-            )
+            );
           })
         }
       </Grid>
     </div>
-  )
+  );
 };
 
 export default Sqg;

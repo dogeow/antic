@@ -1,10 +1,10 @@
-import React from 'react'
-import Grid from '@material-ui/core/Grid'
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
 
 const Piano = () => {
   const styles = {
     width: '100%',
-    height: '666px'
+    height: '666px',
   };
   return (
     <Grid container spacing={2}>

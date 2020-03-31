@@ -1,9 +1,9 @@
-import React, { PureComponent } from "react";
-import Heading from "./Heading";
+import React, {PureComponent} from 'react';
+import Heading from './Heading';
 
 class HeadingBlock extends PureComponent {
   renderHtml = () => {
-    const { level, children } = this.props;
+    const {level, children} = this.props;
 
     if (children && children.length > 0) {
       const nodeValue = children[0].props.value;
@@ -19,6 +19,7 @@ class HeadingBlock extends PureComponent {
       return <>{children}</>;
     }
   };
+
   render() {
     return <>{this.renderHtml()}</>;
   }
