@@ -53,8 +53,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SignInSide = ({dispatch}) => {
-  const history = useHistory();
   const classes = useStyles();
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember_me, setRemember_me] = useState(false);
@@ -67,17 +67,19 @@ const SignInSide = ({dispatch}) => {
       password: password,
       remember_me: remember_me,
     }).then(response => {
-      let {access_token} = response.data;
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
-      axios.post('user/profile').then(response2 => {
-        let {id, name, email} = response2.data.user;
-        logged(response.data, response2.data.user);
-        dispatch(loginAction(access_token, id, name, email));
-      });
-      history.push('/');
-    }).catch(error => {
-      console.log(error);
-      setInputErrors(error.errors);
+      if (response.status === 202) {
+        setInputErrors(response.data.errors);
+      } else {
+        let {access_token} = response.data;
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' +
+          access_token;
+        axios.post('user/profile').then(response2 => {
+          let {id, name, email} = response2.data.user;
+          logged(response.data, response2.data.user);
+          dispatch(loginAction(access_token, id, name, email));
+        });
+        history.push('/');
+      }
     });
   };
 
@@ -159,9 +161,8 @@ const SignInSide = ({dispatch}) => {
                 </Link>
               </Grid>
               <Grid item>
-                <Link onClick={() => {
-                  history.push('/register');
-                }} variant="body2">
+                <Link onClick={() => {history.push('/register');}}
+                      variant="body2">
                   {'没有账户？注册！'}
                 </Link>
               </Grid>
