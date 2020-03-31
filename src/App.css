@@ -1,5 +1,4 @@
 /* 更改默认行为 start */
-
 a:link {
   text-decoration: none;
   color: unset
@@ -45,7 +44,7 @@ html {
   cursor: url('./resources/pointer.cur'), auto;
 }
 
-a:hover, button:hover, li.MuiListItem-button, input.MuiSwitch-input, .pointer {
+a:hover, button:hover, button, li.MuiListItem-button, input.MuiSwitch-input, .pointer {
   cursor: url('./resources/link.cur'), auto;
 }
 

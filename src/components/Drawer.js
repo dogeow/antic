@@ -62,7 +62,7 @@ const TemporaryDrawer = (props) => {
         ))}
         <Divider/>
         {externalMenus.map((menu, index) => (
-          <ListItem button component={Link} style={{cursor: 'alias'}} href={menu.url} key={index}>
+          <ListItem button component={Link} underline="none" style={{cursor: 'alias'}} href={menu.url} key={index}>
             <ListItemText primary={menu.name}/>
           </ListItem>
         ))}
