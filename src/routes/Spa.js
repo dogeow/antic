@@ -65,7 +65,7 @@ const Spa = ({match}) => {
           <Route path="/emoji/post" component={loadable(
             () => import('../components/Emoji/EmojiPost'))}/>
           <Route exact path="/todo" component={loadable(
-            () => import('../components/Todo/ProjectsList'))}/>
+            () => import('../components/Todo/Project'))}/>
           <Route path="/todo/create" component={loadable(
             () => import('../components/Todo/NewProject'))}/>
           <Route path="/todo/:id" component={loadable(
