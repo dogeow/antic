@@ -1,23 +1,22 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import Avatar from '@material-ui/core/Avatar'
-import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
-import Link from '@material-ui/core/Link'
-import Paper from '@material-ui/core/Paper'
-import Box from '@material-ui/core/Box'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import axios from 'axios'
-
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import {makeStyles} from '@material-ui/core/styles'
-import Copyright from '../components/Copyright'
-import { loginAction } from '../actions'
-import { connect } from 'react-redux'
-import { logged } from '../helpers'
+import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import {makeStyles} from '@material-ui/core/styles';
+import Copyright from '../components/Copyright';
+import {loginAction} from '../actions';
+import {connect} from 'react-redux';
+import {logged} from '../helpers';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,7 +26,9 @@ const useStyles = makeStyles(theme => ({
     backgroundImage: `url(${process.env.REACT_APP_API_URL}random)`,
     backgroundRepeat: 'no-repeat',
     backgroundColor:
-      theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
+      theme.palette.type === 'dark'
+        ? theme.palette.grey[900]
+        : theme.palette.grey[50],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
@@ -61,14 +62,14 @@ const SignInSide = ({dispatch}) => {
 
   const handle = (e) => {
     e.preventDefault();
-    axios.post("user/login", {
+    axios.post('user/login', {
       email: email,
       password: password,
-      remember_me: remember_me
+      remember_me: remember_me,
     }).then(response => {
       let {access_token} = response.data;
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
-      axios.post("user/profile").then(response2 => {
+      axios.post('user/profile').then(response2 => {
         let {id, name, email} = response2.data.user;
         logged(response.data, response2.data.user);
         dispatch(loginAction(access_token, id, name, email));
@@ -104,11 +105,15 @@ const SignInSide = ({dispatch}) => {
               autoFocus
               onChange={(e) => setEmail(e.target.value)}
               error={inputErrors && inputErrors.email}
-              placeholder={inputErrors && inputErrors.email ? inputErrors.email : null}
+              placeholder={inputErrors && inputErrors.email
+                ? inputErrors.email
+                : null}
               InputLabelProps={
                 inputErrors && inputErrors.email ? {shrink: true} : {}
               }
-              helperText={inputErrors && inputErrors.email ? inputErrors.email[0] : ''}
+              helperText={inputErrors && inputErrors.email
+                ? inputErrors.email[0]
+                : ''}
             />
             <TextField
               variant="outlined"
@@ -122,11 +127,15 @@ const SignInSide = ({dispatch}) => {
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
               error={inputErrors && inputErrors.password}
-              placeholder={inputErrors && inputErrors.password ? inputErrors.password : null}
+              placeholder={inputErrors && inputErrors.password
+                ? inputErrors.password
+                : null}
               InputLabelProps={
                 inputErrors && inputErrors.password ? {shrink: true} : {}
               }
-              helperText={inputErrors && inputErrors.password ? inputErrors.password[0] : ''}
+              helperText={inputErrors && inputErrors.password
+                ? inputErrors.password[0]
+                : ''}
             />
             <FormControlLabel
               control={<Checkbox color="primary" checked={remember_me}/>}
@@ -151,9 +160,9 @@ const SignInSide = ({dispatch}) => {
               </Grid>
               <Grid item>
                 <Link onClick={() => {
-                  history.push('/register')
+                  history.push('/register');
                 }} variant="body2">
-                  {"没有账户？注册！"}
+                  {'没有账户？注册！'}
                 </Link>
               </Grid>
             </Grid>
