@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import makeStyles from "@material-ui/core/styles/makeStyles"
-import { KeyboardDatePicker } from '@material-ui/pickers'
-import axios from 'axios'
-import moment from 'moment'
-import ErrorOutline from '@material-ui/icons/ErrorOutline'
-import {Link} from 'react-router-dom'
+import React, {useState, useEffect} from 'react';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import {KeyboardDatePicker} from '@material-ui/pickers';
+import axios from 'axios';
+import moment from 'moment';
+import ErrorOutline from '@material-ui/icons/ErrorOutline';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -15,19 +15,18 @@ const useStyles = makeStyles(theme => ({
       margin: '0 2px',
     },
     table: {
-      width: '100%'
+      width: '100%',
     },
   },
   root: {
     marginLeft: -16,
-    marginRight: -16
+    marginRight: -16,
   },
   picker: {
     marginLeft: 16,
-    marginRight: 16
-  }
+    marginRight: 16,
+  },
 }));
-
 
 const Weibo = () => {
   const classes = useStyles();
@@ -35,11 +34,11 @@ const Weibo = () => {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   useEffect(() => {
-    axios.post("weibo", {
-      date: moment(selectedDate).format('Y-MM-DD')
-    }).then(response => {
-      setData(response.data);
-    })
+    axios.get('weibo', {
+      date: moment(selectedDate).format('Y-MM-DD'),
+    }).then(({data}) => {
+      setData(data);
+    });
   }, [selectedDate]);
 
   return (
@@ -69,7 +68,7 @@ const Weibo = () => {
             <th>No.</th>
             <th>话题</th>
             <th>热度</th>
-            <th style={{textAlign: "right"}}>更新于</th>
+            <th style={{textAlign: 'right'}}>更新于</th>
           </tr>
           </thead>
           <tbody>
@@ -78,11 +77,13 @@ const Weibo = () => {
               <tr key={index} className={item.status}>
                 <td>{index + 1}</td>
                 <td>
-                  <span style={{float: "left"}}><a href={`https://s.weibo.com${item.url}`}>{item.title}</a></span>
-                  {item.emoji && <span dangerouslySetInnerHTML={{__html: item.emoji}}/>}
+                  <span style={{float: 'left'}}><a
+                    href={`https://s.weibo.com${item.url}`}>{item.title}</a></span>
+                  {item.emoji &&
+                  <span dangerouslySetInnerHTML={{__html: item.emoji}}/>}
                 </td>
                 <td>{item.rank}</td>
-                <td style={{textAlign: "right"}}>{item.updated_at}</td>
+                <td style={{textAlign: 'right'}}>{item.updated_at}</td>
               </tr>
             ))
           }
@@ -90,7 +91,7 @@ const Weibo = () => {
         </table>
       </div>
     </div>
-  )
+  );
 };
 
-export default Weibo
+export default Weibo;
