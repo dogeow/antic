@@ -87,7 +87,7 @@ const Footer = () => {
           </Typography>
           <Typography>
             <Link
-              href="https://github.com/likunyan/react"
+              href="https://github.com/likunyan/antic"
               target="_blank"
               rel="noopener noreferrer"
             >
