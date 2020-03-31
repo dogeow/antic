@@ -27,8 +27,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   which_page: (value) => {
     dispatch({type: 'WHICH_PAGE', value});
   },
-  toggle_loading: () => {
-    dispatch({type: 'TOGGLE_LOADING'});
+  is_loading: (value) => {
+    dispatch({type: 'IS_LOADING', value});
   },
 });
 

@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 const Emoji = (
   {
-    lab, faceIsLoading, data, pageLimit, currentPage, filterNum, select_tag, toggleTag, toggle_loading,
+    lab, faceIsLoading, data, pageLimit, currentPage, filterNum, select_tag, toggleTag, is_loading,
     toggleCategory, select_category, displayTag, which_page, expandCategory, selectedCategory, selectedTag, search, expandTag,
   }) => {
   const [visible, setVisible] = useState(false);
@@ -40,10 +40,10 @@ const Emoji = (
 
   useEffect(() => {
     const imgLoad = imagesLoaded('#emoji');
-    imgLoad.on('always', () => (toggle_loading()));
+    imgLoad.on('always', () => (is_loading(false)));
 
     return () => (imgLoad.off('always'));
-  }, [data, toggle_loading]);
+  }, [data, is_loading]);
 
   face.map(item => {
     item.src = `${process.env.REACT_APP_CDN_URL}emoji/${item.fileName}`;

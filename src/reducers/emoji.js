@@ -100,10 +100,10 @@ const defaultState = {
 export default (state = defaultState, action) => {
   let data = {};
   switch (action.type) {
-    case 'TOGGLE_LOADING':
+    case 'IS_LOADING':
       return {
         ...state,
-        faceIsLoading: !state.faceIsLoading
+        faceIsLoading: action.value
       };
     case 'SELECT_CATEGORY':
       let selectedCategory = action.value;
