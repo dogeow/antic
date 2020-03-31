@@ -75,7 +75,7 @@ const Footer = () => {
         </Grid>
         <Grid item xs={12} sm>
           <Typography variant="h5" component="h3">
-            Build by
+            Built By
           </Typography>
           <Typography>
             小李世界 with <span role="img" aria-label="❤">❤️</span>
