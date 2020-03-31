@@ -54,9 +54,7 @@ export default function RecipeReviewCard({title, subHeader, img, link, intro, fe
         title="Paella dish"
       />
       <CardContent style={{minHeight: '11em'}}>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {intro}
-        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p" dangerouslySetInnerHTML={{__html: intro}}/>
       </CardContent>
       <CardActions disableSpacing>
         <a

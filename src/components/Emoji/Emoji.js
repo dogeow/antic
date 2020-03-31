@@ -95,10 +95,10 @@ const Emoji = (
       >
         {
           data.length > 0 ? (
-            data.map((single, index) =>
+            data.map((item, index) =>
               <Grid key={index} item xs={4} style={{textAlign: 'center'}}>
                 <img id={index} src={`${process.env.REACT_APP_CDN_URL}emoji/` +
-                single['fileName']} alt={single['name']}
+                item['fileName']} alt={item['name']}
                      width="100"
                      onClick={() => {
                        setVisible(true);
@@ -106,7 +106,7 @@ const Emoji = (
                      }}
                 />
                 <Typography variant="body2" component="h3">
-                  {single['name'].split('.')[0]}
+                  {item['name'].split('.')[0]}
                 </Typography>
               </Grid>,
             )

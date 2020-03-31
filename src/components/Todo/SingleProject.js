@@ -99,61 +99,59 @@ const SingleProject = () => {
   };
 
   return (
-    <div>
-      <Grid container spacing={2} justify="space-between">
-        <Grid item>
-          <Typography variant="h4" component="h1">{project.name}</Typography>
-          <Typography variant="subtitle1" component="h2">
-            {project.description}
-          </Typography>
-        </Grid>
-        <Grid item>
-          <IconButton
-            aria-label="delete"
-            onClick={() => handleMarkProjectAsCompleted()}>
-            <DeleteIcon/>
-          </IconButton>
-        </Grid>
+    <Grid container spacing={2} justify="space-between">
+      <Grid item>
+        <Typography variant="h4" component="h1">{project.name}</Typography>
+        <Typography variant="subtitle1" component="h2">
+          {project.description}
+        </Typography>
       </Grid>
-      <Typography variant="h6" component="h2">
-        添加任务
-      </Typography>
-      <form onSubmit={handleAddNewTask}>
-        <Grid container spacing={2} justify="space-between">
-          <Grid item>
-            <Input
-              placeholder="任务"
-              inputProps={{
-                'aria-label': 'Description',
-              }}
-              name='title'
-              className={`form-control ${errors['title'] ? 'is-invalid' : ''}`}
-              value={title}
-              onChange={handleFieldChange}
-            />
-            {
-              errors['name'] && (
-                <span className='invalid-feedback'>
+      <Grid item>
+        <IconButton
+          aria-label="delete"
+          onClick={() => handleMarkProjectAsCompleted()}>
+          <DeleteIcon/>
+        </IconButton>
+      </Grid>
+      <Grid item xs={12}>
+        <form onSubmit={handleAddNewTask}>
+          <Grid container spacing={2} justify="space-between">
+            <Grid item>
+              <Input
+                placeholder="任务"
+                inputProps={{
+                  'aria-label': 'Description',
+                }}
+                name='title'
+                className={`form-control ${errors['title']
+                  ? 'is-invalid'
+                  : ''}`}
+                value={title}
+                onChange={handleFieldChange}
+              />
+              {
+                errors['name'] && (
+                  <span className='invalid-feedback'>
                 <strong>{errors['title'][0]}</strong>
                 </span>
-              )
-            }
+                )
+              }
+            </Grid>
+            <Grid item>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary">
+                添加
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary">
-              添加
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-      <div>
+        </form>
+      </Grid>
+      <Grid item xs={12}>
         <Typography variant="h6" component="h2">
           Todo
         </Typography>
-
         {tasks.map((task, index) => (
           <Grid key={task.id} container spacing={2} alignContent="center">
             <Grid item>
@@ -185,8 +183,8 @@ const SingleProject = () => {
             </Grid>
           </Grid>
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 };
 
