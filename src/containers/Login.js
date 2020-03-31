@@ -17,6 +17,10 @@ import Copyright from '../components/Copyright';
 import {loginAction} from '../actions';
 import {connect} from 'react-redux';
 import {logged} from '../helpers';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,6 +60,7 @@ const SignInSide = ({dispatch}) => {
   const classes = useStyles();
   const history = useHistory();
   const [email, setEmail] = useState('');
+  const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [remember_me, setRemember_me] = useState(false);
   const [inputErrors, setInputErrors] = useState(false);
@@ -81,6 +86,10 @@ const SignInSide = ({dispatch}) => {
         history.push('/');
       }
     });
+  };
+
+  const handlePassword = () => {
+    setDisplayPassword(!displayPassword);
   };
 
   return (
@@ -116,6 +125,13 @@ const SignInSide = ({dispatch}) => {
               helperText={inputErrors && inputErrors.email
                 ? inputErrors.email[0]
                 : ''}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <MailOutlineIcon/>
+                  </InputAdornment>
+                ),
+              }}
             />
             <TextField
               variant="outlined"
@@ -124,7 +140,7 @@ const SignInSide = ({dispatch}) => {
               fullWidth
               name="password"
               label="密码"
-              type="password"
+              type={displayPassword ? 'text' : 'password'}
               id="password"
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
@@ -138,6 +154,20 @@ const SignInSide = ({dispatch}) => {
               helperText={inputErrors && inputErrors.password
                 ? inputErrors.password[0]
                 : ''}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    {
+                      displayPassword ?
+                        <VisibilityIcon onClick={handlePassword}
+                                        className="pointer"/>
+                        :
+                        <VisibilityOffIcon onClick={handlePassword}
+                                           className="pointer"/>
+                    }
+                  </InputAdornment>
+                ),
+              }}
             />
             <FormControlLabel
               control={<Checkbox color="primary" checked={remember_me}/>}
