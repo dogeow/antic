@@ -35,7 +35,7 @@ const Footer = () => {
       className={classes.footer}
       style={{marginTop: 20, minHeight: 200}}
     >
-      <Grid container spacing={0}>
+      <Grid container spacing={2}>
         <Grid item xs={12} sm>
           <Typography variant="h5" component="h3">
             Powered by
