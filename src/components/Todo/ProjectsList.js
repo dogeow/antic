@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link as RouterLink} from 'react-router-dom';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import {makeStyles} from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';

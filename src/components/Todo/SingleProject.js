@@ -1,23 +1,26 @@
-import React, { useState, useEffect } from 'react'
-import { useHistory, useRouteMatch } from 'react-router-dom'
-import Button from '@material-ui/core/Button'
-import Input from '@material-ui/core/Input/Input'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import axios from 'axios'
+import React, {useState, useEffect} from 'react';
+import {useHistory, useRouteMatch} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input/Input';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import RadioButtonChecked from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUnchecked from '@material-ui/icons/RadioButtonUnchecked';
-import makeStyles from "@material-ui/core/styles/makeStyles";
+import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   green: {
     color: 'green',
   },
+  input: {
+    padding: '2px 0 5px',
+  },
   '@global': {
     'h3': {
-      borderBottom: '#e0e0e0 1px solid'
+      borderBottom: '#e0e0e0 1px solid',
     },
   },
 }));
@@ -33,58 +36,69 @@ const SingleProject = () => {
   const [title, setTitle] = useState('');
   const [errors, setErrors] = useState([]);
 
+  const [editId, setEditId] = useState();
+
   useEffect(() => {
-    axios.get(`projects/${projectId}`)
-      .then(response => {
-        console.log(response.data);
-        setProject(response.data);
-        setTasks(response.data.tasks);
-      });
+    axios.get(`projects/${projectId}`).then(response => {
+      setProject(response.data);
+      setTasks(response.data.tasks);
+    });
   }, [projectId]);
 
   const handleFieldChange = (event) => {
-    setTitle(event.target.value)
+    setTitle(event.target.value);
   };
 
   const handleAddNewTask = (event) => {
-    console.log(tasks);
     event.preventDefault();
     const task = {
       title: title,
-      project_id: project.id
+      project_id: project.id,
     };
-    axios
-      .post('tasks', task)
-      .then(response => {
-        console.log(response.data);
-        // clear form input
-        setTitle('');
-        // add new task to list of tasks
-        setTasks(tasks.concat(response.data));
-      })
-      .catch(error => {
-        setErrors(error.response.data.errors)
-      })
+    axios.post('tasks', task).then(response => {
+      // clear form input
+      setTitle('');
+      // add new task to list of tasks
+      setTasks(tasks.concat(response.data));
+    }).catch(error => {
+      setErrors(error.response.data.errors);
+    });
   };
 
   const handleMarkTaskAsCompleted = (taskId) => {
     const newValues = tasks.map(item => {
       if (item.id !== taskId) return item;
-      return {...item, is_completed: 1}
+      return {...item, is_completed: 1};
     });
     setTasks(newValues);
-    axios.put(`tasks/${taskId}`).then(response => {
-    })
+    axios.put(`tasks/${taskId}`, {
+      is_completed: 1,
+    });
   };
 
   const handleMarkProjectAsCompleted = () => {
     axios.delete(`todo/${projectId}`).then(response => {
     });
-    history.put("/todo");
+    history.put('/todo');
+  };
+
+  const handleEdit = (index) => {
+    setEditId(index);
+  };
+
+  const handleEditChange = (event, index, task) => {
+    setTasks(tasks.map((item) => (item.id === task.id
+      ? {...task, title: event.target.value}
+      : item)));
+  };
+
+  const handleEditPut = (task) => {
+    axios.put(`tasks/${task.id}`, {
+      title: task.title,
+    });
   };
 
   return (
-
     <div>
       <Grid container spacing={2} justify="space-between">
         <Grid item>
@@ -94,7 +108,9 @@ const SingleProject = () => {
           </Typography>
         </Grid>
         <Grid item>
-          <IconButton aria-label="delete" onClick={() => handleMarkProjectAsCompleted()}>
+          <IconButton
+            aria-label="delete"
+            onClick={() => handleMarkProjectAsCompleted()}>
             <DeleteIcon/>
           </IconButton>
         </Grid>
@@ -124,7 +140,12 @@ const SingleProject = () => {
             }
           </Grid>
           <Grid item>
-            <Button type="submit" variant="contained" color="primary">添加</Button>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary">
+              添加
+            </Button>
           </Grid>
         </Grid>
       </form>
@@ -140,19 +161,33 @@ const SingleProject = () => {
                 task.is_completed ?
                   <RadioButtonChecked className={classes.green}/>
                   :
-                  <RadioButtonUnchecked onClick={() => handleMarkTaskAsCompleted(task.id)}/>
+                  <RadioButtonUnchecked
+                    onClick={() => handleMarkTaskAsCompleted(task.id)}
+                  />
               }
             </Grid>
             <Grid item xs>
-              <Typography variant="body1" component="h3">
-                {task.title}
-              </Typography>
+              {
+                index === editId ?
+                  <Input
+                    fullWidth
+                    classes={{input: classes.input}}
+                    value={task.title}
+                    onBlur={() => handleEditPut(task)}
+                    onChange={(event) => handleEditChange(event, index,
+                      task)}
+                  />
+                  :
+                  <Typography component="h3" onClick={() => handleEdit(index)}>
+                    {task.title}
+                  </Typography>
+              }
             </Grid>
           </Grid>
         ))}
       </div>
     </div>
-  )
+  );
 };
 
-export default SingleProject
+export default SingleProject;

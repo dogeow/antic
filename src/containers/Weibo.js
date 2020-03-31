@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import {makeStyles} from '@material-ui/core/styles';
 import {KeyboardDatePicker} from '@material-ui/pickers';
 import axios from 'axios';
 import moment from 'moment';
