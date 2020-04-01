@@ -37,7 +37,7 @@ const Weibo = () => {
     axios.get('weibo', {
       date: moment(selectedDate).format('Y-MM-DD'),
     }).then(({data}) => {
-      setData(data);
+      setData(data.data);
     });
   }, [selectedDate]);
 
