@@ -94,7 +94,7 @@ const Api = () => {
           result && result.length > 100 ?
             <TextareaAutosize
               aria-label="textarea"
-              defaultValue={result.join('\n')}/>
+              value={result.join('\n')}/>
             :
             <Typography component="h4" variant="body1">
               结果：{result}
