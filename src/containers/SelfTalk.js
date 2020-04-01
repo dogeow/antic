@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import {makeStyles} from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-
+ 
 const useStyles = makeStyles(theme => ({
   quote: {
+    fontFamily: '"Long Cang", cursive',
+    fontSize: '2em',
     border: '10px solid transparent',
     padding: 15,
     marginBottom: 5,
@@ -27,9 +28,9 @@ const SelfTalk = () => {
     <div className={classes.quote}>
       {
         quotes.map((quote, i) =>
-          <Typography component={'div'} key={i}>
+          <p key={i}>
             {quote.content}
-          </Typography>,
+          </p>,
         )
       }
     </div>
