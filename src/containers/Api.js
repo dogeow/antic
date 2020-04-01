@@ -13,6 +13,7 @@ import axios from 'axios';
 import Icon from '@material-ui/core/Icon';
 import Grid from '@material-ui/core/Grid';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 const Api = () => {
   const [data, setData] = useState([]);
@@ -38,7 +39,7 @@ const Api = () => {
   };
 
   return (
-    <Grid container spacing={2} alignItems={'center'}>
+    <Grid container spacing={2}>
       <Grid item xs={12}>
         <Typography component="h3" variant="h6">
           前缀：{process.env.REACT_APP_API_URL}
@@ -89,9 +90,16 @@ const Api = () => {
       </Grid>
 
       <Grid item>
-        <Typography component="h4" variant="body1">
-          结果：{result}
-        </Typography>
+        {
+          result && result.length > 100 ?
+            <TextareaAutosize
+              aria-label="textarea"
+              defaultValue={result.join('\n')}/>
+            :
+            <Typography component="h4" variant="body1">
+              结果：{result}
+            </Typography>
+        }
       </Grid>
 
       <Grid item xs={12}>
