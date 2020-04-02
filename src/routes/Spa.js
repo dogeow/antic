@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, MemoryRouter, Switch} from 'react-router-dom';
 import loadable from '@loadable/component';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -57,7 +57,8 @@ const Spa = ({match}) => {
           <Route path="/about"
                  component={loadable(() => import('../containers/About'))}/>
           <Route exact path="/weibo"
-                 component={loadable(() => import('../containers/Weibo'))}/>
+                 component={loadable(() => import('../containers/Weibo'))}>
+          </Route>
           <Route path="/weibo/about" component={loadable(
             () => import('../containers/WeiboAbout'))}/>
           <Route exact path="/emoji"
