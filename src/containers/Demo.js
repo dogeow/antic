@@ -4,11 +4,11 @@ import {Link} from 'react-router-dom';
 const Demo = () => (
   <div>
     <ul>
-      <li><a href="/demos/threejs/3d.html" target="_blank">Emoji
+      <li><a href="/demos/canvas/3d.html" target="_blank">Emoji
         3D(Three.js)</a></li>
-      <li><a href="/demos/threejs/love.html" target="_blank">喜欢的（Three.js）</a>
+      <li><a href="/demos/canvas/love.html" target="_blank">喜欢的（Three.js）</a>
       </li>
-      <li><a href="/demos/threejs/threejs_load_images.html" target="_blank">Three.js
+      <li><a href="/demos/canvas/threejs_load_images.html" target="_blank">Three.js
         加载图片</a></li>
       <li><a href="/demos/mv.html" target="_blank">MV 测试</a></li>
       <li><a href="/demos/jqueryselectors" target="_blank">jQuery 选择器在线测试</a>
@@ -20,6 +20,7 @@ const Demo = () => (
       <li><Link to="/demos/parking">停车（爬虫)</Link></li>
       <li><Link to="/demos/font">Typography 字体展示</Link></li>
       <li><Link to="/a-z">A-Z</Link></li>
+        <li><a href="/demos/canvas/cherry.html" target="_blank">樱花🌸</a></li>
     </ul>
   </div>
 );
