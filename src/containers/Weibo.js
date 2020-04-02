@@ -92,8 +92,9 @@ const Weibo = ({location}) => {
               Array.from(new Array(20)).map((item, index) => (
                   <tr key={index}>
                     <td colSpan={2}>
-                      <Skeleton variant="rect" width={`${random(20, 88)}%`}
-                                height={20}/>
+                      <Skeleton
+                        variant="rect" width={`${random(20, 88)}%`}
+                        height={20}/>
                     </td>
                   </tr>
                 ),
