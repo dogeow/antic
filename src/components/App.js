@@ -1,30 +1,41 @@
-import React from 'react'
-import { BrowserRouter } from 'react-router-dom'
-import '../App.css'
+import React from 'react';
 
-// Material-UI
-// import 'typeface-roboto'
-import {ThemeProvider} from '@material-ui/core/styles'
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import {BrowserRouter} from 'react-router-dom';
+import Routes from '../routes';
+import ScrollToTop from '../components/ScrollToTop';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import {MuiPickersUtilsProvider} from '@material-ui/pickers';
+import MomentUtils from '@date-io/moment'; // 导入一些 moment 实用工具
+import moment from 'moment';
+import {ThemeProvider} from '@material-ui/core/styles';
+import 'moment/locale/zh-cn';
+import 'typeface-roboto';
+import '../App.css';
 
-import Routes from '../routes'
-import ScrollToTop from "../components/ScrollToTop"
+require('../bootstrap');
+
+moment.locale('zh-cn');
 
 const App = ({themePaletteType}) => {
   const theme = createMuiTheme({
     palette: {
-      type: themePaletteType
+      type: themePaletteType,
     },
   });
 
   return (
     <BrowserRouter>
       <ScrollToTop/>
-      <ThemeProvider theme={theme}>
-        <CssBaseline/>
-        <Routes/>
-      </ThemeProvider>
+      <MuiPickersUtilsProvider
+        utils={MomentUtils}
+        libInstance={moment}
+        locale={'zh-cn'}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline/>
+          <Routes/>
+        </ThemeProvider>
+      </MuiPickersUtilsProvider>
     </BrowserRouter>
   );
 };

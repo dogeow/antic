@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, MemoryRouter, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import loadable from '@loadable/component';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
