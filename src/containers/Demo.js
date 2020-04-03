@@ -20,7 +20,8 @@ const Demo = () => (
       <li><Link to="/demos/parking">停车（爬虫)</Link></li>
       <li><Link to="/demos/font">Typography 字体展示</Link></li>
       <li><Link to="/a-z">A-Z</Link></li>
-        <li><a href="/demos/canvas/cherry.html" target="_blank">樱花🌸</a></li>
+      <li><a href="/demos/canvas/cherry.html" target="_blank">樱花<span
+        role="img" aria-label="cherry">🌸</span></a></li>
     </ul>
   </div>
 );
