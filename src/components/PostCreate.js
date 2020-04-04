@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
+import ReactMarkdown from 'react-markdown/with-html';
 import MdEditor from 'react-markdown-editor-lite';
 import axios from 'axios';
-import MarkdownIt from 'markdown-it';
+import CodeBlock from '../components/CodeBlock';
+import HeadingBlock from '../components/HeadingBlock';
 import Input from '@material-ui/core/Input';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
@@ -15,12 +17,6 @@ import clsx from 'clsx';
 import '../markdown.css';
 import Swal from 'sweetalert2';
 import {useRouteMatch} from 'react-router-dom';
-import emoji from 'markdown-it-emoji';
-import task from 'markdown-it-task-lists';
-import anchor from 'markdown-it-anchor';
-import markdownItTocDoneRight from 'markdown-it-toc-done-right';
-import hljs from 'highlight.js';
-import 'highlight.js/styles/idea.css';
 
 const config = {
   htmlClass: 'none',
@@ -74,34 +70,6 @@ const useStyles = makeStyles(theme => ({
 
 const PostCreate = () => {
   const classes = useStyles();
-  const md = new MarkdownIt({
-    highlight: function(str, lang) {
-      if (lang && hljs.getLanguage(lang)) {
-        try {
-          return '<pre class="hljs"><code>' +
-            hljs.highlight(lang, str, true).value +
-            '</code></pre>';
-        } catch (__) {}
-      }
-
-      return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) +
-        '</code></pre>';
-    },
-  });
-
-  md.use(anchor, {
-    level: [2, 3, 4],
-    permalink: true,
-    permalinkClass: 'header-anchor',
-    permalinkSymbol: '¶',
-    permalinkBefore: true,
-  });
-  md.use(emoji);
-  md.use(task, {enabled: true, label: true, labelAfter: true});
-  md.use(markdownItTocDoneRight, {
-    level: [2, 3, 4],
-  });
-
   const match = useRouteMatch();
   const [id, setId] = useState();
   const [title, setTitle] = React.useState();
@@ -113,9 +81,10 @@ const PostCreate = () => {
   useEffect(() => {
     if (match.params.id) {
       setId(match.params.id);
-      axios.get(`post/${match.params.id}`).then(({data}) => {
-        setTitle(data.title);
-        setContent(data.content);
+
+      axios.get(`post/${match.params.id}`).then(response => {
+        setTitle(response.data.title);
+        setContent(response.data.content);
       });
     }
   }, [match.params.id]);
@@ -128,6 +97,7 @@ const PostCreate = () => {
 
     let url = id ? `post/${id}` : 'post';
     let method = id ? 'put' : 'post';
+
     axios({
       method: method,
       url: url,
@@ -152,7 +122,12 @@ const PostCreate = () => {
   };
 
   const renderHTML = (text) => {
-    return md.render(text);
+    return (
+      <ReactMarkdown source={text} escapeHtml={false} renderers={{
+        code: CodeBlock,
+        heading: HeadingBlock,
+      }}/>
+    );
   };
 
   const handleImageUpload = acceptedFiles => {
