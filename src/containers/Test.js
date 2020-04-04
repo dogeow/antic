@@ -1,23 +1,20 @@
-import React, { useEffect } from 'react';
-import axios from 'axios'
+import React from 'react';
+import {HashLink as Link} from 'react-router-hash-link';
 
 const Test = () => {
-  useEffect(() => {
-    axios.post('http://api.heclouds.com/devices/23232/lbs/latestLocation', {
-      headers: {
-        'User-Agent': '2333',
-        'api-key': '2w4*****y5Y=',
+  return (
+    <>
+      {
+        [1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => (
+          <div>
+            <Link to="#a">Link to Hash
+              Fragment</Link>
+          </div>
+        ))
       }
-    })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
-
-  return (<>233</>);
+      <div id="a">233</div>
+    </>
+  );
 };
 
-export default Test
+export default Test;

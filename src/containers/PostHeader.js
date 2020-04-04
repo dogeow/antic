@@ -7,7 +7,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import React from 'react';
 import Zoom from '@material-ui/core/Zoom';
 
-const PostEdit = ({post, handleEdit}) => {
+const PostEdit = ({post, handleEdit, handleDelete}) => {
   return post ?
     <>
       <Grid item>
@@ -45,7 +45,7 @@ const PostEdit = ({post, handleEdit}) => {
           aria-label="text primary button group"
         >
           <Button onClick={handleEdit}>编辑</Button>
-          <Button>删除</Button>
+          <Button onClick={handleDelete}>删除</Button>
         </ButtonGroup>
       </Grid>
     </>

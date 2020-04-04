@@ -167,10 +167,6 @@ input {
   -moz-box-shadow: 0 1px 8px #000;
 }
 
-h1:hover .header-anchor {
-  opacity: 0.8;
-}
-
 h2:hover .header-anchor {
   opacity: 0.8;
 }
@@ -180,14 +176,6 @@ h3:hover .header-anchor {
 }
 
 h4:hover .header-anchor {
-  opacity: 0.8;
-}
-
-h5:hover .header-anchor {
-  opacity: 0.8;
-}
-
-h6:hover .header-anchor {
   opacity: 0.8;
 }
 
