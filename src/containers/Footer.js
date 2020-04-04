@@ -73,29 +73,10 @@ const Footer = () => {
             </li>
           </ul>
         </Grid>
-        <Grid item xs={12} sm>
-          <Typography variant="h5" component="h3">
-            Built By
-          </Typography>
-          <Typography>
-            小李世界 with <span role="img" aria-label="❤">❤️</span>
-          </Typography>
-        </Grid>
-        <Grid item xs={12} sm>
-          <Typography variant="h5" component="h3">
-            Follow me in
-          </Typography>
-          <Typography>
-            <Link
-              href="https://github.com/likunyan/antic"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <GitHub/>
-            </Link>
-          </Typography>
-        </Grid>
       </Grid>
+      <div style={{textAlign: 'center'}}>
+        Built By 小李世界 with <span role="img" aria-label="❤">❤️</span>
+      </div>
     </Container>
   );
 };

@@ -1,11 +1,16 @@
 import React from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Link as RouteLink, useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import md5 from 'md5';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import {logged} from '../helpers';
 import {loginAction} from '../actions';
+import Link from '@material-ui/core/Link';
+import SearchIcon from '@material-ui/icons/Search';
+import InputBase from '@material-ui/core/InputBase';
+import Hidden from '@material-ui/core/Hidden';
+import TextField from '@material-ui/core/TextField'
 
 // Material-UI
 import {makeStyles} from '@material-ui/core/styles';
@@ -26,6 +31,9 @@ import Drawer from '../components/Drawer';
 import Settings from '../components/Settings';
 
 import {logout} from '../helpers/index';
+import GitHub from '@material-ui/icons/GitHub';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -124,14 +132,36 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
             >
               <MenuIcon/>
             </IconButton>
-            <Link to={'/'} className={classes.title}>
+            <RouteLink to={'/'} className={classes.title}>
               <Logo/>
-            </Link>
+            </RouteLink>
+            <Hidden only="xs">
+              <TextField
+                placeholder="搜索"
+                inputProps={{'aria-label': '搜索'}}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon/>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <IconButton
+                aria-label="GitHub 存储库"
+                color="inherit"
+                component="a"
+                href="https://github.com/likunyan/antic"
+                target="_blank"
+              >
+                <GitHub/>
+              </IconButton>
+            </Hidden>
             {
               lab.is_expired ? (
                 <Button
                   color="inherit"
-                  component={Link}
+                  component={RouteLink}
                   to={'/login'}
                 >
                   登录
