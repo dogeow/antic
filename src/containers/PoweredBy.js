@@ -17,6 +17,7 @@ const PoweredBy = () => {
         <ul>
           <li>react-markdown-editor-lite</li>
           <li><a href="https://github.com/markdown-it/markdown-it" target="_blank">markdown-it</a></li>
+          <li>react-markdown, <a href="https://rexxars.github.io/react-markdown/" target="_blank">Demo</a></li>
           <li>SweetAlert 2</li>
           <li>socket.io</li>
           <li>moment</li>
