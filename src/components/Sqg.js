@@ -165,7 +165,7 @@ const Sqg = () => {
                   <strong style={{color: 'red'}}>¥{item.itemendprice}</strong>
                   <del style={{
                     color: '#3c3c3c',
-                    paddingLeft: 20,
+                    paddingLeft: '2rem',
                   }}>¥{item.itemprice}</del>
                   <span style={{float: 'right'}}>{item.couponmoney}</span>
                 </div>

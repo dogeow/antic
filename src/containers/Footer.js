@@ -22,8 +22,8 @@ const useStyles = makeStyles(theme => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 200,
     minHeight: 200,
-    paddingTop: 20,
-    marginTop: 20,
+    paddingTop: '2rem',
+    marginTop: '2rem',
     borderTop: '1px solid rgba(211,224,233,.15)',
   },
 }));

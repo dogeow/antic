@@ -25,19 +25,30 @@ const useStyles = makeStyles(theme => ({
 
 const Weibo = ({location}) => {
   useStyles();
+
   const [data, setData] = useState({});
   const [selectedDate, handleDateChange] = useState(new Date());
+  const [pageCount, setPageCout] = useState();
 
   const query = new URLSearchParams(location.search);
   const page = parseInt(query.get('page'), 10) || 1;
 
   useEffect(() => {
-    axios.post(`weibo?page[number]=${page}`, {
-      date: moment(selectedDate).format('Y-MM-DD'),
-    }).then(({data}) => {
-      setData(data);
-    });
+    let selectDate = moment(selectedDate).format('Y-MM-DD');
+    axios.post(`weibo?date=${selectDate}&page[number]=${page}`)
+    .then(({data}) => {
+        setData(data);
+        setPageCout(data.last_page);
+      });
   }, [selectedDate, page]);
+
+  const handlePage = (page) => {
+    axios.post(`weibo?date=${moment(selectedDate).format('Y-MM-DD')}&page[number]=${page}`)
+    .then(({data}) => {
+        setData(data);
+        setPageCout(data.last_page);
+      });
+  };
 
   return (
     <Grid container spacing={2} justify={'center'}>
@@ -106,15 +117,14 @@ const Weibo = ({location}) => {
       <Grid item xs={12}>
         <Pagination
           page={page}
-          count={data.last_page}
+          count={pageCount}
           hidePrevButton={page <= 1}
           hideNextButton={page >= data.last_page}
           renderItem={(item) => (
             <PaginationItem
-              component={Link}
-              to={`/weibo${item.page === 1 ? '' : `?page=${item.page}`}`}
               {...item}
               disabled={item.page === page}
+              onClick={() => handlePage(item.page)}
             />
           )}
         />
