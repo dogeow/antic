@@ -1,7 +1,5 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import GitHub from '@material-ui/icons/GitHub';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import {Link as RouteLink} from 'react-router-dom';
@@ -23,6 +21,10 @@ const useStyles = makeStyles(theme => ({
     backgroundPosition: 'right',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 200,
+    minHeight: 200,
+    paddingTop: 20,
+    marginTop: 20,
+    borderTop: '1px dashed rgb(255,255,255, 0.3)',
   },
 }));
 
@@ -33,7 +35,6 @@ const Footer = () => {
     <Container
       component="footer"
       className={classes.footer}
-      style={{marginTop: 20, minHeight: 200}}
     >
       <Grid container spacing={2}>
         <Grid item xs={12} sm>
@@ -45,8 +46,7 @@ const Footer = () => {
               <a
                 href="https://zh-hans.reactjs.org/"
                 target="_blank"
-                rel="noopener noreferrer"
-              >
+                rel="noopener noreferrer">
                 React
               </a>
             </li>
@@ -54,8 +54,7 @@ const Footer = () => {
               <a
                 href="https://material-ui.com/zh/"
                 target="_blank"
-                rel="noopener noreferrer"
-              >
+                rel="noopener noreferrer">
                 Material-UI
               </a>
             </li>
@@ -63,8 +62,7 @@ const Footer = () => {
               <a
                 href=" https://laravel.com"
                 target="_blank"
-                rel="noopener noreferrer"
-              >
+                rel="noopener noreferrer">
                 Laravel
               </a>
             </li>
