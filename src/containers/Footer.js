@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     minHeight: 200,
     paddingTop: 20,
     marginTop: 20,
-    borderTop: '1px dashed rgb(255,255,255, 0.3)',
+    borderTop: '1px solid rgba(211,224,233,.15)',
   },
 }));
 
