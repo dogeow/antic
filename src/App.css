@@ -168,15 +168,15 @@ input {
 }
 
 h2:hover .header-anchor {
-  opacity: 0.8;
+  opacity: 1;
 }
 
 h3:hover .header-anchor {
-  opacity: 0.8;
+  opacity: 1;
 }
 
 h4:hover .header-anchor {
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .header-anchor {
