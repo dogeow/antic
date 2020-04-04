@@ -15,6 +15,8 @@ const PoweredBy = () => {
       <div>
         <h2>详细</h2>
         <ul>
+          <li>react-markdown-editor-lite</li>
+          <li>markdown-it</li>
           <li>SweetAlert 2</li>
           <li>socket.io</li>
           <li>moment</li>
