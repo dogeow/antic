@@ -8,9 +8,10 @@ import {logged} from '../helpers';
 import {loginAction} from '../actions';
 import Link from '@material-ui/core/Link';
 import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
 import Hidden from '@material-ui/core/Hidden';
-import TextField from '@material-ui/core/TextField'
+import TextField from '@material-ui/core/TextField';
+import NightsStayIcon from '@material-ui/icons/NightsStay';
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
 
 // Material-UI
 import {makeStyles} from '@material-ui/core/styles';
@@ -156,6 +157,14 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
               >
                 <GitHub/>
               </IconButton>
+              <IconButton
+                aria-label="切换模式"
+                color="inherit"
+                onClick={onThemeClick}
+              >
+                {lab.themePaletteType === 'dark' ? <NightsStayIcon/> :
+                  <WbSunnyIcon/>}
+              </IconButton>
             </Hidden>
             {
               lab.is_expired ? (
@@ -229,12 +238,14 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={() => {
-                setAnchorEl(null);
-                onThemeClick();
-              }}>
-                切换为{lab.themePaletteType === 'dark' ? '白天☀️️' : '黑夜🌌'}模式
-              </MenuItem>
+              <Hidden xsUp>
+                <MenuItem onClick={() => {
+                  setAnchorEl(null);
+                  onThemeClick();
+                }}>
+                  切换为{lab.themePaletteType === 'dark' ? '白天☀️️' : '黑夜🌌'}模式
+                </MenuItem>
+              </Hidden>
               <MenuItem onClick={() => {
                 setAnchorEl(null);
                 testLogin();
