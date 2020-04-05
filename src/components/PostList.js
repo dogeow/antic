@@ -40,7 +40,7 @@ const PostList = () => {
                 </Grid>
                 <Grid item>
                   <Typography variant={'h6'} component={'h2'}>
-                    <Link to={`/post/${item.id}`}>{item.title}</Link>
+                    <Link to={`/posts/${item.id}`}>{item.title}</Link>
                   </Typography>
                 </Grid>
                 <Grid item>

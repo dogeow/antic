@@ -15,17 +15,17 @@ const PostSingle = () => {
   const id = parseInt(match.params.id);
 
   useEffect(() => {
-    axios.get(`post/${id}`).then(response => {
+    axios.get(`posts/${id}`).then(response => {
       setPost(response.data);
     });
   }, [id]);
 
   const handleEdit = () => {
-    history.push(`/post/${id}/edit`);
+    history.push(`/posts/${id}/edit`);
   };
 
   const handleDelete = () => {
-    axios.delete(`post/${id}`);
+    axios.delete(`posts/${id}`);
   };
 
   return (

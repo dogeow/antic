@@ -82,7 +82,7 @@ const PostCreate = () => {
     if (match.params.id) {
       setId(match.params.id);
 
-      axios.get(`post/${match.params.id}`).then(response => {
+      axios.get(`posts/${match.params.id}`).then(response => {
         setTitle(response.data.title);
         setContent(response.data.content);
       });

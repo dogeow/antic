@@ -31,7 +31,7 @@ const Spa = ({match}) => {
     <>
       <Header/>
       <Container
-        maxWidth={['/post/create'].includes(match.url) ? null : 'lg'}
+        maxWidth={['/posts/create'].includes(match.url) ? null : 'lg'}
         style={{marginTop: 20}}
         classes={['/nav'].includes(match.url) ? {root: classes.main} : null}>
         <Switch>
@@ -40,13 +40,13 @@ const Spa = ({match}) => {
                  component={loadable(() => import('../containers/Game'))}/>
           <Route path="/algolia"
                  component={loadable(() => import('../containers/Algolia'))}/>
-          <Route exact path="/post"
+          <Route exact path="/posts"
                  component={loadable(() => import('../components/PostList'))}/>
-          <Route path="/post/create" component={loadable(
+          <Route path="/posts/create" component={loadable(
             () => import('../components/PostCreate'))}/>
-          <Route path="/post/:id/edit" component={loadable(
+          <Route path="/posts/:id/edit" component={loadable(
             () => import('../components/PostCreate'))}/>
-          <Route path="/post/:id" component={loadable(
+          <Route path="/posts/:id" component={loadable(
             () => import('../containers/PostSingle'))}/>
           <Route path="/register"
                  component={loadable(() => import('../containers/Register'))}/>

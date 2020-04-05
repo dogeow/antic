@@ -28,7 +28,7 @@ const menus = [
   {'name': '🤔自言自语', 'url': '/self-talk'},
   {'name': '💗喜欢的', 'url': '/like'},
   {'name': '📦一些 Demo', 'url': '/demo'},
-  {'name': '📄文章', 'url': '/post'},
+  {'name': '📄文章', 'url': '/posts'},
 ];
 
 const externalMenus = [
