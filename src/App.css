@@ -1,26 +1,17 @@
 /* 更改默认行为 start */
-a:link {
-  text-decoration: none;
-  color: unset
-}
-
-a:active {
-  text-decoration: none;
-  color: unset
+a:visited {
+  color: unset;
+  text-decoration: none
 }
 
 a:hover {
+  color: unset;
   text-decoration: none;
-  color: unset
 }
 
-a:visited {
+a:link {
+  color: unset;
   text-decoration: none;
-  color: unset
-}
-
-figure {
-  margin: 0;
 }
 
 blockquote {
@@ -55,7 +46,6 @@ input {
 /* 鼠标样式 end */
 
 /* 微博热搜榜 start */
-
 .boil {
   border-left: 1px solid red
 }
@@ -71,7 +61,6 @@ input {
 /* 微博热搜榜 end */
 
 /* 雷姆 start */
-
 .sidebar_wo {
   position: fixed;
   line-height: 0;
@@ -118,7 +107,6 @@ input {
 /* 雷姆 end */
 
 /* 3D */
-
 .ThreeDee {
   text-shadow: 0 0 0 rgb(-51, -51, -51), 1px 1px 0 rgb(-102, -102, -102), 2px 2px 0 rgb(-153, -153, -153), 3px 3px 0 rgb(-204, -204, -204), 4px 4px 0 rgb(-255, -255, -255), 5px 5px 0 rgb(-306, -306, -306), 6px 6px 5px rgba(0, 0, 0, 1), 6px 6px 1px rgba(0, 0, 0, 0.5), 0px 0px 5px rgba(0, 0, 0, .2);
 }

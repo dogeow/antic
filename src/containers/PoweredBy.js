@@ -1,46 +1,49 @@
 import React from 'react';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import axios from 'axios';
+import Paper from '@material-ui/core/Paper';
 
 const PoweredBy = () => {
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    axios.get('powered-by').then(({data}) => {
+      setData(data);
+    });
+  }, []);
+
   return (
     <div>
-      <div>
-        <h2>总体</h2>
-        <ul>
-          <li>后端：Laravel</li>
-          <li>前端：React</li>
-          <li>UI：Material-UI</li>
-          <li>鼠标样式：守望先锋</li>
-        </ul>
-      </div>
-      <div>
-        <h2>详细</h2>
-        <ul>
-          <li>react-markdown-editor-lite</li>
-          <li><a href="https://github.com/markdown-it/markdown-it" target="_blank">markdown-it</a></li>
-          <li>react-markdown, <a href="https://rexxars.github.io/react-markdown/" target="_blank">Demo</a></li>
-          <li>SweetAlert 2</li>
-          <li>socket.io</li>
-          <li>moment</li>
-          <li>clipboard</li>
-          <li>axios</li>
-          <li>lodash</li>
-          <li>redux</li>
-          <li>react-router-dom</li>
-          <li>Algolia Search</li>
-          <li>OSS / 又拍云</li>
-          <li>Slack</li>
-          <li>JWT</li>
-        </ul>
-      </div>
-      <div>
-        <h2>服务器</h2>
-        <ul>
-          <li>Ubuntu 18.04 LTS</li>
-          <li>PHP 7.2</li>
-          <li>Nginx 1.14</li>
-          <li>MySQL 5.7</li>
-        </ul>
-      </div>
+      <TableContainer component={Paper}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>name</TableCell>
+              <TableCell>分类</TableCell>
+              <TableCell>备注</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell component="th" scope="row">
+                  {row.link
+                    ? <a href={row.link} target="_blank" color="primary"
+                         rel="noopener noreferrer">{row.name}</a>
+                    : row.name}
+                </TableCell>
+                <TableCell>{row.category}</TableCell>
+                <TableCell>{row.note}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
       <div>
         <p>
           <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2F233.sx%2F"
