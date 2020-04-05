@@ -34,7 +34,6 @@ import Settings from '../components/Settings';
 import {logout} from '../helpers/index';
 import GitHub from '@material-ui/icons/GitHub';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
 const useStyles = makeStyles(theme => ({
   root: {
