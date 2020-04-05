@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,20 +7,36 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
+import TablePagination from '@material-ui/core/TablePagination';
 
 const PoweredBy = () => {
-  const [data, setData] = React.useState([]);
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(0);
+  const [size, setSize] = useState(15);
+  const [paginate, setPaginate] = useState({});
 
   React.useEffect(() => {
-    axios.get('powered-by').then(({data}) => {
-      setData(data);
-    });
-  }, []);
+    axios.get(`powered-by?page[number]=${page+1}&page[size]=${size}`)
+    .then(({data}) => {
+        setData(data.data);
+        delete data.data;
+        setPaginate(data);
+      });
+  }, [page, size]);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setSize(parseInt(event.target.value, 15));
+    setPage(0);
+  };
 
   return (
     <div>
       <TableContainer component={Paper}>
-        <Table aria-label="simple table">
+        <Table size="small" aria-label="dense table">
           <TableHead>
             <TableRow>
               <TableCell>name</TableCell>
@@ -44,6 +60,19 @@ const PoweredBy = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 15, 25]}
+        component="div"
+        count={paginate.total || 0}
+        rowsPerPage={size}
+        page={page}
+        SelectProps={{
+          inputProps: {'aria-label': '每页行数'},
+          native: true,
+        }}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage}
+      />
       <div>
         <p>
           <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2F233.sx%2F"

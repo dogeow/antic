@@ -238,14 +238,12 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
               open={open}
               onClose={handleClose}
             >
-              <Hidden xsUp>
-                <MenuItem onClick={() => {
-                  setAnchorEl(null);
-                  onThemeClick();
-                }}>
-                  切换为{lab.themePaletteType === 'dark' ? '白天☀️️' : '黑夜🌌'}模式
-                </MenuItem>
-              </Hidden>
+              <MenuItem onClick={() => {
+                setAnchorEl(null);
+                onThemeClick();
+              }}>
+                切换为{lab.themePaletteType === 'dark' ? '白天☀️️' : '黑夜🌌'}模式
+              </MenuItem>
               <MenuItem onClick={() => {
                 setAnchorEl(null);
                 testLogin();
