@@ -95,7 +95,7 @@ const PostCreate = () => {
       setLoading(true);
     }
 
-    let url = id ? `post/${id}` : 'post';
+    let url = id ? `posts/${id}` : 'post';
     let method = id ? 'put' : 'post';
 
     axios({

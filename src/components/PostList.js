@@ -20,7 +20,7 @@ const PostList = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    axios.get('post').then(response => {
+    axios.get('posts').then(response => {
       setPost(response.data);
     });
   }, []);
