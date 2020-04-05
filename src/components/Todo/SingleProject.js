@@ -79,7 +79,7 @@ const SingleProject = () => {
   };
 
   const handleMarkProjectAsCompleted = () => {
-    axios.delete(`todo/${projectId}`);
+    axios.delete(`projects/${projectId}`);
     history.push('/todo');
   };
 
