@@ -86,8 +86,10 @@ const Spa = ({match}) => {
                  component={loadable(() => import('../containers/Bookmarks'))}/>
           <Route path="/search"
                  component={loadable(() => import('../components/Search'))}/>
-          <Route path="/user/:id"
+          <Route exact path="/user/:id"
                  component={loadable(() => import('../containers/User'))}/>
+          <Route path="/user/:id/setting"
+                 component={loadable(() => import('../containers/UserSetting'))}/>
           <Route exact path="/demo"
                  component={loadable(() => import('../containers/Demo'))}/>
           <Route path="/demos/chess"

@@ -204,10 +204,10 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
                     open={openMyself}
                     onClose={handleCloseMyself}
                   >
-                    <Link to={`/user/${lab.user_id}`}
+                    <RouteLink to={`/user/${lab.user_id}`}
                           onClick={() => handleCloseMyself()}>
                       <MenuItem>{lab.user_name}</MenuItem>
-                    </Link>
+                    </RouteLink>
                     <MenuItem onClick={handleLogout}>注销</MenuItem>
                   </Menu>
                 </div>

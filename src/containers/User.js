@@ -23,6 +23,7 @@ const User = () => {
         <Grid>昵称：{state.lab.user_name}</Grid>
         <Grid>邮箱：{state.lab.user_email}</Grid>
       </Grid>
+      <Grid item xs={12}>修改密码</Grid>
     </Grid>
   );
 };
