@@ -249,7 +249,7 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
               }}>测试账号登录</MenuItem>
               <MenuItem onClick={() => {
                 setAnchorEl(null);
-                history.push('/posts/create');s
+                history.push('/posts/create');
               }}>新建文章</MenuItem>
               <MenuItem onClick={handleSettingOpen}>设置</MenuItem>
             </Menu>
