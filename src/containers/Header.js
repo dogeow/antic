@@ -89,7 +89,7 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
     logout();
     dispatch({type: 'LOGOUT'});
     axios.post('user/logout').then(() => {
-      Swal.fire('注销成功！');
+      Swal.fire('登出成功！');
     });
   };
 
@@ -208,7 +208,7 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
                           onClick={() => handleCloseMyself()}>
                       <MenuItem>{lab.user_name}</MenuItem>
                     </RouteLink>
-                    <MenuItem onClick={handleLogout}>注销</MenuItem>
+                    <MenuItem onClick={handleLogout}>登出</MenuItem>
                   </Menu>
                 </div>
               )
