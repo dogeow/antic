@@ -1,12 +1,11 @@
 import React from 'react';
-import {Link as RouteLink, useHistory} from 'react-router-dom';
+import {Link as RouteLink, useHistory, useRouteMatch} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import md5 from 'md5';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import {logged} from '../helpers';
 import {loginAction} from '../actions';
-import Link from '@material-ui/core/Link';
 import SearchIcon from '@material-ui/icons/Search';
 import Hidden from '@material-ui/core/Hidden';
 import TextField from '@material-ui/core/TextField';
@@ -204,9 +203,15 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
                     open={openMyself}
                     onClose={handleCloseMyself}
                   >
-                    <RouteLink to={`/user/${lab.user_id}`}
-                          onClick={() => handleCloseMyself()}>
+                    <RouteLink
+                      to={`/user/${lab.user_id}`}
+                      onClick={() => handleCloseMyself()}>
                       <MenuItem>{lab.user_name}</MenuItem>
+                    </RouteLink>
+                    <RouteLink
+                      to={`/user/${lab.user_id}/setting`}
+                      onClick={() => handleCloseMyself()}>
+                      <MenuItem>个人设置</MenuItem>
                     </RouteLink>
                     <MenuItem onClick={handleLogout}>登出</MenuItem>
                   </Menu>
@@ -246,12 +251,12 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
               <MenuItem onClick={() => {
                 setAnchorEl(null);
                 testLogin();
-              }}>测试账号登录</MenuItem>
+              }}>登录测试账号</MenuItem>
               <MenuItem onClick={() => {
                 setAnchorEl(null);
                 history.push('/posts/create');
               }}>新建文章</MenuItem>
-              <MenuItem onClick={handleSettingOpen}>设置</MenuItem>
+              <MenuItem onClick={handleSettingOpen}>网站设置</MenuItem>
             </Menu>
           </Toolbar>
         </Container>
