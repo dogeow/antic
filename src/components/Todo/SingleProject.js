@@ -58,9 +58,7 @@ const SingleProject = () => {
       project_id: project.id,
     };
     axios.post('tasks', task).then(response => {
-      // clear form input
       setTitle('');
-      // add new task to list of tasks
       setTasks(tasks.concat(response.data));
     }).catch(error => {
       setErrors(error.response.data.errors);
@@ -82,6 +80,18 @@ const SingleProject = () => {
     axios.delete(`projects/${projectId}`);
     history.push('/todo');
   };
+
+  const handleUndoMarkTaskAsCompleted = (taskId) => {
+    const newValues = tasks.map(item => {
+      if (item.id !== taskId) return item;
+      return {...item, is_completed: 0};
+    });
+    setTasks(newValues);
+    axios.put(`tasks/${taskId}`, {
+      is_completed: 0,
+    });
+  };
+
 
   const handleEdit = (index) => {
     setEditId(index);
@@ -167,7 +177,10 @@ const SingleProject = () => {
               <Grid item>
                 {
                   task.is_completed ?
-                    <RadioButtonChecked className={classes.green}/>
+                    <RadioButtonChecked
+                      className={classes.green}
+                      onClick={() => handleUndoMarkTaskAsCompleted(task.id)}
+                    />
                     :
                     <RadioButtonUnchecked
                       onClick={() => handleMarkTaskAsCompleted(task.id)}
@@ -186,8 +199,9 @@ const SingleProject = () => {
                         task)}
                     />
                     :
-                    <Typography component="h3"
-                                onClick={() => handleEdit(index)}>
+                    <Typography
+                      component="h3"
+                      onClick={() => handleEdit(index)}>
                       {task.title}
                     </Typography>
                 }

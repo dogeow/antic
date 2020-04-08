@@ -22,8 +22,8 @@ const TodoList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('todo').then(response => {
-      setTodo(response.data);
+    axios.get('todo').then(({data}) => {
+      setTodo(data);
       setLoading(false);
     });
   }, []);
