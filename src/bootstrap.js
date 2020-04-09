@@ -1,7 +1,6 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Echo from 'laravel-echo'
-
 import ConsoleInfo from './components/ConsoleInfo';
 
 const access_token = localStorage['access_token'];
@@ -110,6 +109,7 @@ window.Echo = new Echo({
   key: process.env.REACT_APP_PUSHER_APP_KEY,
   wsHost: window.location.hostname,
   wsPort: 6001,
+  wsPath: '/ws',
   disableStats: true,
   cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
   // encrypted: true
