@@ -112,7 +112,7 @@ window.Echo = new Echo({
   wsPort: 6001,
   disableStats: true,
   cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
-  encrypted: true
+  // encrypted: true
 });
 
 window.Echo.channel('push')
