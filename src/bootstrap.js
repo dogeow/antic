@@ -107,7 +107,7 @@ window.Pusher = require('pusher-js');
 window.Echo = new Echo({
   broadcaster: 'pusher',
   key: process.env.REACT_APP_PUSHER_APP_KEY,
-  wsHost: window.location.hostname ,
+  wsHost: window.location.hostname + ':6001',
   wsPort: 6001,
   disableStats: true,
   cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
