@@ -4,6 +4,7 @@ import loadable from '@loadable/component';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import LocalAirportIcon from '@material-ui/icons/LocalAirport';
+import ScrollUpButton from 'react-scroll-up-button';
 
 import Index from '../containers/Index';
 import Header from '../components/Header';
@@ -89,7 +90,8 @@ const Spa = ({match}) => {
           <Route exact path="/user/:id"
                  component={loadable(() => import('../containers/User'))}/>
           <Route path="/user/:id/setting"
-                 component={loadable(() => import('../containers/UserSetting'))}/>
+                 component={loadable(
+                   () => import('../containers/UserSetting'))}/>
           <Route exact path="/demo"
                  component={loadable(() => import('../containers/Demo'))}/>
           <Route path="/demos/chess"
@@ -112,9 +114,12 @@ const Spa = ({match}) => {
         </Switch>
       </Container>
       {['/'].includes(match.url) && <Footer/>}
-      <div id="back_top" className={classes.backToTop}>
-        <a href="#root"><LocalAirportIcon alt="Back to top arrow"/></a>
-      </div>
+      <ScrollUpButton
+        ContainerClassName="AnyClassForContainer"
+        TransitionClassName="AnyClassForTransition"
+      >
+        <LocalAirportIcon alt="Back to top arrow"/>
+      </ScrollUpButton>
     </>
   );
 };

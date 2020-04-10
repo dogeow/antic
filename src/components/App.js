@@ -11,6 +11,7 @@ import moment from 'moment';
 import {ThemeProvider} from '@material-ui/core/styles';
 import 'moment/locale/zh-cn';
 import 'typeface-roboto';
+import '../App.scss';
 import '../App.css';
 
 require('../bootstrap');

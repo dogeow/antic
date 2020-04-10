@@ -170,3 +170,17 @@ h4:hover .header-anchor {
 .header-anchor {
   opacity: 0.2;
 }
+
+.AnyClassForContainer {
+  position: fixed;
+  right: -100px;
+  bottom: 150px;
+  transition: right 0.5s;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.AnyClassForTransition {
+  right: 20px;
+}

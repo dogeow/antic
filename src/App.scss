@@ -1,0 +1,23 @@
+.top-jumper {
+  position: fixed;
+  right: 11%;
+  bottom: 15%;
+  width: 42px;
+  height: 42px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+
+  &:before {
+    content: '▲';
+    display: block;
+    text-align: center;
+    color: #aaa;
+    line-height: 42px;
+  }
+
+  &:hover:before {
+    content: '回顶部';
+  }
+}
