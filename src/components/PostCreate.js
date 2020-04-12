@@ -1,9 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import ReactMarkdown from 'react-markdown/with-html';
-import MdEditor from 'react-markdown-editor-lite';
 import axios from 'axios';
-import CodeBlock from '../components/CodeBlock';
-import HeadingBlock from '../components/HeadingBlock';
 import Input from '@material-ui/core/Input';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
@@ -14,38 +10,36 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {makeStyles} from '@material-ui/core/styles';
 import {green, red} from '@material-ui/core/colors';
 import clsx from 'clsx';
-import '../markdown.css';
 import Swal from 'sweetalert2';
 import {useRouteMatch} from 'react-router-dom';
+import {Editor} from '@toast-ui/react-editor';
+import codeSyntaxHightlight
+  from '@toast-ui/editor-plugin-code-syntax-highlight';
+import tableMergedCell from '@toast-ui/editor-plugin-table-merged-cell';
+import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
+import uml from '@toast-ui/editor-plugin-uml';
+import chart from '@toast-ui/editor-plugin-chart';
+import 'codemirror/lib/codemirror.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import 'highlight.js/styles/atom-one-dark.css';
+import hljs from 'highlight.js';
+import javascript from 'highlight.js/lib/languages/javascript';
+import php from 'highlight.js/lib/languages/php';
+import 'tui-color-picker/dist/tui-color-picker.css';
+import 'tui-chart/dist/tui-chart.css';
+import '@toast-ui/editor/dist/i18n/zh-cn';
 
-const config = {
-  htmlClass: 'none',
-  view: {
-    menu: true,
-    md: true,
-    html: true,
-    fullScreen: true,
-    hideMenu: true,
-  },
-  table: {
-    maxRow: 5,
-    maxCol: 6,
-  },
-  imageUrl: 'https://octodex.github.com/images/minion.png',
-  syncScrollMode: ['leftFollowRight', 'rightFollowLeft'],
-};
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('php', php);
 
 const useStyles = makeStyles(theme => ({
   '@global': {
-    '.section-container, .rc-md-editor .drop-wrap, .rc-md-navigation, .rc-md-editor .editor-container .sec-md .input': {
-      background: theme.palette.type === 'dark' && '#303030 !important',
+    '.te-preview, .tui-editor-contents p': {
       color: theme.palette.type === 'dark' && 'white !important',
     },
-    '.rc-md-editor .header-list .list-item:hover': {
-      background: theme.palette.type === 'dark'
-        ? `${theme.palette.primary.main}`
-        : '#f5f5f5',
-      color: theme.palette.type === 'dark' && 'white',
+    '.CodeMirror': {
+      background: theme.palette.type === 'dark' && 'unset !important',
+      color: theme.palette.type === 'dark' && 'white !important',
     },
   },
   buttonSuccess: {
@@ -71,20 +65,22 @@ const useStyles = makeStyles(theme => ({
 const PostCreate = () => {
   const classes = useStyles();
   const match = useRouteMatch();
-  const [id, setId] = useState();
-  const [title, setTitle] = React.useState();
-  const [content, setContent] = useState();
+  const [id, setId] = useState(0);
+  const [title, setTitle] = React.useState('');
+  const [content, setContent] = useState('');
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [errors, setErrors] = React.useState(false);
+
+  const editorRef = React.createRef();
 
   useEffect(() => {
     if (match.params.id) {
       setId(match.params.id);
 
-      axios.get(`posts/${match.params.id}`).then(response => {
-        setTitle(response.data.title);
-        setContent(response.data.content);
+      axios.get(`posts/${match.params.id}`).then(({data}) => {
+        setTitle(data.title);
+        setContent(data.content);
       });
     }
   }, [match.params.id]);
@@ -121,44 +117,8 @@ const PostCreate = () => {
     });
   };
 
-  const renderHTML = (text) => {
-    return (
-      <ReactMarkdown source={text} escapeHtml={false} renderers={{
-        code: CodeBlock,
-        heading: HeadingBlock,
-      }}/>
-    );
-  };
-
-  const handleImageUpload = acceptedFiles => {
-    return new Promise((resolve, reject) => {
-      const file = new Blob([acceptedFiles]);
-      const formData = new FormData();
-      formData.append('emoji', file, acceptedFiles['name']);
-      axios.post('/emoji', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Accept': 'image/*',
-        },
-        transformRequest: [
-          function(data) {
-            return data;
-          }],
-        onUploadProgress: function(e) {
-          let percentage = Math.round((e.loaded * 100) / e.total) || 0;
-          if (percentage < 100) {
-            console.log(percentage + '%');  // 上传进度
-          }
-        },
-      }).then(function(resp) {
-        resolve(resp.data.url);
-      });
-    });
-  };
-
-  const handleEditorChange = (it, event) => {
-    setContent(it.text);
-    // console.log('handleEditorChange', it.text, it.html, event);
+  const handleEditorChange = () => {
+    setContent(editorRef.current.getInstance().getMarkdown());
   };
 
   const handleTitleChange = event => {
@@ -171,7 +131,7 @@ const PostCreate = () => {
     clsx({[classes.buttonSuccess]: success});
 
   return (
-    <Grid container spacing={2} justify={'center'} className="demo-wrap">
+    <Grid container spacing={2} justify={'center'}>
       <Grid item xs={4}>
         <Input
           fullWidth
@@ -181,14 +141,29 @@ const PostCreate = () => {
           onChange={handleTitleChange}
         />
       </Grid>
-      <Grid item xs={12} className="editor-wrap">
-        <MdEditor
-          value={content}
-          style={{height: 600, width: '100%'}}
-          renderHTML={renderHTML}
-          config={config}
+      <Grid item xs={12}>
+        <Editor
+          placeholder='Please enter text.'
+          initialValue={content}
+          previewStyle="vertical"
+          initialEditType="markdown"
+          height="600px"
+          useCommandShortcut={true}
+          language="zh-CN"
+          plugins={[
+            [codeSyntaxHightlight, {hljs}],
+            colorSyntax,
+            tableMergedCell,
+            uml,
+            chart]}
+          ref={editorRef}
           onChange={handleEditorChange}
-          onImageUpload={handleImageUpload}
+          hooks={{
+            addImageBlobHook: (fileOrBlob, callback, source) => {
+              console.log(fileOrBlob);
+              console.log(callback);
+            },
+          }}
         />
       </Grid>
       <Grid item xs={12} style={{position: 'relative', textAlign: 'center'}}>

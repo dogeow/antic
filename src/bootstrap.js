@@ -85,8 +85,8 @@ if (typeof document.hidden !== 'undefined') {
 // 添加监听器，在title里显示状态变化
 document.addEventListener(visibilityChange, function() {
   document.title = document[state] === 'hidden'
-    ? '记得回来！- 滑稽实验室'
-    : '欢迎回来！- 滑稽实验室';
+    ? `记得回来！- ${process.env.REACT_APP_NAME}`
+    : `欢迎回来！- ${process.env.REACT_APP_NAME}`;
 }, false);
 
 /**
@@ -107,11 +107,11 @@ window.Pusher = require('pusher-js');
 window.Echo = new Echo({
   broadcaster: 'pusher',
   key: process.env.REACT_APP_PUSHER_APP_KEY,
-  wsHost: window.location.hostname + ':6001',
-  wsPort: 6001,
+  wsHost: window.location.hostname,
+  wsPort: 443,
   disableStats: true,
   cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
-  // encrypted: true
+  encrypted: true
 });
 
 window.Echo.channel('push')
