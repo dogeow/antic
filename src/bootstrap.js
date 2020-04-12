@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import Echo from 'laravel-echo'
+import Echo from 'laravel-echo';
 import ConsoleInfo from './components/ConsoleInfo';
 
 const access_token = localStorage['access_token'];
@@ -46,13 +46,12 @@ axios.interceptors.response.use(response => {
   }, error => {
     if (error.response) {
       switch (error.response.status) {
-        case 401: // 清除 token 信息并跳转到登录页面
+        case 401:
           Swal.fire('提示️', '登录状态过期', 'warning');
           localStorage.removeItem('access_token');
-          // todo 跳到登录页面
           break;
+          return null;
         case 400:
-          // todo
           break;
         default:
           Swal.fire('提示️',
@@ -111,10 +110,9 @@ window.Echo = new Echo({
   wsPort: 443,
   disableStats: true,
   cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
-  encrypted: true
+  encrypted: true,
 });
 
-window.Echo.channel('push')
-  .listen('TestBroadcastingEvent', (e) => {
-    console.log(e);
-  });
+window.Echo.channel('push').listen('TestBroadcastingEvent', (e) => {
+  console.log(e);
+});

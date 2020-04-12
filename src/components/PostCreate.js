@@ -106,14 +106,16 @@ const PostCreate = () => {
       setSuccess(true);
       setLoading(false);
     }).catch(error => {
-      let errors = error.response.data.errors;
-      setErrors(errors);
-      Swal.fire(error.response.data.message,
-        (errors.title !== undefined ? errors.title[0] : '') +
-        (errors.content !== undefined ? errors.content[0] : ''),
-        'error');
-      setSuccess(false);
-      setLoading(false);
+      if(error.response.status !== 401){
+        let errors = error.response.data.errors;
+        setErrors(errors);
+        Swal.fire(error.response.data.message,
+          (undefined !== errors.title ? errors.title[0] : '') +
+          (undefined !== errors.content ? errors.content[0] : ''),
+          'error');
+        setSuccess(false);
+        setLoading(false);
+      }
     });
   };
 
