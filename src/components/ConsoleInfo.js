@@ -2,7 +2,7 @@ const ConsoleInfo = () => {
   if (process.env.NODE_ENV === 'development') {
     return;
   }
-  console.log('%c 滑稽实验室', 'font-size:50px; text-shadow: 10px 10px 10px black');
+  console.log(`%c ${process.env.REACT_APP_NAME}`, 'font-size:50px; text-shadow: 10px 10px 10px black');
   if (1) {
     console.group('用户列表');
     console.log('昵称: 小李世界');

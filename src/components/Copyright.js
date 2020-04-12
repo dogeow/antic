@@ -5,9 +5,7 @@ import Typography from '@material-ui/core/Typography';
 const Copyright = () => (
   <Typography variant="body2" color="textSecondary" align="center">
     {'Copyright © '}
-    <Link
-      to="/">滑稽实验室
-    </Link>
+    <Link to="/">{process.env.REACT_APP_NAME}</Link>
     {' '}{new Date().getFullYear()}{'.'}
   </Typography>
 );
