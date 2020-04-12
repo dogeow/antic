@@ -32,6 +32,13 @@ import '@toast-ui/editor/dist/i18n/zh-cn';
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('php', php);
 
+const chartOptions = {
+  minWidth: 100,
+  maxWidth: 600,
+  minHeight: 100,
+  maxHeight: 300
+};
+
 const useStyles = makeStyles(theme => ({
   '@global': {
     '.te-preview, .tui-editor-contents p': {
@@ -157,7 +164,7 @@ const PostCreate = () => {
             colorSyntax,
             tableMergedCell,
             uml,
-            chart]}
+            [chart, chartOptions]]}
           ref={editorRef}
           onChange={handleEditorChange}
           hooks={{
