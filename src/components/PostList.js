@@ -59,7 +59,14 @@ const PostList = () => {
                 </Grid>
               </Grid>
               :
-              <Skeleton variant="rect" width={'100%'} height={56} animation="wave"/>
+              <Grid item container xs={12} key={index} spacing={2}>
+                <Grid item>
+                  <Skeleton variant="circle" width={40} height={40} animation="wave"/>
+                </Grid>
+                <Grid item xs>
+                  <Skeleton variant="rect" width={'100%'} height={32} animation="wave"/>
+                </Grid>
+              </Grid>
           ))
         }
       </Grid>
