@@ -46,12 +46,14 @@ axios.interceptors.response.use(response => {
   }, error => {
     if (error.response) {
       switch (error.response.status) {
+        case 400:
+          break;
         case 401:
           Swal.fire('提示️', '登录状态过期', 'warning');
           localStorage.removeItem('access_token');
           break;
           return null;
-        case 400:
+        case 422:
           break;
         default:
           Swal.fire('提示️',

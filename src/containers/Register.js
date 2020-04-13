@@ -95,7 +95,7 @@ const Register = ({history}) => {
                   ? inputErrors.name[0]
                   : undefined}
                 InputLabelProps={
-                  !!inputErrors.name ? {shrink: true} : {}
+                  !!inputErrors.name ? {shrink: true} : undefined
                 }
                 helperText={!!inputErrors.name
                   ? inputErrors.name[0]
