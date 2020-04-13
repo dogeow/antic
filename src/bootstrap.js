@@ -49,10 +49,10 @@ axios.interceptors.response.use(response => {
         case 400:
           break;
         case 401:
-          Swal.fire('提示️', '登录状态过期', 'warning');
+          let text = localStorage.getItem('user_id') ? '登录状态过期' : '尚未登录账号';
+          Swal.fire('提示️', text, 'warning');
           localStorage.removeItem('access_token');
           break;
-          return null;
         case 422:
           break;
         default:
