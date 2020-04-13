@@ -23,21 +23,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Weibo = ({location}) => {
+const Weibo = () => {
   useStyles();
 
   const [data, setData] = useState({});
   const [selectedDate, handleDateChange] = useState(new Date());
   const [pageCount, setPageCout] = useState();
-
-  const query = new URLSearchParams(location.search);
-  const page = parseInt(query.get('page'), 10) || 1;
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     let selectDate = moment(selectedDate).format('Y-MM-DD');
     axios.post(`weibo?date=${selectDate}&page[number]=${page}`)
     .then(({data}) => {
         setData(data);
+        setPage(data.current_page);
         setPageCout(data.last_page);
       });
   }, [selectedDate, page]);
@@ -46,6 +45,7 @@ const Weibo = ({location}) => {
     axios.post(`weibo?date=${moment(selectedDate).format('Y-MM-DD')}&page[number]=${page}`)
     .then(({data}) => {
         setData(data);
+        setPage(page);
         setPageCout(data.last_page);
       });
   };
