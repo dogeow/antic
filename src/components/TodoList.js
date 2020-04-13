@@ -40,7 +40,7 @@ const TodoList = () => {
           {(loading ? Array.from(new Array(10)) : todo).map((row, index) => (
             <TableRow key={index}>
               <TableCell component="td" scope="row">
-                {row ? row.title : <Skeleton variant="rect" height={20}/>}
+                {row ? row.title : <Skeleton variant="rect" height={20} animation="wave"/>}
               </TableCell>
             </TableRow>
           ))}

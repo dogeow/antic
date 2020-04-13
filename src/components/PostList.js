@@ -7,6 +7,7 @@ import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import {makeStyles} from '@material-ui/core/styles';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PostList = () => {
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState();
   const classes = useStyles();
 
   useEffect(() => {
@@ -29,9 +30,9 @@ const PostList = () => {
     <Paper className={classes.paper}>
       <Grid container spacing={2}>
         {
-          post.map((item, index) => (
-            <Grid item xs={12} key={index}>
-              <Grid container spacing={2} alignItems={'center'}>
+          (post ? post : Array.from(new Array(6))).map((item, index) => (
+            item ?
+              <Grid item container xs={12} key={index} spacing={2}>
                 <Grid item>
                   <Avatar>
                     {item.categories.length !== 0 &&
@@ -57,7 +58,8 @@ const PostList = () => {
                   </Grid>
                 </Grid>
               </Grid>
-            </Grid>
+              :
+              <Skeleton variant="rect" width={'100%'} height={56} animation="wave"/>
           ))
         }
       </Grid>
