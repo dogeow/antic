@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button';
 import {useHistory} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
-import TextField from '@material-ui/core/TextField';
 
 const NewProject = () => {
   const history = useHistory();
