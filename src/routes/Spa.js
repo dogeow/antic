@@ -70,13 +70,14 @@ const Spa = ({match}) => {
             () => import('../components/Todo/Project'))}/>
           <Route path="/todo/create" component={loadable(
             () => import('../components/Todo/NewProject'))}/>
-          <Route path="/todo/:id" component={loadable(
-            () => import('../components/Todo/SingleProject'))}/>
+          <Route
+            path="/todo/:id"
+            component={loadable(
+              () => import('../components/Todo/SingleProject'))}/>
           <Route path="/self-talk"
                  component={loadable(() => import('../containers/SelfTalk'))}/>
           <Route path="/like"
-                 component={loadable(
-                   () => import('../components/Like'))}/>
+                 component={loadable(() => import('../components/Like'))}/>
           <Route path="/nav"
                  component={loadable(() => import('../components/Nav'))}/>
           <Route path="/a-z"
@@ -89,9 +90,9 @@ const Spa = ({match}) => {
                  component={loadable(() => import('../components/Search'))}/>
           <Route exact path="/user/:id"
                  component={loadable(() => import('../containers/User'))}/>
-          <Route path="/user/:id/setting"
-                 component={loadable(
-                   () => import('../containers/UserSetting'))}/>
+          <Route
+            path="/user/:id/setting"
+            component={loadable(() => import('../containers/UserSetting'))}/>
           <Route exact path="/demo"
                  component={loadable(() => import('../containers/Demo'))}/>
           <Route path="/demos/chess"

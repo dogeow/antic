@@ -92,15 +92,16 @@ const SingleProject = () => {
     });
   };
 
-
   const handleEdit = (index) => {
     setEditId(index);
   };
 
   const handleEditChange = (event, index, task) => {
-    setTasks(tasks.map((item) => (item.id === task.id
-      ? {...task, title: event.target.value}
-      : item)));
+    setTasks(tasks.map(item => (
+      item.id === task.id
+        ? {...task, title: event.target.value}
+        : item
+    )));
   };
 
   const handleEditPut = (task) => {

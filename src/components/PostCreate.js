@@ -36,7 +36,7 @@ const chartOptions = {
   minWidth: 100,
   maxWidth: 600,
   minHeight: 100,
-  maxHeight: 300
+  maxHeight: 300,
 };
 
 const useStyles = makeStyles(theme => ({
@@ -73,8 +73,7 @@ const PostCreate = () => {
   const classes = useStyles();
   const match = useRouteMatch();
   const [id, setId] = useState(0);
-  const [title, setTitle] = React.useState('');
-  const [content, setContent] = useState('');
+  const [post, setPost] = useState();
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [errors, setErrors] = React.useState(false);
@@ -86,8 +85,7 @@ const PostCreate = () => {
       setId(match.params.id);
 
       axios.get(`posts/${match.params.id}`).then(({data}) => {
-        setTitle(data.title);
-        setContent(data.content);
+        setPost(data);
       });
     }
   }, [match.params.id]);
@@ -105,15 +103,15 @@ const PostCreate = () => {
       method: method,
       url: url,
       data: {
-        title: title,
-        content: content,
+        title: post.title,
+        content: post.content,
       },
     }).then(({data}) => {
       setId(data.id);
       setSuccess(true);
       setLoading(false);
     }).catch(error => {
-      if(error.response.status !== 401){
+      if (error.response.status !== 401) {
         let errors = error.response.data.errors;
         setErrors(errors);
         Swal.fire(error.response.data.message,
@@ -127,11 +125,11 @@ const PostCreate = () => {
   };
 
   const handleEditorChange = () => {
-    setContent(editorRef.current.getInstance().getMarkdown());
+    setPost({...post, content: editorRef.current.getInstance().getMarkdown()});
   };
 
   const handleTitleChange = event => {
-    setTitle(event.target.value);
+    setPost({...post, title: event.target.value});
   };
 
   const buttonClassname = errors ?
@@ -144,36 +142,38 @@ const PostCreate = () => {
       <Grid item xs={4}>
         <Input
           fullWidth
-          value={title}
+          value={(post && post.title) || ''}
           placeholder="请输入标题"
           inputProps={{'aria-label': 'description'}}
           onChange={handleTitleChange}
         />
       </Grid>
       <Grid item xs={12}>
-        <Editor
-          placeholder='Please enter text.'
-          initialValue={content}
-          previewStyle="vertical"
-          initialEditType="markdown"
-          height="600px"
-          useCommandShortcut={true}
-          language="zh-CN"
-          plugins={[
-            [codeSyntaxHightlight, {hljs}],
-            colorSyntax,
-            tableMergedCell,
-            uml,
-            [chart, chartOptions]]}
-          ref={editorRef}
-          onChange={handleEditorChange}
-          hooks={{
-            addImageBlobHook: (fileOrBlob, callback, source) => {
-              console.log(fileOrBlob);
-              console.log(callback);
-            },
-          }}
-        />
+        {
+          post && <Editor
+            placeholder='Please enter text.'
+            initialValue={post.content}
+            previewStyle="vertical"
+            initialEditType="markdown"
+            height="600px"
+            useCommandShortcut={true}
+            language="zh-CN"
+            plugins={[
+              [codeSyntaxHightlight, {hljs}],
+              colorSyntax,
+              tableMergedCell,
+              uml,
+              [chart, chartOptions]]}
+            ref={editorRef}
+            onChange={handleEditorChange}
+            hooks={{
+              addImageBlobHook: (fileOrBlob, callback, source) => {
+                console.log(fileOrBlob);
+                console.log(callback);
+              },
+            }}
+          />
+        }
       </Grid>
       <Grid item xs={12} style={{position: 'relative', textAlign: 'center'}}>
         <Fab
