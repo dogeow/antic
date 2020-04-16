@@ -71,6 +71,35 @@ const Footer = () => {
             </li>
           </ul>
         </Grid>
+        <Grid item xs={12} sm>
+          <Typography variant="h5" component="h3">
+            长期计划（理想化）
+          </Typography>
+          <ul>
+            <li>
+              WebSocket 实时应用
+            </li>
+            <li>
+              Canvas / Three.js + WebSocket 像素游戏
+            </li>
+            <li>
+              Next.js
+            </li>
+          </ul>
+        </Grid>
+        <Grid item xs={12} sm>
+          <Typography variant="h5" component="h3">
+            常用网址
+          </Typography>
+          <ul>
+            <li>
+              <a href="https://google.com" target="_blank" rel="noopener noreferrer" >谷歌搜素</a>
+            </li>
+            <li>
+              <a href="https://translate.google.com/" target="_blank" rel="noopener noreferrer" >谷歌翻译</a>
+            </li>
+          </ul>
+        </Grid>
       </Grid>
       <div style={{textAlign: 'center'}}>
         Built By 小李世界 with <span role="img" aria-label="❤">❤️</span>
