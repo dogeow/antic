@@ -78,9 +78,9 @@ const SignInSide = ({dispatch}) => {
         let {access_token} = response.data;
         axios.defaults.headers.common['Authorization'] = 'Bearer ' +
           access_token;
-        axios.post('user/profile').then(response2 => {
-          let {id, name, email} = response2.data.user;
-          logged(response.data, response2.data.user);
+        axios.post('user/profile').then(({data}) => {
+          let {id, name, email} = data;
+          logged(response.data, data);
           dispatch(loginAction(access_token, id, name, email));
         });
         history.push('/');
