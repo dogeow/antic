@@ -11,6 +11,7 @@
     "@material-ui/lab": "^4.0.0-alpha.47",
     "@material-ui/pickers": "^3.2.10",
     "@material-ui/system": "^4.9.6",
+    "@sweetalert2/theme-material-ui": "^3.1.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -54,7 +55,7 @@
     "redux-thunk": "^2.3.0",
     "scroll-to-element": "^2.0.3",
     "socket.io-client": "^2.3.0",
-    "sweetalert2": "^9.5.3",
+    "sweetalert2": "^9.10.12",
     "typeface-roboto": "0.0.75"
   },
   "scripts": {

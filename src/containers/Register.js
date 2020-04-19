@@ -57,7 +57,11 @@ const Register = ({history}) => {
       password_confirmation: password_confirmation,
     }).then(response => {
       if (response.status === 201) {
-        Swal.fire('成功', '注册成功，请尝试登录！', 'success');
+        Swal.fire({
+          title: '注册成功，',
+          icon: 'success',
+          showCloseButton: true,
+        });
         history.push('/login');
       }
       setInputErrors(response.data.errors);
@@ -164,11 +168,15 @@ const Register = ({history}) => {
                     <InputAdornment position="start">
                       {
                         displayPassword ?
-                          <VisibilityIcon onClick={handlePassword}
-                                          className="pointer"/>
+                          <VisibilityIcon
+                            onClick={handlePassword}
+                            className="pointer"
+                          />
                           :
-                          <VisibilityOffIcon onClick={handlePassword}
-                                             className="pointer"/>
+                          <VisibilityOffIcon
+                            onClick={handlePassword}
+                            className="pointer"
+                          />
                       }
                     </InputAdornment>
                   ),
@@ -186,16 +194,30 @@ const Register = ({history}) => {
                 id="password_confirmation"
                 autoComplete="current-password-confirmation"
                 onChange={e => setPassword_confirmation(e.target.value)}
+                error={!!inputErrors.password_confirmation}
+                placeholder={inputErrors.password_confirmation
+                  ? inputErrors.password_confirmation[0]
+                  : undefined}
+                InputLabelProps={
+                  inputErrors.password_confirmation ? {shrink: true} : {}
+                }
+                helperText={inputErrors.password_confirmation
+                  ? inputErrors.password_confirmation[0]
+                  : undefined}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
                       {
                         displayPassword ?
-                          <VisibilityIcon onClick={handlePassword}
-                                          className="pointer"/>
+                          <VisibilityIcon
+                            onClick={handlePassword}
+                            className="pointer"
+                          />
                           :
-                          <VisibilityOffIcon onClick={handlePassword}
-                                             className="pointer"/>
+                          <VisibilityOffIcon
+                            onClick={handlePassword}
+                            className="pointer"
+                          />
                       }
                     </InputAdornment>
                   ),
@@ -215,9 +237,12 @@ const Register = ({history}) => {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link onClick={() => {
-                history.push('/login');
-              }} variant="body2" color="secondary">
+              <Link
+                onClick={() => {
+                  history.push('/login');
+                }}
+                variant="body2"
+                color="secondary">
                 已经有账户？登录！
               </Link>
             </Grid>

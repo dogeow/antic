@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import '@sweetalert2/theme-material-ui/material-ui.scss'
 import Echo from 'laravel-echo';
 import ConsoleInfo from './components/ConsoleInfo';
 
