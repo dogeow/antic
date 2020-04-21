@@ -53,6 +53,8 @@ const Spa = ({match}) => {
                  component={loadable(() => import('../containers/Register'))}/>
           <Route exact path="/api"
                  component={loadable(() => import('../containers/Api'))}/>
+          <Route exact path="/api/time"
+                 component={loadable(() => import('../containers/Time'))}/>
           <Route path="/sqg"
                  component={loadable(() => import('../components/Sqg'))}/>
           <Route path="/about"

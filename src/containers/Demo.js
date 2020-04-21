@@ -22,6 +22,7 @@ const Demo = () => (
       <li><Link to="/a-z">A-Z</Link></li>
       <li><a href="/demos/canvas/cherry.html" target="_blank">樱花<span
         role="img" aria-label="cherry">🌸</span></a></li>
+      <li><Link to="/api/time">时间、时间戳</Link></li>
     </ul>
   </div>
 );
