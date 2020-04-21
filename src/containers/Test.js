@@ -36,7 +36,7 @@ export default function FormPropsTextFields() {
         <TextField
           id="standard-number"
           label="Number"
-          type="number"
+          type="tel"
           InputLabelProps={{
             shrink: true,
           }}
@@ -83,7 +83,7 @@ export default function FormPropsTextFields() {
         <TextField
           id="filled-number"
           label="Number"
-          type="number"
+          type="tel"
           InputLabelProps={{
             shrink: true,
           }}
@@ -132,7 +132,7 @@ export default function FormPropsTextFields() {
         <TextField
           id="outlined-number"
           label="Number"
-          type="number"
+          type="tel"
           InputLabelProps={{
             shrink: true,
           }}
