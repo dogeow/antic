@@ -3,7 +3,7 @@ import RatingUi from '@material-ui/lab/Rating';
 import PropTypes from 'prop-types';
 import Tooltip from '@material-ui/core/Tooltip';
 import Box from '@material-ui/core/Box';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import {makeStyles} from '@material-ui/core/styles';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
