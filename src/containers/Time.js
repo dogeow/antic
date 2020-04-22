@@ -57,31 +57,34 @@ const Time = () => {
     setOpen(false);
   };
 
+  const getClipboardButton = (value) => {
+    return <ClipboardButton text={value} handleClick={handleClick}/>;
+  }
+
   return (<div>
     <h2>昨天</h2>
     <div>
-      开始时间戳：{yesterdayStartUnix}
-      <ClipboardButton text={yesterdayStartUnix}/>
-      ({yesterdayStartTime}<ClipboardButton text={yesterdayStartTime} handleClick={handleClick}/>)
+      开始时间戳：{yesterdayStartUnix}{getClipboardButton(yesterdayStartUnix)}
+      ({yesterdayStartTime}{getClipboardButton(yesterdayStartTime)})
     </div>
     <div>
-      结束时间戳：{yesterdayEndUnix}<ClipboardButton text={yesterdayEndUnix}/>
-      ({yesterdayEndTime}<ClipboardButton text={yesterdayEndTime}/>)
+      结束时间戳：{yesterdayEndUnix}{getClipboardButton(yesterdayEndUnix)}
+      ({yesterdayEndTime}{getClipboardButton(yesterdayEndTime)})
     </div>
     <h2>今天</h2>
-    <div>开始时间：{todayTime}<ClipboardButton text={todayTime}/></div>
-    <div>开始时间戳：{todayUnix}<ClipboardButton text={todayUnix}/></div>
-    <div>当前日期时间：{nowTime}<ClipboardButton text={nowTime}/></div>
-    <div>当前日期时间戳：{nowUnix}<ClipboardButton text={nowUnix}/></div>
-    <div>结束时间：{todayEndTime}<ClipboardButton text={todayEndTime}/></div>
-    <div>结束时间戳：{todayEndUnix}<ClipboardButton text={todayEndUnix}/></div>
+    <div>开始时间：{todayTime}{getClipboardButton(todayTime)}</div>
+    <div>开始时间戳：{todayUnix}{getClipboardButton(todayUnix)}</div>
+    <div>当前日期时间：{nowTime}{getClipboardButton(nowTime)}</div>
+    <div>当前日期时间戳：{nowUnix}{getClipboardButton(nowUnix)}</div>
+    <div>结束时间：{todayEndTime}{getClipboardButton(todayEndTime)}</div>
+    <div>结束时间戳：{todayEndUnix}{getClipboardButton(todayEndUnix)}</div>
     <h2>明天</h2>
     <div>
-      开始时间戳：{tomorrowStartUnix}<ClipboardButton text={tomorrowStartUnix}/>
-      ({tomorrowStartTime}<ClipboardButton text={tomorrowStartTime}/>)
+      开始时间戳：{tomorrowStartUnix}{getClipboardButton(tomorrowStartUnix)}
+      ({tomorrowStartTime}{getClipboardButton(tomorrowStartTime)})
     </div>
-    <div>结束时间戳：{tomorrowEndUnix}<ClipboardButton text={tomorrowEndUnix}/>({tomorrowEndTime}
-      <ClipboardButton text={tomorrowEndTime}/>)
+    <div>结束时间戳：{tomorrowEndUnix}{getClipboardButton(tomorrowEndUnix)}({tomorrowEndTime}
+      {getClipboardButton(tomorrowEndTime)})
     </div>
     <Snackbar
       anchorOrigin={{
