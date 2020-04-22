@@ -59,7 +59,9 @@ export default function RecipeReviewCard({title, subHeader, img, link, intro, fe
       <CardActions disableSpacing>
         <a
           href={link}
-          target={'_blank'}>
+          target={'_blank'}
+          rel="noopener noreferrer"
+        >
           <IconButton aria-label="share">
             <ShareIcon/>
           </IconButton>

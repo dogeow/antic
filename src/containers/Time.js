@@ -1,30 +1,102 @@
-import React from 'react';
-import moment from 'moment';
+import React from 'react'
+import moment from 'moment'
+import ClipboardButton from "../components/ClipboardButton";
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import MuiAlert from '@material-ui/lab/Alert';
 
-const now = moment().format('YYYY-MM-DD');
-const zero = moment(now).format('YYYY-MM-DD HH:mm:ss');
-const today = moment(zero).unix();
-const yesterday = moment(zero).subtract(1, 'days').unix();
-const tomorrow = moment(zero).add(1, 'days').unix();
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+// 今天
+const today = moment().format('YYYY-MM-DD'); // 2020-04-22
+const todayTime = moment(today).format('YYYY-MM-DD HH:mm:ss'); // 2020-04-22 00:00:00
+const todayUnix = moment(todayTime).unix(); // 1587484800
+const nowTime = moment().format('YYYY-MM-DD HH:mm:ss');
+const nowUnix = moment().unix();
+const todayEndTime = moment(today)
+  .add(86400 - 1, 'second')
+  .format('YYYY-MM-DD HH:mm:ss');
+const todayEndUnix = todayUnix + 86400 - 1;
+
+// 昨天
+const yesterdayStartUnix = moment(todayTime).subtract(1, 'days').unix();
+const yesterdayStartTime = moment(todayTime)
+  .subtract(1, 'days')
+  .format('YYYY-MM-DD HH:mm:ss');
+const yesterdayEndUnix = yesterdayStartUnix + 86400 - 1;
+const yesterdayEndTime = moment(todayTime)
+  .subtract(1, 'second')
+  .format('YYYY-MM-DD HH:mm:ss');
+
+//明天
+const tomorrowStartUnix = moment(todayTime).add(1, 'days').unix();
+const tomorrowStartTime = moment(todayTime)
+  .add(1, 'days')
+  .format('YYYY-MM-DD HH:mm:ss');
+const tomorrowEndUnix = tomorrowStartUnix + 86400 - 1;
+const tomorrowEndTime = moment(todayTime)
+  .add(2, 'days')
+  .subtract(1, 'second')
+  .format('YYYY-MM-DD HH:mm:ss');
 
 const Time = () => {
-  return (
-    <div>
-      <h2>昨天</h2>
-      <div>开始时间戳：{yesterday}({moment(zero).subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')})</div>
-      <div>结束时间戳：{yesterday+86400-1}({moment(zero).subtract(2, 'days').subtract(1, 'second').format('YYYY-MM-DD HH:mm:ss')})</div>
-      <h2>今天</h2>
-      <div>开始时间：{zero}</div>
-      <div>开始时间戳：{today}</div>
-      <div>当前日期时间：{moment().format('YYYY-MM-DD HH:mm:ss')}</div>
-      <div>当前日期时间戳：{moment().unix()}</div>
-      <div>结束时间：{moment(now).add(86400-1, 'second').format('YYYY-MM-DD HH:mm:ss')}</div>
-      <div>结束时间戳：{today+86400-1}</div>
-      <h2>明天</h2>
-      <div>开始时间戳：{tomorrow}({moment(zero).add(1, 'days').format('YYYY-MM-DD HH:mm:ss')})</div>
-      <div>结束时间戳：{tomorrow+86400-1}({moment(zero).add(2, 'days').subtract(1, 'second').format('YYYY-MM-DD HH:mm:ss')})</div>
-    </div>
-  );
-};
+  const [open, setOpen] = React.useState(false);
 
-export default Time;
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  return (<div>
+    <h2>昨天</h2>
+    <div>
+      开始时间戳：{yesterdayStartUnix}
+      <ClipboardButton text={yesterdayStartUnix}/>
+      ({yesterdayStartTime}<ClipboardButton text={yesterdayStartTime} handleClick={handleClick}/>)
+    </div>
+    <div>
+      结束时间戳：{yesterdayEndUnix}<ClipboardButton text={yesterdayEndUnix}/>
+      ({yesterdayEndTime}<ClipboardButton text={yesterdayEndTime}/>)
+    </div>
+    <h2>今天</h2>
+    <div>开始时间：{todayTime}<ClipboardButton text={todayTime}/></div>
+    <div>开始时间戳：{todayUnix}<ClipboardButton text={todayUnix}/></div>
+    <div>当前日期时间：{nowTime}<ClipboardButton text={nowTime}/></div>
+    <div>当前日期时间戳：{nowUnix}<ClipboardButton text={nowUnix}/></div>
+    <div>结束时间：{todayEndTime}<ClipboardButton text={todayEndTime}/></div>
+    <div>结束时间戳：{todayEndUnix}<ClipboardButton text={todayEndUnix}/></div>
+    <h2>明天</h2>
+    <div>
+      开始时间戳：{tomorrowStartUnix}<ClipboardButton text={tomorrowStartUnix}/>
+      ({tomorrowStartTime}<ClipboardButton text={tomorrowStartTime}/>)
+    </div>
+    <div>结束时间戳：{tomorrowEndUnix}<ClipboardButton text={tomorrowEndUnix}/>({tomorrowEndTime}
+      <ClipboardButton text={tomorrowEndTime}/>)
+    </div>
+    <Snackbar
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      open={open}
+      autoHideDuration={2000}
+      onClose={handleClose}
+    >
+      <Alert onClose={handleClose} severity="success">
+        复制成功
+      </Alert>
+    </Snackbar>
+  </div>)
+}
+
+export default Time
