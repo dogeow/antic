@@ -1,5 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import clsx from 'clsx';
+import Swal from 'sweetalert2';
+import {useRouteMatch} from 'react-router-dom';
+
+// UI
 import Input from '@material-ui/core/Input';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
@@ -9,9 +14,8 @@ import SaveIcon from '@material-ui/icons/Save';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {makeStyles} from '@material-ui/core/styles';
 import {green, red} from '@material-ui/core/colors';
-import clsx from 'clsx';
-import Swal from 'sweetalert2';
-import {useRouteMatch} from 'react-router-dom';
+
+// 编辑器
 import {Editor} from '@toast-ui/react-editor';
 import codeSyntaxHightlight
   from '@toast-ui/editor-plugin-code-syntax-highlight';
@@ -150,9 +154,9 @@ const PostCreate = () => {
       </Grid>
       <Grid item xs={12}>
         {
-          post && <Editor
-            placeholder='Please enter text.'
-            initialValue={post.content}
+          (post || !id) && <Editor
+            placeholder='请输入。'
+            initialValue={(post && post.content) || ''}
             previewStyle="vertical"
             initialEditType="markdown"
             height="600px"

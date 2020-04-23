@@ -2,8 +2,6 @@ import React from 'react'
 import moment from 'moment'
 import ClipboardButton from "../components/ClipboardButton";
 import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 import MuiAlert from '@material-ui/lab/Alert';
 
 function Alert(props) {
