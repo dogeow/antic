@@ -21,3 +21,18 @@
     content: '回顶部';
   }
 }
+
+kbd {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -o-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+  background: #fafafa;
+  padding: 0 3px 1px 3px;
+  margin: 0 0 0 0;
+  vertical-align: baseline;
+  line-height: 1.8em;
+  white-space: nowrap;
+}
