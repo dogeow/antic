@@ -17,21 +17,22 @@ import {green, red} from '@material-ui/core/colors';
 
 // 编辑器
 import {Editor} from '@toast-ui/react-editor';
-import codeSyntaxHightlight
-  from '@toast-ui/editor-plugin-code-syntax-highlight';
+import codeSyntaxHightlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 import tableMergedCell from '@toast-ui/editor-plugin-table-merged-cell';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import uml from '@toast-ui/editor-plugin-uml';
 import chart from '@toast-ui/editor-plugin-chart';
-import 'codemirror/lib/codemirror.css';
-import '@toast-ui/editor/dist/toastui-editor.css';
-import 'highlight.js/styles/atom-one-dark.css';
 import hljs from 'highlight.js';
 import javascript from 'highlight.js/lib/languages/javascript';
 import php from 'highlight.js/lib/languages/php';
+// import '@toast-ui/editor/dist/i18n/zh-cn';
+
+// 编辑器 CSS
+import 'codemirror/lib/codemirror.css';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import 'highlight.js/styles/atom-one-dark.css';
 import 'tui-color-picker/dist/tui-color-picker.css';
 import 'tui-chart/dist/tui-chart.css';
-import '@toast-ui/editor/dist/i18n/zh-cn';
 
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('php', php);
@@ -76,14 +77,16 @@ const useStyles = makeStyles(theme => ({
 const PostCreate = () => {
   const classes = useStyles();
   const match = useRouteMatch();
+
   const [id, setId] = useState(0);
-  const [post, setPost] = useState();
-  const [loading, setLoading] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
-  const [errors, setErrors] = React.useState(false);
+  const [post, setPost] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [errors, setErrors] = useState(false);
 
   const editorRef = React.createRef();
 
+  // 编辑时，获取文章
   useEffect(() => {
     if (match.params.id) {
       setId(match.params.id);
@@ -100,6 +103,7 @@ const PostCreate = () => {
       setLoading(true);
     }
 
+    // 新增或修改
     let url = id ? `posts/${id}` : 'posts';
     let method = id ? 'put' : 'post';
 
@@ -119,30 +123,47 @@ const PostCreate = () => {
         let errors = error.response.data.errors;
         setErrors(errors);
         Swal.fire(error.response.data.message,
-          (undefined !== errors.title ? errors.title[0] : '') +
-          (undefined !== errors.content ? errors.content[0] : ''),
-          'error');
+          (undefined !== errors.title ? errors.title[0] : '') + (undefined !== errors.content ? errors.content[0] : ''),
+          'error'
+        );
         setSuccess(false);
         setLoading(false);
       }
     });
-  };
+  }
 
   const handleEditorChange = () => {
     setPost({...post, content: editorRef.current.getInstance().getMarkdown()});
-  };
+  }
 
   const handleTitleChange = event => {
     setPost({...post, title: event.target.value});
-  };
+  }
 
   const buttonClassname = errors ?
-    clsx({[classes.buttonError]: errors})
-    :
-    clsx({[classes.buttonSuccess]: success});
+    clsx({[classes.buttonError]: errors}) : clsx({[classes.buttonSuccess]: success});
+
+  const uploadImage = (blob) => {
+    let formData = new FormData();
+
+    formData.append('emoji', blob, blob.name);
+
+    return axios.post('/emoji', formData);
+  };
+
+  const onAddImageBlob = (blob, callback) => {
+    uploadImage(blob)
+      .then(response => {
+        callback(response.data.url, 'alt text');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   return (
     <Grid container spacing={2} justify={'center'}>
+      {/*标题*/}
       <Grid item xs={4}>
         <Input
           fullWidth
@@ -152,6 +173,7 @@ const PostCreate = () => {
           onChange={handleTitleChange}
         />
       </Grid>
+      {/*正文*/}
       <Grid item xs={12}>
         {
           (post || !id) && <Editor
@@ -161,7 +183,7 @@ const PostCreate = () => {
             initialEditType="markdown"
             height="600px"
             useCommandShortcut={true}
-            language="zh-CN"
+            // language="zh-CN"
             plugins={[
               [codeSyntaxHightlight, {hljs}],
               colorSyntax,
@@ -171,14 +193,12 @@ const PostCreate = () => {
             ref={editorRef}
             onChange={handleEditorChange}
             hooks={{
-              addImageBlobHook: (fileOrBlob, callback, source) => {
-                console.log(fileOrBlob);
-                console.log(callback);
-              },
+              addImageBlobHook: onAddImageBlob
             }}
           />
         }
       </Grid>
+      {/*保存按钮*/}
       <Grid item xs={12} style={{position: 'relative', textAlign: 'center'}}>
         <Fab
           aria-label="save"
@@ -191,7 +211,8 @@ const PostCreate = () => {
         <CircularProgress
           size={68}
           className={classes.fabProgress}
-          style={{visibility: loading ? 'visible' : 'hidden'}}/>
+          style={{visibility: loading ? 'visible' : 'hidden'}}
+        />
       </Grid>
     </Grid>
   );
