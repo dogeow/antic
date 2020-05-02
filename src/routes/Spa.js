@@ -113,6 +113,8 @@ const Spa = ({match}) => {
                  component={loadable(() => import('../components/Like'))}/>
           <Route path="/test"
                  component={loadable(() => import('../containers/Test'))}/>
+          <Route path="/test2"
+                 component={loadable(() => import('../containers/Test2'))}/>
           <Route component={loadable(() => import('../containers/NoMatch'))}/>
         </Switch>
       </Container>

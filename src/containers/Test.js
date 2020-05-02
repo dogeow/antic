@@ -198,8 +198,6 @@ const Test = () => {
         setValue(value)
         // 在 Local Storage 里保存值。
         const content = JSON.stringify(value)
-        console.log(value);
-        console.log(content);
         const {selection} = editor
 
         if (selection && Range.isCollapsed(selection)) {

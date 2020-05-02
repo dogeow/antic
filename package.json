@@ -57,6 +57,7 @@
     "react-viewer": "^3.1.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "rich-markdown-editor": "^10.0.0-5",
     "scroll-to-element": "^2.0.3",
     "slate": "^0.57.2",
     "slate-history": "^0.57.2",
