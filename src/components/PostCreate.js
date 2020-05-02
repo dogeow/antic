@@ -79,7 +79,7 @@ const PostCreate = () => {
   const match = useRouteMatch();
 
   const [id, setId] = useState(0);
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState(false);
