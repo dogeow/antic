@@ -1,15 +1,15 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import React from "react";
+import Grid from "@material-ui/core/Grid";
 
 const Piano = () => {
   const styles = {
-    width: '100%',
-    height: '666px',
+    width: "100%",
+    height: "666px",
   };
   return (
     <Grid container spacing={2}>
       <Grid item xs={8}>
-        <embed src="/medias/paino.swf" style={styles}/>
+        <embed src="/medias/paino.swf" style={styles} />
       </Grid>
 
       <Grid item xs={4}>

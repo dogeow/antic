@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const WeiboAbout = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('weibo/about').then((resp) => {
+    axios.get("weibo/about").then((resp) => {
       setData(resp.data);
     });
   }, []);

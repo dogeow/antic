@@ -32,7 +32,7 @@ class Example extends React.Component {
     localStorage.setItem("dark", dark ? "enabled" : "disabled");
   };
 
-  handleChange = debounce(value => {
+  handleChange = debounce((value) => {
     localStorage.setItem("saved", value());
   }, 250);
 
@@ -54,13 +54,13 @@ class Example extends React.Component {
           id="example"
           readOnly={this.state.readOnly}
           defaultValue={defaultValue}
-          onSave={options => console.log("Save triggered", options)}
+          onSave={(options) => console.log("Save triggered", options)}
           onCancel={() => console.log("Cancel triggered")}
           onChange={this.handleChange}
-          onClickLink={href => console.log("Clicked link: ", href)}
-          onClickHashtag={tag => console.log("Clicked hashtag: ", tag)}
-          onShowToast={message => window.alert(message)}
-          onSearchLink={async term => {
+          onClickLink={(href) => console.log("Clicked link: ", href)}
+          onClickHashtag={(tag) => console.log("Clicked hashtag: ", tag)}
+          onShowToast={(message) => window.alert(message)}
+          onSearchLink={async (term) => {
             console.log("Searched link: ", term);
             return [
               {
@@ -69,15 +69,15 @@ class Example extends React.Component {
               },
             ];
           }}
-          uploadImage={file => {
+          uploadImage={(file) => {
             console.log("File upload triggered: ", file);
 
             // Delay to simulate time taken to upload
-            return new Promise(resolve => {
+            return new Promise((resolve) => {
               setTimeout(() => resolve("http://lorempixel.com/400/200/"), 1500);
             });
           }}
-          getLinkComponent={node => {
+          getLinkComponent={(node) => {
             if (node.data.get("href").match(/google/)) {
               return GoogleEmbed;
             }

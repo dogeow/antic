@@ -1,40 +1,47 @@
-import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
-import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import {red} from '@material-ui/core/colors';
-import ShareIcon from '@material-ui/icons/Share';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
+import Collapse from "@material-ui/core/Collapse";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import { red } from "@material-ui/core/colors";
+import ShareIcon from "@material-ui/icons/Share";
 
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,
-    paddingTop: '100%', // 16:9
+    paddingTop: "100%", // 16:9
   },
   expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
     }),
   },
   expandOpen: {
-    transform: 'rotate(180deg)',
+    transform: "rotate(180deg)",
   },
   avatar: {
     backgroundColor: red[500],
   },
 }));
 
-export default function RecipeReviewCard({title, subHeader, img, link, intro, feeling}) {
+export default function RecipeReviewCard({
+  title,
+  subHeader,
+  img,
+  link,
+  intro,
+  feeling,
+}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -44,26 +51,24 @@ export default function RecipeReviewCard({title, subHeader, img, link, intro, fe
 
   return (
     <Card>
-      <CardHeader
-        title={title}
-        subheader={subHeader}
-      />
+      <CardHeader title={title} subheader={subHeader} />
       <CardMedia
         className={classes.media}
         image={`${process.env.REACT_APP_CDN_URL}/${img}`}
         title="Paella dish"
       />
-      <CardContent style={{minHeight: '11em'}}>
-        <Typography variant="body2" color="textSecondary" component="p" dangerouslySetInnerHTML={{__html: intro}}/>
+      <CardContent style={{ minHeight: "11em" }}>
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          dangerouslySetInnerHTML={{ __html: intro }}
+        />
       </CardContent>
       <CardActions disableSpacing>
-        <a
-          href={link}
-          target={'_blank'}
-          rel="noopener noreferrer"
-        >
+        <a href={link} target={"_blank"} rel="noopener noreferrer">
           <IconButton aria-label="share">
-            <ShareIcon/>
+            <ShareIcon />
           </IconButton>
         </a>
         <IconButton
@@ -74,14 +79,12 @@ export default function RecipeReviewCard({title, subHeader, img, link, intro, fe
           aria-expanded={expanded}
           aria-label="show more"
         >
-          <ExpandMoreIcon/>
+          <ExpandMoreIcon />
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>
-            {feeling}
-          </Typography>
+          <Typography paragraph>{feeling}</Typography>
         </CardContent>
       </Collapse>
     </Card>

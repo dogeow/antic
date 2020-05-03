@@ -1,39 +1,39 @@
-import React, {useState, useEffect} from 'react';
-import Typography from '@material-ui/core/Typography';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import axios from 'axios';
-import Icon from '@material-ui/core/Icon';
-import Grid from '@material-ui/core/Grid';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import React, { useState, useEffect } from "react";
+import Typography from "@material-ui/core/Typography";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import axios from "axios";
+import Icon from "@material-ui/core/Icon";
+import Grid from "@material-ui/core/Grid";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 
 const Api = () => {
   const [data, setData] = useState([]);
   const [param, setParam] = useState(null);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const [result, setResult] = useState(null);
 
   const defaultProps = {
     options: data,
-    getOptionLabel: option => option.endpoint,
+    getOptionLabel: (option) => option.endpoint,
   };
 
   useEffect(() => {
-    axios.post('api').then((resp) => {
+    axios.post("api").then((resp) => {
       setData(resp.data);
     });
   }, []);
 
   const send = () => {
-    axios.get(`${param.endpoint}/${value}`).then(response => {
+    axios.get(`${param.endpoint}/${value}`).then((response) => {
       setResult(response.data);
     });
   };
@@ -53,15 +53,15 @@ const Api = () => {
           onChange={(event, newValue) => {
             setParam(newValue);
           }}
-          renderInput={params =>
+          renderInput={(params) => (
             <TextField
               {...params}
               label="方法"
               variant="outlined"
               size="small"
-              style={{width: 200}}
+              style={{ width: 200 }}
             />
-          }
+          )}
         />
       </Grid>
 
@@ -90,16 +90,13 @@ const Api = () => {
       </Grid>
 
       <Grid item>
-        {
-          result && result.length > 100 ?
-            <TextareaAutosize
-              aria-label="textarea"
-              value={result.join('\n')}/>
-            :
-            <Typography component="h4" variant="body1">
-              结果：{result}
-            </Typography>
-        }
+        {result && result.length > 100 ? (
+          <TextareaAutosize aria-label="textarea" value={result.join("\n")} />
+        ) : (
+          <Typography component="h4" variant="body1">
+            结果：{result}
+          </Typography>
+        )}
       </Grid>
 
       <Grid item xs={12}>

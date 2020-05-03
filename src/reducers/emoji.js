@@ -1,7 +1,7 @@
-import {isMobile} from 'react-device-detect'
-import face from '../resources/face.json'
-import uniq from 'lodash/uniq'
-import isEqual from 'lodash/isEqual'
+import { isMobile } from "react-device-detect";
+import face from "../resources/face.json";
+import uniq from "lodash/uniq";
+import isEqual from "lodash/isEqual";
 
 /**
  * 分类筛选
@@ -16,7 +16,7 @@ function categoryFilter(array, category) {
   } else {
     let filter = [];
     array.map(function (single) {
-      return single['category'] === category ? filter.push(single) : null;
+      return single["category"] === category ? filter.push(single) : null;
     });
 
     return filter;
@@ -37,7 +37,7 @@ function tagFilter(array, tagState) {
 
   let filter = [];
   for (const single of array) {
-    if ((single["tag"].includes(tagState))) {
+    if (single["tag"].includes(tagState)) {
       filter.push(single);
     }
   }
@@ -53,7 +53,7 @@ function tagFilter(array, tagState) {
 function allTag(array) {
   let tagsList = [];
   array.map(function (single) {
-    return tagsList = tagsList.concat(single["tag"]);
+    return (tagsList = tagsList.concat(single["tag"]));
   });
 
   return uniq(tagsList);
@@ -69,8 +69,8 @@ function offset(whichPage, pageLimit) {
   let offset = (whichPage - 1) * pageLimit;
   return {
     start: offset,
-    end: offset + pageLimit
-  }
+    end: offset + pageLimit,
+  };
 }
 
 function getCategoryAndTagData(data, selectedCategory, selectedTag) {
@@ -89,7 +89,7 @@ const defaultState = {
   displayTag: allTag(face), // 显示该分类下的标签
   pageLimit: 9, // 每页几条数据（表情）
   // Statistics
-  filterStatistics: {pageNum: Math.ceil(face.length / 9)},
+  filterStatistics: { pageNum: Math.ceil(face.length / 9) },
   filterNum: face.length, // 筛选后共有几张
   // Switch Status
   expandCategory: !isMobile, // 展开分类？
@@ -100,14 +100,15 @@ const defaultState = {
 export default (state = defaultState, action) => {
   let data = {};
   switch (action.type) {
-    case 'IS_LOADING':
+    case "IS_LOADING":
       return {
         ...state,
-        faceIsLoading: action.value
+        faceIsLoading: action.value,
       };
-    case 'SELECT_CATEGORY':
+    case "SELECT_CATEGORY":
       let selectedCategory = action.value;
-      if (selectedCategory === state.selectedCategory) { // 分类多次点击原样返回
+      if (selectedCategory === state.selectedCategory) {
+        // 分类多次点击原样返回
         return state;
       }
 
@@ -123,12 +124,16 @@ export default (state = defaultState, action) => {
         currentPage: 1, // 点击分类后都切换到第一页
         filterNum: categoryData.length,
         faceIsLoading: selectedCategory !== state.selectedCategory,
-        expandCategory: !isMobile
+        expandCategory: !isMobile,
       };
-    case 'SELECT_TAG':
+    case "SELECT_TAG":
       let selectedTag = action.value;
       // 选择标签时，在原有被选择的分类上继续筛选
-      let tagData = getCategoryAndTagData(face, state.selectedCategory, action.value);
+      let tagData = getCategoryAndTagData(
+        face,
+        state.selectedCategory,
+        action.value
+      );
       let tagDataRange = offset(state.currentPage, state.pageLimit);
       data = tagData.slice(tagDataRange.start, tagDataRange.end);
       if (isEqual(tagData, state.data)) {
@@ -144,64 +149,74 @@ export default (state = defaultState, action) => {
           filterNum: tagData.length,
           currentPage: 1,
           faceIsLoading: action.value !== state.selectedTag,
-          expandTag: !isMobile
+          expandTag: !isMobile,
         };
       }
-    case 'EXPAND_CATEGORY':
+    case "EXPAND_CATEGORY":
       return {
         ...state,
-        expandCategory: !state.expandCategory
+        expandCategory: !state.expandCategory,
       };
-    case 'EXPAND_TAG':
+    case "EXPAND_TAG":
       return {
         ...state,
-        expandTag: !state.expandTag
+        expandTag: !state.expandTag,
       };
-    case 'WHICH_PAGE':
-      let whichPageData = getCategoryAndTagData(face, state.selectedCategory, state.selectedTag);
+    case "WHICH_PAGE":
+      let whichPageData = getCategoryAndTagData(
+        face,
+        state.selectedCategory,
+        state.selectedTag
+      );
       let whichPageDataRange = offset(action.value, state.pageLimit);
-      data = whichPageData.slice(whichPageDataRange.start, whichPageDataRange.end);
+      data = whichPageData.slice(
+        whichPageDataRange.start,
+        whichPageDataRange.end
+      );
 
       return {
         ...state,
         data: data,
         currentPage: action.value,
-        faceIsLoading: true
+        faceIsLoading: true,
       };
-    case 'SEARCH':
+    case "SEARCH":
       let filter = [];
       face.map(function (single) {
-        if (single["name"].toLowerCase().indexOf(action.value.toLowerCase()) !== -1) {
+        if (
+          single["name"].toLowerCase().indexOf(action.value.toLowerCase()) !==
+          -1
+        ) {
           return filter.push(single);
         }
 
         return null;
       });
 
-      return{
+      return {
         ...state,
         data: filter,
         filterNum: filter.length,
         currentPage: 1,
-        faceIsLoading: true
+        faceIsLoading: true,
       };
-    case 'OPEN_SETTING':
+    case "OPEN_SETTING":
       return {
         ...state,
         openSetting: action.value,
-        openSideBar: false
+        openSideBar: false,
       };
-    case 'OPEN_DEBUG':
+    case "OPEN_DEBUG":
       return {
         ...state,
-        openDebug: action.value
+        openDebug: action.value,
       };
-    case 'OPEN_SIDEBAR':
+    case "OPEN_SIDEBAR":
       return {
         ...state,
-        openSideBar: !state.openSideBar
+        openSideBar: !state.openSideBar,
       };
-    case 'ALL_EMOJI':
+    case "ALL_EMOJI":
       let filterAllEmoji = [];
       if (action.value) {
         filterAllEmoji = face;
@@ -218,9 +233,9 @@ export default (state = defaultState, action) => {
         currentPage: 1, // 点击分类后都切换到第一页
         filterNum: face.length,
         expandCategory: !isMobile,
-        openSetting: false
+        openSetting: false,
       };
     default:
-      return state
+      return state;
   }
 };

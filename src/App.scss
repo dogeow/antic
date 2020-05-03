@@ -10,7 +10,7 @@
   font-size: 12px;
 
   &:before {
-    content: '▲';
+    content: "▲";
     display: block;
     text-align: center;
     color: #aaa;
@@ -18,7 +18,7 @@
   }
 
   &:hover:before {
-    content: '回顶部';
+    content: "回顶部";
   }
 }
 
@@ -37,7 +37,7 @@ kbd {
   white-space: nowrap;
 }
 
-:not(pre)>code {
+:not(pre) > code {
   font-family: monospace;
   background-color: #eee;
   padding: 3px;

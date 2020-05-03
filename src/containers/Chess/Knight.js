@@ -1,19 +1,19 @@
-import React from 'react'
-import { DragPreviewImage, useDrag } from 'react-dnd'
-import ItemTypes from './ItemTypes'
-import knightImage from './knightImage'
+import React from "react";
+import { DragPreviewImage, useDrag } from "react-dnd";
+import ItemTypes from "./ItemTypes";
+import knightImage from "./knightImage";
 const knightStyle = {
   fontSize: 40,
-  fontWeight: 'bold',
-  cursor: 'move',
-}
+  fontWeight: "bold",
+  cursor: "move",
+};
 export const Knight = () => {
   const [{ isDragging }, drag, preview] = useDrag({
     item: { type: ItemTypes.KNIGHT },
-    collect: monitor => ({
+    collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
-  })
+  });
   return (
     <>
       <DragPreviewImage connect={preview} src={knightImage} />
@@ -27,5 +27,5 @@ export const Knight = () => {
         ♘
       </div>
     </>
-  )
-}
+  );
+};

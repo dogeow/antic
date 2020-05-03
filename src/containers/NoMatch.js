@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
-const NoMatch = () => (
-  <div>
-    404 Not Found
-  </div>
-);
+const NoMatch = () => <div>404 Not Found</div>;
 
-export default NoMatch
+export default NoMatch;

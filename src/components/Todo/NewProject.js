@@ -1,29 +1,32 @@
-import React, {useState} from 'react';
-import Input from '@material-ui/core/Input';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import Button from '@material-ui/core/Button';
-import {useHistory} from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
-import axios from 'axios';
+import React, { useState } from "react";
+import Input from "@material-ui/core/Input";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
+import axios from "axios";
 
 const NewProject = () => {
   const history = useHistory();
 
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [errors, setErrors] = useState({});
 
   const handleCreateNewProject = (event) => {
     event.preventDefault();
 
-    axios.post('projects', {
-      name: name,
-      description: description,
-    }).then(() => {
-      history.push('/todo');
-    }).catch(error => {
-      setErrors(error.response.data.errors);
-    });
+    axios
+      .post("projects", {
+        name: name,
+        description: description,
+      })
+      .then(() => {
+        history.push("/todo");
+      })
+      .catch((error) => {
+        setErrors(error.response.data.errors);
+      });
   };
 
   return (
@@ -32,37 +35,39 @@ const NewProject = () => {
       <form onSubmit={handleCreateNewProject}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <label htmlFor='name' style={{marginRight: 10}}>项目名称</label>
+            <label htmlFor="name" style={{ marginRight: 10 }}>
+              项目名称
+            </label>
             <Input
               inputProps={{
-                'aria-label': 'Description',
+                "aria-label": "Description",
               }}
-              id='name'
-              type='text'
+              id="name"
+              type="text"
               className={`classes.input form-control
-              ${errors.name && 'is-invalid'}`}
+              ${errors.name && "is-invalid"}`}
               error={!!errors.name}
-              placeholder={!!errors.name ? errors.name[0] : ''}
-              name='name'
+              placeholder={!!errors.name ? errors.name[0] : ""}
+              name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </Grid>
           <Grid item xs={12}>
-            <div style={{marginBottom: 10}}>
+            <div style={{ marginBottom: 10 }}>
               <label>项目信息</label>
             </div>
             <OutlinedInput
               multiline={true}
               rows="10"
-              id='description'
-              className={`form-control ${errors.description && 'is-invalid'}`}
+              id="description"
+              className={`form-control ${errors.description && "is-invalid"}`}
               error={!!errors.description}
-              placeholder={!!errors.description ? errors.description[0] : ''}
-              name='description'
+              placeholder={!!errors.description ? errors.description[0] : ""}
+              name="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              style={{width: '100%'}}
+              style={{ width: "100%" }}
             />
           </Grid>
           <Grid item xs={12}>
@@ -70,7 +75,7 @@ const NewProject = () => {
               type="submit"
               variant="contained"
               color="primary"
-              style={{width: '100%'}}
+              style={{ width: "100%" }}
             >
               创建
             </Button>

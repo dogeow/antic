@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {makeStyles} from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import SubNav from './Nav/SubNav';
-import chromeBookmarks from '../resources/Bookmarks';
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import SubNav from "./Nav/SubNav";
+import chromeBookmarks from "../resources/Bookmarks";
 
-const bookmarks = chromeBookmarks['roots']['bookmark_bar']['children'];
+const bookmarks = chromeBookmarks["roots"]["bookmark_bar"]["children"];
 
 // const other = chromeBookmarks['roots']['other']['children'];
 
 function TabPanel(props) {
-  const {children, value, index, ...other} = props;
+  const { children, value, index, ...other } = props;
 
   return (
     <Typography
@@ -39,11 +39,11 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
+    "aria-controls": `vertical-tabpanel-${index}`,
   };
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     height: `calc(100% - ${theme.spacing(4)})`,
@@ -72,20 +72,23 @@ export default function Nav() {
           aria-label="Vertical tabs example"
           className={classes.tabs}
         >
-          {bookmarks.map((project, index) => (
-            project.type === 'folder' &&
-            <Tab key={index} label={project.name} {...a11yProps(index)} />
-          ))}
+          {bookmarks.map(
+            (project, index) =>
+              project.type === "folder" && (
+                <Tab key={index} label={project.name} {...a11yProps(index)} />
+              )
+          )}
         </Tabs>
       </Grid>
       <Grid item xs={8} sm={9} md={10}>
-        {bookmarks.map((project, index) => (
-          project.type === 'folder' && (
-            <TabPanel key={index} value={value} index={index}>
-              <SubNav data={project.children}/>
-            </TabPanel>
-          )
-        ))}
+        {bookmarks.map(
+          (project, index) =>
+            project.type === "folder" && (
+              <TabPanel key={index} value={value} index={index}>
+                <SubNav data={project.children} />
+              </TabPanel>
+            )
+        )}
       </Grid>
     </Grid>
   );

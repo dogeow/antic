@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import Table from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import TableBody from '@material-ui/core/TableBody';
-import Paper from '@material-ui/core/Paper';
+import React, { useState, useEffect } from "react";
+import Table from "@material-ui/core/Table";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import TableBody from "@material-ui/core/TableBody";
+import Paper from "@material-ui/core/Paper";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import RadioButtonChecked from '@material-ui/icons/RadioButtonChecked';
-import Check from '@material-ui/icons/Check';
-import Close from '@material-ui/icons/Close';
-import axios from 'axios';
+import RadioButtonChecked from "@material-ui/icons/RadioButtonChecked";
+import Check from "@material-ui/icons/Check";
+import Close from "@material-ui/icons/Close";
+import axios from "axios";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   tableRoot: {
-    overflowX: 'auto',
+    overflowX: "auto",
   },
   root: {
-    color: 'green',
+    color: "green",
   },
 }));
 
@@ -27,10 +27,10 @@ const Site = () => {
   useEffect(() => {
     axios
       .get("site")
-      .then(json => {
-        setSites(json.data.sites)
+      .then((json) => {
+        setSites(json.data.sites);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }, []);
@@ -48,28 +48,30 @@ const Site = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {sites.map(site => (
+            {sites.map((site) => (
               <TableRow key={site.id}>
                 <TableCell component="td" scope="row">
-                  <a href={`http://${site.domain}`} target="_blank" rel="noopener noreferrer">{site.domain}</a>
+                  <a
+                    href={`http://${site.domain}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {site.domain}
+                  </a>
                 </TableCell>
                 <TableCell component="td" scope="row">
-                  {
-                    site.online
-                      ?
-                      <RadioButtonChecked className={classes.root}/>
-                      :
-                      <RadioButtonChecked style={{color: 'red'}}/>
-                  }
+                  {site.online ? (
+                    <RadioButtonChecked className={classes.root} />
+                  ) : (
+                    <RadioButtonChecked style={{ color: "red" }} />
+                  )}
                 </TableCell>
                 <TableCell component="td" scope="row">
-                  {
-                    site.today_latest && site.today_latest.status
-                      ?
-                      <Check className={classes.root}/>
-                      :
-                      <Close style={{color: 'red'}}/>
-                  }
+                  {site.today_latest && site.today_latest.status ? (
+                    <Check className={classes.root} />
+                  ) : (
+                    <Close style={{ color: "red" }} />
+                  )}
                 </TableCell>
                 <TableCell component="td" scope="row">
                   {site.seo}

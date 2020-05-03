@@ -1,5 +1,5 @@
-import {connect} from 'react-redux';
-import App from '../components/App';
+import { connect } from "react-redux";
+import App from "../components/App";
 
 const mapStateToProps = (state, ownProps) => ({
   themePaletteType: state.lab.themePaletteType,

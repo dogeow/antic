@@ -1,29 +1,29 @@
-import React from 'react'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
+import React from "react";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {getHost} from '../../helpers'
+import { getHost } from "../../helpers";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: {
-    minHeight: 152
+    minHeight: 152,
   },
   intro: {
-    overflow: 'hidden',
+    overflow: "hidden",
     WebkitLineClamp: 2,
-    WebkitBoxOrient: 'vertical',
-    display: '-webkit-box',
-  }
+    WebkitBoxOrient: "vertical",
+    display: "-webkit-box",
+  },
 }));
 
-const Menu = ({url, name}) => {
+const Menu = ({ url, name }) => {
   const classes = useStyles();
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
-      <a href={url} target="_blank" rel="noopener noreferrer" >
+      <a href={url} target="_blank" rel="noopener noreferrer">
         <Card className={classes.card}>
           <CardContent>
             <Typography variant="h6" component="h2" className={classes.intro}>

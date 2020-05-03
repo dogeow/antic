@@ -1,40 +1,40 @@
-import React from 'react';
-import {Link as RouteLink, useHistory} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
-import md5 from 'md5';
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import {logged} from '../helpers';
-import {loginAction} from '../actions';
-import SearchIcon from '@material-ui/icons/Search';
-import Hidden from '@material-ui/core/Hidden';
-import TextField from '@material-ui/core/TextField';
-import NightsStayIcon from '@material-ui/icons/NightsStay';
-import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import React from "react";
+import { Link as RouteLink, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import md5 from "md5";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { logged } from "../helpers";
+import { loginAction } from "../actions";
+import SearchIcon from "@material-ui/icons/Search";
+import Hidden from "@material-ui/core/Hidden";
+import TextField from "@material-ui/core/TextField";
+import NightsStayIcon from "@material-ui/icons/NightsStay";
+import WbSunnyIcon from "@material-ui/icons/WbSunny";
 
 // Material-UI
-import {makeStyles} from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import MenuIcon from '@material-ui/icons/Menu';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Container from '@material-ui/core/Container';
+import { makeStyles } from "@material-ui/core/styles";
+import Avatar from "@material-ui/core/Avatar";
+import MenuIcon from "@material-ui/icons/Menu";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Container from "@material-ui/core/Container";
 
 // 组件
-import Logo from '../components/Logo';
-import Drawer from '../components/Drawer';
-import Settings from '../components/Settings';
+import Logo from "../components/Logo";
+import Drawer from "../components/Drawer";
+import Settings from "../components/Settings";
 
-import {logout} from '../helpers/index';
-import GitHub from '@material-ui/icons/GitHub';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import { logout } from "../helpers/index";
+import GitHub from "@material-ui/icons/GitHub";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -47,7 +47,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteType}) => {
+const Header = ({
+  lab,
+  onClickDrawer,
+  toggle_drawer,
+  onThemeClick,
+  themePaletteType,
+}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -67,11 +73,11 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
     setSettingsOpen(false);
   };
 
-  const handleMenu = event => {
+  const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuMyself = event => {
+  const handleMenuMyself = (event) => {
     setAnchorElMyself(event.currentTarget);
   };
 
@@ -86,26 +92,29 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
   const handleLogout = () => {
     setAnchorElMyself(null);
     logout();
-    dispatch({type: 'LOGOUT'});
-    axios.post('user/logout').then(() => {
-      Swal.fire('登出成功！');
+    dispatch({ type: "LOGOUT" });
+    axios.post("user/logout").then(() => {
+      Swal.fire("登出成功！");
     });
   };
 
   const testLogin = () => {
-    axios.post('user/login', {
-      email: 'test@test.com',
-      password: 'test@test.com',
-      remember_me: true,
-    }).then(response => {
-      let {access_token} = response.data;
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
-      axios.post('user/profile').then(response2 => {
-        let {id, name, email} = response2.data.user;
-        logged(response.data, response2.data.user);
-        dispatch(loginAction(access_token, id, name, email));
+    axios
+      .post("user/login", {
+        email: "test@test.com",
+        password: "test@test.com",
+        remember_me: true,
+      })
+      .then((response) => {
+        let { access_token } = response.data;
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + access_token;
+        axios.post("user/profile").then((response2) => {
+          let { id, name, email } = response2.data.user;
+          logged(response.data, response2.data.user);
+          dispatch(loginAction(access_token, id, name, email));
+        });
       });
-    });
   };
 
   return (
@@ -116,11 +125,14 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
         onThemeClick={onThemeClick}
         themePaletteType={themePaletteType}
       />
-      <Drawer open={toggle_drawer} onClick={onClickDrawer}/>
+      <Drawer open={toggle_drawer} onClick={onClickDrawer} />
       <AppBar position="static">
-        <Container maxWidth="lg" classes={{
-          root: classes.containerRoot,
-        }}>
+        <Container
+          maxWidth="lg"
+          classes={{
+            root: classes.containerRoot,
+          }}
+        >
           <Toolbar>
             <IconButton
               edge="start"
@@ -129,19 +141,19 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
               aria-label="menu"
               onClick={onClickDrawer}
             >
-              <MenuIcon/>
+              <MenuIcon />
             </IconButton>
-            <RouteLink to={'/'} className={classes.title}>
-              <Logo/>
+            <RouteLink to={"/"} className={classes.title}>
+              <Logo />
             </RouteLink>
             <Hidden only="xs">
               <TextField
                 placeholder="搜索"
-                inputProps={{'aria-label': '搜索'}}
+                inputProps={{ "aria-label": "搜索" }}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <SearchIcon/>
+                      <SearchIcon />
                     </InputAdornment>
                   ),
                 }}
@@ -153,71 +165,71 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
                 href="https://github.com/likunyan/antic"
                 target="_blank"
               >
-                <GitHub/>
+                <GitHub />
               </IconButton>
               <IconButton
                 aria-label="切换模式"
                 color="inherit"
                 onClick={onThemeClick}
               >
-                {lab.themePaletteType === 'dark' ? <NightsStayIcon/> :
-                  <WbSunnyIcon/>}
+                {lab.themePaletteType === "dark" ? (
+                  <NightsStayIcon />
+                ) : (
+                  <WbSunnyIcon />
+                )}
               </IconButton>
             </Hidden>
-            {
-              lab.is_expired ? (
-                <Button
+            {lab.is_expired ? (
+              <Button color="inherit" component={RouteLink} to={"/login"}>
+                登录
+              </Button>
+            ) : (
+              <div>
+                <IconButton
+                  aria-label="account of current user"
+                  aria-controls="myself-appbar"
+                  aria-haspopup="true"
                   color="inherit"
-                  component={RouteLink}
-                  to={'/login'}
+                  onClick={handleMenuMyself}
                 >
-                  登录
-                </Button>
-              ) : (
-                <div>
-                  <IconButton
-                    aria-label="account of current user"
-                    aria-controls="myself-appbar"
-                    aria-haspopup="true"
-                    color="inherit"
-                    onClick={handleMenuMyself}
+                  <Avatar
+                    alt={lab.user_name}
+                    src={`https://gravatar.loli.net/avatar/${md5(
+                      lab.user_email
+                    )}.jpg?d=mp&s=80`}
+                  />
+                </IconButton>
+                <Menu
+                  id="myself-appbar"
+                  anchorEl={anchorElMyself}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={openMyself}
+                  onClose={handleCloseMyself}
+                >
+                  <RouteLink
+                    to={`/user/${lab.user_id}`}
+                    onClick={() => handleCloseMyself()}
                   >
-                    <Avatar
-                      alt={lab.user_name}
-                      src={`https://gravatar.loli.net/avatar/${md5(
-                        lab.user_email)}.jpg?d=mp&s=80`}
-                    />
-                  </IconButton>
-                  <Menu
-                    id="myself-appbar"
-                    anchorEl={anchorElMyself}
-                    anchorOrigin={{
-                      vertical: 'top',
-                      horizontal: 'right',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'right',
-                    }}
-                    open={openMyself}
-                    onClose={handleCloseMyself}
+                    <MenuItem>{lab.user_name}</MenuItem>
+                  </RouteLink>
+                  <RouteLink
+                    to={`/user/${lab.user_id}/setting`}
+                    onClick={() => handleCloseMyself()}
                   >
-                    <RouteLink
-                      to={`/user/${lab.user_id}`}
-                      onClick={() => handleCloseMyself()}>
-                      <MenuItem>{lab.user_name}</MenuItem>
-                    </RouteLink>
-                    <RouteLink
-                      to={`/user/${lab.user_id}/setting`}
-                      onClick={() => handleCloseMyself()}>
-                      <MenuItem>个人设置</MenuItem>
-                    </RouteLink>
-                    <MenuItem onClick={handleLogout}>登出</MenuItem>
-                  </Menu>
-                </div>
-              )
-            }
+                    <MenuItem>个人设置</MenuItem>
+                  </RouteLink>
+                  <MenuItem onClick={handleLogout}>登出</MenuItem>
+                </Menu>
+              </div>
+            )}
             <IconButton
               aria-label="show more"
               aria-controls="menu-appbar"
@@ -225,37 +237,48 @@ const Header = ({lab, onClickDrawer, toggle_drawer, onThemeClick, themePaletteTy
               onClick={handleMenu}
               color="inherit"
             >
-              <MoreIcon/>
+              <MoreIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}
               anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+                vertical: "top",
+                horizontal: "right",
               }}
               open={open}
               onClose={handleClose}
             >
-              <MenuItem onClick={() => {
-                setAnchorEl(null);
-                onThemeClick();
-              }}>
-                切换为{lab.themePaletteType === 'dark' ? '白天☀️️' : '黑夜🌌'}模式
+              <MenuItem
+                onClick={() => {
+                  setAnchorEl(null);
+                  onThemeClick();
+                }}
+              >
+                切换为{lab.themePaletteType === "dark" ? "白天☀️️" : "黑夜🌌"}
+                模式
               </MenuItem>
-              <MenuItem onClick={() => {
-                setAnchorEl(null);
-                testLogin();
-              }}>登录测试账号</MenuItem>
-              <MenuItem onClick={() => {
-                setAnchorEl(null);
-                history.push('/posts/create');
-              }}>新建文章</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  setAnchorEl(null);
+                  testLogin();
+                }}
+              >
+                登录测试账号
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  setAnchorEl(null);
+                  history.push("/posts/create");
+                }}
+              >
+                新建文章
+              </MenuItem>
               <MenuItem onClick={handleSettingOpen}>网站设置</MenuItem>
             </Menu>
           </Toolbar>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const Clock = () => {
   const [data, setDate] = useState(new Date());
@@ -8,10 +8,7 @@ const Clock = () => {
   };
 
   useEffect(() => {
-    const timerID = setInterval(
-      () => tick(),
-      1000
-    );
+    const timerID = setInterval(() => tick(), 1000);
 
     return () => clearInterval(timerID);
   });
@@ -21,7 +18,7 @@ const Clock = () => {
       <h1>Hello, world!</h1>
       <h2>It is {data.toLocaleTimeString()}.</h2>
     </div>
-  )
+  );
 };
 
 export default Clock;

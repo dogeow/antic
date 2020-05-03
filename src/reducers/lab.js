@@ -1,23 +1,22 @@
-import {isExpired} from '../helpers';
+import { isExpired } from "../helpers";
 
 let hour = new Date().getHours();
-let themePaletteType = (hour >= 18 && hour <= 24) || (hour >= 0 && hour <= 6)
-  ? 'dark'
-  : 'light';
+let themePaletteType =
+  (hour >= 18 && hour <= 24) || (hour >= 0 && hour <= 6) ? "dark" : "light";
 
 const defaultState = {
   toggle_drawer: false,
   themePaletteType,
   is_expired: isExpired(),
-  access_token: localStorage.getItem('access_token') || null,
-  user_id: localStorage.getItem('user_id') || null,
-  user_name: localStorage.getItem('user_name') || null,
-  user_email: localStorage.getItem('user_email') || null,
+  access_token: localStorage.getItem("access_token") || null,
+  user_id: localStorage.getItem("user_id") || null,
+  user_name: localStorage.getItem("user_name") || null,
+  user_email: localStorage.getItem("user_email") || null,
 };
 
 const lab = (state = defaultState, action) => {
   switch (action.type) {
-    case 'LOGIN':
+    case "LOGIN":
       return Object.assign({}, state, {
         is_expired: isExpired(),
         access_token: action.access_token,
@@ -25,19 +24,19 @@ const lab = (state = defaultState, action) => {
         user_name: action.user_name,
         user_email: action.user_email,
       });
-    case 'TOGGLE_DRAWER':
+    case "TOGGLE_DRAWER":
       return Object.assign({}, state, {
         toggle_drawer: !state.toggle_drawer,
       });
-    case 'ACCESS_TOKEN':
+    case "ACCESS_TOKEN":
       return Object.assign({}, state, {
         access_token: action.access_token,
       });
-    case 'TOGGLE_THEME':
+    case "TOGGLE_THEME":
       return Object.assign({}, state, {
-        themePaletteType: state.themePaletteType === 'dark' ? 'light' : 'dark',
+        themePaletteType: state.themePaletteType === "dark" ? "light" : "dark",
       });
-    case 'LOGOUT':
+    case "LOGOUT":
       return Object.assign({}, state, {
         access_token: null,
         is_expired: true,

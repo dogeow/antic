@@ -1,7 +1,7 @@
 /* 更改默认行为 start */
 a:visited {
   color: unset;
-  text-decoration: none
+  text-decoration: none;
 }
 
 a:hover {
@@ -18,7 +18,7 @@ blockquote {
   position: relative;
   margin: 16px 0;
   padding: 5px 8px 5px 30px;
-  background: none repeat scroll 0 0 rgba(102, 128, 153, .05);
+  background: none repeat scroll 0 0 rgba(102, 128, 153, 0.05);
   border: none;
   border-left: 10px solid #d6dbdf;
 }
@@ -32,30 +32,35 @@ blockquote {
 
 /* 鼠标样式 start */
 html {
-  cursor: url('./resources/pointer.cur'), auto;
+  cursor: url("./resources/pointer.cur"), auto;
 }
 
-a:hover, button:hover, button, li.MuiListItem-button, input.MuiSwitch-input, .pointer {
-  cursor: url('./resources/link.cur'), auto;
+a:hover,
+button:hover,
+button,
+li.MuiListItem-button,
+input.MuiSwitch-input,
+.pointer {
+  cursor: url("./resources/link.cur"), auto;
 }
 
 input {
-  cursor: url('./resources/text.cur'), auto;
+  cursor: url("./resources/text.cur"), auto;
 }
 
 /* 鼠标样式 end */
 
 /* 微博热搜榜 start */
 .boil {
-  border-left: 1px solid red
+  border-left: 1px solid red;
 }
 
 .hot {
-  border-left: 1px solid orange
+  border-left: 1px solid orange;
 }
 
 .new {
-  border-left: 1px solid green
+  border-left: 1px solid green;
 }
 
 /* 微博热搜榜 end */
@@ -70,20 +75,20 @@ input {
 
 #leimu {
   left: 0;
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   -webkit-transform: translate(-7px, 7px);
   -ms-transform: translate(-7px, 7px);
   transform: translate(-7px, 7px);
 }
 
 #lamu {
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   -webkit-transform: translate(7px, 7px);
   -ms-transform: translate(7px, 7px);
   transform: translate(7px, 7px);
-  right: 0
+  right: 0;
 }
 
 #leimu:hover {
@@ -100,7 +105,7 @@ input {
 
 @media only screen and (max-width: 1024px) {
   .sidebar_wo {
-    display: none
+    display: none;
   }
 }
 
@@ -108,7 +113,11 @@ input {
 
 /* 3D */
 .ThreeDee {
-  text-shadow: 0 0 0 rgb(-51, -51, -51), 1px 1px 0 rgb(-102, -102, -102), 2px 2px 0 rgb(-153, -153, -153), 3px 3px 0 rgb(-204, -204, -204), 4px 4px 0 rgb(-255, -255, -255), 5px 5px 0 rgb(-306, -306, -306), 6px 6px 5px rgba(0, 0, 0, 1), 6px 6px 1px rgba(0, 0, 0, 0.5), 0px 0px 5px rgba(0, 0, 0, .2);
+  text-shadow: 0 0 0 rgb(-51, -51, -51), 1px 1px 0 rgb(-102, -102, -102),
+    2px 2px 0 rgb(-153, -153, -153), 3px 3px 0 rgb(-204, -204, -204),
+    4px 4px 0 rgb(-255, -255, -255), 5px 5px 0 rgb(-306, -306, -306),
+    6px 6px 5px rgba(0, 0, 0, 1), 6px 6px 1px rgba(0, 0, 0, 0.5),
+    0px 0px 5px rgba(0, 0, 0, 0.2);
 }
 
 .quote {
@@ -116,7 +125,6 @@ input {
   font-size: 18px;
   padding-bottom: 10px;
 }
-
 
 #favicon {
   position: relative;
