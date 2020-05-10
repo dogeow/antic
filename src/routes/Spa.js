@@ -193,7 +193,7 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../containers/Test"))}
           />
           <Route
-            path="/test2"
+            path="/test2/:id/edit"
             component={loadable(() => import("../containers/Test2"))}
           />
           <Route component={loadable(() => import("../containers/NoMatch"))} />

@@ -7,9 +7,15 @@ import React, {
 } from "react";
 import isHotkey from "is-hotkey";
 import { css } from "emotion";
-import { jsx } from "slate-hyperscript";
 // 导入 Slate 编辑器的工厂函数。
-import { Text, Editor, Transforms, Range, Point, createEditor } from "slate";
+import { Text, Editor, Transforms, Range, createEditor } from "slate";
+import {
+  withChecklists,
+  withMentions,
+  withTables,
+  withHtml,
+  withShortcuts,
+} from "../markdown/With";
 
 // 导入 Slate 组件和 React 插件。
 import {
@@ -25,94 +31,7 @@ import {
 } from "slate-react";
 import { withHistory } from "slate-history";
 import { Button, Icon, Toolbar, Portal } from "../components";
-
-const ELEMENT_TAGS = {
-  A: (el) => ({ type: "link", url: el.getAttribute("href") }),
-  BLOCKQUOTE: () => ({ type: "quote" }),
-  H1: () => ({ type: "heading-one" }),
-  H2: () => ({ type: "heading-two" }),
-  H3: () => ({ type: "heading-three" }),
-  H4: () => ({ type: "heading-four" }),
-  H5: () => ({ type: "heading-five" }),
-  H6: () => ({ type: "heading-six" }),
-  IMG: (el) => ({ type: "image", url: el.getAttribute("src") }),
-  LI: () => ({ type: "list-item" }),
-  OL: () => ({ type: "numbered-list" }),
-  P: () => ({ type: "paragraph" }),
-  PRE: () => ({ type: "code" }),
-  UL: () => ({ type: "bulleted-list" }),
-};
-
-// COMPAT: `B` is omitted here because Google Docs uses `<b>` in weird ways.
-const TEXT_TAGS = {
-  CODE: () => ({ code: true }),
-  DEL: () => ({ strikethrough: true }),
-  EM: () => ({ italic: true }),
-  I: () => ({ italic: true }),
-  S: () => ({ strikethrough: true }),
-  STRONG: () => ({ bold: true }),
-  U: () => ({ underline: true }),
-};
-
-export const deserialize = (el) => {
-  if (el.nodeType === 3) {
-    return el.textContent;
-  } else if (el.nodeType !== 1) {
-    return null;
-  } else if (el.nodeName === "BR") {
-    return "\n";
-  }
-
-  const { nodeName } = el;
-  let parent = el;
-
-  if (
-    nodeName === "PRE" &&
-    el.childNodes[0] &&
-    el.childNodes[0].nodeName === "CODE"
-  ) {
-    parent = el.childNodes[0];
-  }
-  const children = Array.from(parent.childNodes).map(deserialize).flat();
-
-  if (el.nodeName === "BODY") {
-    return jsx("fragment", {}, children);
-  }
-
-  if (ELEMENT_TAGS[nodeName]) {
-    const attrs = ELEMENT_TAGS[nodeName](el);
-    return jsx("element", attrs, children);
-  }
-
-  if (TEXT_TAGS[nodeName]) {
-    const attrs = TEXT_TAGS[nodeName](el);
-    return children.map((child) => jsx("text", attrs, child));
-  }
-
-  return children;
-};
-
-const SHORTCUTS = {
-  "*": "list-item",
-  "[x]": "check-list-item",
-  "[ ]": "check-list-item",
-  "-": "list-item",
-  "+": "list-item",
-  ">": "block-quote",
-  "#": "heading-one",
-  "##": "heading-two",
-  "###": "heading-three",
-  "####": "heading-four",
-  "#####": "heading-five",
-  "######": "heading-six",
-};
-
-const HOTKEYS = {
-  "mod+b": "bold",
-  "mod+i": "italic",
-  "mod+u": "underline",
-  "mod+`": "code",
-};
+import HOTKEYS from "../markdown/Hotkeys";
 
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
@@ -326,82 +245,6 @@ const Test = () => {
   );
 };
 
-const withShortcuts = (editor) => {
-  const { deleteBackward, insertText } = editor;
-
-  editor.insertText = (text) => {
-    const { selection } = editor;
-
-    if (text === " " && selection && Range.isCollapsed(selection)) {
-      const { anchor } = selection;
-      const block = Editor.above(editor, {
-        match: (n) => Editor.isBlock(editor, n),
-      });
-      const path = block ? block[1] : [];
-      const start = Editor.start(editor, path);
-      const range = { anchor, focus: start };
-      const beforeText = Editor.string(editor, range);
-      const type = SHORTCUTS[beforeText];
-
-      if (type) {
-        Transforms.select(editor, range);
-        Transforms.delete(editor);
-        Transforms.setNodes(
-          editor,
-          { type },
-          { match: (n) => Editor.isBlock(editor, n) }
-        );
-
-        if (type === "list-item") {
-          const list = { type: "bulleted-list", children: [] };
-          Transforms.wrapNodes(editor, list, {
-            match: (n) => n.type === "list-item",
-          });
-        }
-
-        return;
-      }
-    }
-
-    insertText(text);
-  };
-
-  editor.deleteBackward = (...args) => {
-    const { selection } = editor;
-
-    if (selection && Range.isCollapsed(selection)) {
-      const match = Editor.above(editor, {
-        match: (n) => Editor.isBlock(editor, n),
-      });
-
-      if (match) {
-        const [block, path] = match;
-        const start = Editor.start(editor, path);
-
-        if (
-          block.type !== "paragraph" &&
-          Point.equals(selection.anchor, start)
-        ) {
-          Transforms.setNodes(editor, { type: "paragraph" });
-
-          if (block.type === "list-item") {
-            Transforms.unwrapNodes(editor, {
-              match: (n) => n.type === "bulleted-list",
-              split: true,
-            });
-          }
-
-          return;
-        }
-      }
-
-      deleteBackward(...args);
-    }
-  };
-
-  return editor;
-};
-
 const Element = (props) => {
   const { attributes, children, element } = props;
 
@@ -565,97 +408,6 @@ const isBlockActive = (editor, format) => {
   return !!match;
 };
 
-const withTables = (editor) => {
-  const { deleteBackward, deleteForward, insertBreak } = editor;
-
-  editor.deleteBackward = (unit) => {
-    const { selection } = editor;
-
-    if (selection && Range.isCollapsed(selection)) {
-      const [cell] = Editor.nodes(editor, {
-        match: (n) => n.type === "table-cell",
-      });
-
-      if (cell) {
-        const [, cellPath] = cell;
-        const start = Editor.start(editor, cellPath);
-
-        if (Point.equals(selection.anchor, start)) {
-          return;
-        }
-      }
-    }
-
-    deleteBackward(unit);
-  };
-
-  editor.deleteForward = (unit) => {
-    const { selection } = editor;
-
-    if (selection && Range.isCollapsed(selection)) {
-      const [cell] = Editor.nodes(editor, {
-        match: (n) => n.type === "table-cell",
-      });
-
-      if (cell) {
-        const [, cellPath] = cell;
-        const end = Editor.end(editor, cellPath);
-
-        if (Point.equals(selection.anchor, end)) {
-          return;
-        }
-      }
-    }
-
-    deleteForward(unit);
-  };
-
-  editor.insertBreak = () => {
-    const { selection } = editor;
-
-    if (selection) {
-      const [table] = Editor.nodes(editor, {
-        match: (n) => n.type === "table",
-      });
-
-      if (table) {
-        return;
-      }
-    }
-
-    insertBreak();
-  };
-
-  return editor;
-};
-
-const withHtml = (editor) => {
-  const { insertData, isInline, isVoid } = editor;
-
-  editor.isInline = (element) => {
-    return element.type === "link" ? true : isInline(element);
-  };
-
-  editor.isVoid = (element) => {
-    return element.type === "image" ? true : isVoid(element);
-  };
-
-  editor.insertData = (data) => {
-    const html = data.getData("text/html");
-
-    if (html) {
-      const parsed = new DOMParser().parseFromString(html, "text/html");
-      const fragment = deserialize(parsed.body);
-      Transforms.insertFragment(editor, fragment);
-      return;
-    }
-
-    insertData(data);
-  };
-
-  return editor;
-};
-
 const MentionElement = ({ attributes, children, element }) => {
   const selected = useSelected();
   const focused = useFocused();
@@ -699,56 +451,10 @@ const ImageElement = ({ attributes, children, element }) => {
   );
 };
 
-const withMentions = (editor) => {
-  const { isInline, isVoid } = editor;
-
-  editor.isInline = (element) => {
-    return element.type === "mention" ? true : isInline(element);
-  };
-
-  editor.isVoid = (element) => {
-    return element.type === "mention" ? true : isVoid(element);
-  };
-
-  return editor;
-};
-
 const insertMention = (editor, character) => {
   const mention = { type: "mention", character, children: [{ text: "" }] };
   Transforms.insertNodes(editor, mention);
   Transforms.move(editor);
-};
-
-const withChecklists = (editor) => {
-  const { deleteBackward } = editor;
-
-  editor.deleteBackward = (...args) => {
-    const { selection } = editor;
-
-    if (selection && Range.isCollapsed(selection)) {
-      const [match] = Editor.nodes(editor, {
-        match: (n) => n.type === "check-list-item",
-      });
-
-      if (match) {
-        const [, path] = match;
-        const start = Editor.start(editor, path);
-
-        if (Point.equals(selection.anchor, start)) {
-          Transforms.setNodes(
-            editor,
-            { type: "paragraph" },
-            { match: (n) => n.type === "check-list-item" }
-          );
-          return;
-        }
-      }
-    }
-
-    deleteBackward(...args);
-  };
-
-  return editor;
 };
 
 const CheckListItemElement = ({ attributes, children, element }) => {
