@@ -15,6 +15,7 @@ import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import { green, red } from "@material-ui/core/colors";
 import Input from "@material-ui/core/Input";
+import { useStore } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   buttonSuccess: {
@@ -43,6 +44,8 @@ const GoogleEmbed = (props) => {
 };
 
 const Example = () => {
+  const store = useStore();
+  const state = store.getState();
   const classes = useStyles();
   const match = useRouteMatch();
 
@@ -76,7 +79,8 @@ const Example = () => {
 
   const { body } = document;
   if (body) {
-    body.style.backgroundColor = 1 ? "#181A1B" : "#FFF";
+    body.style.backgroundColor =
+      state.lab.themePaletteType === "dark" ? "#181A1B" : "#FFF";
   }
 
   const handleTitleChange = (event) => {
@@ -172,7 +176,7 @@ const Example = () => {
                 return GoogleEmbed;
               }
             }}
-            dark={true}
+            dark={state.lab.themePaletteType === "dark"}
             autoFocus
             toc
           />
