@@ -24,11 +24,16 @@ const UserSetting = () => {
   return (
     <div>
       <h2>用户设置</h2>
-      <h3>修改密码</h3>
+      <h3 style={{ borderBottom: "1px solid rgba(34,36,38,.15)" }}>修改密码</h3>
       <Grid container alignItems="flex-start" spacing={2}>
         <Grid item xs={12}>
           <TextField
             label="当前密码"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            size="small"
             value={currPassword}
             onChange={(e) => setCurrPassword(e.target.value)}
           />
@@ -36,6 +41,11 @@ const UserSetting = () => {
         <Grid item xs={12}>
           <TextField
             label="新密码"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            size="small"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
           />
@@ -43,6 +53,11 @@ const UserSetting = () => {
         <Grid item xs={12}>
           <TextField
             label="确认新密码"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            size="small"
             value={newPasswordConfirmation}
             onChange={(e) => setNewPasswordConfirmation(e.target.value)}
           />
