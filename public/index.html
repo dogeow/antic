@@ -1,43 +1,81 @@
 <!DOCTYPE html>
 <html lang="cmn-hans">
-<head>
-  <meta charset="utf-8"/>
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico"/>
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, shrink-to-fit=no"/>
-  <meta name="theme-color" content="#000000"/>
-  <meta name="keywords" content="233|233.sx|滑稽实验室|antic|antic-api|小李世界"/>
-  <meta name="description" content="小李世界的滑稽实验室"/>
-  <meta name="author" content="小李世界,lky216@gmail.com">
-  <meta name="renderer" content="webkit"/>
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="full-screen" content="yes">
-  <meta name="x5-fullscreen" content="true">
-  <meta name="format-detection" content="telephone=no,email=no"/>
-  <meta name="apple-mobile-web-app-capable" content="yes"/>
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png"/>
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css" integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-  <link href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap" rel="stylesheet">
-  <title>滑稽实验室</title>
-</head>
-<body>
-<noscript>You need to enable JavaScript to run this app.</noscript>
-<div id="root"></div>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-93831855-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="keywords"
+      content="233|233.sx|滑稽实验室|antic|antic-api|小李世界"
+    />
+    <meta name="description" content="小李世界的滑稽实验室" />
+    <meta name="author" content="小李世界,lky216@gmail.com" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="full-screen" content="yes" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="format-detection" content="telephone=no,email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.3.1/themes/reset-min.css"
+      integrity="sha256-t2ATOGCtAIZNnzER679jwcFcKYfLlw01gli6F6oszk8="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap"
+      rel="stylesheet"
+    />
+    <title>滑稽实验室</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-93831855-2"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
 
-  function gtag() {
-    dataLayer.push(arguments);
-  }
+      function gtag() {
+        dataLayer.push(arguments);
+      }
 
-  gtag('js', new Date());
+      gtag("js", new Date());
 
-  gtag('config', 'UA-93831855-2');
-</script>
-</body>
+      gtag("config", "UA-93831855-2");
+    </script>
+    <script src="https://www.recaptcha.net/recaptcha/api.js?render=%REACT_APP_RECAPTCHA%"></script>
+    <script>
+      grecaptcha.ready(function () {
+        grecaptcha
+          .execute("%REACT_APP_RECAPTCHA%", { action: "homepage" })
+          .then(function (token) {
+            axios
+              .post("recaptcha", {
+                token: token,
+              })
+              .then((response) => {
+                console.log(response);
+              });
+          });
+      });
+    </script>
+  </body>
 </html>

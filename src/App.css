@@ -1,3 +1,7 @@
+.grecaptcha-badge {
+  display: none;
+}
+
 /* 更改默认行为 start */
 a:visited {
   color: unset;
