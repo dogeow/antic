@@ -110,6 +110,8 @@ const Test = () => {
             event.preventDefault();
             setTarget(null);
             break;
+          default:
+            break;
         }
       }
       for (const hotkey in HOTKEYS) {
@@ -120,7 +122,7 @@ const Test = () => {
         }
       }
     },
-    [index, search, target]
+    [index, target, chars, editor]
   );
 
   useEffect(() => {
@@ -140,7 +142,7 @@ const Test = () => {
       onChange={(value) => {
         setValue(value);
         // 在 Local Storage 里保存值。
-        const content = JSON.stringify(value);
+        // const content = JSON.stringify(value);
         const { selection } = editor;
 
         if (selection && Range.isCollapsed(selection)) {
@@ -439,6 +441,7 @@ const ImageElement = ({ attributes, children, element }) => {
     <div {...attributes}>
       {children}
       <img
+        alt="img"
         src={element.url}
         className={css`
           display: block;
