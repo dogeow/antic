@@ -4,6 +4,9 @@ import { Provider } from "react-redux";
 import store from "./store";
 import App from "./containers/App";
 import * as serviceWorker from "./serviceWorker";
+import * as Sentry from '@sentry/browser';
+
+Sentry.init({dsn: process.env.REACT_APP_SENTRY_DSN});
 
 ReactDOM.render(
   <Provider store={store}>
