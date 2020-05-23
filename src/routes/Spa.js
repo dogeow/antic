@@ -89,7 +89,7 @@ const Spa = ({ match }) => {
             exact
             path="/weibo"
             component={loadable(() => import("../containers/Weibo"))}
-          ></Route>
+          />
           <Route
             path="/weibo/about"
             component={loadable(() => import("../containers/WeiboAbout"))}
