@@ -10,15 +10,15 @@ import Index from "../containers/Index";
 import Header from "../components/Header";
 import Footer from "../containers/Footer";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({
   main: {
     paddingLeft: 0,
     paddingRight: 0,
   },
   backToTop: {
+    position: "fixed",
     width: 50,
     height: 50,
-    position: "fixed",
     right: 0,
     bottom: 0,
     zIndex: 9,
