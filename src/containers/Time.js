@@ -8,37 +8,60 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-// 今天
-const today = moment().format("YYYY-MM-DD"); // 2020-04-22
-const todayTime = moment(today).format("YYYY-MM-DD HH:mm:ss"); // 2020-04-22 00:00:00
-const todayUnix = moment(todayTime).unix(); // 1587484800
-const nowTime = moment().format("YYYY-MM-DD HH:mm:ss");
-const nowUnix = moment().unix();
-const todayEndTime = moment(today)
+// yesterday, today, tomorrow
+// start, now, end
+// date, datetime / unixTime
+
+// 今天日期
+const todayDate = moment().format("YYYY-MM-DD"); // 2020-04-22
+
+// 今天开始
+const todayStartDateTime = todayDate+' 00:00:00'; // 2020-04-22 00:00:00
+const todayStartUnixTime = moment(todayStartDateTime).unix(); // 1587484800
+
+// 现在
+const nowDateTime = moment().format("YYYY-MM-DD HH:mm:ss");
+const nowUnixTime = moment().unix();
+
+//今天结束
+const todayEndDateTime = moment(todayDate)
   .add(86400 - 1, "second")
   .format("YYYY-MM-DD HH:mm:ss");
-const todayEndUnix = todayUnix + 86400 - 1;
+const todayEndUnixTime = todayStartUnixTime + 86400 - 1;
 
 // 昨天
-const yesterdayStartUnix = moment(todayTime).subtract(1, "days").unix();
-const yesterdayStartTime = moment(todayTime)
+const yesterdayStartUnix = moment(todayStartDateTime).subtract(1, "days").unix();
+const yesterdayStartTime = moment(todayStartDateTime)
   .subtract(1, "days")
   .format("YYYY-MM-DD HH:mm:ss");
 const yesterdayEndUnix = yesterdayStartUnix + 86400 - 1;
-const yesterdayEndTime = moment(todayTime)
+const yesterdayEndTime = moment(todayStartDateTime)
   .subtract(1, "second")
   .format("YYYY-MM-DD HH:mm:ss");
 
 //明天
-const tomorrowStartUnix = moment(todayTime).add(1, "days").unix();
-const tomorrowStartTime = moment(todayTime)
+const tomorrowStartUnix = moment(todayStartDateTime).add(1, "days").unix();
+const tomorrowStartTime = moment(todayStartDateTime)
   .add(1, "days")
   .format("YYYY-MM-DD HH:mm:ss");
 const tomorrowEndUnix = tomorrowStartUnix + 86400 - 1;
-const tomorrowEndTime = moment(todayTime)
+const tomorrowEndTime = moment(todayStartDateTime)
   .add(2, "days")
   .subtract(1, "second")
   .format("YYYY-MM-DD HH:mm:ss");
+
+
+//这个月
+const monthStartDateTime = moment().startOf('month').format("YYYY-MM-DD 00:00:00")
+const monthStartUnixTime = moment(monthStartDateTime).unix();
+const monthEndDateTime = moment().endOf('month').format("YYYY-MM-DD 23:59:59");
+const monthEndUnixTime = moment(monthEndDateTime).unix();
+//上月
+const lastMomentStartDateTime = moment(monthStartDateTime).subtract(1, 'month').format("YYYY-MM-DD HH:mm:ss");
+const lastMomentEndUnixTime = moment(lastMomentStartDateTime).unix();
+//下个月
+const nextMomentStartDateTime = moment(monthStartDateTime).add(1, 'month').format("YYYY-MM-DD HH:mm:ss");
+const nextMomentEndDateTime = moment(nextMomentStartDateTime).unix();
 
 const Time = () => {
   const [open, setOpen] = React.useState(false);
@@ -74,28 +97,28 @@ const Time = () => {
       </div>
       <h2>今天</h2>
       <div>
-        开始时间：{todayTime}
-        {getClipboardButton(todayTime)}
+        开始时间：{todayStartDateTime}
+        {getClipboardButton(todayStartDateTime)}
       </div>
       <div>
-        开始时间戳：{todayUnix}
-        {getClipboardButton(todayUnix)}
+        开始时间戳：{todayStartUnixTime}
+        {getClipboardButton(todayStartUnixTime)}
       </div>
       <div>
-        当前日期时间：{nowTime}
-        {getClipboardButton(nowTime)}
+        当前日期时间：{nowDateTime}
+        {getClipboardButton(nowDateTime)}
       </div>
       <div>
-        当前日期时间戳：{nowUnix}
-        {getClipboardButton(nowUnix)}
+        当前日期时间戳：{nowUnixTime}
+        {getClipboardButton(nowUnixTime)}
       </div>
       <div>
-        结束时间：{todayEndTime}
-        {getClipboardButton(todayEndTime)}
+        结束时间：{todayEndDateTime}
+        {getClipboardButton(todayEndDateTime)}
       </div>
       <div>
-        结束时间戳：{todayEndUnix}
-        {getClipboardButton(todayEndUnix)}
+        结束时间戳：{todayEndUnixTime}
+        {getClipboardButton(todayEndUnixTime)}
       </div>
       <h2>明天</h2>
       <div>
@@ -108,6 +131,11 @@ const Time = () => {
         {getClipboardButton(tomorrowEndUnix)}({tomorrowEndTime}
         {getClipboardButton(tomorrowEndTime)})
       </div>
+      <h2>月份 </h2>
+      <div>本月开始：{monthStartDateTime}{getClipboardButton(monthStartDateTime)}（{monthStartUnixTime}{getClipboardButton(monthStartUnixTime)}）</div>
+      <div>本月结束：{monthEndDateTime}{getClipboardButton(monthEndDateTime)}（{monthEndUnixTime}{getClipboardButton(monthEndUnixTime)}）</div>
+      <div>上月开始：{lastMomentStartDateTime}{getClipboardButton(lastMomentStartDateTime)}（{lastMomentEndUnixTime}{getClipboardButton(lastMomentEndUnixTime)}）</div>
+      <div>下月开始：{nextMomentStartDateTime}{getClipboardButton(nextMomentStartDateTime)}（{nextMomentEndDateTime}{getClipboardButton(nextMomentEndDateTime)}）</div>
       <Snackbar
         anchorOrigin={{
           vertical: "top",
