@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import Viewer from "react-viewer";
 import face from "../../resources/face.json";
 import imagesLoaded from "imagesloaded";
+import {useHistory} from "react-router-dom";
 
 const customSpinConfig = {
   lines: 10,
@@ -49,6 +50,7 @@ const Emoji = ({
   search,
   expandTag,
 }) => {
+  let history = useHistory();
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
   const classes = useStyles();
@@ -67,7 +69,11 @@ const Emoji = ({
     return item;
   });
 
-  const test = () => {
+  const handleUpload = () => {
+    history.push("/emoji/create");
+  };
+
+  const handleSearch = () => {
     Swal.fire({
       title: "搜索",
       input: "text",
@@ -86,8 +92,11 @@ const Emoji = ({
 
   return (
     <Grid container>
-      <Button variant="contained" color="primary" onClick={() => test()}>
+      <Button variant="contained" color="primary" onClick={() => handleSearch()}>
         搜索
+      </Button>
+      <Button variant="contained" color="secondary" onClick={() => handleUpload()} style={{marginLeft: 20}}>
+        上传
       </Button>
       <hr className={classes.hr} />
       <Filter
