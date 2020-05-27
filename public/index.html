@@ -67,13 +67,14 @@
         grecaptcha
           .execute("%REACT_APP_RECAPTCHA%", { action: "homepage" })
           .then(function (token) {
-            axios
-              .post("recaptcha", {
+            fetch("%REACT_APP_API_URL%"+'recaptcha', {
+              method: 'post',
+              body: JSON.stringify({
                 token: token,
               })
-              .then((response) => {
-                console.log(response);
-              });
+            }).then(function(response) {
+              console.log(response);
+            });
           });
       });
     </script>

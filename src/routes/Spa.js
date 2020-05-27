@@ -100,8 +100,8 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../components/Emoji"))}
           />
           <Route
-            path="/emoji/post"
-            component={loadable(() => import("../components/Emoji/EmojiPost"))}
+            path="/emoji/create"
+            component={loadable(() => import("../components/Emoji/EmojiCreate"))}
           />
           <Route
             exact

@@ -3,11 +3,27 @@ import { useDropzone } from "react-dropzone";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const cdn = "https://cdn.gugelong.com/love/";
 
-const EmojiPost = () => {
-  const [data, setData] = useState([]);
+const EmojiCreate = () => {
+  const [data, setData] = useState();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const onDrop = useCallback((acceptedFiles) => {
     const file = new Blob([acceptedFiles[0]]);
     const formData = new FormData();
@@ -31,8 +47,8 @@ const EmojiPost = () => {
         },
       })
       .then(function (resp) {
-        console.log(resp.data);
         setData(resp.data);
+        setOpen(true);
       });
   }, []);
 
@@ -46,6 +62,19 @@ const EmojiPost = () => {
 
   return (
     <div>
+      <Snackbar
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        open={open}
+        autoHideDuration={2000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity="success">
+          上传成功
+        </Alert>
+      </Snackbar>
       <div {...getRootProps()}>
         <input {...getInputProps()} />
         {isDragActive ? (
@@ -55,24 +84,23 @@ const EmojiPost = () => {
         )}
       </div>
       <Grid container spacing={2} justify="center" alignItems="flex-end">
-        {data.map((item, index) => {
-          return (
-            <Grid key={index} item xs={6} sm={4} md={3} lg={2}>
-              <img
-                id={index}
-                src={cdn + item["name"]}
-                alt={item["name"]}
-                width="100%"
-              />
-              <Typography variant="body2" component="h3">
-                {item["name"]}
-              </Typography>
-            </Grid>
-          );
-        })}
+        {undefined === data ?
+          <Grid item>暂无上传的图片</Grid>
+          :
+          <Grid item xs={6} sm={4} md={3} lg={2}>
+            <img
+              src={data.url}
+              alt="上传的图片"
+              width="100%"
+            />
+            <Typography variant="body2" component="h3">
+              {data.url}
+            </Typography>
+          </Grid>
+        }
       </Grid>
     </div>
   );
 };
 
-export default EmojiPost;
+export default EmojiCreate;
