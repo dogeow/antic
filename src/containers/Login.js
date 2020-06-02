@@ -23,6 +23,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import Tooltip from "@material-ui/core/Tooltip";
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,6 +67,16 @@ const SignInSide = ({ dispatch }) => {
   const [password, setPassword] = useState("");
   const [remember_me, setRemember_me] = useState(false);
   const [inputErrors, setInputErrors] = useState(false);
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -189,9 +200,22 @@ const SignInSide = ({ dispatch }) => {
                 />
               </Grid>
               <Grid item>
-                <Tooltip title="记住我：登录有效期三个礼拜" placement="right">
-                  <ErrorOutlineIcon />
-                </Tooltip>
+                <ClickAwayListener onClickAway={handleTooltipClose}>
+                    <Tooltip
+                      PopperProps={{
+                        disablePortal: true,
+                      }}
+                      onClose={handleTooltipClose}
+                      open={open}
+                      disableFocusListener
+                      disableHoverListener
+                      disableTouchListener
+                      title="记住我：登录有效期三个礼拜"
+                      placement="right"
+                    >
+                      <ErrorOutlineIcon onClick={handleTooltipOpen} />
+                    </Tooltip>
+                </ClickAwayListener>
               </Grid>
             </Grid>
             <Button
