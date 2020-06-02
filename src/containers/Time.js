@@ -16,7 +16,7 @@ function Alert(props) {
 const todayDate = moment().format("YYYY-MM-DD"); // 2020-04-22
 
 // 今天开始
-const todayStartDateTime = todayDate+' 00:00:00'; // 2020-04-22 00:00:00
+const todayStartDateTime = todayDate + " 00:00:00"; // 2020-04-22 00:00:00
 const todayStartUnixTime = moment(todayStartDateTime).unix(); // 1587484800
 
 // 现在
@@ -30,7 +30,9 @@ const todayEndDateTime = moment(todayDate)
 const todayEndUnixTime = todayStartUnixTime + 86400 - 1;
 
 // 昨天
-const yesterdayStartUnix = moment(todayStartDateTime).subtract(1, "days").unix();
+const yesterdayStartUnix = moment(todayStartDateTime)
+  .subtract(1, "days")
+  .unix();
 const yesterdayStartTime = moment(todayStartDateTime)
   .subtract(1, "days")
   .format("YYYY-MM-DD HH:mm:ss");
@@ -50,17 +52,22 @@ const tomorrowEndTime = moment(todayStartDateTime)
   .subtract(1, "second")
   .format("YYYY-MM-DD HH:mm:ss");
 
-
 //这个月
-const monthStartDateTime = moment().startOf('month').format("YYYY-MM-DD 00:00:00")
+const monthStartDateTime = moment()
+  .startOf("month")
+  .format("YYYY-MM-DD 00:00:00");
 const monthStartUnixTime = moment(monthStartDateTime).unix();
-const monthEndDateTime = moment().endOf('month').format("YYYY-MM-DD 23:59:59");
+const monthEndDateTime = moment().endOf("month").format("YYYY-MM-DD 23:59:59");
 const monthEndUnixTime = moment(monthEndDateTime).unix();
 //上月
-const lastMomentStartDateTime = moment(monthStartDateTime).subtract(1, 'month').format("YYYY-MM-DD HH:mm:ss");
+const lastMomentStartDateTime = moment(monthStartDateTime)
+  .subtract(1, "month")
+  .format("YYYY-MM-DD HH:mm:ss");
 const lastMomentEndUnixTime = moment(lastMomentStartDateTime).unix();
 //下个月
-const nextMomentStartDateTime = moment(monthStartDateTime).add(1, 'month').format("YYYY-MM-DD HH:mm:ss");
+const nextMomentStartDateTime = moment(monthStartDateTime)
+  .add(1, "month")
+  .format("YYYY-MM-DD HH:mm:ss");
 const nextMomentEndDateTime = moment(nextMomentStartDateTime).unix();
 
 const Time = () => {
@@ -132,10 +139,26 @@ const Time = () => {
         {getClipboardButton(tomorrowEndTime)})
       </div>
       <h2>月份 </h2>
-      <div>本月开始：{monthStartDateTime}{getClipboardButton(monthStartDateTime)}（{monthStartUnixTime}{getClipboardButton(monthStartUnixTime)}）</div>
-      <div>本月结束：{monthEndDateTime}{getClipboardButton(monthEndDateTime)}（{monthEndUnixTime}{getClipboardButton(monthEndUnixTime)}）</div>
-      <div>上月开始：{lastMomentStartDateTime}{getClipboardButton(lastMomentStartDateTime)}（{lastMomentEndUnixTime}{getClipboardButton(lastMomentEndUnixTime)}）</div>
-      <div>下月开始：{nextMomentStartDateTime}{getClipboardButton(nextMomentStartDateTime)}（{nextMomentEndDateTime}{getClipboardButton(nextMomentEndDateTime)}）</div>
+      <div>
+        本月开始：{monthStartDateTime}
+        {getClipboardButton(monthStartDateTime)}（{monthStartUnixTime}
+        {getClipboardButton(monthStartUnixTime)}）
+      </div>
+      <div>
+        本月结束：{monthEndDateTime}
+        {getClipboardButton(monthEndDateTime)}（{monthEndUnixTime}
+        {getClipboardButton(monthEndUnixTime)}）
+      </div>
+      <div>
+        上月开始：{lastMomentStartDateTime}
+        {getClipboardButton(lastMomentStartDateTime)}（{lastMomentEndUnixTime}
+        {getClipboardButton(lastMomentEndUnixTime)}）
+      </div>
+      <div>
+        下月开始：{nextMomentStartDateTime}
+        {getClipboardButton(nextMomentStartDateTime)}（{nextMomentEndDateTime}
+        {getClipboardButton(nextMomentEndDateTime)}）
+      </div>
       <Snackbar
         anchorOrigin={{
           vertical: "top",

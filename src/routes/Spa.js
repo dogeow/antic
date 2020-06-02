@@ -10,7 +10,7 @@ import Index from "../containers/Index";
 import Header from "../components/Header";
 import Footer from "../containers/Footer";
 
-const useStyles = makeStyles(({
+const useStyles = makeStyles({
   main: {
     paddingLeft: 0,
     paddingRight: 0,
@@ -23,7 +23,7 @@ const useStyles = makeStyles(({
     bottom: 0,
     zIndex: 9,
   },
-}));
+});
 
 const Spa = ({ match }) => {
   const classes = useStyles();
@@ -101,7 +101,9 @@ const Spa = ({ match }) => {
           />
           <Route
             path="/emoji/create"
-            component={loadable(() => import("../components/Emoji/EmojiCreate"))}
+            component={loadable(() =>
+              import("../components/Emoji/EmojiCreate")
+            )}
           />
           <Route
             exact

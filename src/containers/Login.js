@@ -21,6 +21,8 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -178,11 +180,20 @@ const SignInSide = ({ dispatch }) => {
                 ),
               }}
             />
-            <FormControlLabel
-              control={<Checkbox color="primary" checked={remember_me} />}
-              label="记住我"
-              onChange={() => setRemember_me(!remember_me)}
-            />
+            <Grid container alignItems="center">
+              <Grid item>
+                <FormControlLabel
+                  control={<Checkbox color="primary" checked={remember_me} />}
+                  label="记住我"
+                  onChange={() => setRemember_me(!remember_me)}
+                />
+              </Grid>
+              <Grid item>
+                <Tooltip title="记住我：登录有效期三个礼拜" placement="right">
+                  <ErrorOutlineIcon />
+                </Tooltip>
+              </Grid>
+            </Grid>
             <Button
               type="submit"
               fullWidth

@@ -1,5 +1,5 @@
-import React, {useCallback, useState, useEffect} from "react";
-import {useDropzone} from "react-dropzone";
+import React, { useCallback, useState, useEffect } from "react";
+import { useDropzone } from "react-dropzone";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
@@ -58,11 +58,16 @@ const EmojiCreate = () => {
     });
   }, []);
 
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
     <Grid container spacing={2} justify="center" alignItems="flex-end">
-      <Grid item xs={12} {...getRootProps()} style={{padding: 46, border: '5px dotted'}}>
+      <Grid
+        item
+        xs={12}
+        {...getRootProps()}
+        style={{ padding: 46, border: "5px dotted" }}
+      >
         <input {...getInputProps()} />
         {isDragActive ? (
           <p>拖放文件到这里</p>
@@ -70,20 +75,16 @@ const EmojiCreate = () => {
           <p>拖放文件到这里，或点击选择文件</p>
         )}
       </Grid>
-      {undefined === data ?
+      {undefined === data ? (
         <Grid item>暂无上传的图片</Grid>
-        :
+      ) : (
         <Grid item xs={6} sm={4} md={3} lg={2}>
-          <img
-            src={data.url}
-            alt="上传的图片"
-            width="100%"
-          />
+          <img src={data.url} alt="上传的图片" width="100%" />
           <Typography variant="body2" component="h3">
             图片地址：{data.url}
           </Typography>
         </Grid>
-      }
+      )}
       <Snackbar
         anchorOrigin={{
           vertical: "top",

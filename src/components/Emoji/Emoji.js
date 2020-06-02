@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import Viewer from "react-viewer";
 import face from "../../resources/face.json";
 import imagesLoaded from "imagesloaded";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const customSpinConfig = {
   lines: 10,
@@ -92,10 +92,19 @@ const Emoji = ({
 
   return (
     <Grid container>
-      <Button variant="contained" color="primary" onClick={() => handleSearch()}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => handleSearch()}
+      >
         搜索
       </Button>
-      <Button variant="contained" color="secondary" onClick={() => handleUpload()} style={{marginLeft: 20}}>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={() => handleUpload()}
+        style={{ marginLeft: 20 }}
+      >
         上传
       </Button>
       <hr className={classes.hr} />

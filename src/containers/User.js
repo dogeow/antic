@@ -2,7 +2,7 @@ import React from "react";
 import { useStore } from "react-redux";
 import md5 from "md5";
 import Grid from "@material-ui/core/Grid";
-import moment from 'moment';
+import moment from "moment";
 
 const User = () => {
   const store = useStore();
@@ -31,7 +31,12 @@ const User = () => {
       <Grid item xs={12}>
         <ul>
           <li>User-Agent：{navigator.userAgent}</li>
-          <li>Token 到期时间：{moment.unix(localStorage.access_token_expired_at).format('YYYY-MM-DD HH:mm:ss')}</li>
+          <li>
+            Token 到期时间：
+            {moment
+              .unix(localStorage.access_token_expired_at)
+              .format("YYYY-MM-DD HH:mm:ss")}
+          </li>
         </ul>
       </Grid>
     </Grid>
