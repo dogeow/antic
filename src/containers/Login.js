@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {useHistory} from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -12,11 +12,11 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Copyright from "../components/Copyright";
-import {loginAction} from "../actions";
-import {connect} from "react-redux";
-import {logged} from "../helpers";
+import { loginAction } from "../actions";
+import { connect } from "react-redux";
+import { logged } from "../helpers";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityIcon from "@material-ui/icons/Visibility";
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignInSide = ({dispatch}) => {
+const SignInSide = ({ dispatch }) => {
   const classes = useStyles();
   const history = useHistory();
   const [email, setEmail] = useState("");
@@ -90,11 +90,11 @@ const SignInSide = ({dispatch}) => {
         if (response.status === 202) {
           setInputErrors(response.data.errors);
         } else {
-          let {access_token} = response.data;
+          let { access_token } = response.data;
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + access_token;
-          axios.post("user/profile").then(({data}) => {
-            let {id, name, email} = data;
+          axios.post("user/profile").then(({ data }) => {
+            let { id, name, email } = data;
             logged(response.data, data);
             dispatch(loginAction(access_token, id, name, email));
           });
@@ -109,11 +109,11 @@ const SignInSide = ({dispatch}) => {
 
   return (
     <Grid container component="main" className={classes.root}>
-      <Grid item xs={false} sm={4} md={7} className={classes.image}/>
+      <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon/>
+            <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             登录
@@ -135,7 +135,7 @@ const SignInSide = ({dispatch}) => {
                 inputErrors && inputErrors.email ? inputErrors.email : null
               }
               InputLabelProps={
-                inputErrors && inputErrors.email ? {shrink: true} : {}
+                inputErrors && inputErrors.email ? { shrink: true } : {}
               }
               helperText={
                 inputErrors && inputErrors.email ? inputErrors.email[0] : ""
@@ -143,7 +143,7 @@ const SignInSide = ({dispatch}) => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <MailOutlineIcon/>
+                    <MailOutlineIcon />
                   </InputAdornment>
                 ),
               }}
@@ -166,7 +166,7 @@ const SignInSide = ({dispatch}) => {
                   : null
               }
               InputLabelProps={
-                inputErrors && inputErrors.password ? {shrink: true} : {}
+                inputErrors && inputErrors.password ? { shrink: true } : {}
               }
               helperText={
                 inputErrors && inputErrors.password
@@ -194,7 +194,7 @@ const SignInSide = ({dispatch}) => {
             <Grid container alignItems="center">
               <Grid item>
                 <FormControlLabel
-                  control={<Checkbox color="primary" checked={remember_me}/>}
+                  control={<Checkbox color="primary" checked={remember_me} />}
                   label="记住我"
                   onChange={() => setRemember_me(!remember_me)}
                 />
@@ -210,7 +210,7 @@ const SignInSide = ({dispatch}) => {
                   arrow
                   interactive
                 >
-                  <ErrorOutlineIcon onClick={handleTooltipOpen}/>
+                  <ErrorOutlineIcon onClick={handleTooltipOpen} />
                 </Tooltip>
               </Grid>
             </Grid>
@@ -243,7 +243,7 @@ const SignInSide = ({dispatch}) => {
               </Grid>
             </Grid>
             <Box mt={5}>
-              <Copyright/>
+              <Copyright />
             </Box>
           </form>
         </div>
