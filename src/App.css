@@ -5,17 +5,15 @@
 /* 更改默认行为 start */
 a:visited {
   color: unset;
-  text-decoration: none;
-}
-
-a:hover {
-  color: unset;
-  text-decoration: none;
 }
 
 a:link {
   color: unset;
   text-decoration: none;
+}
+
+a:hover {
+  color: unset;
 }
 
 blockquote {
@@ -121,7 +119,7 @@ input {
     2px 2px 0 rgb(-153, -153, -153), 3px 3px 0 rgb(-204, -204, -204),
     4px 4px 0 rgb(-255, -255, -255), 5px 5px 0 rgb(-306, -306, -306),
     6px 6px 5px rgba(0, 0, 0, 1), 6px 6px 1px rgba(0, 0, 0, 0.5),
-    0px 0px 5px rgba(0, 0, 0, 0.2);
+    0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .quote {

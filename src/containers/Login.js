@@ -191,29 +191,27 @@ const SignInSide = ({ dispatch }) => {
                 ),
               }}
             />
-            <Grid container alignItems="center">
-              <Grid item>
-                <FormControlLabel
-                  control={<Checkbox color="primary" checked={remember_me} />}
-                  label="记住我"
-                  onChange={() => setRemember_me(!remember_me)}
-                />
-              </Grid>
-              <Grid item>
-                <Tooltip
-                  title="记住我：登录有效期三个礼拜"
-                  placement="right"
-                  enterDelay={200}
-                  disableFocusListener
-                  disableTouchListener
-                  TransitionComponent={Zoom}
-                  arrow
-                  interactive
-                >
-                  <ErrorOutlineIcon onClick={handleTooltipOpen} />
-                </Tooltip>
-              </Grid>
-            </Grid>
+
+            <div style={{ display: "flex" }}>
+              <FormControlLabel
+                control={<Checkbox color="primary" checked={remember_me} />}
+                label="记住我"
+                onChange={() => setRemember_me(!remember_me)}
+              />
+              <Tooltip
+                title="记住我：登录有效期三个礼拜"
+                placement="right"
+                enterDelay={200}
+                disableFocusListener
+                disableTouchListener
+                TransitionComponent={Zoom}
+                arrow
+                interactive
+                style={{ alignSelf: "center" }}
+              >
+                <ErrorOutlineIcon onClick={handleTooltipOpen} />
+              </Tooltip>
+            </div>
             <Button
               type="submit"
               fullWidth
