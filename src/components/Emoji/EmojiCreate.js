@@ -10,8 +10,6 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const cdn = "https://cdn.gugelong.com/love/";
-
 const EmojiCreate = () => {
   const [data, setData] = useState();
   const [open, setOpen] = React.useState(false);
@@ -66,25 +64,29 @@ const EmojiCreate = () => {
         item
         xs={12}
         {...getRootProps()}
-        style={{ padding: 46, border: "5px dotted" }}
+        style={{
+          width: 288,
+          height: 288,
+          padding: 46,
+          border: "5px dotted",
+          backgroundImage: data ? `url(${data.url})` : 'none',
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+        }}
       >
         <input {...getInputProps()} />
         {isDragActive ? (
-          <p>拖放文件到这里</p>
+          <p style={{paddingTop: '25%', textAlign: 'center'}}>拖放文件到这里</p>
         ) : (
-          <p>拖放文件到这里，或点击选择文件</p>
+          <p style={{paddingTop: '25%', textAlign: 'center'}}>拖放文件到这里，或点击选择文件</p>
         )}
       </Grid>
-      {undefined === data ? (
-        <Grid item>暂无上传的图片</Grid>
-      ) : (
-        <Grid item xs={6} sm={4} md={3} lg={2}>
-          <img src={data.url} alt="上传的图片" width="100%" />
-          <Typography variant="body2" component="h3">
-            图片地址：{data.url}
-          </Typography>
-        </Grid>
-      )}
+      <Grid item xs>
+        <Typography variant="body2" component="h3">
+          图片地址：{undefined === data ? '请先上传图片' : data.url}
+        </Typography>
+      </Grid>
       <Snackbar
         anchorOrigin={{
           vertical: "top",

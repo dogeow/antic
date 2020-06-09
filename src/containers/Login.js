@@ -191,7 +191,6 @@ const SignInSide = ({ dispatch }) => {
                 ),
               }}
             />
-
             <div style={{ display: "flex" }}>
               <FormControlLabel
                 control={<Checkbox color="primary" checked={remember_me} />}
