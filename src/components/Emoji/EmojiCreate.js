@@ -69,22 +69,26 @@ const EmojiCreate = () => {
           height: 288,
           padding: 46,
           border: "5px dotted",
-          backgroundImage: data ? `url(${data.url})` : 'none',
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
+          backgroundImage: data ? `url(${data.url})` : "none",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
         }}
       >
         <input {...getInputProps()} />
         {isDragActive ? (
-          <p style={{paddingTop: '25%', textAlign: 'center'}}>拖放文件到这里</p>
+          <p style={{ paddingTop: "25%", textAlign: "center" }}>
+            拖放文件到这里
+          </p>
         ) : (
-          <p style={{paddingTop: '25%', textAlign: 'center'}}>拖放文件到这里，或点击选择文件</p>
+          <p style={{ paddingTop: "25%", textAlign: "center" }}>
+            拖放文件到这里，或点击选择文件
+          </p>
         )}
       </Grid>
       <Grid item xs>
         <Typography variant="body2" component="h3">
-          图片地址：{undefined === data ? '请先上传图片' : data.url}
+          图片地址：{undefined === data ? "请先上传图片" : data.url}
         </Typography>
       </Grid>
       <Snackbar
