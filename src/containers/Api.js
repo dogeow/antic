@@ -42,7 +42,8 @@ const Api = () => {
     <Grid container spacing={2}>
       <Grid item xs={12}>
         <Typography component="h3" variant="h6">
-          前缀：{process.env.REACT_APP_API_URL}
+          前缀：
+          {process.env.REACT_APP_API_URL}
         </Typography>
       </Grid>
 
@@ -94,7 +95,8 @@ const Api = () => {
           <TextareaAutosize aria-label="textarea" value={result.join("\n")} />
         ) : (
           <Typography component="h4" variant="body1">
-            结果：{result}
+            结果：
+            {result}
           </Typography>
         )}
       </Grid>

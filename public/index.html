@@ -65,17 +65,17 @@
     <script>
       grecaptcha.ready(function () {
         grecaptcha
-          .execute("%REACT_APP_RECAPTCHA%", { action: "homepage" })
-          .then(function (token) {
-            fetch("%REACT_APP_API_URL%"+'recaptcha', {
-              method: 'post',
-              body: JSON.stringify({
-                token: token,
-              })
-            }).then(function(response) {
-              console.log(response);
-            });
-          });
+                .execute("%REACT_APP_RECAPTCHA%", { action: "homepage" })
+                .then(function (token) {
+                  fetch("%REACT_APP_API_URL%"+'recaptcha', {
+                    method: 'post',
+                    body: JSON.stringify({
+                      token: token,
+                    })
+                  }).then(function(response) {
+                    console.log(response);
+                  });
+                });
       });
     </script>
   </body>

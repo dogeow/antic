@@ -1,16 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import * as Sentry from "@sentry/browser";
 import store from "./store";
 import App from "./containers/App";
 import * as serviceWorker from "./serviceWorker";
-import * as Sentry from "@sentry/browser";
 
 Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN });
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
   </Provider>,
   document.getElementById("root")
 );

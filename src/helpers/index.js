@@ -3,16 +3,11 @@ import moment from "moment";
 
 // 判断是否登录过期
 export const isExpired = () => {
-  let isExpired = true;
-  let access_token_expired_at = localStorage.access_token_expired_at;
-  if (
+  const { access_token_expired_at } = localStorage;
+  return !(
     access_token_expired_at &&
     moment().isBefore(moment.unix(access_token_expired_at))
-  ) {
-    isExpired = false;
-  }
-
-  return isExpired;
+  );
 };
 
 export const logged = (token, user) => {
@@ -21,8 +16,7 @@ export const logged = (token, user) => {
   localStorage.user_id = user.id;
   localStorage.user_name = user.name;
   localStorage.user_email = user.email;
-  axios.defaults.headers.common["Authorization"] =
-    "Bearer " + token.access_token;
+  axios.defaults.headers.common.Authorization = `Bearer ${token.access_token}`;
 };
 
 export const logout = () => {
@@ -35,8 +29,8 @@ export const logout = () => {
 
 // 获取主机头（Host）和域名（Domain），如 https://www.example.com/ ，不包含路径（Path）
 export const getHost = (url) => {
-  let reg = /^(http(?:s):\/\/.*?)(\/|$)/;
-  let result = reg.exec(url);
+  const reg = /^(http(?:s):\/\/.*?)(\/|$)/;
+  const result = reg.exec(url);
 
   if (result) {
     return result[0];

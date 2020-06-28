@@ -1,7 +1,7 @@
 import { isMobile } from "react-device-detect";
-import face from "../resources/face.json";
 import uniq from "lodash/uniq";
 import isEqual from "lodash/isEqual";
+import face from "../resources/face.json";
 
 /**
  * 分类筛选
@@ -13,14 +13,13 @@ import isEqual from "lodash/isEqual";
 function categoryFilter(array, category) {
   if (category === "全部") {
     return array;
-  } else {
-    let filter = [];
-    array.map(function (single) {
-      return single["category"] === category ? filter.push(single) : null;
-    });
-
-    return filter;
   }
+  const filter = [];
+  array.map((single) => {
+    return single.category === category ? filter.push(single) : null;
+  });
+
+  return filter;
 }
 
 /**
@@ -35,9 +34,9 @@ function tagFilter(array, tagState) {
     return array;
   }
 
-  let filter = [];
+  const filter = [];
   for (const single of array) {
-    if (single["tag"].includes(tagState)) {
+    if (single.tag.includes(tagState)) {
       filter.push(single);
     }
   }
@@ -52,8 +51,8 @@ function tagFilter(array, tagState) {
  */
 function allTag(array) {
   let tagsList = [];
-  array.map(function (single) {
-    return (tagsList = tagsList.concat(single["tag"]));
+  array.map((single) => {
+    return (tagsList = tagsList.concat(single.tag));
   });
 
   return uniq(tagsList);
@@ -66,10 +65,9 @@ function allTag(array) {
  * @returns {{start: number, end: number}}
  */
 function offset(whichPage, pageLimit) {
-  let offset = (whichPage - 1) * pageLimit;
   return {
-    start: offset,
-    end: offset + pageLimit,
+    start: (whichPage - 1) * pageLimit,
+    end: (whichPage - 1) * pageLimit + pageLimit,
   };
 }
 
@@ -106,52 +104,51 @@ export default (state = defaultState, action) => {
         faceIsLoading: action.value,
       };
     case "SELECT_CATEGORY":
-      let selectedCategory = action.value;
-      if (selectedCategory === state.selectedCategory) {
+      if (action.value === state.selectedCategory) {
         // 分类多次点击原样返回
         return state;
       }
 
-      let categoryData = categoryFilter(face, selectedCategory);
-      let categoryDataRange = offset(state.currentPage, state.pageLimit);
+      const categoryData = categoryFilter(face, action.value);
+      const categoryDataRange = offset(state.currentPage, state.pageLimit);
       data = categoryData.slice(categoryDataRange.start, categoryDataRange.end);
       return {
         ...state,
-        selectedCategory: selectedCategory,
+        selectedCategory: action.value,
         selectedTag: "全部",
         displayTag: allTag(categoryData),
-        data: data,
+        data,
         currentPage: 1, // 点击分类后都切换到第一页
         filterNum: categoryData.length,
-        faceIsLoading: selectedCategory !== state.selectedCategory,
+        faceIsLoading: action.value !== state.selectedCategory,
         expandCategory: !isMobile,
       };
     case "SELECT_TAG":
-      let selectedTag = action.value;
+      const selectedTag = action.value;
       // 选择标签时，在原有被选择的分类上继续筛选
-      let tagData = getCategoryAndTagData(
+      const tagData = getCategoryAndTagData(
         face,
         state.selectedCategory,
         action.value
       );
-      let tagDataRange = offset(state.currentPage, state.pageLimit);
+      const tagDataRange = offset(state.currentPage, state.pageLimit);
       data = tagData.slice(tagDataRange.start, tagDataRange.end);
       if (isEqual(tagData, state.data)) {
         return {
           ...state,
-          selectedTag: selectedTag,
-        };
-      } else {
-        return {
-          ...state,
-          selectedTag: selectedTag,
-          data: data,
-          filterNum: tagData.length,
-          currentPage: 1,
-          faceIsLoading: action.value !== state.selectedTag,
-          expandTag: !isMobile,
+          selectedTag,
         };
       }
+      return {
+        ...state,
+        selectedTag,
+        data,
+        filterNum: tagData.length,
+        currentPage: 1,
+        faceIsLoading: action.value !== state.selectedTag,
+        expandTag: !isMobile,
+      };
+
     case "EXPAND_CATEGORY":
       return {
         ...state,
@@ -163,12 +160,12 @@ export default (state = defaultState, action) => {
         expandTag: !state.expandTag,
       };
     case "WHICH_PAGE":
-      let whichPageData = getCategoryAndTagData(
+      const whichPageData = getCategoryAndTagData(
         face,
         state.selectedCategory,
         state.selectedTag
       );
-      let whichPageDataRange = offset(action.value, state.pageLimit);
+      const whichPageDataRange = offset(action.value, state.pageLimit);
       data = whichPageData.slice(
         whichPageDataRange.start,
         whichPageDataRange.end
@@ -176,16 +173,15 @@ export default (state = defaultState, action) => {
 
       return {
         ...state,
-        data: data,
+        data,
         currentPage: action.value,
         faceIsLoading: true,
       };
     case "SEARCH":
-      let filter = [];
+      const filter = [];
       face.map(function (single) {
         if (
-          single["name"].toLowerCase().indexOf(action.value.toLowerCase()) !==
-          -1
+          single.name.toLowerCase().indexOf(action.value.toLowerCase()) !== -1
         ) {
           return filter.push(single);
         }
