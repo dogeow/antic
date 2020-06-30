@@ -38,9 +38,7 @@ const Game = () => {
         </Grid>
         <Grid item xs={3}>
           经验值
-          {game.exp}
-/
-{game.nextLevelNeedExp}
+          {game.exp}/{game.nextLevelNeedExp}
         </Grid>
       </Grid>
       <Grid container>
