@@ -68,7 +68,7 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <RouteLink to={"/powered-by"}>More?</RouteLink>
+              <RouteLink to="/powered-by">More?</RouteLink>
             </li>
           </ul>
         </Grid>

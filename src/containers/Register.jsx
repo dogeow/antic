@@ -10,7 +10,6 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Copyright from "../components/Copyright";
 import axios from "axios";
 import Swal from "sweetalert2";
 import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -18,6 +17,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import Copyright from "../components/Copyright";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -52,10 +52,10 @@ const Register = ({ history }) => {
     e.preventDefault();
     axios
       .post("/user/register", {
-        name: name,
-        email: email,
-        password: password,
-        password_confirmation: password_confirmation,
+        name,
+        email,
+        password,
+        password_confirmation,
       })
       .then((response) => {
         if (response.status === 201) {
@@ -97,15 +97,11 @@ const Register = ({ history }) => {
                 autoComplete="name"
                 onChange={(e) => setName(e.target.value)}
                 error={!!inputErrors.name}
-                placeholder={
-                  !!inputErrors.name ? inputErrors.name[0] : undefined
-                }
+                placeholder={inputErrors.name ? inputErrors.name[0] : undefined}
                 InputLabelProps={
-                  !!inputErrors.name ? { shrink: true } : undefined
+                  inputErrors.name ? { shrink: true } : undefined
                 }
-                helperText={
-                  !!inputErrors.name ? inputErrors.name[0] : undefined
-                }
+                helperText={inputErrors.name ? inputErrors.name[0] : undefined}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">

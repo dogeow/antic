@@ -25,16 +25,22 @@ const Game = () => {
           {game.name}
         </Grid>
         <Grid item xs>
-          铜币{game.copper}
+          铜币
+          {game.copper}
         </Grid>
         <Grid item xs>
-          银币{game.silver}
+          银币
+          {game.silver}
         </Grid>
         <Grid item xs>
-          金币{game.gold}
+          金币
+          {game.gold}
         </Grid>
         <Grid item xs={3}>
-          经验值{game.exp}/{game.nextLevelNeedExp}
+          经验值
+          {game.exp}
+/
+{game.nextLevelNeedExp}
         </Grid>
       </Grid>
       <Grid container>

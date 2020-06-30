@@ -25,7 +25,7 @@ const PostBody = ({ post }) => {
       {post ? (
         <Viewer
           initialValue={post.content}
-          useCommandShortcut={true}
+          useCommandShortcut
           language="zh-CN"
           plugins={[
             [codeSyntaxHightlight, { hljs }],
@@ -36,7 +36,7 @@ const PostBody = ({ post }) => {
           ]}
         />
       ) : (
-        <Skeleton variant="rect" height={"60vh"} />
+        <Skeleton variant="rect" height="60vh" />
       )}
     </div>
   );

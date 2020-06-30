@@ -6,39 +6,35 @@ import TreeItem from "@material-ui/lab/TreeItem";
 import chromeBookmarks from "../resources/Bookmarks";
 
 const subFolder = (project) => {
-  if ("folder" === project["type"]) {
+  if (project.type === "folder") {
     // 文件夹
     return (
-      <TreeItem
-        key={project["id"]}
-        nodeId={project["id"]}
-        label={project["name"]}
-      >
-        {subFolder(project["children"])}
+      <TreeItem key={project.id} nodeId={project.id} label={project.name}>
+        {subFolder(project.children)}
       </TreeItem>
     );
-  } else if ("url" === project["type"]) {
+  }
+  if (project.type === "url") {
     // 单个链接
     return (
       <a
-        key={project["id"]}
+        key={project.id}
         href={project.url}
         target="_blank"
         rel="noopener noreferrer"
       >
-        <TreeItem nodeId={project["id"]} label={project["name"]} />
+        <TreeItem nodeId={project.id} label={project.name} />
       </a>
     );
-  } else {
-    // 子目录下的所有物件
-    let array = [];
-    project.map((children) => array.push(subFolder(children)));
-
-    return array;
   }
+  // 子目录下的所有物件
+  const array = [];
+  project.map((children) => array.push(subFolder(children)));
+
+  return array;
 };
 
-const bookmarks = chromeBookmarks["roots"]["bookmark_bar"]["children"];
+const bookmarks = chromeBookmarks.roots.bookmark_bar.children;
 
 const Bookmarks = () => {
   return (

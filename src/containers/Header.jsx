@@ -4,8 +4,6 @@ import { useDispatch } from "react-redux";
 import md5 from "md5";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { logged } from "../helpers";
-import { loginAction } from "../actions";
 import SearchIcon from "@material-ui/icons/Search";
 import Hidden from "@material-ui/core/Hidden";
 import TextField from "@material-ui/core/TextField";
@@ -26,15 +24,16 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Container from "@material-ui/core/Container";
 
 // 组件
+import GitHub from "@material-ui/icons/GitHub";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import Logo from "../components/Logo";
 import Drawer from "../components/Drawer";
 import Settings from "../components/Settings";
 
-import { logout } from "../helpers/index";
-import GitHub from "@material-ui/icons/GitHub";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import { loginAction } from "../actions";
+import { logged, logout } from "../helpers";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
@@ -106,11 +105,10 @@ const Header = ({
         remember_me: true,
       })
       .then((response) => {
-        let { access_token } = response.data;
-        axios.defaults.headers.common["Authorization"] =
-          "Bearer " + access_token;
+        const { access_token } = response.data;
+        axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
         axios.post("user/profile").then((response2) => {
-          let { id, name, email } = response2.data.user;
+          const { id, name, email } = response2.data.user;
           logged(response.data, response2.data.user);
           dispatch(loginAction(access_token, id, name, email));
         });
@@ -143,7 +141,7 @@ const Header = ({
             >
               <MenuIcon />
             </IconButton>
-            <RouteLink to={"/"} className={classes.title}>
+            <RouteLink to="/" className={classes.title}>
               <Logo />
             </RouteLink>
             <Hidden only="xs">
@@ -180,7 +178,7 @@ const Header = ({
               </IconButton>
             </Hidden>
             {lab.is_expired ? (
-              <Button color="inherit" component={RouteLink} to={"/login"}>
+              <Button color="inherit" component={RouteLink} to="/login">
                 登录
               </Button>
             ) : (
@@ -260,7 +258,8 @@ const Header = ({
                   onThemeClick();
                 }}
               >
-                切换为{lab.themePaletteType === "dark" ? "白天☀️️" : "黑夜🌌"}
+                切换为
+                {lab.themePaletteType === "dark" ? "白天☀️️" : "黑夜🌌"}
                 模式
               </MenuItem>
               <MenuItem

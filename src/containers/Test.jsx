@@ -9,13 +9,6 @@ import isHotkey from "is-hotkey";
 import { css } from "emotion";
 // 导入 Slate 编辑器的工厂函数。
 import { Text, Editor, Transforms, Range, createEditor } from "slate";
-import {
-  withChecklists,
-  withMentions,
-  withTables,
-  withHtml,
-  withShortcuts,
-} from "../markdown/With";
 
 // 导入 Slate 组件和 React 插件。
 import {
@@ -30,6 +23,13 @@ import {
   useReadOnly,
 } from "slate-react";
 import { withHistory } from "slate-history";
+import {
+  withChecklists,
+  withMentions,
+  withTables,
+  withHtml,
+  withShortcuts,
+} from "../markdown/With";
 import { Button, Icon, Toolbar, Portal } from "../components";
 import HOTKEYS from "../markdown/Hotkeys";
 

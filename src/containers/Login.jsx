@@ -13,10 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from "@material-ui/core/styles";
-import Copyright from "../components/Copyright";
-import { loginAction } from "../actions";
 import { connect } from "react-redux";
-import { logged } from "../helpers";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityIcon from "@material-ui/icons/Visibility";
@@ -24,6 +21,9 @@ import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
+import { logged } from "../helpers";
+import { loginAction } from "../actions";
+import Copyright from "../components/Copyright";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,19 +82,18 @@ const SignInSide = ({ dispatch }) => {
     e.preventDefault();
     axios
       .post("user/login", {
-        email: email,
-        password: password,
-        remember_me: remember_me,
+        email,
+        password,
+        remember_me,
       })
       .then((response) => {
         if (response.status === 202) {
           setInputErrors(response.data.errors);
         } else {
-          let { access_token } = response.data;
-          axios.defaults.headers.common["Authorization"] =
-            "Bearer " + access_token;
+          const { access_token } = response.data;
+          axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
           axios.post("user/profile").then(({ data }) => {
-            let { id, name, email } = data;
+            const { id, name, email } = data;
             logged(response.data, data);
             dispatch(loginAction(access_token, id, name, email));
           });
@@ -235,7 +234,7 @@ const SignInSide = ({ dispatch }) => {
                   variant="body2"
                   color="secondary"
                 >
-                  {"没有账户？注册！"}
+                  没有账户？注册！
                 </Link>
               </Grid>
             </Grid>
