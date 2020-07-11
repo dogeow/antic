@@ -10,10 +10,10 @@ import Badge from "@material-ui/core/Badge/Badge";
 import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
-import { MainListItems, SecondaryListItems } from "./listItems";
 import { makeStyles } from "@material-ui/core/styles";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import { MainListItems, SecondaryListItems } from "./listItems";
 
 const drawerWidth = 240;
 

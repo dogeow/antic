@@ -11,7 +11,7 @@ import Check from "@material-ui/icons/Check";
 import Close from "@material-ui/icons/Close";
 import axios from "axios";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   tableRoot: {
     overflowX: "auto",
   },

@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 
-import Orders from "./Orders";
+import Site from "./Site";
 import Copyright from "../../components/Copyright";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +30,7 @@ const Home = () => {
           {/* Recent Orders */}
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <Orders />
+              <Site />
             </Paper>
           </Grid>
         </Grid>
