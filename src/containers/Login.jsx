@@ -65,7 +65,7 @@ const SignInSide = ({ dispatch }) => {
   const [email, setEmail] = useState("");
   const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState("");
-  const [remember_me, setRemember_me] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const [inputErrors, setInputErrors] = useState(false);
 
   const [open, setOpen] = React.useState(false);
@@ -84,18 +84,18 @@ const SignInSide = ({ dispatch }) => {
       .post("user/login", {
         email,
         password,
-        remember_me,
+        remember_me: rememberMe,
       })
       .then((response) => {
         if (response.status === 202) {
           setInputErrors(response.data.errors);
         } else {
-          const { access_token } = response.data;
-          axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
+          const { accessToken } = response.data;
+          axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
           axios.post("user/profile").then(({ data }) => {
-            const { id, name, email } = data;
+            const { id, name, userEmail } = data;
             logged(response.data, data);
-            dispatch(loginAction(access_token, id, name, email));
+            dispatch(loginAction(accessToken, id, name, userEmail));
           });
           history.push("/");
         }
@@ -192,9 +192,9 @@ const SignInSide = ({ dispatch }) => {
             />
             <div style={{ display: "flex" }}>
               <FormControlLabel
-                control={<Checkbox color="primary" checked={remember_me} />}
+                control={<Checkbox color="primary" checked={rememberMe} />}
                 label="记住我"
-                onChange={() => setRemember_me(!remember_me)}
+                onChange={() => setRememberMe(!rememberMe)}
               />
               <Tooltip
                 title="记住我：登录有效期三个礼拜"
