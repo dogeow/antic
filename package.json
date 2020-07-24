@@ -68,7 +68,8 @@
     "socket.io-client": "^2.3.0",
     "styled-components": "^5.1.0",
     "sweetalert2": "^9.10.12",
-    "typeface-roboto": "0.0.75"
+    "typeface-roboto": "0.0.75",
+    "video.js": "^7.8.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -95,8 +96,7 @@
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "prettier": "2.0.5",
-    "video.js": "^7.8.4"
+    "prettier": "2.0.5"
   },
   "husky": {
     "hooks": {
