@@ -4,11 +4,11 @@ import "@sweetalert2/theme-material-ui/material-ui.scss";
 import Echo from "laravel-echo";
 import ConsoleInfo from "./components/ConsoleInfo";
 
-const access_token = localStorage["access_token"];
+const accessToken = localStorage.access_token;
 axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-if (access_token) {
-  axios.defaults.headers.common["Authorization"] = "Bearer " + access_token;
+if (accessToken) {
+  axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 }
 
 axios.interceptors.request.use(
@@ -29,7 +29,7 @@ axios.interceptors.response.use(
     console.log("返回了：");
     console.log(response);
 
-    let errors = response.data.error;
+    const errors = response.data.error;
     if (errors) {
       Object.values(errors).forEach((error) => {
         error.forEach((errorMessage) => {
@@ -38,7 +38,7 @@ axios.interceptors.response.use(
       });
     }
 
-    let newToken = response.headers.authorization;
+    const newToken = response.headers.authorization;
     if (newToken) {
       Swal.fire("提示️", "有新的 token", "info");
       localStorage.token = newToken;
@@ -52,7 +52,7 @@ axios.interceptors.response.use(
         case 400:
           break;
         case 401:
-          let text = localStorage.getItem("user_id")
+          const text = localStorage.getItem("user_id")
             ? "登录状态过期"
             : "尚未登录账号";
           Swal.fire("提示️", text, "warning");
@@ -75,8 +75,9 @@ axios.interceptors.response.use(
 
 ConsoleInfo();
 
-//网页当前状态判断
-let state, visibilityChange;
+// 网页当前状态判断
+let state;
+let visibilityChange;
 if (typeof document.hidden !== "undefined") {
   visibilityChange = "visibilitychange";
   state = "visibilityState";
@@ -117,6 +118,7 @@ document.addEventListener(
 //
 
 window.Pusher = require("pusher-js");
+
 window.Echo = new Echo({
   broadcaster: "pusher",
   key: process.env.REACT_APP_PUSHER_APP_KEY,

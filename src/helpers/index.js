@@ -3,10 +3,9 @@ import moment from "moment";
 
 // 判断是否登录过期
 export const isExpired = () => {
-  const { access_token_expired_at } = localStorage;
+  const accessTokenExpiredAt = localStorage.access_token_expired_at;
   return !(
-    access_token_expired_at &&
-    moment().isBefore(moment.unix(access_token_expired_at))
+    accessTokenExpiredAt && moment().isBefore(moment.unix(accessTokenExpiredAt))
   );
 };
 

@@ -68,16 +68,6 @@ const SignInSide = ({ dispatch }) => {
   const [rememberMe, setRememberMe] = useState(false);
   const [inputErrors, setInputErrors] = useState(false);
 
-  const [open, setOpen] = React.useState(false);
-
-  const handleTooltipClose = () => {
-    setOpen(false);
-  };
-
-  const handleTooltipOpen = () => {
-    setOpen(true);
-  };
-
   const handleLogin = (e) => {
     e.preventDefault();
     axios
@@ -90,10 +80,10 @@ const SignInSide = ({ dispatch }) => {
         if (response.status === 202) {
           setInputErrors(response.data.errors);
         } else {
-          const { accessToken } = response.data;
+          const accessToken = response.data.access_token;
           axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
           axios.post("user/profile").then(({ data }) => {
-            const { id, name, userEmail } = data;
+            const { id, name, email: userEmail } = data;
             logged(response.data, data);
             dispatch(loginAction(accessToken, id, name, userEmail));
           });
@@ -207,7 +197,7 @@ const SignInSide = ({ dispatch }) => {
                 interactive
                 style={{ alignSelf: "center" }}
               >
-                <ErrorOutlineIcon onClick={handleTooltipOpen} />
+                <ErrorOutlineIcon />
               </Tooltip>
             </div>
             <Button

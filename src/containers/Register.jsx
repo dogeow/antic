@@ -45,7 +45,7 @@ const Register = ({ history }) => {
   const [email, setEmail] = useState("");
   const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState("");
-  const [password_confirmation, setPassword_confirmation] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [inputErrors, setInputErrors] = useState({});
 
   const handleRegister = (e) => {
@@ -55,7 +55,7 @@ const Register = ({ history }) => {
         name,
         email,
         password,
-        password_confirmation,
+        password_confirmation: passwordConfirmation,
       })
       .then((response) => {
         if (response.status === 201) {
@@ -186,7 +186,7 @@ const Register = ({ history }) => {
                 type={displayPassword ? "text" : "password"}
                 id="password_confirmation"
                 autoComplete="current-password-confirmation"
-                onChange={(e) => setPassword_confirmation(e.target.value)}
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
                 error={!!inputErrors.password_confirmation}
                 placeholder={
                   inputErrors.password_confirmation

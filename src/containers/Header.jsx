@@ -105,12 +105,12 @@ const Header = ({
         remember_me: true,
       })
       .then((response) => {
-        const { access_token } = response.data;
-        axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
+        const { accessToken } = response.data;
+        axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
         axios.post("user/profile").then((response2) => {
           const { id, name, email } = response2.data.user;
           logged(response.data, response2.data.user);
-          dispatch(loginAction(access_token, id, name, email));
+          dispatch(loginAction(accessToken, id, name, email));
         });
       });
   };
