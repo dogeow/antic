@@ -14,8 +14,8 @@ const Parking = () => {
     <>
       <div>
         <ul style={{ paddingInlineStart: "inherit" }}>
-          {data.map((item, index) => (
-            <li key={index} style={{ color: item.status ? "green" : "red" }}>
+          {data.map((item) => (
+            <li key={item.id} style={{ color: item.status ? "green" : "red" }}>
               {item.id}
             </li>
           ))}

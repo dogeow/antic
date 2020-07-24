@@ -37,8 +37,8 @@ const TodoList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {(loading ? Array.from(new Array(10)) : todo).map((row, index) => (
-            <TableRow key={index}>
+          {(loading ? Array.from(new Array(10)) : todo).map((row) => (
+            <TableRow key={row.id}>
               <TableCell component="td" scope="row">
                 {row ? (
                   row.title

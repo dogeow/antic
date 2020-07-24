@@ -58,12 +58,12 @@ const Search = () => {
       <div id="result">
         {values.result.data &&
           values.result.data.map((result, index) => (
-            <div key={index} className={"mb-2"}>
+            <div key={index} className="mb-2">
               <div>
                 <a href={result.url}>{result.title}</a>
               </div>
               <div
-                className={"text-xs"}
+                className="text-xs"
                 dangerouslySetInnerHTML={{ __html: result.intro }}
               />
             </div>

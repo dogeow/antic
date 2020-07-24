@@ -33,8 +33,8 @@ const Sqg = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    let clipboard = new ClipboardJS(".btn", {
-      text: function () {
+    const clipboard = new ClipboardJS(".btn", {
+      text() {
         return `${title}\n【❥自己买】：${itemprice}元\n【❥跟我买】：${itemendprice}元\n长按複製❥ ${taokouling} 打開taobao`;
       },
     });
@@ -56,7 +56,7 @@ const Sqg = () => {
   }, [taokouling, itemendprice, itemprice, title]);
 
   const Search = () => {
-    let data = new FormData();
+    const data = new FormData();
     data.append("keyword", value);
 
     axios
@@ -76,7 +76,7 @@ const Sqg = () => {
   };
 
   const getTaokouling = (itemid, title, itemendprice, itemprice) => {
-    let data = new FormData();
+    const data = new FormData();
     data.append("itemid", itemid);
     data.append("title", title);
 
@@ -108,7 +108,7 @@ const Sqg = () => {
 
   return (
     <div>
-      <Grid container spacing={3} alignItems={"center"}>
+      <Grid container spacing={3} alignItems="center">
         <Grid item>
           <Input
             value={value}
@@ -127,7 +127,7 @@ const Sqg = () => {
         </Grid>
         <Grid item>
           <Button
-            className={"btn"}
+            className="btn"
             variant="contained"
             color="primary"
             onClick={handleClick}

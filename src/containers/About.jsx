@@ -12,8 +12,8 @@ const About = () => {
 
   return (
     <div>
-      {aboutMe.map((item, index) => (
-        <div key={index}>
+      {aboutMe.map((item) => (
+        <div key={item.id}>
           <div>
             <h3>{item.category}</h3>
           </div>

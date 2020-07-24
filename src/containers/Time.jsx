@@ -1,8 +1,8 @@
 import React from "react";
 import moment from "moment";
-import ClipboardButton from "../components/ClipboardButton";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import ClipboardButton from "../components/ClipboardButton";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -16,14 +16,14 @@ function Alert(props) {
 const todayDate = moment().format("YYYY-MM-DD"); // 2020-04-22
 
 // 今天开始
-const todayStartDateTime = todayDate + " 00:00:00"; // 2020-04-22 00:00:00
+const todayStartDateTime = `${todayDate} 00:00:00`; // 2020-04-22 00:00:00
 const todayStartUnixTime = moment(todayStartDateTime).unix(); // 1587484800
 
 // 现在
 const nowDateTime = moment().format("YYYY-MM-DD HH:mm:ss");
 const nowUnixTime = moment().unix();
 
-//今天结束
+// 今天结束
 const todayEndDateTime = moment(todayDate)
   .add(86400 - 1, "second")
   .format("YYYY-MM-DD HH:mm:ss");
@@ -41,7 +41,7 @@ const yesterdayEndTime = moment(todayStartDateTime)
   .subtract(1, "second")
   .format("YYYY-MM-DD HH:mm:ss");
 
-//明天
+// 明天
 const tomorrowStartUnix = moment(todayStartDateTime).add(1, "days").unix();
 const tomorrowStartTime = moment(todayStartDateTime)
   .add(1, "days")
@@ -52,19 +52,19 @@ const tomorrowEndTime = moment(todayStartDateTime)
   .subtract(1, "second")
   .format("YYYY-MM-DD HH:mm:ss");
 
-//这个月
+// 这个月
 const monthStartDateTime = moment()
   .startOf("month")
   .format("YYYY-MM-DD 00:00:00");
 const monthStartUnixTime = moment(monthStartDateTime).unix();
 const monthEndDateTime = moment().endOf("month").format("YYYY-MM-DD 23:59:59");
 const monthEndUnixTime = moment(monthEndDateTime).unix();
-//上月
+// 上月
 const lastMomentStartDateTime = moment(monthStartDateTime)
   .subtract(1, "month")
   .format("YYYY-MM-DD HH:mm:ss");
 const lastMomentEndUnixTime = moment(lastMomentStartDateTime).unix();
-//下个月
+// 下个月
 const nextMomentStartDateTime = moment(monthStartDateTime)
   .add(1, "month")
   .format("YYYY-MM-DD HH:mm:ss");

@@ -3,7 +3,7 @@ import TreeView from "@material-ui/lab/TreeView";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import TreeItem from "@material-ui/lab/TreeItem";
-import chromeBookmarks from "../resources/Bookmarks";
+import chromeBookmarks from "../resources/Bookmarks.json";
 
 const subFolder = (project) => {
   if (project.type === "folder") {
