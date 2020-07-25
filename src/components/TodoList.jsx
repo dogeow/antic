@@ -9,7 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Skeleton from "@material-ui/lab/Skeleton";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   tableRoot: {
     overflowX: "auto",
   },
@@ -37,8 +37,8 @@ const TodoList = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {(loading ? Array.from(new Array(10)) : todo).map((row) => (
-            <TableRow key={row.id}>
+          {(loading ? Array.from(new Array(10)) : todo).map((row, index) => (
+            <TableRow key={index}>
               <TableCell component="td" scope="row">
                 {row ? (
                   row.title
