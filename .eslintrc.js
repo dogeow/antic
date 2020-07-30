@@ -25,6 +25,8 @@ module.exports = {
         'react', 'prettier'
     ],
     rules: {
-        'prettier/prettier': 'error'
+        'prettier/prettier': 'error',
+        'react/display-name': 'off',
+        'react/prop-types': 'off'
     },
 };
