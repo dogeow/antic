@@ -347,7 +347,7 @@ const initialValue = [
 
 const CHARACTERS = ["antic"];
 
-const Slate = () => {
+const SlateEditor = () => {
   const ref = useRef();
   const [search, setSearch] = useState("");
   const editor = useMemo(
@@ -569,4 +569,4 @@ const Slate = () => {
   );
 };
 
-export default Slate;
+export default SlateEditor;
