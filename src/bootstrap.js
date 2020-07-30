@@ -15,8 +15,10 @@ axios.interceptors.request.use(
   (request) => {
     window.request = true;
     if (process.env.NODE_ENV === "development") {
+      /* eslint-disable no-console */
       console.log("请求了：");
       console.log(request);
+      /* eslint-enable no-console */
     }
 
     return request;
@@ -29,8 +31,10 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (response) => {
     if (process.env.NODE_ENV === "development") {
+      /* eslint-disable no-console */
       console.log("返回了：");
       console.log(response);
+      /* eslint-enable no-console */
     }
 
     const errors = response.data.error;
@@ -55,13 +59,14 @@ axios.interceptors.response.use(
       switch (error.response.status) {
         case 400:
           break;
-        case 401:
+        case 401: {
           const text = localStorage.getItem("user_id")
             ? "登录状态过期"
             : "尚未登录账号";
           Swal.fire("提示️", text, "warning");
           localStorage.removeItem("access_token");
           break;
+        }
         case 422:
           break;
         default:
