@@ -14,7 +14,7 @@ if (accessToken) {
 axios.interceptors.request.use(
   (request) => {
     window.request = true;
-    if (process.env.NODE_ENV === "production") {
+    if (process.env.NODE_ENV === "development") {
       console.log("请求了：");
       console.log(request);
     }
@@ -28,7 +28,7 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (response) => {
-    if (process.env.NODE_ENV === "production") {
+    if (process.env.NODE_ENV === "development") {
       console.log("返回了：");
       console.log(response);
     }
