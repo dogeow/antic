@@ -1,8 +1,18 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  root: {
+    fontSize: "2em",
+    width: 300,
+    margin: "0 auto",
+  },
+});
 
 const A2Z = () => {
+  const classes = useStyles();
   return (
-    <pre style={{ fontSize: "2em", width: 300, margin: "0 auto" }}>
+    <pre className={classes.root}>
       {`Aa Bb Cc Dd Ee Ff Gg
 Hh Ii Jj Kk Ll Mm Nn
 Oo Pp Qq Rr Ss Tt

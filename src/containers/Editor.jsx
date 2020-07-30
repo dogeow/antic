@@ -35,218 +35,6 @@ import HOTKEYS from "../markdown/Hotkeys";
 
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
-const Test = () => {
-  const ref = useRef();
-  const [search, setSearch] = useState("");
-  const editor = useMemo(
-    () =>
-      withChecklists(
-        withHtml(
-          withMentions(
-            withShortcuts(withTables(withReact(withHistory(createEditor()))))
-          )
-        )
-      ),
-    []
-  );
-  const renderLeaf = (props) => <Leaf {...props} />;
-  const renderElement = useCallback((props) => <Element {...props} />, []);
-  const [value, setValue] = useState(initialValue);
-  const [target, setTarget] = useState();
-  const [index, setIndex] = useState(0);
-  const decorate = useCallback(
-    ([node, path]) => {
-      const ranges = [];
-
-      if (search && Text.isText(node)) {
-        const { text } = node;
-        const parts = text.split(search);
-        let offset = 0;
-
-        parts.forEach((part, i) => {
-          if (i !== 0) {
-            ranges.push({
-              anchor: { path, offset: offset - search.length },
-              focus: { path, offset },
-              highlight: true,
-            });
-          }
-
-          offset = offset + part.length + search.length;
-        });
-      }
-
-      return ranges;
-    },
-    [search]
-  );
-
-  const chars = CHARACTERS.filter((c) =>
-    c.toLowerCase().startsWith(search.toLowerCase())
-  ).slice(0, 10);
-
-  const onKeyDown = useCallback(
-    (event) => {
-      if (target) {
-        switch (event.key) {
-          case "ArrowDown":
-            event.preventDefault();
-            const prevIndex = index >= chars.length - 1 ? 0 : index + 1;
-            setIndex(prevIndex);
-            break;
-          case "ArrowUp":
-            event.preventDefault();
-            const nextIndex = index <= 0 ? chars.length - 1 : index - 1;
-            setIndex(nextIndex);
-            break;
-          case "Tab":
-          case "Enter":
-            event.preventDefault();
-            Transforms.select(editor, target);
-            insertMention(editor, chars[index]);
-            setTarget(null);
-            break;
-          case "Escape":
-            event.preventDefault();
-            setTarget(null);
-            break;
-          default:
-            break;
-        }
-      }
-      for (const hotkey in HOTKEYS) {
-        if (isHotkey(hotkey, event)) {
-          event.preventDefault();
-          const mark = HOTKEYS[hotkey];
-          toggleMark(editor, mark);
-        }
-      }
-    },
-    [index, target, chars, editor]
-  );
-
-  useEffect(() => {
-    if (target && chars.length > 0) {
-      const el = ref.current;
-      const domRange = ReactEditor.toDOMRange(editor, target);
-      const rect = domRange.getBoundingClientRect();
-      el.style.top = `${rect.top + window.pageYOffset + 24}px`;
-      el.style.left = `${rect.left + window.pageXOffset}px`;
-    }
-  }, [chars.length, editor, index, search, target]);
-
-  return (
-    <Slate
-      editor={editor}
-      value={value}
-      onChange={(value) => {
-        setValue(value);
-        // 在 Local Storage 里保存值。
-        // const content = JSON.stringify(value);
-        const { selection } = editor;
-
-        if (selection && Range.isCollapsed(selection)) {
-          const [start] = Range.edges(selection);
-          const wordBefore = Editor.before(editor, start, { unit: "word" });
-          const before = wordBefore && Editor.before(editor, wordBefore);
-          const beforeRange = before && Editor.range(editor, before, start);
-          const beforeText = beforeRange && Editor.string(editor, beforeRange);
-          const beforeMatch = beforeText && beforeText.match(/^@(\w+)$/);
-          const after = Editor.after(editor, start);
-          const afterRange = Editor.range(editor, start, after);
-          const afterText = Editor.string(editor, afterRange);
-          const afterMatch = afterText.match(/^(\s|$)/);
-
-          if (beforeMatch && afterMatch) {
-            setTarget(beforeRange);
-            setSearch(beforeMatch[1]);
-            setIndex(0);
-            return;
-          }
-        }
-
-        setTarget(null);
-      }}
-    >
-      <Toolbar>
-        <div
-          className={css`
-            position: relative;
-          `}
-        >
-          <Icon
-            className={css`
-              position: absolute;
-              top: 0.5em;
-              left: 0.5em;
-              color: #ccc;
-            `}
-          >
-            search
-          </Icon>
-          <input
-            type="search"
-            placeholder="Search the text..."
-            onChange={(e) => setSearch(e.target.value)}
-            className={css`
-              padding-left: 2em;
-              width: 100%;
-            `}
-          />
-        </div>
-        <MarkButton format="bold" icon="format_bold" />
-        <MarkButton format="italic" icon="format_italic" />
-        <MarkButton format="underline" icon="format_underlined" />
-        <MarkButton format="code" icon="code" />
-        <BlockButton format="heading-one" icon="looks_one" />
-        <BlockButton format="heading-two" icon="looks_two" />
-        <BlockButton format="block-quote" icon="format_quote" />
-        <BlockButton format="numbered-list" icon="format_list_numbered" />
-        <BlockButton format="bulleted-list" icon="format_list_bulleted" />
-      </Toolbar>
-      <Editable
-        decorate={decorate}
-        renderElement={renderElement}
-        renderLeaf={renderLeaf}
-        placeholder="Write some markdown..."
-        spellCheck
-        autoFocus
-        onKeyDown={onKeyDown}
-      />
-      {target && chars.length > 0 && (
-        <Portal>
-          <div
-            ref={ref}
-            style={{
-              top: "-9999px",
-              left: "-9999px",
-              position: "absolute",
-              zIndex: 1,
-              padding: "3px",
-              background: "white",
-              borderRadius: "4px",
-              boxShadow: "0 1px 5px rgba(0,0,0,.2)",
-            }}
-          >
-            {chars.map((char, i) => (
-              <div
-                key={char}
-                style={{
-                  padding: "1px 3px",
-                  borderRadius: "3px",
-                  background: i === index ? "#B4D5FF" : "transparent",
-                }}
-              >
-                {char}
-              </div>
-            ))}
-          </div>
-        </Portal>
-      )}
-    </Slate>
-  );
-};
-
 const Element = (props) => {
   const { attributes, children, element } = props;
 
@@ -559,4 +347,226 @@ const initialValue = [
 
 const CHARACTERS = ["antic"];
 
-export default Test;
+const MyEditor = () => {
+  const ref = useRef();
+  const [search, setSearch] = useState("");
+  const editor = useMemo(
+    () =>
+      withChecklists(
+        withHtml(
+          withMentions(
+            withShortcuts(withTables(withReact(withHistory(createEditor()))))
+          )
+        )
+      ),
+    []
+  );
+  const renderLeaf = (props) => <Leaf {...props} />;
+  const renderElement = useCallback((props) => <Element {...props} />, []);
+  const [value, setValue] = useState(initialValue);
+  const [target, setTarget] = useState();
+  const [index, setIndex] = useState(0);
+  const decorate = useCallback(
+    ([node, path]) => {
+      const ranges = [];
+
+      if (search && Text.isText(node)) {
+        const { text } = node;
+        const parts = text.split(search);
+        let offset = 0;
+
+        parts.forEach((part, i) => {
+          if (i !== 0) {
+            ranges.push({
+              anchor: { path, offset: offset - search.length },
+              focus: { path, offset },
+              highlight: true,
+            });
+          }
+
+          offset = offset + part.length + search.length;
+        });
+      }
+
+      return ranges;
+    },
+    [search]
+  );
+
+  const chars = CHARACTERS.filter((c) =>
+    c.toLowerCase().startsWith(search.toLowerCase())
+  ).slice(0, 10);
+
+  const onKeyDown = useCallback(
+    (event) => {
+      if (target) {
+        switch (event.key) {
+          case "ArrowDown":
+            event.preventDefault();
+            const prevIndex = index >= chars.length - 1 ? 0 : index + 1;
+            setIndex(prevIndex);
+            break;
+          case "ArrowUp":
+            event.preventDefault();
+            const nextIndex = index <= 0 ? chars.length - 1 : index - 1;
+            setIndex(nextIndex);
+            break;
+          case "Tab":
+          case "Enter":
+            event.preventDefault();
+            Transforms.select(editor, target);
+            insertMention(editor, chars[index]);
+            setTarget(null);
+            break;
+          case "Escape":
+            event.preventDefault();
+            setTarget(null);
+            break;
+          default:
+            break;
+        }
+      }
+      if (event.key === "`" && event.ctrlKey) {
+        // 阻止插入 "`" 的默认行为。
+        event.preventDefault();
+        // 否则，把当前选择的 blocks 的类型设为 "code"。
+        Transforms.setNodes(
+          editor,
+          { type: "code" },
+          { match: (n) => Editor.isBlock(editor, n) }
+        );
+      }
+      for (const hotkey in HOTKEYS) {
+        if (isHotkey(hotkey, event)) {
+          event.preventDefault();
+          const mark = HOTKEYS[hotkey];
+          toggleMark(editor, mark);
+        }
+      }
+    },
+    [index, target, chars, editor]
+  );
+
+  useEffect(() => {
+    if (target && chars.length > 0) {
+      const el = ref.current;
+      const domRange = ReactEditor.toDOMRange(editor, target);
+      const rect = domRange.getBoundingClientRect();
+      el.style.top = `${rect.top + window.pageYOffset + 24}px`;
+      el.style.left = `${rect.left + window.pageXOffset}px`;
+    }
+  }, [chars.length, editor, index, search, target]);
+
+  return (
+    <Slate
+      editor={editor}
+      value={value}
+      onChange={(value) => {
+        setValue(value);
+        // 在 Local Storage 里保存值。
+        // const content = JSON.stringify(value);
+        const { selection } = editor;
+
+        if (selection && Range.isCollapsed(selection)) {
+          const [start] = Range.edges(selection);
+          const wordBefore = Editor.before(editor, start, { unit: "word" });
+          const before = wordBefore && Editor.before(editor, wordBefore);
+          const beforeRange = before && Editor.range(editor, before, start);
+          const beforeText = beforeRange && Editor.string(editor, beforeRange);
+          const beforeMatch = beforeText && beforeText.match(/^@(\w+)$/);
+          const after = Editor.after(editor, start);
+          const afterRange = Editor.range(editor, start, after);
+          const afterText = Editor.string(editor, afterRange);
+          const afterMatch = afterText.match(/^(\s|$)/);
+
+          if (beforeMatch && afterMatch) {
+            setTarget(beforeRange);
+            setSearch(beforeMatch[1]);
+            setIndex(0);
+            return;
+          }
+        }
+
+        setTarget(null);
+      }}
+    >
+      <Toolbar>
+        <div
+          className={css`
+            position: relative;
+          `}
+        >
+          <Icon
+            className={css`
+              position: absolute;
+              top: 0.5em;
+              left: 0.5em;
+              color: #ccc;
+            `}
+          >
+            search
+          </Icon>
+          <input
+            type="search"
+            placeholder="Search the text..."
+            onChange={(e) => setSearch(e.target.value)}
+            className={css`
+              padding-left: 2em;
+              width: 100%;
+            `}
+          />
+        </div>
+        <MarkButton format="bold" icon="format_bold" />
+        <MarkButton format="italic" icon="format_italic" />
+        <MarkButton format="underline" icon="format_underlined" />
+        <MarkButton format="code" icon="code" />
+        <BlockButton format="heading-one" icon="looks_one" />
+        <BlockButton format="heading-two" icon="looks_two" />
+        <BlockButton format="block-quote" icon="format_quote" />
+        <BlockButton format="numbered-list" icon="format_list_numbered" />
+        <BlockButton format="bulleted-list" icon="format_list_bulleted" />
+      </Toolbar>
+      <Editable
+        decorate={decorate}
+        renderElement={renderElement}
+        renderLeaf={renderLeaf}
+        placeholder="Write some markdown..."
+        spellCheck
+        autoFocus
+        onKeyDown={onKeyDown}
+      />
+      {target && chars.length > 0 && (
+        <Portal>
+          <div
+            ref={ref}
+            style={{
+              top: "-9999px",
+              left: "-9999px",
+              position: "absolute",
+              zIndex: 1,
+              padding: "3px",
+              background: "white",
+              borderRadius: "4px",
+              boxShadow: "0 1px 5px rgba(0,0,0,.2)",
+            }}
+          >
+            {chars.map((char, i) => (
+              <div
+                key={char}
+                style={{
+                  padding: "1px 3px",
+                  borderRadius: "3px",
+                  background: i === index ? "#B4D5FF" : "transparent",
+                }}
+              >
+                {char}
+              </div>
+            ))}
+          </div>
+        </Portal>
+      )}
+    </Slate>
+  );
+};
+
+export default MyEditor;

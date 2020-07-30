@@ -191,16 +191,12 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../components/Like"))}
           />
           <Route
-            path="/test"
-            component={loadable(() => import("../containers/Test"))}
+            path="/editor"
+            component={loadable(() => import("../containers/Editor"))}
           />
           <Route
             path="/video"
             component={loadable(() => import("../containers/Video"))}
-          />
-          <Route
-            path="/test2/:id/edit"
-            component={loadable(() => import("../containers/Test2"))}
           />
           <Route component={loadable(() => import("../containers/NoMatch"))} />
         </Switch>

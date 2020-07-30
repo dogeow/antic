@@ -1,8 +1,8 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import ReactDOM from "react-dom";
 import { cx, css } from "emotion";
 
-export const Button = React.forwardRef(
+export const Button = forwardRef(
   ({ className, active, reversed, ...props }, ref) => (
     <span
       {...props}
@@ -24,53 +24,51 @@ export const Button = React.forwardRef(
   )
 );
 
-export const EditorValue = React.forwardRef(
-  ({ className, value, ...props }, ref) => {
-    const textLines = value.document.nodes
-      .map((node) => node.text)
-      .toArray()
-      .join("\n");
-    return (
+export const EditorValue = forwardRef(({ className, value, ...props }, ref) => {
+  const textLines = value.document.nodes
+    .map((node) => node.text)
+    .toArray()
+    .join("\n");
+  return (
+    <div
+      ref={ref}
+      {...props}
+      className={cx(
+        className,
+        css`
+          margin: 30px -20px 0;
+        `
+      )}
+    >
       <div
-        ref={ref}
-        {...props}
-        className={cx(
-          className,
-          css`
-            margin: 30px -20px 0;
-          `
-        )}
+        className={css`
+          font-size: 14px;
+          padding: 5px 20px;
+          color: #404040;
+          border-top: 2px solid #eeeeee;
+          background: #f8f8f8;
+        `}
       >
-        <div
-          className={css`
-            font-size: 14px;
-            padding: 5px 20px;
-            color: #404040;
-            border-top: 2px solid #eeeeee;
-            background: #f8f8f8;
-          `}
-        >
-          Slate's value as text
-        </div>
-        <div
-          className={css`
-            color: #404040;
-            font: 12px monospace;
-            white-space: pre-wrap;
-            padding: 10px 20px;
-            div {
-              margin: 0 0 0.5em;
-            }
-          `}
-        >
-          {textLines}
-        </div>
+        Slate's value as text
       </div>
-    );
-  }
-);
+      <div
+        className={css`
+          color: #404040;
+          font: 12px monospace;
+          white-space: pre-wrap;
+          padding: 10px 20px;
+          div {
+            margin: 0 0 0.5em;
+          }
+        `}
+      >
+        {textLines}
+      </div>
+    </div>
+  );
+});
 
-export const Icon = React.forwardRef(({ className, ...props }, ref) => (
+export const Icon = forwardRef(({ className, ...props }, ref) => (
   <span
     {...props}
     ref={ref}
@@ -85,7 +83,7 @@ export const Icon = React.forwardRef(({ className, ...props }, ref) => (
   />
 ));
 
-export const Instruction = React.forwardRef(({ className, ...props }, ref) => (
+export const Instruction = forwardRef(({ className, ...props }, ref) => (
   <div
     {...props}
     ref={ref}
@@ -102,7 +100,7 @@ export const Instruction = React.forwardRef(({ className, ...props }, ref) => (
   />
 ));
 
-export const Menu = React.forwardRef(({ className, ...props }, ref) => (
+export const Menu = forwardRef(({ className, ...props }, ref) => (
   <div
     {...props}
     ref={ref}
@@ -124,7 +122,7 @@ export const Portal = ({ children }) => {
   return ReactDOM.createPortal(children, document.body);
 };
 
-export const Toolbar = React.forwardRef(({ className, ...props }, ref) => (
+export const Toolbar = forwardRef(({ className, ...props }, ref) => (
   <Menu
     {...props}
     ref={ref}
