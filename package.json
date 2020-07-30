@@ -2,6 +2,7 @@
   "name": "anitc",
   "version": "0.1.0",
   "private": true,
+  "main": "index.jsx",
   "dependencies": {
     "@date-io/moment": "^2.8.0",
     "@loadable/component": "^5.13.1",

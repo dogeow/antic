@@ -14,8 +14,10 @@ if (accessToken) {
 axios.interceptors.request.use(
   (request) => {
     window.request = true;
-    console.log("请求了：");
-    console.log(request);
+    if (process.env.NODE_ENV === "production") {
+      console.log("请求了：");
+      console.log(request);
+    }
 
     return request;
   },
@@ -26,8 +28,10 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (response) => {
-    console.log("返回了：");
-    console.log(response);
+    if (process.env.NODE_ENV === "production") {
+      console.log("返回了：");
+      console.log(response);
+    }
 
     const errors = response.data.error;
     if (errors) {
