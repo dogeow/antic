@@ -45,15 +45,6 @@ const chartOptions = {
 };
 
 const useStyles = makeStyles((theme) => ({
-  "@global": {
-    ".te-preview, .tui-editor-contents p": {
-      color: theme.palette.type === "dark" && "white !important",
-    },
-    ".CodeMirror": {
-      background: theme.palette.type === "dark" && "unset !important",
-      color: theme.palette.type === "dark" && "white !important",
-    },
-  },
   buttonSuccess: {
     backgroundColor: green[500],
     "&:hover": {
@@ -104,12 +95,12 @@ const PostCreate = () => {
     }
 
     // 新增或修改
-    let url = id ? `posts/${id}` : "posts";
-    let method = id ? "put" : "post";
+    const url = id ? `posts/${id}` : "posts";
+    const method = id ? "put" : "post";
 
     axios({
-      method: method,
-      url: url,
+      method,
+      url,
       data: {
         title: post.title,
         content: post.content,
@@ -122,7 +113,7 @@ const PostCreate = () => {
       })
       .catch((error) => {
         if (error.response.status !== 401) {
-          let errors = error.response.data.errors;
+          const { errors } = error.response.data;
           setErrors(errors);
           Swal.fire(
             error.response.data.message,
@@ -152,7 +143,7 @@ const PostCreate = () => {
     : clsx({ [classes.buttonSuccess]: success });
 
   const uploadImage = (blob) => {
-    let formData = new FormData();
+    const formData = new FormData();
 
     formData.append("emoji", blob, blob.name);
 
@@ -170,8 +161,8 @@ const PostCreate = () => {
   };
 
   return (
-    <Grid container spacing={2} justify={"center"}>
-      {/*标题*/}
+    <Grid container spacing={2} justify="center">
+      {/* 标题 */}
       <Grid item xs={4}>
         <Input
           fullWidth
@@ -181,16 +172,17 @@ const PostCreate = () => {
           onChange={handleTitleChange}
         />
       </Grid>
-      {/*正文*/}
+      {/* 正文 */}
       <Grid item xs={12}>
         {(post || !id) && (
           <Editor
+            usageStatistics={false}
             placeholder="请输入。"
             initialValue={(post && post.content) || ""}
             previewStyle="vertical"
             initialEditType="markdown"
             height="600px"
-            useCommandShortcut={true}
+            useCommandShortcut
             // language="zh-CN"
             plugins={[
               [codeSyntaxHightlight, { hljs }],
@@ -207,7 +199,7 @@ const PostCreate = () => {
           />
         )}
       </Grid>
-      {/*保存按钮*/}
+      {/* 保存按钮 */}
       <Grid item xs={12} style={{ position: "relative", textAlign: "center" }}>
         <Fab
           aria-label="save"
