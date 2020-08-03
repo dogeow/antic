@@ -7,9 +7,9 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import SubNav from "./Nav/SubNav";
-import chromeBookmarks from "../resources/Bookmarks";
+import chromeBookmarks from "../resources/Bookmarks.json";
 
-const bookmarks = chromeBookmarks["roots"]["bookmark_bar"]["children"];
+const bookmarks = chromeBookmarks.roots.bookmark_bar.children;
 
 // const other = chromeBookmarks['roots']['other']['children'];
 
@@ -31,7 +31,6 @@ function TabPanel(props) {
 }
 
 TabPanel.propTypes = {
-  children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
 };

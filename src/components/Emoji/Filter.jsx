@@ -1,7 +1,7 @@
 import React from "react";
+import Grid from "@material-ui/core/Grid";
 import Category from "./Categories";
 import Tag from "./Tag";
-import Grid from "@material-ui/core/Grid";
 
 const Filter = (props) => {
   return (

@@ -1,17 +1,17 @@
 import Swal from "sweetalert2";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import Filter from "./Filter";
-import FilterStatistics from "./FilterStatistics";
-import BootNav from "./BootNav";
 import Spinner from "react-spinner-children";
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Viewer from "react-viewer";
-import face from "../../resources/face.json";
 import imagesLoaded from "imagesloaded";
 import { useHistory } from "react-router-dom";
+import face from "../../resources/face.json";
+import BootNav from "./BootNav";
+import FilterStatistics from "./FilterStatistics";
+import Filter from "./Filter";
 
 const customSpinConfig = {
   lines: 10,
@@ -50,7 +50,7 @@ const Emoji = ({
   search,
   expandTag,
 }) => {
-  let history = useHistory();
+  const history = useHistory();
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
   const classes = useStyles();
@@ -82,10 +82,9 @@ const Emoji = ({
       inputValidator: (value) => {
         if (!value) {
           return "没有输入！";
-        } else {
-          search(value);
-          Swal.close();
         }
+        search(value);
+        Swal.close();
       },
     });
   };
@@ -138,10 +137,8 @@ const Emoji = ({
             <Grid key={index} item xs={4} style={{ textAlign: "center" }}>
               <img
                 id={index}
-                src={
-                  `${process.env.REACT_APP_CDN_URL}emoji/` + item["fileName"]
-                }
-                alt={item["name"]}
+                src={`${process.env.REACT_APP_CDN_URL}emoji/${item.fileName}`}
+                alt={item.name}
                 width="100"
                 onClick={() => {
                   setVisible(true);
@@ -149,7 +146,7 @@ const Emoji = ({
                 }}
               />
               <Typography variant="body2" component="h3">
-                {item["name"].split(".")[0]}
+                {item.name.split(".")[0]}
               </Typography>
             </Grid>
           ))

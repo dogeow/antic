@@ -12,7 +12,7 @@ import RadioButtonUnchecked from "@material-ui/icons/RadioButtonUnchecked";
 import { makeStyles } from "@material-ui/core/styles";
 import AlertDialog from "../AlertDialog";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   green: {
     color: "green",
   },
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SingleProject = () => {
   const classes = useStyles();
-  let history = useHistory();
+  const history = useHistory();
   const match = useRouteMatch();
   const projectId = match.params.id;
 
@@ -54,7 +54,7 @@ const SingleProject = () => {
   const handleAddNewTask = (event) => {
     event.preventDefault();
     const task = {
-      title: title,
+      title,
       project_id: project.id,
     };
     axios
@@ -122,8 +122,8 @@ const SingleProject = () => {
       <AlertDialog
         open={alert}
         handleClose={handleDelete}
-        title={"删除项目！"}
-        content={"删除后，任务也将一同被删除！"}
+        title="删除项目！"
+        content="删除后，任务也将一同被删除！"
         agree={handleMarkProjectAsCompleted}
       />
       <Grid container spacing={2} justify="space-between">
@@ -150,15 +150,13 @@ const SingleProject = () => {
                     "aria-label": "Description",
                   }}
                   name="title"
-                  className={`form-control ${
-                    errors["title"] ? "is-invalid" : ""
-                  }`}
+                  className={`form-control ${errors.title ? "is-invalid" : ""}`}
                   value={title}
                   onChange={handleFieldChange}
                 />
-                {errors["name"] && (
+                {errors.name && (
                   <span className="invalid-feedback">
-                    <strong>{errors["title"][0]}</strong>
+                    <strong>{errors.title[0]}</strong>
                   </span>
                 )}
               </Grid>

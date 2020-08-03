@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Menu from "./Menu";
 import Typography from "@material-ui/core/Typography";
+import Menu from "./Menu";
 
 const SubNav = (props) => (
   <Grid container spacing={2}>

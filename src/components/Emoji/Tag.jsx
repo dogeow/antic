@@ -4,14 +4,14 @@ import Button from "@material-ui/core/Button";
 import TagsElem from "./TagsElem";
 
 const Tag = (props) => {
-  let color = props.selectedTag === "全部" ? "secondary" : "default";
+  const color = props.selectedTag === "全部" ? "secondary" : "default";
 
   return (
     <Grid container alignItems="center">
       <Grid item>
         <Button
           variant="contained"
-          color={"primary"}
+          color="primary"
           onClick={() => props.toggleTag()}
         >
           {props.expandTag ? "标签 <<" : "标签 >>"}

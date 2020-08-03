@@ -6,7 +6,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Switch from "@material-ui/core/Switch";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     padding: 10,
   },

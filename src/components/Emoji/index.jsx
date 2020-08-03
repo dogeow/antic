@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   select_tag: (value) => {
     dispatch({ type: "SELECT_TAG", value });
   },
-  toggleCategory: (value) => {
+  toggleCategory: () => {
     dispatch({ type: "EXPAND_CATEGORY", value: !ownProps.expandCategory });
   },
   select_category: (value) => {

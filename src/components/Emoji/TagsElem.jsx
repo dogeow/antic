@@ -1,19 +1,19 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import face from "../../resources/face.json";
 import Badge from "@material-ui/core/Badge";
+import face from "../../resources/face.json";
 
 const TagsElem = (props) => {
   // 获取各标签的图片数量
-  let total = {};
+  const total = {};
   face.map(function (single) {
-    for (const singleTag of single["tag"]) {
+    for (const singleTag of single.tag) {
       total[singleTag] = ++total[singleTag] || 1;
     }
     return total;
   });
 
-  let tagsElem = [];
+  const tagsElem = [];
 
   for (const tag of props.displayTag) {
     tagsElem.push(
