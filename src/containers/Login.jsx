@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link as RouteLink } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
+import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
@@ -212,20 +212,16 @@ const SignInSide = ({ dispatch }) => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <RouteLink to="/forget">
                   <s>忘记密码？</s>
-                </Link>
+                </RouteLink>
               </Grid>
               <Grid item>
-                <Link
-                  onClick={() => {
-                    history.push("/register");
-                  }}
-                  variant="body2"
-                  color="secondary"
-                >
-                  没有账户？注册！
-                </Link>
+                <RouteLink to="/register">
+                  <Link variant="body2" color="secondary">
+                    没有账户？注册！
+                  </Link>
+                </RouteLink>
               </Grid>
             </Grid>
             <Box mt={5}>
