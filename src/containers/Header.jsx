@@ -30,8 +30,7 @@ import Logo from "../components/Logo";
 import Drawer from "../components/Drawer";
 import Settings from "../components/Settings";
 
-import { loginAction } from "../actions";
-import { logged, logout } from "../helpers";
+import { logout } from "../helpers";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -48,13 +47,14 @@ const useStyles = makeStyles(() => ({
 
 const Header = ({
   lab,
+  dispatch,
+  onTestLogin,
   onClickDrawer,
   toggle_drawer,
   onThemeClick,
   themePaletteType,
 }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const history = useHistory();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -95,24 +95,6 @@ const Header = ({
     axios.post("user/logout").then(() => {
       Swal.fire("登出成功！");
     });
-  };
-
-  const testLogin = () => {
-    axios
-      .post("user/login", {
-        email: "test@test.com",
-        password: "test@test.com",
-        remember_me: true,
-      })
-      .then((response) => {
-        const { accessToken } = response.data;
-        axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-        axios.post("user/profile").then((response2) => {
-          const { id, name, email } = response2.data.user;
-          logged(response.data, response2.data.user);
-          dispatch(loginAction(accessToken, id, name, email));
-        });
-      });
   };
 
   return (
@@ -265,7 +247,7 @@ const Header = ({
               <MenuItem
                 onClick={() => {
                   setAnchorEl(null);
-                  testLogin();
+                  onTestLogin();
                 }}
               >
                 登录测试账号
