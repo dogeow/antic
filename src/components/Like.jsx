@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Card from "./Card";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
+import Card from "./Card";
 
 const Like = () => {
   const [data, setData] = useState([]);
@@ -13,7 +13,7 @@ const Like = () => {
   }, []);
 
   return (
-    <Grid container spacing={2} justify={"flex-start"}>
+    <Grid container spacing={2} justify="flex-start">
       {data.map((item, index) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
           <Card

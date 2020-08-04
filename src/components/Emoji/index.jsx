@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Emoji from "./Emoji";
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
   emoji: state.emoji,
   ...state.emoji,
   lab: state.lab,

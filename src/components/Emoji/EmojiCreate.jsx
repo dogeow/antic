@@ -25,7 +25,7 @@ const EmojiCreate = () => {
   const onDrop = useCallback((acceptedFiles) => {
     const file = new Blob([acceptedFiles[0]]);
     const formData = new FormData();
-    formData.append("emoji", file, acceptedFiles[0]["name"]);
+    formData.append("emoji", file, acceptedFiles[0].name);
     axios
       .post("/emoji", formData, {
         headers: {
@@ -37,10 +37,10 @@ const EmojiCreate = () => {
             return data;
           },
         ],
-        onUploadProgress: function (e) {
-          let percentage = Math.round((e.loaded * 100) / e.total) || 0;
+        onUploadProgress(e) {
+          const percentage = Math.round((e.loaded * 100) / e.total) || 0;
           if (percentage < 100) {
-            console.log(percentage + "%"); // 上传进度
+            console.log(`${percentage}%`); // 上传进度
           }
         },
       })
