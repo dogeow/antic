@@ -103,7 +103,7 @@ if (typeof document.hidden !== "undefined") {
 // 添加监听器，在title里显示状态变化
 document.addEventListener(
   visibilityChange,
-  function () {
+  () => {
     document.title =
       document[state] === "hidden"
         ? `记得回来！- ${process.env.REACT_APP_NAME}`
