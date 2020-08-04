@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Dashboard = ({ match }) => {
+const Dashboard = () => {
   const classes = useStyles();
 
   return (
