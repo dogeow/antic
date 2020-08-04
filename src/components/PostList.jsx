@@ -29,7 +29,7 @@ const PostList = () => {
   return (
     <Paper className={classes.paper}>
       <Grid container spacing={2}>
-        {(post ? post : Array.from(new Array(6))).map((item, index) =>
+        {(post || Array.from(new Array(6))).map((item, index) =>
           item ? (
             <Grid item container xs={12} key={index} spacing={2}>
               <Grid item>
@@ -39,7 +39,7 @@ const PostList = () => {
                 </Avatar>
               </Grid>
               <Grid item>
-                <Typography variant={"h6"} component={"h2"}>
+                <Typography variant="h6" component="h2">
                   <Link to={`/posts/${item.id}`}>{item.title}</Link>
                 </Typography>
               </Grid>
@@ -71,7 +71,7 @@ const PostList = () => {
               <Grid item xs>
                 <Skeleton
                   variant="rect"
-                  width={"100%"}
+                  width="100%"
                   height={32}
                   animation="wave"
                 />

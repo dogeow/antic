@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   rating: {
     display: "flex",
     alignItems: "center",
