@@ -1,5 +1,5 @@
 import React from "react";
-import VideoJs from "../components/video";
+import VideoJs from "../components/Video";
 import "video.js/dist/video-js.min.css";
 
 const videoJsOptions = {

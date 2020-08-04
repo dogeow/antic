@@ -17,7 +17,7 @@ const Settings = (props) => {
       aria-labelledby="simple-dialog"
       open={props.open}
     >
-      <DialogTitle id="simple-dialog-title">设置</DialogTitle>
+      <DialogTitle id="simple-dialog-title">网站设置</DialogTitle>
       <DialogContent>
         <FormControl>
           <FormControlLabel
