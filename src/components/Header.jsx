@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
 import axios from "axios";
+import Swal from "sweetalert2";
 import { loginAction, toggleDrawer } from "../actions";
 import Header from "../containers/Header";
-import { logged } from "../helpers";
+import { logged, logout } from "../helpers";
 
 const mapStateToProps = (state) => ({
   toggle_drawer: state.lab.toggle_drawer,
@@ -11,6 +12,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+  onLogout: () => {
+    logout();
+    dispatch({ type: "LOGOUT" });
+    axios.post("user/logout").then(() => {
+      Swal.fire("登出成功！");
+    });
+  },
   onClickDrawer: () => dispatch(toggleDrawer(ownProps.toggle_drawer)),
   onThemeClick: () => dispatch({ type: "TOGGLE_THEME" }),
   onTestLogin: () => {

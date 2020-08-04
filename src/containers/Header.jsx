@@ -1,6 +1,5 @@
 import React from "react";
 import { Link as RouteLink, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import md5 from "md5";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -30,8 +29,6 @@ import Logo from "../components/Logo";
 import Drawer from "../components/Drawer";
 import Settings from "../components/Settings";
 
-import { logout } from "../helpers";
-
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
@@ -47,7 +44,7 @@ const useStyles = makeStyles(() => ({
 
 const Header = ({
   lab,
-  dispatch,
+  onLogout,
   onTestLogin,
   onClickDrawer,
   toggle_drawer,
@@ -86,15 +83,6 @@ const Header = ({
 
   const handleCloseMyself = () => {
     setAnchorElMyself(null);
-  };
-
-  const handleLogout = () => {
-    setAnchorElMyself(null);
-    logout();
-    dispatch({ type: "LOGOUT" });
-    axios.post("user/logout").then(() => {
-      Swal.fire("登出成功！");
-    });
   };
 
   return (
@@ -206,7 +194,14 @@ const Header = ({
                   >
                     <MenuItem>个人设置</MenuItem>
                   </RouteLink>
-                  <MenuItem onClick={handleLogout}>登出</MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setAnchorElMyself(null);
+                      onLogout();
+                    }}
+                  >
+                    登出
+                  </MenuItem>
                 </Menu>
               </div>
             )}
