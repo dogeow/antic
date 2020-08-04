@@ -25,12 +25,7 @@ const Home = () => {
   return (
     <>
       <Container maxWidth="lg" className={classes.container}>
-        <Grid container spacing={3}>
-          {/* Recent Orders */}
-          <Grid item xs={12}>
-            <Site />
-          </Grid>
-        </Grid>
+        <Site />
       </Container>
       <Copyright />
     </>
