@@ -26,10 +26,10 @@ const Settings = (props) => {
                 checked={props.themePaletteType === "dark"}
                 onClick={props.onThemeClick}
                 value="themePaletteType"
-                inputProps={{ "aria-label": "夜晚模式" }}
+                inputProps={{ "aria-label": "夜间模式" }}
               />
             }
-            label="夜晚模式"
+            label="夜间模式"
           />
         </FormControl>
       </DialogContent>
