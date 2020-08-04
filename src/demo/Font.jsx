@@ -20,7 +20,7 @@ const type = [
 const Font = () => (
   <div>
     {type.map((item) => (
-      <Typography variant={item} component="h2">
+      <Typography variant={item} component="h2" key={item}>
         马斯克的
         <span role="img" aria-label="火箭飞离地球">
           🌍🚀

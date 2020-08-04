@@ -5,9 +5,11 @@ import TEXT_TAGS from "./TextTags";
 const deserialize = (el) => {
   if (el.nodeType === 3) {
     return el.textContent;
-  } else if (el.nodeType !== 1) {
+  }
+  if (el.nodeType !== 1) {
     return null;
-  } else if (el.nodeName === "BR") {
+  }
+  if (el.nodeName === "BR") {
     return "\n";
   }
 
