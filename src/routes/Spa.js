@@ -195,6 +195,10 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../containers/Slate"))}
           />
           <Route
+            path="/cars"
+            component={loadable(() => import("../containers/Cars"))}
+          />
+          <Route
             path="/video"
             component={loadable(() => import("../containers/Video"))}
           />

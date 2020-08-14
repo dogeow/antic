@@ -27,6 +27,7 @@ const menus = [
   { name: "📋Todo", url: "/todo" },
   { name: "🤔自言自语", url: "/self-talk" },
   { name: "💗喜欢的", url: "/like" },
+  { name: "🚗车车", url: "/cars" },
   { name: "📦一些 Demo", url: "/demo" },
   { name: "📄文章", url: "/posts" },
 ];
@@ -77,7 +78,7 @@ const TemporaryDrawer = (props) => {
           </ListItem>
         ))}
         <Divider />
-        <ListItem button to={"/about"} component={RouteLink}>
+        <ListItem button to="/about" component={RouteLink}>
           <img
             src="/favicon.ico"
             alt="antic"
