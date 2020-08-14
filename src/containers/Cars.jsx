@@ -45,7 +45,7 @@ export default function Cars() {
                       <img
                         src={`https://cdn.gugelong.com/cars/${car.name}/${
                           value + 1
-                        }.jpeg`}
+                        }.jpeg!/fw/800`}
                         alt={`Supra_${value + 1}`}
                         width="100%"
                       />
