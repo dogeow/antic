@@ -30,7 +30,7 @@ const cars = [
   {
     name: "Model3",
     imagesCount: 6,
-    color: "#2c4fb1",
+    color: "#ad2c2b",
     extension: "jpg",
   },
 ];
