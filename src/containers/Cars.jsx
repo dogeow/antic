@@ -45,6 +45,7 @@ export default function Cars() {
               container
               item
               spacing={2}
+              justify="center"
               key={car.name}
               style={{ background: car.color }}
             >
