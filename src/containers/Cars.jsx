@@ -7,16 +7,31 @@ const cars = [
     name: "Supra",
     imagesCount: 9,
     color: "#999999",
+    extension: "jpeg",
   },
   {
     name: "Mustang",
     imagesCount: 6,
     color: "#edf348",
+    extension: "jpeg",
   },
   {
     name: "AMG",
-    imagesCount: 5,
+    imagesCount: 6,
     color: "#c0c5d2",
+    extension: "jpeg",
+  },
+  {
+    name: "Camry",
+    imagesCount: 6,
+    color: "#2c4fb1",
+    extension: "jpg",
+  },
+  {
+    name: "Model3",
+    imagesCount: 6,
+    color: "#2c4fb1",
+    extension: "jpg",
   },
 ];
 
@@ -45,8 +60,8 @@ export default function Cars() {
                       <img
                         src={`https://cdn.gugelong.com/cars/${car.name}/${
                           value + 1
-                        }.jpeg!/fw/800`}
-                        alt={`Supra_${value + 1}`}
+                        }.${car.extension}!/fw/800`}
+                        alt={`${car.name}_${value + 1}`}
                         width="100%"
                       />
                     </Grid>
