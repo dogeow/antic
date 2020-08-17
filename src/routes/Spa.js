@@ -198,7 +198,7 @@ const Spa = ({ match }) => {
           <Route
             path="/cars"
             component={loadable(() => import("../containers/Cars"), {
-              fallback: <Loading />
+              fallback: <Loading />,
             })}
           />
           <Route
