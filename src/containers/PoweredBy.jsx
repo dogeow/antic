@@ -34,11 +34,15 @@ export default function Table() {
           sorting: true,
         }}
         title="Powered by"
-        data={(query) =>
-          new Promise((resolve, reject) => {
-            let url = `${process.env.REACT_APP_API_URL}/powered-by?`;
+        data={(query) => {
+          return new Promise((resolve, reject) => {
+            let url = `${process.env.REACT_APP_API_URL}powered-by?`;
             url += `page[size]=${query.pageSize}`;
             url += `&page[number]=${query.page + 1}`;
+            if (query.search !== "") {
+              url += `&search[name]=${query.search}`;
+            }
+
             fetch(url)
               .then((response) => response.json())
               .then((result) => {
@@ -48,8 +52,8 @@ export default function Table() {
                   totalCount: result.total,
                 });
               });
-          })
-        }
+          });
+        }}
         editable={{
           onBulkUpdate: (changes) =>
             new Promise((resolve, reject) => {
