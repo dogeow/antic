@@ -12,7 +12,7 @@ const PostSingle = () => {
 
   const history = useHistory();
   const match = useRouteMatch();
-  const id = parseInt(match.params.id);
+  const id = parseInt(match.params.id, 10);
 
   useEffect(() => {
     axios.get(`posts/${id}`).then((response) => {

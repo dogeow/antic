@@ -1,8 +1,6 @@
 import React from "react";
 import { Link as RouteLink, useHistory } from "react-router-dom";
 import md5 from "md5";
-import axios from "axios";
-import Swal from "sweetalert2";
 import SearchIcon from "@material-ui/icons/Search";
 import Hidden from "@material-ui/core/Hidden";
 import TextField from "@material-ui/core/TextField";

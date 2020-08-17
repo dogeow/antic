@@ -1,92 +1,142 @@
 import React, { useState } from "react";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import axios from "axios";
-import Paper from "@material-ui/core/Paper";
-import TablePagination from "@material-ui/core/TablePagination";
+import MaterialTable from "material-table";
 
-const PoweredBy = () => {
-  const [data, setData] = useState([]);
-  const [page, setPage] = useState(0);
-  const [size, setSize] = useState(15);
-  const [paginate, setPaginate] = useState({});
-
-  React.useEffect(() => {
-    axios
-      .get(`powered-by?page[number]=${page + 1}&page[size]=${size}`)
-      .then(({ data }) => {
-        setData(data.data);
-        delete data.data;
-        setPaginate(data);
-      });
-  }, [page, size]);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setSize(parseInt(event.target.value, 15));
-    setPage(0);
-  };
+export default function Table() {
+  const [project, setProject] = useState([]);
 
   return (
     <div>
-      <TableContainer component={Paper}>
-        <Table size="small" aria-label="dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell>name</TableCell>
-              <TableCell>分类</TableCell>
-              <TableCell>备注</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((row, index) => (
-              <TableRow key={index}>
-                <TableCell component="th" scope="row">
-                  {row.link ? (
-                    <a
-                      href={row.link}
-                      target="_blank"
-                      color="primary"
-                      rel="noopener noreferrer"
-                    >
-                      {row.name}
-                    </a>
-                  ) : (
-                    row.name
-                  )}
-                </TableCell>
-                <TableCell>{row.category}</TableCell>
-                <TableCell>{row.note}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 15, 25]}
-        component="div"
-        count={paginate.total || 0}
-        rowsPerPage={size}
-        page={page}
-        SelectProps={{
-          inputProps: { "aria-label": "每页行数" },
-          native: true,
+      <MaterialTable
+        columns={[
+          {
+            title: "name",
+            field: "name",
+            render: (rowData) => (
+              <a
+                href={rowData.link}
+                target="_blank"
+                color="primary"
+                rel="noopener noreferrer"
+              >
+                {rowData.name}
+              </a>
+            ),
+          },
+          { title: "分类", field: "category" },
+          { title: "链接", field: "link" },
+          { title: "备注", field: "note" },
+        ]}
+        options={{
+          filtering: true,
+          grouping: true,
+          exportButton: true,
+          selection: true,
+          sorting: true,
         }}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
+        title="Powered by"
+        data={(query) =>
+          new Promise((resolve, reject) => {
+            let url = `${process.env.REACT_APP_API_URL}/powered-by?`;
+            url += `page[size]=${query.pageSize}`;
+            url += `&page[number]=${query.page + 1}`;
+            fetch(url)
+              .then((response) => response.json())
+              .then((result) => {
+                resolve({
+                  data: result.data,
+                  page: result.page - 1,
+                  totalCount: result.total,
+                });
+              });
+          })
+        }
+        editable={{
+          onBulkUpdate: (changes) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                /* setData([...data, newData]); */
+
+                resolve();
+              }, 1000);
+            }),
+          onRowAddCancelled: (rowData) => console.log("Row adding cancelled"),
+          onRowUpdateCancelled: (rowData) =>
+            console.log("Row editing cancelled"),
+          onRowAdd: (newData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                /* setData([...data, newData]); */
+
+                resolve();
+              }, 1000);
+            }),
+          onRowUpdate: (newData, oldData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                const dataUpdate = [...project];
+                const index = oldData.tableData.id;
+                dataUpdate[index] = newData;
+                setProject([...dataUpdate]);
+
+                resolve();
+              }, 1000);
+            }),
+          onRowDelete: (oldData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                const dataDelete = [...project];
+                const index = oldData.tableData.id;
+                dataDelete.splice(index, 1);
+                setProject([...dataDelete]);
+
+                resolve();
+              }, 1000);
+            }),
+        }}
+        localization={{
+          pagination: {
+            labelRowsSelect: "行",
+            labelDisplayedRows: "{from}-{to} of {count}",
+            firstTooltip: "第一页",
+            firstAriaLabel: "第一页",
+            nextAriaLabel: "下一页",
+            nextTooltip: "下一页",
+            previousTooltip: "上一页",
+            previousAriaLabel: "上一页",
+            lastTooltip: "最后一页",
+            lastAriaLabel: "最后一页",
+          },
+          toolbar: {
+            nRowsSelected: "选择了 {0} 行",
+            searchTooltip: "搜索",
+            searchPlaceholder: "搜索",
+            exportTitle: "导出",
+            exportAriaLabel: "导出",
+          },
+          header: {
+            actions: "操作",
+          },
+          body: {
+            editTooltip: "编辑",
+            deleteTooltip: "删除",
+            addTooltip: "添加",
+            emptyDataSourceMessage: "无记录可显示",
+            editRow: {
+              saveTooltip: "保存",
+              cancelTooltip: "取消",
+              deleteText: "您确定要删除此行吗？",
+            },
+            filterRow: {
+              filterTooltip: "Filter",
+            },
+          },
+        }}
       />
       <div>
         <p>
           <a
             href="https://validator.w3.org/nu/?doc=https%3A%2F%2F233.sx%2F"
-            target={"_blank"}
+            target="_blank"
             rel="noopener noreferrer"
           >
             <img
@@ -97,7 +147,7 @@ const PoweredBy = () => {
           </a>
           <a
             href="http://jigsaw.w3.org/css-validator/validator?uri=233.sx&profile=css3svg&usermedium=all&warning=1&vextwarning="
-            target={"_blank"}
+            target="_blank"
             rel="noopener noreferrer"
           >
             <img
@@ -110,6 +160,4 @@ const PoweredBy = () => {
       </div>
     </div>
   );
-};
-
-export default PoweredBy;
+}

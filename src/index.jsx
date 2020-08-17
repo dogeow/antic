@@ -10,9 +10,7 @@ Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN });
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <App />
   </Provider>,
   document.getElementById("root")
 );
