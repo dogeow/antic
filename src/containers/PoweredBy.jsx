@@ -44,7 +44,7 @@ export default function Table() {
               .then((result) => {
                 resolve({
                   data: result.data,
-                  page: result.page - 1,
+                  page: result.current_page - 1,
                   totalCount: result.total,
                 });
               });
@@ -59,7 +59,6 @@ export default function Table() {
                 resolve();
               }, 1000);
             }),
-          onRowAddCancelled: (rowData) => console.log("Row adding cancelled"),
           onRowUpdateCancelled: (rowData) =>
             console.log("Row editing cancelled"),
           onRowAdd: (newData) =>
