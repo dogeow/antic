@@ -9,6 +9,7 @@ import ScrollUpButton from "react-scroll-up-button";
 import Index from "../containers/Index";
 import Header from "../components/Header";
 import Footer from "../containers/Footer";
+import Loading from "../components/Loading";
 
 const useStyles = makeStyles({
   main: {
@@ -196,7 +197,9 @@ const Spa = ({ match }) => {
           />
           <Route
             path="/cars"
-            component={loadable(() => import("../containers/Cars"))}
+            component={loadable(() => import("../containers/Cars"), {
+              fallback: <Loading />
+            })}
           />
           <Route
             path="/video"
