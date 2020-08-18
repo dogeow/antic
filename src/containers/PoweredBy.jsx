@@ -40,7 +40,12 @@ export default function Table() {
             url += `page[size]=${query.pageSize}`;
             url += `&page[number]=${query.page + 1}`;
             if (query.search !== "") {
-              url += `&search[name]=${query.search}`;
+              url += `&search=${query.search}`;
+            }
+            if (query.filters.length !== 0) {
+              query.filters.forEach((filter) => {
+                url += `&filters[${filter.column.field}]=${filter.value}`;
+              });
             }
 
             fetch(url)
