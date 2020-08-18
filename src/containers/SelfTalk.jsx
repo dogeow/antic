@@ -3,6 +3,7 @@ import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
+import RefreshIcon from "@material-ui/icons/Refresh";
 import SpeedDial from "../components/SpeedDial";
 
 const useStyles = makeStyles(() => ({
@@ -18,7 +19,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 const SelfTalk = () => {
-  const [fontSize, setFontSize] = useState(2);
+  const fontSizeDefault = 2;
+  const [fontSize, setFontSize] = useState(fontSizeDefault);
   const classes = useStyles({ fontSize: `${fontSize}em` });
   const [quotes, setQuotes] = useState([]);
 
@@ -39,8 +41,13 @@ const SelfTalk = () => {
     setFontSize(fontSize + 1);
   };
 
+  const handleRest = () => {
+    setFontSize(fontSizeDefault);
+  };
+
   const actions = [
     { icon: <AddIcon />, name: "加大", action: handleAdd },
+    { icon: <RefreshIcon />, name: "恢复", action: handleRest },
     { icon: <RemoveIcon />, name: "减小", action: handleSub },
   ];
 
