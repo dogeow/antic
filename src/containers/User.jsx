@@ -14,11 +14,13 @@ const User = () => {
   return (
     <Grid container spacing={2}>
       <Grid item>
-        <img
-          alt={state.lab.user_name}
-          src={avatar}
-          style={{ width: "150px" }}
-        />
+        <div className="box">
+          <img
+            alt={state.lab.user_name}
+            src={avatar}
+            style={{ width: "150px", height: "150px" }}
+          />
+        </div>
       </Grid>
       <Grid item>
         <Grid>ID：{state.lab.user_id}</Grid>
