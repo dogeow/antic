@@ -1,5 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
+import { Typography } from "@material-ui/core";
 
 const Piano = () => {
   const styles = {
@@ -8,6 +9,33 @@ const Piano = () => {
   };
   return (
     <Grid container spacing={2}>
+      <Grid item xs={12} style={{ textAlign: "center" }}>
+        <Typography>
+          <span style={{ color: "red" }}>
+            移步到
+            <a
+              href="https://www.autopiano.cn/"
+              target="_blank"
+              rel="noreferrer"
+              style={{ textDecoration: "underline" }}
+            >
+              自由钢琴 https://www.autopiano.cn/
+            </a>
+          </span>
+          <span style={{ marginLeft: 20 }}>
+            或直接进入
+            <a
+              href="https://www.autopiano.cn/post/181"
+              target="_blank"
+              rel="noreferrer"
+              style={{ textDecoration: "underline" }}
+            >
+              D大调卡农
+            </a>
+            （⚠️请手动切换到原声钢琴）
+          </span>
+        </Typography>
+      </Grid>
       <Grid item xs={8}>
         <embed src="/medias/paino.swf" style={styles} />
       </Grid>
