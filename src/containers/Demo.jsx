@@ -89,6 +89,9 @@ const Demo = () => (
             MV 测试
           </a>
         </li>
+        <li>
+          <Link to="/piano">🎹钢琴（卡农）</Link>
+        </li>
       </ul>
     </div>
     <div>

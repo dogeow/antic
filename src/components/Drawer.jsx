@@ -22,7 +22,6 @@ const menus = [
   { name: "🔝微博热搜榜", url: "/weibo" },
   { name: "🧭网址导航", url: "/nav" },
   { name: "🔖谷歌书签", url: "/bookmarks" },
-  { name: "🎹钢琴（卡农）", url: "/piano" },
   { name: "⚙️便民 API", url: "/api" },
   { name: "📋Todo", url: "/todo" },
   { name: "🤔自言自语", url: "/self-talk" },
