@@ -182,7 +182,7 @@ const PostCreate = () => {
             initialValue={(post && post.content) || ""}
             previewStyle="vertical"
             initialEditType="markdown"
-            height="600px"
+            height="70vh"
             useCommandShortcut
             // language="zh-CN"
             plugins={[
