@@ -12,7 +12,7 @@ import PaginationItem from "@material-ui/lab/PaginationItem";
 import Skeleton from "@material-ui/lab/Skeleton";
 import random from "lodash/random";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   "@global": {
     img: {
       float: "left",
@@ -26,21 +26,21 @@ const useStyles = makeStyles((theme) => ({
 const Weibo = () => {
   useStyles();
 
-  const [data, setData] = useState({});
+  const [weibo, setWeibo] = useState({});
   const [selectedDate, handleDateChange] = useState(new Date());
   const [pageCount, setPageCout] = useState();
-  const [page, setPage] = useState(1);
+  const [currPage, setCurrPage] = useState(1);
 
   useEffect(() => {
     const selectDate = moment(selectedDate).format("Y-MM-DD");
     axios
-      .post(`weibo?date=${selectDate}&page[number]=${page}`)
+      .post(`weibo?date=${selectDate}&page[number]=${currPage}`)
       .then(({ data }) => {
-        setData(data);
-        setPage(data.current_page);
+        setWeibo(data);
+        setCurrPage(data.current_page);
         setPageCout(data.last_page);
       });
-  }, [selectedDate, page]);
+  }, [selectedDate, currPage]);
 
   const handlePage = (page) => {
     axios
@@ -50,8 +50,8 @@ const Weibo = () => {
         )}&page[number]=${page}`
       )
       .then(({ data }) => {
-        setData(data);
-        setPage(page);
+        setWeibo(data);
+        setCurrPage(page);
         setPageCout(data.last_page);
       });
   };
@@ -91,10 +91,10 @@ const Weibo = () => {
             </tr>
           </thead>
           <tbody>
-            {data.data
-              ? data.data.map((item, index) => (
-                  <tr key={index} className={item.status}>
-                    <td>{data.per_page * (page - 1) + index + 1}</td>
+            {weibo.data
+              ? weibo.data.map((item, index) => (
+                  <tr key={item.id} className={item.status}>
+                    <td>{weibo.per_page * (currPage - 1) + index + 1}</td>
                     <td>
                       <span style={{ float: "left" }}>
                         <a href={`https://s.weibo.com${item.url}`}>
@@ -113,8 +113,8 @@ const Weibo = () => {
                     </Hidden>
                   </tr>
                 ))
-              : Array.from(new Array(20)).map((item, index) => (
-                  <tr key={index}>
+              : Array.from(new Array(20)).map((item) => (
+                  <tr key={item.id}>
                     <td colSpan={2}>
                       <Skeleton
                         variant="rect"
@@ -129,14 +129,14 @@ const Weibo = () => {
       </Grid>
       <Grid item xs={12}>
         <Pagination
-          page={page}
+          page={currPage}
           count={pageCount}
-          hidePrevButton={page <= 1}
-          hideNextButton={page >= data.last_page}
+          hidePrevButton={currPage <= 1}
+          hideNextButton={currPage >= weibo.last_page}
           renderItem={(item) => (
             <PaginationItem
               {...item}
-              disabled={item.page === page}
+              disabled={item.page === currPage}
               onClick={() => handlePage(item.page)}
             />
           )}
