@@ -113,8 +113,8 @@ const Weibo = () => {
                     </Hidden>
                   </tr>
                 ))
-              : Array.from(new Array(20)).map((item) => (
-                  <tr key={item.id}>
+              : Array.from(new Array(20)).map((item, index) => (
+                  <tr key={index}>
                     <td colSpan={2}>
                       <Skeleton
                         variant="rect"
