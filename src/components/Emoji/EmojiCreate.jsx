@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -32,11 +32,7 @@ const EmojiCreate = () => {
           "Content-Type": "multipart/form-data",
           Accept: "image/*",
         },
-        transformRequest: [
-          function (data) {
-            return data;
-          },
-        ],
+        transformRequest: [(data) => data],
         onUploadProgress(e) {
           const percentage = Math.round((e.loaded * 100) / e.total) || 0;
           if (percentage < 100) {
@@ -44,48 +40,37 @@ const EmojiCreate = () => {
           }
         },
       })
-      .then(function (resp) {
+      .then((resp) => {
         setData(resp.data);
         setOpen(true);
       });
-  }, []);
-
-  useEffect(() => {
-    axios.get("emoji").then(function (resp) {
-      setData(resp.data.files);
-    });
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
     <Grid container spacing={2} justify="center" alignItems="flex-end">
+      <Grid item xs>
+        <Typography variant="body2" component="h3">
+          图片地址：{undefined === data ? "请先上传图片" : data.url}
+        </Typography>
+      </Grid>
       <Grid
         item
         xs={12}
         {...getRootProps()}
         style={{
-          width: 288,
-          height: 288,
-          padding: 46,
+          width: "100%",
           border: "5px dotted",
-          backgroundImage: data ? `url(${data.url})` : "none",
-          backgroundSize: "contain",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
         }}
       >
         <input {...getInputProps()} />
-        {isDragActive ? (
+        {!data && isDragActive ? (
           <p style={{ textAlign: "center" }}>拖放文件到这里</p>
         ) : (
           <p style={{ textAlign: "center" }}>拖放文件到这里，或点击选择文件</p>
         )}
-      </Grid>
-      <Grid item xs>
-        <Typography variant="body2" component="h3">
-          图片地址：{undefined === data ? "请先上传图片" : data.url}
-        </Typography>
+        {data && <img src={data.url} alt="上传的图片" />}
       </Grid>
       <Snackbar
         anchorOrigin={{
