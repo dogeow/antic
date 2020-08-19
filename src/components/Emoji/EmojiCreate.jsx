@@ -70,7 +70,9 @@ const EmojiCreate = () => {
         ) : (
           <p style={{ textAlign: "center" }}>拖放文件到这里，或点击选择文件</p>
         )}
-        {data && <img src={data.url} alt="上传的图片" />}
+        {data && (
+          <img src={data.url} alt="上传的图片" style={{ maxWidth: "100%" }} />
+        )}
       </Grid>
       <Snackbar
         anchorOrigin={{
