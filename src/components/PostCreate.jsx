@@ -28,8 +28,8 @@ import php from "highlight.js/lib/languages/php";
 // import '@toast-ui/editor/dist/i18n/zh-cn';
 
 // 编辑器 CSS
-import "codemirror/lib/codemirror.css";
-import "@toast-ui/editor/dist/toastui-editor.css";
+import "../codemirror.css";
+import "../toastui-editor.css";
 import "highlight.js/styles/atom-one-dark.css";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "tui-chart/dist/tui-chart.css";

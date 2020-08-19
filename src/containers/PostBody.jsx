@@ -7,7 +7,7 @@ import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import uml from "@toast-ui/editor-plugin-uml";
 import chart from "@toast-ui/editor-plugin-chart";
 import "codemirror/lib/codemirror.css";
-import "@toast-ui/editor/dist/toastui-editor-viewer.css";
+// import "../toastui-editor-viewer.css";
 import hljs from "highlight.js";
 import "highlight.js/styles/atom-one-dark.css";
 import javascript from "highlight.js/lib/languages/javascript";
