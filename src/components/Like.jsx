@@ -4,18 +4,18 @@ import Grid from "@material-ui/core/Grid";
 import Card from "./Card";
 
 const Like = () => {
-  const [data, setData] = useState([]);
+  const [like, setLike] = useState([]);
 
   useEffect(() => {
     axios.get("like").then(({ data }) => {
-      setData(data);
+      setLike(data);
     });
   }, []);
 
   return (
     <Grid container spacing={2} justify="flex-start">
-      {data.map((item, index) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+      {like.map((item) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} key={item.id}>
           <Card
             title={item.name}
             subHeader={item.sub_header}
@@ -23,7 +23,6 @@ const Like = () => {
             link={item.link}
             intro={item.intro}
             feeling={item.feeling}
-            key={index}
           />
         </Grid>
       ))}
