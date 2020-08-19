@@ -24,8 +24,6 @@ import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import uml from "@toast-ui/editor-plugin-uml";
 import chart from "@toast-ui/editor-plugin-chart";
 import hljs from "highlight.js";
-import javascript from "highlight.js/lib/languages/javascript";
-import php from "highlight.js/lib/languages/php";
 
 // 编辑器 CSS
 import "../codemirror.css";
@@ -34,8 +32,15 @@ import "highlight.js/styles/atom-one-dark.css";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "tui-chart/dist/tui-chart.css";
 
+import javascript from "highlight.js/lib/languages/javascript";
+import php from "highlight.js/lib/languages/php";
+import bash from "highlight.js/lib/languages/bash";
+import json from "highlight.js/lib/languages/json";
+
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("php", php);
+hljs.registerLanguage("bash", bash);
+hljs.registerLanguage("json", json);
 
 const chartOptions = {
   minWidth: 100,
@@ -44,7 +49,7 @@ const chartOptions = {
   maxHeight: 300,
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   buttonSuccess: {
     backgroundColor: green[500],
     "&:hover": {
@@ -178,13 +183,12 @@ const PostCreate = () => {
           <Editor
             language="zh-CN"
             usageStatistics={false}
-            placeholder="请输入。"
+            placeholder="输入文档内容"
             initialValue={(post && post.content) || ""}
             previewStyle="vertical"
             initialEditType="markdown"
             height="70vh"
             useCommandShortcut
-            // language="zh-CN"
             plugins={[
               [codeSyntaxHightlight, { hljs }],
               colorSyntax,
