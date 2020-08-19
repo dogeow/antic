@@ -205,6 +205,10 @@ const Spa = ({ match }) => {
             path="/video"
             component={loadable(() => import("../containers/Video"))}
           />
+          <Route
+            path="/copywriting"
+            component={loadable(() => import("../containers/Copywriting"))}
+          />
           <Route component={loadable(() => import("../containers/NoMatch"))} />
         </Switch>
       </Container>

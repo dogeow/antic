@@ -11,6 +11,8 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@material-ui/pickers": "^3.2.10",
     "@material-ui/system": "^4.9.14",
+    "@mdi/js": "^5.5.55",
+    "@mdi/react": "^1.4.0",
     "@sentry/browser": "^5.20.1",
     "@sweetalert2/theme-material-ui": "^3.2.0",
     "@testing-library/jest-dom": "^4.2.4",
