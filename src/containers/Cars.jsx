@@ -38,7 +38,7 @@ const cars = [
 export default function Cars() {
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid container>
         {cars.map((car) => {
           return (
             <Grid

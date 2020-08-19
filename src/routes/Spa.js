@@ -33,9 +33,11 @@ const Spa = ({ match }) => {
     <>
       <Header />
       <Container
-        maxWidth={["/posts/create"].includes(match.url) ? null : "lg"}
-        style={{ marginTop: 20 }}
-        classes={["/nav"].includes(match.url) ? { root: classes.main } : null}
+        maxWidth={["/posts/create", "/cars"].includes(match.url) ? null : "lg"}
+        style={
+          ["/cars"].includes(match.url) ?  null : { marginTop: 20 }
+        }
+        classes={["/nav", "/cars"].includes(match.url) ? { root: classes.main } : null}
       >
         <Switch>
           <Route exact path="/" component={Index} />
