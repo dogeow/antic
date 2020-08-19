@@ -55,7 +55,7 @@ export default function RecipeReviewCard({
       <CardHeader title={title} subheader={subHeader} />
       <CardMedia
         className={classes.media}
-        image={`${process.env.REACT_APP_CDN_URL}/${img}`}
+        image={`${process.env.REACT_APP_CDN_URL}/${img}!/fw/800`}
         title="Paella dish"
       />
       <CardContent style={{ minHeight: "11em" }}>
