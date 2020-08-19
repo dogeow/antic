@@ -16,6 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { green, red } from "@material-ui/core/colors";
 
 // 编辑器
+import "@toast-ui/editor/dist/i18n/zh-cn";
 import { Editor } from "@toast-ui/react-editor";
 import codeSyntaxHightlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import tableMergedCell from "@toast-ui/editor-plugin-table-merged-cell";
@@ -25,7 +26,6 @@ import chart from "@toast-ui/editor-plugin-chart";
 import hljs from "highlight.js";
 import javascript from "highlight.js/lib/languages/javascript";
 import php from "highlight.js/lib/languages/php";
-// import '@toast-ui/editor/dist/i18n/zh-cn';
 
 // 编辑器 CSS
 import "../codemirror.css";
@@ -176,6 +176,7 @@ const PostCreate = () => {
       <Grid item xs={12}>
         {(post || !id) && (
           <Editor
+            language="zh-CN"
             usageStatistics={false}
             placeholder="请输入。"
             initialValue={(post && post.content) || ""}
