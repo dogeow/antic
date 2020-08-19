@@ -32,7 +32,7 @@ const Weibo = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    let selectDate = moment(selectedDate).format("Y-MM-DD");
+    const selectDate = moment(selectedDate).format("Y-MM-DD");
     axios
       .post(`weibo?date=${selectDate}&page[number]=${page}`)
       .then(({ data }) => {
@@ -57,14 +57,14 @@ const Weibo = () => {
   };
 
   return (
-    <Grid container spacing={2} justify={"center"}>
+    <Grid container spacing={2} justify="center">
       <Grid item xs={12}>
         <KeyboardDatePicker
           margin="normal"
           id="date-picker-dialog"
           label="日期"
           format="Y-MM-DD"
-          disableFuture={true}
+          disableFuture
           value={selectedDate}
           onChange={handleDateChange}
           KeyboardButtonProps={{
@@ -73,7 +73,7 @@ const Weibo = () => {
           style={{ marginLeft: 12 }}
         />
         <div style={{ float: "right", marginRight: 12 }}>
-          <Link to={"/weibo/about"}>
+          <Link to="/weibo/about">
             <ErrorOutline />
           </Link>
         </div>
