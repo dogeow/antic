@@ -31,7 +31,7 @@
 /* tui editor */
 .tui-editor:after,
 .tui-editor-defaultUI-toolbar:after {
-  content: '';
+  content: "";
   display: block;
   height: 0;
   clear: both;
@@ -214,8 +214,9 @@
   position: relative;
   border: 1px solid #e5e5e5;
   height: 100%;
-  font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', '나눔바른고딕',
-    'Nanum Barun Gothic', '맑은고딕', 'Malgun Gothic', sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial",
+    "나눔바른고딕", "Nanum Barun Gothic", "맑은고딕", "Malgun Gothic",
+    sans-serif;
 }
 
 .tui-editor-defaultUI button {
@@ -297,7 +298,7 @@
 }
 
 .tui-editor-defaultUI button.tui-scrollsync:after {
-  content: 'Scroll off';
+  content: "Scroll off";
 }
 
 .tui-editor-defaultUI button.tui-scrollsync.active {
@@ -306,7 +307,7 @@
 }
 
 .tui-editor-defaultUI button.tui-scrollsync.active:after {
-  content: 'Scroll on';
+  content: "Scroll on";
 }
 
 .tui-editor-defaultUI .te-mode-switch-section {
@@ -477,8 +478,8 @@
   margin-top: 15px;
 }
 
-.tui-editor-popup .tui-popup-body input[type='text'],
-.tui-editor-popup .tui-popup-body input[type='file'] {
+.tui-editor-popup .tui-popup-body input[type="text"],
+.tui-editor-popup .tui-popup-body input[type="file"] {
   padding: 4px 10px;
   border: 1px solid #bfbfbf;
   box-sizing: border-box;
@@ -535,11 +536,11 @@
 }
 
 .te-popup-add-table .te-table-body {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAARCAYAAAAougcOAAAC7mlDQ1BJQ0MgUHJvZmlsZQAAeAGFVM9rE0EU/jZuqdAiCFprDrJ4kCJJWatoRdQ2/RFiawzbH7ZFkGQzSdZuNuvuJrWliOTi0SreRe2hB/+AHnrwZC9KhVpFKN6rKGKhFy3xzW5MtqXqwM5+8943731vdt8ADXLSNPWABOQNx1KiEWlsfEJq/IgAjqIJQTQlVdvsTiQGQYNz+Xvn2HoPgVtWw3v7d7J3rZrStpoHhP1A4Eea2Sqw7xdxClkSAog836Epx3QI3+PY8uyPOU55eMG1Dys9xFkifEA1Lc5/TbhTzSXTQINIOJT1cVI+nNeLlNcdB2luZsbIEL1PkKa7zO6rYqGcTvYOkL2d9H5Os94+wiHCCxmtP0a4jZ71jNU/4mHhpObEhj0cGDX0+GAVtxqp+DXCFF8QTSeiVHHZLg3xmK79VvJKgnCQOMpkYYBzWkhP10xu+LqHBX0m1xOv4ndWUeF5jxNn3tTd70XaAq8wDh0MGgyaDUhQEEUEYZiwUECGPBoxNLJyPyOrBhuTezJ1JGq7dGJEsUF7Ntw9t1Gk3Tz+KCJxlEO1CJL8Qf4qr8lP5Xn5y1yw2Fb3lK2bmrry4DvF5Zm5Gh7X08jjc01efJXUdpNXR5aseXq8muwaP+xXlzHmgjWPxHOw+/EtX5XMlymMFMXjVfPqS4R1WjE3359sfzs94i7PLrXWc62JizdWm5dn/WpI++6qvJPmVflPXvXx/GfNxGPiKTEmdornIYmXxS7xkthLqwviYG3HCJ2VhinSbZH6JNVgYJq89S9dP1t4vUZ/DPVRlBnM0lSJ93/CKmQ0nbkOb/qP28f8F+T3iuefKAIvbODImbptU3HvEKFlpW5zrgIXv9F98LZua6N+OPwEWDyrFq1SNZ8gvAEcdod6HugpmNOWls05Uocsn5O66cpiUsxQ20NSUtcl12VLFrOZVWLpdtiZ0x1uHKE5QvfEp0plk/qv8RGw/bBS+fmsUtl+ThrWgZf6b8C8/UXAeIuJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAOklEQVQ4EWO8e/fuPwYGBkYgphlgAZmspKREMwtABjPR1HSo4aOWkBTKo8E1GlwkhQBJikdT1wgNLgAMSwQgckFvTgAAAABJRU5ErkJggg==');
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAARCAYAAAAougcOAAAC7mlDQ1BJQ0MgUHJvZmlsZQAAeAGFVM9rE0EU/jZuqdAiCFprDrJ4kCJJWatoRdQ2/RFiawzbH7ZFkGQzSdZuNuvuJrWliOTi0SreRe2hB/+AHnrwZC9KhVpFKN6rKGKhFy3xzW5MtqXqwM5+8943731vdt8ADXLSNPWABOQNx1KiEWlsfEJq/IgAjqIJQTQlVdvsTiQGQYNz+Xvn2HoPgVtWw3v7d7J3rZrStpoHhP1A4Eea2Sqw7xdxClkSAog836Epx3QI3+PY8uyPOU55eMG1Dys9xFkifEA1Lc5/TbhTzSXTQINIOJT1cVI+nNeLlNcdB2luZsbIEL1PkKa7zO6rYqGcTvYOkL2d9H5Os94+wiHCCxmtP0a4jZ71jNU/4mHhpObEhj0cGDX0+GAVtxqp+DXCFF8QTSeiVHHZLg3xmK79VvJKgnCQOMpkYYBzWkhP10xu+LqHBX0m1xOv4ndWUeF5jxNn3tTd70XaAq8wDh0MGgyaDUhQEEUEYZiwUECGPBoxNLJyPyOrBhuTezJ1JGq7dGJEsUF7Ntw9t1Gk3Tz+KCJxlEO1CJL8Qf4qr8lP5Xn5y1yw2Fb3lK2bmrry4DvF5Zm5Gh7X08jjc01efJXUdpNXR5aseXq8muwaP+xXlzHmgjWPxHOw+/EtX5XMlymMFMXjVfPqS4R1WjE3359sfzs94i7PLrXWc62JizdWm5dn/WpI++6qvJPmVflPXvXx/GfNxGPiKTEmdornIYmXxS7xkthLqwviYG3HCJ2VhinSbZH6JNVgYJq89S9dP1t4vUZ/DPVRlBnM0lSJ93/CKmQ0nbkOb/qP28f8F+T3iuefKAIvbODImbptU3HvEKFlpW5zrgIXv9F98LZua6N+OPwEWDyrFq1SNZ8gvAEcdod6HugpmNOWls05Uocsn5O66cpiUsxQ20NSUtcl12VLFrOZVWLpdtiZ0x1uHKE5QvfEp0plk/qv8RGw/bBS+fmsUtl+ThrWgZf6b8C8/UXAeIuJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAOklEQVQ4EWO8e/fuPwYGBkYgphlgAZmspKREMwtABjPR1HSo4aOWkBTKo8E1GlwkhQBJikdT1wgNLgAMSwQgckFvTgAAAABJRU5ErkJggg==");
 }
 
 .te-popup-add-table .te-table-header {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAARCAYAAAAougcOAAAC7mlDQ1BJQ0MgUHJvZmlsZQAAeAGFVM9rE0EU/jZuqdAiCFprDrJ4kCJJWatoRdQ2/RFiawzbH7ZFkGQzSdZuNuvuJrWliOTi0SreRe2hB/+AHnrwZC9KhVpFKN6rKGKhFy3xzW5MtqXqwM5+8943731vdt8ADXLSNPWABOQNx1KiEWlsfEJq/IgAjqIJQTQlVdvsTiQGQYNz+Xvn2HoPgVtWw3v7d7J3rZrStpoHhP1A4Eea2Sqw7xdxClkSAog836Epx3QI3+PY8uyPOU55eMG1Dys9xFkifEA1Lc5/TbhTzSXTQINIOJT1cVI+nNeLlNcdB2luZsbIEL1PkKa7zO6rYqGcTvYOkL2d9H5Os94+wiHCCxmtP0a4jZ71jNU/4mHhpObEhj0cGDX0+GAVtxqp+DXCFF8QTSeiVHHZLg3xmK79VvJKgnCQOMpkYYBzWkhP10xu+LqHBX0m1xOv4ndWUeF5jxNn3tTd70XaAq8wDh0MGgyaDUhQEEUEYZiwUECGPBoxNLJyPyOrBhuTezJ1JGq7dGJEsUF7Ntw9t1Gk3Tz+KCJxlEO1CJL8Qf4qr8lP5Xn5y1yw2Fb3lK2bmrry4DvF5Zm5Gh7X08jjc01efJXUdpNXR5aseXq8muwaP+xXlzHmgjWPxHOw+/EtX5XMlymMFMXjVfPqS4R1WjE3359sfzs94i7PLrXWc62JizdWm5dn/WpI++6qvJPmVflPXvXx/GfNxGPiKTEmdornIYmXxS7xkthLqwviYG3HCJ2VhinSbZH6JNVgYJq89S9dP1t4vUZ/DPVRlBnM0lSJ93/CKmQ0nbkOb/qP28f8F+T3iuefKAIvbODImbptU3HvEKFlpW5zrgIXv9F98LZua6N+OPwEWDyrFq1SNZ8gvAEcdod6HugpmNOWls05Uocsn5O66cpiUsxQ20NSUtcl12VLFrOZVWLpdtiZ0x1uHKE5QvfEp0plk/qv8RGw/bBS+fmsUtl+ThrWgZf6b8C8/UXAeIuJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAOklEQVQ4EWO8e/fuPwYGBkYgphlgAZksLCxMMwtABjPR1HSo4aOWkBTKo8E1GlwkhQBJikdT1wgNLgDxKwPzTeWPdAAAAABJRU5ErkJggg==');
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAARCAYAAAAougcOAAAC7mlDQ1BJQ0MgUHJvZmlsZQAAeAGFVM9rE0EU/jZuqdAiCFprDrJ4kCJJWatoRdQ2/RFiawzbH7ZFkGQzSdZuNuvuJrWliOTi0SreRe2hB/+AHnrwZC9KhVpFKN6rKGKhFy3xzW5MtqXqwM5+8943731vdt8ADXLSNPWABOQNx1KiEWlsfEJq/IgAjqIJQTQlVdvsTiQGQYNz+Xvn2HoPgVtWw3v7d7J3rZrStpoHhP1A4Eea2Sqw7xdxClkSAog836Epx3QI3+PY8uyPOU55eMG1Dys9xFkifEA1Lc5/TbhTzSXTQINIOJT1cVI+nNeLlNcdB2luZsbIEL1PkKa7zO6rYqGcTvYOkL2d9H5Os94+wiHCCxmtP0a4jZ71jNU/4mHhpObEhj0cGDX0+GAVtxqp+DXCFF8QTSeiVHHZLg3xmK79VvJKgnCQOMpkYYBzWkhP10xu+LqHBX0m1xOv4ndWUeF5jxNn3tTd70XaAq8wDh0MGgyaDUhQEEUEYZiwUECGPBoxNLJyPyOrBhuTezJ1JGq7dGJEsUF7Ntw9t1Gk3Tz+KCJxlEO1CJL8Qf4qr8lP5Xn5y1yw2Fb3lK2bmrry4DvF5Zm5Gh7X08jjc01efJXUdpNXR5aseXq8muwaP+xXlzHmgjWPxHOw+/EtX5XMlymMFMXjVfPqS4R1WjE3359sfzs94i7PLrXWc62JizdWm5dn/WpI++6qvJPmVflPXvXx/GfNxGPiKTEmdornIYmXxS7xkthLqwviYG3HCJ2VhinSbZH6JNVgYJq89S9dP1t4vUZ/DPVRlBnM0lSJ93/CKmQ0nbkOb/qP28f8F+T3iuefKAIvbODImbptU3HvEKFlpW5zrgIXv9F98LZua6N+OPwEWDyrFq1SNZ8gvAEcdod6HugpmNOWls05Uocsn5O66cpiUsxQ20NSUtcl12VLFrOZVWLpdtiZ0x1uHKE5QvfEp0plk/qv8RGw/bBS+fmsUtl+ThrWgZf6b8C8/UXAeIuJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAOklEQVQ4EWO8e/fuPwYGBkYgphlgAZksLCxMMwtABjPR1HSo4aOWkBTKo8E1GlwkhQBJikdT1wgNLgDxKwPzTeWPdAAAAABJRU5ErkJggg==");
 }
 
 .te-popup-add-table .te-selection-area {
@@ -691,7 +692,9 @@
   padding: 10px;
 }
 
-.tui-popup-color .tui-colorpicker-container .tui-colorpicker-palette-toggle-slider {
+.tui-popup-color
+  .tui-colorpicker-container
+  .tui-colorpicker-palette-toggle-slider {
   display: none;
 }
 
@@ -726,11 +729,15 @@
   height: 19px;
 }
 
-.tui-popup-color .tui-colorpicker-slider-container .tui-colorpicker-slider-right {
+.tui-popup-color
+  .tui-colorpicker-slider-container
+  .tui-colorpicker-slider-right {
   width: 22px;
 }
 
-.tui-popup-color .tui-colorpicker-slider-container .tui-colorpicker-huebar-handle {
+.tui-popup-color
+  .tui-colorpicker-slider-container
+  .tui-colorpicker-huebar-handle {
   display: none;
 }
 
@@ -745,7 +752,7 @@
 }
 
 .tui-tooltip .arrow {
-  content: '';
+  content: "";
   display: inline-block;
   width: 10px;
   height: 10px;
@@ -943,7 +950,7 @@
 
 .te-ww-block-overlay.code-block-header {
   text-align: right;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .te-ww-block-overlay.code-block-header span {
@@ -1009,7 +1016,7 @@
 }
 
 .te-input-language input {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 10px;
   padding: 3px 5px;
   border: 1px solid #dddddd;
@@ -1043,24 +1050,24 @@
 }
 
 .tui-popup-code-block-editor .popup-editor-toggle-preview::after {
-  content: 'Preview off';
+  content: "Preview off";
   color: #777;
   margin-right: 22px;
 }
 
 .tui-popup-code-block-editor .popup-editor-toggle-preview.active::after {
-  content: 'Preview on';
+  content: "Preview on";
   color: #4b96e6;
 }
 
 .tui-popup-code-block-editor .popup-editor-toggle-scroll::after {
-  content: 'Scroll off';
+  content: "Scroll off";
   color: #777;
   margin-right: 16px;
 }
 
 .tui-popup-code-block-editor .popup-editor-toggle-scroll.active::after {
-  content: 'Scroll on';
+  content: "Scroll on";
   color: #4b96e6;
 }
 
@@ -1116,8 +1123,8 @@
 }
 
 .tui-popup-code-block-editor .CodeMirror-line {
-  font-family: Consolas, Courier, 'Lucida Grande', '나눔바른고딕', 'Nanum Barun Gothic', '맑은고딕',
-    'Malgun Gothic', sans-serif;
+  font-family: Consolas, Courier, "Lucida Grande", "나눔바른고딕",
+    "Nanum Barun Gothic", "맑은고딕", "Malgun Gothic", sans-serif;
   font-size: 13px;
   line-height: 160%;
   letter-spacing: -0.3px;
@@ -1186,7 +1193,7 @@
 }
 
 .tui-split-scroll button.tui-scrollsync::after {
-  content: 'scroll off';
+  content: "scroll off";
 }
 
 .tui-split-scroll.scroll-sync button.tui-scrollsync {
@@ -1200,7 +1207,7 @@
 }
 
 .tui-split-scroll.scroll-sync button.tui-scrollsync::after {
-  content: 'scroll on';
+  content: "scroll on";
 }
 
 .tui-split-scroll.scroll-sync .tui-split-scroll-content {
@@ -1256,8 +1263,9 @@
   margin: 0;
   padding: 0;
   font-size: 13px;
-  font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', '나눔바른고딕',
-    'Nanum Barun Gothic', '맑은고딕', 'Malgun Gothic', sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial",
+    "나눔바른고딕", "Nanum Barun Gothic", "맑은고딕", "Malgun Gothic",
+    sans-serif;
 }
 
 .tui-editor-contents *:not(table) {
@@ -1369,8 +1377,9 @@
 
 .tui-editor-contents pre,
 .tui-editor-contents code {
-  font-family: Consolas, Courier, 'Apple SD 산돌고딕 Neo', -apple-system, 'Lucida Grande',
-    'Apple SD Gothic Neo', '맑은 고딕', 'Malgun Gothic', 'Segoe UI', '돋움', dotum, sans-serif;
+  font-family: Consolas, Courier, "Apple SD 산돌고딕 Neo", -apple-system,
+    "Lucida Grande", "Apple SD Gothic Neo", "맑은 고딕", "Malgun Gothic",
+    "Segoe UI", "돋움", dotum, sans-serif;
   border: 0;
   border-radius: 0;
 }
@@ -1457,7 +1466,7 @@
 }
 
 .tui-editor-contents ul > li::before {
-  content: '';
+  content: "";
   margin-top: 6px;
   margin-left: -17px;
   width: 5px;
@@ -1467,7 +1476,7 @@
 }
 
 .tui-editor-contents ol > li::before {
-  content: '.' counter(li);
+  content: "." counter(li);
   margin-left: -28px;
   width: 24px;
   text-align: right;
@@ -1496,7 +1505,7 @@
 .tui-editor-contents ul li.task-list-item::before,
 .tui-editor-contents ol li.task-list-item::before,
 .tui-editor-contents pre ul li::before {
-  content: '';
+  content: "";
 }
 
 .tui-editor-contents hr {
@@ -1524,7 +1533,7 @@
   background-repeat: no-repeat;
   background-size: 18px 18px;
   background-position: center;
-  content: '';
+  content: "";
   margin-left: 0;
   margin-top: 0;
   border-radius: 0;
@@ -1534,14 +1543,14 @@
   left: 0;
   top: 1px;
   cursor: pointer;
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAACaqbJVAAAAQklEQVQ4EWM8c+bMfwYqABaQGcbGxhQZdfbsWQYmikxA0jxqEFJg4GCOhhGOgEESHg0jpMDAwRx8YQQuj0DlCaUAAEdBCPJ7TaEPAAAAAElFTkSuQmCC');
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAACaqbJVAAAAQklEQVQ4EWM8c+bMfwYqABaQGcbGxhQZdfbsWQYmikxA0jxqEFJg4GCOhhGOgEESHg0jpMDAwRx8YQQuj0DlCaUAAEdBCPJ7TaEPAAAAAElFTkSuQmCC");
 }
 
 .tui-editor-contents .task-list-item.checked::before {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAACaqbJVAAAA1ElEQVQ4EWP0nvbsPwMVABMVzAAbMWoQIiT5OJgYvLS5EAJQFguGCB4BkCHt/kIM8kKsYFXbrn6DqyY6sJENefjuN8ORuz/ghoAYWA0COR2kEQbQDanc+I7h049/MGkwjVANFQYZkmXHD/YCyABiDAFpxQgjkJO9dbjA4QAKDxAAhQnIO9hcAlYAJDBcBHIySANII8gAYgwBGYZhEEgQZFjVJohhhFwCUg8CjPgyLT8nE8N/YJZGD1iIVlQSI4yQpT9+R40ZZDl0NlavoSsihj/4DAIAR+hZHUj727YAAAAASUVORK5CYII=');
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAACaqbJVAAAA1ElEQVQ4EWP0nvbsPwMVABMVzAAbMWoQIiT5OJgYvLS5EAJQFguGCB4BkCHt/kIM8kKsYFXbrn6DqyY6sJENefjuN8ORuz/ghoAYWA0COR2kEQbQDanc+I7h049/MGkwjVANFQYZkmXHD/YCyABiDAFpxQgjkJO9dbjA4QAKDxAAhQnIO9hcAlYAJDBcBHIySANII8gAYgwBGYZhEEgQZFjVJohhhFwCUg8CjPgyLT8nE8N/YJZGD1iIVlQSI4yQpT9+R40ZZDl0NlavoSsihj/4DAIAR+hZHUj727YAAAAASUVORK5CYII=");
 }
 
-.tui-editor-contents .task-list-item input[type='checkbox'],
+.tui-editor-contents .task-list-item input[type="checkbox"],
 .tui-editor-contents .task-list-item .task-list-item-checkbox {
   margin-left: -17px;
   margin-right: 3.8px;
@@ -1604,7 +1613,7 @@
 }
 
 .tui-editor-contents .te-preview-highlight::after {
-  content: '';
+  content: "";
   background-color: rgba(255, 245, 131, 0.5);
   border-radius: 4px;
   z-index: -1;
@@ -1631,8 +1640,9 @@
 }
 
 .te-md-container .CodeMirror {
-  font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', '나눔바른고딕',
-    'Nanum Barun Gothic', '맑은고딕', 'Malgun Gothic', sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial",
+    "나눔바른고딕", "Nanum Barun Gothic", "맑은고딕", "Malgun Gothic",
+    sans-serif;
 }
 
 .tui-md-heading1 {
@@ -1745,7 +1755,6 @@
 
 .tui-md-code,
 .tui-md-code-block {
-  font-family: Consolas, Courier, 'Lucida Grande', '나눔바른고딕', 'Nanum Barun Gothic', '맑은고딕',
-    'Malgun Gothic', sans-serif;
+  font-family: Consolas, Courier, "Lucida Grande", "나눔바른고딕",
+    "Nanum Barun Gothic", "맑은고딕", "Malgun Gothic", sans-serif;
 }
-
