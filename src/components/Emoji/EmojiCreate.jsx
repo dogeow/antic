@@ -77,13 +77,9 @@ const EmojiCreate = () => {
       >
         <input {...getInputProps()} />
         {isDragActive ? (
-          <p style={{ paddingTop: "25%", textAlign: "center" }}>
-            拖放文件到这里
-          </p>
+          <p style={{ textAlign: "center" }}>拖放文件到这里</p>
         ) : (
-          <p style={{ paddingTop: "25%", textAlign: "center" }}>
-            拖放文件到这里，或点击选择文件
-          </p>
+          <p style={{ textAlign: "center" }}>拖放文件到这里，或点击选择文件</p>
         )}
       </Grid>
       <Grid item xs>
