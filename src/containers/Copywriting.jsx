@@ -17,21 +17,25 @@ export default function Copywriting() {
   };
 
   return (
-    <Grid container spacing={2} justify="center" style={{ fontFamily: "auto" }}>
+    <Grid container spacing={2} justify="center">
       <Grid item xs={12} style={{ textAlign: "center" }}>
         <TextareaAutosize
           aria-label="empty textarea"
           rowsMin={6}
           placeholder="Empty"
           value={text}
-          style={{ width: 272 }}
+          style={{ width: 272, fontFamily: "auto" }}
           onChange={handleChange}
         />
       </Grid>
       <Grid item xs={12} style={{ fontSize: "2em", textAlign: "center" }}>
         <ButtonGroup aria-label="outlined button group">
           {emojis.map((emoji) => (
-            <Button onClick={() => handleClick(emoji)} key={emoji}>
+            <Button
+              onClick={() => handleClick(emoji)}
+              style={{ fontFamily: "auto" }}
+              key={emoji}
+            >
               {emoji}
             </Button>
           ))}
