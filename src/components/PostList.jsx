@@ -29,8 +29,8 @@ const PostList = () => {
   return (
     <Paper className={classes.paper}>
       <Grid container spacing={2}>
-        {(post || Array.from(new Array(6))).map((item, index) =>
-          item ? (
+        {(post || Array.from(new Array(6))).map((item, index) => {
+          return item ? (
             <Grid item container xs={12} key={index} spacing={2}>
               <Grid item>
                 <Avatar>{item.category}</Avatar>
@@ -43,13 +43,9 @@ const PostList = () => {
               <Grid item>
                 <Grid container spacing={1}>
                   {item.tags.length !== 0 &&
-                    item.tags.map((tag, index) => (
-                      <Grid item key={index}>
-                        <Chip
-                          variant="outlined"
-                          size="small"
-                          label={tag.name}
-                        />
+                    item.tags.map((tag) => (
+                      <Grid item key={tag}>
+                        <Chip variant="outlined" size="small" label={tag} />
                       </Grid>
                     ))}
                 </Grid>
@@ -74,8 +70,8 @@ const PostList = () => {
                 />
               </Grid>
             </Grid>
-          )
-        )}
+          );
+        })}
       </Grid>
     </Paper>
   );
