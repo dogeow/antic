@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
-const emojis = ["💦", "🔥", "✨", "🙀", "💅"];
+const emojis = ["💦", "🔥", "✨", "🙀", "💅", "❗️", "‼️"];
 
 export default function Copywriting() {
   const [text, setText] = React.useState("233");
@@ -24,7 +24,7 @@ export default function Copywriting() {
           rowsMin={6}
           placeholder="Empty"
           value={text}
-          style={{ width: 272 }}
+          style={{ width: 272, fontFamily: "auto" }}
           onChange={handleChange}
         />
       </Grid>
