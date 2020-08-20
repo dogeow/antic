@@ -45,16 +45,17 @@ const PostEdit = ({ post, handleEdit, handleDelete }) => {
       </Grid>
       <Grid item>
         <Chip
-          label={post.category}
+          label={post.category ?? '未分类'}
           color="primary"
           variant="outlined"
           size="small"
         />
       </Grid>
       <Grid item>
-        {post.tags.map((tag) => (
-          <Chip label={tag} variant="outlined" size="small" key={tag.id} />
-        ))}
+        {post.tags &&
+          post.tags.map((tag) => (
+            <Chip label={tag} variant="outlined" size="small" key={tag.id} />
+          ))}
       </Grid>
       <Grid item>
         <ButtonGroup

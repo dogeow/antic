@@ -33,10 +33,7 @@ const PostList = () => {
           item ? (
             <Grid item container xs={12} key={index} spacing={2}>
               <Grid item>
-                <Avatar>
-                  {item.categories.length !== 0 &&
-                    item.categories[0].name.substring(0, 4)}
-                </Avatar>
+                <Avatar>{item.category}</Avatar>
               </Grid>
               <Grid item>
                 <Typography variant="h6" component="h2">
