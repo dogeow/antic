@@ -44,7 +44,7 @@ export default function Table() {
             }
             if (query.filters.length !== 0) {
               query.filters.forEach((filter) => {
-                url += `&filters[${filter.column.field}]=${filter.value}`;
+                url += `&filter[${filter.column.field}]=${filter.value}`;
               });
             }
 

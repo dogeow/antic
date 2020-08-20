@@ -21,9 +21,10 @@ export default function Copywriting() {
       <Grid item xs={12} style={{ textAlign: "center" }}>
         <TextareaAutosize
           aria-label="empty textarea"
-          rowsMin={4}
+          rowsMin={6}
           placeholder="Empty"
           value={text}
+          style={{ width: 272 }}
           onChange={handleChange}
         />
       </Grid>
