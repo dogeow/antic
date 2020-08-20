@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import Skeleton from "@material-ui/lab/Skeleton";
 import React from "react";
 import Zoom from "@material-ui/core/Zoom";
+import Chip from "@material-ui/core/Chip";
 
 const PostEdit = ({ post, handleEdit, handleDelete }) => {
   return post ? (
@@ -41,6 +42,19 @@ const PostEdit = ({ post, handleEdit, handleDelete }) => {
             更新于 <time>{moment(post.updated_at).fromNow()}</time>
           </div>
         </Tooltip>
+      </Grid>
+      <Grid item>
+        <Chip
+          label={post.category}
+          color="primary"
+          variant="outlined"
+          size="small"
+        />
+      </Grid>
+      <Grid item>
+        {post.tags.map((tag) => (
+          <Chip label={tag} variant="outlined" size="small" key={tag.id} />
+        ))}
       </Grid>
       <Grid item>
         <ButtonGroup
