@@ -17,14 +17,14 @@ export default function Copywriting() {
   };
 
   return (
-    <Grid container spacing={2} justify="center">
+    <Grid container spacing={2} justify="center" style={{ fontFamily: "auto" }}>
       <Grid item xs={12} style={{ textAlign: "center" }}>
         <TextareaAutosize
           aria-label="empty textarea"
           rowsMin={6}
           placeholder="Empty"
           value={text}
-          style={{ width: 272, fontFamily: "auto" }}
+          style={{ width: 272 }}
           onChange={handleChange}
         />
       </Grid>
