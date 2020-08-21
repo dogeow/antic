@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
-  title: {
+  blank: {
     flexGrow: 1,
   },
   containerRoot: {
@@ -109,9 +109,10 @@ const Header = ({
             >
               <MenuIcon />
             </IconButton>
-            <RouteLink to="/" className={classes.title}>
+            <RouteLink to="/">
               <Logo />
             </RouteLink>
+            <div className={classes.blank} />
             <Hidden only="xs">
               <TextField
                 placeholder="搜索"
