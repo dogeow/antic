@@ -8,9 +8,8 @@ const Project = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    axios.get("projects").then((response) => {
-      setProjects(response.data);
-      console.log(response.data);
+    axios.get("projects").then(({ data }) => {
+      setProjects(data);
     });
   }, []);
 

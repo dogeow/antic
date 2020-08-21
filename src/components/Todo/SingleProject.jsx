@@ -122,7 +122,7 @@ const SingleProject = () => {
       <AlertDialog
         open={alert}
         handleClose={handleDelete}
-        title="删除项目！"
+        title={`删除「${project.name} 」项目！`}
         content="删除后，任务也将一同被删除！"
         agree={handleMarkProjectAsCompleted}
       />
