@@ -11,7 +11,6 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from "@material-ui/core/styles";
 import Swal from "sweetalert2";
 import axios from "axios";
-
 import Copyright from "./Copyright";
 
 const useStyles = makeStyles((theme) => ({
@@ -46,14 +45,10 @@ const Register = ({ history }) => {
     e.preventDefault();
     axios
       .post("user/signup", {
-        name: name,
-        email: email,
-        password: password,
-        password_confirmation: password_confirmation,
-      })
-      .then((response) => {
-        console.log(response);
-        return response;
+        name,
+        email,
+        password,
+        password_confirmation,
       })
       .then((json) => {
         if (json.status === 201) {
@@ -71,7 +66,6 @@ const Register = ({ history }) => {
       })
       .catch((error) => {
         setInputErrors(error.errors);
-        console.log(error);
       });
   };
 
