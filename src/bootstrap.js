@@ -188,7 +188,7 @@ window.Echo.channel("push").listen("TestBroadcastingEvent", (e) => {
     let trimmedLength = 0;
     let trimmedStr = "";
     for (; i < l; i++) {
-      const charCode = str.charCodeAt(i);
+      // const charCode = str.charCodeAt(i);
       const c = str.charAt(i);
       const charWidth = mb_strwidth(c);
       const next = str.charAt(i + 1);

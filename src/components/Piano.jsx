@@ -16,7 +16,7 @@ const Piano = () => {
             <a
               href="https://www.autopiano.cn/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               style={{ textDecoration: "underline" }}
             >
               自由钢琴 https://www.autopiano.cn/
@@ -27,7 +27,7 @@ const Piano = () => {
             <a
               href="https://www.autopiano.cn/post/181"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               style={{ textDecoration: "underline" }}
             >
               D大调卡农

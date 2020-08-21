@@ -18,7 +18,7 @@ const Demo = () => (
         </li>
         <li>
           <Link to="/demos/calculator">
-            🌡摄氏度、华氏度转换（React 官方 Example）
+            <span role="img">🌡</span>摄氏度、华氏度转换（React 官方 Example）
           </Link>
         </li>
         <li>
@@ -93,7 +93,12 @@ const Demo = () => (
           </a>
         </li>
         <li>
-          <Link to="/piano">🎹钢琴（卡农）</Link>
+          <Link to="/piano">
+            <span role="img" aria-label="钢琴">
+              🎹
+            </span>
+            钢琴（卡农）
+          </Link>
         </li>
       </ul>
     </div>
