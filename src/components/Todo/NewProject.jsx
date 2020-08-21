@@ -18,8 +18,8 @@ const NewProject = () => {
 
     axios
       .post("projects", {
-        name: name,
-        description: description,
+        name,
+        description,
       })
       .then(() => {
         history.push("/todo");
@@ -47,7 +47,7 @@ const NewProject = () => {
               className={`classes.input form-control
               ${errors.name && "is-invalid"}`}
               error={!!errors.name}
-              placeholder={!!errors.name ? errors.name[0] : ""}
+              placeholder={errors.name ? errors.name[0] : ""}
               name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -58,12 +58,12 @@ const NewProject = () => {
               <label>项目信息</label>
             </div>
             <OutlinedInput
-              multiline={true}
+              multiline
               rows="10"
               id="description"
               className={`form-control ${errors.description && "is-invalid"}`}
               error={!!errors.description}
-              placeholder={!!errors.description ? errors.description[0] : ""}
+              placeholder={errors.description ? errors.description[0] : ""}
               name="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
