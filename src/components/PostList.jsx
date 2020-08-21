@@ -31,7 +31,14 @@ const PostList = () => {
       <Grid container spacing={2}>
         {(post || Array.from(new Array(6))).map((item, index) => {
           return item ? (
-            <Grid item container xs={12} key={item.id} spacing={2}>
+            <Grid
+              item
+              container
+              xs={12}
+              key={item.id}
+              spacing={2}
+              alignItems="center"
+            >
               <Grid item>
                 <Chip size="small" label={item.category || "未分类"} />
               </Grid>
