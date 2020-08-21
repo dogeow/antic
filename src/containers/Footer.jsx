@@ -109,7 +109,7 @@ const Footer = () => {
         </Grid>
       </Grid>
       <div style={{ textAlign: "center" }}>
-        Built By 小李世界 with{" "}
+        Built By <a href="https://kunyan.li">小李世界</a> with{" "}
         <span role="img" aria-label="❤">
           ❤️
         </span>
