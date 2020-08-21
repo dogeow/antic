@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import { useRouteMatch } from "react-router-dom";
 
 // UI
-import Input from "@material-ui/core/Input";
 import Grid from "@material-ui/core/Grid";
 import Fab from "@material-ui/core/Fab";
 import CheckIcon from "@material-ui/icons/Check";
@@ -14,6 +13,7 @@ import SaveIcon from "@material-ui/icons/Save";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
 import { green, red } from "@material-ui/core/colors";
+import TextField from "@material-ui/core/TextField";
 
 // 编辑器
 import "@toast-ui/editor/dist/i18n/zh-cn";
@@ -36,7 +36,8 @@ import javascript from "highlight.js/lib/languages/javascript";
 import php from "highlight.js/lib/languages/php";
 import bash from "highlight.js/lib/languages/bash";
 import json from "highlight.js/lib/languages/json";
-import AutoComplete from "./AutoComplete";
+import { Typography } from "@material-ui/core";
+import Tags from "./Post/Tags";
 
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("php", php);
@@ -80,7 +81,6 @@ const PostCreate = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState(false);
-  const [options, setOptions] = useState([]);
 
   const editorRef = React.createRef();
 
@@ -91,10 +91,6 @@ const PostCreate = () => {
 
       axios.get(`posts/${match.params.id}`).then(({ data }) => {
         setPost(data);
-      });
-
-      axios.get("posts/categories").then(({ data }) => {
-        setOptions(data);
       });
     }
   }, [match.params.id]);
@@ -180,25 +176,22 @@ const PostCreate = () => {
 
   return (
     <Grid container spacing={2} justify="center" alignItems="center">
-      <Grid item>
+      {/* 标题 */}
+      <Grid item xs={12} md={6}>
+        <Typography variant="h5" component="h2" onChange={handleTitleChange}>
+          {(post && post.title) || ""}
+        </Typography>
+      </Grid>
+      <Grid item xs={3} md={1}>
         {post && (
-          <AutoComplete
-            value={post.category}
-            options={options}
-            onHandleCategoryChange={handleCategoryChange}
-          />
+          <TextField value={post.category} onChange={handleCategoryChange} />
         )}
       </Grid>
-      {/* 标题 */}
-      <Grid item>
-        <Input
-          fullWidth
-          value={(post && post.title) || ""}
-          placeholder="请输入标题"
-          inputProps={{ "aria-label": "description" }}
-          onChange={handleTitleChange}
-        />
-      </Grid>
+      {post && (
+        <Grid item xs={9} md={5}>
+          {post.tags && <Tags tags={post.tags} />}
+        </Grid>
+      )}
       {/* 正文 */}
       <Grid item xs={12}>
         {(post || !id) && (

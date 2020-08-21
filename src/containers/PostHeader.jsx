@@ -7,8 +7,9 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import React from "react";
 import Zoom from "@material-ui/core/Zoom";
 import Chip from "@material-ui/core/Chip";
+import Tags from "../components/Post/Tags";
 
-const PostEdit = ({ post, handleEdit, handleDelete }) => {
+const PostHeader = ({ post, handleEdit, handleDelete }) => {
   return post ? (
     <>
       <Grid item>
@@ -52,10 +53,7 @@ const PostEdit = ({ post, handleEdit, handleDelete }) => {
         />
       </Grid>
       <Grid item>
-        {post.tags &&
-          post.tags.map((tag) => (
-            <Chip label={tag} variant="outlined" size="small" key={tag.id} />
-          ))}
+        <Tags tags={post.tags} />
       </Grid>
       <Grid item>
         <ButtonGroup
@@ -77,4 +75,4 @@ const PostEdit = ({ post, handleEdit, handleDelete }) => {
   );
 };
 
-export default PostEdit;
+export default PostHeader;

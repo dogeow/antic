@@ -20,13 +20,7 @@ export default function Asynchronous(props) {
       getOptionSelected={(option, value) => option.name === value.name}
       getOptionLabel={(option) => option.name}
       options={props.options}
-      inputValue={props.value}
-      onInputChange={(e, value, reason) => {
-        if (reason === "reset") {
-          return;
-        }
-        props.onHandleCategoryChange(e, value);
-      }}
+      defaultValue=""
       renderInput={(params) => (
         <TextField {...params} label="分类" size="small" variant="outlined" />
       )}
