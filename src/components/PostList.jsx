@@ -31,9 +31,9 @@ const PostList = () => {
       <Grid container spacing={2}>
         {(post || Array.from(new Array(6))).map((item, index) => {
           return item ? (
-            <Grid item container xs={12} key={index} spacing={2}>
+            <Grid item container xs={12} key={item.id} spacing={2}>
               <Grid item>
-                <Avatar>{item.category}</Avatar>
+                <Chip size="small" label={item.category || "未分类"} />
               </Grid>
               <Grid item>
                 <Typography variant="h6" component="h2">
@@ -54,20 +54,10 @@ const PostList = () => {
           ) : (
             <Grid item container xs={12} key={index} spacing={2}>
               <Grid item>
-                <Skeleton
-                  variant="circle"
-                  width={40}
-                  height={40}
-                  animation="wave"
-                />
+                <Skeleton width={40} height={32} animation="wave" />
               </Grid>
               <Grid item xs>
-                <Skeleton
-                  variant="rect"
-                  width="100%"
-                  height={32}
-                  animation="wave"
-                />
+                <Skeleton width="100%" height={32} animation="wave" />
               </Grid>
             </Grid>
           );

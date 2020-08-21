@@ -141,3 +141,67 @@ window.Echo = new Echo({
 window.Echo.channel("push").listen("TestBroadcastingEvent", (e) => {
   console.log(e);
 });
+
+(function (ns) {
+  /**
+   * mb_strwidth
+   * @param String
+   * @return int
+   * @see http://php.net/manual/ja/function.mb-strwidth.php
+   */
+  const mb_strwidth = function (str) {
+    let i = 0;
+    const l = str.length;
+    let c = "";
+    let length = 0;
+    for (; i < l; i++) {
+      c = str.charCodeAt(i);
+      if (c >= 0x0000 && c <= 0x0019) {
+        length += 0;
+      } else if (c >= 0x0020 && c <= 0x1fff) {
+        length += 1;
+      } else if (c >= 0x2000 && c <= 0xff60) {
+        length += 2;
+      } else if (c >= 0xff61 && c <= 0xff9f) {
+        length += 1;
+      } else if (c >= 0xffa0) {
+        length += 2;
+      }
+    }
+    return length;
+  };
+
+  /**
+   * mb_strimwidth
+   * @param String
+   * @param int
+   * @param int
+   * @param String
+   * @return String
+   * @see http://www.php.net/manual/ja/function.mb-strimwidth.php
+   */
+  const mb_strimwidth = function (str, start, width, trimmarker) {
+    if (typeof trimmarker === "undefined") trimmarker = "";
+    const trimmakerWidth = mb_strwidth(trimmarker);
+    let i = start;
+    const l = str.length;
+    let trimmedLength = 0;
+    let trimmedStr = "";
+    for (; i < l; i++) {
+      const charCode = str.charCodeAt(i);
+      const c = str.charAt(i);
+      const charWidth = mb_strwidth(c);
+      const next = str.charAt(i + 1);
+      const nextWidth = mb_strwidth(next);
+      trimmedLength += charWidth;
+      trimmedStr += c;
+      if (trimmedLength + trimmakerWidth + nextWidth > width) {
+        trimmedStr += trimmarker;
+        break;
+      }
+    }
+    return trimmedStr;
+  };
+  ns.mb_strwidth = mb_strwidth;
+  ns.mb_strimwidth = mb_strimwidth;
+})(window);
