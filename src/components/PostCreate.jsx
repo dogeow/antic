@@ -36,6 +36,7 @@ import javascript from "highlight.js/lib/languages/javascript";
 import php from "highlight.js/lib/languages/php";
 import bash from "highlight.js/lib/languages/bash";
 import json from "highlight.js/lib/languages/json";
+import AutoComplete from "./AutoComplete";
 
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("php", php);
@@ -79,6 +80,7 @@ const PostCreate = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState(false);
+  const [options, setOptions] = useState([]);
 
   const editorRef = React.createRef();
 
@@ -89,6 +91,10 @@ const PostCreate = () => {
 
       axios.get(`posts/${match.params.id}`).then(({ data }) => {
         setPost(data);
+      });
+
+      axios.get("posts/categories").then(({ data }) => {
+        setOptions(data);
       });
     }
   }, [match.params.id]);
@@ -165,10 +171,26 @@ const PostCreate = () => {
       });
   };
 
+  const handleCategoryChange = (e, value) => {
+    setPost({
+      ...post,
+      category: value,
+    });
+  };
+
   return (
-    <Grid container spacing={2} justify="center">
+    <Grid container spacing={2} justify="center" alignItems="center">
+      <Grid item>
+        {post && (
+          <AutoComplete
+            value={post.category}
+            options={options}
+            onHandleCategoryChange={handleCategoryChange}
+          />
+        )}
+      </Grid>
       {/* 标题 */}
-      <Grid item xs={4}>
+      <Grid item>
         <Input
           fullWidth
           value={(post && post.title) || ""}

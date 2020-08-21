@@ -45,7 +45,7 @@ const PostEdit = ({ post, handleEdit, handleDelete }) => {
       </Grid>
       <Grid item>
         <Chip
-          label={post.category ?? "未分类"}
+          label={post.category || "未分类"}
           color="primary"
           variant="outlined"
           size="small"
