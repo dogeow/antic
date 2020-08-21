@@ -69,7 +69,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
   ) : (
     <>
       <Grid item xs={12}>
-        <Skeleton variant="rect" height={20} />
+        <Skeleton variant="rect" height={20} width="60%" />
       </Grid>
     </>
   );

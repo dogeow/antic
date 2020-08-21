@@ -36,7 +36,7 @@ const PostSingle = () => {
             {post.title}
           </Typography>
         ) : (
-          <Skeleton variant="rect" height={56} />
+          <Skeleton variant="rect" height={56} width="40%" />
         )}
       </Grid>
       <PostHeader
