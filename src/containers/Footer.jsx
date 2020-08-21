@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
       theme.palette.type === "dark"
         ? "url(/images/tesla-vector-roadster-4.png)"
         : "url(/images/tesla-model-3-png-1-original.png)",
-    backgroundPosition: "right bottom",
+    backgroundPosition: "right top",
     backgroundRepeat: "no-repeat",
     backgroundSize: 200,
     minHeight: 200,
