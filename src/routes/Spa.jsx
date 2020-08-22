@@ -34,7 +34,7 @@ const Spa = ({ match }) => {
       <Header />
       <Container
         maxWidth={["/posts/create", "/cars"].includes(match.url) ? null : "lg"}
-        style={["/cars"].includes(match.url) ? null : { marginTop: 20 }}
+        style={["/cars"].includes(match.url) ? null : { marginTop: "1rem" }}
         classes={
           ["/nav", "/cars"].includes(match.url) ? { root: classes.main } : null
         }
