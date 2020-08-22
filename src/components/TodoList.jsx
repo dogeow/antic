@@ -28,7 +28,7 @@ const TodoList = () => {
       <MaterialTable
         columns={[
           {
-            title: "title",
+            title: "标题",
             field: "title",
           },
         ]}
