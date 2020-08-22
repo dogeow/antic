@@ -2,7 +2,7 @@ import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import MaterialTable from "material-table";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import localization from "../config/localization";
 
@@ -14,14 +14,6 @@ const useStyles = makeStyles(() => ({
 
 const TodoList = () => {
   const classes = useStyles();
-
-  const [todo, setTodo] = useState([]);
-
-  useEffect(() => {
-    axios.get("todo").then(({ data }) => {
-      setTodo(data);
-    });
-  }, []);
 
   return (
     <Paper className={classes.tableRoot}>
@@ -35,7 +27,6 @@ const TodoList = () => {
         options={{
           filtering: true,
           grouping: true,
-          exportButton: true,
           selection: true,
           sorting: true,
         }}
@@ -68,43 +59,25 @@ const TodoList = () => {
         editable={{
           onBulkUpdate: (changes) =>
             new Promise((resolve, reject) => {
-              setTimeout(() => {
-                /* setData([...data, newData]); */
-
-                resolve();
-              }, 1000);
+              resolve();
             }),
           onRowUpdateCancelled: (rowData) =>
             console.log("Row editing cancelled"),
           onRowAdd: (newData) =>
             new Promise((resolve, reject) => {
-              setTimeout(() => {
-                /* setData([...data, newData]); */
-
-                resolve();
-              }, 1000);
+              resolve();
             }),
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataUpdate = [...todo];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setTodo([...dataUpdate]);
-
-                resolve();
-              }, 1000);
+              resolve();
             }),
           onRowDelete: (oldData) =>
             new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataDelete = [...todo];
-                const index = oldData.tableData.id;
-                dataDelete.splice(index, 1);
-                setTodo([...dataDelete]);
-
-                resolve();
-              }, 1000);
+              axios
+                .put(`tasks/${oldData.id}`, {
+                  is_completed: 1,
+                })
+                .then(() => resolve());
             }),
         }}
         localization={localization}
