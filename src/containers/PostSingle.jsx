@@ -16,8 +16,8 @@ const PostSingle = () => {
   const id = parseInt(match.params.id, 10);
 
   useEffect(() => {
-    axios.get(`posts/${id}`).then((response) => {
-      setPost(response.data);
+    axios.get(`posts/${id}`).then(({ data }) => {
+      setPost(data);
     });
   }, [id]);
 

@@ -7,14 +7,14 @@ const Game = () => {
   const [backpack, setBackpack] = useState([]);
 
   useEffect(() => {
-    axios.get("game").then((response) => {
-      setGame(response.data);
+    axios.get("game").then(({ data }) => {
+      setGame(data);
     });
   }, []);
 
   useEffect(() => {
-    axios.get("backpack").then((response) => {
-      setBackpack(response.data);
+    axios.get("backpack").then(({ data }) => {
+      setBackpack(data);
     });
   }, []);
 

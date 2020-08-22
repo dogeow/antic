@@ -40,8 +40,8 @@ const EmojiCreate = () => {
           }
         },
       })
-      .then((resp) => {
-        setData(resp.data);
+      .then(({ data }) => {
+        setData();
         setOpen(true);
       });
   }, []);

@@ -5,8 +5,8 @@ const Parking = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("parking").then((response) => {
-      setData(response.data);
+    axios.get("parking").then(({ data }) => {
+      setData(data);
     });
   }, []);
 

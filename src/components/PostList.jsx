@@ -20,8 +20,8 @@ const PostList = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    axios.get("posts").then((response) => {
-      setPost(response.data);
+    axios.get("posts").then(({ data }) => {
+      setPost(data);
     });
   }, []);
 
@@ -38,6 +38,7 @@ const PostList = () => {
               spacing={2}
               alignItems="center"
             >
+              {/* 分类 */}
               <Grid item>
                 <Chip
                   size="small"
@@ -45,11 +46,13 @@ const PostList = () => {
                   style={{ minWidth: "59px" }}
                 />
               </Grid>
+              {/* 标题 */}
               <Grid item>
                 <Typography variant="h6" component="h2">
                   <Link to={`/posts/${item.id}`}>{item.title}</Link>
                 </Typography>
               </Grid>
+              {/* 标签 */}
               <Grid item>
                 <Grid container spacing={1}>
                   {item.tags.length !== 0 &&

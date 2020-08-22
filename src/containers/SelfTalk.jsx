@@ -26,8 +26,8 @@ const SelfTalk = () => {
   const [quotes, setQuotes] = useState([]);
 
   useEffect(() => {
-    axios.get("quotes").then((response) => {
-      setQuotes(response.data);
+    axios.get("quotes").then(({ data }) => {
+      setQuotes(data);
     });
   }, []);
 

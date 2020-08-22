@@ -42,9 +42,9 @@ const SingleProject = () => {
   const [alert, setAlert] = useState(false);
 
   useEffect(() => {
-    axios.get(`projects/${projectId}`).then((response) => {
-      setProject(response.data);
-      setTasks(response.data.tasks);
+    axios.get(`projects/${projectId}`).then(({ data }) => {
+      setProject(data);
+      setTasks(data.tasks);
     });
   }, [projectId]);
 
@@ -60,9 +60,9 @@ const SingleProject = () => {
     };
     axios
       .post("tasks", task)
-      .then((response) => {
+      .then(({ data }) => {
         setTitle("");
-        setTasks(tasks.concat(response.data));
+        setTasks(tasks.concat(data));
       })
       .catch((error) => {
         setErrors(error.response.data.errors);

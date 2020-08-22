@@ -15,8 +15,8 @@ function SignInSimple() {
         email,
         password,
       })
-      .then((response) => {
-        const accessToken = response.data.access_token;
+      .then(({ data }) => {
+        const accessToken = data.access_token;
         if (accessToken) {
           Swal.fire("提示️", "登录成功", "success");
           localStorage.access_token = accessToken;

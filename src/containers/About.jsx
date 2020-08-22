@@ -5,8 +5,8 @@ const About = () => {
   const [aboutMe, setAboutMe] = useState([]);
 
   useEffect(() => {
-    axios.get("about_me").then((response) => {
-      setAboutMe(response.data);
+    axios.get("about_me").then(({ data }) => {
+      setAboutMe(data);
     });
   }, []);
 

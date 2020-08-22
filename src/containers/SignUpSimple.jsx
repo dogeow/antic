@@ -10,15 +10,11 @@ function SignUpSimple() {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    axios
-      .post("user/register", {
-        name,
-        email,
-        password,
-      })
-      .then((response) => {
-        console.log(response);
-      });
+    axios.post("user/register", {
+      name,
+      email,
+      password,
+    });
   };
 
   const handleCredentialsTest = () => {

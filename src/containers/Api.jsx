@@ -16,25 +16,25 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const Api = () => {
-  const [data, setData] = useState([]);
+  const [api, setApi] = useState([]);
   const [param, setParam] = useState(null);
   const [value, setValue] = useState("");
   const [result, setResult] = useState(null);
 
   const defaultProps = {
-    options: data,
+    options: api,
     getOptionLabel: (option) => option.endpoint,
   };
 
   useEffect(() => {
-    axios.post("api").then((resp) => {
-      setData(resp.data);
+    axios.post("api").then(({ data }) => {
+      setApi(data);
     });
   }, []);
 
   const send = () => {
-    axios.get(`${param.endpoint}/${value}`).then((response) => {
-      setResult(response.data);
+    axios.get(`${param.endpoint}/${value}`).then(({ data }) => {
+      setResult(data);
     });
   };
 
@@ -74,7 +74,6 @@ const Api = () => {
           value={value}
           onChange={(event) => {
             setValue(event.target.value);
-            console.log(event.target.value);
           }}
         />
       </Grid>
@@ -114,7 +113,7 @@ const Api = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((row, index) => (
+              {api.map((row, index) => (
                 <TableRow key={index}>
                   <TableCell component="th" scope="row">
                     {row.id}

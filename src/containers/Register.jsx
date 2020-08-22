@@ -58,8 +58,8 @@ const Register = ({ history }) => {
         password,
         password_confirmation: passwordConfirmation,
       })
-      .then((response) => {
-        if (response.status === 201) {
+      .then(({ data }) => {
+        if (data.status === 201) {
           Swal.fire({
             title: "注册成功，",
             icon: "success",
@@ -67,7 +67,7 @@ const Register = ({ history }) => {
           });
           history.push("/login");
         }
-        setInputErrors(response.data.errors);
+        setInputErrors(data.errors);
       });
   };
 
