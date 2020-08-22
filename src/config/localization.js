@@ -36,7 +36,7 @@ export default {
       deleteText: "您确定要删除此行吗？",
     },
     filterRow: {
-      filterTooltip: "Filter",
+      filterTooltip: "过滤",
     },
   },
 };
