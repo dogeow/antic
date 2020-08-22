@@ -1,16 +1,16 @@
+import loadable from "@loadable/component";
+import Container from "@material-ui/core/Container";
+import { makeStyles } from "@material-ui/core/styles";
+import LocalAirportIcon from "@material-ui/icons/LocalAirport";
 import React from "react";
 import Route from "react-router-dom/Route";
 import Switch from "react-router-dom/Switch";
-import loadable from "@loadable/component";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import LocalAirportIcon from "@material-ui/icons/LocalAirport";
 import ScrollUpButton from "react-scroll-up-button";
 
-import Index from "../containers/Index";
 import Header from "../components/Header";
-import Footer from "../containers/Footer";
 import Loading from "../components/Loading";
+import Footer from "../containers/Footer";
+import Index from "../containers/Index";
 
 const useStyles = makeStyles({
   main: {
@@ -216,8 +216,8 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../containers/Video"))}
           />
           <Route
-            path="/copy-writing"
-            component={loadable(() => import("../containers/CopyWriting"))}
+            path="/copywriting"
+            component={loadable(() => import("../containers/Copywriting"))}
           />
           <Route component={loadable(() => import("../containers/NoMatch"))} />
         </Switch>

@@ -6,7 +6,7 @@ import React from "react";
 
 const emojis = ["💦", "🔥", "✨", "🙀", "💅", "❗️", "‼️"];
 
-export default function CopyWriting() {
+export default function Copywriting() {
   const [text, setText] = React.useState("233");
   const handleClick = (emoji) => {
     setText(text + emoji);
