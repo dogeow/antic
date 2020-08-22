@@ -1,13 +1,10 @@
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Skeleton from "@material-ui/lab/Skeleton";
 import axios from "axios";
+import MaterialTable from "material-table";
 import React, { useEffect, useState } from "react";
+
+import localization from "../config/localization";
 
 const useStyles = makeStyles(() => ({
   tableRoot: {
@@ -19,37 +16,99 @@ const TodoList = () => {
   const classes = useStyles();
 
   const [todo, setTodo] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios.get("todo").then(({ data }) => {
       setTodo(data);
-      setLoading(false);
     });
   }, []);
 
   return (
     <Paper className={classes.tableRoot}>
-      <Table aria-label="simple table" size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Todo</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {(loading ? Array.from(new Array(10)) : todo).map((row, index) => (
-            <TableRow key={index}>
-              <TableCell component="td" scope="row">
-                {row ? (
-                  row.title
-                ) : (
-                  <Skeleton variant="rect" height={20} animation="wave" />
-                )}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <MaterialTable
+        columns={[
+          {
+            title: "title",
+            field: "title",
+          },
+        ]}
+        options={{
+          filtering: true,
+          grouping: true,
+          exportButton: true,
+          selection: true,
+          sorting: true,
+        }}
+        title="待办事项"
+        data={(query) => {
+          return new Promise((resolve, reject) => {
+            let url = `${process.env.REACT_APP_API_URL}todo?`;
+            url += `page[size]=${query.pageSize}`;
+            url += `&page[number]=${query.page + 1}`;
+            if (query.search !== "") {
+              url += `&search=${query.search}`;
+            }
+            if (query.filters.length !== 0) {
+              query.filters.forEach((filter) => {
+                url += `&filter[${filter.column.field}]=${filter.value}`;
+              });
+            }
+
+            fetch(url)
+              .then((response) => response.json())
+              .then((result) => {
+                resolve({
+                  data: result.data,
+                  page: result.current_page - 1,
+                  totalCount: result.total,
+                });
+              });
+          });
+        }}
+        editable={{
+          onBulkUpdate: (changes) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                /* setData([...data, newData]); */
+
+                resolve();
+              }, 1000);
+            }),
+          onRowUpdateCancelled: (rowData) =>
+            console.log("Row editing cancelled"),
+          onRowAdd: (newData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                /* setData([...data, newData]); */
+
+                resolve();
+              }, 1000);
+            }),
+          onRowUpdate: (newData, oldData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                const dataUpdate = [...todo];
+                const index = oldData.tableData.id;
+                dataUpdate[index] = newData;
+                setTodo([...dataUpdate]);
+
+                resolve();
+              }, 1000);
+            }),
+          onRowDelete: (oldData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                const dataDelete = [...todo];
+                const index = oldData.tableData.id;
+                dataDelete.splice(index, 1);
+                setTodo([...dataDelete]);
+
+                resolve();
+              }, 1000);
+            }),
+        }}
+        localization={localization}
+      />
     </Paper>
   );
 };
