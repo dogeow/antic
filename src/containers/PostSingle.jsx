@@ -22,7 +22,7 @@ const PostSingle = () => {
   }, [id]);
 
   const handleEdit = () => {
-    history.push(`posts/${id}/edit`);
+    history.push(`/posts/${id}/edit`);
   };
 
   const handleDelete = () => {
