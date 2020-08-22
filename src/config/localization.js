@@ -21,6 +21,10 @@ export default {
   header: {
     actions: "操作",
   },
+  grouping: {
+    placeholder: "将标题拖到此处进行分组",
+    groupedBy: "分组依据：",
+  },
   body: {
     editTooltip: "编辑",
     deleteTooltip: "删除",
