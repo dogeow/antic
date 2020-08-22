@@ -143,8 +143,9 @@ const SingleProject = () => {
         <Grid item xs={12}>
           <form onSubmit={handleAddNewTask}>
             <Grid container spacing={2} justify="space-between">
-              <Grid item>
+              <Grid item style={{ flexGrow: 1 }}>
                 <Input
+                  fullWidth
                   placeholder="任务"
                   inputProps={{
                     "aria-label": "Description",
