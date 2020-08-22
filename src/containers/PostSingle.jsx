@@ -22,7 +22,7 @@ const PostSingle = () => {
   }, [id]);
 
   const handleEdit = () => {
-    history.push(`/posts/${id}/edit`);
+    history.push(`posts/${id}/edit`);
   };
 
   const handleDelete = () => {
@@ -33,11 +33,11 @@ const PostSingle = () => {
     <Grid container spacing={2} alignItems="center">
       <Grid item xs={12}>
         {post ? (
-          <Typography variant="h3" component="h2">
+          <Typography variant="h4" component="h2">
             {post.title}
           </Typography>
         ) : (
-          <Skeleton variant="rect" height={56} width="40%" />
+          <Skeleton variant="rect" height={41} width="40%" />
         )}
       </Grid>
       <PostHeader
