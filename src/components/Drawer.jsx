@@ -1,10 +1,10 @@
 import Divider from "@material-ui/core/Divider";
-import Drawer from "@material-ui/core/Drawer";
 import Link from "@material-ui/core/Link";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles } from "@material-ui/core/styles";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
@@ -40,8 +40,9 @@ const externalMenus = [
 const TemporaryDrawer = (props) => {
   const classes = useStyles();
 
-  const toggleDrawer = () => (event) => {
+  const toggleDrawer = (event) => {
     if (
+      event &&
       event.type === "keydown" &&
       (event.key === "Tab" || event.key === "Shift")
     ) {
@@ -50,12 +51,12 @@ const TemporaryDrawer = (props) => {
     props.onClick();
   };
 
-  const sideList = (side) => (
+  const sideList = () => (
     <div
       className={classes.list}
       role="presentation"
-      onClick={toggleDrawer()}
-      onKeyDown={toggleDrawer()}
+      onClick={toggleDrawer}
+      onKeyDown={toggleDrawer}
     >
       <List>
         {menus.map((menu, index) => (
@@ -91,9 +92,13 @@ const TemporaryDrawer = (props) => {
 
   return (
     <div>
-      <Drawer open={props.open} onClose={toggleDrawer()}>
+      <SwipeableDrawer
+        open={props.open}
+        onClose={toggleDrawer}
+        onOpen={toggleDrawer}
+      >
         {sideList("left")}
-      </Drawer>
+      </SwipeableDrawer>
     </div>
   );
 };
