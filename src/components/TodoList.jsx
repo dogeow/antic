@@ -65,11 +65,19 @@ const TodoList = () => {
             console.log("Row editing cancelled"),
           onRowAdd: (newData) =>
             new Promise((resolve, reject) => {
-              resolve();
+              const task = {
+                title: newData.title,
+                project_id: 1,
+              };
+              axios.post("tasks", task).then(() => resolve());
             }),
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve, reject) => {
-              resolve();
+              axios
+                .put(`tasks/${newData.id}`, {
+                  title: newData.title,
+                })
+                .then(() => resolve());
             }),
           onRowDelete: (oldData) =>
             new Promise((resolve, reject) => {

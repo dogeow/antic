@@ -2584,7 +2584,7 @@
 
 abab@^1.0.0:
   version "1.0.4"
-  resolved "https://registry.npm.taobao.org/abab/download/abab-1.0.4.tgz?cache=0&sync_timestamp=1596257898782&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fabab%2Fdownload%2Fabab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
+  resolved "https://registry.npm.taobao.org/abab/download/abab-1.0.4.tgz?cache=0&sync_timestamp=1596258151468&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fabab%2Fdownload%2Fabab-1.0.4.tgz#5faad9c2c07f60dd76770f71cf025b62a63cfd4e"
   integrity sha1-X6rZwsB/YN12dw9xzwJbYqY8/U4=
 
 abab@^2.0.0, abab@^2.0.3:
@@ -2645,7 +2645,7 @@ acorn-walk@^7.1.1:
 
 acorn@^2.1.0, acorn@^2.4.0:
   version "2.7.0"
-  resolved "https://registry.npm.taobao.org/acorn/download/acorn-2.7.0.tgz?cache=0&sync_timestamp=1596457241712&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Facorn%2Fdownload%2Facorn-2.7.0.tgz#ab6e7d9d886aaca8b085bc3312b79a198433f0e7"
+  resolved "https://registry.npm.taobao.org/acorn/download/acorn-2.7.0.tgz?cache=0&sync_timestamp=1597235733498&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Facorn%2Fdownload%2Facorn-2.7.0.tgz#ab6e7d9d886aaca8b085bc3312b79a198433f0e7"
   integrity sha1-q259nYhqrKiwhbwzEreaGYQz8Oc=
 
 acorn@^5.5.3:
@@ -4765,7 +4765,7 @@ data-urls@^2.0.0:
 
 date-fns@^2.0.0-alpha.27:
   version "2.15.0"
-  resolved "https://registry.npm.taobao.org/date-fns/download/date-fns-2.15.0.tgz?cache=0&sync_timestamp=1594999060129&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdate-fns%2Fdownload%2Fdate-fns-2.15.0.tgz#424de6b3778e4e69d3ff27046ec136af58ae5d5f"
+  resolved "https://registry.npm.taobao.org/date-fns/download/date-fns-2.15.0.tgz#424de6b3778e4e69d3ff27046ec136af58ae5d5f"
   integrity sha1-Qk3ms3eOTmnT/ycEbsE2r1iuXV8=
 
 debounce@^1.2.0:
@@ -5867,7 +5867,7 @@ extsprintf@^1.2.0:
 
 fast-deep-equal@2.0.1:
   version "2.0.1"
-  resolved "https://registry.npm.taobao.org/fast-deep-equal/download/fast-deep-equal-2.0.1.tgz?cache=0&sync_timestamp=1591599651635&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffast-deep-equal%2Fdownload%2Ffast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
+  resolved "https://registry.npm.taobao.org/fast-deep-equal/download/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
   integrity sha1-ewUhjd+WZ79/Nwv3/bLLFf3Qqkk=
 
 fast-deep-equal@^3.1.1:
@@ -5950,7 +5950,7 @@ file-loader@4.3.0:
     loader-utils "^1.2.3"
     schema-utils "^2.5.0"
 
-file-saver@eligrey/FileSaver.js#1.3.8:
+"file-saver@github:eligrey/FileSaver.js#1.3.8":
   version "1.3.8"
   resolved "https://codeload.github.com/eligrey/FileSaver.js/tar.gz/e865e37af9f9947ddcced76b549e27dc45c1cb2e"
 
@@ -8433,7 +8433,7 @@ jsdom@^16.2.2:
 
 jsdom@^8.1.0:
   version "8.5.0"
-  resolved "https://registry.npm.taobao.org/jsdom/download/jsdom-8.5.0.tgz?cache=0&sync_timestamp=1594341246481&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fjsdom%2Fdownload%2Fjsdom-8.5.0.tgz#d4d8f5dbf2768635b62a62823b947cf7071ebc98"
+  resolved "https://registry.npm.taobao.org/jsdom/download/jsdom-8.5.0.tgz?cache=0&sync_timestamp=1596916617286&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fjsdom%2Fdownload%2Fjsdom-8.5.0.tgz#d4d8f5dbf2768635b62a62823b947cf7071ebc98"
   integrity sha1-1Nj12/J2hjW2KmKCO5R89wcevJg=
   dependencies:
     abab "^1.0.0"
@@ -8968,10 +8968,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-material-table@^1.68.0:
-  version "1.68.0"
-  resolved "https://registry.npm.taobao.org/material-table/download/material-table-1.68.0.tgz#275c3d9a885c40ae4bc5a7461c00e877f92397b9"
-  integrity sha1-J1w9mohcQK5LxadGHADod/kjl7k=
+material-table@1.67.1:
+  version "1.67.1"
+  resolved "https://registry.npm.taobao.org/material-table/download/material-table-1.67.1.tgz#91c2343355e727beffd305b76c4d466efd7f8627"
+  integrity sha1-kcI0M1XnJ77/0wW3bE1Gbv1/hic=
   dependencies:
     "@date-io/date-fns" "^1.1.0"
     "@material-ui/pickers" "^3.2.2"
@@ -10010,7 +10010,7 @@ parse5@5.1.1:
 
 parse5@^1.5.1:
   version "1.5.1"
-  resolved "https://registry.npm.taobao.org/parse5/download/parse5-1.5.1.tgz?cache=0&sync_timestamp=1595849246963&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fparse5%2Fdownload%2Fparse5-1.5.1.tgz#9b7f3b0de32be78dc2401b17573ccaf0f6f59d94"
+  resolved "https://registry.npm.taobao.org/parse5/download/parse5-1.5.1.tgz?cache=0&sync_timestamp=1595850971402&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fparse5%2Fdownload%2Fparse5-1.5.1.tgz#9b7f3b0de32be78dc2401b17573ccaf0f6f59d94"
   integrity sha1-m387DeMr543CQBsXVzzK8Pb1nZQ=
 
 parseqs@0.0.5:
