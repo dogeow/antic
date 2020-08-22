@@ -2,6 +2,7 @@ import React from "react";
 
 import { BoardSquare } from "./BoardSquare";
 import { Knight } from "./Knight";
+
 /** Styling properties applied to the board element */
 const boardStyle = {
   width: "100%",
@@ -10,11 +11,13 @@ const boardStyle = {
   flexWrap: "wrap",
 };
 /** Styling properties applied to each square element */
+
 const squareStyle = { width: "12.5%", height: "12.5%" };
 /**
  * The chessboard component
  * @param props The react props
  */
+
 const Board = ({ knightPosition: [knightX, knightY] }) => {
   function renderSquare(i) {
     const x = i % 8;
@@ -27,6 +30,7 @@ const Board = ({ knightPosition: [knightX, knightY] }) => {
       </div>
     );
   }
+
   function renderPiece(x, y) {
     const isKnightHere = x === knightX && y === knightY;
     return isKnightHere ? <Knight /> : null;
@@ -35,6 +39,7 @@ const Board = ({ knightPosition: [knightX, knightY] }) => {
   for (let i = 0; i < 64; i += 1) {
     squares.push(renderSquare(i));
   }
+
   return <div style={boardStyle}>{squares}</div>;
 };
 

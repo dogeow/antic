@@ -1,7 +1,8 @@
-import React from "react";
 import Grid from "@material-ui/core/Grid";
-import TodoList from "../components/TodoList";
+import React from "react";
+
 import PostList from "../components/PostList";
+import TodoList from "../components/TodoList";
 
 const Index = () => {
   return (

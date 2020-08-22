@@ -1,8 +1,9 @@
-import React from "react";
-import TreeView from "@material-ui/lab/TreeView";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import TreeItem from "@material-ui/lab/TreeItem";
+import TreeView from "@material-ui/lab/TreeView";
+import React from "react";
+
 import chromeBookmarks from "../resources/Bookmarks.json";
 
 const subFolder = (project) => {

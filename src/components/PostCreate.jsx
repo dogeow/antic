@@ -1,30 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import clsx from "clsx";
-import Swal from "sweetalert2";
-import { useRouteMatch } from "react-router-dom";
-
-// UI
-import Grid from "@material-ui/core/Grid";
-import Fab from "@material-ui/core/Fab";
-import CheckIcon from "@material-ui/icons/Check";
-import ErrorIcon from "@material-ui/icons/ErrorOutline";
-import SaveIcon from "@material-ui/icons/Save";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { makeStyles } from "@material-ui/core/styles";
-import { green, red } from "@material-ui/core/colors";
-import TextField from "@material-ui/core/TextField";
-
 // 编辑器
 import "@toast-ui/editor/dist/i18n/zh-cn";
-import { Editor } from "@toast-ui/react-editor";
-import codeSyntaxHightlight from "@toast-ui/editor-plugin-code-syntax-highlight";
-import tableMergedCell from "@toast-ui/editor-plugin-table-merged-cell";
-import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
-import uml from "@toast-ui/editor-plugin-uml";
-import chart from "@toast-ui/editor-plugin-chart";
-import hljs from "highlight.js";
-
 // 编辑器 CSS
 import "../codemirror.css";
 import "../toastui-editor.css";
@@ -32,11 +7,34 @@ import "highlight.js/styles/atom-one-dark.css";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "tui-chart/dist/tui-chart.css";
 
-import javascript from "highlight.js/lib/languages/javascript";
-import php from "highlight.js/lib/languages/php";
-import bash from "highlight.js/lib/languages/bash";
-import json from "highlight.js/lib/languages/json";
 import { Typography } from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { green, red } from "@material-ui/core/colors";
+import Fab from "@material-ui/core/Fab";
+// UI
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import CheckIcon from "@material-ui/icons/Check";
+import ErrorIcon from "@material-ui/icons/ErrorOutline";
+import SaveIcon from "@material-ui/icons/Save";
+import chart from "@toast-ui/editor-plugin-chart";
+import codeSyntaxHightlight from "@toast-ui/editor-plugin-code-syntax-highlight";
+import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
+import tableMergedCell from "@toast-ui/editor-plugin-table-merged-cell";
+import uml from "@toast-ui/editor-plugin-uml";
+import { Editor } from "@toast-ui/react-editor";
+import axios from "axios";
+import clsx from "clsx";
+import hljs from "highlight.js";
+import bash from "highlight.js/lib/languages/bash";
+import javascript from "highlight.js/lib/languages/javascript";
+import json from "highlight.js/lib/languages/json";
+import php from "highlight.js/lib/languages/php";
+import React, { useEffect, useState } from "react";
+import { useRouteMatch } from "react-router-dom";
+import Swal from "sweetalert2";
+
 import Tags from "./Post/Tags";
 
 hljs.registerLanguage("javascript", javascript);

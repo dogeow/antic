@@ -1,6 +1,7 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
+
 import credentialsTest from "../resources/credentialsTest.json";
 
 function SignInSimple() {
@@ -11,11 +12,11 @@ function SignInSimple() {
     e.preventDefault();
     axios
       .post("user/login", {
-        email: email,
-        password: password,
+        email,
+        password,
       })
       .then((response) => {
-        let accessToken = response.data.access_token;
+        const accessToken = response.data.access_token;
         if (accessToken) {
           Swal.fire("提示️", "登录成功", "success");
           localStorage.access_token = accessToken;
@@ -24,8 +25,8 @@ function SignInSimple() {
   };
 
   const handleCredentialsTest = () => {
-    setEmail(credentialsTest["email"]);
-    setPassword(credentialsTest["password"]);
+    setEmail(credentialsTest.email);
+    setPassword(credentialsTest.password);
   };
 
   return (
@@ -58,8 +59,8 @@ function SignInSimple() {
       </div>
       <div>
         <ul>
-          <li>昵称：{credentialsTest["email"]}</li>
-          <li>密码：{credentialsTest["password"]}</li>
+          <li>昵称：{credentialsTest.email}</li>
+          <li>密码：{credentialsTest.password}</li>
         </ul>
         <button onClick={handleCredentialsTest}>一键填入测试用户凭证</button>
       </div>

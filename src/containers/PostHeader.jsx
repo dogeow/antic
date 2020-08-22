@@ -1,12 +1,13 @@
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
 import Tooltip from "@material-ui/core/Tooltip";
-import moment from "moment";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Button from "@material-ui/core/Button";
-import Skeleton from "@material-ui/lab/Skeleton";
-import React from "react";
 import Zoom from "@material-ui/core/Zoom";
-import Chip from "@material-ui/core/Chip";
+import Skeleton from "@material-ui/lab/Skeleton";
+import moment from "moment";
+import React from "react";
+
 import Tags from "../components/Post/Tags";
 
 const PostHeader = ({ post, handleEdit, handleDelete }) => {

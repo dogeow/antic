@@ -1,9 +1,8 @@
-/* eslint-disable no-script-url */
-
-import React from "react";
 import Link from "@material-ui/core/Link";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
+import React from "react";
+
 import Title from "./Title";
 
 const useStyles = makeStyles({

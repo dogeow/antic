@@ -1,7 +1,8 @@
 import React from "react";
-import TemperatureInput from "./TemperatureInput";
+
+import { toCelsius, toFahrenheit, tryConvert } from "../../helpers";
 import BoilingVerdict from "./BoilingVerdict";
-import { tryConvert, toFahrenheit, toCelsius } from "../../helpers";
+import TemperatureInput from "./TemperatureInput";
 
 export default class Calculator extends React.Component {
   constructor(props) {

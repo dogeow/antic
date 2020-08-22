@@ -1,7 +1,8 @@
-import React from "react";
-import moment from "moment";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import moment from "moment";
+import React from "react";
+
 import ClipboardButton from "../components/ClipboardButton";
 
 function Alert(props) {

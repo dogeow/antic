@@ -1,9 +1,9 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
-import { Link as RouteLink } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import React from "react";
+import { Link as RouteLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   footer: {

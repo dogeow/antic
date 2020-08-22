@@ -1,37 +1,37 @@
-import React, {
-  useMemo,
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-} from "react";
-import isHotkey from "is-hotkey";
 import { css } from "emotion";
+import isHotkey from "is-hotkey";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 // 导入 Slate 编辑器的工厂函数。
-import { Text, Editor, Transforms, Range, createEditor } from "slate";
-
+import { createEditor, Editor, Range, Text, Transforms } from "slate";
+import { withHistory } from "slate-history";
 // 导入 Slate 组件和 React 插件。
 import {
-  Slate,
   Editable,
   ReactEditor,
-  withReact,
-  useSlate,
-  useSelected,
-  useFocused,
+  Slate,
   useEditor,
+  useFocused,
   useReadOnly,
+  useSelected,
+  useSlate,
+  withReact,
 } from "slate-react";
-import { withHistory } from "slate-history";
+
+import { Button, Icon, Portal, Toolbar } from "../components";
+import HOTKEYS from "../markdown/Hotkeys";
 import {
   withChecklists,
-  withMentions,
-  withTables,
   withHtml,
+  withMentions,
   withShortcuts,
+  withTables,
 } from "../markdown/With";
-import { Button, Icon, Toolbar, Portal } from "../components";
-import HOTKEYS from "../markdown/Hotkeys";
 
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 

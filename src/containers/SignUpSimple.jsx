@@ -1,5 +1,6 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
+
 import credentialsTest from "../resources/credentialsTest.json";
 
 function SignUpSimple() {
@@ -11,9 +12,9 @@ function SignUpSimple() {
     e.preventDefault();
     axios
       .post("user/register", {
-        name: name,
-        email: email,
-        password: password,
+        name,
+        email,
+        password,
       })
       .then((response) => {
         console.log(response);
@@ -21,9 +22,9 @@ function SignUpSimple() {
   };
 
   const handleCredentialsTest = () => {
-    setName(credentialsTest["name"]);
-    setEmail(credentialsTest["email"]);
-    setPassword(credentialsTest["password"]);
+    setName(credentialsTest.name);
+    setEmail(credentialsTest.email);
+    setPassword(credentialsTest.password);
   };
 
   return (
@@ -66,9 +67,9 @@ function SignUpSimple() {
       </div>
       <div>
         <ul>
-          <li>昵称：{credentialsTest["name"]}</li>
-          <li>邮箱：{credentialsTest["email"]}</li>
-          <li>密码：{credentialsTest["password"]}</li>
+          <li>昵称：{credentialsTest.name}</li>
+          <li>邮箱：{credentialsTest.email}</li>
+          <li>密码：{credentialsTest.password}</li>
         </ul>
         <button onClick={handleCredentialsTest}>一键填入测试用户凭证</button>
       </div>

@@ -9,13 +9,15 @@ const knightStyle = {
   fontWeight: "bold",
   cursor: "move",
 };
-export const Knight = () => {
+
+const Knight = () => {
   const [{ isDragging }, drag, preview] = useDrag({
     item: { type: ItemTypes.KNIGHT },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),
     }),
   });
+
   return (
     <>
       <DragPreviewImage connect={preview} src={knightImage} />
@@ -31,3 +33,5 @@ export const Knight = () => {
     </>
   );
 };
+
+export default Knight;

@@ -1,6 +1,6 @@
-import React from "react";
 import algoliaSearch from "algoliasearch/lite";
-import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
+import React from "react";
+import { Hits, InstantSearch, SearchBox } from "react-instantsearch-dom";
 
 const searchClient = algoliaSearch(
   process.env.REACT_APP_ALGOLIA_APP_ID,

@@ -1,17 +1,19 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { MuiPickersUtilsProvider } from "@material-ui/pickers";
-import MomentUtils from "@date-io/moment"; // 导入一些 moment 实用工具
-import moment from "moment";
-import { ThemeProvider } from "@material-ui/core/styles";
-import ScrollToTop from "./ScrollToTop";
-import Routes from "../routes";
 import "moment/locale/zh-cn";
 import "typeface-roboto";
 import "../App.scss";
 import "../App.css";
+
+import MomentUtils from "@date-io/moment"; // 导入一些 moment 实用工具
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider } from "@material-ui/core/styles";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import moment from "moment";
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+
+import Routes from "../routes";
+import ScrollToTop from "./ScrollToTop";
 
 require("../bootstrap");
 

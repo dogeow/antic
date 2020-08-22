@@ -1,6 +1,7 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
 import Badge from "@material-ui/core/Badge";
+import Button from "@material-ui/core/Button";
+import React from "react";
+
 import face from "../../resources/face.json";
 
 const TagsElem = (props) => {

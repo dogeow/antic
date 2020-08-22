@@ -1,6 +1,8 @@
-import React from "react";
-import VideoJs from "../components/Video";
 import "video.js/dist/video-js.min.css";
+
+import React from "react";
+
+import VideoJs from "../components/Video";
 
 const videoJsOptions = {
   autoplay: false,

@@ -16,4 +16,5 @@ const Overlay = ({ color }) => {
     />
   );
 };
+
 export default Overlay;

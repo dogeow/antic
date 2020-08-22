@@ -1,30 +1,29 @@
-import React from "react";
-import { Link as RouteLink, useHistory } from "react-router-dom";
-import md5 from "md5";
-import SearchIcon from "@material-ui/icons/Search";
-import Hidden from "@material-ui/core/Hidden";
-import TextField from "@material-ui/core/TextField";
-import NightsStayIcon from "@material-ui/icons/NightsStay";
-import WbSunnyIcon from "@material-ui/icons/WbSunny";
-
-// Material-UI
-import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
 import Avatar from "@material-ui/core/Avatar";
-import MenuIcon from "@material-ui/icons/Menu";
-import MoreIcon from "@material-ui/icons/MoreVert";
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
+import Hidden from "@material-ui/core/Hidden";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
-import AppBar from "@material-ui/core/AppBar";
+// Material-UI
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 import Toolbar from "@material-ui/core/Toolbar";
-import Container from "@material-ui/core/Container";
-
 // 组件
 import GitHub from "@material-ui/icons/GitHub";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Logo from "../components/Logo";
+import MenuIcon from "@material-ui/icons/Menu";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import NightsStayIcon from "@material-ui/icons/NightsStay";
+import SearchIcon from "@material-ui/icons/Search";
+import WbSunnyIcon from "@material-ui/icons/WbSunny";
+import md5 from "md5";
+import React from "react";
+import { Link as RouteLink, useHistory } from "react-router-dom";
+
 import Drawer from "../components/Drawer";
+import Logo from "../components/Logo";
 import Settings from "../components/Settings";
 
 const useStyles = makeStyles(() => ({

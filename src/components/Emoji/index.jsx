@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+
 import Emoji from "./Emoji";
 
 const mapStateToProps = (state) => ({

@@ -1,13 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import SubNav from "./Nav/SubNav";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+import Tab from "@material-ui/core/Tab";
+import Tabs from "@material-ui/core/Tabs";
+import Typography from "@material-ui/core/Typography";
+import PropTypes from "prop-types";
+import React from "react";
+
 import chromeBookmarks from "../resources/Bookmarks.json";
+import SubNav from "./Nav/SubNav";
 
 const bookmarks = chromeBookmarks.roots.bookmark_bar.children;
 

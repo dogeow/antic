@@ -1,6 +1,7 @@
-import { connect } from "react-redux";
 import axios from "axios";
+import { connect } from "react-redux";
 import Swal from "sweetalert2";
+
 import { loginAction, toggleDrawer } from "../actions";
 import Header from "../containers/Header";
 import { logged, logout } from "../helpers";

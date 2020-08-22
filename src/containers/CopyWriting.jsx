@@ -1,8 +1,8 @@
-import React from "react";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
-import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Grid from "@material-ui/core/Grid";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import React from "react";
 
 const emojis = ["💦", "🔥", "✨", "🙀", "💅", "❗️", "‼️"];
 

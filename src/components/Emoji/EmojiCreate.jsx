@@ -1,10 +1,10 @@
+import Grid from "@material-ui/core/Grid";
+import Snackbar from "@material-ui/core/Snackbar";
+import Typography from "@material-ui/core/Typography";
+import MuiAlert from "@material-ui/lab/Alert";
+import axios from "axios";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import axios from "axios";
-import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert from "@material-ui/lab/Alert";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;

@@ -6,7 +6,7 @@ import ItemTypes from "./ItemTypes";
 import Overlay from "./Overlay";
 import { Square } from "./Square";
 
-export const BoardSquare = ({ x, y, children }) => {
+const BoardSquare = ({ x, y, children }) => {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept: ItemTypes.KNIGHT,
     canDrop: () => canMoveKnight(x, y),
@@ -17,6 +17,7 @@ export const BoardSquare = ({ x, y, children }) => {
     }),
   });
   const black = (x + y) % 2 === 1;
+
   return (
     <div
       ref={drop}
@@ -33,3 +34,5 @@ export const BoardSquare = ({ x, y, children }) => {
     </div>
   );
 };
+
+export default BoardSquare;

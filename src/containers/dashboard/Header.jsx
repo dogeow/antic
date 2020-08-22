@@ -1,18 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar/AppBar";
-import clsx from "clsx";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import Typography from "@material-ui/core/Typography";
 import Badge from "@material-ui/core/Badge/Badge";
-import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
+import IconButton from "@material-ui/core/IconButton";
 import List from "@material-ui/core/List";
 import { makeStyles } from "@material-ui/core/styles";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import MenuIcon from "@material-ui/icons/Menu";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import clsx from "clsx";
+import React from "react";
+import { Link } from "react-router-dom";
+
 import { MainListItems, SecondaryListItems } from "./listItems";
 
 const drawerWidth = 240;
