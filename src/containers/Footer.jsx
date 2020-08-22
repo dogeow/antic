@@ -5,6 +5,13 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
+const background = [
+  "camry_1.png",
+  "camry_2.png",
+  "tesla-model-3-png-1-original.png",
+  "tesla-transparent-care-5.png",
+];
+
 const useStyles = makeStyles((theme) => ({
   footer: {
     "@media (min-height: 777px)": {
@@ -18,7 +25,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage:
       theme.palette.type === "dark"
         ? "url(/images/tesla-vector-roadster.png)"
-        : "url(/images/tesla-model-3-png-1-original.png)",
+        : `url(/images/${
+            background[Math.floor(Math.random() * background.length)]
+          })`,
     backgroundPosition: "right top",
     backgroundRepeat: "no-repeat",
     backgroundSize: 200,
