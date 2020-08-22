@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
-import lab from "./lab";
+
 import emoji from "./emoji";
+import lab from "./lab";
 
 export default combineReducers({
   lab,

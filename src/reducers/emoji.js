@@ -1,6 +1,7 @@
-import { isMobile } from "react-device-detect";
-import uniq from "lodash/uniq";
 import isEqual from "lodash/isEqual";
+import uniq from "lodash/uniq";
+import { isMobile } from "react-device-detect";
+
 import face from "../resources/face.json";
 
 /**

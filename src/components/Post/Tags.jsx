@@ -1,5 +1,5 @@
-import React from "react";
 import Chip from "@material-ui/core/Chip";
+import React from "react";
 
 const Tags = (props) =>
   props.tags.map((tag) => (

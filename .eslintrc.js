@@ -23,11 +23,12 @@ module.exports = {
         sourceType: 'module',
     },
     plugins: [
-        'react', 'prettier'
+        'react', 'prettier', 'simple-import-sort'
     ],
     rules: {
         'prettier/prettier': 'error',
         'react/display-name': 'off',
-        'react/prop-types': 'off'
+        'react/prop-types': 'off',
+        "simple-import-sort/sort": "error"
     },
 };

@@ -1,6 +1,6 @@
+import { css, cx } from "emotion";
 import React, { forwardRef } from "react";
 import ReactDOM from "react-dom";
-import { cx, css } from "emotion";
 
 export const Button = forwardRef(
   ({ className, active, reversed, ...props }, ref) => (

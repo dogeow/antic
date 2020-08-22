@@ -1,17 +1,18 @@
-import Swal from "sweetalert2";
-import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import Spinner from "react-spinner-children";
-import React, { useState, useEffect } from "react";
+import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Viewer from "react-viewer";
 import imagesLoaded from "imagesloaded";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import Spinner from "react-spinner-children";
+import Viewer from "react-viewer";
+import Swal from "sweetalert2";
+
 import face from "../../resources/face.json";
 import BootNav from "./BootNav";
-import FilterStatistics from "./FilterStatistics";
 import Filter from "./Filter";
+import FilterStatistics from "./FilterStatistics";
 
 const customSpinConfig = {
   lines: 10,

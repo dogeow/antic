@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { DndProvider } from "react-dnd";
 import * as Backend from "react-dnd-html5-backend";
+
 import Board from "./Board";
 import { observe } from "./Game";
 

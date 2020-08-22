@@ -1,7 +1,9 @@
-import axios from "axios";
-import Swal from "sweetalert2";
 import "@sweetalert2/theme-material-ui/material-ui.scss";
+
+import axios from "axios";
 import Echo from "laravel-echo";
+import Swal from "sweetalert2";
+
 import ConsoleInfo from "./components/ConsoleInfo";
 
 const accessToken = localStorage.access_token;

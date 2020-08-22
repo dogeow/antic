@@ -1,4 +1,5 @@
 import { Editor, Point, Range, Transforms } from "slate";
+
 import deserialize from "./Deserialize";
 import SHORTCUTS from "./Shortcuts";
 

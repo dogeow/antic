@@ -1,8 +1,9 @@
-import { applyMiddleware, createStore, compose } from "redux";
+import { applyMiddleware, compose, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
-import rootReducer from "./reducers";
-import loggerMiddleware from "./middleware/logger";
+
 import monitorReducerEnhancer from "./enhancers/monitorReducer";
+import loggerMiddleware from "./middleware/logger";
+import rootReducer from "./reducers";
 
 const middlewareEnhancer = applyMiddleware(loggerMiddleware, thunkMiddleware);
 
