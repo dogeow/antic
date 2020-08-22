@@ -14,14 +14,6 @@ const background = [
 
 const useStyles = makeStyles((theme) => ({
   footer: {
-    "@media (min-height: 777px)": {
-      [theme.breakpoints.up("md")]: {
-        position: "absolute",
-        bottom: 0,
-        right: 0,
-        left: 0,
-      },
-    },
     backgroundImage:
       theme.palette.type === "dark"
         ? `url(${process.env.REACT_APP_CDN_URL}bg/tesla-vector-roadster.png!/fw/400)`

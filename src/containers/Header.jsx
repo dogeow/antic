@@ -113,17 +113,6 @@ const Header = ({
             </RouteLink>
             <div className={classes.blank} />
             <Hidden only="xs">
-              <TextField
-                placeholder="搜索"
-                inputProps={{ "aria-label": "搜索" }}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
               <IconButton
                 aria-label="GitHub 存储库"
                 color="inherit"
