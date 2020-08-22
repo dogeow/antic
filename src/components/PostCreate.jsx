@@ -182,7 +182,10 @@ const PostCreate = () => {
       </Grid>
       <Grid item xs={3} md={1}>
         {post && (
-          <TextField value={post.category} onChange={handleCategoryChange} />
+          <TextField
+            value={post.category || "未分类"}
+            onChange={handleCategoryChange}
+          />
         )}
       </Grid>
       {post && (
