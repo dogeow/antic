@@ -3,8 +3,7 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import LocalAirportIcon from "@material-ui/icons/LocalAirport";
 import React from "react";
-import Route from "react-router-dom/Route";
-import Switch from "react-router-dom/Switch";
+import { Route, Switch } from "react-router-dom";
 import ScrollUpButton from "react-scroll-up-button";
 
 import Header from "../components/Header";

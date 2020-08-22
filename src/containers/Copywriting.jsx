@@ -8,8 +8,12 @@ const emojis = ["💦", "🔥", "✨", "🙀", "💅", "❗️", "‼️"];
 
 export default function Copywriting() {
   const [text, setText] = React.useState("233");
+
+  const textInput = React.createRef();
+
   const handleClick = (emoji) => {
     setText(text + emoji);
+    textInput.current.focus();
   };
 
   const handleChange = (e) => {
@@ -22,6 +26,7 @@ export default function Copywriting() {
         <TextareaAutosize
           aria-label="empty textarea"
           rowsMin={6}
+          ref={textInput}
           placeholder="Empty"
           value={text}
           style={{ width: 272, fontFamily: "auto" }}
