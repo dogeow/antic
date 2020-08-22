@@ -24,10 +24,10 @@ const useStyles = makeStyles((theme) => ({
     },
     backgroundImage:
       theme.palette.type === "dark"
-        ? "url(/images/tesla-vector-roadster.png)"
-        : `url(/images/${
+        ? `url(${process.env.REACT_APP_CDN_URL}bg/tesla-vector-roadster.png!/fw/400)`
+        : `url(${process.env.REACT_APP_CDN_URL}bg/${
             background[Math.floor(Math.random() * background.length)]
-          })`,
+          }!/fw/400)`,
     backgroundPosition: "right top",
     backgroundRepeat: "no-repeat",
     backgroundSize: 200,
