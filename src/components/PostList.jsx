@@ -39,7 +39,11 @@ const PostList = () => {
               alignItems="center"
             >
               <Grid item>
-                <Chip size="small" label={item.category || "未分类"} />
+                <Chip
+                  size="small"
+                  label={item.category || "未分类"}
+                  style={{ minWidth: "59px" }}
+                />
               </Grid>
               <Grid item>
                 <Typography variant="h6" component="h2">
