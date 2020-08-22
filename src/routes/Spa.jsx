@@ -1,5 +1,6 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import Route from "react-router-dom/Route";
+import Switch from "react-router-dom/Switch";
 import loadable from "@loadable/component";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -100,12 +101,17 @@ const Spa = ({ match }) => {
           <Route
             exact
             path="/emoji"
-            component={loadable(() => import("../components/Emoji"))}
+            component={loadable(() => import("../components/Emoji"), {
+              fallback: <Loading />,
+            })}
           />
           <Route
             path="/emoji/create"
-            component={loadable(() =>
-              import("../components/Emoji/EmojiCreate")
+            component={loadable(
+              () => import("../components/Emoji/EmojiCreate"),
+              {
+                fallback: <Loading />,
+              }
             )}
           />
           <Route
@@ -125,7 +131,9 @@ const Spa = ({ match }) => {
           />
           <Route
             path="/self-talk"
-            component={loadable(() => import("../containers/SelfTalk"))}
+            component={loadable(() => import("../containers/SelfTalk"), {
+              fallback: <Loading />,
+            })}
           />
           <Route
             path="/like"
@@ -208,8 +216,8 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../containers/Video"))}
           />
           <Route
-            path="/copywriting"
-            component={loadable(() => import("../containers/Copywriting"))}
+            path="/copy-writing"
+            component={loadable(() => import("../containers/CopyWriting"))}
           />
           <Route component={loadable(() => import("../containers/NoMatch"))} />
         </Switch>

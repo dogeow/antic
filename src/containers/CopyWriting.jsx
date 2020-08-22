@@ -6,7 +6,7 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 const emojis = ["💦", "🔥", "✨", "🙀", "💅", "❗️", "‼️"];
 
-export default function Copywriting() {
+export default function CopyWriting() {
   const [text, setText] = React.useState("233");
   const handleClick = (emoji) => {
     setText(text + emoji);
