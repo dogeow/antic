@@ -1,8 +1,8 @@
 // 编辑器
 import "@toast-ui/editor/dist/i18n/zh-cn";
 // 编辑器 CSS
-import "../codemirror.css";
-import "../toastui-editor.css";
+import "../styles/codemirror.css";
+import "../styles/toastui-editor.css";
 import "highlight.js/styles/atom-one-dark.css";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "tui-chart/dist/tui-chart.css";

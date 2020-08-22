@@ -1,7 +1,7 @@
 import "moment/locale/zh-cn";
 import "typeface-roboto";
-import "../App.scss";
-import "../App.css";
+import "../styles/App.scss";
+import "../styles/App.css";
 
 import MomentUtils from "@date-io/moment"; // 导入一些 moment 实用工具
 import CssBaseline from "@material-ui/core/CssBaseline";

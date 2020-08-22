@@ -3,7 +3,7 @@ import "highlight.js/styles/atom-one-dark.css";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "tui-chart/dist/tui-chart.css";
 import "@toast-ui/editor/dist/i18n/zh-cn";
-import "../toastui-editor-viewer.css";
+import "../styles/toastui-editor-viewer.css";
 
 import Skeleton from "@material-ui/lab/Skeleton";
 import chart from "@toast-ui/editor-plugin-chart";

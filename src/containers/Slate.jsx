@@ -23,7 +23,7 @@ import {
   withReact,
 } from "slate-react";
 
-import { Button, Icon, Portal, Toolbar } from "../components";
+import { Button, Icon, Portal, Toolbar } from "../components/components";
 import HOTKEYS from "../markdown/Hotkeys";
 import {
   withChecklists,
