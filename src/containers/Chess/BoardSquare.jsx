@@ -4,7 +4,7 @@ import { useDrop } from "react-dnd";
 import { canMoveKnight, moveKnight } from "./Game";
 import ItemTypes from "./ItemTypes";
 import Overlay from "./Overlay";
-import { Square } from "./Square";
+import Square from "./Square";
 
 const BoardSquare = ({ x, y, children }) => {
   const [{ isOver, canDrop }, drop] = useDrop({

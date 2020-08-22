@@ -1,7 +1,7 @@
 import React from "react";
 
-import { BoardSquare } from "./BoardSquare";
-import { Knight } from "./Knight";
+import BoardSquare from "./BoardSquare";
+import Knight from "./Knight";
 
 /** Styling properties applied to the board element */
 const boardStyle = {
@@ -19,6 +19,11 @@ const squareStyle = { width: "12.5%", height: "12.5%" };
  */
 
 const Board = ({ knightPosition: [knightX, knightY] }) => {
+  function renderPiece(x, y) {
+    const isKnightHere = x === knightX && y === knightY;
+    return isKnightHere ? <Knight /> : null;
+  }
+
   function renderSquare(i) {
     const x = i % 8;
     const y = Math.floor(i / 8);
@@ -31,10 +36,6 @@ const Board = ({ knightPosition: [knightX, knightY] }) => {
     );
   }
 
-  function renderPiece(x, y) {
-    const isKnightHere = x === knightX && y === knightY;
-    return isKnightHere ? <Knight /> : null;
-  }
   const squares = [];
   for (let i = 0; i < 64; i += 1) {
     squares.push(renderSquare(i));
