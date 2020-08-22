@@ -1,17 +1,13 @@
-// 编辑器
 import "@toast-ui/editor/dist/i18n/zh-cn";
-// 编辑器 CSS
 import "../styles/codemirror.css";
 import "../styles/toastui-editor.css";
 import "highlight.js/styles/atom-one-dark.css";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "tui-chart/dist/tui-chart.css";
 
-import { Typography } from "@material-ui/core";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { green, red } from "@material-ui/core/colors";
 import Fab from "@material-ui/core/Fab";
-// UI
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -176,20 +172,25 @@ const PostCreate = () => {
     <Grid container spacing={2} justify="center" alignItems="center">
       {/* 标题 */}
       <Grid item xs={12} md={6}>
-        <Typography variant="h5" component="h2" onChange={handleTitleChange}>
-          {(post && post.title) || ""}
-        </Typography>
+        <TextField
+          value={(post && post.title) || ""}
+          variant="outlined"
+          size="small"
+          onChange={handleTitleChange}
+        />
       </Grid>
-      <Grid item xs={3} md={1}>
+      <Grid item xs={3} md={2}>
         {post && (
           <TextField
+            variant="outlined"
+            size="small"
             value={post.category || "未分类"}
             onChange={handleCategoryChange}
           />
         )}
       </Grid>
       {post && (
-        <Grid item xs={9} md={5}>
+        <Grid item xs={9} md={4}>
           {post.tags && <Tags tags={post.tags} />}
         </Grid>
       )}
