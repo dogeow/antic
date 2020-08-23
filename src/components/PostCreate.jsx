@@ -185,7 +185,7 @@ const PostCreate = () => {
           <TextField
             variant="outlined"
             size="small"
-            value={post.category || "未分类"}
+            value={post.category}
             onChange={handleCategoryChange}
           />
         )}
