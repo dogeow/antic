@@ -28,7 +28,7 @@ const Weibo = () => {
 
   const [weibo, setWeibo] = useState({});
   const [selectedDate, handleDateChange] = useState(new Date());
-  const [pageCount, setPageCout] = useState();
+  const [pageCount, setPageCount] = useState();
   const [currPage, setCurrPage] = useState(1);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const Weibo = () => {
       .then(({ data }) => {
         setWeibo(data);
         setCurrPage(data.current_page);
-        setPageCout(data.last_page);
+        setPageCount(data.last_page);
       });
   }, [selectedDate, currPage]);
 
@@ -52,7 +52,7 @@ const Weibo = () => {
       .then(({ data }) => {
         setWeibo(data);
         setCurrPage(page);
-        setPageCout(data.last_page);
+        setPageCount(data.last_page);
       });
   };
 
