@@ -1384,7 +1384,7 @@
 .tui-editor-contents pre {
   margin: 2px 0 8px;
   padding: 18px;
-  background-color: #f5f7f8;
+  background-color: gray;
 }
 
 .tui-editor-contents code {
@@ -1738,7 +1738,7 @@
 .tui-md-code-block.CodeMirror-linebackground {
   left: 20px;
   right: 20px;
-  background-color: #f5f7f8;
+  background-color: gray;
 }
 
 .tui-md-code-block.CodeMirror-linebackground.start {

@@ -61,7 +61,7 @@ export default function Cars() {
                       <img
                         src={`https://cdn.gugelong.com/cars/${car.name}/${
                           value + 1
-                        }.${car.extension}!/fw/800`}
+                        }.${car.extension}!/compress/true/fw/800`}
                         alt={`${car.name}_${value + 1}`}
                         width="100%"
                       />

@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundImage:
       theme.palette.type === "dark"
-        ? `url(${process.env.REACT_APP_CDN_URL}bg/tesla-vector-roadster.png!/fw/400)`
+        ? `url(${process.env.REACT_APP_CDN_URL}bg/tesla-vector-roadster.png!/compress/true/fw/400)`
         : `url(${process.env.REACT_APP_CDN_URL}bg/${
             background[Math.floor(Math.random() * background.length)]
-          }!/fw/400)`,
+          }!/compress/true/fw/400)`,
     backgroundPosition: "right top",
     backgroundRepeat: "no-repeat",
     backgroundSize: 200,
