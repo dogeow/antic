@@ -31,6 +31,7 @@ const TodoList = () => {
         title="待办事项"
         data={(query) => {
           return new Promise((resolve, reject) => {
+            console.log(query);
             let url = `${process.env.REACT_APP_API_URL}todo?`;
             url += `page[size]=${query.pageSize}`;
             url += `&page[number]=${query.page + 1}`;
@@ -41,6 +42,11 @@ const TodoList = () => {
               query.filters.forEach((filter) => {
                 url += `&filter[${filter.column.field}]=${filter.value}`;
               });
+            }
+            if (query.orderBy !== undefined) {
+              url += `&sort=${query.orderDirection === "desc" ? "-" : ""}${
+                query.orderBy.field
+              }`;
             }
 
             fetch(url)
