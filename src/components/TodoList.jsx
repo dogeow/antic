@@ -23,6 +23,10 @@ const TodoList = () => {
             title: "标题",
             field: "title",
           },
+          {
+            title: "优先级",
+            field: "priority",
+          },
         ]}
         options={{
           filtering: true,
@@ -31,7 +35,6 @@ const TodoList = () => {
         title="待办事项"
         data={(query) => {
           return new Promise((resolve, reject) => {
-            console.log(query);
             let url = `${process.env.REACT_APP_API_URL}todo?`;
             url += `page[size]=${query.pageSize}`;
             url += `&page[number]=${query.page + 1}`;
@@ -70,8 +73,9 @@ const TodoList = () => {
           onRowAdd: (newData) =>
             new Promise((resolve, reject) => {
               const task = {
-                title: newData.title,
                 project_id: 1,
+                title: newData.title,
+                priority: newData.priority,
               };
               axios.post("tasks", task).then(() => resolve());
             }),
@@ -80,6 +84,7 @@ const TodoList = () => {
               axios
                 .put(`tasks/${newData.id}`, {
                   title: newData.title,
+                  priority: newData.priority,
                 })
                 .then(() => resolve());
             }),
