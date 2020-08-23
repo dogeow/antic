@@ -26,6 +26,7 @@ const TodoList = () => {
           {
             title: "优先级",
             field: "priority",
+            type: "numeric",
           },
         ]}
         options={{
