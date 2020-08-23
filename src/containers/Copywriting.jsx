@@ -4,10 +4,10 @@ import Grid from "@material-ui/core/Grid";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import React from "react";
 
-const emojis = ["💦", "🔥", "✨", "🙀", "💅", "❗️", "‼️"];
+const emojis = ["❗️", "‼️", "✔️️"];
 
 export default function Copywriting() {
-  const [text, setText] = React.useState();
+  const [text, setText] = React.useState("");
 
   const textInput = React.createRef();
 
