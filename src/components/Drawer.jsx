@@ -18,22 +18,21 @@ const useStyles = makeStyles({
 });
 
 const menus = [
+  { name: "📄文章", url: "/posts" },
+  { name: "📋Todo", url: "/todo" },
+  { name: "📦一些 Demo", url: "/demo" },
+  { name: "⚙️便民 API", url: "/api" },
   { name: "🙀表情", url: "/emoji" },
   { name: "🔝微博热搜榜", url: "/weibo" },
-  { name: "🧭网址导航", url: "/nav" },
-  { name: "🔖谷歌书签", url: "/bookmarks" },
-  { name: "⚙️便民 API", url: "/api" },
-  { name: "📋Todo", url: "/todo" },
   { name: "🤔自言自语", url: "/self-talk" },
   { name: "💗喜欢的", url: "/like" },
   { name: "🚗车车", url: "/cars" },
-  { name: "📦一些 Demo", url: "/demo" },
-  { name: "📄文章", url: "/posts" },
+  { name: "🧭网址导航", url: "/nav" },
+  { name: "🔖谷歌书签", url: "/bookmarks" },
 ];
 
 const externalMenus = [
-  { name: "📝学习笔记（博客）", url: "https://www.kunyan.li" },
-  { name: "🗂️学习笔记（维基）", url: "https://wiki.kunyan.li" },
+  { name: "🗂️学习笔记", url: "https://wiki.kunyan.li" },
   { name: "🖌️Canvas 学习", url: "http://canvas.kunyan.li" },
 ];
 
