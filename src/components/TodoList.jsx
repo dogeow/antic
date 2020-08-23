@@ -26,8 +26,6 @@ const TodoList = () => {
         ]}
         options={{
           filtering: true,
-          grouping: true,
-          selection: true,
           sorting: true,
         }}
         title="待办事项"
