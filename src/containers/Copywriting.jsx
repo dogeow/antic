@@ -7,7 +7,7 @@ import React from "react";
 const emojis = ["💦", "🔥", "✨", "🙀", "💅", "❗️", "‼️"];
 
 export default function Copywriting() {
-  const [text, setText] = React.useState("233");
+  const [text, setText] = React.useState();
 
   const textInput = React.createRef();
 
@@ -27,7 +27,7 @@ export default function Copywriting() {
           aria-label="empty textarea"
           rowsMin={6}
           ref={textInput}
-          placeholder="Empty"
+          placeholder="请输入..."
           value={text}
           style={{ width: 272, fontFamily: "auto" }}
           onChange={handleChange}
