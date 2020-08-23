@@ -64,7 +64,7 @@ const TemporaryDrawer = (props) => {
           </ListItem>
         ))}
         <Divider />
-        {externalMenus.map((menu, index) => (
+        {externalMenus.map((menu) => (
           <ListItem
             button
             component={Link}
@@ -72,7 +72,7 @@ const TemporaryDrawer = (props) => {
             style={{ cursor: "alias" }}
             href={menu.url}
             target="_blank"
-            key={index}
+            key={menu.url}
           >
             <ListItemText primary={menu.name} />
           </ListItem>
