@@ -71,6 +71,7 @@ const TemporaryDrawer = (props) => {
             underline="none"
             style={{ cursor: "alias" }}
             href={menu.url}
+            target="_blank"
             key={index}
           >
             <ListItemText primary={menu.name} />
