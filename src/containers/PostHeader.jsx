@@ -25,7 +25,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
           interactive
         >
           <div>
-            创建于 <time>{moment(post.created_at).fromNow()}</time>
+            创建于<time>{moment(post.created_at).fromNow()}</time>
           </div>
         </Tooltip>
       </Grid>
@@ -41,7 +41,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
           interactive
         >
           <div>
-            更新于 <time>{moment(post.updated_at).fromNow()}</time>
+            更新于<time>{moment(post.updated_at).fromNow()}</time>
           </div>
         </Tooltip>
       </Grid>
