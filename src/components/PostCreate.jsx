@@ -105,6 +105,7 @@ const PostCreate = () => {
       data: {
         title: post.title,
         content: post.content,
+        category: post.category,
       },
     })
       .then(({ data }) => {
@@ -161,10 +162,10 @@ const PostCreate = () => {
       });
   };
 
-  const handleCategoryChange = (e, value) => {
+  const handleCategoryChange = (e) => {
     setPost({
       ...post,
-      category: value,
+      category: e.target.value,
     });
   };
 
