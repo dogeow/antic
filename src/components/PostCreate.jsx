@@ -177,6 +177,7 @@ const PostCreate = () => {
           value={(post && post.title) || ""}
           variant="outlined"
           size="small"
+          placeholder="请输入标题..."
           onChange={handleTitleChange}
         />
       </Grid>
@@ -186,6 +187,7 @@ const PostCreate = () => {
             variant="outlined"
             size="small"
             value={post.category}
+            placeholder="未分类"
             onChange={handleCategoryChange}
           />
         )}
