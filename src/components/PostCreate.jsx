@@ -114,7 +114,9 @@ const PostCreate = () => {
         setLoading(false);
       })
       .catch((error) => {
-        if (error.response.status !== 401) {
+        if (error.status === 401) {
+          Swal.fire(error.statusText, error.data.message, "error");
+        } else if (error.response.status !== 401) {
           const { errors } = error.response.data;
           setErrors(errors);
           Swal.fire(
