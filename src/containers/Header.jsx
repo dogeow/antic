@@ -6,8 +6,9 @@ import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import GitHub from "@material-ui/icons/GitHub";
 import MenuIcon from "@material-ui/icons/Menu";
 import MoreIcon from "@material-ui/icons/MoreVert";
@@ -45,6 +46,8 @@ const Header = ({
 }) => {
   const classes = useStyles();
   const history = useHistory();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorElMyself, setAnchorElMyself] = React.useState(null);
@@ -106,6 +109,16 @@ const Header = ({
             <RouteLink to="/">
               <Logo />
             </RouteLink>
+            {matches && (
+              <Button
+                color="inherit"
+                style={{ marginLeft: 16 }}
+                component={RouteLink}
+                to="/posts"
+              >
+                实验室笔记🧪
+              </Button>
+            )}
             <div className={classes.blank} />
             <Hidden only="xs">
               <IconButton
