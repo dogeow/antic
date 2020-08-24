@@ -57,7 +57,7 @@ const PostList = () => {
                 <Grid item>
                   <Chip
                     size="small"
-                    label={item.category || "未分类"}
+                    label={(item.category && item.category.name) || "未分类"}
                     style={{ minWidth: "59px" }}
                   />
                 </Grid>
@@ -72,8 +72,12 @@ const PostList = () => {
                   <Grid container spacing={1}>
                     {item.tags.length !== 0 &&
                       item.tags.map((tag) => (
-                        <Grid item key={tag}>
-                          <Chip variant="outlined" size="small" label={tag} />
+                        <Grid item key={tag.id}>
+                          <Chip
+                            variant="outlined"
+                            size="small"
+                            label={tag.name}
+                          />
                         </Grid>
                       ))}
                   </Grid>
