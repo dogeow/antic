@@ -71,7 +71,7 @@ const PostCreate = () => {
   const match = useRouteMatch();
 
   const [id, setId] = useState(0);
-  const [post, setPost] = useState();
+  const [post, setPost] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState(false);
@@ -176,7 +176,7 @@ const PostCreate = () => {
       {/* 标题 */}
       <Grid item xs={12} md={6}>
         <TextField
-          value={(post && post.title) || ""}
+          value={"title" in post || ""}
           variant="outlined"
           size="small"
           placeholder="请输入标题..."
@@ -206,7 +206,7 @@ const PostCreate = () => {
             language="zh-CN"
             usageStatistics={false}
             placeholder="输入文档内容"
-            initialValue={(post && post.content) || ""}
+            initialValue={"content" in post || ""}
             previewStyle="vertical"
             initialEditType="markdown"
             height="70vh"
