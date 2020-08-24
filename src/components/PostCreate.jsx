@@ -176,7 +176,7 @@ const PostCreate = () => {
       {/* 标题 */}
       <Grid item xs={12} md={6}>
         <TextField
-          value={"title" in post || ""}
+          value={post.title || ""}
           variant="outlined"
           size="small"
           placeholder="请输入标题..."
@@ -206,7 +206,7 @@ const PostCreate = () => {
             language="zh-CN"
             usageStatistics={false}
             placeholder="输入文档内容"
-            initialValue={"content" in post || ""}
+            initialValue={post.content || ""}
             previewStyle="vertical"
             initialEditType="markdown"
             height="70vh"
