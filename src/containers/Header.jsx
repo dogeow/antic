@@ -110,14 +110,22 @@ const Header = ({
               <Logo />
             </RouteLink>
             {matches && (
-              <Button
-                color="inherit"
-                style={{ marginLeft: 16 }}
-                component={RouteLink}
-                to="/posts"
-              >
-                实验室笔记🧪
-              </Button>
+              <>
+                <Button
+                  color="inherit"
+                  style={{ marginLeft: 16 }}
+                  component={RouteLink}
+                  to="/posts"
+                >
+                  笔记
+                </Button>
+                <Button color="inherit" component={RouteLink} to="/categories">
+                  分类
+                </Button>
+                <Button color="inherit" component={RouteLink} to="/tags">
+                  标签
+                </Button>
+              </>
             )}
             <div className={classes.blank} />
             <Hidden only="xs">

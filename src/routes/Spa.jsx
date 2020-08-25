@@ -67,6 +67,14 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../containers/PostSingle"))}
           />
           <Route
+            path="/categories"
+            component={loadable(() => import("../containers/Categories"))}
+          />
+          <Route
+            path="/tags"
+            component={loadable(() => import("../containers/Tags"))}
+          />
+          <Route
             path="/register"
             component={loadable(() => import("../containers/Register"))}
           />
