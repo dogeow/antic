@@ -61,48 +61,52 @@ export default function Table() {
               });
           });
         }}
-        editable={{
-          onBulkUpdate: (changes) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                /* setData([...data, newData]); */
+        editable={
+          localStorage.user_id !== "1"
+            ? false
+            : {
+                onBulkUpdate: (changes) =>
+                  new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                      /* setData([...data, newData]); */
 
-                resolve();
-              }, 1000);
-            }),
-          onRowUpdateCancelled: (rowData) =>
-            console.log("Row editing cancelled"),
-          onRowAdd: (newData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                /* setData([...data, newData]); */
+                      resolve();
+                    }, 1000);
+                  }),
+                onRowUpdateCancelled: (rowData) =>
+                  console.log("Row editing cancelled"),
+                onRowAdd: (newData) =>
+                  new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                      /* setData([...data, newData]); */
 
-                resolve();
-              }, 1000);
-            }),
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataUpdate = [...project];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setProject([...dataUpdate]);
+                      resolve();
+                    }, 1000);
+                  }),
+                onRowUpdate: (newData, oldData) =>
+                  new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                      const dataUpdate = [...project];
+                      const index = oldData.tableData.id;
+                      dataUpdate[index] = newData;
+                      setProject([...dataUpdate]);
 
-                resolve();
-              }, 1000);
-            }),
-          onRowDelete: (oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataDelete = [...project];
-                const index = oldData.tableData.id;
-                dataDelete.splice(index, 1);
-                setProject([...dataDelete]);
+                      resolve();
+                    }, 1000);
+                  }),
+                onRowDelete: (oldData) =>
+                  new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                      const dataDelete = [...project];
+                      const index = oldData.tableData.id;
+                      dataDelete.splice(index, 1);
+                      setProject([...dataDelete]);
 
-                resolve();
-              }, 1000);
-            }),
-        }}
+                      resolve();
+                    }, 1000);
+                  }),
+              }
+        }
         localization={localization}
       />
       <div>

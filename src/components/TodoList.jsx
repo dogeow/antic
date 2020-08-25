@@ -64,40 +64,44 @@ const TodoList = () => {
               });
           });
         }}
-        editable={{
-          onBulkUpdate: (changes) =>
-            new Promise((resolve, reject) => {
-              resolve();
-            }),
-          onRowUpdateCancelled: (rowData) =>
-            console.log("Row editing cancelled"),
-          onRowAdd: (newData) =>
-            new Promise((resolve, reject) => {
-              const task = {
-                project_id: 1,
-                title: newData.title,
-                priority: newData.priority,
-              };
-              axios.post("tasks", task).then(() => resolve());
-            }),
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve, reject) => {
-              axios
-                .put(`tasks/${newData.id}`, {
-                  title: newData.title,
-                  priority: newData.priority,
-                })
-                .then(() => resolve());
-            }),
-          onRowDelete: (oldData) =>
-            new Promise((resolve, reject) => {
-              axios
-                .put(`tasks/${oldData.id}`, {
-                  is_completed: 1,
-                })
-                .then(() => resolve());
-            }),
-        }}
+        editable={
+          localStorage.user_id !== "1"
+            ? false
+            : {
+                onBulkUpdate: (changes) =>
+                  new Promise((resolve, reject) => {
+                    resolve();
+                  }),
+                onRowUpdateCancelled: (rowData) =>
+                  console.log("Row editing cancelled"),
+                onRowAdd: (newData) =>
+                  new Promise((resolve, reject) => {
+                    const task = {
+                      project_id: 1,
+                      title: newData.title,
+                      priority: newData.priority,
+                    };
+                    axios.post("tasks", task).then(() => resolve());
+                  }),
+                onRowUpdate: (newData, oldData) =>
+                  new Promise((resolve, reject) => {
+                    axios
+                      .put(`tasks/${newData.id}`, {
+                        title: newData.title,
+                        priority: newData.priority,
+                      })
+                      .then(() => resolve());
+                  }),
+                onRowDelete: (oldData) =>
+                  new Promise((resolve, reject) => {
+                    axios
+                      .put(`tasks/${oldData.id}`, {
+                        is_completed: 1,
+                      })
+                      .then(() => resolve());
+                  }),
+              }
+        }
         localization={localization}
       />
     </Paper>
