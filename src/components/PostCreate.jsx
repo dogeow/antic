@@ -70,7 +70,7 @@ const PostCreate = () => {
   const classes = useStyles();
   const match = useRouteMatch();
 
-  const [id, setId] = useState(0);
+  const [id, setId] = useState(null);
   const [post, setPost] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -201,16 +201,17 @@ const PostCreate = () => {
       )}
       {/* 正文 */}
       <Grid item xs={12}>
-        {(post || !id) && (
+        {(post?.content || id === null) && (
           <Editor
-            language="zh-CN"
-            usageStatistics={false}
+            ref={editorRef}
             placeholder="输入文档内容"
             initialValue={post.content || ""}
             previewStyle="vertical"
-            initialEditType="markdown"
             height="70vh"
+            initialEditType="markdown"
             useCommandShortcut
+            language="zh-CN"
+            usageStatistics={false}
             plugins={[
               [codeSyntaxHightlight, { hljs }],
               colorSyntax,
@@ -218,7 +219,6 @@ const PostCreate = () => {
               uml,
               [chart, chartOptions],
             ]}
-            ref={editorRef}
             onChange={handleEditorChange}
             hooks={{
               addImageBlobHook: onAddImageBlob,

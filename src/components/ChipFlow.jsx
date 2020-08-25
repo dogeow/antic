@@ -12,7 +12,7 @@ const Categories = (props) => {
     axios.get(props.path).then(({ data }) => {
       setItems(data);
     });
-  }, []);
+  }, [props.path]);
 
   return (
     <Grid container spacing={2}>

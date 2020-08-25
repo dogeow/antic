@@ -9,7 +9,7 @@ import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
 
 const PostSingle = () => {
-  const [post, setPost] = useState();
+  const [post, setPost] = useState({});
 
   const history = useHistory();
   const match = useRouteMatch();
