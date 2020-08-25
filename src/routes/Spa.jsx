@@ -56,15 +56,21 @@ const Spa = ({ match }) => {
           />
           <Route
             path="/posts/create"
-            component={loadable(() => import("../components/PostCreate"))}
+            component={loadable(() => import("../components/PostCreate"), {
+              fallback: <Loading />,
+            })}
           />
           <Route
             path="/posts/:id/edit"
-            component={loadable(() => import("../components/PostCreate"))}
+            component={loadable(() => import("../components/PostCreate"), {
+              fallback: <Loading />,
+            })}
           />
           <Route
             path="/posts/:id"
-            component={loadable(() => import("../containers/PostSingle"))}
+            component={loadable(() => import("../containers/PostSingle"), {
+              fallback: <Loading />,
+            })}
           />
           <Route
             path="/categories"
