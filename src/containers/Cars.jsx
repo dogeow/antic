@@ -44,7 +44,6 @@ export default function Cars() {
             <Grid
               container
               item
-              spacing={2}
               justify="center"
               key={car.name}
               style={{ background: car.color }}
