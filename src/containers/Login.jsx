@@ -192,7 +192,6 @@ const SignInSide = ({ dispatch }) => {
                 placement="right"
                 enterDelay={200}
                 disableFocusListener
-                disableTouchListener
                 TransitionComponent={Zoom}
                 arrow
                 interactive
