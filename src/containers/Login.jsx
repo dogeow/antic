@@ -68,6 +68,15 @@ const SignInSide = ({ dispatch }) => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [inputErrors, setInputErrors] = useState(false);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -188,14 +197,17 @@ const SignInSide = ({ dispatch }) => {
                 onChange={() => setRememberMe(!rememberMe)}
               />
               <Tooltip
+                open={open}
+                onClose={handleClose}
+                onOpen={handleOpen}
                 title="记住我：登录有效期三个礼拜"
                 placement="right"
                 enterDelay={200}
-                disableFocusListener
                 TransitionComponent={Zoom}
                 arrow
                 interactive
                 style={{ alignSelf: "center" }}
+                onClick={handleOpen}
               >
                 <ErrorOutlineIcon />
               </Tooltip>
