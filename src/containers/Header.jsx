@@ -130,15 +130,6 @@ const Header = ({
             <div className={classes.blank} />
             <Hidden only="xs">
               <IconButton
-                aria-label="GitHub 存储库"
-                color="inherit"
-                component="a"
-                href="https://github.com/likunyan/antic"
-                target="_blank"
-              >
-                <GitHub />
-              </IconButton>
-              <IconButton
                 aria-label="切换模式"
                 color="inherit"
                 onClick={onThemeClick}
@@ -148,6 +139,15 @@ const Header = ({
                 ) : (
                   <WbSunnyIcon />
                 )}
+              </IconButton>
+              <IconButton
+                aria-label="GitHub 存储库"
+                color="inherit"
+                component="a"
+                href="https://github.com/likunyan/antic"
+                target="_blank"
+              >
+                <GitHub />
               </IconButton>
             </Hidden>
             {lab.is_expired ? (
