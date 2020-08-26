@@ -88,6 +88,9 @@ const Demo = () => (
     <div>
       <ul>
         <li>
+          <Link to="/music">音频测试</Link>
+        </li>
+        <li>
           <a href="/demos/mv.html" target="_blank">
             MV 测试
           </a>

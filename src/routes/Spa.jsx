@@ -229,6 +229,10 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../containers/Video"))}
           />
           <Route
+            path="/music"
+            component={loadable(() => import("../containers/Music"))}
+          />
+          <Route
             path="/copywriting"
             component={loadable(() => import("../containers/Copywriting"))}
           />
