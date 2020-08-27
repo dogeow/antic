@@ -30,6 +30,7 @@ const TodoList = () => {
           },
         ]}
         options={{
+          actionsColumnIndex: -1,
           filtering: true,
           sorting: true,
         }}
