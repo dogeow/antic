@@ -39,10 +39,6 @@ const TodoList = () => {
           actionsColumnIndex: -1,
           filtering: true,
           sorting: true,
-          rowStyle: (rowData) => ({
-            backgroundColor:
-              selectedRow === rowData.tableData.id ? "#EEE" : "#FFF",
-          }),
         }}
         title="待办事项"
         data={(query) => {
