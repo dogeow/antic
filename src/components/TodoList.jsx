@@ -109,6 +109,10 @@ const TodoList = () => {
         cellEditable={{
           onCellEditApproved: (newValue, oldValue, rowData, columnDef) => {
             return new Promise((resolve, reject) => {
+              if (newValue === oldValue) {
+                resolve();
+                return;
+              }
               axios
                 .put(`tasks/${rowData.id}`, {
                   [columnDef.field]: newValue,
