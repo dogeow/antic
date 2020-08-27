@@ -7,7 +7,7 @@ const Categories = () => {
   const history = useHistory();
 
   const handleClick = (category) => {
-    history.push(`/posts?filter[category]=${category}`);
+    history.push(`/posts?filter[category.name]=${category}`);
   };
 
   return <ChipFlow path="categories" onHandleClick={handleClick} />;

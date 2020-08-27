@@ -8,7 +8,7 @@ import PaginationItem from "@material-ui/lab/PaginationItem";
 import Skeleton from "@material-ui/lab/Skeleton";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -17,14 +17,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 const PostList = () => {
+  const query = useQuery();
   const classes = useStyles();
   const [post, setPost] = useState({});
   const [pageCount, setPageCount] = useState();
   const [currPage, setCurrPage] = useState(1);
 
   useEffect(() => {
-    axios.get("posts").then(({ data }) => {
+    const queryCategoryValue = query.get("filter[category.name]");
+    const queryCategory =
+      queryCategoryValue !== null
+        ? `?filter[category.name]=${queryCategoryValue}`
+        : "";
+
+    const queryTagValue = query.get("filter[tags.name]");
+    const queryTag =
+      queryTagValue !== null ? `?filter[tags.name]=${queryTagValue}` : "";
+
+    axios.get(`posts${queryCategory}${queryTag}`).then(({ data }) => {
       setPost(data);
       setCurrPage(data.current_page);
       setPageCount(data.last_page);
