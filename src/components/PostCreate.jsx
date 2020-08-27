@@ -194,11 +194,9 @@ const PostCreate = () => {
           />
         )}
       </Grid>
-      {post && (
-        <Grid item xs={9} md={4}>
-          {post.tags && <Tags tags={post.tags} />}
-        </Grid>
-      )}
+      <Grid item xs={9} md={4}>
+        {post?.tags && <Tags tags={post.tags} />}
+      </Grid>
       {/* 正文 */}
       <Grid item xs={12}>
         {(post?.content || id === null) && (

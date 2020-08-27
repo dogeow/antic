@@ -3,10 +3,8 @@ import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import React from "react";
 
-const Categories = (props) => {
+const ChipFlow = (props) => {
   const [items, setItems] = React.useState([]);
-
-  const handleClick = () => {};
 
   React.useEffect(() => {
     axios.get(props.path).then(({ data }) => {
@@ -18,11 +16,17 @@ const Categories = (props) => {
     <Grid container spacing={2}>
       {items.map((item, index) => (
         <Grid item key={index}>
-          <Chip label={item} variant="outlined" onClick={handleClick} />
+          <Chip
+            label={item}
+            variant="outlined"
+            onClick={() => {
+              props.onHandleClick(item);
+            }}
+          />
         </Grid>
       ))}
     </Grid>
   );
 };
 
-export default Categories;
+export default ChipFlow;
