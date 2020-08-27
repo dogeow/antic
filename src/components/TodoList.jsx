@@ -14,10 +14,12 @@ const useStyles = makeStyles(() => ({
 
 const TodoList = () => {
   const classes = useStyles();
+  const tableRef = React.createRef();
 
   return (
     <Paper className={classes.tableRoot}>
       <MaterialTable
+        tableRef={tableRef}
         columns={[
           {
             title: "标题",
@@ -104,6 +106,20 @@ const TodoList = () => {
               }
         }
         localization={localization}
+        cellEditable={{
+          onCellEditApproved: (newValue, oldValue, rowData, columnDef) => {
+            return new Promise((resolve, reject) => {
+              axios
+                .put(`tasks/${rowData.id}`, {
+                  [columnDef.field]: newValue,
+                })
+                .then(() => {
+                  tableRef.current.onQueryChange();
+                  resolve();
+                });
+            });
+          },
+        }}
       />
     </Paper>
   );
