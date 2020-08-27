@@ -2,7 +2,7 @@ import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import MaterialTable from "material-table";
-import React from "react";
+import React, { useState } from "react";
 
 import localization from "../config/localization";
 
@@ -15,6 +15,7 @@ const useStyles = makeStyles(() => ({
 const TodoList = () => {
   const classes = useStyles();
   const tableRef = React.createRef();
+  const [selectedRow, setSelectedRow] = useState(null);
 
   return (
     <Paper className={classes.tableRoot}>
@@ -31,10 +32,17 @@ const TodoList = () => {
             type: "numeric",
           },
         ]}
+        onRowClick={(evt, selectedRow) =>
+          setSelectedRow(selectedRow.tableData.id)
+        }
         options={{
           actionsColumnIndex: -1,
           filtering: true,
           sorting: true,
+          rowStyle: (rowData) => ({
+            backgroundColor:
+              selectedRow === rowData.tableData.id ? "#EEE" : "#FFF",
+          }),
         }}
         title="待办事项"
         data={(query) => {
