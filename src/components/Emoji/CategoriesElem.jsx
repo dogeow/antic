@@ -34,7 +34,7 @@ const CategoriesElem = (props) => {
                 : "default"
             }
             key={category}
-            onClick={() => props.select_category(category)}
+            onClick={() => props.selectCategory(category)}
           >
             {category}
           </Button>

@@ -28,7 +28,7 @@ const TagsElem = (props) => {
               props.selectedTag.indexOf(tag) !== -1 ? "secondary" : "default"
             }
             key={tag}
-            onClick={() => props.select_tag(tag)}
+            onClick={() => props.selectTag(tag)}
           >
             {tag}
           </Button>

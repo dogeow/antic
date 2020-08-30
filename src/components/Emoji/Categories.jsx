@@ -26,7 +26,7 @@ const Category = (props) => {
               props.lab.themePaletteType === "dark" ? "outlined" : "contained"
             }
             color={color}
-            onClick={() => props.select_category("全部")}
+            onClick={() => props.selectCategory("全部")}
           >
             全部
           </Button>

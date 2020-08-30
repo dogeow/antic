@@ -7,7 +7,7 @@ import scrollToElement from "scroll-to-element";
 import Swal from "sweetalert2";
 
 const BootNav = (props) => {
-  const { currentPage, which_page, filterNum, pageLimit } = props;
+  const { currentPage, whichPage, filterNum, pageLimit } = props;
   const handlePageSwitch = (action) => {
     if (action === "Previous") {
       if (currentPage <= 1) {
@@ -20,7 +20,7 @@ const BootNav = (props) => {
         });
         return;
       }
-      which_page(currentPage - 1);
+      whichPage(currentPage - 1);
     }
     if (action === "Next") {
       if (currentPage >= Math.ceil(filterNum / pageLimit)) {
@@ -32,7 +32,7 @@ const BootNav = (props) => {
           timer: 1000,
         });
       } else {
-        which_page(currentPage + 1);
+        whichPage(currentPage + 1);
       }
     }
     scrollToElement("#emoji");

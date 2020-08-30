@@ -15,19 +15,19 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   toggleTag: () => {
     dispatch({ type: "EXPAND_TAG", value: !ownProps.expandTag });
   },
-  select_tag: (value) => {
+  selectTag: (value) => {
     dispatch({ type: "SELECT_TAG", value });
   },
   toggleCategory: () => {
     dispatch({ type: "EXPAND_CATEGORY", value: !ownProps.expandCategory });
   },
-  select_category: (value) => {
+  selectCategory: (value) => {
     dispatch({ type: "SELECT_CATEGORY", value });
   },
-  which_page: (value) => {
+  whichPage: (value) => {
     dispatch({ type: "WHICH_PAGE", value });
   },
-  is_loading: (value) => {
+  isLoading: (value) => {
     dispatch({ type: "IS_LOADING", value });
   },
 });

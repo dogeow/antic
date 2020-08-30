@@ -38,13 +38,13 @@ const Emoji = ({
   pageLimit,
   currentPage,
   filterNum,
-  select_tag,
+  selectTag,
   toggleTag,
-  is_loading,
+  isLoading,
   toggleCategory,
-  select_category,
+  selectCategory,
   displayTag,
-  which_page,
+  whichPage,
   expandCategory,
   selectedCategory,
   selectedTag,
@@ -58,10 +58,10 @@ const Emoji = ({
 
   useEffect(() => {
     const imgLoad = imagesLoaded("#emoji");
-    imgLoad.on("always", () => is_loading(false));
+    imgLoad.on("always", () => isLoading(false));
 
     return () => imgLoad.off("always");
-  }, [data, is_loading]);
+  }, [data, isLoading]);
 
   face.map((item) => {
     item.src = `${process.env.REACT_APP_CDN_URL}emoji/${item.fileName}`;
@@ -117,8 +117,8 @@ const Emoji = ({
         expandCategory={expandCategory}
         toggleCategory={toggleCategory}
         displayTag={displayTag}
-        select_category={select_category}
-        select_tag={select_tag}
+        selectCategory={selectCategory}
+        selectTag={selectTag}
       />
       <FilterStatistics
         filterNum={filterNum}
@@ -166,7 +166,7 @@ const Emoji = ({
       <BootNav
         filterNum={filterNum}
         currentPage={currentPage}
-        which_page={which_page}
+        whichPage={whichPage}
         pageLimit={pageLimit}
       />
       <Spinner loaded={!faceIsLoading} config={customSpinConfig} />

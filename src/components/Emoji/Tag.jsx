@@ -26,7 +26,7 @@ const Tag = (props) => {
               props.lab.themePaletteType === "dark" ? "outlined" : "contained"
             }
             color={color}
-            onClick={() => props.select_tag("全部")}
+            onClick={() => props.selectTag("全部")}
           >
             全部
           </Button>
