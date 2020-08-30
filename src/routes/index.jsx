@@ -1,8 +1,9 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Spa from "./Spa";
-import Dashboard from "./Dashboard";
+
 import Login from "../containers/Login";
+import Dashboard from "./Dashboard";
+import Spa from "./Spa";
 
 const Routes = () => (
   <Switch>

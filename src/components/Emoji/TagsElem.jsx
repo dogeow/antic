@@ -7,7 +7,7 @@ import face from "../../resources/face.json";
 const TagsElem = (props) => {
   // 获取各标签的图片数量
   const total = {};
-  face.map(function (single) {
+  face.map((single) => {
     for (const singleTag of single.tag) {
       total[singleTag] = ++total[singleTag] || 1;
     }

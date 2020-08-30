@@ -11,25 +11,21 @@ const About = () => {
   }, []);
 
   return (
-    <div>
+    <>
       {aboutMe.map((item) => (
-        <div key={item.id}>
-          <div>
-            <h3>{item.category}</h3>
-          </div>
-          <div>
-            <ul>
-              {item.list.map((subItem, index) => (
-                <li
-                  key={index}
-                  dangerouslySetInnerHTML={{ __html: subItem.content }}
-                />
-              ))}
-            </ul>
-          </div>
+        <div key={item.category}>
+          <h3>{item.category}</h3>
+          <ul>
+            {item.list.map((subItem) => (
+              <li
+                key={subItem.id}
+                dangerouslySetInnerHTML={{ __html: subItem.content }}
+              />
+            ))}
+          </ul>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

@@ -104,7 +104,7 @@ export default (state = defaultState, action) => {
         ...state,
         faceIsLoading: action.value,
       };
-    case "SELECT_CATEGORY":
+    case "SELECT_CATEGORY": {
       if (action.value === state.selectedCategory) {
         // 分类多次点击原样返回
         return state;
@@ -124,7 +124,8 @@ export default (state = defaultState, action) => {
         faceIsLoading: action.value !== state.selectedCategory,
         expandCategory: !isMobile,
       };
-    case "SELECT_TAG":
+    }
+    case "SELECT_TAG": {
       const selectedTag = action.value;
       // 选择标签时，在原有被选择的分类上继续筛选
       const tagData = getCategoryAndTagData(
@@ -149,7 +150,7 @@ export default (state = defaultState, action) => {
         faceIsLoading: action.value !== state.selectedTag,
         expandTag: !isMobile,
       };
-
+    }
     case "EXPAND_CATEGORY":
       return {
         ...state,
@@ -160,7 +161,7 @@ export default (state = defaultState, action) => {
         ...state,
         expandTag: !state.expandTag,
       };
-    case "WHICH_PAGE":
+    case "WHICH_PAGE": {
       const whichPageData = getCategoryAndTagData(
         face,
         state.selectedCategory,
@@ -178,7 +179,8 @@ export default (state = defaultState, action) => {
         currentPage: action.value,
         faceIsLoading: true,
       };
-    case "SEARCH":
+    }
+    case "SEARCH": {
       const filter = [];
       face.map(function (single) {
         if (
@@ -197,6 +199,7 @@ export default (state = defaultState, action) => {
         currentPage: 1,
         faceIsLoading: true,
       };
+    }
     case "OPEN_SETTING":
       return {
         ...state,
@@ -213,7 +216,7 @@ export default (state = defaultState, action) => {
         ...state,
         openSideBar: !state.openSideBar,
       };
-    case "ALL_EMOJI":
+    case "ALL_EMOJI": {
       let filterAllEmoji = [];
       if (action.value) {
         filterAllEmoji = face;
@@ -232,6 +235,7 @@ export default (state = defaultState, action) => {
         expandCategory: !isMobile,
         openSetting: false,
       };
+    }
     default:
       return state;
   }

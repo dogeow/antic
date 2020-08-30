@@ -1,15 +1,14 @@
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 
+import Application from "../containers/dashboard/Application";
+// layouts
+import Header from "../containers/dashboard/Header";
 // page
 import Home from "../containers/dashboard/Home";
 import Site from "../containers/dashboard/Site";
-import Application from "../containers/dashboard/Application";
-
-// layouts
-import Header from "../containers/dashboard/Header";
 import NoMatch from "../containers/NoMatch";
 
 const useStyles = makeStyles((theme) => ({

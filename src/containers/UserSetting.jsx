@@ -10,15 +10,11 @@ const UserSetting = () => {
   const [newPasswordConfirmation, setNewPasswordConfirmation] = useState("");
 
   const handleChangePassword = () => {
-    axios
-      .put("user/password", {
-        currPassword,
-        newPassword,
-        newPasswordConfirmation,
-      })
-      .then(({ data }) => {
-        console.log(data);
-      });
+    axios.put("user/password", {
+      currPassword,
+      newPassword,
+      newPasswordConfirmation,
+    });
   };
 
   return (
