@@ -1,5 +1,7 @@
 import Chip from "@material-ui/core/Chip";
+import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
+import AddIcon from "@material-ui/icons/Add";
 import React from "react";
 import { useStore } from "react-redux";
 
@@ -21,22 +23,25 @@ const Tags = (props) => {
   const store = useStore();
   const state = store.getState();
 
-  const handleDelete = (chipToDelete) => () => {};
-
   return props.tags ? (
     <ul className={classes.root}>
       {props.tags.map((tag) => {
         return (
-          <li key={tag}>
+          <li key={tag} style={{ alignSelf: "center" }}>
             <Chip
               size="small"
               label={tag}
-              onDelete={state.lab.user_id ? handleDelete(tag) : undefined}
+              onDelete={state.lab.user_id ? () => props.delete(tag) : undefined}
               className={classes.chip}
             />
           </li>
         );
       })}
+      <li>
+        <IconButton aria-label="new" onClick={props.new}>
+          <AddIcon type="button" />
+        </IconButton>
+      </li>
     </ul>
   ) : (
     <div />

@@ -171,11 +171,19 @@ const PostCreate = () => {
     });
   };
 
+  const handleDelete = (tag) => {
+    console.log("delete");
+  };
+  const handleNew = () => {
+    console.log("new");
+  };
+
   return (
     <Grid container spacing={2} justify="center" alignItems="center">
       {/* 标题 */}
       <Grid item xs={12} md={6}>
         <TextField
+          fullWidth
           value={post.title || ""}
           variant="outlined"
           size="small"
@@ -186,6 +194,7 @@ const PostCreate = () => {
       <Grid item xs={3} md={2}>
         {post && (
           <TextField
+            fullWidth
             variant="outlined"
             size="small"
             value={post.category}
@@ -195,7 +204,9 @@ const PostCreate = () => {
         )}
       </Grid>
       <Grid item xs={9} md={4}>
-        {post?.tags && <Tags tags={post.tags} />}
+        {post?.tags && (
+          <Tags tags={post.tags} delete={handleDelete} new={handleNew} />
+        )}
       </Grid>
       {/* 正文 */}
       <Grid item xs={12}>
