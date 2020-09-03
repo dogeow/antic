@@ -1,6 +1,7 @@
 import Chip from "@material-ui/core/Chip";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 import AddIcon from "@material-ui/icons/Add";
 import React from "react";
 import { useStore } from "react-redux";
@@ -37,6 +38,11 @@ const Tags = (props) => {
           </li>
         );
       })}
+      {props.newTagOpen && (
+        <li>
+          <TextField label="新标签" variant="outlined" size="small" />
+        </li>
+      )}
       <li>
         <IconButton aria-label="new" onClick={props.new}>
           <AddIcon type="button" />

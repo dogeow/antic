@@ -14,7 +14,7 @@ const Like = () => {
   }, []);
 
   return (
-    <Grid container spacing={2} justify="flex-start">
+    <Grid container justify="flex-start" spacing={2}>
       {like.map((item) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={item.id}>
           <Card

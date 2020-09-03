@@ -71,6 +71,7 @@ const PostCreate = () => {
   const match = useRouteMatch();
 
   const [id, setId] = useState(null);
+  const [newTagOpen, setNewTagOpen] = useState(false);
   const [post, setPost] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -175,13 +176,13 @@ const PostCreate = () => {
     console.log("delete");
   };
   const handleNew = () => {
-    console.log("new");
+    setNewTagOpen(true);
   };
 
   return (
     <Grid container spacing={2} justify="center" alignItems="center">
       {/* 标题 */}
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={4}>
         <TextField
           fullWidth
           value={post.title || ""}
@@ -203,9 +204,15 @@ const PostCreate = () => {
           />
         )}
       </Grid>
-      <Grid item xs={9} md={4}>
+      <Grid item xs={9} md={6}>
         {post?.tags && (
-          <Tags tags={post.tags} delete={handleDelete} new={handleNew} />
+          <Tags
+            tags={post.tags}
+            delete={handleDelete}
+            new={handleNew}
+            newTagOpen={newTagOpen}
+            setNewTagOpen={setNewTagOpen}
+          />
         )}
       </Grid>
       {/* 正文 */}
