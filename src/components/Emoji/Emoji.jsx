@@ -40,7 +40,6 @@ const Emoji = ({
   filterNum,
   selectTag,
   toggleTag,
-  isLoading,
   toggleCategory,
   selectCategory,
   displayTag,
@@ -55,13 +54,6 @@ const Emoji = ({
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
   const classes = useStyles();
-
-  useEffect(() => {
-    const imgLoad = imagesLoaded("#emoji");
-    imgLoad.on("always", () => isLoading(false));
-
-    return () => imgLoad.off("always");
-  }, [data, isLoading]);
 
   face.map((item) => {
     item.src = `${process.env.REACT_APP_CDN_URL}emoji/${item.fileName}`;

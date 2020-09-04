@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 
+import { loading, search } from "../../actions";
 import Emoji from "./Emoji";
 
 const mapStateToProps = (state) => ({
@@ -10,7 +11,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   search: (value) => {
-    dispatch({ type: "SEARCH", value });
+    dispatch(search(value));
   },
   toggleTag: () => {
     dispatch({ type: "EXPAND_TAG", value: !ownProps.expandTag });
@@ -27,8 +28,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   whichPage: (value) => {
     dispatch({ type: "WHICH_PAGE", value });
   },
-  isLoading: (value) => {
-    dispatch({ type: "IS_LOADING", value });
+  loading: (value) => {
+    dispatch(loading(value));
   },
 });
 

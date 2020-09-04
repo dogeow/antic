@@ -93,16 +93,16 @@ const defaultState = {
   // Switch Status
   expandCategory: !isMobile, // 展开分类？
   expandTag: !isMobile, // 展开标签？
-  faceIsLoading: true, // 表情图片正在加载中？
+  faceIsLoading: false, // 表情图片正在加载中？
 };
 
 export default (state = defaultState, action) => {
   let data = {};
   switch (action.type) {
-    case "IS_LOADING":
+    case "LOADING":
       return {
         ...state,
-        faceIsLoading: action.value,
+        faceIsLoading: action.payload,
       };
     case "SELECT_CATEGORY": {
       if (action.value === state.selectedCategory) {
@@ -182,9 +182,9 @@ export default (state = defaultState, action) => {
     }
     case "SEARCH": {
       const filter = [];
-      face.map(function (single) {
+      face.map((single) => {
         if (
-          single.name.toLowerCase().indexOf(action.value.toLowerCase()) !== -1
+          single.name.toLowerCase().indexOf(action.payload.toLowerCase()) !== -1
         ) {
           return filter.push(single);
         }
