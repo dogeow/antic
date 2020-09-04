@@ -5665,11 +5665,6 @@ etag@~1.8.1:
   resolved "https://registry.npm.taobao.org/etag/download/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
-ev-emitter@^1.0.0:
-  version "1.1.1"
-  resolved "https://registry.npm.taobao.org/ev-emitter/download/ev-emitter-1.1.1.tgz#8f18b0ce5c76a5d18017f71c0a795c65b9138f2a"
-  integrity sha1-jxiwzlx2pdGAF/ccCnlcZbkTjyo=
-
 "eve@git://github.com/adobe-webplatform/eve.git#eef80ed":
   version "0.4.1"
   resolved "git://github.com/adobe-webplatform/eve.git#eef80ed8d188423c2272746fb8ae5cc8dad84cb1"
@@ -6878,13 +6873,6 @@ ignore@^4.0.6:
   version "4.0.6"
   resolved "https://registry.npm.taobao.org/ignore/download/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
   integrity sha1-dQ49tYYgh7RzfrrIIH/9HvJ7Jfw=
-
-imagesloaded@^4.1.4:
-  version "4.1.4"
-  resolved "https://registry.npm.taobao.org/imagesloaded/download/imagesloaded-4.1.4.tgz#1376efcd162bb768c34c3727ac89cc04051f3cc7"
-  integrity sha1-E3bvzRYrt2jDTDcnrInMBAUfPMc=
-  dependencies:
-    ev-emitter "^1.0.0"
 
 immer@1.10.0:
   version "1.10.0"
@@ -11367,13 +11355,6 @@ react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-i
   version "16.13.1"
   resolved "https://registry.npm.taobao.org/react-is/download/react-is-16.13.1.tgz?cache=0&sync_timestamp=1596208841837&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-is%2Fdownload%2Freact-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha1-eJcppNw23imZ3BVt1sHZwYzqVqQ=
-
-react-on-images-loaded@^2.2.5:
-  version "2.2.5"
-  resolved "https://registry.npm.taobao.org/react-on-images-loaded/download/react-on-images-loaded-2.2.5.tgz#177d2f064ce647b248e59fc4af3250f81de70c0e"
-  integrity sha1-F30vBkzmR7JI5Z/ErzJQ+B3nDA4=
-  dependencies:
-    prop-types "^15.6.2"
 
 react-redux@^7.1.1, react-redux@^7.2.1:
   version "7.2.1"
