@@ -8,6 +8,8 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
+import menus from "../config/menus";
+
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -16,20 +18,6 @@ const useStyles = makeStyles({
     width: "auto",
   },
 });
-
-const menus = [
-  { name: "📄文章", url: "/posts" },
-  { name: "📋Todo", url: "/todo" },
-  { name: "📦一些 Demo", url: "/demo" },
-  { name: "⚙️便民 API", url: "/api" },
-  { name: "🙀表情", url: "/emoji" },
-  { name: "🔝微博热搜榜", url: "/weibo" },
-  { name: "🤔自言自语", url: "/self-talk" },
-  { name: "💗喜欢的", url: "/like" },
-  { name: "🚗车车", url: "/cars" },
-  { name: "🧭网址导航", url: "/nav" },
-  { name: "🔖谷歌书签", url: "/bookmarks" },
-];
 
 const externalMenus = [
   { name: "🗂️学习笔记", url: "https://wiki.kunyan.li" },
