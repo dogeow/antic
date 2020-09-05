@@ -3,7 +3,7 @@ import "typeface-roboto";
 import "../styles/App.scss";
 import "../styles/App.css";
 
-import MomentUtils from "@date-io/moment"; // 导入一些 moment 实用工具
+import MomentUtils from "@date-io/moment";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
