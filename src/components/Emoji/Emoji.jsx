@@ -48,12 +48,20 @@ const Emoji = ({
   selectedCategory,
   selectedTag,
   search,
+  loading,
   expandTag,
 }) => {
   const history = useHistory();
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
   const classes = useStyles();
+
+  useEffect(() => {
+    const imgLoad = imagesLoaded("#emoji");
+    imgLoad.on("always", () => loading(false));
+
+    return () => imgLoad.off("always");
+  }, [faceIsLoading]);
 
   face.map((item) => {
     item.src = `${process.env.REACT_APP_CDN_URL}emoji/${item.fileName}`;

@@ -93,7 +93,7 @@ const defaultState = {
   // Switch Status
   expandCategory: !isMobile, // 展开分类？
   expandTag: !isMobile, // 展开标签？
-  faceIsLoading: false, // 表情图片正在加载中？
+  faceIsLoading: true, // 表情图片正在加载中？
 };
 
 export default (state = defaultState, action) => {
