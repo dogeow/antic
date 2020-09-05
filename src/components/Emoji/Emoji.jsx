@@ -86,6 +86,7 @@ const Emoji = ({
         }
         search(value);
         Swal.close();
+        return null;
       },
     });
   };
