@@ -39,38 +39,36 @@ export default function Cars() {
   return (
     <>
       <Grid container>
-        {cars.map((car) => {
-          return (
-            <Grid
-              container
-              item
-              justify="center"
-              key={car.name}
-              style={{ background: car.color }}
-            >
-              <Grid item>
-                <Typography variant="h2" gutterBottom>
-                  {car.name}
-                </Typography>
-              </Grid>
-              <Grid container item spacing={2}>
-                {Array.from(new Array(car.imagesCount).keys()).map((value) => {
-                  return (
-                    <Grid item key={value} xs={12} md={4}>
-                      <img
-                        src={`https://cdn.gugelong.com/cars/${car.name}/${
-                          value + 1
-                        }.${car.extension}!/compress/true/fw/800`}
-                        alt={`${car.name}_${value + 1}`}
-                        width="100%"
-                      />
-                    </Grid>
-                  );
-                })}
-              </Grid>
+        {cars.map((car) => (
+          <Grid
+            container
+            item
+            justify="center"
+            key={car.name}
+            style={{ background: car.color }}
+          >
+            <Grid item>
+              <Typography variant="h2" gutterBottom>
+                {car.name}
+              </Typography>
             </Grid>
-          );
-        })}
+            <Grid container item spacing={2}>
+              {Array.from(new Array(car.imagesCount).keys()).map((value) => {
+                return (
+                  <Grid item key={value} xs={12} md={4}>
+                    <img
+                      src={`https://cdn.gugelong.com/cars/${car.name}/${
+                        value + 1
+                      }.${car.extension}!/compress/true/fw/800`}
+                      alt={`${car.name}_${value + 1}`}
+                      width="100%"
+                    />
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </Grid>
+        ))}
       </Grid>
     </>
   );
