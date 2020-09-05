@@ -18,7 +18,7 @@ const type = [
 ];
 
 const Font = () => (
-  <div>
+  <>
     {type.map((item) => (
       <Typography variant={item} component="h2" key={item}>
         马斯克的
@@ -28,7 +28,7 @@ const Font = () => (
         是人类未来的基石，Written in 2020。
       </Typography>
     ))}
-  </div>
+  </>
 );
 
 export default Font;
