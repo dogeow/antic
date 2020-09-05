@@ -2,7 +2,12 @@ import axios from "axios";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 
-import { loginAction, toggleDrawer, toggleTheme } from "../actions";
+import {
+  loginAction,
+  logoutAction,
+  toggleDrawer,
+  toggleTheme,
+} from "../actions";
 import Header from "../containers/Header";
 import { logged, logout } from "../helpers";
 
@@ -15,7 +20,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onLogout: () => {
     logout();
-    dispatch({ type: "LOGOUT" });
+    dispatch(logoutAction());
     axios.post("user/logout").then(() => {
       Swal.fire("登出成功！");
     });

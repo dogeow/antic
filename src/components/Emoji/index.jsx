@@ -1,6 +1,14 @@
 import { connect } from "react-redux";
 
-import { loading, search } from "../../actions";
+import {
+  expandCategory,
+  expandTag,
+  loading,
+  search,
+  selectCategory,
+  selectTag,
+  whichPage,
+} from "../../actions";
 import Emoji from "./Emoji";
 
 const mapStateToProps = (state) => ({
@@ -8,24 +16,24 @@ const mapStateToProps = (state) => ({
   lab: state.lab,
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
   search: (value) => {
     dispatch(search(value));
   },
   toggleTag: () => {
-    dispatch({ type: "EXPAND_TAG", value: !ownProps.expandTag });
+    dispatch(expandTag());
   },
   selectTag: (value) => {
-    dispatch({ type: "SELECT_TAG", value });
+    dispatch(selectTag(value));
   },
   toggleCategory: () => {
-    dispatch({ type: "EXPAND_CATEGORY", value: !ownProps.expandCategory });
+    dispatch(expandCategory());
   },
   selectCategory: (value) => {
-    dispatch({ type: "SELECT_CATEGORY", value });
+    dispatch(selectCategory(value));
   },
   whichPage: (value) => {
-    dispatch({ type: "WHICH_PAGE", value });
+    dispatch(whichPage(value));
   },
   loading: (value) => {
     dispatch(loading(value));

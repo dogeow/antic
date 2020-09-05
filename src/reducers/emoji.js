@@ -105,33 +105,33 @@ export default (state = defaultState, action) => {
         faceIsLoading: action.payload,
       };
     case "SELECT_CATEGORY": {
-      if (action.value === state.selectedCategory) {
+      if (action.payload === state.selectedCategory) {
         // 分类多次点击原样返回
         return state;
       }
 
-      const categoryData = categoryFilter(face, action.value);
+      const categoryData = categoryFilter(face, action.payload);
       const categoryDataRange = offset(state.currentPage, state.pageLimit);
       data = categoryData.slice(categoryDataRange.start, categoryDataRange.end);
       return {
         ...state,
-        selectedCategory: action.value,
+        selectedCategory: action.payload,
         selectedTag: "全部",
         displayTag: allTag(categoryData),
         data,
         currentPage: 1, // 点击分类后都切换到第一页
         filterNum: categoryData.length,
-        faceIsLoading: action.value !== state.selectedCategory,
+        faceIsLoading: action.payload !== state.selectedCategory,
         expandCategory: !isMobile,
       };
     }
     case "SELECT_TAG": {
-      const selectedTag = action.value;
+      const selectedTag = action.payload;
       // 选择标签时，在原有被选择的分类上继续筛选
       const tagData = getCategoryAndTagData(
         face,
         state.selectedCategory,
-        action.value
+        action.payload
       );
       const tagDataRange = offset(state.currentPage, state.pageLimit);
       data = tagData.slice(tagDataRange.start, tagDataRange.end);
@@ -147,7 +147,7 @@ export default (state = defaultState, action) => {
         data,
         filterNum: tagData.length,
         currentPage: 1,
-        faceIsLoading: action.value !== state.selectedTag,
+        faceIsLoading: action.payload !== state.selectedTag,
         expandTag: !isMobile,
       };
     }
@@ -167,7 +167,7 @@ export default (state = defaultState, action) => {
         state.selectedCategory,
         state.selectedTag
       );
-      const whichPageDataRange = offset(action.value, state.pageLimit);
+      const whichPageDataRange = offset(action.payload, state.pageLimit);
       data = whichPageData.slice(
         whichPageDataRange.start,
         whichPageDataRange.end
@@ -176,7 +176,7 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         data,
-        currentPage: action.value,
+        currentPage: action.payload,
         faceIsLoading: true,
       };
     }
