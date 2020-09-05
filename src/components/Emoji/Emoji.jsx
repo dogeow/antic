@@ -31,26 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Emoji = ({
-  lab,
-  faceIsLoading,
-  data,
-  pageLimit,
-  currentPage,
-  filterNum,
-  selectTag,
-  toggleTag,
-  toggleCategory,
-  selectCategory,
-  displayTag,
-  whichPage,
-  expandCategory,
-  selectedCategory,
-  selectedTag,
-  search,
-  loading,
-  expandTag,
-}) => {
+const Emoji = (props) => {
   const history = useHistory();
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
@@ -58,10 +39,10 @@ const Emoji = ({
 
   useEffect(() => {
     const imgLoad = imagesLoaded("#emoji");
-    imgLoad.on("always", () => loading(false));
+    imgLoad.on("always", () => props.loading(false));
 
     return () => imgLoad.off("always");
-  }, [faceIsLoading]);
+  }, [props.emoji.faceIsLoading]);
 
   face.map((item) => {
     item.src = `${process.env.REACT_APP_CDN_URL}emoji/${item.fileName}`;
@@ -84,7 +65,7 @@ const Emoji = ({
         if (!value) {
           return "没有输入！";
         }
-        search(value);
+        props.search(value);
         Swal.close();
         return null;
       },
@@ -110,21 +91,21 @@ const Emoji = ({
       </Button>
       <hr className={classes.hr} />
       <Filter
-        lab={lab}
-        selectedCategory={selectedCategory}
-        selectedTag={selectedTag}
-        toggleTag={toggleTag}
-        expandTag={expandTag}
-        expandCategory={expandCategory}
-        toggleCategory={toggleCategory}
-        displayTag={displayTag}
-        selectCategory={selectCategory}
-        selectTag={selectTag}
+        lab={props.lab}
+        selectedCategory={props.emoji.selectedCategory}
+        selectedTag={props.emoji.selectedTag}
+        toggleTag={props.toggleTag}
+        expandTag={props.emoji.expandTag}
+        expandCategory={props.emoji.expandCategory}
+        toggleCategory={props.toggleCategory}
+        displayTag={props.emoji.displayTag}
+        selectCategory={props.selectCategory}
+        selectTag={props.selectTag}
       />
       <FilterStatistics
-        filterNum={filterNum}
-        currentPage={currentPage}
-        pageLimit={pageLimit}
+        filterNum={props.emoji.filterNum}
+        currentPage={props.emoji.currentPage}
+        pageLimit={props.emoji.pageLimit}
       />
       <Grid
         id="emoji"
@@ -134,8 +115,8 @@ const Emoji = ({
         spacing={2}
         style={{ marginBottom: 80 }}
       >
-        {data.length > 0 ? (
-          data.map((item, index) => (
+        {props.emoji.data.length > 0 ? (
+          props.emoji.data.map((item, index) => (
             <Grid key={index} item xs={4} style={{ textAlign: "center" }}>
               <img
                 id={index}
@@ -144,7 +125,10 @@ const Emoji = ({
                 width="100"
                 onClick={() => {
                   setVisible(true);
-                  setIndex((currentPage - 1) * pageLimit + index);
+                  setIndex(
+                    (props.emoji.currentPage - 1) * props.emoji.pageLimit +
+                      index
+                  );
                 }}
               />
               <Typography variant="body2" component="h3">
@@ -165,12 +149,12 @@ const Emoji = ({
         activeIndex={index}
       />
       <BootNav
-        filterNum={filterNum}
-        currentPage={currentPage}
-        whichPage={whichPage}
-        pageLimit={pageLimit}
+        filterNum={props.emoji.filterNum}
+        currentPage={props.emoji.currentPage}
+        whichPage={props.whichPage}
+        pageLimit={props.emoji.pageLimit}
       />
-      <Spinner loaded={!faceIsLoading} config={customSpinConfig} />
+      <Spinner loaded={!props.emoji.faceIsLoading} config={customSpinConfig} />
     </Grid>
   );
 };

@@ -4,7 +4,7 @@ import { loading, search } from "../../actions";
 import Emoji from "./Emoji";
 
 const mapStateToProps = (state) => ({
-  ...state.emoji,
+  emoji: state.emoji,
   lab: state.lab,
 });
 
