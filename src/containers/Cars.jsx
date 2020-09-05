@@ -44,8 +44,8 @@ export default function Cars() {
             container
             item
             justify="center"
-            key={car.name}
             style={{ background: car.color }}
+            key={car.name}
           >
             <Grid item>
               <Typography variant="h2" gutterBottom>
@@ -53,19 +53,17 @@ export default function Cars() {
               </Typography>
             </Grid>
             <Grid container item spacing={2}>
-              {Array.from(new Array(car.imagesCount).keys()).map((value) => {
-                return (
-                  <Grid item key={value} xs={12} md={4}>
-                    <img
-                      src={`https://cdn.gugelong.com/cars/${car.name}/${
-                        value + 1
-                      }.${car.extension}!/compress/true/fw/800`}
-                      alt={`${car.name}_${value + 1}`}
-                      width="100%"
-                    />
-                  </Grid>
-                );
-              })}
+              {Array.from(new Array(car.imagesCount).keys()).map((value) => (
+                <Grid item key={value} xs={12} md={4}>
+                  <img
+                    src={`https://cdn.gugelong.com/cars/${car.name}/${
+                      value + 1
+                    }.${car.extension}!/compress/true/fw/800`}
+                    width="100%"
+                    alt={`${car.name}_${value + 1}`}
+                  />
+                </Grid>
+              ))}
             </Grid>
           </Grid>
         ))}
