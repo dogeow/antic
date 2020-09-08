@@ -28,6 +28,7 @@ const TodoList = () => {
             field: "title",
             editComponent: (editProps) => (
               <Input
+                value={editProps.rowData.title}
                 autoFocus
                 onChange={(e) => editProps.onChange(e.target.value)}
               />
