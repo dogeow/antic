@@ -32,8 +32,8 @@ const TodoList = () => {
             type: "numeric",
           },
         ]}
-        onRowClick={(evt, selectedRow) =>
-          setSelectedRow(selectedRow.tableData.id)
+        onRowClick={(evt, currentRow) =>
+          setSelectedRow(currentRow.tableData.id)
         }
         options={{
           actionsColumnIndex: -1,
