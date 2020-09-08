@@ -1,3 +1,4 @@
+import Input from "@material-ui/core/Input";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
@@ -25,6 +26,12 @@ const TodoList = () => {
           {
             title: "标题",
             field: "title",
+            editComponent: (editProps) => (
+              <Input
+                autoFocus
+                onChange={(e) => editProps.onChange(e.target.value)}
+              />
+            ),
           },
           {
             title: "优先级",
