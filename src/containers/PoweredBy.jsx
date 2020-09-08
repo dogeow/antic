@@ -26,8 +26,8 @@ export default function Table() {
                 rowData.name
               ),
           },
-          { title: "分类", field: "category" },
           { title: "备注", field: "note" },
+          { title: "分类", field: "category" },
         ]}
         options={{
           filtering: true,
