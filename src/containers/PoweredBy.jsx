@@ -13,19 +13,20 @@ export default function Table() {
           {
             title: "name",
             field: "name",
-            render: (rowData) => (
-              <a
-                href={rowData.link}
-                target="_blank"
-                color="primary"
-                rel="noopener noreferrer"
-              >
-                {rowData.name}
-              </a>
-            ),
+            render: (rowData) =>
+              rowData.link ? (
+                <a
+                  href={rowData.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {rowData.name}
+                </a>
+              ) : (
+                rowData.name
+              ),
           },
           { title: "分类", field: "category" },
-          { title: "链接", field: "link" },
           { title: "备注", field: "note" },
         ]}
         options={{
