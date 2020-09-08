@@ -11,7 +11,7 @@ export default function Table() {
       <MaterialTable
         columns={[
           {
-            title: "name",
+            title: "名称",
             field: "name",
             render: (rowData) =>
               rowData.link ? (
