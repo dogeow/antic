@@ -236,6 +236,10 @@ const Spa = ({ match }) => {
             path="/copywriting"
             component={loadable(() => import("../containers/Copywriting"))}
           />
+          <Route
+            path="/moon"
+            component={loadable(() => import("../containers/Moon"))}
+          />
           <Route component={loadable(() => import("../containers/NoMatch"))} />
         </Switch>
       </Container>
