@@ -1,3 +1,6 @@
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 import React from "react";
 import { useHistory } from "react-router-dom";
@@ -149,30 +152,62 @@ const Moon = () => {
           </div>
         </div>
       ) : (
-        <>
-          <div>来摇吗？</div>
-          <input
-            placeholder="输入您的微信号，以便发奖"
-            value={moon}
-            onChange={handleChange}
-          />
-          <input type="submit" onClick={handlePost} />
-        </>
+        <Grid container spacing={2} style={{ textAlign: "center" }}>
+          <Grid item xs={12}>
+            <h1>来吗？</h1>
+          </Grid>
+          <Grid item xs={12}>
+            <img src="/images/moon/Roll_the_dice.jpg" width="75" />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              id="standard-basic"
+              label="联系方式"
+              variant="outlined"
+              onChange={handleChange}
+              placeholder="姓名、微信号、手机"
+              helperText="以便发奖"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Button variant="contained" color="primary" onClick={handlePost}>
+              确定
+            </Button>
+          </Grid>
+        </Grid>
       )}
+      {localStorage.moon && (
+        <div>
+          <h2>我的</h2>
+          <ul>
+            {moonHistory.map((item) => (
+              <li key={item.id}>
+                <img src={`/images/moon/${item.num1}.gif`} width="25" />
+                <img src={`/images/moon/${item.num2}.gif`} width="25" />
+                <img src={`/images/moon/${item.num3}.gif`} width="25" />
+                <img src={`/images/moon/${item.num4}.gif`} width="25" />
+                <img src={`/images/moon/${item.num5}.gif`} width="25" />
+                <img src={`/images/moon/${item.num6}.gif`} width="25" />
+                <span>{item.name}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <hr
+        style={{
+          border: "none",
+          borderBottom: "1px dashed #DaDaDa",
+          height: "1px",
+          margin: "20px 20px",
+        }}
+      />
       <div>
-        <h3>我的</h3>
+        <h2>统计信息</h2>
         <ul>
-          {moonHistory.map((item) => (
-            <li key={item.id}>
-              <img src={`/images/moon/${item.num1}.gif`} width="25" />
-              <img src={`/images/moon/${item.num2}.gif`} width="25" />
-              <img src={`/images/moon/${item.num3}.gif`} width="25" />
-              <img src={`/images/moon/${item.num4}.gif`} width="25" />
-              <img src={`/images/moon/${item.num5}.gif`} width="25" />
-              <img src={`/images/moon/${item.num6}.gif`} width="25" />
-              <span>{item.name}</span>
-            </li>
-          ))}
+          <li>人数：</li>
+          <li>人次：</li>
+          <li>总金额：</li>
         </ul>
       </div>
     </>
