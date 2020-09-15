@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 const Moon = () => {
   const history = useHistory();
 
-  const [moon, setMoon] = React.useState("");
+  const [user, setUser] = React.useState("");
   const [num1, setNum1] = React.useState();
   const [num2, setNum2] = React.useState();
   const [num3, setNum3] = React.useState();
@@ -17,33 +17,31 @@ const Moon = () => {
   const [num6, setNum6] = React.useState();
 
   const [status, setStatus] = React.useState("");
+  const [money, setMoney] = React.useState();
   const [loading, setLoading] = React.useState(false);
   const [moonHistory, setMoonHistory] = React.useState([]);
+  const [statistics, setStatistics] = React.useState({});
 
   React.useEffect(() => {
-    if (localStorage.moon) {
-      axios
-        .post("history", {
-          moon: localStorage.moon,
-        })
-        .then((resp) => {
-          setMoonHistory(resp.data);
-        });
-    }
+    const userName = localStorage.getItem("user");
+    axios.get(`moon${user && `?user=${userName}`}`).then((resp) => {
+      setMoonHistory(resp.data.history);
+      setStatistics(resp.data.statistics);
+    });
   }, []);
 
   const handleChange = (e) => {
-    setMoon(e.target.value);
+    setUser(e.target.value);
   };
 
   const handlePost = () => {
     axios
       .post("moon", {
-        moon,
+        user,
       })
       .then((resp) => {
         if (resp.status === 201) {
-          localStorage.moon = resp.data.name;
+          localStorage.user = resp.data.name;
           history.push("/moon");
         }
       });
@@ -60,7 +58,7 @@ const Moon = () => {
     setLoading(true);
     axios
       .post("start", {
-        moon: localStorage.moon,
+        user: localStorage.user,
       })
       .then((resp) => {
         if (typeof resp.data === "string") {
@@ -92,7 +90,9 @@ const Moon = () => {
           }, 2500);
           setTimeout(() => {
             setStatus(resp.data.rankName);
+            setMoney(resp.data.money);
             setMoonHistory(resp.data.history);
+            setStatistics(resp.data.statistics);
           }, 4000);
         }
       });
@@ -100,7 +100,7 @@ const Moon = () => {
 
   return (
     <>
-      {localStorage.moon ? (
+      {localStorage.user ? (
         <div>
           <div>
             <img
@@ -146,9 +146,14 @@ const Moon = () => {
               alt={num6}
             />
           </div>
-          <div>{status}</div>
           <div>
-            <button onClick={handleStart}>摇</button>
+            {status}
+            {money && `(${money})`}
+          </div>
+          <div>
+            <Button variant="contained" color="primary" onClick={handleStart}>
+              摇
+            </Button>
           </div>
         </div>
       ) : (
@@ -176,7 +181,7 @@ const Moon = () => {
           </Grid>
         </Grid>
       )}
-      {localStorage.moon && (
+      {localStorage.user && (
         <div>
           <h2>我的</h2>
           <ul>
@@ -189,6 +194,7 @@ const Moon = () => {
                 <img src={`/images/moon/${item.num5}.gif`} width="25" />
                 <img src={`/images/moon/${item.num6}.gif`} width="25" />
                 <span>{item.name}</span>
+                <span>{item.money}</span>
               </li>
             ))}
           </ul>
@@ -205,9 +211,9 @@ const Moon = () => {
       <div>
         <h2>统计信息</h2>
         <ul>
-          <li>人数：</li>
-          <li>人次：</li>
-          <li>总金额：</li>
+          <li>人数：{statistics.user}</li>
+          <li>人次：{statistics.count}</li>
+          <li>总金额：{statistics.money}</li>
         </ul>
       </div>
     </>
