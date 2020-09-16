@@ -54,6 +54,10 @@ const SelfTalk = () => {
 
   return (
     <div>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap"
+        rel="stylesheet"
+      />
       <div className={classes.quote}>
         {quotes.map((quote, i) => (
           <p key={i}>{quote.content}</p>
