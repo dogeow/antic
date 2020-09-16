@@ -184,44 +184,44 @@ const Moon = () => {
       {localStorage.user && (
         <div>
           <h2>我的</h2>
-          <ul>
+          <ol>
             {moonHistory.map((item) => (
               <li key={item.id}>
                 <img
-                  src={`/images/moon/${item.num1}.gif`}
+                  src={`/images/moon/history/${item.num1}.png`}
                   width="25"
                   alt={item.num1}
                 />
                 <img
-                  src={`/images/moon/${item.num2}.gif`}
+                  src={`/images/moon/history/${item.num2}.png`}
                   width="25"
                   alt={item.num2}
                 />
                 <img
-                  src={`/images/moon/${item.num3}.gif`}
+                  src={`/images/moon/history/${item.num3}.png`}
                   width="25"
                   alt={item.num3}
                 />
                 <img
-                  src={`/images/moon/${item.num4}.gif`}
+                  src={`/images/moon/history/${item.num4}.png`}
                   width="25"
                   alt={item.num4}
                 />
                 <img
-                  src={`/images/moon/${item.num5}.gif`}
+                  src={`/images/moon/history/${item.num5}.png`}
                   width="25"
                   alt={item.num5}
                 />
                 <img
-                  src={`/images/moon/${item.num6}.gif`}
+                  src={`/images/moon/history/${item.num6}.png`}
                   width="25"
                   alt={item.num6}
                 />
                 <span>{item.name}</span>
-                <span>{item.money}</span>
+                <span>{`(${item.money})`}</span>
               </li>
             ))}
-          </ul>
+          </ol>
         </div>
       )}
       <hr
