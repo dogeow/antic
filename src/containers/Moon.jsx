@@ -8,7 +8,6 @@ import { useHistory } from "react-router-dom";
 const Moon = () => {
   const history = useHistory();
 
-  const [user, setUser] = React.useState("");
   const [num1, setNum1] = React.useState();
   const [num2, setNum2] = React.useState();
   const [num3, setNum3] = React.useState();
@@ -23,21 +22,21 @@ const Moon = () => {
   const [statistics, setStatistics] = React.useState({});
 
   React.useEffect(() => {
-    const userName = localStorage.getItem("user");
-    axios.get(`moon${user && `?user=${userName}`}`).then((resp) => {
+    const user = localStorage.getItem("user");
+    axios.get(`moon${user && `?user=${user}`}`).then((resp) => {
       setMoonHistory(resp.data.history);
       setStatistics(resp.data.statistics);
     });
   }, []);
 
   const handleChange = (e) => {
-    setUser(e.target.value);
+    localStorage.user = e.target.value;
   };
 
   const handlePost = () => {
     axios
       .post("moon", {
-        user,
+        user: localStorage.user,
       })
       .then((resp) => {
         if (resp.status === 201) {
@@ -49,6 +48,7 @@ const Moon = () => {
 
   const handleStart = () => {
     setStatus("");
+    setMoney(undefined);
     setNum1(undefined);
     setNum2(undefined);
     setNum3(undefined);
@@ -187,12 +187,36 @@ const Moon = () => {
           <ul>
             {moonHistory.map((item) => (
               <li key={item.id}>
-                <img src={`/images/moon/${item.num1}.gif`} width="25" />
-                <img src={`/images/moon/${item.num2}.gif`} width="25" />
-                <img src={`/images/moon/${item.num3}.gif`} width="25" />
-                <img src={`/images/moon/${item.num4}.gif`} width="25" />
-                <img src={`/images/moon/${item.num5}.gif`} width="25" />
-                <img src={`/images/moon/${item.num6}.gif`} width="25" />
+                <img
+                  src={`/images/moon/${item.num1}.gif`}
+                  width="25"
+                  alt={item.num1}
+                />
+                <img
+                  src={`/images/moon/${item.num2}.gif`}
+                  width="25"
+                  alt={item.num2}
+                />
+                <img
+                  src={`/images/moon/${item.num3}.gif`}
+                  width="25"
+                  alt={item.num3}
+                />
+                <img
+                  src={`/images/moon/${item.num4}.gif`}
+                  width="25"
+                  alt={item.num4}
+                />
+                <img
+                  src={`/images/moon/${item.num5}.gif`}
+                  width="25"
+                  alt={item.num5}
+                />
+                <img
+                  src={`/images/moon/${item.num6}.gif`}
+                  width="25"
+                  alt={item.num6}
+                />
                 <span>{item.name}</span>
                 <span>{item.money}</span>
               </li>
