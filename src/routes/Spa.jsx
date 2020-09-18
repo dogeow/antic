@@ -1,7 +1,6 @@
 import loadable from "@loadable/component";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
-import LocalAirportIcon from "@material-ui/icons/LocalAirport";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import ScrollUpButton from "react-scroll-up-button";
@@ -244,7 +243,7 @@ const Spa = ({ match }) => {
         ContainerClassName="AnyClassForContainer"
         TransitionClassName="AnyClassForTransition"
       >
-        <LocalAirportIcon alt="Back to top arrow" />
+        <img src="/images/bfr.png" alt="Back to top arrow" />
       </ScrollUpButton>
     </>
   );

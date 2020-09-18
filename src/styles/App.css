@@ -188,14 +188,14 @@ h4:hover .header-anchor {
 
 .AnyClassForContainer {
   position: fixed;
-  right: -100px;
-  bottom: 150px;
-  transition: right 0.5s;
+  right: 12px;
+  bottom: -200px;
+  transition: bottom 1.5s;
   cursor: pointer;
   font-size: 20px;
   padding: 10px;
 }
 
 .AnyClassForTransition {
-  right: 20px;
+  bottom: 0;
 }
