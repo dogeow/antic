@@ -75,7 +75,7 @@ const Footer = () => {
         </Grid>
         <Grid item xs={12} sm>
           <Typography variant="h5" component="h3">
-            长期计划（理想化）
+            长期计划
           </Typography>
           <ul>
             <li>WebSocket 实时应用</li>
