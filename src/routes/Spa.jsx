@@ -243,7 +243,7 @@ const Spa = ({ match }) => {
         ContainerClassName="AnyClassForContainer"
         TransitionClassName="AnyClassForTransition"
       >
-        <img src="/images/bfr.png" alt="Back to top arrow" />
+        <img src="/images/bfr.png" width="24" alt="Back to top arrow" />
       </ScrollUpButton>
     </>
   );
