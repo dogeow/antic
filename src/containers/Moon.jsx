@@ -22,8 +22,9 @@ const Moon = () => {
   const [statistics, setStatistics] = React.useState({});
 
   React.useEffect(() => {
-    const user = localStorage.getItem("user") || "";
-    axios.get(`moon${user && `?user=${user}`}`).then((resp) => {
+    const user = localStorage.getItem("user");
+    const query = user ? `?user=${user}` : "";
+    axios.get(`moon${query}`).then((resp) => {
       setMoonHistory(resp.data.history);
       setStatistics(resp.data.statistics);
     });
