@@ -42,10 +42,6 @@ const Spa = ({ match }) => {
         <Switch>
           <Route exact path="/" component={Index} />
           <Route
-            path="/game"
-            component={loadable(() => import("../containers/Game"))}
-          />
-          <Route
             path="/algolia"
             component={loadable(() => import("../containers/Algolia"))}
           />

@@ -19,8 +19,9 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const fontSizeDefault = 2;
+
 const SelfTalk = () => {
-  const fontSizeDefault = 2;
   const [fontSize, setFontSize] = useState(fontSizeDefault);
   const classes = useStyles({ fontSize: `${fontSize}em` });
   const [quotes, setQuotes] = useState([]);
@@ -59,8 +60,8 @@ const SelfTalk = () => {
         rel="stylesheet"
       />
       <div className={classes.quote}>
-        {quotes.map((quote, i) => (
-          <p key={i}>{quote.content}</p>
+        {quotes.map((quote) => (
+          <p key={quote.id}>{quote.content}</p>
         ))}
       </div>
       <SpeedDial
