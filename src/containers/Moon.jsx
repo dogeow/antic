@@ -8,12 +8,7 @@ import { useHistory } from "react-router-dom";
 const Moon = () => {
   const history = useHistory();
 
-  const [num1, setNum1] = React.useState();
-  const [num2, setNum2] = React.useState();
-  const [num3, setNum3] = React.useState();
-  const [num4, setNum4] = React.useState();
-  const [num5, setNum5] = React.useState();
-  const [num6, setNum6] = React.useState();
+  const [num, setNum] = React.useState([]);
 
   const [status, setStatus] = React.useState("");
   const [money, setMoney] = React.useState();
@@ -50,12 +45,7 @@ const Moon = () => {
   const handleStart = () => {
     setStatus("");
     setMoney(undefined);
-    setNum1(undefined);
-    setNum2(undefined);
-    setNum3(undefined);
-    setNum4(undefined);
-    setNum5(undefined);
-    setNum6(undefined);
+    setNum([]);
     setLoading(true);
     axios
       .post("start", {
@@ -63,30 +53,35 @@ const Moon = () => {
       })
       .then((resp) => {
         if (typeof resp.data === "string") {
-          setNum1(undefined);
-          setNum2(undefined);
-          setNum3(undefined);
-          setNum4(undefined);
-          setNum5(undefined);
-          setNum6(undefined);
+          setNum([]);
           setLoading(false);
           alert(resp.data);
         } else {
-          setNum1(resp.data.dice[0]);
+          setNum([resp.data.dice[0]]);
           setTimeout(() => {
-            setNum2(resp.data.dice[1]);
+            setNum((state) => {
+              return [...state, resp.data.dice[1]];
+            });
           }, 500);
           setTimeout(() => {
-            setNum3(resp.data.dice[2]);
+            setNum((state) => {
+              return [...state, resp.data.dice[2]];
+            });
           }, 1000);
           setTimeout(() => {
-            setNum4(resp.data.dice[3]);
+            setNum((state) => {
+              return [...state, resp.data.dice[3]];
+            });
           }, 1500);
           setTimeout(() => {
-            setNum5(resp.data.dice[4]);
+            setNum((state) => {
+              return [...state, resp.data.dice[4]];
+            });
           }, 2000);
           setTimeout(() => {
-            setNum6(resp.data.dice[5]);
+            setNum((state) => {
+              return [...state, resp.data.dice[5]];
+            });
             setLoading(false);
           }, 2500);
           setTimeout(() => {
@@ -106,45 +101,45 @@ const Moon = () => {
           <div>
             <img
               src={`/images/moon/${
-                num1 ? `${num1}.gif` : loading ? "none.gif" : "1.png"
+                num[0] ? `${num[0]}.gif` : loading ? "none.gif" : "1.png"
               }`}
               width="50"
-              alt={num1}
+              alt={num[0]}
             />
             <img
               src={`/images/moon/${
-                num2 ? `${num2}.gif` : loading ? "none.gif" : "1.png"
+                num[1] ? `${num[1]}.gif` : loading ? "none.gif" : "1.png"
               }`}
               width="50"
-              alt={num2}
+              alt={num[1]}
             />
             <img
               src={`/images/moon/${
-                num3 ? `${num3}.gif` : loading ? "none.gif" : "1.png"
+                num[2] ? `${num[2]}.gif` : loading ? "none.gif" : "1.png"
               }`}
               width="50"
-              alt={num3}
+              alt={num[2]}
             />
             <img
               src={`/images/moon/${
-                num4 ? `${num4}.gif` : loading ? "none.gif" : "1.png"
+                num[3] ? `${num[3]}.gif` : loading ? "none.gif" : "1.png"
               }`}
               width="50"
-              alt={num4}
+              alt={num[3]}
             />
             <img
               src={`/images/moon/${
-                num5 ? `${num5}.gif` : loading ? "none.gif" : "1.png"
+                num[4] ? `${num[4]}.gif` : loading ? "none.gif" : "1.png"
               }`}
               width="50"
-              alt={num5}
+              alt={num[4]}
             />
             <img
               src={`/images/moon/${
-                num6 ? `${num6}.gif` : loading ? "none.gif" : "1.png"
+                num[5] ? `${num[5]}.gif` : loading ? "none.gif" : "1.png"
               }`}
               width="50"
-              alt={num6}
+              alt={num[5]}
             />
           </div>
           <div>
