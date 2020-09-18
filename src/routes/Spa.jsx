@@ -242,6 +242,7 @@ const Spa = ({ match }) => {
       <ScrollUpButton
         ContainerClassName="AnyClassForContainer"
         TransitionClassName="AnyClassForTransition"
+        style={{ outline: "none", boxShadow: "none" }}
       >
         <img src="/images/bfr.png" width="24" alt="Back to top arrow" />
       </ScrollUpButton>
