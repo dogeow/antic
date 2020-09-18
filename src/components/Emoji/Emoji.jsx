@@ -42,7 +42,7 @@ const Emoji = (props) => {
     imgLoad.on("always", () => props.loading(false));
 
     return () => imgLoad.off("always");
-  }, [props.emoji.faceIsLoading]);
+  }, [props]);
 
   face.map((item) => {
     item.src = `${process.env.REACT_APP_CDN_URL}emoji/${item.fileName}`;

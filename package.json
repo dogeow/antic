@@ -35,7 +35,7 @@
     "is-hotkey": "^0.1.6",
     "laravel-echo": "^1.8.0",
     "lodash": "^4.17.19",
-    "material-table": "1.67.1",
+    "material-table": "^1.69.0",
     "md5": "^2.2.1",
     "moment": "^2.27.0",
     "node-sass": "^4.14.1",
