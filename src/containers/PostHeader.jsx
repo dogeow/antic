@@ -15,7 +15,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
     <>
       <Grid item>
         <Tooltip
-          title={post.created_at}
+          title={moment(post.created_at).format("YYYY-MM-DD HH:mm:ss")}
           placement="top"
           enterDelay={200}
           disableFocusListener
@@ -31,7 +31,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
       </Grid>
       <Grid item>
         <Tooltip
-          title={post.updated_at}
+          title={moment(post.updated_at).format("YYYY-MM-DD HH:mm:ss")}
           placement="top"
           enterDelay={200}
           disableFocusListener
