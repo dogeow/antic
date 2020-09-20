@@ -39,7 +39,7 @@ const SingleProject = () => {
   const [errors, setErrors] = useState([]);
 
   const [editId, setEditId] = useState();
-  const [alert, setAlert] = useState(false);
+  const [alertDialogOpen, setAlertDialogOpen] = useState(false);
 
   useEffect(() => {
     axios.get(`projects/${projectId}`).then(({ data }) => {
@@ -115,13 +115,13 @@ const SingleProject = () => {
   };
 
   const handleDelete = () => {
-    setAlert(!alert);
+    setAlertDialogOpen(!alertDialogOpen);
   };
 
   return (
     <>
       <AlertDialog
-        open={alert}
+        open={alertDialogOpen}
         handleClose={handleDelete}
         title={`删除「${project.name} 」项目！`}
         content="删除后，任务也将一同被删除！"

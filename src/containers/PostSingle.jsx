@@ -5,11 +5,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
+import AlertDialog from "../components/AlertDialog";
 import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
 
 const PostSingle = () => {
   const [post, setPost] = useState({});
+  const [alertDialogOpen, setAlertDialogOpen] = useState(false);
 
   const history = useHistory();
   const match = useRouteMatch();
@@ -26,29 +28,44 @@ const PostSingle = () => {
   };
 
   const handleDelete = () => {
+    setAlertDialogOpen(!alertDialogOpen);
     axios.delete(`posts/${id}`);
+    history.push("/posts");
+  };
+
+  const handleAlertDialogToggle = () => {
+    setAlertDialogOpen(!alertDialogOpen);
   };
 
   return (
-    <Grid container spacing={2} alignItems="center">
-      <Grid item xs={12}>
-        {post ? (
-          <Typography variant="h4" component="h2">
-            {post.title}
-          </Typography>
-        ) : (
-          <Skeleton variant="rect" height={41} width="40%" />
-        )}
-      </Grid>
-      <PostHeader
-        post={post}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
+    <>
+      <AlertDialog
+        open={alertDialogOpen}
+        handleClose={handleAlertDialogToggle}
+        title="删除确认"
+        content="确认删除这篇文章吗？"
+        agree={handleDelete}
       />
-      <Grid item xs={12}>
-        <PostBody post={post} />
+      <Grid container spacing={2} alignItems="center">
+        <Grid item xs={12}>
+          {post ? (
+            <Typography variant="h4" component="h2">
+              {post.title}
+            </Typography>
+          ) : (
+            <Skeleton variant="rect" height={41} width="40%" />
+          )}
+        </Grid>
+        <PostHeader
+          post={post}
+          handleEdit={handleEdit}
+          handleDelete={handleAlertDialogToggle}
+        />
+        <Grid item xs={12}>
+          <PostBody post={post} />
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
 

@@ -32,22 +32,28 @@ const Tags = (props) => {
             <Chip
               size="small"
               label={tag}
-              onDelete={state.lab.user_id ? () => props.delete(tag) : undefined}
+              onDelete={
+                state.lab.user_id && props.newTagOpen
+                  ? () => props.delete(tag)
+                  : undefined
+              }
               className={classes.chip}
             />
           </li>
         );
       })}
       {props.newTagOpen && (
-        <li>
-          <TextField label="新标签" variant="outlined" size="small" />
-        </li>
+        <>
+          <li>
+            <TextField label="新标签" variant="outlined" size="small" />
+          </li>
+          <li>
+            <IconButton aria-label="new" onClick={props.new}>
+              <AddIcon type="button" />
+            </IconButton>
+          </li>
+        </>
       )}
-      <li>
-        <IconButton aria-label="new" onClick={props.new}>
-          <AddIcon type="button" />
-        </IconButton>
-      </li>
     </ul>
   ) : (
     <div />
