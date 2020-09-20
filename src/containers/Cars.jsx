@@ -55,7 +55,7 @@ export default function Cars() {
                     }.${car.extension}!/compress/true/fw/800`}
                     width="100%"
                     alt={`${car.name}_${value + 1}`}
-                    style={{ paddingBottom: 8 }}
+                    style={{ paddingBottom: 16 }}
                   />
                 </Grid>
               ))}
