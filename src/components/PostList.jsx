@@ -44,7 +44,7 @@ const PostList = () => {
       setCurrPage(data.current_page);
       setPageCount(data.last_page);
     });
-  }, [query]);
+  }, []);
 
   const handlePage = (page) => {
     axios.get(`posts?page[number]=${page}`).then(({ data }) => {
