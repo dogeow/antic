@@ -16,12 +16,6 @@ const cars = [
     extension: "jpeg",
   },
   {
-    name: "AMG",
-    imagesCount: 6,
-    color: "#c0c5d2",
-    extension: "jpeg",
-  },
-  {
     name: "Camry",
     imagesCount: 6,
     color: "#2c4fb1",
