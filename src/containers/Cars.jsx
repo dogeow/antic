@@ -46,7 +46,7 @@ export default function Cars() {
                 {car.name}
               </Typography>
             </Grid>
-            <Grid container item spacing={2}>
+            <Grid container item>
               {Array.from(new Array(car.imagesCount).keys()).map((value) => (
                 <Grid item key={value} xs={12} md={4}>
                   <img
@@ -55,6 +55,7 @@ export default function Cars() {
                     }.${car.extension}!/compress/true/fw/800`}
                     width="100%"
                     alt={`${car.name}_${value + 1}`}
+                    style={{ paddingBottom: 8 }}
                   />
                 </Grid>
               ))}
