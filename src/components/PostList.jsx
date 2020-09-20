@@ -73,12 +73,12 @@ const PostList = () => {
                   <Chip
                     size="small"
                     label={(item.category && item.category.name) || "未分类"}
-                    style={{ minWidth: "59px" }}
+                    style={{ minWidth: "81px" }}
                   />
                 </Grid>
                 {/* 标题 */}
                 <Grid item>
-                  <Typography variant="h6" component="h2">
+                  <Typography variant="subtitle1" component="h2">
                     <Link to={`/posts/${item.id}`}>{item.title}</Link>
                   </Typography>
                 </Grid>
@@ -101,10 +101,10 @@ const PostList = () => {
             ) : (
               <Grid item container xs={12} key={index} spacing={2}>
                 <Grid item>
-                  <Skeleton width={40} height={32} animation="wave" />
+                  <Skeleton width={81} height={28} animation="wave" />
                 </Grid>
                 <Grid item xs>
-                  <Skeleton width="100%" height={32} animation="wave" />
+                  <Skeleton width="100%" height={28} animation="wave" />
                 </Grid>
               </Grid>
             );
