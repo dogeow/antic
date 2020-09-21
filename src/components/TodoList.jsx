@@ -1,11 +1,16 @@
+import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
+import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import MaterialTable from "material-table";
 import React, { useState } from "react";
 
 import localization from "../config/localization";
+import { getPriorityAttribute } from "../helpers/index";
 
 const useStyles = makeStyles(() => ({
   tableRoot: {
@@ -37,7 +42,20 @@ const TodoList = () => {
           {
             title: "优先级",
             field: "priority",
-            type: "numeric",
+            type: "string",
+            editComponent: (editProps) => (
+              <FormControl style={{ width: 100 }}>
+                <InputLabel>优先级</InputLabel>
+                <Select
+                  value={getPriorityAttribute(editProps.value)}
+                  onChange={(e) => editProps.onChange(e.target.value)}
+                >
+                  <MenuItem value="3">高</MenuItem>
+                  <MenuItem value="2">中</MenuItem>
+                  <MenuItem value="1">低</MenuItem>
+                </Select>
+              </FormControl>
+            ),
           },
         ]}
         onRowClick={(evt, currentRow) =>

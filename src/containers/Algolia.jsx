@@ -1,6 +1,8 @@
 import algoliaSearch from "algoliasearch/lite";
 import React from "react";
-import { Hits, InstantSearch, SearchBox } from "react-instantsearch-dom";
+import { InstantSearch } from "react-instantsearch-dom";
+
+import AlgoliaSearch from "../components/AlgoliaSearch";
 
 const searchClient = algoliaSearch(
   process.env.REACT_APP_ALGOLIA_APP_ID,
@@ -9,8 +11,7 @@ const searchClient = algoliaSearch(
 
 const Algolia = () => (
   <InstantSearch searchClient={searchClient} indexName="posts">
-    <SearchBox />
-    <Hits />
+    <AlgoliaSearch />
   </InstantSearch>
 );
 
