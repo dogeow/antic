@@ -27,7 +27,11 @@ const Menu = ({ url, name }) => {
       <a href={url} target="_blank" rel="noopener noreferrer">
         <Card className={classes.card}>
           <CardContent>
-            <Typography variant="h6" component="h2" className={classes.intro}>
+            <Typography
+              variant="body1"
+              component="h3"
+              className={classes.intro}
+            >
               {name}
             </Typography>
             <Typography color="textSecondary" className={classes.intro}>

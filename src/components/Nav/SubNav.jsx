@@ -19,7 +19,7 @@ const SubNav = (props) => (
         menu.type === "folder" && (
           <Grid key={index} container spacing={0} style={{ marginBottom: 20 }}>
             <Grid style={{ marginBottom: 20 }}>
-              <Typography variant="h4" component="h2">
+              <Typography variant="subtitle1" component="h2">
                 {menu.name}
               </Typography>
             </Grid>
