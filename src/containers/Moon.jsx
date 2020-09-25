@@ -10,7 +10,7 @@ const Moon = () => {
 
   const [num, setNum] = React.useState([]);
 
-  const [name, setName] = React.useState();
+  const [name, setName] = React.useState(localStorage.getItem("name"));
   const [status, setStatus] = React.useState("");
   const [money, setMoney] = React.useState();
   const [loading, setLoading] = React.useState(false);
@@ -19,7 +19,6 @@ const Moon = () => {
   const [inputErrors, setInputErrors] = useState(false);
 
   React.useEffect(() => {
-    const name = localStorage.getItem("name");
     const query = name ? `?name=${name}` : "";
     axios.get(`moon${query}`).then((resp) => {
       setMoonHistory(resp.data.history);
@@ -143,13 +142,11 @@ const Moon = () => {
             />
           </div>
           <div>
-            {status}
-            {money && `(${money})`}
-          </div>
-          <div>
             <Button variant="contained" color="primary" onClick={handleStart}>
               摇
             </Button>
+            <span style={{ marginLeft: 10 }}>{status}</span>
+            <span style={{ marginLeft: 10 }}>{money && `(${money})`}</span>
           </div>
         </div>
       ) : (
