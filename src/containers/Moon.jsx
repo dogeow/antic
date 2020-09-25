@@ -224,8 +224,8 @@ const Moon = () => {
                   width="25"
                   alt={item.num6}
                 />
-                <span>{item.name}</span>
-                <span>{`(${item.money})`}</span>
+                <span style={{ marginLeft: 10 }}>{`(${item.money})`}</span>
+                <span style={{ marginLeft: 10 }}>{item.name}</span>
               </li>
             ))}
           </ol>
