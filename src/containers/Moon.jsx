@@ -2,7 +2,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 const Moon = () => {
@@ -15,10 +15,11 @@ const Moon = () => {
   const [loading, setLoading] = React.useState(false);
   const [moonHistory, setMoonHistory] = React.useState([]);
   const [statistics, setStatistics] = React.useState({});
+  const [inputErrors, setInputErrors] = useState(false);
 
   React.useEffect(() => {
-    const user = localStorage.getItem("user");
-    const query = user ? `?user=${user}` : "";
+    const name = localStorage.getItem("name");
+    const query = name ? `?name=${name}` : "";
     axios.get(`moon${query}`).then((resp) => {
       setMoonHistory(resp.data.history);
       setStatistics(resp.data.statistics);
@@ -26,18 +27,20 @@ const Moon = () => {
   }, []);
 
   const handleChange = (e) => {
-    localStorage.user = e.target.value;
+    localStorage.name = e.target.value;
   };
 
   const handlePost = () => {
     axios
       .post("moon", {
-        user: localStorage.user,
+        name: localStorage.name,
       })
       .then((resp) => {
         if (resp.status === 201) {
-          localStorage.user = resp.data.name;
+          localStorage.name = resp.data.name;
           history.push("/moon");
+        } else {
+          setInputErrors(resp.data.errors);
         }
       });
   };
@@ -49,7 +52,7 @@ const Moon = () => {
     setLoading(true);
     axios
       .post("start", {
-        user: localStorage.user,
+        name: localStorage.name,
       })
       .then((resp) => {
         if (typeof resp.data === "string") {
@@ -96,7 +99,7 @@ const Moon = () => {
 
   return (
     <>
-      {localStorage.user ? (
+      {localStorage.name ? (
         <div>
           <div>
             <img
@@ -166,8 +169,16 @@ const Moon = () => {
               label="联系方式"
               variant="outlined"
               onChange={handleChange}
-              placeholder="姓名、微信号、手机"
               helperText="以便发奖"
+              error={inputErrors && inputErrors.name}
+              placeholder={
+                inputErrors && inputErrors.name
+                  ? inputErrors.name
+                  : "姓名、微信号、手机"
+              }
+              InputLabelProps={
+                inputErrors && inputErrors.name ? { shrink: true } : {}
+              }
             />
           </Grid>
           <Grid item xs={12}>
@@ -177,7 +188,7 @@ const Moon = () => {
           </Grid>
         </Grid>
       )}
-      {localStorage.user && (
+      {localStorage.name && (
         <div>
           <h2>我的</h2>
           <ol>
