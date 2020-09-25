@@ -10,6 +10,7 @@ const Moon = () => {
 
   const [num, setNum] = React.useState([]);
 
+  const [name, setName] = React.useState();
   const [status, setStatus] = React.useState("");
   const [money, setMoney] = React.useState();
   const [loading, setLoading] = React.useState(false);
@@ -27,22 +28,18 @@ const Moon = () => {
   }, []);
 
   const handleChange = (e) => {
-    localStorage.name = e.target.value;
+    setName(e.target.value);
   };
 
   const handlePost = () => {
-    axios
-      .post("moon", {
-        name: localStorage.name,
-      })
-      .then((resp) => {
-        if (resp.status === 201) {
-          localStorage.name = resp.data.name;
-          history.push("/moon");
-        } else {
-          setInputErrors(resp.data.errors);
-        }
-      });
+    axios.post("moon", { name }).then((resp) => {
+      if (resp.status === 201) {
+        localStorage.name = resp.data.name;
+        history.push("/moon");
+      } else {
+        setInputErrors(resp.data.errors);
+      }
+    });
   };
 
   const handleStart = () => {
@@ -169,7 +166,11 @@ const Moon = () => {
               label="联系方式"
               variant="outlined"
               onChange={handleChange}
-              helperText="以便发奖"
+              helperText={
+                inputErrors && inputErrors.name
+                  ? inputErrors.name[0]
+                  : "以便发奖"
+              }
               error={inputErrors && inputErrors.name}
               placeholder={
                 inputErrors && inputErrors.name
