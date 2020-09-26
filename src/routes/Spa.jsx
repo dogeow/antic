@@ -203,7 +203,9 @@ const Spa = ({ match }) => {
           />
           <Route
             path="/powered-by"
-            component={loadable(() => import("../containers/PoweredBy"))}
+            component={loadable(() => import("../containers/PoweredBy"), {
+              fallback: <Loading />,
+            })}
           />
           <Route
             path="/like"
