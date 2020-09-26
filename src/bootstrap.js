@@ -60,6 +60,8 @@ axios.interceptors.response.use(
     if (error.response) {
       switch (error.response.status) {
         case 400:
+          console.log(error);
+          Swal.fire("提示️", error.response.data.message, "error");
           break;
         case 401: {
           const text = localStorage.getItem("user_id")
