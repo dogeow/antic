@@ -84,6 +84,7 @@ const Footer = () => {
             <li>WebSocket 实时应用</li>
             <li>Canvas / Three.js + WebSocket 像素游戏</li>
             <li>Next.js</li>
+            <li>EasyWechat + Taro</li>
           </ul>
         </Grid>
         <Grid item xs={12} sm>
