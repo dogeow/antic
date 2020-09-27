@@ -230,6 +230,10 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../containers/Music"))}
           />
           <Route
+            path="/timeline"
+            component={loadable(() => import("../containers/TimeLine"))}
+          />
+          <Route
             path="/copywriting"
             component={loadable(() => import("../containers/Copywriting"))}
           />
