@@ -1,5 +1,3 @@
-import "@sweetalert2/theme-material-ui/material-ui.scss";
-
 import axios from "axios";
 import Echo from "laravel-echo";
 import Swal from "sweetalert2";
@@ -146,19 +144,18 @@ window.Echo.channel("push").listen("TestBroadcastingEvent", (e) => {
   console.log(e);
 });
 
-(function (ns) {
+((ns) => {
   /**
-   * mb_strwidth
-   * @param String
+   * mbStrWidth
+   * @param str String
    * @return int
    * @see http://php.net/manual/ja/function.mb-strwidth.php
    */
-  const mb_strwidth = function (str) {
-    let i = 0;
+  const mbStrWidth = (str) => {
     const l = str.length;
     let c = "";
     let length = 0;
-    for (; i < l; i++) {
+    for (let i = 0; i < l; i++) {
       c = str.charCodeAt(i);
       if (c >= 0x0000 && c <= 0x0019) {
         length += 0;
@@ -176,36 +173,34 @@ window.Echo.channel("push").listen("TestBroadcastingEvent", (e) => {
   };
 
   /**
-   * mb_strimwidth
-   * @param String
-   * @param int
-   * @param int
-   * @param String
+   * mbStrImWidth
+   * @param str String
+   * @param start int
+   * @param width int
+   * @param trimMarker String
    * @return String
    * @see http://www.php.net/manual/ja/function.mb-strimwidth.php
    */
-  const mb_strimwidth = function (str, start, width, trimmarker) {
-    if (typeof trimmarker === "undefined") trimmarker = "";
-    const trimmakerWidth = mb_strwidth(trimmarker);
-    let i = start;
+  const mbStrImWidth = (str, start, width, trimMarker = "") => {
+    const trimMakerWidth = mbStrWidth(trimMarker);
     const l = str.length;
     let trimmedLength = 0;
     let trimmedStr = "";
-    for (; i < l; i++) {
+    for (let i = start; i < l; i++) {
       // const charCode = str.charCodeAt(i);
       const c = str.charAt(i);
-      const charWidth = mb_strwidth(c);
+      const charWidth = mbStrWidth(c);
       const next = str.charAt(i + 1);
-      const nextWidth = mb_strwidth(next);
+      const nextWidth = mbStrWidth(next);
       trimmedLength += charWidth;
       trimmedStr += c;
-      if (trimmedLength + trimmakerWidth + nextWidth > width) {
-        trimmedStr += trimmarker;
+      if (trimmedLength + trimMakerWidth + nextWidth > width) {
+        trimmedStr += trimMarker;
         break;
       }
     }
     return trimmedStr;
   };
-  ns.mb_strwidth = mb_strwidth;
-  ns.mb_strimwidth = mb_strimwidth;
+  ns.mbStrWidth = mbStrWidth;
+  ns.mbStrImWidth = mbStrImWidth;
 })(window);
