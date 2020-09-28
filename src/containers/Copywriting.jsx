@@ -24,12 +24,12 @@ export default function Copywriting() {
     <Grid container spacing={2} justify="center">
       <Grid item xs={12} style={{ textAlign: "center" }}>
         <TextareaAutosize
-          aria-label="empty textarea"
-          rowsMin={6}
           ref={textInput}
+          rowsMin={6}
           placeholder="请输入..."
           value={text}
           style={{ width: 272, fontFamily: "auto" }}
+          aria-label="CopyWriting"
           onChange={handleChange}
         />
       </Grid>

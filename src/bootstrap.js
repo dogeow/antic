@@ -4,11 +4,10 @@ import Swal from "sweetalert2";
 
 import ConsoleInfo from "./components/ConsoleInfo";
 
-const accessToken = localStorage.access_token;
-axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-if (accessToken) {
-  axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+if (localStorage.access_token) {
+  axios.defaults.headers.common.Authorization = `Bearer ${localStorage.access_token}`;
 }
 
 axios.interceptors.request.use(
