@@ -57,8 +57,8 @@ export function toFahrenheit(celsius) {
   return (celsius * 9) / 5 + 32;
 }
 
-export function getPriorityAttribute($value) {
-  switch ($value) {
+export function getPriorityAttribute(value) {
+  switch (value) {
     case "低": {
       return 1;
     }
@@ -69,7 +69,7 @@ export function getPriorityAttribute($value) {
       return 3;
     }
     default: {
-      return 2;
+      return value;
     }
   }
 }
