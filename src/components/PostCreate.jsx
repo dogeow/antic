@@ -83,7 +83,6 @@ const PostCreate = () => {
   useEffect(() => {
     if (match.params.id) {
       setId(match.params.id);
-
       axios.get(`posts/${match.params.id}`).then(({ data }) => {
         setPost(data);
       });
@@ -128,14 +127,17 @@ const PostCreate = () => {
           );
           setSuccess(false);
           setLoading(false);
+          localStorage.removeItem("post");
         }
       });
   };
 
   const handleEditorChange = () => {
+    const content = editorRef.current.getInstance().getMarkdown();
+    localStorage.post = content;
     setPost({
       ...post,
-      content: editorRef.current.getInstance().getMarkdown(),
+      content,
     });
   };
 
@@ -221,7 +223,7 @@ const PostCreate = () => {
           <Editor
             ref={editorRef}
             placeholder="输入文档内容"
-            initialValue={post.content || ""}
+            initialValue={post.content || localStorage.post || ""}
             previewStyle="vertical"
             height="70vh"
             initialEditType="markdown"
