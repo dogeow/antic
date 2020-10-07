@@ -70,11 +70,17 @@ const PostList = () => {
               >
                 {/* 分类 */}
                 <Grid item>
-                  <Chip
-                    size="small"
-                    label={(item.category && item.category.name) || "未分类"}
-                    style={{ minWidth: "81px" }}
-                  />
+                  <Link
+                    to={`posts?filter[category.name]=${
+                      item.category?.name || "未分类"
+                    }`}
+                  >
+                    <Chip
+                      size="small"
+                      label={item.category?.name || "未分类"}
+                      style={{ minWidth: "81px" }}
+                    />
+                  </Link>
                 </Grid>
                 {/* 标题 */}
                 <Grid item>
