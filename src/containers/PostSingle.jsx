@@ -11,6 +11,7 @@ import PostHeader from "./PostHeader";
 
 const PostSingle = () => {
   const [post, setPost] = useState({});
+  const [quote, setQuote] = useState("");
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
 
   const history = useHistory();
@@ -20,6 +21,9 @@ const PostSingle = () => {
   useEffect(() => {
     axios.get(`posts/${id}`).then(({ data }) => {
       setPost(data);
+    });
+    axios.get("quote").then(({ data }) => {
+      setQuote(data.content);
     });
   }, [id]);
 
@@ -63,6 +67,19 @@ const PostSingle = () => {
         />
         <Grid item xs={12}>
           <PostBody post={post} />
+        </Grid>
+        {/* {rgba(0,0,0,0.1)} */}
+        <Grid
+          item
+          xs={12}
+          style={{
+            borderColor: "gray",
+            borderLeftStyle: "solid",
+            borderLeftWidth: 2,
+            color: "gray",
+          }}
+        >
+          {quote}
         </Grid>
       </Grid>
     </>
