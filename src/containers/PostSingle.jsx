@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
 import AlertDialog from "../components/AlertDialog";
+import Hr from "../components/Hr";
 import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
 
@@ -68,7 +69,7 @@ const PostSingle = () => {
         <Grid item xs={12}>
           <PostBody post={post} />
         </Grid>
-        {/* {rgba(0,0,0,0.1)} */}
+        <Hr />
         <Grid
           item
           xs={12}
@@ -77,6 +78,7 @@ const PostSingle = () => {
             borderLeftStyle: "solid",
             borderLeftWidth: 2,
             color: "gray",
+            marginBottom: 40,
           }}
         >
           {quote}
