@@ -76,12 +76,14 @@ const PostCreate = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState(false);
+  const [edit, setEdit] = useState(false);
 
   const editorRef = React.createRef();
 
   // 编辑时，获取文章
   useEffect(() => {
     if (match.params.id) {
+      setEdit(true);
       setId(match.params.id);
       axios.get(`posts/${match.params.id}`).then(({ data }) => {
         setPost(data);
@@ -225,7 +227,7 @@ const PostCreate = () => {
           <Editor
             ref={editorRef}
             placeholder="输入文档内容"
-            initialValue={post.content || localStorage.post || ""}
+            initialValue={post.content || (edit && localStorage.post) || ""}
             previewStyle="vertical"
             height="70vh"
             initialEditType="markdown"
