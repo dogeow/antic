@@ -25,10 +25,10 @@ export default function AlertDialog({
         <DialogContentText>{content}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
+        <Button color="primary" onClick={handleClose}>
           取消
         </Button>
-        <Button onClick={agree} color="primary" autoFocus>
+        <Button color="primary" autoFocus onClick={agree}>
           同意
         </Button>
       </DialogActions>
