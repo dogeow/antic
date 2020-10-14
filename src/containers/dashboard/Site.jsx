@@ -31,7 +31,7 @@ const Site = () => {
         setSites(json.data.sites);
       })
       .catch((error) => {
-        console.log(error);
+        window.console.log(error);
       });
   }, []);
 

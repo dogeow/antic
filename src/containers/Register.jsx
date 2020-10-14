@@ -59,7 +59,7 @@ const Register = ({ history }) => {
         password_confirmation: passwordConfirmation,
       })
       .then((resp) => {
-        console.log(resp);
+        window.console.log(resp);
         if (resp.status === 201) {
           Swal.fire({
             title: "注册成功，",

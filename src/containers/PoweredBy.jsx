@@ -75,7 +75,7 @@ export default function Table() {
                     }, 1000);
                   }),
                 onRowUpdateCancelled: (rowData) =>
-                  console.log("Row editing cancelled"),
+                  window.console.log("Row editing cancelled"),
                 onRowAdd: (newData) =>
                   new Promise((resolve, reject) => {
                     setTimeout(() => {

@@ -106,7 +106,7 @@ const TodoList = () => {
                     resolve();
                   }),
                 onRowUpdateCancelled: (rowData) =>
-                  console.log("Row editing cancelled"),
+                  window.console.log("Row editing cancelled"),
                 onRowAdd: (newData) =>
                   new Promise((resolve, reject) => {
                     const task = {

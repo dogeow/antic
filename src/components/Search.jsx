@@ -27,13 +27,13 @@ const Search = () => {
   });
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(values.q);
+    window.console.log(values.q);
     axios.get(`search?q=${values.q}`).then((response) => {
       setValues({ ...values, result: response.data });
     });
   };
   const handleChange = (name) => (event) => {
-    console.log(event.target.value);
+    window.console.log(event.target.value);
     setValues({ ...values, [name]: event.target.value });
   };
 

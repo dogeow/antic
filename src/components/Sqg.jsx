@@ -66,7 +66,7 @@ const Sqg = () => {
         },
       })
       .then((resp) => {
-        console.log(resp.data);
+        window.console.log(resp.data);
         setData(resp.data.data);
         setTitle(null);
         setItemprice(null);
@@ -87,7 +87,7 @@ const Sqg = () => {
         },
       })
       .then((resp) => {
-        console.log(resp.data);
+        window.console.log(resp.data);
         setTitle(title);
         setItemendprice(itemendprice);
         setItemprice(itemprice);

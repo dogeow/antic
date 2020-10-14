@@ -14,10 +14,8 @@ axios.interceptors.request.use(
   (request) => {
     window.request = true;
     if (process.env.NODE_ENV === "development") {
-      /* eslint-disable no-console */
-      console.log("请求了：");
-      console.log(request);
-      /* eslint-enable no-console */
+      window.console.log("请求了：");
+      window.console.log(request);
     }
 
     return request;
@@ -30,10 +28,8 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (response) => {
     if (process.env.NODE_ENV === "development") {
-      /* eslint-disable no-console */
-      console.log("返回了：");
-      console.log(response);
-      /* eslint-enable no-console */
+      window.console.log("返回了：");
+      window.console.log(response);
     }
 
     const errors = response.data.error;
@@ -57,7 +53,7 @@ axios.interceptors.response.use(
     if (error.response) {
       switch (error.response.status) {
         case 400:
-          console.log(error);
+          window.console.log(error);
           Swal.fire("提示️", error.response.data.message, "error");
           break;
         case 401: {
@@ -140,7 +136,7 @@ window.Echo = new Echo({
 });
 
 window.Echo.channel("push").listen("TestBroadcastingEvent", (e) => {
-  console.log(e);
+  window.console.log(e);
 });
 
 ((ns) => {

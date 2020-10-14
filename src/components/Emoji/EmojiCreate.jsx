@@ -36,7 +36,7 @@ const EmojiCreate = () => {
         onUploadProgress(e) {
           const percentage = Math.round((e.loaded * 100) / e.total) || 0;
           if (percentage < 100) {
-            console.log(`${percentage}%`); // 上传进度
+            window.console.log(`${percentage}%`); // 上传进度
           }
         },
       })

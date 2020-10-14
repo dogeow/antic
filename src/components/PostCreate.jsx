@@ -167,7 +167,7 @@ const PostCreate = () => {
         callback(response.data.url, "alt text");
       })
       .catch((error) => {
-        console.log(error);
+        window.console.log(error);
       });
   };
 
@@ -179,7 +179,7 @@ const PostCreate = () => {
   };
 
   const handleDelete = (tag) => {
-    console.log("delete");
+    window.console.log("delete");
   };
   const handleNew = () => {
     setNewTagOpen(true);
