@@ -229,11 +229,13 @@ const SignInSide = ({ dispatch }) => {
                 </RouteLink>
               </Grid>
               <Grid item>
-                <RouteLink to="/register">
-                  <Link variant="body2" color="secondary">
-                    没有账户？注册！
-                  </Link>
-                </RouteLink>
+                <Link
+                  component={RouteLink}
+                  to="/register"
+                  style={{ color: "#f50057" }}
+                >
+                  没有账户？注册！
+                </Link>
               </Grid>
             </Grid>
             <Box mt={5}>
