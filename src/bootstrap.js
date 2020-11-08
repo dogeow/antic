@@ -123,21 +123,21 @@ document.addEventListener(
 // });
 //
 
-window.Pusher = require("pusher-js");
-
-window.Echo = new Echo({
-  broadcaster: "pusher",
-  key: process.env.REACT_APP_PUSHER_APP_KEY,
-  wsHost: window.location.hostname,
-  wsPort: 443,
-  disableStats: true,
-  cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
-  encrypted: true,
-});
-
-window.Echo.channel("push").listen("TestBroadcastingEvent", (e) => {
-  window.console.log(e);
-});
+// window.Pusher = require("pusher-js");
+//
+// window.Echo = new Echo({
+//   broadcaster: "pusher",
+//   key: process.env.REACT_APP_PUSHER_APP_KEY,
+//   wsHost: window.location.hostname,
+//   wsPort: 443,
+//   disableStats: true,
+//   cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
+//   encrypted: true,
+// });
+//
+// window.Echo.channel("push").listen("TestBroadcastingEvent", (e) => {
+//   window.console.log(e);
+// });
 
 ((ns) => {
   /**
