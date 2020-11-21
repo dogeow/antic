@@ -115,8 +115,11 @@ const Header = ({
                   color="inherit"
                   style={{ marginLeft: 16 }}
                   component={RouteLink}
-                  to="/posts"
+                  to="/todo"
                 >
+                  Todo
+                </Button>
+                <Button color="inherit" component={RouteLink} to="/posts">
                   笔记
                 </Button>
                 <Button color="inherit" component={RouteLink} to="/categories">

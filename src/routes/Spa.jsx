@@ -120,18 +120,22 @@ const Spa = ({ match }) => {
           />
           <Route
             exact
-            path="/todo"
-            component={loadable(() => import("../components/Todo/Project"))}
+            path="/task"
+            component={loadable(() => import("../components/Task/Project"))}
           />
           <Route
-            path="/todo/create"
-            component={loadable(() => import("../components/Todo/NewProject"))}
+            path="/task/create"
+            component={loadable(() => import("../components/Task/NewProject"))}
           />
           <Route
-            path="/todo/:id"
+            path="/task/:id"
             component={loadable(() =>
-              import("../components/Todo/SingleProject")
+              import("../components/Task/SingleProject")
             )}
+          />
+          <Route
+            path="/todo"
+            component={loadable(() => import("../components/TodoList"))}
           />
           <Route
             path="/self-talk"
