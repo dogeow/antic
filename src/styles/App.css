@@ -259,3 +259,17 @@ h4:hover .header-anchor {
   background-color: #ddd;
 }
 /* react-autosuggest end */
+
+#containerimg {
+  background: #F1F1FA;
+  width: 400px;
+  height: 300px;
+  display: block;
+  margin: 10px auto;
+  border: 0;
+}
+
+#container {
+  height: calc(100vh - 310px);
+  overflow-y: scroll;
+}
