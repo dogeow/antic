@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
  * @param {boolean} onClickDrawer
  * @param {function} toggleDrawer
  * @param {function} onThemeClick
- * @param {function} themePaletteType
+ * @param {function} paletteMode
  * @return {JSX.Element}
  * @constructor
  */
@@ -112,7 +112,7 @@ const Header = ({
   onClickDrawer,
   toggleDrawer,
   onThemeClick,
-  themePaletteType,
+  paletteMode,
 }) => {
   const classes = useStyles();
   const history = useHistory();
@@ -159,7 +159,7 @@ const Header = ({
         open={settingsOpen}
         onClose={handleSettingClose}
         onThemeClick={onThemeClick}
-        themePaletteType={themePaletteType}
+        paletteMode={paletteMode}
       />
       <Drawer open={toggleDrawer} onClick={onClickDrawer} />
       <AppBar position="static">
@@ -222,7 +222,7 @@ const Header = ({
                 color="inherit"
                 onClick={onThemeClick}
               >
-                {lab.themePaletteType === "dark" ? (
+                {lab.paletteMode === "dark" ? (
                   <NightsStayIcon />
                 ) : (
                   <WbSunnyIcon />
@@ -327,7 +327,7 @@ const Header = ({
                 }}
               >
                 切换为
-                {lab.themePaletteType === "dark" ? "白天☀️️" : "黑夜🌌"}
+                {lab.paletteMode === "dark" ? "白天☀️️" : "黑夜🌌"}
                 模式
               </MenuItem>
               <MenuItem
@@ -362,7 +362,7 @@ Header.propTypes = {
   onClickDrawer: PropTypes.func.isRequired,
   toggleDrawer: PropTypes.bool.isRequired,
   onThemeClick: PropTypes.func.isRequired,
-  themePaletteType: PropTypes.oneOf(["dark", "light"]).isRequired,
+  paletteMode: PropTypes.oneOf(["dark", "light"]).isRequired,
 };
 
 export default Header;

@@ -26,7 +26,7 @@ const CategoriesElem = (props) => {
         <Badge badgeContent={total[category]}>
           <Button
             variant={
-              props.lab.themePaletteType === "dark" ? "outlined" : "contained"
+              props.lab.paletteMode === "dark" ? "outlined" : "contained"
             }
             color={
               props.selectedCategory.indexOf(category) !== -1

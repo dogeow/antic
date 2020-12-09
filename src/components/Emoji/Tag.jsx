@@ -23,7 +23,7 @@ const Tag = (props) => {
         {props.expandTag ? (
           <Button
             variant={
-              props.lab.themePaletteType === "dark" ? "outlined" : "contained"
+              props.lab.paletteMode === "dark" ? "outlined" : "contained"
             }
             color={color}
             onClick={() => props.selectTag("全部")}

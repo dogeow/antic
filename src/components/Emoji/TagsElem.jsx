@@ -22,7 +22,7 @@ const TagsElem = (props) => {
         <Badge badgeContent={total[tag]}>
           <Button
             variant={
-              props.lab.themePaletteType === "dark" ? "outlined" : "contained"
+              props.lab.paletteMode === "dark" ? "outlined" : "contained"
             }
             color={
               props.selectedTag.indexOf(tag) !== -1 ? "secondary" : "default"

@@ -1,12 +1,12 @@
 import { isExpired } from "../helpers";
 
 const hour = new Date().getHours();
-const themePaletteType =
+const paletteMode =
   (hour >= 18 && hour <= 24) || (hour >= 0 && hour <= 6) ? "dark" : "light";
 
 const defaultState = {
   toggleDrawer: false,
-  themePaletteType,
+  paletteMode,
   is_expired: isExpired(),
   access_token: localStorage.getItem("token") || null,
   user_id: localStorage.getItem("userId") || null,
@@ -32,7 +32,7 @@ const lab = (state = defaultState, action) => {
     case "TOGGLE_THEME":
       return {
         ...state,
-        themePaletteType: state.themePaletteType === "dark" ? "light" : "dark",
+        paletteMode: state.paletteMode === "dark" ? "light" : "dark",
       };
     case "LOGOUT":
       return {

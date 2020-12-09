@@ -23,9 +23,9 @@ const Settings = (props) => {
           <FormControlLabel
             control={
               <Switch
-                checked={props.themePaletteType === "dark"}
+                checked={props.paletteMode === "dark"}
                 onClick={props.onThemeClick}
-                value="themePaletteType"
+                value="paletteMode"
                 inputProps={{ "aria-label": "黑夜模式" }}
               />
             }

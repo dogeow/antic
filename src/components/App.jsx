@@ -22,14 +22,14 @@ moment.locale("zh-cn");
 /**
  *
  * @param {object} props
- * @param {string} props.themePaletteType
+ * @param {string} props.paletteMode
  * @return {JSX.Element}
  * @constructor
  */
-const App = ({ themePaletteType }) => {
+const App = ({ paletteMode }) => {
   const theme = createMuiTheme({
     palette: {
-      type: themePaletteType,
+      mode: paletteMode,
     },
   });
 
@@ -51,7 +51,7 @@ const App = ({ themePaletteType }) => {
 };
 
 App.propTypes = {
-  themePaletteType: PropTypes.oneOf(["dark", "light"]).isRequired,
+  paletteMode: PropTypes.oneOf(["dark", "light"]).isRequired,
 };
 
 export default App;

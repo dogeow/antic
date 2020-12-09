@@ -13,7 +13,7 @@ import { logged, logout } from "../helpers";
 
 const mapStateToProps = (state) => ({
   toggleDrawer: state.lab.toggleDrawer,
-  themePaletteType: state.lab.themePaletteType,
+  paletteMode: state.lab.paletteMode,
   lab: state.lab,
 });
 
