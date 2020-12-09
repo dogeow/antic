@@ -1,5 +1,6 @@
 import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
+import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 
@@ -8,11 +9,13 @@ const Logo = () => (
     <Grid item id="favicon">
       <Avatar alt="🦴🐲" src="/favicon.ico" />
     </Grid>
-    <Grid item>
-      <Typography variant="h6" noWrap component="h1" className="ThreeDee">
-        {process.env.REACT_APP_NAME}
-      </Typography>
-    </Grid>
+    <Hidden only="xs">
+      <Grid item>
+        <Typography variant="h6" noWrap component="h1" className="ThreeDee">
+          {process.env.REACT_APP_NAME}
+        </Typography>
+      </Grid>
+    </Hidden>
   </Grid>
 );
 
