@@ -14,4 +14,8 @@ export default {
     { name: "🧭网址导航", url: "/nav" },
     { name: "🔖谷歌书签", url: "/bookmarks" },
   ],
+  externalMenus: [
+    { name: "🗂️学习笔记", url: "https://wiki.kunyan.li" },
+    { name: "🖌️Canvas 学习", url: "http://canvas.kunyan.li" },
+  ],
 };

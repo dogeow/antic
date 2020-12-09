@@ -17,11 +17,6 @@ const useStyles = makeStyles({
   },
 });
 
-const externalMenus = [
-  { name: "🗂️学习笔记", url: "https://wiki.kunyan.li" },
-  { name: "🖌️Canvas 学习", url: "http://canvas.kunyan.li" },
-];
-
 /**
  * 抽屉柜
  * @param {object} props
@@ -59,7 +54,7 @@ const TemporaryDrawer = (props) => {
           </ListItem>
         ))}
         <Divider />
-        {externalMenus.map((menu) => (
+        {appConfig.externalMenus.map((menu) => (
           <ListItem
             button
             component={Link}
