@@ -15,9 +15,6 @@ const useStyles = makeStyles({
   list: {
     width: 250,
   },
-  fullList: {
-    width: "auto",
-  },
 });
 
 const externalMenus = [
@@ -26,14 +23,16 @@ const externalMenus = [
 ];
 
 /**
- *
+ * 抽屉柜
  * @param {object} props
- * @param {even} props.onClick
+ * @param {function} props.onClick
  * @return {JSX.Element}
  * @constructor
  */
+
 const TemporaryDrawer = (props) => {
   const classes = useStyles();
+  const anchor = "left";
 
   const toggleDrawer = (event) => {
     if (
@@ -93,7 +92,7 @@ const TemporaryDrawer = (props) => {
         onClose={toggleDrawer}
         onOpen={toggleDrawer}
       >
-        {sideList("left")}
+        {sideList(anchor)}
       </SwipeableDrawer>
     </div>
   );
