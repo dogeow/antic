@@ -7,7 +7,7 @@ import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import MaterialTable from "material-table";
-import React, { useState } from "react";
+import React from "react";
 
 import localization from "../config/localization";
 import { getPriorityAttribute } from "../helpers/index";
@@ -21,7 +21,6 @@ const useStyles = makeStyles(() => ({
 const TodoList = () => {
   const classes = useStyles();
   const tableRef = React.createRef();
-  const [selectedRow, setSelectedRow] = useState(null);
 
   return (
     <Paper className={classes.tableRoot}>
@@ -31,6 +30,7 @@ const TodoList = () => {
           {
             title: "标题",
             field: "title",
+            // eslint-disable-next-line react/display-name
             editComponent: (editProps) => (
               <Input
                 value={editProps.rowData.title}
@@ -43,6 +43,7 @@ const TodoList = () => {
             title: "优先级",
             field: "priority",
             type: "string",
+            // eslint-disable-next-line react/display-name
             editComponent: (editProps) => (
               <FormControl style={{ width: 100 }}>
                 <InputLabel>优先级</InputLabel>
@@ -58,9 +59,7 @@ const TodoList = () => {
             ),
           },
         ]}
-        onRowClick={(evt, currentRow) =>
-          setSelectedRow(currentRow.tableData.id)
-        }
+        onRowClick
         options={{
           actionsColumnIndex: -1,
           filtering: true,

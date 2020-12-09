@@ -10,8 +10,8 @@ const defaultState = {
   is_expired: isExpired(),
   access_token: localStorage.getItem("token") || null,
   user_id: localStorage.getItem("userId") || null,
-  user_name: localStorage.getItem("user_name") || null,
-  user_email: localStorage.getItem("user_email") || null,
+  userName: localStorage.getItem("userName") || null,
+  userEmail: localStorage.getItem("userEmail") || null,
 };
 
 const lab = (state = defaultState, action) => {
@@ -22,8 +22,8 @@ const lab = (state = defaultState, action) => {
         is_expired: isExpired(),
         token: action.token,
         userId: action.userId,
-        user_name: action.user_name,
-        user_email: action.user_email,
+        userName: action.userName,
+        userEmail: action.userEmail,
       };
     case "TOGGLE_DRAWER":
       return { ...state, toggleDrawer: !state.toggleDrawer };
@@ -40,8 +40,8 @@ const lab = (state = defaultState, action) => {
         token: null,
         is_expired: true,
         userId: null,
-        user_name: null,
-        user_email: null,
+        userName: null,
+        userEmail: null,
       };
     default:
       return state;

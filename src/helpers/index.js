@@ -21,8 +21,8 @@ export const logged = (token, user) => {
   localStorage.token = token.token;
   localStorage.access_token_expired_at = moment().unix() + token.expires_in;
   localStorage.userId = user.id;
-  localStorage.user_name = user.name;
-  localStorage.user_email = user.email;
+  localStorage.userName = user.name;
+  localStorage.userEmail = user.email;
   axios.defaults.headers.common.Authorization = `Bearer ${token.token}`;
 };
 
@@ -32,8 +32,8 @@ export const logged = (token, user) => {
 export const logout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("userId");
-  localStorage.removeItem("user_name");
-  localStorage.removeItem("user_email");
+  localStorage.removeItem("userName");
+  localStorage.removeItem("userEmail");
   localStorage.removeItem("access_token_expired_at");
 };
 

@@ -1,11 +1,11 @@
 import { createAction } from "@reduxjs/toolkit";
 
-export const loginAction = (accessToken, userId, user_name, user_email) => ({
+export const loginAction = (accessToken, userId, userName, userEmail) => ({
   type: "LOGIN",
   accessToken,
   userId,
-  user_name,
-  user_email,
+  userName,
+  userEmail,
 });
 
 export const whichPage = createAction("WHICH_PAGE");

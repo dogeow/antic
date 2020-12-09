@@ -252,9 +252,9 @@ const Header = ({
                   onClick={handleProfileMenu}
                 >
                   <Avatar
-                    alt={lab.user_name}
+                    alt={lab.userName}
                     src={`https://cn.gravatar.com/avatar/${md5(
-                      lab.user_email
+                      lab.userEmail
                     )}.jpg?d=mp&s=80`}
                   />
                 </IconButton>
@@ -277,7 +277,7 @@ const Header = ({
                     to={`/user/${lab.userId}`}
                     onClick={() => handleCloseProfile()}
                   >
-                    <MenuItem>{lab.user_name}</MenuItem>
+                    <MenuItem>{lab.userName}</MenuItem>
                   </RouteLink>
                   <RouteLink
                     to={`/user/${lab.userId}/setting`}

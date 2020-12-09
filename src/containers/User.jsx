@@ -8,7 +8,7 @@ const User = () => {
   const store = useStore();
   const state = store.getState();
   const avatar = `https://cn.gravatar.com/avatar/${md5(
-    state.lab.user_email
+    state.lab.userEmail
   )}.jpg?d=mp&s=300`;
 
   return (
@@ -24,8 +24,8 @@ const User = () => {
       </Grid>
       <Grid item>
         <Grid>ID：{state.lab.userId}</Grid>
-        <Grid>昵称：{state.lab.user_name}</Grid>
-        <Grid>邮箱：{state.lab.user_email}</Grid>
+        <Grid>昵称：{state.lab.userName}</Grid>
+        <Grid>邮箱：{state.lab.userEmail}</Grid>
       </Grid>
       <Grid item xs={12}>
         修改密码
