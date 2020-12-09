@@ -30,7 +30,6 @@ const TodoList = () => {
           {
             title: "标题",
             field: "title",
-            // eslint-disable-next-line react/display-name
             editComponent: (editProps) => (
               <Input
                 value={editProps.rowData.title}
@@ -43,7 +42,6 @@ const TodoList = () => {
             title: "优先级",
             field: "priority",
             type: "string",
-            // eslint-disable-next-line react/display-name
             editComponent: (editProps) => (
               <FormControl style={{ width: 100 }}>
                 <InputLabel>优先级</InputLabel>

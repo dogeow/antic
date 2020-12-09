@@ -6,10 +6,9 @@ import face from "../resources/face.json";
 
 /**
  * 分类筛选
- *
- * @param array 表情数组
- * @param category 点击了哪个分类
- * @returns {Array} 符合该分类的表情数组
+ * @param {array} array 表情数组
+ * @param {string} category 点击了哪个分类
+ * @return {array} 符合该分类的表情数组
  */
 function categoryFilter(array, category) {
   if (category === "全部") {
@@ -25,10 +24,9 @@ function categoryFilter(array, category) {
 
 /**
  * 标签筛选
- *
- * @param array 表情数组
- * @param tagState 已被选择的标签
- * @returns {Array} 符合该标签的数组
+ * @param {array} array 表情数组
+ * @param {string} tagState 已被选择的标签
+ * @return {array} 符合该标签的数组
  */
 function tagFilter(array, tagState) {
   if (tagState === "全部") {
@@ -47,8 +45,8 @@ function tagFilter(array, tagState) {
 
 /**
  * 返回表情数组所有的标签
- * @param array
- * @returns {*}
+ * @param {array} array
+ * @return {array}
  */
 function allTag(array) {
   let tagsList = [];
@@ -61,9 +59,9 @@ function allTag(array) {
 
 /**
  * 计算偏移量
- * @param whichPage 第几页
- * @param pageLimit 一页显示几张
- * @returns {{start: number, end: number}}
+ * @param {int} whichPage 第几页
+ * @param {int} pageLimit 一页显示几张
+ * @return {{start: number, end: number}}
  */
 function offset(whichPage, pageLimit) {
   return {

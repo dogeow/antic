@@ -13,6 +13,8 @@ const containerStyle = {
 
 /**
  * The Chessboard Tutorial Application
+ * @return {JSX.Element}
+ * @constructor
  */
 const Chess = () => {
   const [knightPos, setKnightPos] = useState([1, 7]);
