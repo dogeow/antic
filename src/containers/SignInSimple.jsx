@@ -19,7 +19,7 @@ function SignInSimple() {
         const accessToken = data.access_token;
         if (accessToken) {
           Swal.fire("提示️", "登录成功", "success");
-          localStorage.access_token = accessToken;
+          localStorage.token = accessToken;
         }
       });
   };

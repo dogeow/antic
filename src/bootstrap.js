@@ -1,13 +1,13 @@
 import axios from "axios";
-import Echo from "laravel-echo";
+// import Echo from "laravel-echo";
 import Swal from "sweetalert2";
 
-import ConsoleInfo from "./components/ConsoleInfo";
+import consoleInfo from "./components/ConsoleInfo";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-if (localStorage.access_token) {
-  axios.defaults.headers.common.Authorization = `Bearer ${localStorage.access_token}`;
+if (localStorage.token) {
+  axios.defaults.headers.common.Authorization = `Bearer ${localStorage.token}`;
 }
 
 axios.interceptors.request.use(
@@ -61,7 +61,7 @@ axios.interceptors.response.use(
             ? "登录状态过期"
             : "尚未登录账号";
           Swal.fire("提示️", text, "warning");
-          localStorage.removeItem("access_token");
+          localStorage.removeItem("token");
           break;
         }
         case 422:
@@ -79,7 +79,7 @@ axios.interceptors.response.use(
   }
 );
 
-ConsoleInfo();
+consoleInfo();
 
 // 网页当前状态判断
 let state;
@@ -142,8 +142,8 @@ document.addEventListener(
 ((ns) => {
   /**
    * mbStrWidth
-   * @param str String
-   * @return int
+   * @param {string} str
+   * @return {int}
    * @see http://php.net/manual/ja/function.mb-strwidth.php
    */
   const mbStrWidth = (str) => {
@@ -169,11 +169,11 @@ document.addEventListener(
 
   /**
    * mbStrImWidth
-   * @param str String
-   * @param start int
-   * @param width int
-   * @param trimMarker String
-   * @return String
+   * @param {string} str
+   * @param {int} start
+   * @param {int}  width
+   * @param {string} trimMarker
+   * @return {string}
    * @see http://www.php.net/manual/ja/function.mb-strimwidth.php
    */
   const mbStrImWidth = (str, start, width, trimMarker = "") => {

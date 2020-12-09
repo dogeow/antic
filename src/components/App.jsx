@@ -1,5 +1,4 @@
 import "moment/locale/zh-cn";
-import "typeface-roboto";
 import "../styles/App.scss";
 import "../styles/App.css";
 
@@ -9,6 +8,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import moment from "moment";
+import PropTypes from "prop-types";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
@@ -19,6 +19,13 @@ require("../bootstrap");
 
 moment.locale("zh-cn");
 
+/**
+ *
+ * @param {object} props
+ * @param {string} props.themePaletteType
+ * @return {JSX.Element}
+ * @constructor
+ */
 const App = ({ themePaletteType }) => {
   const theme = createMuiTheme({
     palette: {
@@ -41,6 +48,10 @@ const App = ({ themePaletteType }) => {
       </MuiPickersUtilsProvider>
     </BrowserRouter>
   );
+};
+
+App.propTypes = {
+  themePaletteType: PropTypes.oneOf(["dark", "light"]).isRequired,
 };
 
 export default App;

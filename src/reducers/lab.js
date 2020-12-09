@@ -8,7 +8,7 @@ const defaultState = {
   toggle_drawer: false,
   themePaletteType,
   is_expired: isExpired(),
-  access_token: localStorage.getItem("access_token") || null,
+  access_token: localStorage.getItem("token") || null,
   user_id: localStorage.getItem("user_id") || null,
   user_name: localStorage.getItem("user_name") || null,
   user_email: localStorage.getItem("user_email") || null,
@@ -20,7 +20,7 @@ const lab = (state = defaultState, action) => {
       return {
         ...state,
         is_expired: isExpired(),
-        access_token: action.access_token,
+        token: action.token,
         user_id: action.user_id,
         user_name: action.user_name,
         user_email: action.user_email,
@@ -28,7 +28,7 @@ const lab = (state = defaultState, action) => {
     case "TOGGLE_DRAWER":
       return { ...state, toggle_drawer: !state.toggle_drawer };
     case "ACCESS_TOKEN":
-      return { ...state, access_token: action.access_token };
+      return { ...state, token: action.token };
     case "TOGGLE_THEME":
       return {
         ...state,
@@ -37,7 +37,7 @@ const lab = (state = defaultState, action) => {
     case "LOGOUT":
       return {
         ...state,
-        access_token: null,
+        token: null,
         is_expired: true,
         user_id: null,
         user_name: null,

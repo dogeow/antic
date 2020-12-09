@@ -5,10 +5,11 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import PropTypes from "prop-types";
 import React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
-import menus from "../config/menus";
+import appConfig from "../config/app";
 
 const useStyles = makeStyles({
   list: {
@@ -24,6 +25,13 @@ const externalMenus = [
   { name: "🖌️Canvas 学习", url: "http://canvas.kunyan.li" },
 ];
 
+/**
+ *
+ * @param {object} props
+ * @param {even} props.onClick
+ * @return {JSX.Element}
+ * @constructor
+ */
 const TemporaryDrawer = (props) => {
   const classes = useStyles();
 
@@ -46,7 +54,7 @@ const TemporaryDrawer = (props) => {
       onKeyDown={toggleDrawer}
     >
       <List>
-        {menus.map((menu, index) => (
+        {appConfig.menus.map((menu, index) => (
           <ListItem button to={menu.url} component={RouteLink} key={index}>
             <ListItemText primary={menu.name} />
           </ListItem>
@@ -89,6 +97,11 @@ const TemporaryDrawer = (props) => {
       </SwipeableDrawer>
     </div>
   );
+};
+
+TemporaryDrawer.propTypes = {
+  onClick: PropTypes.func,
+  open: PropTypes.bool,
 };
 
 export default TemporaryDrawer;

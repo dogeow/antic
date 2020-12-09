@@ -1,4 +1,7 @@
-const ConsoleInfo = () => {
+/**
+ * 控制台信息
+ */
+export default function consoleInfo() {
   if (process.env.NODE_ENV === "development") {
     return;
   }
@@ -19,6 +22,4 @@ const ConsoleInfo = () => {
     }
     window.console.groupEnd();
   }
-};
-
-export default ConsoleInfo;
+}

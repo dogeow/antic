@@ -4,10 +4,10 @@ import React, { useEffect } from "react";
 const Index = () => {
   useEffect(() => {
     $(document).ready(function () {
-      let lazyloadImages;
+      let lazyLoadImages;
 
       if ("IntersectionObserver" in window) {
-        lazyloadImages = document.querySelectorAll(".lazy");
+        lazyLoadImages = document.querySelectorAll(".lazy");
         const imageObserver = new IntersectionObserver(
           function (entries, observer) {
             console.log(observer);
@@ -26,38 +26,41 @@ const Index = () => {
           }
         );
 
-        lazyloadImages.forEach(function (image) {
+        lazyLoadImages.forEach(function (image) {
           imageObserver.observe(image);
         });
       } else {
-        let lazyloadThrottleTimeout;
-        lazyloadImages = $(".lazy");
+        let lazyLoadThrottleTimeout;
+        lazyLoadImages = $(".lazy");
 
-        function lazyload() {
-          if (lazyloadThrottleTimeout) {
-            clearTimeout(lazyloadThrottleTimeout);
+        /**
+         * 延迟加载
+         */
+        function lazyLoad() {
+          if (lazyLoadThrottleTimeout) {
+            clearTimeout(lazyLoadThrottleTimeout);
           }
 
-          lazyloadThrottleTimeout = setTimeout(function () {
+          lazyLoadThrottleTimeout = setTimeout(function () {
             const scrollTop = $(window).scrollTop();
-            lazyloadImages.each(function () {
-              const el = $(this);
+            lazyLoadImages.each(function (image) {
+              const el = $(image);
               if (el.offset().top < window.innerHeight + scrollTop + 500) {
                 const url = el.attr("data-src");
                 el.attr("src", url);
                 el.removeClass("lazy");
-                lazyloadImages = $(".lazy");
+                lazyLoadImages = $(".lazy");
               }
             });
-            if (lazyloadImages.length == 0) {
+            if (lazyLoadImages.length === 0) {
               $(document).off("scroll");
               $(window).off("resize");
             }
           }, 20);
         }
 
-        $(document).on("scroll", lazyload);
-        $(window).on("resize", lazyload);
+        $(document).on("scroll", lazyLoad);
+        $(window).on("resize", lazyLoad);
       }
     });
   }, []);

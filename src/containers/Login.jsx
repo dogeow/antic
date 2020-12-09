@@ -18,6 +18,7 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import axios from "axios";
+import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link as RouteLink, useHistory } from "react-router-dom";
@@ -60,6 +61,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ *
+ * @param {object} props
+ * @param {function} props.dispatch
+ * @return {JSX.Element}
+ * @constructor
+ */
 const SignInSide = ({ dispatch }) => {
   const classes = useStyles();
   const history = useHistory();
@@ -205,7 +213,7 @@ const SignInSide = ({ dispatch }) => {
                 enterDelay={200}
                 TransitionComponent={Zoom}
                 arrow
-                interactive
+                interactive="true"
                 style={{ alignSelf: "center" }}
                 onClick={handleOpen}
               >
@@ -246,6 +254,10 @@ const SignInSide = ({ dispatch }) => {
       </Grid>
     </Grid>
   );
+};
+
+SignInSide.propTypes = {
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect()(SignInSide);
