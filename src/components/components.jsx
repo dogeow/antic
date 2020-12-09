@@ -49,7 +49,7 @@ export const EditorValue = forwardRef(({ className, value, ...props }, ref) => {
           background: #f8f8f8;
         `}
       >
-        Slate's value as text
+        Slate&apos;s value as text
       </div>
       <div
         className={css`

@@ -5,9 +5,11 @@ import videojs from "video.js";
 export default class VideoPlayer extends React.Component {
   componentDidMount() {
     // instantiate video.js
-    this.player = videojs(this.videoNode, this.props, function onPlayerReady() {
-      window.console.log("onPlayerReady", this);
-    });
+    this.player = videojs(
+      this.videoNode,
+      this.props,
+      function onPlayerReady() {}
+    );
   }
 
   // destroy player on unmount
