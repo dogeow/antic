@@ -20,7 +20,7 @@ export const isExpired = () => {
 export const logged = (token, user) => {
   localStorage.token = token.token;
   localStorage.access_token_expired_at = moment().unix() + token.expires_in;
-  localStorage.user_id = user.id;
+  localStorage.userId = user.id;
   localStorage.user_name = user.name;
   localStorage.user_email = user.email;
   axios.defaults.headers.common.Authorization = `Bearer ${token.token}`;
@@ -31,7 +31,7 @@ export const logged = (token, user) => {
  */
 export const logout = () => {
   localStorage.removeItem("token");
-  localStorage.removeItem("user_id");
+  localStorage.removeItem("userId");
   localStorage.removeItem("user_name");
   localStorage.removeItem("user_email");
   localStorage.removeItem("access_token_expired_at");

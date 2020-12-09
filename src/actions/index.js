@@ -1,9 +1,9 @@
 import { createAction } from "@reduxjs/toolkit";
 
-export const loginAction = (accessToken, user_id, user_name, user_email) => ({
+export const loginAction = (accessToken, userId, user_name, user_email) => ({
   type: "LOGIN",
   accessToken,
-  user_id,
+  userId,
   user_name,
   user_email,
 });

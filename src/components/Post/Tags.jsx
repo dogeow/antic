@@ -33,7 +33,7 @@ const Tags = (props) => {
               size="small"
               label={tag}
               onDelete={
-                state.lab.user_id && props.newTagOpen
+                state.lab.userId && props.newTagOpen
                   ? () => props.delete(tag)
                   : undefined
               }

@@ -5,12 +5,12 @@ import React from "react";
 
 const Logo = () => (
   <Grid container alignItems="center">
-    <Grid key="avatar" item id="favicon">
-      <Avatar alt="滑稽" src="/favicon.ico" />
+    <Grid item id="favicon">
+      <Avatar alt="🦴🐲" src="/favicon.ico" />
     </Grid>
-    <Grid key="title" item>
-      <Typography variant="h5" component="h1" className="ThreeDee">
-        实验室
+    <Grid item>
+      <Typography variant="h6" noWrap component="h1" className="ThreeDee">
+        {process.env.REACT_APP_NAME}
       </Typography>
     </Grid>
   </Grid>

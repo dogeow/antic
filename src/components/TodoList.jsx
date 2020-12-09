@@ -98,7 +98,7 @@ const TodoList = () => {
           });
         }}
         editable={
-          localStorage.user_id !== "1"
+          localStorage.userId !== "1"
             ? false
             : {
                 onBulkUpdate: (changes) =>

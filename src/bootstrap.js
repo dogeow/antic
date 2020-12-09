@@ -57,7 +57,7 @@ axios.interceptors.response.use(
           Swal.fire("提示️", error.response.data.message, "error");
           break;
         case 401: {
-          const text = localStorage.getItem("user_id")
+          const text = localStorage.getItem("userId")
             ? "登录状态过期"
             : "尚未登录账号";
           Swal.fire("提示️", text, "warning");

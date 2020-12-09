@@ -10,6 +10,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * 帏幕
+ * @return {JSX.Element}
+ * @constructor
+ */
 export default function SimpleBackdrop() {
   const classes = useStyles();
 

@@ -7,7 +7,7 @@ import { useStore } from "react-redux";
 const User = () => {
   const store = useStore();
   const state = store.getState();
-  const avatar = `https://gravatar.loli.net/avatar/${md5(
+  const avatar = `https://cn.gravatar.com/avatar/${md5(
     state.lab.user_email
   )}.jpg?d=mp&s=300`;
 
@@ -23,7 +23,7 @@ const User = () => {
         </div>
       </Grid>
       <Grid item>
-        <Grid>ID：{state.lab.user_id}</Grid>
+        <Grid>ID：{state.lab.userId}</Grid>
         <Grid>昵称：{state.lab.user_name}</Grid>
         <Grid>邮箱：{state.lab.user_email}</Grid>
       </Grid>

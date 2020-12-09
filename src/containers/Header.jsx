@@ -4,17 +4,20 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
+import InputBase from "@material-ui/core/InputBase";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { alpha, makeStyles, useTheme } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import GitHub from "@material-ui/icons/GitHub";
 import MenuIcon from "@material-ui/icons/Menu";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import NightsStayIcon from "@material-ui/icons/NightsStay";
+import SearchIcon from "@material-ui/icons/Search";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import md5 from "md5";
+import PropTypes from "prop-types";
 import React from "react";
 import { Link as RouteLink, useHistory } from "react-router-dom";
 
@@ -22,9 +25,67 @@ import Drawer from "../components/Drawer";
 import Logo from "../components/Logo";
 import Settings from "../components/Settings";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
+    },
+  },
+  search: {
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(3),
+      width: "auto",
+    },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  inputRoot: {
+    color: "inherit",
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
+    },
+  },
+  sectionDesktop: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+    },
+  },
+  sectionMobile: {
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
   },
   blank: {
     flexGrow: 1,
@@ -35,12 +96,24 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+/**
+ * 菜单栏
+ * @param {object} lab
+ * @param {function} onLogout
+ * @param {function} onTestLogin
+ * @param {boolean} onClickDrawer
+ * @param {function} toggleDrawer
+ * @param {function} onThemeClick
+ * @param {function} themePaletteType
+ * @return {JSX.Element}
+ * @constructor
+ */
 const Header = ({
   lab,
   onLogout,
   onTestLogin,
   onClickDrawer,
-  toggle_drawer,
+  toggleDrawer,
   onThemeClick,
   themePaletteType,
 }) => {
@@ -50,11 +123,14 @@ const Header = ({
   const matches = useMediaQuery(theme.breakpoints.up("md"));
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [anchorElMyself, setAnchorElMyself] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const openMyself = Boolean(anchorElMyself);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const isMenuOpen = Boolean(anchorEl);
+  const profileOpen = Boolean(mobileMoreAnchorEl);
   const [settingsOpen, setSettingsOpen] = React.useState(false);
 
+  /**
+   * 设置开关
+   */
   function handleSettingOpen() {
     setAnchorEl(null);
     setSettingsOpen(true);
@@ -68,16 +144,16 @@ const Header = ({
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuMyself = (event) => {
-    setAnchorElMyself(event.currentTarget);
+  const handleProfileMenu = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleMobileMenuClose = () => {
     setAnchorEl(null);
   };
 
-  const handleCloseMyself = () => {
-    setAnchorElMyself(null);
+  const handleCloseProfile = () => {
+    setMobileMoreAnchorEl(null);
   };
 
   return (
@@ -88,7 +164,7 @@ const Header = ({
         onThemeClick={onThemeClick}
         themePaletteType={themePaletteType}
       />
-      <Drawer open={toggle_drawer} onClick={onClickDrawer} />
+      <Drawer open={toggleDrawer} onClick={onClickDrawer} />
       <AppBar position="static">
         <Container
           maxWidth="lg"
@@ -109,6 +185,19 @@ const Header = ({
             <RouteLink to="/">
               <Logo />
             </RouteLink>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ "aria-label": "search" }}
+              />
+            </div>
             {matches && (
               <>
                 <Button
@@ -161,21 +250,21 @@ const Header = ({
               <div>
                 <IconButton
                   aria-label="account of current user"
-                  aria-controls="myself-appbar"
+                  aria-controls="profile"
                   aria-haspopup="true"
                   color="inherit"
-                  onClick={handleMenuMyself}
+                  onClick={handleProfileMenu}
                 >
                   <Avatar
                     alt={lab.user_name}
-                    src={`https://gravatar.loli.net/avatar/${md5(
+                    src={`https://cn.gravatar.com/avatar/${md5(
                       lab.user_email
                     )}.jpg?d=mp&s=80`}
                   />
                 </IconButton>
                 <Menu
-                  id="myself-appbar"
-                  anchorEl={anchorElMyself}
+                  id="profile"
+                  anchorEl={mobileMoreAnchorEl}
                   anchorOrigin={{
                     vertical: "top",
                     horizontal: "right",
@@ -185,24 +274,24 @@ const Header = ({
                     vertical: "top",
                     horizontal: "right",
                   }}
-                  open={openMyself}
-                  onClose={handleCloseMyself}
+                  open={profileOpen}
+                  onClose={handleCloseProfile}
                 >
                   <RouteLink
-                    to={`/user/${lab.user_id}`}
-                    onClick={() => handleCloseMyself()}
+                    to={`/user/${lab.userId}`}
+                    onClick={() => handleCloseProfile()}
                   >
                     <MenuItem>{lab.user_name}</MenuItem>
                   </RouteLink>
                   <RouteLink
-                    to={`/user/${lab.user_id}/setting`}
-                    onClick={() => handleCloseMyself()}
+                    to={`/user/${lab.userId}/setting`}
+                    onClick={() => handleCloseProfile()}
                   >
                     <MenuItem>个人设置</MenuItem>
                   </RouteLink>
                   <MenuItem
                     onClick={() => {
-                      setAnchorElMyself(null);
+                      setMobileMoreAnchorEl(null);
                       onLogout();
                     }}
                   >
@@ -213,7 +302,7 @@ const Header = ({
             )}
             <IconButton
               aria-label="show more"
-              aria-controls="menu-appbar"
+              aria-controls="menu"
               aria-haspopup="true"
               onClick={handleMenu}
               color="inherit"
@@ -221,7 +310,7 @@ const Header = ({
               <MoreIcon />
             </IconButton>
             <Menu
-              id="menu-appbar"
+              id="menu"
               anchorEl={anchorEl}
               anchorOrigin={{
                 vertical: "top",
@@ -232,8 +321,8 @@ const Header = ({
                 vertical: "top",
                 horizontal: "right",
               }}
-              open={open}
-              onClose={handleClose}
+              open={isMenuOpen}
+              onClose={handleMobileMenuClose}
             >
               <MenuItem
                 onClick={() => {
@@ -268,6 +357,16 @@ const Header = ({
       </AppBar>
     </header>
   );
+};
+
+Header.propTypes = {
+  lab: PropTypes.object.isRequired,
+  onLogout: PropTypes.func.isRequired,
+  onTestLogin: PropTypes.func.isRequired,
+  onClickDrawer: PropTypes.func.isRequired,
+  toggleDrawer: PropTypes.bool.isRequired,
+  onThemeClick: PropTypes.func.isRequired,
+  themePaletteType: PropTypes.oneOf(["dark", "light"]).isRequired,
 };
 
 export default Header;

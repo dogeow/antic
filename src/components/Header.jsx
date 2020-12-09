@@ -12,7 +12,7 @@ import Header from "../containers/Header";
 import { logged, logout } from "../helpers";
 
 const mapStateToProps = (state) => ({
-  toggle_drawer: state.lab.toggle_drawer,
+  toggleDrawer: state.lab.toggleDrawer,
   themePaletteType: state.lab.themePaletteType,
   lab: state.lab,
 });
