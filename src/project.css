@@ -1,0 +1,122 @@
+body {
+  font-size: small;
+}
+
+/* 更改默认行为 start */
+a:visited {
+  color: unset;
+  text-decoration: none;
+}
+
+a:hover {
+  color: unset;
+  text-decoration: none;
+}
+
+a:link {
+  color: unset;
+  text-decoration: none;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  transition: opacity 700ms;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3)), url(http://127.0.0.1:8000/random);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 1;
+}
+
+#custom-bg-attr {
+  font-size: small;
+  text-shadow: 0 0 16px rgba(0, 0, 0, .3);
+  border-radius: 8px;
+  bottom: 16px;
+  color: white;
+  left: 16px;
+  padding: 8px;
+  position: fixed;
+}
+
+.top {
+  position: absolute;
+  top: 0;
+  transition: opacity 130ms;
+  width: 100%;
+  text-align: right;
+}
+
+.project {
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+  text-align: -webkit-center;
+  user-select: none;
+  color: white;
+}
+
+.name {
+  min-height: fit-content;
+  bottom: 38px;
+  font-size: 6vmin;
+  left: calc(50% - 272px / 2);
+  width: 272px;
+  margin-top: calc(50% / 4);
+  position: relative;
+  color: rgba(238, 238, 238, 1);
+  text-align: center;
+}
+
+.grid-tile-container {
+  position: absolute;
+  transition: transform 300ms ease-in-out;
+}
+
+.grid-tile {
+  transition: transform 300ms ease-in-out;
+}
+
+.md-tile {
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: rgba(238, 238, 238, 1);
+  cursor: pointer;
+  height: 112px;
+  margin-bottom: 16px;
+  opacity: 1;
+  padding-top: 16px;
+  position: relative;
+  transition-property: background, background-color, border-color, box-shadow, opacity, filter;
+  width: 112px;
+}
+
+a {
+  display: block;
+}
+
+.project a:hover {
+  background-color: rgba(255, 255, 255, .12);
+}
+
+.md-tile-inner {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
