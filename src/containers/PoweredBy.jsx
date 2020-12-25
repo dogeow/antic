@@ -119,7 +119,7 @@ export default function Table() {
           >
             <img
               style={{ border: 0, width: 88, height: 31 }}
-              src={`${process.env.REACT_APP_CDN_URL}valid-xhtml20.gif`}
+              src={`${process.env.REACT_APP_CDN_URL}/valid-xhtml20.gif`}
               alt="Valid HTML!"
             />
           </a>
@@ -130,7 +130,7 @@ export default function Table() {
           >
             <img
               style={{ border: 0, width: 88, height: 31 }}
-              src={`${process.env.REACT_APP_CDN_URL}vcss.gif`}
+              src={`${process.env.REACT_APP_CDN_URL}/vcss.gif`}
               alt="Valid CSS!"
             />
           </a>

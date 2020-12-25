@@ -251,7 +251,7 @@ const Spa = ({ match }) => {
         style={{ outline: "none", boxShadow: "none" }}
       >
         <img
-          src={`${process.env.REACT_APP_CDN_URL}bfr.png`}
+          src={`${process.env.REACT_APP_CDN_URL}/bfr.png`}
           width="24"
           alt="Back to top arrow"
         />

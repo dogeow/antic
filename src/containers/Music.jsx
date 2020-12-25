@@ -4,7 +4,7 @@ const Music = () => (
   <div>
     <audio
       id="music"
-      src={`${process.env.REACT_APP_CDN_URL}music/和楽器バンド - 東風破.mp3`}
+      src={`${process.env.REACT_APP_CDN_URL}/music/和楽器バンド - 東風破.mp3`}
       controls="controls"
       preload="auto"
       controlsList="nodownload"

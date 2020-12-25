@@ -45,7 +45,7 @@ const Emoji = (props) => {
   }, [props]);
 
   face.map((item) => {
-    item.src = `${process.env.REACT_APP_CDN_URL}emoji/${item.fileName}`;
+    item.src = `${process.env.REACT_APP_CDN_URL}/emoji/${item.fileName}`;
     item.alt = item.fileName;
 
     return item;
@@ -120,7 +120,7 @@ const Emoji = (props) => {
             <Grid key={index} item xs={4} style={{ textAlign: "center" }}>
               <img
                 id={index}
-                src={`${process.env.REACT_APP_CDN_URL}emoji/${item.fileName}`}
+                src={`${process.env.REACT_APP_CDN_URL}/emoji/${item.fileName}`}
                 alt={item.name}
                 width="100"
                 onClick={() => {

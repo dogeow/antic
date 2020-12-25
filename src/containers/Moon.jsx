@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 const Moon = () => {
   const history = useHistory();
 
-  const cdn = `${process.env.REACT_APP_CDN_URL}moon/`;
+  const cdn = `${process.env.REACT_APP_CDN_URL}/moon/`;
   const [num, setNum] = React.useState([]);
   const [name, setName] = React.useState(localStorage.getItem("name"));
   const [status, setStatus] = React.useState("");
