@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import Swal from "sweetalert2";
+import swal from "sweetalert2";
 
 import credentialsTest from "../resources/credentialsTest.json";
 
@@ -18,7 +18,7 @@ function SignInSimple() {
       .then(({ data }) => {
         const accessToken = data.access_token;
         if (accessToken) {
-          Swal.fire("提示️", "登录成功", "success");
+          swal.fire("提示️", "登录成功", "success");
           localStorage.token = accessToken;
         }
       });

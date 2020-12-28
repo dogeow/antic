@@ -16,7 +16,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import axios from "axios";
 import React, { useState } from "react";
-import Swal from "sweetalert2";
+import swal from "sweetalert2";
 
 import Copyright from "../components/Copyright";
 
@@ -61,7 +61,7 @@ const Register = ({ history }) => {
       .then((resp) => {
         window.console.log(resp);
         if (resp.status === 201) {
-          Swal.fire({
+          swal.fire({
             title: "注册成功，",
             icon: "success",
             showCloseButton: true,
