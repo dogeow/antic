@@ -42,7 +42,7 @@ const NoMatch = () => {
         spacing={2}
       >
         <Grid item>
-          <FormControl variant="outlined">
+          <FormControl variant="outlined" size="small">
             <InputLabel htmlFor="search">函数名</InputLabel>
             <OutlinedInput
               id="search"
