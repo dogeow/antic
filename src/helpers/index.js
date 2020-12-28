@@ -23,7 +23,7 @@ export const logged = (token, user) => {
   localStorage.userId = user.id;
   localStorage.userName = user.name;
   localStorage.userEmail = user.email;
-  axios.defaults.headers.common.Authorization = `Bearer ${token.token}`;
+  axios.defaults.headers.common.Authorization = `Bearer ${token.access_token}`;
 };
 
 /**
