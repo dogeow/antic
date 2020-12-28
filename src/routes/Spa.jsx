@@ -241,6 +241,10 @@ const Spa = ({ match }) => {
             path="/moon"
             component={loadable(() => import("../containers/Moon"))}
           />
+          <Route
+            path="/php-function"
+            component={loadable(() => import("../containers/PHPFunction"))}
+          />
           <Route component={loadable(() => import("../containers/NoMatch"))} />
         </Switch>
       </Container>
