@@ -15,6 +15,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import SearchIcon from "@material-ui/icons/Search";
 import axios from "axios";
 import React, { useState } from "react";
+import swal from "sweetalert2";
 
 const NoMatch = () => {
   const [value, setValue] = useState("");
@@ -37,7 +38,15 @@ const NoMatch = () => {
         search: value,
       })
       .then((response) => {
-        setPhpFunction(response.data);
+        if (response.data.length === 0) {
+          swal.fire({
+            title: "Not Found！",
+            text: "没有找到结果！",
+            timer: 2000,
+          });
+        } else {
+          setPhpFunction(response.data);
+        }
       });
   };
 
@@ -118,6 +127,7 @@ const NoMatch = () => {
                     <TableCell>分类</TableCell>
                     <TableCell align="right">函数名</TableCell>
                     <TableCell align="right">简介</TableCell>
+                    <TableCell align="right">外链</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -128,6 +138,7 @@ const NoMatch = () => {
                       </TableCell>
                       <TableCell align="right">{row.name}</TableCell>
                       <TableCell align="right">{row.intro}</TableCell>
+                      <TableCell align="right">{row.url}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

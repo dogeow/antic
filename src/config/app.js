@@ -13,6 +13,7 @@ export default {
     { name: "🚗车车", url: "/cars" },
     { name: "🧭网址导航", url: "/nav" },
     { name: "🔖谷歌书签", url: "/bookmarks" },
+    { name: "📒PHP 函数", url: "/php-function" },
   ],
   externalMenus: [
     { name: "🗂️学习笔记", url: "https://wiki.kunyan.li" },
