@@ -8,7 +8,7 @@ const defaultState = {
   toggleDrawer: false,
   paletteMode,
   is_expired: isExpired(),
-  access_token: localStorage.getItem("token") || null,
+  token: localStorage.getItem("token") || null,
   user_id: localStorage.getItem("userId") || null,
   userName: localStorage.getItem("userName") || null,
   userEmail: localStorage.getItem("userEmail") || null,

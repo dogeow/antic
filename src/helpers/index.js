@@ -18,7 +18,7 @@ export const isExpired = () => {
  * @param {object} user
  */
 export const logged = (token, user) => {
-  localStorage.token = token.token;
+  localStorage.token = token.access_token;
   localStorage.access_token_expired_at = moment().unix() + token.expires_in;
   localStorage.userId = user.id;
   localStorage.userName = user.name;
