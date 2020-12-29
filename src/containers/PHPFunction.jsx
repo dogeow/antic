@@ -13,12 +13,15 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import ClearIcon from "@material-ui/icons/Clear";
 import SearchIcon from "@material-ui/icons/Search";
+import { mdiLoading } from "@mdi/js";
+import Icon from "@mdi/react";
 import axios from "axios";
 import React, { useState } from "react";
 import swal from "sweetalert2";
 
 const NoMatch = () => {
   const [value, setValue] = useState("");
+  const [loading, setLoading] = useState(false);
   const [phpFunction, setPhpFunction] = useState([]);
 
   const handleClickSearch = () => {
@@ -33,6 +36,7 @@ const NoMatch = () => {
 
   const searchRequest = () => {
     setPhpFunction([]);
+    setLoading(true);
     axios
       .post("php-function", {
         search: value,
@@ -47,6 +51,7 @@ const NoMatch = () => {
         } else {
           setPhpFunction(response.data);
         }
+        setLoading(false);
       });
   };
 
@@ -70,11 +75,11 @@ const NoMatch = () => {
         justify="center"
         justifyContent="center"
         alignItems="center"
-        style={{ marginTop: "30%" }}
+        style={{ marginTop: "20%" }}
         spacing={2}
       >
         <Grid item>
-          <FormControl variant="outlined" size="small">
+          <FormControl variant="outlined" size="small" style={{ width: 350 }}>
             <InputLabel htmlFor="search">函数名</InputLabel>
             <OutlinedInput
               id="search"
@@ -83,28 +88,45 @@ const NoMatch = () => {
               onChange={handleChange}
               onKeyUp={handleKeyUP}
               endAdornment={
-                <>
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="搜索"
-                      onClick={handleClear}
-                      onMouseDown={handleMouseDownSearch}
-                      edge="end"
-                    >
-                      <ClearIcon />
-                    </IconButton>
-                  </InputAdornment>
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="重置搜索"
-                      onClick={handleClickSearch}
-                      onMouseDown={handleMouseDownSearch}
-                      edge="end"
-                    >
-                      <SearchIcon />
-                    </IconButton>
-                  </InputAdornment>
-                </>
+                loading ? (
+                  <>
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="搜索"
+                        onClick={handleClickSearch}
+                        onMouseDown={handleMouseDownSearch}
+                        edge="end"
+                      >
+                        <Icon path={mdiLoading} spin="mdi-spin" size={1} />
+                      </IconButton>
+                    </InputAdornment>
+                  </>
+                ) : (
+                  <>
+                    {value.length !== 0 && (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="重置搜索"
+                          onClick={handleClear}
+                          onMouseDown={handleMouseDownSearch}
+                          edge="end"
+                        >
+                          <ClearIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    )}
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="搜索"
+                        onClick={handleClickSearch}
+                        onMouseDown={handleMouseDownSearch}
+                        edge="end"
+                      >
+                        <SearchIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  </>
+                )
               }
               labelWidth={70}
             />
@@ -125,9 +147,9 @@ const NoMatch = () => {
                 <TableHead>
                   <TableRow>
                     <TableCell>分类</TableCell>
-                    <TableCell align="right">函数名</TableCell>
-                    <TableCell align="right">简介</TableCell>
-                    <TableCell align="right">外链</TableCell>
+                    <TableCell>函数名</TableCell>
+                    <TableCell>简介</TableCell>
+                    <TableCell>外链</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -136,9 +158,9 @@ const NoMatch = () => {
                       <TableCell component="th" scope="row">
                         {row.category}
                       </TableCell>
-                      <TableCell align="right">{row.name}</TableCell>
-                      <TableCell align="right">{row.intro}</TableCell>
-                      <TableCell align="right">{row.url}</TableCell>
+                      <TableCell>{row.name}</TableCell>
+                      <TableCell>{row.intro}</TableCell>
+                      <TableCell>{row.url}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
