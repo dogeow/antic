@@ -97,7 +97,7 @@ const NoMatch = () => {
                         onMouseDown={handleMouseDownSearch}
                         edge="end"
                       >
-                        <Icon path={mdiLoading} spin="mdi-spin" size={1} />
+                        <Icon path={mdiLoading} spin size={1} />
                       </IconButton>
                     </InputAdornment>
                   </>
