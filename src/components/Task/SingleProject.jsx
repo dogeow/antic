@@ -82,7 +82,7 @@ const SingleProject = () => {
 
   const handleMarkProjectAsCompleted = () => {
     axios.delete(`projects/${projectId}`);
-    history.push("/todo");
+    history.push("/project");
   };
 
   const handleUndoMarkTaskAsCompleted = (taskId) => {

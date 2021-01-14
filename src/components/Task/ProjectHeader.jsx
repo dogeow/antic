@@ -12,7 +12,7 @@ const ProjectHeader = () => (
       </Typography>
     </Grid>
     <Grid item>
-      <RouterLink to="/todo/create">
+      <RouterLink to="/project/create">
         <Button variant="contained">创建新的项目</Button>
       </RouterLink>
     </Grid>

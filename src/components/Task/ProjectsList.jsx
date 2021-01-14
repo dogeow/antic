@@ -20,7 +20,7 @@ const ProjectsList = ({ projects }) => {
       <Grid container spacing={2}>
         {projects.map((project, index) => (
           <Grid item xs={12} key={index}>
-            <RouterLink to={`todo/${project.id}`}>
+            <RouterLink to={`project/${project.id}`}>
               <Badge
                 anchorOrigin={{
                   vertical: "top",

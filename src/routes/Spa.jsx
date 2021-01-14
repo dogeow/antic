@@ -120,15 +120,15 @@ const Spa = ({ match }) => {
           />
           <Route
             exact
-            path="/task"
+            path="/project"
             component={loadable(() => import("../components/Task/Project"))}
           />
           <Route
-            path="/task/create"
+            path="/project/create"
             component={loadable(() => import("../components/Task/NewProject"))}
           />
           <Route
-            path="/task/:id"
+            path="/project/:id"
             component={loadable(() =>
               import("../components/Task/SingleProject")
             )}

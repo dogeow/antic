@@ -22,7 +22,7 @@ const NewProject = () => {
         description,
       })
       .then(() => {
-        history.push("/todo");
+        history.push("/project");
       })
       .catch((error) => {
         setErrors(error.response.data.errors);

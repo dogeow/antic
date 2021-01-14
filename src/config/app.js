@@ -3,7 +3,7 @@ export default {
   fullWidth: ["login"],
   menus: [
     { name: "📄文章", url: "/posts" },
-    { name: "📋Todo", url: "/todo" },
+    { name: "📋Todo", url: "/project" },
     { name: "📦一些 Demo", url: "/demo" },
     { name: "⚙️便民 API", url: "/api" },
     { name: "🙀表情", url: "/emoji" },
