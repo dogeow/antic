@@ -8,10 +8,10 @@ const defaultState = {
   toggleDrawer: false,
   paletteMode,
   isExpired: isExpired(),
-  token: localStorage.getItem("token") || null,
-  userId: localStorage.getItem("userId") || null,
-  userName: localStorage.getItem("userName") || null,
-  userEmail: localStorage.getItem("userEmail") || null,
+  token: localStorage.getItem("token"),
+  userId: localStorage.getItem("userId"),
+  userName: localStorage.getItem("userName"),
+  userEmail: localStorage.getItem("userEmail"),
 };
 
 const lab = (state = defaultState, action) => {
