@@ -29,4 +29,9 @@ module.exports = {
     "react/display-name": 0,
     "simple-import-sort/imports": "error",
   },
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
 };
