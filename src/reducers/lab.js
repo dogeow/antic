@@ -9,7 +9,7 @@ const defaultState = {
   paletteMode,
   isExpired: isExpired(),
   token: localStorage.getItem("token") || null,
-  user_id: localStorage.getItem("userId") || null,
+  userId: localStorage.getItem("userId") || null,
   userName: localStorage.getItem("userName") || null,
   userEmail: localStorage.getItem("userEmail") || null,
 };
