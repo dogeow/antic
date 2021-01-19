@@ -238,7 +238,7 @@ const Header = ({
                 <GitHub />
               </IconButton>
             </Hidden>
-            {lab.is_expired ? (
+            {lab.isExpired ? (
               <Button color="inherit" component={RouteLink} to="/login">
                 登录
               </Button>
