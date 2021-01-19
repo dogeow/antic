@@ -6,17 +6,17 @@ import face from "../resources/face.json";
 
 /**
  * 分类筛选
- * @param {array} array 表情数组
+ * @param {array} gifs 表情数组
  * @param {string} category 点击了哪个分类
  * @return {array} 符合该分类的表情数组
  */
-function categoryFilter(array, category) {
+function categoryFilter(gifs, category) {
   if (category === "全部") {
-    return array;
+    return gifs;
   }
   const filter = [];
-  array.map((single) => {
-    return single.category === category ? filter.push(single) : null;
+  gifs.map((gif) => {
+    return gif.category === category ? filter.push(gif) : null;
   });
 
   return filter;
@@ -24,19 +24,19 @@ function categoryFilter(array, category) {
 
 /**
  * 标签筛选
- * @param {array} array 表情数组
+ * @param {array} gifs 表情数组
  * @param {string} tagState 已被选择的标签
  * @return {array} 符合该标签的数组
  */
-function tagFilter(array, tagState) {
+function tagFilter(gifs, tagState) {
   if (tagState === "全部") {
-    return array;
+    return gifs;
   }
 
   const filter = [];
-  for (const single of array) {
-    if (single.tag.includes(tagState)) {
-      filter.push(single);
+  for (const gif of gifs) {
+    if (gif.tag.includes(tagState)) {
+      filter.push(gif);
     }
   }
 
@@ -45,13 +45,13 @@ function tagFilter(array, tagState) {
 
 /**
  * 返回表情数组所有的标签
- * @param {array} array
+ * @param {array} gifs 表情数组
  * @return {array}
  */
-function allTag(array) {
+function allTag(gifs) {
   let tagsList = [];
-  array.map((single) => {
-    return (tagsList = tagsList.concat(single.tag));
+  gifs.map((gif) => {
+    return (tagsList = tagsList.concat(gif.tag));
   });
 
   return uniq(tagsList);
@@ -117,7 +117,7 @@ export default (state = defaultState, action) => {
         selectedTag: "全部",
         displayTag: allTag(categoryData),
         data,
-        currentPage: 1, // 点击分类后都切换到第一页
+        currentPage: 1,
         filterNum: categoryData.length,
         faceIsLoading: action.payload !== state.selectedCategory,
         expandCategory: !isMobile,
@@ -228,7 +228,7 @@ export default (state = defaultState, action) => {
         selectedTag: "全部",
         displayTag: allTag(face),
         data: filterAllEmoji,
-        currentPage: 1, // 点击分类后都切换到第一页
+        currentPage: 1,
         filterNum: face.length,
         expandCategory: !isMobile,
         openSetting: false,

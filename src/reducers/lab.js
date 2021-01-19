@@ -38,8 +38,8 @@ const lab = (state = defaultState, action) => {
     case "LOGOUT":
       return {
         ...state,
-        token: null,
         isExpired: true,
+        token: null,
         userId: null,
         userName: null,
         userEmail: null,
