@@ -1,5 +1,6 @@
-import { isExpired } from "../helpers";
+import { expired } from "../helpers";
 
+const isExpired = expired();
 const hour = new Date().getHours();
 const isRest = (hour >= 18 && hour <= 24) || (hour >= 0 && hour <= 6);
 const paletteMode = isRest ? "dark" : "light";
@@ -7,7 +8,7 @@ const paletteMode = isRest ? "dark" : "light";
 const defaultState = {
   toggleDrawer: false,
   paletteMode,
-  isExpired: isExpired(),
+  isExpired: isExpired,
   token: localStorage.getItem("token"),
   userId: localStorage.getItem("userId"),
   userName: localStorage.getItem("userName"),
@@ -19,7 +20,7 @@ const lab = (state = defaultState, action) => {
     case "LOGIN":
       return {
         ...state,
-        isExpired: isExpired(),
+        isExpired: isExpired,
         token: action.token,
         userId: action.userId,
         userName: action.userName,
