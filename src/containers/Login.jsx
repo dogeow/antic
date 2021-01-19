@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: `url(${process.env.REACT_APP_API_URL}random)`,
+    backgroundImage: `url(${process.env.REACT_APP_API_URL}/random)`,
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "dark"

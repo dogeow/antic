@@ -39,7 +39,7 @@ export default function Table() {
         title="Powered by"
         data={(query) => {
           return new Promise((resolve, reject) => {
-            let url = `${process.env.REACT_APP_API_URL}powered-by?`;
+            let url = `${process.env.REACT_APP_API_URL}/powered-by?`;
             url += `page[size]=${query.pageSize}`;
             url += `&page[number]=${query.page + 1}`;
             if (query.search !== "") {

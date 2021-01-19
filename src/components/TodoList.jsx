@@ -66,7 +66,7 @@ const TodoList = () => {
         title="待办事项"
         data={(query) => {
           return new Promise((resolve, reject) => {
-            let url = `${process.env.REACT_APP_API_URL}todo?`;
+            let url = `${process.env.REACT_APP_API_URL}/todo?`;
             url += `page[size]=${query.pageSize}`;
             url += `&page[number]=${query.page + 1}`;
             if (query.search !== "") {
