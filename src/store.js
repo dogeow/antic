@@ -7,7 +7,6 @@ import rootReducer from "./reducers";
 
 const middlewareEnhancer = applyMiddleware(loggerMiddleware, thunkMiddleware);
 
-// 正式环境不记录 https://github.com/reduxjs/redux/issues/2359
 let composedEnhancers;
 if (process.env.NODE_ENV === "development") {
   composedEnhancers = compose(
