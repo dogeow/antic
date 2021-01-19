@@ -6,10 +6,8 @@ import moment from "moment";
  * @return {boolean}
  */
 export const isExpired = () => {
-  const accessTokenExpiredAt = localStorage.access_token_expired_at;
-  return !(
-    accessTokenExpiredAt && moment().isBefore(moment.unix(accessTokenExpiredAt))
-  );
+  const expiredAt = localStorage.access_token_expired_at;
+  return !(expiredAt && moment().isBefore(moment.unix(expiredAt)));
 };
 
 /**
