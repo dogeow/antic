@@ -8,7 +8,7 @@ const Routes = () => (
   <Switch>
     <Route
       exact
-      path="/projects"
+      path="/nav"
       component={loadable(() => import("../Project"))}
     />
     <Route
