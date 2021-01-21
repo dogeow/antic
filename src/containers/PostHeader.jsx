@@ -47,14 +47,14 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
       </Grid>
       <Grid item>
         <Chip
-          label={post.category || "未分类"}
+          label={post?.category?.name || "未分类"}
           color="primary"
           variant="outlined"
           size="small"
         />
       </Grid>
       <Grid item>
-        <Tags tags={post.tags} />
+        <Tags tags={post?.tags} />
       </Grid>
       <Grid item>
         <ButtonGroup

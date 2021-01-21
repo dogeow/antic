@@ -23,7 +23,7 @@ hljs.registerLanguage("php", php);
 const PostBody = ({ post }) => {
   return (
     <>
-      {post.content ? (
+      {post?.content ? (
         <Viewer
           initialValue={post.content}
           useCommandShortcut

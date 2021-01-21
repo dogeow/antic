@@ -1,4 +1,4 @@
-import { gql, useLazyQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import Grid from "@material-ui/core/Grid";
 import Skeleton from "@material-ui/core/Skeleton";
 import Typography from "@material-ui/core/Typography";
@@ -14,8 +14,15 @@ import PostHeader from "./PostHeader";
 const POST_BY_ID = gql`
   query($id: Int!) {
     post(id: $id) {
+      id
       title
       content
+      category {
+        name
+      }
+      tags {
+        name
+      }
     }
   }
 `;
@@ -28,19 +35,21 @@ const PostSingle = () => {
   const match = useRouteMatch();
   const id = parseInt(match.params.id, 10);
 
-  const { loading, error, data } = useLazyQuery(POST_BY_ID, {
+  const { loading, error, data } = useQuery(POST_BY_ID, {
     variables: { id: id },
   });
 
-  console.log(data);
-  console.log(loading);
-  console.log(error);
-
   useEffect(() => {
     if (data) {
-      setPost(data);
+      setPost(data.post);
     }
-  }, [loading, data]);
+    if (loading) {
+      return <div>loading...</div>;
+    }
+    if (error) {
+      return <div>error</div>;
+    }
+  }, [loading, error, data]);
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
