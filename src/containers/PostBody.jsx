@@ -5,7 +5,7 @@ import "tui-chart/dist/tui-chart.css";
 import "@toast-ui/editor/dist/i18n/zh-cn";
 import "../styles/toastui-editor-viewer.css";
 
-import Skeleton from "@material-ui/lab/Skeleton";
+import Skeleton from "@material-ui/core/Skeleton";
 import chart from "@toast-ui/editor-plugin-chart";
 import codeSyntaxHightlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
@@ -37,7 +37,7 @@ const PostBody = ({ post }) => {
           ]}
         />
       ) : (
-        <Skeleton variant="rect" height="60vh" />
+        <Skeleton variant="rectangular" height="60vh" />
       )}
     </>
   );

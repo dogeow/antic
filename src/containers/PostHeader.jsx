@@ -2,9 +2,9 @@ import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
+import Skeleton from "@material-ui/core/Skeleton";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
-import Skeleton from "@material-ui/lab/Skeleton";
 import moment from "moment";
 import React from "react";
 
@@ -22,7 +22,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
           disableTouchListener
           TransitionComponent={Zoom}
           arrow
-          interactive
+          interactive="true"
         >
           <div>
             创建于<time>{moment(post.created_at).fromNow()}</time>
@@ -38,7 +38,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
           disableTouchListener
           TransitionComponent={Zoom}
           arrow
-          interactive
+          interactive="true"
         >
           <div>
             更新于<time>{moment(post.updated_at).fromNow()}</time>

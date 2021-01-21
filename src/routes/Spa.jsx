@@ -245,6 +245,10 @@ const Spa = ({ match }) => {
             path="/php-function"
             component={loadable(() => import("../containers/PHPFunction"))}
           />
+          <Route
+            path="/test"
+            component={loadable(() => import("../containers/Test"))}
+          />
           <Route component={loadable(() => import("../containers/NoMatch"))} />
         </Switch>
       </Container>

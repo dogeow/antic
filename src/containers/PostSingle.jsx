@@ -1,6 +1,7 @@
+import { gql, useLazyQuery } from "@apollo/client";
 import Grid from "@material-ui/core/Grid";
+import Skeleton from "@material-ui/core/Skeleton";
 import Typography from "@material-ui/core/Typography";
-import Skeleton from "@material-ui/lab/Skeleton";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
@@ -10,23 +11,36 @@ import Hr from "../components/Hr";
 import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
 
+const POST_BY_ID = gql`
+  query($id: Int!) {
+    post(id: $id) {
+      title
+      content
+    }
+  }
+`;
+
 const PostSingle = () => {
   const [post, setPost] = useState({});
-  const [quote, setQuote] = useState("");
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
 
   const history = useHistory();
   const match = useRouteMatch();
   const id = parseInt(match.params.id, 10);
 
+  const { loading, error, data } = useLazyQuery(POST_BY_ID, {
+    variables: { id: id },
+  });
+
+  console.log(data);
+  console.log(loading);
+  console.log(error);
+
   useEffect(() => {
-    axios.get(`posts/${id}`).then(({ data }) => {
+    if (data) {
       setPost(data);
-    });
-    axios.get("quote").then(({ data }) => {
-      setQuote(data.content);
-    });
-  }, [id]);
+    }
+  }, [loading, data]);
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
@@ -70,19 +84,6 @@ const PostSingle = () => {
           <PostBody post={post} />
         </Grid>
         <Hr />
-        <Grid
-          item
-          xs={12}
-          style={{
-            borderColor: "gray",
-            borderLeftStyle: "solid",
-            borderLeftWidth: 2,
-            color: "gray",
-            marginBottom: 40,
-          }}
-        >
-          {quote}
-        </Grid>
       </Grid>
     </>
   );
