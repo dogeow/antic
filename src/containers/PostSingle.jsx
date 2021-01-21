@@ -24,6 +24,7 @@ const POST_BY_ID = gql`
         name
       }
     }
+    quote
   }
 `;
 
@@ -36,24 +37,16 @@ const PostSingle = () => {
   const match = useRouteMatch();
   const id = parseInt(match.params.id, 10);
 
-  const { loading, error, data } = useQuery(POST_BY_ID, {
+  const { data } = useQuery(POST_BY_ID, {
     variables: { id: id },
   });
 
   useEffect(() => {
     if (data) {
       setPost(data.post);
+      setQuote(data.quote);
     }
-    if (loading) {
-      return <div>loading...</div>;
-    }
-    if (error) {
-      return <div>error</div>;
-    }
-    axios.get("quote").then(({ data }) => {
-      setQuote(data.content);
-    });
-  }, [loading, error, data]);
+  }, [data]);
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
