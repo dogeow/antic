@@ -11,7 +11,7 @@ import Hr from "../components/Hr";
 import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
 
-const POST_BY_ID = gql`
+const POST_BY_ID_AND_QUOTE = gql`
   query($id: Int!) {
     post(id: $id) {
       id
@@ -37,7 +37,7 @@ const PostSingle = () => {
   const match = useRouteMatch();
   const id = parseInt(match.params.id, 10);
 
-  const { data } = useQuery(POST_BY_ID, {
+  const { data } = useQuery(POST_BY_ID_AND_QUOTE, {
     variables: { id: id },
   });
 
