@@ -1,3 +1,4 @@
+import { gql, useQuery } from "@apollo/client";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
@@ -27,11 +28,24 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const PROJECT_BY_ID = gql`
+  query($id: Int!) {
+    project(id: $id) {
+      id
+      name
+      description
+      tasks {
+        title
+      }
+    }
+  }
+`;
+
 const SingleProject = () => {
   const classes = useStyles();
   const history = useHistory();
   const match = useRouteMatch();
-  const projectId = match.params.id;
+  const projectId = parseInt(match.params.id);
 
   const [project, setProject] = useState({});
   const [tasks, setTasks] = useState([]);
@@ -41,12 +55,16 @@ const SingleProject = () => {
   const [editId, setEditId] = useState();
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
 
+  const { data } = useQuery(PROJECT_BY_ID, {
+    variables: { id: projectId },
+  });
+
   useEffect(() => {
-    axios.get(`projects/${projectId}`).then(({ data }) => {
-      setProject(data);
-      setTasks(data.tasks);
-    });
-  }, [projectId]);
+    if (data) {
+      setTasks(data.project.tasks);
+      setProject(data.project);
+    }
+  }, [data]);
 
   const handleFieldChange = (event) => {
     setTitle(event.target.value);
