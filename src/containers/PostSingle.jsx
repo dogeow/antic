@@ -29,6 +29,7 @@ const POST_BY_ID = gql`
 
 const PostSingle = () => {
   const [post, setPost] = useState({});
+  const [quote, setQuote] = useState("");
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
 
   const history = useHistory();
@@ -49,6 +50,9 @@ const PostSingle = () => {
     if (error) {
       return <div>error</div>;
     }
+    axios.get("quote").then(({ data }) => {
+      setQuote(data.content);
+    });
   }, [loading, error, data]);
 
   const handleEdit = () => {
@@ -93,6 +97,19 @@ const PostSingle = () => {
           <PostBody post={post} />
         </Grid>
         <Hr />
+        <Grid
+          item
+          xs={12}
+          style={{
+            borderColor: "gray",
+            borderLeftStyle: "solid",
+            borderLeftWidth: 2,
+            color: "gray",
+            marginBottom: 40,
+          }}
+        >
+          {quote}
+        </Grid>
       </Grid>
     </>
   );
