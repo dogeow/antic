@@ -28,7 +28,7 @@ const ProjectsList = ({ projects }) => {
                 }}
                 color="secondary"
                 showZero
-                badgeContent={project.tasks_count}
+                badgeContent={project.taskCount}
                 className={classes.margin}
               >
                 <Button variant="contained" color="primary">

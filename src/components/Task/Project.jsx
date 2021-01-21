@@ -1,18 +1,31 @@
+import { gql, useQuery } from "@apollo/client";
 import Grid from "@material-ui/core/Grid";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import ProjectHeader from "./ProjectHeader";
 import ProjectsList from "./ProjectsList";
 
+const PROJECTS = gql`
+  query {
+    projects {
+      id
+      name
+      description
+      taskCount
+    }
+  }
+`;
+
 const Project = () => {
   const [projects, setProjects] = useState([]);
 
+  const { data } = useQuery(PROJECTS);
+
   useEffect(() => {
-    axios.get("projects").then(({ data }) => {
-      setProjects(data);
-    });
-  }, []);
+    if (data) {
+      setProjects(data.projects);
+    }
+  }, [data]);
 
   return (
     <Grid container spacing={2}>
