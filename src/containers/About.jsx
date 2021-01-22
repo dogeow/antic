@@ -1,30 +1,45 @@
-import axios from "axios";
+import { gql, useQuery } from "@apollo/client";
+import _ from "lodash";
 import React, { useEffect, useState } from "react";
+
+const ABOUT_ME = gql`
+  query {
+    aboutMe {
+      id
+      content
+      category
+    }
+  }
+`;
 
 const About = () => {
   const [aboutMe, setAboutMe] = useState([]);
 
+  const { data } = useQuery(ABOUT_ME);
+
   useEffect(() => {
-    axios.get("about_me").then(({ data }) => {
-      setAboutMe(data);
-    });
-  }, []);
+    if (data) {
+      setAboutMe(_.groupBy(data.aboutMe, "category"));
+    }
+  }, [data]);
 
   return (
     <>
-      {aboutMe.map((item) => (
-        <div key={item.category}>
-          <h3>{item.category}</h3>
-          <ul>
-            {item.list.map((subItem) => (
-              <li
-                key={subItem.id}
-                dangerouslySetInnerHTML={{ __html: subItem.content }}
-              />
-            ))}
-          </ul>
-        </div>
-      ))}
+      {Object.keys(aboutMe).map(function (category) {
+        return (
+          <div key={category}>
+            <h3>{category}</h3>
+            <ul>
+              {aboutMe[category].map((item) => (
+                <li
+                  key={item.id}
+                  dangerouslySetInnerHTML={{ __html: item.content }}
+                />
+              ))}
+            </ul>
+          </div>
+        );
+      })}
     </>
   );
 };
