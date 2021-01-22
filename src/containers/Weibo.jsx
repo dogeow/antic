@@ -1,10 +1,10 @@
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
+import Pagination from "@material-ui/core/Pagination";
+import PaginationItem from "@material-ui/core/PaginationItem";
 import Skeleton from "@material-ui/core/Skeleton";
 import { makeStyles } from "@material-ui/core/styles";
 import ErrorOutline from "@material-ui/icons/ErrorOutline";
-import Pagination from "@material-ui/lab/Pagination";
-import PaginationItem from "@material-ui/lab/PaginationItem";
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import axios from "axios";
 import random from "lodash/random";

@@ -1,8 +1,8 @@
+import { gql, useQuery } from "@apollo/client";
 import { makeStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import RemoveIcon from "@material-ui/icons/Remove";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import SpeedDial from "../components/SpeedDial";
@@ -26,11 +26,19 @@ const SelfTalk = () => {
   const classes = useStyles({ fontSize: `${fontSize}em` });
   const [quotes, setQuotes] = useState([]);
 
+  const { data } = useQuery(gql`
+    query {
+      quotes {
+        content
+      }
+    }
+  `);
+
   useEffect(() => {
-    axios.get("quotes").then(({ data }) => {
-      setQuotes(data);
-    });
-  }, []);
+    if (data) {
+      setQuotes(data.quotes);
+    }
+  }, [data]);
 
   const handleSub = () => {
     if (fontSize === 1) {
