@@ -117,7 +117,7 @@ const Weibo = () => {
                   <tr key={index}>
                     <td colSpan={2}>
                       <Skeleton
-                        variant="rect"
+                        variant="rectangular"
                         width={`${random(20, 88)}%`}
                         height={20}
                       />
