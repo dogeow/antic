@@ -35,9 +35,7 @@ const SelfTalk = () => {
   `);
 
   useEffect(() => {
-    if (data) {
-      setQuotes(data.quotes);
-    }
+    data && setQuotes(data.quotes);
   }, [data]);
 
   const handleSub = () => {
