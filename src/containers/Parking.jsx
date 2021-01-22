@@ -14,7 +14,7 @@ const Parking = () => {
   `);
 
   useEffect(() => {
-    data && setParking(data, parking);
+    data && setParking(data.parking);
   }, [data]);
 
   return (
