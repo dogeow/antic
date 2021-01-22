@@ -68,7 +68,7 @@ const Demo = () => (
           </a>
         </li>
         <li>
-          <a href="/demos/canvas/love.html" target="_blank">
+          <a href="/demos/canvas/like.html" target="_blank">
             喜欢的（Three.js）
           </a>
         </li>
