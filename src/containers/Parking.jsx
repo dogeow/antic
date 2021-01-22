@@ -1,20 +1,27 @@
-import axios from "axios";
+import { gql, useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 
 const Parking = () => {
-  const [data, setData] = useState([]);
+  const [parking, setParking] = useState([]);
+
+  const { data } = useQuery(gql`
+    query {
+      parking {
+        id
+        status
+      }
+    }
+  `);
 
   useEffect(() => {
-    axios.get("parking").then(({ data }) => {
-      setData(data);
-    });
-  }, []);
+    data && setParking(data, parking);
+  }, [data]);
 
   return (
     <>
       <div>
         <ul style={{ paddingInlineStart: "inherit" }}>
-          {data.map((item) => (
+          {parking.map((item) => (
             <li key={item.id} style={{ color: item.status ? "green" : "red" }}>
               {item.id}
             </li>
