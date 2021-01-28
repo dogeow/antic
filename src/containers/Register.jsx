@@ -28,7 +28,7 @@ import Copyright from "../components/Copyright";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(6),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -122,10 +122,10 @@ const Register = ({ history }) => {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" style={{ marginBottom: 10 }}>
           注册
         </Typography>
-        <div className={classes.root}>
+        <div>
           <AppBar position="static">
             <Tabs
               value={value}
