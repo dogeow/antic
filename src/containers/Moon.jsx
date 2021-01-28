@@ -24,7 +24,7 @@ const Moon = () => {
       setMoonHistory(resp.data.history);
       setStatistics(resp.data.statistics);
     });
-  }, []);
+  }, [name]);
 
   const handleChange = (e) => {
     setName(e.target.value);
