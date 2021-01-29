@@ -20,7 +20,7 @@ const lab = (state = defaultState, action) => {
     case "LOGIN":
       return {
         ...state,
-        isExpired: isExpired,
+        isExpired: false,
         token: action.token,
         userId: action.userId,
         userName: action.userName,
