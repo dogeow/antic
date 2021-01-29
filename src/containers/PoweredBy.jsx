@@ -1,141 +1,81 @@
-import MaterialTable from "material-table";
-import React, { useState } from "react";
+import React from "react";
 
-import localization from "../config/localization";
-
-export default function Table() {
-  const [project, setProject] = useState([]);
-
+export default function PowerBy() {
   return (
-    <div>
-      <MaterialTable
-        columns={[
-          {
-            title: "名称",
-            field: "name",
-            render: (rowData) =>
-              rowData.link ? (
-                <a
-                  href={rowData.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {rowData.name}
-                </a>
-              ) : (
-                rowData.name
-              ),
-          },
-          { title: "备注", field: "note" },
-          { title: "分类", field: "category" },
-        ]}
-        options={{
-          filtering: true,
-          grouping: true,
-          exportButton: true,
-          selection: true,
-          sorting: true,
-        }}
-        title="Powered by"
-        data={(query) => {
-          return new Promise((resolve, reject) => {
-            let url = `${process.env.REACT_APP_API_URL}/powered-by?`;
-            url += `page[size]=${query.pageSize}`;
-            url += `&page[number]=${query.page + 1}`;
-            if (query.search !== "") {
-              url += `&search=${query.search}`;
-            }
-            if (query.filters.length !== 0) {
-              query.filters.forEach((filter) => {
-                url += `&filter[${filter.column.field}]=${filter.value}`;
-              });
-            }
-
-            fetch(url)
-              .then((response) => response.json())
-              .then((result) => {
-                resolve({
-                  data: result.data,
-                  page: result.current_page - 1,
-                  totalCount: result.total,
-                });
-              });
-          });
-        }}
-        editable={
-          localStorage.userId !== "1"
-            ? false
-            : {
-                onBulkUpdate: (changes) =>
-                  new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                      /* setData([...data, newData]); */
-
-                      resolve();
-                    }, 1000);
-                  }),
-                onRowUpdateCancelled: (rowData) =>
-                  window.console.log("Row editing cancelled"),
-                onRowAdd: (newData) =>
-                  new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                      /* setData([...data, newData]); */
-
-                      resolve();
-                    }, 1000);
-                  }),
-                onRowUpdate: (newData, oldData) =>
-                  new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                      const dataUpdate = [...project];
-                      const index = oldData.tableData.id;
-                      dataUpdate[index] = newData;
-                      setProject([...dataUpdate]);
-
-                      resolve();
-                    }, 1000);
-                  }),
-                onRowDelete: (oldData) =>
-                  new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                      const dataDelete = [...project];
-                      const index = oldData.tableData.id;
-                      dataDelete.splice(index, 1);
-                      setProject([...dataDelete]);
-
-                      resolve();
-                    }, 1000);
-                  }),
-              }
-        }
-        localization={localization}
-      />
+    <>
       <div>
-        <p>
-          <a
-            href="https://validator.w3.org/nu/?doc=https%3A%2F%2F233.sx%2F"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              style={{ border: 0, width: 88, height: 31 }}
-              src={`${process.env.REACT_APP_CDN_URL}/valid-xhtml20.gif`}
-              alt="Valid HTML!"
-            />
-          </a>
-          <a
-            href="http://jigsaw.w3.org/css-validator/validator?uri=233.sx&profile=css3svg&usermedium=all&warning=1&vextwarning="
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              style={{ border: 0, width: 88, height: 31 }}
-              src={`${process.env.REACT_APP_CDN_URL}/vcss.gif`}
-              alt="Valid CSS!"
-            />
-          </a>
-        </p>
+        <h2>前端</h2>
+        <ul>
+          <li>React(JavaScript</li>
+          <ul>
+            <li>Material-UI</li>
+            <ul>
+              <li>material design icons</li>
+              <li>pickers</li>
+              <li>@mdi/js</li>
+              <li>@mdi/react</li>
+            </ul>
+            <li>react-router-dom</li>
+            <li>Redux</li>
+            <ul>
+              <li>React Redux</li>
+              <li>Redux Toolkit</li>
+            </ul>
+            <li>SweetAlert 2</li>
+          </ul>
+          <li>GraphQL</li>
+          <ul>
+            <li>Apollo</li>
+          </ul>
+          <li>Axios</li>
+          <li>styled</li>
+          <li>loadable</li>
+          <li>imagesloaded</li>
+          <li>lodash</li>
+          <li>TOAST UI</li>
+          <li>Video.js</li>
+          <li>Moment</li>
+          <li>socket.io</li>
+          <li>clipboard</li>
+          <li>react-dnd</li>
+        </ul>
       </div>
-    </div>
+      <div>
+        <h2>后端</h2>
+        <ul>
+          <li>Laravel(PHP)</li>
+          <ul>
+            <li>jwt-auth</li>
+            <li>laravel-query-builder</li>
+            <li>Laravel-WebSockets</li>
+          </ul>
+        </ul>
+      </div>
+      <div>
+        <h2>服务器</h2>
+        <ul>
+          <li>Ubuntu 20.04 LTS</li>
+          <li>Nginx 1.14.0</li>
+          <li>MySQL 5.7</li>
+        </ul>
+      </div>
+      <div>
+        <h2>第三方</h2>
+        <ul>
+          <li>Cloudflare</li>
+          <li>Algolia Search</li>
+          <li>OSS</li>
+          <li>Slack</li>
+          <li>Sentry</li>
+          <li>Gravatar</li>
+        </ul>
+      </div>
+      <div>
+        <h2>其他</h2>
+        <ul>
+          <li>Overwatch Pointer</li>
+        </ul>
+      </div>
+    </>
   );
 }
