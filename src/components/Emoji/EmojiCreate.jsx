@@ -1,14 +1,14 @@
+import MuiAlert from "@material-ui/core/Alert";
 import Grid from "@material-ui/core/Grid";
 import Snackbar from "@material-ui/core/Snackbar";
 import Typography from "@material-ui/core/Typography";
-import MuiAlert from "@material-ui/lab/Alert";
 import axios from "axios";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const EmojiCreate = () => {
   const [data, setData] = useState();
@@ -41,7 +41,7 @@ const EmojiCreate = () => {
         },
       })
       .then(({ data }) => {
-        setData();
+        setData(data);
         setOpen(true);
       });
   }, []);
