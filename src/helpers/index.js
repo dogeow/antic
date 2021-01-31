@@ -1,5 +1,5 @@
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 
 /**
  * 判断是否登录过期
@@ -7,7 +7,7 @@ import moment from "moment";
  */
 export const expired = () => {
   const expiredAt = localStorage.access_token_expired_at;
-  return !(expiredAt && moment().isBefore(moment.unix(expiredAt)));
+  return !(expiredAt && dayjs().isBefore(dayjs.unix(expiredAt)));
 };
 
 /**
@@ -17,7 +17,7 @@ export const expired = () => {
  */
 export const logged = (token, user) => {
   localStorage.token = token.access_token;
-  localStorage.access_token_expired_at = moment().unix() + token.expires_in;
+  localStorage.access_token_expired_at = dayjs().unix() + token.expires_in;
   localStorage.userId = user.id;
   localStorage.userName = user.name;
   localStorage.userEmail = user.email;

@@ -7,8 +7,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import ErrorOutline from "@material-ui/icons/ErrorOutline";
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import axios from "axios";
+import dayjs from "dayjs";
 import random from "lodash/random";
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -32,7 +32,7 @@ const Weibo = () => {
   const [currPage, setCurrPage] = useState(1);
 
   useEffect(() => {
-    const selectDate = moment(selectedDate).format("Y-MM-DD");
+    const selectDate = dayjs(selectedDate).format("Y-MM-DD");
     axios
       .post(`weibo?date=${selectDate}&page[number]=${currPage}`)
       .then(({ data }) => {
@@ -45,7 +45,7 @@ const Weibo = () => {
   const handlePage = (page) => {
     axios
       .post(
-        `weibo?date=${moment(selectedDate).format(
+        `weibo?date=${dayjs(selectedDate).format(
           "Y-MM-DD"
         )}&page[number]=${page}`
       )
@@ -63,7 +63,7 @@ const Weibo = () => {
           margin="normal"
           id="date-picker-dialog"
           label="日期"
-          format="Y-MM-DD"
+          format="YYYY-MM-DD"
           disableFuture
           value={selectedDate}
           onChange={handleDateChange}

@@ -34,7 +34,7 @@ export default function PowerBy() {
           <li>lodash</li>
           <li>TOAST UI</li>
           <li>Video.js</li>
-          <li>Moment</li>
+          <li>Day.js</li>
           <li>socket.io</li>
           <li>clipboard</li>
           <li>react-dnd</li>

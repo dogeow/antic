@@ -5,6 +5,7 @@
   "main": "index.jsx",
   "dependencies": {
     "@apollo/client": "^3.3.7",
+    "@date-io/dayjs": "1.x",
     "@date-io/moment": "1.x",
     "@emotion/react": "^11.1.2",
     "@emotion/styled": "^11.0.0",
@@ -34,6 +35,7 @@
     "clipboard": "^2.0.6",
     "clsx": "^1.1.1",
     "codemirror": "^5.58.3",
+    "dayjs": "^1.10.4",
     "emotion": "^11.0.0",
     "graphql": "^15.4.0",
     "highlight.js": "^10.4.1",
@@ -43,7 +45,6 @@
     "lodash": "^4.17.20",
     "material-table": "^1.69.2",
     "md5": "^2.3.0",
-    "moment": "^2.29.1",
     "node-sass": "4",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",

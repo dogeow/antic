@@ -1,6 +1,6 @@
 import Grid from "@material-ui/core/Grid";
+import dayjs from "dayjs";
 import md5 from "md5";
-import moment from "moment";
 import React from "react";
 import { useStore } from "react-redux";
 
@@ -35,7 +35,7 @@ const User = () => {
           <li>User-Agent：{navigator.userAgent}</li>
           <li>
             Token 到期时间：
-            {moment
+            {dayjs
               .unix(localStorage.access_token_expired_at)
               .format("YYYY-MM-DD HH:mm:ss")}
           </li>

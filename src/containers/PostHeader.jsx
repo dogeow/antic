@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import Skeleton from "@material-ui/core/Skeleton";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
-import moment from "moment";
+import dayjs from "dayjs";
 import React from "react";
 
 import Tags from "../components/Post/Tags";
@@ -15,7 +15,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
     <>
       <Grid item>
         <Tooltip
-          title={moment(post.created_at).format("YYYY-MM-DD HH:mm:ss")}
+          title={dayjs(post.created_at).format("YYYY-MM-DD HH:mm:ss")}
           placement="top"
           enterDelay={200}
           disableFocusListener
@@ -25,13 +25,13 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
           interactive="true"
         >
           <div>
-            创建于<time>{moment(post.created_at).fromNow()}</time>
+            创建于<time>{dayjs(post.created_at).fromNow()}</time>
           </div>
         </Tooltip>
       </Grid>
       <Grid item>
         <Tooltip
-          title={moment(post.updated_at).format("YYYY-MM-DD HH:mm:ss")}
+          title={dayjs(post.updated_at).format("YYYY-MM-DD HH:mm:ss")}
           placement="top"
           enterDelay={200}
           disableFocusListener
@@ -41,7 +41,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
           interactive="true"
         >
           <div>
-            更新于<time>{moment(post.updated_at).fromNow()}</time>
+            更新于<time>{dayjs(post.updated_at).fromNow()}</time>
           </div>
         </Tooltip>
       </Grid>
