@@ -253,7 +253,7 @@ const Header = ({
                 >
                   <Avatar
                     alt={lab.userName}
-                    src={`https://cn.gravatar.com/avatar/${md5(
+                    src={`https://dn-qiniu-avatar.qbox.me/${md5(
                       lab.userEmail
                     )}.jpg?d=mp&s=80`}
                   />

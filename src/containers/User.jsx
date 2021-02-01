@@ -7,7 +7,7 @@ import { useStore } from "react-redux";
 const User = () => {
   const store = useStore();
   const state = store.getState();
-  const avatar = `https://cn.gravatar.com/avatar/${md5(
+  const avatar = `https://dn-qiniu-avatar.qbox.me/${md5(
     state.lab.userEmail
   )}.jpg?d=mp&s=300`;
 
