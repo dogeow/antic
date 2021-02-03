@@ -106,18 +106,3 @@ export function getPriorityAttribute(value) {
     }
   }
 }
-
-export function loadAudio(src) {
-  return new Promise(function (resolve, reject) {
-    const audio = document.createElement("audio");
-    const root = document.getElementById("root");
-    audio.id = "music";
-    audio.src = src;
-    audio.autoplay = true;
-
-    audio.onload = () => resolve(audio);
-    audio.onerror = () => reject(new Error(`Audio load error for ${src}`));
-
-    root.append(audio);
-  });
-}
