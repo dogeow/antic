@@ -9,6 +9,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { alpha, makeStyles, useTheme } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
+import Tooltip from "@material-ui/core/Tooltip";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import GitHub from "@material-ui/icons/GitHub";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -234,33 +235,33 @@ const Header = ({
             )}
             <div className={classes.blank} />
             <Hidden only="xs">
-              <IconButton
-                aria-label="切换模式"
-                color="inherit"
-                onClick={onThemeClick}
+              <Tooltip
+                title="切换白天或夜晚主题"
+                aria-label="切换白天或夜晚主题"
               >
-                {lab.paletteMode === "dark" ? (
-                  <NightsStayIcon />
-                ) : (
-                  <WbSunnyIcon />
-                )}
-              </IconButton>
-              <IconButton
-                aria-label="播放音乐"
-                color="inherit"
-                onClick={playMusic}
-              >
-                <PlayCircleOutlineIcon />
-              </IconButton>
-              <IconButton
-                aria-label="GitHub 存储库"
-                color="inherit"
-                component="a"
-                href="https://github.com/likunyan/antic"
-                target="_blank"
-              >
-                <GitHub />
-              </IconButton>
+                <IconButton color="inherit" onClick={onThemeClick}>
+                  {lab.paletteMode === "dark" ? (
+                    <NightsStayIcon />
+                  ) : (
+                    <WbSunnyIcon />
+                  )}
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="播放音乐" aria-label="播放音乐">
+                <IconButton color="inherit" onClick={playMusic}>
+                  <PlayCircleOutlineIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="GitHub 存储库" aria-label="GitHub 存储库">
+                <IconButton
+                  color="inherit"
+                  component="a"
+                  href="https://github.com/likunyan/antic"
+                  target="_blank"
+                >
+                  <GitHub />
+                </IconButton>
+              </Tooltip>
             </Hidden>
             {lab.isExpired ? (
               <Button color="inherit" component={RouteLink} to="/login">
@@ -268,20 +269,22 @@ const Header = ({
               </Button>
             ) : (
               <div>
-                <IconButton
-                  aria-label="account of current user"
-                  aria-controls="profile"
-                  aria-haspopup="true"
-                  color="inherit"
-                  onClick={handleProfileMenu}
-                >
-                  <Avatar
-                    alt={lab.userName}
-                    src={`https://cn.gravatar.com/avatar/${md5(
-                      lab.userEmail
-                    )}.jpg?d=mp&s=80`}
-                  />
-                </IconButton>
+                <Tooltip title="个人中心" aria-label="个人中心">
+                  <IconButton
+                    aria-label="account of current user"
+                    aria-controls="profile"
+                    aria-haspopup="true"
+                    color="inherit"
+                    onClick={handleProfileMenu}
+                  >
+                    <Avatar
+                      alt={lab.userName}
+                      src={`https://cn.gravatar.com/avatar/${md5(
+                        lab.userEmail
+                      )}.jpg?d=mp&s=80`}
+                    />
+                  </IconButton>
+                </Tooltip>
                 <Menu
                   id="profile"
                   anchorEl={mobileMoreAnchorEl}
@@ -320,15 +323,17 @@ const Header = ({
                 </Menu>
               </div>
             )}
-            <IconButton
-              aria-label="show more"
-              aria-controls="menu"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
+            <Tooltip title="更多" aria-label="更多">
+              <IconButton
+                aria-label="show more"
+                aria-controls="menu"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <MoreIcon />
+              </IconButton>
+            </Tooltip>
             <Menu
               id="menu"
               anchorEl={anchorEl}
