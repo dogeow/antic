@@ -14,16 +14,18 @@ import GitHub from "@material-ui/icons/GitHub";
 import MenuIcon from "@material-ui/icons/Menu";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import NightsStayIcon from "@material-ui/icons/NightsStay";
+import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import SearchIcon from "@material-ui/icons/Search";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import md5 from "md5";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 import { Link as RouteLink, useHistory } from "react-router-dom";
 
 import Drawer from "../components/Drawer";
 import Logo from "../components/Logo";
 import Settings from "../components/Settings";
+import { loadAudio } from "../helpers";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -119,11 +121,11 @@ const Header = ({
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
   const profileOpen = Boolean(mobileMoreAnchorEl);
-  const [settingsOpen, setSettingsOpen] = React.useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   /**
    * 设置开关
@@ -151,6 +153,21 @@ const Header = ({
 
   const handleCloseProfile = () => {
     setMobileMoreAnchorEl(null);
+  };
+
+  const playMusic = () => {
+    const audio = document.getElementById("music");
+    if (audio === null) {
+      loadAudio(
+        "https://cdn.gugelong.com/music/%E5%92%8C%E6%A5%BD%E5%99%A8%E3%83%90%E3%83%B3%E3%83%89%20-%20%E6%9D%B1%E9%A2%A8%E7%A0%B4.mp3"
+      ).then((audio) => {});
+    } else {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
   };
 
   return (
@@ -227,6 +244,13 @@ const Header = ({
                 ) : (
                   <WbSunnyIcon />
                 )}
+              </IconButton>
+              <IconButton
+                aria-label="播放音乐"
+                color="inherit"
+                onClick={playMusic}
+              >
+                <PlayCircleOutlineIcon />
               </IconButton>
               <IconButton
                 aria-label="GitHub 存储库"
