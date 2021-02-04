@@ -5,6 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
+import Heart from "../components/Heart";
+
 const background = [
   "camry_1.png",
   "camry_2.png",
@@ -114,10 +116,7 @@ const Footer = () => {
         </Grid>
       </Grid>
       <div style={{ textAlign: "center", marginBottom: 20, opacity: 0.6 }}>
-        Built By <a href="https://kunyan.li">小李世界</a> with{" "}
-        <span role="img" aria-label="❤">
-          ❤️
-        </span>
+        Built By <a href="https://kunyan.li">小李世界</a> with <Heart />
       </div>
     </Container>
   );
