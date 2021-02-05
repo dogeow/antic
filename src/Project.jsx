@@ -50,7 +50,7 @@ function App() {
         ))}
       </div>
       <div id="custom-bg-attr" className="attr-link">
-        滑稽
+        滑稽实验室
       </div>
     </div>
   );
