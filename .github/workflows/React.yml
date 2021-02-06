@@ -5,6 +5,8 @@ jobs:
   build_job:
     runs-on: ubuntu-latest
     name: build
+    env:
+      REACT_APP_NAME: ${{ secrets.APP_NAME }}
     steps:
       - name: Checkout    
         uses: actions/checkout@v2
