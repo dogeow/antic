@@ -1,4 +1,4 @@
-name: antic
+name: React
 on: [push]
 
 jobs:
