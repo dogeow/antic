@@ -168,7 +168,7 @@ const Header = ({
                   color="inherit"
                   style={{ marginLeft: 16 }}
                   component={RouteLink}
-                  to="/todo"
+                  to="/project/1"
                 >
                   Todo
                 </Button>
