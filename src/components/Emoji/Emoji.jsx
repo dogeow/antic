@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Emoji = (props) => {
+const Emoji = ({ loading, ...props }) => {
   const history = useHistory();
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
@@ -36,10 +36,10 @@ const Emoji = (props) => {
 
   useEffect(() => {
     const imgLoad = imagesLoaded("#emoji");
-    imgLoad.on("done", () => props.loading(false));
+    imgLoad.on("done", () => loading(false));
 
     return () => imgLoad.off("done");
-  }, []);
+  }, [loading]);
 
   face.map((item) => {
     item.src = `${process.env.REACT_APP_CDN_URL}/emoji/${item.fileName}`;
