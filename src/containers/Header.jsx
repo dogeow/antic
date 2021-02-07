@@ -4,10 +4,9 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
-import InputBase from "@material-ui/core/InputBase";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { alpha, makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -17,7 +16,6 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import NightsStayIcon from "@material-ui/icons/NightsStay";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import SearchIcon from "@material-ui/icons/Search";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import md5 from "md5";
 import PropTypes from "prop-types";
@@ -31,49 +29,6 @@ import Settings from "../components/Settings";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-  },
-  title: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
-  },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
   },
   sectionDesktop: {
     display: "none",
@@ -207,19 +162,6 @@ const Header = ({
             <RouteLink to="/">
               <Logo />
             </RouteLink>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ "aria-label": "search" }}
-              />
-            </div>
             {matches && (
               <>
                 <Button
