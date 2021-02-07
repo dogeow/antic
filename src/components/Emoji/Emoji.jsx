@@ -36,10 +36,10 @@ const Emoji = (props) => {
 
   useEffect(() => {
     const imgLoad = imagesLoaded("#emoji");
-    imgLoad.on("always", () => props.loading(false));
+    imgLoad.on("done", () => props.loading(false));
 
-    return () => imgLoad.off("always");
-  }, [props]);
+    return () => imgLoad.off("done");
+  }, []);
 
   face.map((item) => {
     item.src = `${process.env.REACT_APP_CDN_URL}/emoji/${item.fileName}`;
