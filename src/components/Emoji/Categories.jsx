@@ -5,7 +5,7 @@ import React from "react";
 import CategoriesElem from "./CategoriesElem";
 
 const Category = (props) => {
-  const color = props.selectedCategory === "全部" ? "secondary" : "default";
+  const color = props.selectedCategory === "全部" ? "secondary" : "primary";
 
   return (
     <Grid container alignItems="center">

@@ -31,7 +31,7 @@ const CategoriesElem = (props) => {
             color={
               props.selectedCategory.indexOf(category) !== -1
                 ? "secondary"
-                : "default"
+                : "primary"
             }
             key={category}
             onClick={() => props.selectCategory(category)}

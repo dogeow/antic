@@ -5,7 +5,7 @@ import React from "react";
 import TagsElem from "./TagsElem";
 
 const Tag = (props) => {
-  const color = props.selectedTag === "全部" ? "secondary" : "default";
+  const color = props.selectedTag === "全部" ? "secondary" : "primary";
 
   return (
     <Grid container alignItems="center">

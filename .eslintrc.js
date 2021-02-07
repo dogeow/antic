@@ -25,6 +25,7 @@ module.exports = {
   plugins: ["react", "prettier", "simple-import-sort", "react-hooks"],
   rules: {
     "prettier/prettier": "error",
+    "no-unused-vars": 0,
     "require-jsdoc": 0,
     "react/prop-types": 0,
     "react/display-name": 0,

@@ -25,7 +25,7 @@ const TagsElem = (props) => {
               props.lab.paletteMode === "dark" ? "outlined" : "contained"
             }
             color={
-              props.selectedTag.indexOf(tag) !== -1 ? "secondary" : "default"
+              props.selectedTag.indexOf(tag) !== -1 ? "secondary" : "primary"
             }
             key={tag}
             onClick={() => props.selectTag(tag)}
