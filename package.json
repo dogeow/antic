@@ -13,7 +13,6 @@
     "@material-ui/icons": "^5.0.0-alpha.24",
     "@material-ui/lab": "^5.0.0-alpha.24",
     "@material-ui/pickers": "^3.2.10",
-    "@material-ui/system": "^4.11.2",
     "@mdi/js": "^5.8.55",
     "@mdi/react": "^1.4.0",
     "@reduxjs/toolkit": "^1.5.0",

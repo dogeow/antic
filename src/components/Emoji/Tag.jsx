@@ -10,11 +10,7 @@ const Tag = (props) => {
   return (
     <Grid container alignItems="center">
       <Grid item>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => props.toggleTag()}
-        >
+        <Button variant="contained" onClick={() => props.toggleTag()}>
           {props.expandTag ? "标签 <<" : "标签 >>"}
         </Button>
       </Grid>

@@ -10,11 +10,7 @@ const Category = (props) => {
   return (
     <Grid container alignItems="center">
       <Grid item>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => props.toggleCategory()}
-        >
+        <Button variant="contained" onClick={() => props.toggleCategory()}>
           {props.expandCategory ? "分类 <<" : "分类 >>"}
         </Button>
       </Grid>

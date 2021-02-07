@@ -26,9 +26,6 @@ const useStyles = makeStyles((theme) => ({
     height: "1px",
     margin: "10px 10px",
   },
-  main: {
-    margin: theme.spacing(3, 2),
-  },
 }));
 
 const Emoji = (props) => {
@@ -74,11 +71,7 @@ const Emoji = (props) => {
 
   return (
     <Grid container>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => handleSearch()}
-      >
+      <Button variant="contained" onClick={() => handleSearch()}>
         搜索
       </Button>
       <Button
