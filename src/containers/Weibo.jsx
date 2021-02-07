@@ -32,7 +32,7 @@ const Weibo = () => {
   const [currPage, setCurrPage] = useState(1);
 
   useEffect(() => {
-    const selectDate = dayjs(selectedDate).format("Y-MM-DD");
+    const selectDate = dayjs(selectedDate).format("YYYY-MM-DD");
     axios
       .post(`weibo?date=${selectDate}&page[number]=${currPage}`)
       .then(({ data }) => {
