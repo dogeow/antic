@@ -1659,7 +1659,7 @@
     hoist-non-react-statics "^3.3.1"
     react-is "^16.12.0"
 
-"@material-ui/core@^5.0.0-alpha.18":
+"@material-ui/core@^5.0.0-alpha.24":
   version "5.0.0-alpha.24"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-5.0.0-alpha.24.tgz#06ec3e1ccae48965b58842455dddc13f441e0112"
   integrity sha512-X4CFyL0De9aWy6G+CAolfbEcl1UsAI74BQZeEY+cE1MZHGfJl992LeXnhgtR3OpQoCtS7FUlptsed0kcsertDA==
@@ -1680,14 +1680,14 @@
     react-is "^16.8.0 || ^17.0.0"
     react-transition-group "^4.4.0"
 
-"@material-ui/icons@^5.0.0-alpha.15":
+"@material-ui/icons@^5.0.0-alpha.24":
   version "5.0.0-alpha.24"
   resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-5.0.0-alpha.24.tgz#2f04c7c7dfb8f6991e0af6e2bae2fc066ec780d0"
   integrity sha512-b9WnCARLzy3tRmSShn5iV6EYpWNLmrv9P+1ebAGxkHYvOi7ZHsk6NeL61FNx+sJ9nSrLnk+N7rTYI0h03XViPA==
   dependencies:
     "@babel/runtime" "^7.4.4"
 
-"@material-ui/lab@^5.0.0-alpha.18":
+"@material-ui/lab@^5.0.0-alpha.24":
   version "5.0.0-alpha.24"
   resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-5.0.0-alpha.24.tgz#d7c386b500298382bed91bb4148e2034447537f7"
   integrity sha512-4B5Y3kHZrBfNtckkZ5mnYz3+0vOeu8t+2Ks9DqPTQuCoyXwz7iTVkvBMcAvNEweaQrWfRubUNeP17Rn5z6VjmA==
