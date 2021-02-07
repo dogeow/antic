@@ -35,7 +35,9 @@ const PROJECT_BY_ID = gql`
       name
       description
       tasks {
+        id
         title
+        is_completed
       }
     }
   }
