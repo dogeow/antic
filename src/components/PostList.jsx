@@ -17,34 +17,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
-
 const PostList = () => {
-  const query = useQuery();
   const classes = useStyles();
   const [post, setPost] = useState({});
   const [pageCount, setPageCount] = useState();
   const [currPage, setCurrPage] = useState(1);
+  const location = useLocation();
 
   useEffect(() => {
-    const queryCategoryValue = query.get("filter[category.name]");
-    const queryCategory =
-      queryCategoryValue !== null
-        ? `?filter[category.name]=${queryCategoryValue}`
-        : "";
+    const searchParams = new URLSearchParams(location.search);
+    const categoryValue = searchParams.get("filter[category.name]");
+    const category =
+      categoryValue !== null ? `?filter[category.name]=${categoryValue}` : "";
 
-    const queryTagValue = query.get("filter[tags.name]");
-    const queryTag =
-      queryTagValue !== null ? `?filter[tags.name]=${queryTagValue}` : "";
+    const tagValue = searchParams.get("filter[tags.name]");
+    const tag = tagValue !== null ? `?filter[tags.name]=${tagValue}` : "";
 
-    axios.get(`posts${queryCategory}${queryTag}`).then(({ data }) => {
+    axios.get(`posts${category}${tag}`).then(({ data }) => {
       setPost(data);
       setCurrPage(data.current_page);
       setPageCount(data.last_page);
     });
-  }, [query]);
+  }, [location]);
 
   const handlePage = (page) => {
     axios.get(`posts?page[number]=${page}`).then(({ data }) => {
