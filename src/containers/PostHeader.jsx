@@ -6,9 +6,12 @@ import Skeleton from "@material-ui/core/Skeleton";
 import Tooltip from "@material-ui/core/Tooltip";
 import Zoom from "@material-ui/core/Zoom";
 import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import React from "react";
 
 import Tags from "../components/Post/Tags";
+
+dayjs.extend(relativeTime);
 
 const PostHeader = ({ post, handleEdit, handleDelete }) => {
   return post ? (
