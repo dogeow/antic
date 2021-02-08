@@ -117,22 +117,20 @@ document.addEventListener(
 
 window.io = require("socket.io-client");
 
-window.Echo = new Echo({
-  broadcaster: "socket.io",
-  host: window.location.hostname + ":6001",
-});
+// window.Echo = new Echo({
+//   broadcaster: "socket.io",
+//   host: window.location.hostname + ":6001",
+// });
 
 // window.Pusher = require("pusher-js");
 //
-// window.Echo = new Echo({
-//   broadcaster: "pusher",
-//   key: process.env.REACT_APP_PUSHER_APP_KEY,
-//   wsHost: window.location.hostname,
-//   wsPort: 443,
-//   disableStats: true,
-//   cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
-//   encrypted: true,
-// });
+window.Echo = new Echo({
+  broadcaster: "socket.io",
+  wsHost: window.location.hostname,
+  wsPort: 443,
+  disableStats: true,
+  encrypted: true,
+});
 
 window.Echo.channel("push").listen("TestBroadcastingEvent", (e) => {
   console.log(e);
