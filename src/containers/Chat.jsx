@@ -9,26 +9,7 @@ export default function Chat() {
   const [alertMessage, setAlertMessage] = React.useState("");
   const [open, setOpen] = React.useState(false);
 
-  const handlePost = (e) => {
-    setContent([...content, message]);
-    axios.post("/chat", {
-      message: message,
-    });
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  const handleChange = (e) => {
-    const message = e.target.value;
-    setMessage(e.target.value);
-  };
-  window.Echo.channel("chat").listen(".test", (e) => {
+  window.Echo.channel("chat").listen(".chat", (e) => {
     setContent([...content, e.message]);
   });
 
@@ -45,6 +26,36 @@ export default function Chat() {
       setAlertMessage(`${user} 退出了房间`);
       setOpen(true);
     });
+
+  const socketId = window.Echo.socketId();
+
+  const handlePost = (e) => {
+    setContent([...content, message]);
+    axios.post(
+      "/chat",
+      {
+        message: message,
+      },
+      {
+        headers: {
+          "X-Socket-ID": socketId,
+        },
+      }
+    );
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const handleChange = (e) => {
+    const message = e.target.value;
+    setMessage(e.target.value);
+  };
 
   return (
     <Grid container spacing={2}>
