@@ -126,7 +126,7 @@ window.io = require("socket.io-client");
 //
 window.Echo = new Echo({
   broadcaster: "socket.io",
-  wsHost: window.location.hostname,
+  wsHost: window.location.hostname + ":6001",
   wsPort: 443,
   disableStats: true,
   encrypted: true,
