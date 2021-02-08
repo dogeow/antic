@@ -1,5 +1,5 @@
 import axios from "axios";
-// import Echo from "laravel-echo";
+import Echo from "laravel-echo";
 import Swal from "sweetalert2";
 
 import consoleInfo from "./components/ConsoleInfo";
@@ -115,13 +115,12 @@ document.addEventListener(
  * allows your team to easily build robust real-time web applications.
  */
 
-// window.io = require('socket.io-client');
-//
-// window.Echo = new Echo({
-//   broadcaster: 'socket.io',
-//   host: window.location.hostname + ':6001'
-// });
-//
+window.io = require("socket.io-client");
+
+window.Echo = new Echo({
+  broadcaster: "socket.io",
+  host: window.location.hostname + ":6001",
+});
 
 // window.Pusher = require("pusher-js");
 //
@@ -134,10 +133,10 @@ document.addEventListener(
 //   cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
 //   encrypted: true,
 // });
-//
-// window.Echo.channel("push").listen("TestBroadcastingEvent", (e) => {
-//   window.console.log(e);
-// });
+
+window.Echo.channel("push").listen("TestBroadcastingEvent", (e) => {
+  console.log(e);
+});
 
 ((ns) => {
   /**
