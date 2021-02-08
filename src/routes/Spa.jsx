@@ -246,6 +246,10 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../containers/PHPFunction"))}
           />
           <Route
+            path="/chat"
+            component={loadable(() => import("../containers/Chat"))}
+          />
+          <Route
             path="/test"
             component={loadable(() => import("../containers/Test"))}
           />

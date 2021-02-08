@@ -120,24 +120,25 @@ window.io = require("socket.io-client");
 window.Echo = new Echo({
   broadcaster: "socket.io",
   host: window.location.hostname + ":6001",
+  auth: {
+    headers: {
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+  },
 });
 
-// window.Pusher = require("pusher-js");
 //
-window.Echo = new Echo({
-  broadcaster: "socket.io",
-  wsHost: window.location.hostname,
-  wssHost: window.location.hostname,
-  wsPort: 443,
-  wssPort: 443,
-  enabledTransports: ["ws", "wss"],
-  disableStats: true,
-  forceTLS: true,
-});
-
-window.Echo.channel("push").listen("TestBroadcastingEvent", (e) => {
-  console.log(e);
-});
+// window.Echo = new Echo({
+//   broadcaster: "socket.io",
+//   key: process.env.REACT_APP_PUSHER_APP_KEY,
+//   wsHost: window.location.hostname,
+//   wsPort: 443,
+//   wssHost: window.location.hostname,
+//   wssPort: 443,
+//   disableStats: true,
+//   cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
+//   encrypted: true,
+// });
 
 ((ns) => {
   /**
