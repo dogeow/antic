@@ -2,6 +2,11 @@ import AppBar from "@material-ui/core/AppBar";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
@@ -84,6 +89,12 @@ const Header = ({
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [playing, setPlaying] = useState(false);
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   /**
    * 设置开关
    */
@@ -134,14 +145,22 @@ const Header = ({
     }
   };
 
+  const handleEnterChat = () => {
+    if (localStorage.userName === undefined) {
+      setOpen(true);
+      return;
+    }
+
+    history.push("/chat");
+  };
+
+  const handleRegister = () => {
+    setOpen(false);
+    history.push("/register");
+  };
+
   return (
     <header className={classes.root}>
-      <Settings
-        open={settingsOpen}
-        onClose={handleSettingClose}
-        onThemeClick={onThemeClick}
-        paletteMode={paletteMode}
-      />
       <Drawer open={toggleDrawer} onClick={onClickDrawer} />
       <AppBar position="static">
         <Container
@@ -163,14 +182,9 @@ const Header = ({
               <Logo />
             </RouteLink>
             {matches && (
-              <>
-                <Button
-                  color="inherit"
-                  style={{ marginLeft: 16 }}
-                  component={RouteLink}
-                  to="/project/1"
-                >
-                  Todo
+              <div style={{ marginLeft: 12 }}>
+                <Button color="inherit" onClick={handleEnterChat}>
+                  聊天室♂
                 </Button>
                 <Button color="inherit" component={RouteLink} to="/posts">
                   笔记
@@ -181,7 +195,15 @@ const Header = ({
                 <Button color="inherit" component={RouteLink} to="/tags">
                   标签
                 </Button>
-              </>
+                <Button
+                  color="inherit"
+                  style={{ marginLeft: 16 }}
+                  component={RouteLink}
+                  to="/project/1"
+                >
+                  Todo
+                </Button>
+              </div>
             )}
             <div className={classes.blank} />
             <Hidden only="xs">
@@ -334,6 +356,33 @@ const Header = ({
           </Toolbar>
         </Container>
       </AppBar>
+      <Settings
+        open={settingsOpen}
+        onClose={handleSettingClose}
+        onThemeClick={onThemeClick}
+        paletteMode={paletteMode}
+      />
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"请先登录"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            以让他人知道您的尊姓大名和头像。
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleRegister} autoFocus>
+            注册
+          </Button>
+          <Button component={RouteLink} to="/login">
+            登录
+          </Button>
+        </DialogActions>
+      </Dialog>
     </header>
   );
 };

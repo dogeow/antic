@@ -6,8 +6,8 @@
   "dependencies": {
     "@apollo/client": "^3.3.7",
     "@date-io/dayjs": "1.x",
-    "@emotion/react": "^11.1.2",
-    "@emotion/styled": "^11.0.0",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
     "@loadable/component": "^5.14.1",
     "@material-ui/core": "^5.0.0-alpha.24",
     "@material-ui/icons": "^5.0.0-alpha.24",

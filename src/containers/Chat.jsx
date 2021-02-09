@@ -1,43 +1,21 @@
 import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import Paper from "@material-ui/core/Paper";
 import Snackbar from "@material-ui/core/Snackbar";
-import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import { mdiSend } from "@mdi/js";
-import Icon from "@mdi/react";
+import SendIcon from "@material-ui/icons/Send";
 import axios from "axios";
 import _ from "lodash";
-import React from "react";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: "2px 4px",
-    display: "flex",
-    alignItems: "center",
-    width: 400,
-  },
-  input: {
-    marginLeft: theme.spacing(1),
-    flex: 1,
-  },
-  iconButton: {
-    padding: 10,
-  },
-  divider: {
-    height: 28,
-    margin: 4,
-  },
-}));
+import React, { useEffect, useRef, useState } from "react";
 
 export default function Chat() {
-  const classes = useStyles();
+  const [chatBoard, setChatBoard] = useState([]);
+  const [message, setMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [peoples, setPeoples] = useState([]);
+  const [alertOpen, setAlertOpen] = useState(false);
 
-  const [chatBoard, setChatBoard] = React.useState([]);
-  const [message, setMessage] = React.useState("");
-  const [alertMessage, setAlertMessage] = React.useState("");
-  const [open, setOpen] = React.useState(false);
-  const [peoples, setPeoples] = React.useState([]);
+  const messagesEndRef = useRef(null);
 
   window.Echo.channel("chat").listen(".chat", (e) => {
     setChatBoard([...chatBoard, e.data]);
@@ -47,21 +25,32 @@ export default function Chat() {
     .here((user) => {
       setPeoples([...peoples, ...user]);
       setAlertMessage(`${_.map(user, "name")} 正在房间`);
-      setOpen(true);
+      setAlertOpen(true);
     })
     .joining((user) => {
       setPeoples([...peoples, user]);
       setAlertMessage(`${user.name} 加入了房间`);
-      setOpen(true);
+      setAlertOpen(true);
     })
     .leaving((user) => {
       _.remove(peoples, { id: user.id });
       setPeoples(peoples);
       setAlertMessage(`${user.name} 退出了房间`);
-      setOpen(true);
+      setAlertOpen(true);
     });
 
   const socketId = window.Echo.socketId();
+
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
+    }
+  };
+
+  useEffect(() => {
+    console.log(233);
+    scrollToBottom();
+  }, [message]);
 
   const handlePost = () => {
     if (message === "") {
@@ -74,6 +63,7 @@ export default function Chat() {
         message,
       },
     ]);
+    setMessage("");
     axios.post(
       "/chat",
       {
@@ -92,7 +82,7 @@ export default function Chat() {
       return;
     }
 
-    setOpen(false);
+    setAlertOpen(false);
   };
 
   const handleChange = (e) => {
@@ -100,32 +90,41 @@ export default function Chat() {
   };
 
   return (
-    <Paper elevation={3} style={{ marginTop: 40, height: "80vh" }}>
-      <Grid container style={{ padding: 20 }} spacing={1}>
-        <Grid item xs={9}>
-          <Grid item xs={12}>
-            {chatBoard.length
-              ? chatBoard.map((content, index) => (
-                  <div key={index}>
-                    {content.name}: {content.message}
-                  </div>
-                ))
-              : "无聊天内容"}
+    <Paper elevation={3} style={{ marginTop: 40 }}>
+      <Grid container style={{ padding: 20 }} alignItems="stretch">
+        <Grid item xs={9} container direction="column">
+          <Grid
+            item
+            container
+            direction="column"
+            ref={messagesEndRef}
+            style={{ flexGrow: 1, overflowY: "scroll" }}
+          >
+            <Grid item container style={{ height: "66vh" }}>
+              {chatBoard.length
+                ? chatBoard.map((content, index) => (
+                    <Grid item xs={12} key={index}>
+                      {content.name}: {content.message}
+                    </Grid>
+                  ))
+                : "无聊天内容"}
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item>
             <TextField
               label="发送信息"
+              value={message}
+              fullWidth
               variant="standard"
               onChange={handleChange}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start" onClick={handlePost}>
+                    <SendIcon />
+                  </InputAdornment>
+                ),
+              }}
             />
-            <IconButton
-              type="submit"
-              className={classes.iconButton}
-              aria-label="发送信息"
-              onClick={handlePost}
-            >
-              <Icon path={mdiSend} size={1} />
-            </IconButton>
           </Grid>
         </Grid>
         <Grid
@@ -141,14 +140,14 @@ export default function Chat() {
             <div key={people.id}>{people.name}</div>
           ))}
         </Grid>
-        <Snackbar
-          open={open}
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-          autoHideDuration={2000}
-          message={alertMessage}
-          onClose={handleClose}
-        />
       </Grid>
+      <Snackbar
+        open={alertOpen}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        autoHideDuration={2000}
+        message={alertMessage}
+        onClose={handleClose}
+      />
     </Paper>
   );
 }
