@@ -1,12 +1,13 @@
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
-import InputBase from "@material-ui/core/InputBase";
 import Paper from "@material-ui/core/Paper";
 import Snackbar from "@material-ui/core/Snackbar";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import SearchIcon from "@material-ui/icons/Search";
+import { mdiSend } from "@mdi/js";
+import Icon from "@mdi/react";
 import axios from "axios";
+import _ from "lodash";
 import React from "react";
 
 const useStyles = makeStyles((theme) => ({
@@ -33,9 +34,10 @@ export default function Chat() {
   const classes = useStyles();
 
   const [chatBoard, setChatBoard] = React.useState([]);
-  const [content, setContent] = React.useState("");
+  const [message, setMessage] = React.useState("");
   const [alertMessage, setAlertMessage] = React.useState("");
   const [open, setOpen] = React.useState(false);
+  const [peoples, setPeoples] = React.useState([]);
 
   window.Echo.channel("chat").listen(".chat", (e) => {
     setChatBoard([...chatBoard, e.data]);
@@ -43,26 +45,39 @@ export default function Chat() {
 
   window.Echo.join("chat")
     .here((user) => {
-      setAlertMessage(`${user} 正在房间`);
+      setPeoples([...peoples, ...user]);
+      setAlertMessage(`${_.map(user, "name")} 正在房间`);
       setOpen(true);
     })
     .joining((user) => {
-      setAlertMessage(`${user} 加入了房间`);
+      setPeoples([...peoples, user]);
+      setAlertMessage(`${user.name} 加入了房间`);
       setOpen(true);
     })
     .leaving((user) => {
-      setAlertMessage(`${user} 退出了房间`);
+      _.remove(peoples, { id: user.id });
+      setPeoples(peoples);
+      setAlertMessage(`${user.name} 退出了房间`);
       setOpen(true);
     });
 
   const socketId = window.Echo.socketId();
 
   const handlePost = () => {
-    setChatBoard([...chatBoard, content]);
+    if (message === "") {
+      return;
+    }
+    setChatBoard([
+      ...chatBoard,
+      {
+        name: localStorage.userName,
+        message,
+      },
+    ]);
     axios.post(
       "/chat",
       {
-        message: content.message,
+        message,
       },
       {
         headers: {
@@ -81,39 +96,50 @@ export default function Chat() {
   };
 
   const handleChange = (e) => {
-    setContent({
-      name: localStorage.userName,
-      message: e.target.value,
-    });
+    setMessage(e.target.value);
   };
 
   return (
-    <Paper elevation={3} style={{ marginTop: 40 }}>
-      <Grid container style={{ padding: 20 }}>
-        <Grid item xs={12}>
-          {chatBoard.length
-            ? chatBoard.map((content, index) => (
-                <div key={index}>
-                  {content.name}: {content.message}
-                </div>
-              ))
-            : "无聊天内容"}
+    <Paper elevation={3} style={{ marginTop: 40, height: "80vh" }}>
+      <Grid container style={{ padding: 20 }} spacing={1}>
+        <Grid item xs={9}>
+          <Grid item xs={12}>
+            {chatBoard.length
+              ? chatBoard.map((content, index) => (
+                  <div key={index}>
+                    {content.name}: {content.message}
+                  </div>
+                ))
+              : "无聊天内容"}
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="发送信息"
+              variant="standard"
+              onChange={handleChange}
+            />
+            <IconButton
+              type="submit"
+              className={classes.iconButton}
+              aria-label="发送信息"
+              onClick={handlePost}
+            >
+              <Icon path={mdiSend} size={1} />
+            </IconButton>
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <InputBase
-            className={classes.input}
-            placeholder="输入聊天内容..."
-            inputProps={{ "aria-label": "输入聊天内容" }}
-            onChange={handleChange}
-          />
-          <IconButton
-            type="submit"
-            className={classes.iconButton}
-            aria-label="发送信息"
-            onClick={handlePost}
-          >
-            <SearchIcon />
-          </IconButton>
+        <Grid
+          item
+          xs={3}
+          style={{
+            borderLeftWidth: 2,
+            borderLeftColor: "rgba(0, 0, 0, 0.1)",
+            borderLeftStyle: "solid",
+          }}
+        >
+          {peoples.map((people) => (
+            <div key={people.id}>{people.name}</div>
+          ))}
         </Grid>
         <Snackbar
           open={open}
