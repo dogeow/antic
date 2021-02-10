@@ -1,6 +1,5 @@
 import Grid from "@material-ui/core/Grid";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import Paper from "@material-ui/core/Paper";
 import Snackbar from "@material-ui/core/Snackbar";
 import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
@@ -17,13 +16,9 @@ export default function Chat() {
 
   const messagesEndRef = useRef(null);
 
-  window.Echo.channel("chat").listen(".chat", (e) => {
-    setChatBoard([...chatBoard, e.data]);
-  });
-
   window.Echo.join("chat")
     .here((user) => {
-      setPeoples([...peoples, ...user]);
+      setPeoples(_.uniqBy([...peoples, ...user], "id"));
       setAlertMessage(`${_.map(user, "name")} 正在房间`);
       setAlertOpen(true);
     })
@@ -37,6 +32,9 @@ export default function Chat() {
       setPeoples(peoples);
       setAlertMessage(`${user.name} 退出了房间`);
       setAlertOpen(true);
+    })
+    .listen(".chat", (e) => {
+      setChatBoard([...chatBoard, e.data]);
     });
 
   const socketId = window.Echo.socketId();
@@ -48,9 +46,8 @@ export default function Chat() {
   };
 
   useEffect(() => {
-    console.log(233);
     scrollToBottom();
-  }, [message]);
+  }, [chatBoard]);
 
   const handlePost = () => {
     if (message === "") {
@@ -90,25 +87,22 @@ export default function Chat() {
   };
 
   return (
-    <Paper elevation={3} style={{ marginTop: 40 }}>
-      <Grid container style={{ padding: 20 }} alignItems="stretch">
+    <>
+      <Grid container alignItems="stretch">
         <Grid item xs={9} container direction="column">
           <Grid
             item
             container
-            direction="column"
             ref={messagesEndRef}
-            style={{ flexGrow: 1, overflowY: "scroll" }}
+            style={{ overflowY: "scroll", height: "10vh" }}
           >
-            <Grid item container style={{ height: "66vh" }}>
-              {chatBoard.length
-                ? chatBoard.map((content, index) => (
-                    <Grid item xs={12} key={index}>
-                      {content.name}: {content.message}
-                    </Grid>
-                  ))
-                : "无聊天内容"}
-            </Grid>
+            {chatBoard.length
+              ? chatBoard.map((content, index) => (
+                  <Grid item xs={12} key={index}>
+                    {content.name}: {content.message}
+                  </Grid>
+                ))
+              : "无聊天内容"}
           </Grid>
           <Grid item>
             <TextField
@@ -134,6 +128,7 @@ export default function Chat() {
             borderLeftWidth: 2,
             borderLeftColor: "rgba(0, 0, 0, 0.1)",
             borderLeftStyle: "solid",
+            paddingLeft: 8,
           }}
         >
           {peoples.map((people) => (
@@ -148,6 +143,6 @@ export default function Chat() {
         message={alertMessage}
         onClose={handleClose}
       />
-    </Paper>
+    </>
   );
 }
