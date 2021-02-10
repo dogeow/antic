@@ -50,18 +50,11 @@ export default function Chat() {
     scrollToBottom();
   }, [chatBoard]);
 
-  document
-    .getElementById("root")
-    .addEventListener("keypress", function (event) {
-      if (event.key === "Enter") {
-        handlePost();
-      }
-    });
-
   const handlePost = () => {
     if (message === "") {
       return;
     }
+    console.log("发送消息");
     setChatBoard([
       ...chatBoard,
       {
@@ -69,7 +62,6 @@ export default function Chat() {
         message,
       },
     ]);
-    setMessage("");
     axios.post(
       "/chat",
       {
@@ -81,6 +73,13 @@ export default function Chat() {
         },
       }
     );
+    setMessage("");
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handlePost();
+    }
   };
 
   const handleClose = (event, reason) => {
@@ -105,7 +104,7 @@ export default function Chat() {
             ref={messagesEndRef}
             alignItems="flex-start"
             alignContent="flex-start"
-            style={{ overflowY: "scroll", height: "60vh" }}
+            style={{ overflowY: "auto", height: "60vh" }}
           >
             {chatBoard.length
               ? chatBoard.map((content, index) => (
@@ -122,6 +121,7 @@ export default function Chat() {
               fullWidth
               variant="standard"
               onChange={handleChange}
+              onKeyDown={handleKeyDown}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="start" onClick={handlePost}>
