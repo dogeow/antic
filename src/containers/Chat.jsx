@@ -40,14 +40,14 @@ export default function Chat() {
 
   const socketId = window.Echo.socketId();
 
-  useEffect(() => {
-    const messagesEndRef = messagesEndRef.current;
-    if (
-      messagesEndRef &&
-      messagesEndRef.scrollHeight !== messagesEndRef.scrollTop
-    ) {
-      messagesEndRef.scrollTop = messagesEndRef.scrollHeight;
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
     }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
   }, [chatBoard]);
 
   document
