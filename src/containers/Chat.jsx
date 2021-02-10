@@ -16,6 +16,10 @@ export default function Chat() {
 
   const messagesEndRef = useRef(null);
 
+  window.Echo.channel("chat").listen(".chat", (e) => {
+    setChatBoard([...chatBoard, e.data]);
+  });
+
   window.Echo.join("chat")
     .here((user) => {
       setPeoples(_.uniqBy([...peoples, ...user], "id"));
@@ -32,9 +36,6 @@ export default function Chat() {
       setPeoples(peoples);
       setAlertMessage(`${user.name} 退出了房间`);
       setAlertOpen(true);
-    })
-    .listen(".chat", (e) => {
-      setChatBoard([...chatBoard, e.data]);
     });
 
   const socketId = window.Echo.socketId();
