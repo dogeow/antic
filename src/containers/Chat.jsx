@@ -50,6 +50,14 @@ export default function Chat() {
     scrollToBottom();
   }, [chatBoard]);
 
+  document
+    .getElementById("root")
+    .addEventListener("keypress", function (event) {
+      if (event.key === "Enter") {
+        handlePost();
+      }
+    });
+
   const handlePost = () => {
     if (message === "") {
       return;
@@ -95,7 +103,9 @@ export default function Chat() {
             item
             container
             ref={messagesEndRef}
-            style={{ overflowY: "scroll", height: "10vh" }}
+            alignItems="flex-start"
+            alignContent="flex-start"
+            style={{ overflowY: "scroll", height: "60vh" }}
           >
             {chatBoard.length
               ? chatBoard.map((content, index) => (
