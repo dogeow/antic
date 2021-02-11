@@ -1,167 +1,22 @@
-import Grid from "@material-ui/core/Grid";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Snackbar from "@material-ui/core/Snackbar";
-import TextField from "@material-ui/core/TextField";
-import SendIcon from "@material-ui/icons/Send";
-import axios from "axios";
-import _ from "lodash";
-import React, { useEffect, useRef, useState } from "react";
+import { connect } from "react-redux";
 
-import Loading from "../components/Loading";
+import { chatBoard, message, peoples } from "../actions";
+import Chat from "../components/Chat";
 
-export default function Chat() {
-  const [chatBoard, setChatBoard] = useState([]);
-  const [message, setMessage] = useState("");
-  const [alertMessage, setAlertMessage] = useState("");
-  const [peoples, setPeoples] = useState([]);
-  const [alertOpen, setAlertOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
+const mapStateToProps = (state) => ({
+  chat: state.chat,
+});
 
-  const messagesEndRef = useRef(null);
+const mapDispatchToProps = (dispatch) => ({
+  message: (value) => {
+    dispatch(message(value));
+  },
+  chatBoard: (value) => {
+    dispatch(chatBoard(value));
+  },
+  peoples: (value) => {
+    dispatch(peoples(value));
+  },
+});
 
-  useEffect(() => {
-    window.Echo.join("chat")
-      .here((user) => {
-        setLoading(false);
-        setPeoples(_.uniqBy([...peoples, ...user], "id"));
-        setAlertMessage(`${_.map(user, "name")} 正在房间`);
-        setAlertOpen(true);
-      })
-      .joining((user) => {
-        setPeoples(_.uniqBy([...peoples, ...user], "id"));
-        setAlertMessage(`${user.name} 加入了房间`);
-        setAlertOpen(true);
-      })
-      .leaving((user) => {
-        _.remove(peoples, { id: user.id });
-        setPeoples(peoples);
-        setAlertMessage(`${user.name} 退出了房间`);
-        setAlertOpen(true);
-      });
-  }, [peoples]);
-
-  useEffect(() => {
-    window.Echo.channel("chat").listen(".chat", (e) => {
-      setChatBoard([...chatBoard, e.data]);
-    });
-
-    scrollToBottom();
-
-    return () => {
-      window.Echo.channel("chat").stopListening(".chat");
-    };
-  }, [chatBoard]);
-
-  const scrollToBottom = () => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
-    }
-  };
-
-  const handlePost = () => {
-    if (message === "") {
-      return;
-    }
-    setChatBoard([
-      ...chatBoard,
-      {
-        name: localStorage.userName,
-        message,
-      },
-    ]);
-    axios.post(
-      "/chat",
-      {
-        message,
-      },
-      {
-        headers: {
-          "X-Socket-ID": window.Echo.socketId(),
-        },
-      }
-    );
-    setMessage("");
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      handlePost();
-    }
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setAlertOpen(false);
-  };
-
-  const handleChange = (e) => {
-    setMessage(e.target.value);
-  };
-
-  return (
-    <>
-      <Loading open={loading} />
-      <Grid container alignItems="stretch">
-        <Grid item xs={9} container direction="column">
-          <Grid
-            item
-            container
-            ref={messagesEndRef}
-            alignItems="flex-start"
-            alignContent="flex-start"
-            style={{ overflowY: "auto", height: "60vh" }}
-          >
-            {chatBoard.length
-              ? chatBoard.map((content, index) => (
-                  <Grid item xs={12} key={index}>
-                    {content.name}: {content.message}
-                  </Grid>
-                ))
-              : "说点什么吧"}
-          </Grid>
-          <Grid item>
-            <TextField
-              label="发送信息"
-              value={message}
-              fullWidth
-              variant="standard"
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="start" onClick={handlePost}>
-                    <SendIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-          </Grid>
-        </Grid>
-        <Grid
-          item
-          xs={3}
-          style={{
-            borderLeftWidth: 2,
-            borderLeftColor: "rgba(0, 0, 0, 0.1)",
-            borderLeftStyle: "solid",
-            paddingLeft: 8,
-          }}
-        >
-          {peoples.map((people) => (
-            <div key={people.id}>{people.name}</div>
-          ))}
-        </Grid>
-      </Grid>
-      <Snackbar
-        open={alertOpen}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        autoHideDuration={2000}
-        message={alertMessage}
-        onClose={handleClose}
-      />
-    </>
-  );
-}
+export default connect(mapStateToProps, mapDispatchToProps)(Chat);

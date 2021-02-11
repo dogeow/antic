@@ -18,3 +18,8 @@ export const toggleTheme = createAction("TOGGLE_THEME");
 export const toggleDrawer = createAction("TOGGLE_DRAWER");
 export const search = createAction("SEARCH");
 export const loading = createAction("LOADING");
+
+// chat
+export const message = createAction("MESSAGE");
+export const chatBoard = createAction("CHAT_BOARD");
+export const peoples = createAction("PEOPLES");
