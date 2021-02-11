@@ -59,15 +59,15 @@ const monthStartUnixTime = dayjs(monthStartDateTime).unix();
 const monthEndDateTime = dayjs().endOf("month").format("YYYY-MM-DD 23:59:59");
 const monthEndUnixTime = dayjs(monthEndDateTime).unix();
 // 上月
-const lastdayjsStartDateTime = dayjs(monthStartDateTime)
+const lastDayStartDateTime = dayjs(monthStartDateTime)
   .subtract(1, "month")
   .format("YYYY-MM-DD HH:mm:ss");
-const lastdayjsEndUnixTime = dayjs(lastdayjsStartDateTime).unix();
+const lastDayEndUnixTime = dayjs(lastDayStartDateTime).unix();
 // 下个月
-const nextdayjsStartDateTime = dayjs(monthStartDateTime)
+const nextDayStartDateTime = dayjs(monthStartDateTime)
   .add(1, "month")
   .format("YYYY-MM-DD HH:mm:ss");
-const nextdayjsEndDateTime = dayjs(nextdayjsStartDateTime).unix();
+const nextDayEndDateTime = dayjs(nextDayStartDateTime).unix();
 
 const Time = () => {
   const [open, setOpen] = React.useState(false);
@@ -149,14 +149,14 @@ const Time = () => {
         {getClipboardButton(monthEndUnixTime)}）
       </div>
       <div>
-        上月开始：{lastdayjsStartDateTime}
-        {getClipboardButton(lastdayjsStartDateTime)}（{lastdayjsEndUnixTime}
-        {getClipboardButton(lastdayjsEndUnixTime)}）
+        上月开始：{lastDayStartDateTime}
+        {getClipboardButton(lastDayStartDateTime)}（{lastDayEndUnixTime}
+        {getClipboardButton(lastDayEndUnixTime)}）
       </div>
       <div>
-        下月开始：{nextdayjsStartDateTime}
-        {getClipboardButton(nextdayjsStartDateTime)}（{nextdayjsEndDateTime}
-        {getClipboardButton(nextdayjsEndDateTime)}）
+        下月开始：{nextDayStartDateTime}
+        {getClipboardButton(nextDayStartDateTime)}（{nextDayEndDateTime}
+        {getClipboardButton(nextDayEndDateTime)}）
       </div>
       <Snackbar
         anchorOrigin={{
