@@ -127,19 +127,6 @@ window.Echo = new Echo({
   },
 });
 
-//
-// window.Echo = new Echo({
-//   broadcaster: "socket.io",
-//   key: process.env.REACT_APP_PUSHER_APP_KEY,
-//   wsHost: window.location.hostname,
-//   wsPort: 443,
-//   wssHost: window.location.hostname,
-//   wssPort: 443,
-//   disableStats: true,
-//   cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER,
-//   encrypted: true,
-// });
-
 ((ns) => {
   /**
    * mbStrWidth
