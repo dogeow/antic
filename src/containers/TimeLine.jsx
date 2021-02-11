@@ -4,7 +4,7 @@ import TimelineContent from "@material-ui/lab/TimelineContent";
 import TimelineDot from "@material-ui/lab/TimelineDot";
 import TimelineItem from "@material-ui/lab/TimelineItem";
 import TimelineSeparator from "@material-ui/lab/TimelineSeparator";
-import React from "react";
+import * as React from "react";
 
 const things = [
   "使用 Jenkins",

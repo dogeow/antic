@@ -1,7 +1,7 @@
 import Grid from "@material-ui/core/Grid";
 import dayjs from "dayjs";
 import md5 from "md5";
-import React from "react";
+import * as React from "react";
 import { useStore } from "react-redux";
 
 import { gravatarCdn } from "../config/services";

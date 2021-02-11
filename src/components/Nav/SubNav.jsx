@@ -1,6 +1,6 @@
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
+import * as React from "react";
 
 import Menu from "./Menu";
 

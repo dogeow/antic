@@ -1,7 +1,7 @@
 import loadable from "@loadable/component";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
+import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Loading from "../components/Loading";

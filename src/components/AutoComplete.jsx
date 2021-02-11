@@ -1,7 +1,7 @@
 // *https://www.registers.service.gov.uk/registers/country/use-the-api*
 import Autocomplete from "@material-ui/core/Autocomplete";
 import TextField from "@material-ui/core/TextField";
-import React from "react";
+import * as React from "react";
 
 export default function Asynchronous(props) {
   const [open, setOpen] = React.useState(false);

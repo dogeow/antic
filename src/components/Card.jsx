@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ShareIcon from "@material-ui/icons/Share";
 import clsx from "clsx";
-import React from "react";
+import * as React from "react";
 
 const useStyles = makeStyles((theme) => ({
   media: {

@@ -1,7 +1,7 @@
 import "./project.css";
 
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
+import * as React from "react";
 
 import projects from "./config/projects.json";
 

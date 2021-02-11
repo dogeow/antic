@@ -2,7 +2,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import React from "react";
+import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
 import Heart from "../components/Heart";

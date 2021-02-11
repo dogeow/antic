@@ -2,7 +2,7 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import axios from "axios";
-import React from "react";
+import * as React from "react";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {

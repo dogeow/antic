@@ -1,5 +1,5 @@
 import Typography from "@material-ui/core/Typography";
-import React from "react";
+import * as React from "react";
 
 const type = [
   "h1",

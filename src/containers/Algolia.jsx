@@ -1,5 +1,5 @@
 import algoliaSearch from "algoliasearch/lite";
-import React from "react";
+import * as React from "react";
 import { InstantSearch } from "react-instantsearch-dom";
 
 import AlgoliaSearch from "../components/AlgoliaSearch";

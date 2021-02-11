@@ -1,6 +1,6 @@
 import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
-import React from "react";
+import * as React from "react";
 
 import face from "../../resources/face.json";
 

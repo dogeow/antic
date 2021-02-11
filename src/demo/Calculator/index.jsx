@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 import { toCelsius, toFahrenheit, tryConvert } from "../../helpers";
 import BoilingVerdict from "./BoilingVerdict";

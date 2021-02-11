@@ -7,7 +7,7 @@ import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import MaterialTable from "material-table";
-import React from "react";
+import * as React from "react";
 
 import localization from "../config/localization";
 import { getPriorityAttribute } from "../helpers/index";

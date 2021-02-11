@@ -1,7 +1,7 @@
 import loadable from "@loadable/component";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
+import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 import ScrollUpButton from "react-scroll-up-button";
 

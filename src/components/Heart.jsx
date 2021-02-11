@@ -1,6 +1,6 @@
 import "../styles/heart.css";
 
-import React from "react";
+import * as React from "react";
 
 export default function () {
   return <span className="heart" />;

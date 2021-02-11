@@ -5,7 +5,7 @@ import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import Typography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
 
 import chromeBookmarks from "../resources/Bookmarks.json";
 import SubNav from "./Nav/SubNav";

@@ -15,7 +15,7 @@ import { Viewer } from "@toast-ui/react-editor";
 import hljs from "highlight.js";
 import javascript from "highlight.js/lib/languages/javascript";
 import php from "highlight.js/lib/languages/php";
-import React from "react";
+import * as React from "react";
 
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("php", php);

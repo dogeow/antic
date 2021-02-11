@@ -4,7 +4,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import React from "react";
+import * as React from "react";
 import { Link } from "react-router-dom";
 
 export const MainListItems = (props) => {

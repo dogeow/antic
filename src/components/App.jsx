@@ -9,7 +9,7 @@ import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import Routes from "../routes";

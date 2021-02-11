@@ -11,7 +11,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import MenuIcon from "@material-ui/icons/Menu";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import clsx from "clsx";
-import React from "react";
+import * as React from "react";
 import { Link } from "react-router-dom";
 
 import { MainListItems, SecondaryListItems } from "./listItems";

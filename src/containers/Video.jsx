@@ -1,6 +1,6 @@
 import "video.js/dist/video-js.min.css";
 
-import React from "react";
+import * as React from "react";
 
 import VideoJs from "../components/Video";
 

@@ -4,7 +4,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import RatingUi from "@material-ui/lab/Rating";
 import axios from "axios";
 import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
 import Swal from "sweetalert2";
 
 const useStyles = makeStyles(() => ({

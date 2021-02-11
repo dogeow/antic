@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import React from "react";
+import * as React from "react";
 
 const USER_BY_ID = gql`
   query {

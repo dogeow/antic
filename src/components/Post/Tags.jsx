@@ -3,7 +3,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import AddIcon from "@material-ui/icons/Add";
-import React from "react";
+import * as React from "react";
 import { useStore } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({

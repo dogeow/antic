@@ -1,6 +1,6 @@
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
+import * as React from "react";
 
 import Copyright from "../../components/Copyright";
 import Site from "./Site";

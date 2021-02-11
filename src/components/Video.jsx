@@ -1,5 +1,5 @@
 // taken from https://github.com/videojs/video.js/blob/master/docs/guides/react.md
-import React from "react";
+import * as React from "react";
 import videojs from "video.js";
 
 export default class VideoPlayer extends React.Component {
