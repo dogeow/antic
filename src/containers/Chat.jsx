@@ -16,27 +16,37 @@ export default function Chat() {
 
   const messagesEndRef = useRef(null);
 
-  window.Echo.channel("chat").listen(".chat", (e) => {
-    setChatBoard([...chatBoard, e.data]);
-  });
-
-  window.Echo.join("chat")
-    .here((user) => {
-      setPeoples(_.uniqBy([...peoples, ...user], "id"));
-      setAlertMessage(`${_.map(user, "name")} 正在房间`);
-      setAlertOpen(true);
-    })
-    .joining((user) => {
-      setPeoples([...peoples, user]);
-      setAlertMessage(`${user.name} 加入了房间`);
-      setAlertOpen(true);
-    })
-    .leaving((user) => {
-      _.remove(peoples, { id: user.id });
-      setPeoples(peoples);
-      setAlertMessage(`${user.name} 退出了房间`);
-      setAlertOpen(true);
+  useEffect(() => {
+    window.Echo.channel("chat").listen(".chat", (e) => {
+      setChatBoard([...chatBoard, e.data]);
     });
+
+    scrollToBottom();
+
+    return () => {
+      window.Echo.channel("chat").stopListening(".chat");
+    };
+  }, [chatBoard]);
+
+  useEffect(() => {
+    window.Echo.join("chat")
+      .here((user) => {
+        setPeoples(_.uniqBy([...peoples, ...user], "id"));
+        setAlertMessage(`${_.map(user, "name")} 正在房间`);
+        setAlertOpen(true);
+      })
+      .joining((user) => {
+        setPeoples([...peoples, user]);
+        setAlertMessage(`${user.name} 加入了房间`);
+        setAlertOpen(true);
+      })
+      .leaving((user) => {
+        _.remove(peoples, { id: user.id });
+        setPeoples(peoples);
+        setAlertMessage(`${user.name} 退出了房间`);
+        setAlertOpen(true);
+      });
+  }, [peoples]);
 
   const socketId = window.Echo.socketId();
 
@@ -46,15 +56,10 @@ export default function Chat() {
     }
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [chatBoard]);
-
   const handlePost = () => {
     if (message === "") {
       return;
     }
-    console.log("发送消息");
     setChatBoard([
       ...chatBoard,
       {
