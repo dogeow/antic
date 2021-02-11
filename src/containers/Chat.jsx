@@ -48,8 +48,6 @@ export default function Chat() {
       });
   }, [peoples]);
 
-  const socketId = window.Echo.socketId();
-
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
@@ -74,7 +72,7 @@ export default function Chat() {
       },
       {
         headers: {
-          "X-Socket-ID": socketId,
+          "X-Socket-ID": window.Echo.socketId(),
         },
       }
     );
