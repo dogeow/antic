@@ -1,4 +1,4 @@
-import * as React, { useState } from "react";
+import React, { useState } from "react";
 import AutoSuggest from "react-autosuggest";
 import { connectAutoComplete, Highlight } from "react-instantsearch-dom";
 

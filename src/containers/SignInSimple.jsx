@@ -1,5 +1,5 @@
 import axios from "axios";
-import * as React, { useState } from "react";
+import React, { useState } from "react";
 import swal from "sweetalert2";
 
 import credentialsTest from "../resources/credentialsTest.json";

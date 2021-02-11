@@ -1,7 +1,7 @@
 import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
-import * as React, { useEffect } from "react";
+import React, { useEffect } from "react";
 
 const ChipFlow = (props) => {
   const [items, setItems] = React.useState([]);

@@ -16,7 +16,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { mdiLoading } from "@mdi/js";
 import Icon from "@mdi/react";
 import axios from "axios";
-import * as React, { useState } from "react";
+import React, { useState } from "react";
 import swal from "sweetalert2";
 
 const NoMatch = () => {

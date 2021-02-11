@@ -21,7 +21,7 @@ import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import axios from "axios";
-import * as React, { useState } from "react";
+import React, { useState } from "react";
 import swal from "sweetalert2";
 
 import Copyright from "../components/Copyright";

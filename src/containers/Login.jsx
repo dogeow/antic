@@ -19,7 +19,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import axios from "axios";
 import PropTypes from "prop-types";
-import * as React, { useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link as RouteLink, useHistory } from "react-router-dom";
 

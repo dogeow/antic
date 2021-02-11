@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import axios from "axios";
-import * as React, { useState } from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 
 import Copyright from "./Copyright";

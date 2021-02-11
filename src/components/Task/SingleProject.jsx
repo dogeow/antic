@@ -9,7 +9,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import RadioButtonChecked from "@material-ui/icons/RadioButtonChecked";
 import RadioButtonUnchecked from "@material-ui/icons/RadioButtonUnchecked";
 import axios from "axios";
-import * as React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
 import AlertDialog from "../AlertDialog";

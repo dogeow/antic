@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import * as React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Parking = () => {
   const [parking, setParking] = useState([]);

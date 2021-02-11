@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import RemoveIcon from "@material-ui/icons/Remove";
-import * as React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import SpeedDial from "../components/SpeedDial";
 
