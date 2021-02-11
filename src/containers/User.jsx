@@ -4,12 +4,12 @@ import md5 from "md5";
 import React from "react";
 import { useStore } from "react-redux";
 
+import gravatarCdn from "../config/services";
+
 const User = () => {
   const store = useStore();
   const state = store.getState();
-  const avatar = `https://cn.gravatar.com/avatar/${md5(
-    state.lab.userEmail
-  )}.jpg?d=mp&s=300`;
+  const avatar = `${gravatarCdn}/${md5(state.lab.userEmail)}.jpg?d=mp&s=300`;
 
   return (
     <Grid container spacing={2}>

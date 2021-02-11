@@ -30,6 +30,7 @@ import { Link as RouteLink, useHistory } from "react-router-dom";
 import Drawer from "../components/Drawer";
 import Logo from "../components/Logo";
 import Settings from "../components/Settings";
+import gravatarCdn from "../config/services";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -255,9 +256,7 @@ const Header = ({
                   >
                     <Avatar
                       alt={lab.userName}
-                      src={`https://cn.gravatar.com/avatar/${md5(
-                        lab.userEmail
-                      )}.jpg?d=mp&s=80`}
+                      src={`${gravatarCdn}/${md5(lab.userEmail)}.jpg?d=mp&s=80`}
                     />
                   </IconButton>
                 </Tooltip>
