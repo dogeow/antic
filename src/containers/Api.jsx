@@ -13,7 +13,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import * as React, { useEffect, useState } from "react";
 
 const Api = () => {
   const [api, setApi] = useState([]);

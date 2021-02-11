@@ -1,5 +1,5 @@
 import MaterialTable from "material-table";
-import React, { useState } from "react";
+import * as React, { useState } from "react";
 
 import localization from "../config/localization";
 

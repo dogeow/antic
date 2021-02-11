@@ -9,7 +9,7 @@ import { KeyboardDatePicker } from "@material-ui/pickers";
 import axios from "axios";
 import dayjs from "dayjs";
 import random from "lodash/random";
-import React, { useEffect, useState } from "react";
+import * as React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({

@@ -1,6 +1,6 @@
 import { css } from "emotion";
 import isHotkey from "is-hotkey";
-import React, {
+import * as React, {
   useCallback,
   useEffect,
   useMemo,

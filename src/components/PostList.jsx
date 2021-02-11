@@ -7,7 +7,7 @@ import Skeleton from "@material-ui/core/Skeleton";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import * as React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({

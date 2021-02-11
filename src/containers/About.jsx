@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import _ from "lodash";
-import React, { useEffect, useState } from "react";
+import * as React, { useEffect, useState } from "react";
 
 const ABOUT_ME = gql`
   query {

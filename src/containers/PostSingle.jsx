@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Skeleton from "@material-ui/core/Skeleton";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import * as React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
 import AlertDialog from "../components/AlertDialog";

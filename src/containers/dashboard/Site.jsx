@@ -9,7 +9,7 @@ import Check from "@material-ui/icons/Check";
 import Close from "@material-ui/icons/Close";
 import RadioButtonChecked from "@material-ui/icons/RadioButtonChecked";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import * as React, { useEffect, useState } from "react";
 
 const useStyles = makeStyles(() => ({
   tableRoot: {

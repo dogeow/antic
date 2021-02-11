@@ -24,7 +24,7 @@ import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import md5 from "md5";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import * as React, { useState } from "react";
 import { Link as RouteLink, useHistory } from "react-router-dom";
 
 import Drawer from "../components/Drawer";

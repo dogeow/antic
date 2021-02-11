@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import * as React, { useEffect, useState } from "react";
 import { DndProvider } from "react-dnd";
 import * as Backend from "react-dnd-html5-backend";
 

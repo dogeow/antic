@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import axios from "axios";
-import React, { useState } from "react";
+import * as React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 const NewProject = () => {

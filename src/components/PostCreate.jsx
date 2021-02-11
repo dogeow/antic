@@ -27,7 +27,7 @@ import bash from "highlight.js/lib/languages/bash";
 import javascript from "highlight.js/lib/languages/javascript";
 import json from "highlight.js/lib/languages/json";
 import php from "highlight.js/lib/languages/php";
-import React, { useEffect, useState } from "react";
+import * as React, { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 import Swal from "sweetalert2";
 
