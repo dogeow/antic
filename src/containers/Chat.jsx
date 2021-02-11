@@ -115,7 +115,7 @@ export default function Chat() {
                     {content.name}: {content.message}
                   </Grid>
                 ))
-              : "无聊天内容"}
+              : "说点什么吧"}
           </Grid>
           <Grid item>
             <TextField

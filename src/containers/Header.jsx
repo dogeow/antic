@@ -30,7 +30,7 @@ import { Link as RouteLink, useHistory } from "react-router-dom";
 import Drawer from "../components/Drawer";
 import Logo from "../components/Logo";
 import Settings from "../components/Settings";
-import gravatarCdn from "../config/services";
+import { gravatarCdn } from "../config/services";
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -1,3 +1,1 @@
-export default {
-  gravatarCdn: "https://www.gravatar.com/avatar",
-};
+export const gravatarCdn = "https://www.gravatar.com/avatar";
