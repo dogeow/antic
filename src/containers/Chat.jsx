@@ -36,7 +36,7 @@ export default function Chat() {
         setAlertOpen(true);
       })
       .joining((user) => {
-        setPeoples([...peoples, user]);
+        setPeoples(_.uniqBy([...peoples, ...user], "id"));
         setAlertMessage(`${user.name} 加入了房间`);
         setAlertOpen(true);
       })
