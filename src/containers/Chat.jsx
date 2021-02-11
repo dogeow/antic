@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
 import axios from "axios";
 import _ from "lodash";
-import * as React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function Chat() {
   const [chatBoard, setChatBoard] = useState([]);
