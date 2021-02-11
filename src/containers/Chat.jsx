@@ -7,30 +7,22 @@ import axios from "axios";
 import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 
+import Loading from "../components/Loading";
+
 export default function Chat() {
   const [chatBoard, setChatBoard] = useState([]);
   const [message, setMessage] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
   const [peoples, setPeoples] = useState([]);
   const [alertOpen, setAlertOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    window.Echo.channel("chat").listen(".chat", (e) => {
-      setChatBoard([...chatBoard, e.data]);
-    });
-
-    scrollToBottom();
-
-    return () => {
-      window.Echo.channel("chat").stopListening(".chat");
-    };
-  }, [chatBoard]);
-
-  useEffect(() => {
     window.Echo.join("chat")
       .here((user) => {
+        setLoading(false);
         setPeoples(_.uniqBy([...peoples, ...user], "id"));
         setAlertMessage(`${_.map(user, "name")} 正在房间`);
         setAlertOpen(true);
@@ -47,6 +39,18 @@ export default function Chat() {
         setAlertOpen(true);
       });
   }, [peoples]);
+
+  useEffect(() => {
+    window.Echo.channel("chat").listen(".chat", (e) => {
+      setChatBoard([...chatBoard, e.data]);
+    });
+
+    scrollToBottom();
+
+    return () => {
+      window.Echo.channel("chat").stopListening(".chat");
+    };
+  }, [chatBoard]);
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -99,6 +103,7 @@ export default function Chat() {
 
   return (
     <>
+      <Loading open={loading} />
       <Grid container alignItems="stretch">
         <Grid item xs={9} container direction="column">
           <Grid

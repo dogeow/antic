@@ -12,15 +12,20 @@ const useStyles = makeStyles((theme) => ({
 
 /**
  * 帏幕
+ * @param {object} props
+ * @param {bool} props.open
  * @return {JSX.Element}
  * @constructor
  */
-export default function SimpleBackdrop() {
+export default function SimpleBackdrop(props) {
   const classes = useStyles();
 
   return (
     <div>
-      <Backdrop className={classes.backdrop} open>
+      <Backdrop
+        className={classes.backdrop}
+        open={props.open !== undefined ? props.open : true}
+      >
         <CircularProgress color="inherit" />
       </Backdrop>
     </div>
