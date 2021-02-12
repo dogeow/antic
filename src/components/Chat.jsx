@@ -177,7 +177,7 @@ export default function Chat({ chat, ...props }) {
         >
           {chat.peoples.map((people) => (
             <div key={people.id}>
-              {people.name} {people.typing && "typing"}
+              {people.name} {people.typing && "输入中..."}
             </div>
           ))}
         </Grid>
