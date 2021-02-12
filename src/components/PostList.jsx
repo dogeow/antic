@@ -109,23 +109,24 @@ const PostList = () => {
               </Grid>
             );
           })}
-          <Grid item xs={12}>
-            <Pagination
-              page={currPage}
-              count={pageCount}
-              hidePrevButton={currPage <= 1}
-              hideNextButton={currPage >= post.last_page}
-              renderItem={(item) => (
-                <PaginationItem
-                  {...item}
-                  disabled={item.page === currPage}
-                  onClick={() => handlePage(item.page)}
-                />
-              )}
-            />
-          </Grid>
         </Grid>
       </Paper>
+      <Pagination
+        page={currPage}
+        count={pageCount}
+        hidePrevButton={currPage <= 1}
+        hideNextButton={currPage >= post.last_page}
+        style={{ marginTop: 40 }}
+        renderItem={(item) =>
+          pageCount > 0 && (
+            <PaginationItem
+              {...item}
+              disabled={item.page === currPage}
+              onClick={() => handlePage(item.page)}
+            />
+          )
+        }
+      />
     </>
   );
 };
