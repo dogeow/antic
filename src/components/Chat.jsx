@@ -9,6 +9,8 @@ import React, { useEffect, useRef, useState } from "react";
 
 import Loading from "../components/Loading";
 
+let timer = null;
+
 export default function Chat({ chat, ...props }) {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
@@ -25,7 +27,7 @@ export default function Chat({ chat, ...props }) {
         setAlertOpen(true);
       })
       .joining((user) => {
-        props.peoples(_.uniqBy([...chat.peoples, ...user], "id"));
+        props.peoples(_.uniqBy([...chat.peoples, user], "id"));
         setAlertMessage(`${user.name} 加入了房间`);
         setAlertOpen(true);
       })
@@ -38,16 +40,32 @@ export default function Chat({ chat, ...props }) {
   }, [chat.peoples, props]);
 
   useEffect(() => {
-    window.Echo.channel("chat").listen(".chat", (e) => {
+    window.Echo.private("chat").listen(".chat", (e) => {
       props.chatBoard([...chat.chatBoard, e.data]);
     });
 
     scrollToBottom();
 
     return () => {
-      window.Echo.channel("chat").stopListening(".chat");
+      window.Echo.private("chat").stopListening(".chat");
     };
   }, [chat.chatBoard, props]);
+
+  useEffect(() => {
+    window.Echo.private("chat").listenForWhisper("typing", (e) => {
+      const peoples = chat.peoples;
+
+      props.peoples(
+        peoples.map((user) =>
+          user.name === e.name ? { ...user, typing: true } : user
+        )
+      );
+    });
+
+    return () => {
+      window.Echo.private("chat").stopListeningForWhisper("typing");
+    };
+  }, [chat.peoples, props]);
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -95,7 +113,17 @@ export default function Chat({ chat, ...props }) {
   };
 
   const handleChange = (e) => {
+    clearTimeout(timer);
+
     props.message(e.target.value);
+
+    timer = setTimeout(triggerChange, 1000);
+  };
+
+  const triggerChange = () => {
+    window.Echo.private("chat").whisper("typing", {
+      name: localStorage.userName,
+    });
   };
 
   return (
@@ -148,7 +176,9 @@ export default function Chat({ chat, ...props }) {
           }}
         >
           {chat.peoples.map((people) => (
-            <div key={people.id}>{people.name}</div>
+            <div key={people.id}>
+              {people.name} {people.typing && "typing"}
+            </div>
           ))}
         </Grid>
       </Grid>
