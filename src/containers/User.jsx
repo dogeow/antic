@@ -28,9 +28,6 @@ const User = () => {
         <Grid>邮箱：{state.lab.userEmail}</Grid>
       </Grid>
       <Grid item xs={12}>
-        修改密码
-      </Grid>
-      <Grid item xs={12}>
         <ul>
           <li>User-Agent：{navigator.userAgent}</li>
           <li>
