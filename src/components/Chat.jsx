@@ -17,6 +17,7 @@ export default function Chat({ chat, ...props }) {
   const [loading, setLoading] = useState(window.Echo.socketId() === null);
 
   const messagesEndRef = useRef(null);
+  const peoplesRef = useRef(null);
 
   useEffect(() => {
     window.Echo.join("chat")
@@ -52,17 +53,30 @@ export default function Chat({ chat, ...props }) {
   }, [chat.chatBoard, props]);
 
   useEffect(() => {
-    window.Echo.private("chat").listenForWhisper("typing", (e) => {
-      const peoples = chat.peoples;
+    let typingTime;
 
-      props.peoples(
-        peoples.map((user) =>
-          user.name === e.name ? { ...user, typing: true } : user
-        )
-      );
+    window.Echo.private("chat").listenForWhisper("typing", (e) => {
+      if (peoplesRef.current) {
+        peoplesRef.current.innerText = peoplesRef.current.innerText.replace(
+          new RegExp(e.name, "g"),
+          `${e.name} 输入中...`
+        );
+      }
+
+      if (peoplesRef.current) {
+        typingTime = setTimeout(() => {
+          peoplesRef.current.innerText = peoplesRef.current.innerText.replace(
+            /输入中\.\.\./,
+            ""
+          );
+        }, 3000);
+      }
     });
 
     return () => {
+      if (typingTime) {
+        clearTimeout(typingTime);
+      }
       window.Echo.private("chat").stopListeningForWhisper("typing");
     };
   }, [chat.peoples, props]);
@@ -114,10 +128,8 @@ export default function Chat({ chat, ...props }) {
 
   const handleChange = (e) => {
     clearTimeout(timer);
-
     props.message(e.target.value);
-
-    timer = setTimeout(triggerChange, 1000);
+    timer = setTimeout(triggerChange, 2000);
   };
 
   const triggerChange = () => {
@@ -168,6 +180,7 @@ export default function Chat({ chat, ...props }) {
         <Grid
           item
           xs={3}
+          ref={peoplesRef}
           style={{
             borderLeftWidth: 2,
             borderLeftColor: "rgba(0, 0, 0, 0.1)",
@@ -176,9 +189,7 @@ export default function Chat({ chat, ...props }) {
           }}
         >
           {chat.peoples.map((people) => (
-            <div key={people.id}>
-              {people.name} {people.typing && "输入中..."}
-            </div>
+            <div key={people.id}>{people.name}</div>
           ))}
         </Grid>
       </Grid>
