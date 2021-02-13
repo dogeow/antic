@@ -21,7 +21,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Link as RouteLink, useHistory } from "react-router-dom";
+import { Link as RouteLink, useHistory, useLocation } from "react-router-dom";
 
 import { loginAction } from "../actions";
 import Copyright from "../components/Copyright";
@@ -69,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
  * @constructor
  */
 const SignInSide = ({ dispatch }) => {
+  const { state } = useLocation();
   const classes = useStyles();
   const history = useHistory();
   const [email, setEmail] = useState("");
@@ -105,7 +106,11 @@ const SignInSide = ({ dispatch }) => {
             logged(response.data, data);
             dispatch(loginAction(accessToken, id, name, userEmail));
           });
-          history.push("/");
+          if (state) {
+            history.push(state.from);
+          } else {
+            history.push("/");
+          }
         }
       });
   };

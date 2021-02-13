@@ -25,7 +25,7 @@ import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import md5 from "md5";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { Link as RouteLink, useHistory } from "react-router-dom";
+import { Link as RouteLink, useHistory, useLocation } from "react-router-dom";
 
 import Drawer from "../components/Drawer";
 import Logo from "../components/Logo";
@@ -78,6 +78,7 @@ const Header = ({
   onThemeClick,
   paletteMode,
 }) => {
+  const { pathname } = useLocation();
   const classes = useStyles();
   const history = useHistory();
   const theme = useTheme();
@@ -241,7 +242,14 @@ const Header = ({
               </Tooltip>
             </Hidden>
             {lab.isExpired ? (
-              <Button color="inherit" component={RouteLink} to="/login">
+              <Button
+                color="inherit"
+                component={RouteLink}
+                to={{
+                  pathname: "/login",
+                  state: { from: pathname },
+                }}
+              >
                 登录
               </Button>
             ) : (
