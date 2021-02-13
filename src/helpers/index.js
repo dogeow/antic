@@ -16,7 +16,7 @@ export const expired = () => {
  * @param {object} user
  */
 export const logged = (token, user) => {
-  localStorage.token = token.access_token;
+  localStorage.token = `Bearer ${token.access_token}`;
   localStorage.access_token_expired_at = dayjs().unix() + token.expires_in;
   localStorage.userId = user.id;
   localStorage.userName = user.name;

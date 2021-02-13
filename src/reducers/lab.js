@@ -21,7 +21,7 @@ const lab = (state = defaultState, action) => {
       return {
         ...state,
         isExpired: false,
-        token: action.token,
+        token: `Bearer ${action.token}`,
         userId: action.userId,
         userName: action.userName,
         userEmail: action.userEmail,

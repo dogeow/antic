@@ -7,7 +7,7 @@ import consoleInfo from "./components/ConsoleInfo";
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 if (localStorage.token) {
-  axios.defaults.headers.common.Authorization = `Bearer ${localStorage.token}`;
+  axios.defaults.headers.common.Authorization = localStorage.token;
 }
 
 axios.interceptors.request.use(
@@ -43,7 +43,6 @@ axios.interceptors.response.use(
 
     const newToken = response.headers.authorization;
     if (newToken) {
-      Swal.fire("提示️", "有新的 token", "info");
       localStorage.token = newToken;
     }
 
@@ -122,7 +121,7 @@ window.Echo = new Echo({
   host: window.location.hostname + ":6001",
   auth: {
     headers: {
-      Authorization: `Bearer ${localStorage.token}`,
+      Authorization: localStorage.token,
     },
   },
 });
