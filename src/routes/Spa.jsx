@@ -259,6 +259,7 @@ const Spa = ({ match }) => {
       {["/"].includes(match.url) && <Footer />}
       {["/"].includes(match.url) || (
         <ScrollUpButton
+          ShowAtPosition={500}
           ContainerClassName="AnyClassForContainer"
           TransitionClassName="AnyClassForTransition"
           style={{ outline: "none", boxShadow: "none" }}
