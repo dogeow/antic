@@ -37,7 +37,6 @@ export default function PowerBy() {
           <li>Day.js</li>
           <li>socket.io</li>
           <li>clipboard</li>
-          <li>react-dnd</li>
         </ul>
       </div>
       <div>
