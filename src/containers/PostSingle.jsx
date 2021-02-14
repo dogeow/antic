@@ -17,6 +17,8 @@ const POST_BY_ID_AND_QUOTE = gql`
       id
       title
       content
+      created_at
+      updated_at
       category {
         name
       }
