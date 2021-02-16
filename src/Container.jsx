@@ -33,8 +33,6 @@ const Test = () => {
 
   const moveCard = (dragIndex, hoverIndex) => {
     const dragCard = cards[dragIndex];
-    console.log(dragCard);
-    console.log(hoverIndex);
     setCards(
       update(cards, {
         $splice: [
