@@ -10,7 +10,7 @@ const USER_BY_ID = gql`
   }
 `;
 
-const Test = () => {
+const GraphQL = () => {
   const { loading, error, data } = useQuery(USER_BY_ID);
 
   if (loading) return <p>Loading...</p>;
@@ -18,4 +18,4 @@ const Test = () => {
   return <>{data.user.name}</>;
 };
 
-export default Test;
+export default GraphQL;

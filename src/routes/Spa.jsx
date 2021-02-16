@@ -7,6 +7,7 @@ import ScrollUpButton from "react-scroll-up-button";
 
 import Header from "../components/Header";
 import Loading from "../components/Loading";
+import Test from "../Container";
 import Footer from "../containers/Footer";
 import Index from "../containers/Index";
 
@@ -237,10 +238,7 @@ const Spa = ({ match }) => {
             path="/chat"
             component={loadable(() => import("../containers/Chat"))}
           />
-          <Route
-            path="/test"
-            component={loadable(() => import("../containers/Test"))}
-          />
+          <Route path="/test" component={Test} />
           <Route component={loadable(() => import("../containers/NoMatch"))} />
         </Switch>
       </Container>
