@@ -74,12 +74,10 @@ const SingleProject = () => {
 
   const handleAddNewTask = (event) => {
     event.preventDefault();
-    const task = {
-      title,
-      project_id: project.id,
-    };
     axios
-      .post("tasks", task)
+      .post(`/projects/${project.id}/task`, {
+        title,
+      })
       .then(({ data }) => {
         setTitle("");
         setTasks(tasks.concat(data));
