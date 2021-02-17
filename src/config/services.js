@@ -1,1 +1,1 @@
-export const gravatarCdn = "https://www.gravatar.com/avatar";
+export const gravatarCdn = "https://dn-qiniu-avatar.qbox.me/avatar";
