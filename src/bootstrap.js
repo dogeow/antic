@@ -3,6 +3,14 @@ import Echo from "laravel-echo";
 import Swal from "sweetalert2";
 
 import consoleInfo from "./components/ConsoleInfo";
+import { logout } from "./helpers";
+
+if (
+  localStorage.access_token_expired_at &&
+  localStorage.access_token_expired_at < Date.now() / 1000
+) {
+  logout();
+}
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
