@@ -264,7 +264,9 @@ const Header = ({
                   >
                     <Avatar
                       alt={lab.userName}
-                      src={`${gravatarCdn}/${md5(lab.userEmail)}.jpg?d=mp&s=80`}
+                      src={`${gravatarCdn}/${md5(
+                        lab.userEmail
+                      )}.jpg?d=monsterid&s=80`}
                     />
                   </IconButton>
                 </Tooltip>

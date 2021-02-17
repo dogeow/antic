@@ -9,7 +9,9 @@ import { gravatarCdn } from "../config/services";
 const User = () => {
   const store = useStore();
   const state = store.getState();
-  const avatar = `${gravatarCdn}/${md5(state.lab.userEmail)}.jpg?d=mp&s=300`;
+  const avatar = `${gravatarCdn}/${md5(
+    state.lab.userEmail
+  )}.jpg?d=monsterid&s=300`;
 
   return (
     <Grid container spacing={2}>
