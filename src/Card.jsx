@@ -1,3 +1,4 @@
+import axios from "axios";
 import { forwardRef, useImperativeHandle, useRef } from "react";
 import React from "react";
 import { DragSource, DropTarget } from "react-dnd";
@@ -100,6 +101,15 @@ export default DropTarget(
         id: props.id,
         index: props.index,
       }),
+      endDrag: (props) => {
+        axios
+          .put(`/tasks/${props.id}`, {
+            order: props.index,
+          })
+          .then(({ data }) => {
+            console.log(data);
+          });
+      },
     },
     (connect, monitor) => ({
       connectDragSource: connect.dragSource(),
