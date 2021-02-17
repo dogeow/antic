@@ -2,8 +2,8 @@ import { gql, useQuery } from "@apollo/client";
 import update from "immutability-helper";
 import { useState } from "react";
 import React, { useEffect } from "react";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd-multi-backend";
+import HTML5toTouch from "react-dnd-multi-backend/dist/esm/HTML5toTouch";
 
 import Card from "./Card";
 
@@ -44,7 +44,7 @@ const Test = () => {
   };
 
   return (
-    <DndProvider debugMode={true} backend={HTML5Backend}>
+    <DndProvider options={HTML5toTouch}>
       <div>
         {cards.map((card, i) => (
           <Card
