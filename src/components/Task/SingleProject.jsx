@@ -51,6 +51,7 @@ const SingleProject = () => {
 
   const [project, setProject] = useState({});
   const [tasks, setTasks] = useState([]);
+  const [focus, setFocus] = useState("");
   const [title, setTitle] = useState("");
   const [errors, setErrors] = useState([]);
 
@@ -126,10 +127,16 @@ const SingleProject = () => {
     );
   };
 
+  const handleFocus = (task) => {
+    setFocus(task.title);
+  };
+
   const handleEditPut = (task) => {
-    axios.put(`tasks/${task.id}`, {
-      title: task.title,
-    });
+    if (focus !== task.title) {
+      axios.put(`tasks/${task.id}`, {
+        title: task.title,
+      });
+    }
   };
 
   const handleDelete = () => {
@@ -212,6 +219,7 @@ const SingleProject = () => {
                     fullWidth
                     classes={{ input: classes.input }}
                     value={task.title}
+                    onFocus={() => handleFocus(task)}
                     onBlur={() => handleEditPut(task)}
                     onChange={(event) => handleEditChange(event, index, task)}
                   />
