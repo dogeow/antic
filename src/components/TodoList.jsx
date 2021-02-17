@@ -38,24 +38,6 @@ const TodoList = () => {
               />
             ),
           },
-          {
-            title: "优先级",
-            field: "priority",
-            type: "string",
-            editComponent: (editProps) => (
-              <FormControl style={{ width: 100 }}>
-                <InputLabel>优先级</InputLabel>
-                <Select
-                  value={getPriorityAttribute(editProps.value)}
-                  onChange={(e) => editProps.onChange(e.target.value)}
-                >
-                  <MenuItem value="3">高</MenuItem>
-                  <MenuItem value="2">中</MenuItem>
-                  <MenuItem value="1">低</MenuItem>
-                </Select>
-              </FormControl>
-            ),
-          },
         ]}
         onRowClick
         options={{
@@ -109,7 +91,6 @@ const TodoList = () => {
                     const task = {
                       project_id: 1,
                       title: newData.title,
-                      priority: newData.priority,
                     };
                     axios.post("tasks", task).then(() => resolve());
                   }),
@@ -118,7 +99,6 @@ const TodoList = () => {
                     axios
                       .put(`tasks/${newData.id}`, {
                         title: newData.title,
-                        priority: newData.priority,
                       })
                       .then(() => resolve());
                   }),
