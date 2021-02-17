@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import update from "immutability-helper";
+import _ from "lodash";
 import { useState } from "react";
 import React, { useEffect } from "react";
 import { DndProvider } from "react-dnd-multi-backend";
@@ -13,6 +14,7 @@ const PROJECT_BY_ID = gql`
       tasks {
         id
         title
+        order
       }
     }
   }
@@ -27,7 +29,7 @@ const Test = () => {
 
   useEffect(() => {
     if (data) {
-      setCards(data.project.tasks);
+      setCards(_.orderBy(data.project.tasks, "order"));
     }
   }, [data]);
 
