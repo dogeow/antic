@@ -29,7 +29,7 @@ dayjs.locale("zh-cn");
 const App = ({ paletteMode }) => {
   const theme = createMuiTheme({
     palette: {
-      mode: paletteMode,
+      type: paletteMode,
     },
   });
 
