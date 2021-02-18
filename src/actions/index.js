@@ -1,5 +1,8 @@
 import { createAction } from "@reduxjs/toolkit";
 
+// lab
+export const snackMessage = createAction("SNACK_MESSAGE");
+export const snackToggleAction = createAction("SNACK_TOGGLE");
 export const loginAction = (token, userId, userName, userEmail) => ({
   type: "LOGIN",
   token,
@@ -8,6 +11,7 @@ export const loginAction = (token, userId, userName, userEmail) => ({
   userEmail,
 });
 
+// emoji
 export const whichPage = createAction("WHICH_PAGE");
 export const selectCategory = createAction("SELECT_CATEGORY");
 export const selectTag = createAction("SELECT_TAG");

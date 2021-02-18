@@ -1,10 +1,10 @@
 import axios from "axios";
 import { connect } from "react-redux";
-import Swal from "sweetalert2";
 
 import {
   loginAction,
   logoutAction,
+  snackToggleAction,
   toggleDrawer,
   toggleTheme,
 } from "../actions";
@@ -18,11 +18,17 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  snackClose: (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    dispatch(snackToggleAction());
+  },
   onLogout: () => {
     logout();
-    dispatch(logoutAction());
     axios.post("user/logout").then(() => {
-      Swal.fire("登出成功！");
+      dispatch(logoutAction());
     });
   },
   onClickDrawer: () => dispatch(toggleDrawer()),

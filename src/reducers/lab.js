@@ -6,6 +6,8 @@ const isRest = (hour >= 18 && hour <= 24) || (hour >= 0 && hour <= 6);
 const paletteMode = isRest ? "dark" : "light";
 
 const defaultState = {
+  snackOpen: false,
+  snackMessage: "",
   toggleDrawer: false,
   paletteMode,
   isExpired: isExpired,
@@ -28,6 +30,10 @@ const lab = (state = defaultState, action) => {
       };
     case "TOGGLE_DRAWER":
       return { ...state, toggleDrawer: !state.toggleDrawer };
+    case "SNACK_TOGGLE":
+      return { ...state, snackOpen: !state.snackOpen };
+    case "SNACK_MESSAGE":
+      return { ...state, snackMessage: state.payload };
     case "ACCESS_TOKEN":
       return { ...state, token: action.token };
     case "TOGGLE_THEME":
@@ -43,6 +49,8 @@ const lab = (state = defaultState, action) => {
         userId: null,
         userName: null,
         userEmail: null,
+        snackOpen: true,
+        snackMessage: "登出成功",
       };
     default:
       return state;

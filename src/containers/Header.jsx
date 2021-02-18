@@ -1,3 +1,4 @@
+import MuiAlert from "@material-ui/core/Alert";
 import AppBar from "@material-ui/core/AppBar";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -11,6 +12,7 @@ import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import Snackbar from "@material-ui/core/Snackbar";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -31,6 +33,10 @@ import Drawer from "../components/Drawer";
 import Logo from "../components/Logo";
 import Settings from "../components/Settings";
 import { gravatarCdn } from "../config/services";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,6 +82,7 @@ const Header = ({
   onClickDrawer,
   toggleDrawer,
   onThemeClick,
+  snackClose,
   paletteMode,
 }) => {
   const { pathname } = useLocation();
@@ -371,6 +378,16 @@ const Header = ({
         onThemeClick={onThemeClick}
         paletteMode={paletteMode}
       />
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={lab.snackOpen}
+        autoHideDuration={2000}
+        onClose={snackClose}
+      >
+        <Alert severity="success" onClose={snackClose}>
+          {lab.snackMessage}
+        </Alert>
+      </Snackbar>
       <Dialog
         open={open}
         onClose={handleClose}
