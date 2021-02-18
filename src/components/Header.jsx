@@ -34,14 +34,8 @@ const mapDispatchToProps = (dispatch) => ({
   onClickDrawer: () => dispatch(toggleDrawer()),
   onThemeClick: () => dispatch(toggleTheme()),
   onTestLogin: () => {
-    axios.post("user/guest").then((response) => {
-      const accessToken = response.data.access_token;
-      axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-      axios.post("user/profile").then(({ data }) => {
-        const { id, name, email: userEmail } = data;
-        logged(response.data, data);
-        dispatch(loginAction(accessToken, id, name, userEmail));
-      });
+    axios.post("user/guest").then(({ data }) => {
+      dispatch(loginAction(data));
     });
   },
 });

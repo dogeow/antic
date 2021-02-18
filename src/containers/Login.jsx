@@ -99,13 +99,7 @@ const SignInSide = ({ dispatch }) => {
         if (response.status === 202) {
           setInputErrors(response.data.errors);
         } else {
-          const accessToken = response.data.access_token;
-          axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-          axios.post("user/profile").then(({ data }) => {
-            const { id, name, email: userEmail } = data;
-            logged(response.data, data);
-            dispatch(loginAction(accessToken, id, name, userEmail));
-          });
+          dispatch(loginAction(response.data));
           if (state) {
             history.push(state.from);
           } else {

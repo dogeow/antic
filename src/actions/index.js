@@ -3,12 +3,13 @@ import { createAction } from "@reduxjs/toolkit";
 // lab
 export const snackMessage = createAction("SNACK_MESSAGE");
 export const snackToggleAction = createAction("SNACK_TOGGLE");
-export const loginAction = (token, userId, userName, userEmail) => ({
+export const loginAction = (user) => ({
   type: "LOGIN",
-  token,
-  userId,
-  userName,
-  userEmail,
+  token: user.access_token,
+  userId: user.id,
+  userName: user.name,
+  userEmail: user.email,
+  expiresIn: user.expires_in,
 });
 
 // emoji

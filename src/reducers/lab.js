@@ -1,4 +1,4 @@
-import { expired } from "../helpers";
+import { expired, logged } from "../helpers";
 
 const isExpired = expired();
 const hour = new Date().getHours();
@@ -20,6 +20,7 @@ const defaultState = {
 const lab = (state = defaultState, action) => {
   switch (action.type) {
     case "LOGIN":
+      logged(action);
       return {
         ...state,
         isExpired: false,

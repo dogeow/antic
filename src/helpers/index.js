@@ -12,16 +12,15 @@ export const expired = () => {
 
 /**
  * 登录
- * @param {object} token
- * @param {object} user
+ * @param {object} data
  */
-export const logged = (token, user) => {
-  localStorage.token = `Bearer ${token.access_token}`;
-  localStorage.access_token_expired_at = dayjs().unix() + token.expires_in;
-  localStorage.userId = user.id;
-  localStorage.userName = user.name;
-  localStorage.userEmail = user.email;
-  axios.defaults.headers.common.Authorization = `Bearer ${token.access_token}`;
+export const logged = (data) => {
+  localStorage.token = `Bearer ${data.token}`;
+  localStorage.access_token_expired_at = dayjs().unix() + data.expiresIn;
+  localStorage.userId = data.userId;
+  localStorage.userName = data.userName;
+  localStorage.userEmail = data.userEmail;
+  axios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
 };
 
 /**
