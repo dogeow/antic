@@ -83,25 +83,3 @@ export function toCelsius(fahrenheit) {
 export function toFahrenheit(celsius) {
   return (celsius * 9) / 5 + 32;
 }
-
-/**
- * 微博热度
- * @param {string} value
- * @return {number|string}
- */
-export function getPriorityAttribute(value) {
-  switch (value) {
-    case "低": {
-      return 1;
-    }
-    case "中": {
-      return 2;
-    }
-    case "高": {
-      return 3;
-    }
-    default: {
-      return value;
-    }
-  }
-}
