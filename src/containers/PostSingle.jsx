@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import Grid from "@material-ui/core/Grid";
-import Skeleton from "@material-ui/core/Skeleton";
 import Typography from "@material-ui/core/Typography";
+import Skeleton from "@material-ui/lab/Skeleton";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";

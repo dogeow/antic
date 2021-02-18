@@ -1,4 +1,3 @@
-import MuiAlert from "@material-ui/core/Alert";
 import AppBar from "@material-ui/core/AppBar";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -24,6 +23,7 @@ import NightsStayIcon from "@material-ui/icons/NightsStay";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
+import MuiAlert from "@material-ui/lab/Alert";
 import md5 from "md5";
 import PropTypes from "prop-types";
 import React, { useState } from "react";

@@ -1,11 +1,11 @@
 import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
-import Pagination from "@material-ui/core/Pagination";
-import PaginationItem from "@material-ui/core/PaginationItem";
 import Paper from "@material-ui/core/Paper";
-import Skeleton from "@material-ui/core/Skeleton";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import Pagination from "@material-ui/lab/Pagination";
+import PaginationItem from "@material-ui/lab/PaginationItem";
+import Skeleton from "@material-ui/lab/Skeleton";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";

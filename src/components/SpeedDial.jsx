@@ -1,7 +1,7 @@
-import SpeedDial from "@material-ui/core/SpeedDial";
-import SpeedDialAction from "@material-ui/core/SpeedDialAction";
-import SpeedDialIcon from "@material-ui/core/SpeedDialIcon";
 import { makeStyles } from "@material-ui/core/styles";
+import SpeedDial from "@material-ui/lab/SpeedDial";
+import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
+import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 import * as React from "react";
 
 const useStyles = makeStyles((theme) => ({
