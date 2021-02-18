@@ -115,24 +115,18 @@ const PostCreate = () => {
         setSuccess(true);
         setLoading(false);
       })
-      .catch((error) => {
-        if (error.status === 401) {
-          Swal.fire(error.statusText, error.data.message, "error");
-        } else if (error.status !== 500) {
-          const { errors } = error.response.data;
-          setErrors(errors);
-          Swal.fire(
-            error.response.data.message,
-            (undefined !== errors.title ? errors.title[0] : "") +
-              (undefined !== errors.content ? errors.content[0] : ""),
-            "error"
-          );
-          setSuccess(false);
-          setLoading(false);
-          localStorage.removeItem("post");
-        } else {
-          Swal.fire("服务器错误", "500错误", "error");
-        }
+      .catch(({ data }) => {
+        const errors = data.errors;
+        setErrors(errors);
+        Swal.fire(
+          errors.message,
+          (undefined !== errors.title ? errors.title[0] : "") +
+            (undefined !== errors.content ? errors.content[0] : ""),
+          "error"
+        );
+        setSuccess(false);
+        setLoading(false);
+        localStorage.removeItem("post");
       });
   };
 
@@ -204,7 +198,7 @@ const PostCreate = () => {
             fullWidth
             variant="outlined"
             size="small"
-            value={post.category}
+            value={post.category || ""}
             placeholder="未分类"
             onChange={handleCategoryChange}
           />
