@@ -80,7 +80,7 @@ const SingleProject = () => {
 
   useEffect(() => {
     if (data) {
-      setTasks(_.orderBy(data.project.tasks, "order"));
+      setTasks(_.orderBy(data.project.tasks, "order", "desc"));
       setProject(data.project);
     }
   }, [data]);
@@ -110,7 +110,7 @@ const SingleProject = () => {
       return { ...item, is_completed: 1 };
     });
     setTasks(newValues);
-    axios.put(`tasks/${taskId}`, {
+    axios.put(`projects/${projectId}/tasks/${taskId}`, {
       is_completed: 1,
     });
   };
@@ -126,7 +126,7 @@ const SingleProject = () => {
       return { ...item, is_completed: 0 };
     });
     setTasks(newValues);
-    axios.put(`tasks/${taskId}`, {
+    axios.put(`projects/${projectId}/tasks/${taskId}`, {
       is_completed: 0,
     });
   };
@@ -149,7 +149,7 @@ const SingleProject = () => {
 
   const handleEditPut = (task) => {
     if (focus !== task.title) {
-      axios.put(`tasks/${task.id}`, {
+      axios.put(`projects/${projectId}/tasks/${task.id}`, {
         title: task.title,
       });
     }
@@ -177,7 +177,7 @@ const SingleProject = () => {
       })
     );
 
-    axios.put(`/tasks/${result.draggableId}`, {
+    axios.put(`projects/${projectId}/tasks/${result.draggableId}`, {
       order: result.destination.index,
     });
   };
