@@ -165,7 +165,7 @@ const SingleProject = () => {
       result.destination.index === result.source.index
     ) {
       return;
-
+    }
 
     const dragItem = tasks[result.destination.index];
     setTasks(
