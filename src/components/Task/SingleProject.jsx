@@ -160,14 +160,12 @@ const SingleProject = () => {
   };
 
   const onDragEnd = (result) => {
-    if (!result.destination) {
+    if (
+      !result.destination ||
+      result.destination.index === result.source.index
+    ) {
       return;
-    }
 
-    const sourceItem = tasks[result.source.index];
-    if (result.destination.index === sourceItem.order) {
-      return;
-    }
 
     const dragItem = tasks[result.destination.index];
     setTasks(
