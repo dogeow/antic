@@ -1,6 +1,6 @@
 import { ApolloProvider } from "@apollo/client";
 import * as React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
 import { Provider } from "react-redux";
 
 import App from "./containers/App";
@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-ReactDOM.render(
+render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <Provider store={store}>
