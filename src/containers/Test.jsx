@@ -17,7 +17,7 @@ const PROJECT_BY_ID = gql`
   }
 `;
 
-const grid = 8;
+const grid = 0;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   userSelect: "none",
@@ -32,7 +32,6 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 const getListStyle = (isDraggingOver) => ({
   background: isDraggingOver ? "lightblue" : "lightgrey",
   padding: grid,
-  width: 250,
 });
 
 const Test = () => {

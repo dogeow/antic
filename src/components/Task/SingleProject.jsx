@@ -9,7 +9,10 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import RadioButtonChecked from "@material-ui/icons/RadioButtonChecked";
 import RadioButtonUnchecked from "@material-ui/icons/RadioButtonUnchecked";
 import axios from "axios";
+import update from "immutability-helper";
+import _ from "lodash";
 import React, { useEffect, useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
 import AlertDialog from "../AlertDialog";
@@ -38,10 +41,23 @@ const PROJECT_BY_ID = gql`
         id
         title
         is_completed
+        order
       }
     }
   }
 `;
+
+const getItemStyle = (isDragging, draggableStyle) => ({
+  userSelect: "none",
+
+  background: isDragging ? "gray" : "none",
+
+  ...draggableStyle,
+});
+
+const getListStyle = (isDraggingOver) => ({
+  background: isDraggingOver ? "none" : "noe",
+});
 
 const SingleProject = () => {
   const classes = useStyles();
@@ -64,7 +80,7 @@ const SingleProject = () => {
 
   useEffect(() => {
     if (data) {
-      setTasks(data.project.tasks);
+      setTasks(_.orderBy(data.project.tasks, "order"));
       setProject(data.project);
     }
   }, [data]);
@@ -143,6 +159,31 @@ const SingleProject = () => {
     setAlertDialogOpen(!alertDialogOpen);
   };
 
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const sourceItem = tasks[result.source.index];
+    if (result.destination.index === sourceItem.order) {
+      return;
+    }
+
+    const dragItem = tasks[result.destination.index];
+    setTasks(
+      update(tasks, {
+        $splice: [
+          [result.destination.index, 1],
+          [result.source.index, 0, dragItem],
+        ],
+      })
+    );
+
+    axios.put(`/tasks/${result.draggableId}`, {
+      order: result.destination.index,
+    });
+  };
+
   return (
     <>
       <AlertDialog
@@ -199,38 +240,80 @@ const SingleProject = () => {
           <Typography variant="h6" component="h2">
             Todo
           </Typography>
-          {tasks.map((task, index) => (
-            <Grid key={task.id} container spacing={2} alignContent="center">
-              <Grid item>
-                {task.is_completed ? (
-                  <RadioButtonChecked
-                    className={classes.green}
-                    onClick={() => handleUndoMarkTaskAsCompleted(task.id)}
-                  />
-                ) : (
-                  <RadioButtonUnchecked
-                    onClick={() => handleMarkTaskAsCompleted(task.id)}
-                  />
-                )}
-              </Grid>
-              <Grid item xs>
-                {index === editId ? (
-                  <Input
-                    fullWidth
-                    classes={{ input: classes.input }}
-                    value={task.title}
-                    onFocus={() => handleFocus(task)}
-                    onBlur={() => handleEditPut(task)}
-                    onChange={(event) => handleEditChange(event, index, task)}
-                  />
-                ) : (
-                  <Typography component="h3" onClick={() => handleEdit(index)}>
-                    {task.title}
-                  </Typography>
-                )}
-              </Grid>
-            </Grid>
-          ))}
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId="droppable">
+              {(provided, snapshot) => (
+                <div
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                  style={getListStyle(snapshot.isDraggingOver)}
+                >
+                  {tasks.map((task, index) => (
+                    <Draggable
+                      key={task.id}
+                      draggableId={task.id}
+                      index={index}
+                    >
+                      {(provided, snapshot) => (
+                        <Grid
+                          key={task.id}
+                          container
+                          spacing={2}
+                          alignContent="center"
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          style={getItemStyle(
+                            snapshot.isDragging,
+                            provided.draggableProps.style
+                          )}
+                        >
+                          <Grid item>
+                            {task.is_completed ? (
+                              <RadioButtonChecked
+                                className={classes.green}
+                                onClick={() =>
+                                  handleUndoMarkTaskAsCompleted(task.id)
+                                }
+                              />
+                            ) : (
+                              <RadioButtonUnchecked
+                                onClick={() =>
+                                  handleMarkTaskAsCompleted(task.id)
+                                }
+                              />
+                            )}
+                          </Grid>
+                          <Grid item xs>
+                            {index === editId ? (
+                              <Input
+                                fullWidth
+                                classes={{ input: classes.input }}
+                                value={task.title}
+                                onFocus={() => handleFocus(task)}
+                                onBlur={() => handleEditPut(task)}
+                                onChange={(event) =>
+                                  handleEditChange(event, index, task)
+                                }
+                              />
+                            ) : (
+                              <Typography
+                                component="h3"
+                                onClick={() => handleEdit(index)}
+                              >
+                                {task.title}
+                              </Typography>
+                            )}
+                          </Grid>
+                        </Grid>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </Grid>
       </Grid>
     </>
