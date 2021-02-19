@@ -238,14 +238,6 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../containers/Chat"))}
           />
           <Route
-            path="/slate/editor"
-            component={loadable(() => import("../containers/SlateEditor"))}
-          />
-          <Route
-            path="/slate/preview"
-            component={loadable(() => import("../containers/SlatePreview"))}
-          />
-          <Route
             path="/test"
             component={loadable(() => import("../containers/Test"))}
           />
