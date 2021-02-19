@@ -167,12 +167,12 @@ const SingleProject = () => {
       return;
     }
 
-    const dragItem = tasks[result.destination.index];
+    const dragItem = tasks[result.source.index];
     setTasks(
       update(tasks, {
         $splice: [
-          [result.destination.index, 1],
-          [result.source.index, 0, dragItem],
+          [result.source.index, 1],
+          [result.destination.index, 0, dragItem],
         ],
       })
     );
