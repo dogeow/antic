@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { gql, useQuery } from "@apollo/client";
-import _ from "lodash";
+import axios from "axios";
 import update from "immutability-helper";
+import _ from "lodash";
+import React, { useEffect, useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 const PROJECT_BY_ID = gql`
   query($id: Int!) {
@@ -60,6 +61,10 @@ const Test = () => {
         ],
       })
     );
+
+    axios.put(`/tasks/${result.draggableId}`, {
+      order: result.destination.index,
+    });
   };
 
   return (
