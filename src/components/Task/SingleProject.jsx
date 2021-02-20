@@ -153,6 +153,8 @@ const SingleProject = () => {
         title: task.title,
       });
     }
+
+    setEditId(undefined);
   };
 
   const handleDelete = () => {
