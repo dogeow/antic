@@ -59,10 +59,6 @@ axios.interceptors.response.use(
   (error) => {
     if (error.response) {
       switch (error.response.status) {
-        case 400:
-          window.console.log(error);
-          Swal.fire("提示️", error.response.data.message, "error");
-          break;
         case 401: {
           const text = localStorage.getItem("userId")
             ? "登录状态过期"
@@ -71,14 +67,6 @@ axios.interceptors.response.use(
           localStorage.removeItem("token");
           break;
         }
-        case 422:
-          break;
-        default:
-          Swal.fire(
-            "提示️",
-            error.response.statusText || error.response.message,
-            "error"
-          );
       }
     }
 

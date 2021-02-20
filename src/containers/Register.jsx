@@ -96,18 +96,16 @@ const Register = ({ history }) => {
         password,
         password_confirmation: passwordConfirmation,
       })
-      .then((resp) => {
-        window.console.log(resp);
-        if (resp.status === 201) {
-          swal.fire({
-            title: "注册成功，",
-            icon: "success",
-            showCloseButton: true,
-          });
-          history.push("/login");
-        } else {
-          setInputErrors(resp.data.errors);
-        }
+      .then(() => {
+        swal.fire({
+          title: "注册成功，",
+          icon: "success",
+          showCloseButton: true,
+        });
+        history.push("/login");
+      })
+      .catch((error) => {
+        setInputErrors(error.data.errors);
       });
   };
 
@@ -163,15 +161,9 @@ const Register = ({ history }) => {
                     autoComplete="name"
                     onChange={(e) => setName(e.target.value)}
                     error={!!inputErrors.name}
-                    placeholder={
-                      inputErrors.name ? inputErrors.name[0] : undefined
-                    }
-                    InputLabelProps={
-                      inputErrors.name ? { shrink: true } : undefined
-                    }
-                    helperText={
-                      inputErrors.name ? inputErrors.name[0] : undefined
-                    }
+                    placeholder={inputErrors?.name?.[0]}
+                    InputLabelProps={inputErrors?.name && { shrink: true }}
+                    helperText={inputErrors?.name?.[0]}
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
@@ -192,13 +184,9 @@ const Register = ({ history }) => {
                     autoComplete="email"
                     onChange={(e) => setEmail(e.target.value)}
                     error={!!inputErrors.email}
-                    placeholder={
-                      inputErrors.email ? inputErrors.email[0] : undefined
-                    }
-                    InputLabelProps={inputErrors.email ? { shrink: true } : {}}
-                    helperText={
-                      inputErrors.email ? inputErrors.email[0] : undefined
-                    }
+                    placeholder={inputErrors?.email?.[0]}
+                    InputLabelProps={inputErrors?.email && { shrink: true }}
+                    helperText={inputErrors?.email?.[0]}
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
@@ -220,15 +208,9 @@ const Register = ({ history }) => {
                     autoComplete="current-password"
                     onChange={(e) => setPassword(e.target.value)}
                     error={!!inputErrors.password}
-                    placeholder={
-                      inputErrors.password ? inputErrors.password[0] : undefined
-                    }
-                    InputLabelProps={
-                      inputErrors.password ? { shrink: true } : {}
-                    }
-                    helperText={
-                      inputErrors.password ? inputErrors.password[0] : undefined
-                    }
+                    placeholder={inputErrors?.password?.[0]}
+                    InputLabelProps={inputErrors?.password && { shrink: true }}
+                    helperText={inputErrors?.password?.[0]}
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
@@ -260,19 +242,11 @@ const Register = ({ history }) => {
                     autoComplete="current-password-confirmation"
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                     error={!!inputErrors.password_confirmation}
-                    placeholder={
-                      inputErrors.password_confirmation
-                        ? inputErrors.password_confirmation[0]
-                        : undefined
-                    }
+                    placeholder={inputErrors?.password_confirmation?.[0]}
                     InputLabelProps={
-                      inputErrors.password_confirmation ? { shrink: true } : {}
+                      inputErrors?.password_confirmation && { shrink: true }
                     }
-                    helperText={
-                      inputErrors.password_confirmation
-                        ? inputErrors.password_confirmation[0]
-                        : undefined
-                    }
+                    helperText={inputErrors?.password_confirmation?.[0]}
                     InputProps={{
                       startAdornment: (
                         <InputAdornment position="start">
