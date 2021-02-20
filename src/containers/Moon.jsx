@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import axios from "../helpers/api";
+import axios from "../instance/axios";
 
 const Moon = () => {
   const history = useHistory();

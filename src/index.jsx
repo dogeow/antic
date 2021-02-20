@@ -4,7 +4,7 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 
 import App from "./containers/App";
-import client from "./GraphQL";
+import client from "./instance/graphQL";
 import store from "./store";
 
 if (process.env.NODE_ENV === "production") {

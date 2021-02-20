@@ -1,7 +1,7 @@
 import Grid from "@material-ui/core/Grid";
 import React, { useEffect, useState } from "react";
 
-import axios from "../helpers/api";
+import axios from "../instance/axios";
 import Card from "./Card";
 
 const Like = () => {

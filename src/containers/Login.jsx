@@ -25,7 +25,7 @@ import { Link as RouteLink, useHistory, useLocation } from "react-router-dom";
 import { loginAction } from "../actions";
 import Copyright from "../components/Copyright";
 import { logged } from "../helpers";
-import axios from "../helpers/api";
+import axios from "../instance/axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -5,7 +5,7 @@ import MaterialTable from "material-table";
 import * as React from "react";
 
 import localization from "../config/localization";
-import axios from "../helpers/api";
+import axios from "../instance/axios";
 
 const useStyles = makeStyles(() => ({
   tableRoot: {

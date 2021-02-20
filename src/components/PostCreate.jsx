@@ -30,7 +30,7 @@ import React, { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 import Swal from "sweetalert2";
 
-import axios from "../helpers/api";
+import axios from "../instance/axios";
 import Tags from "./Post/Tags";
 
 hljs.registerLanguage("javascript", javascript);

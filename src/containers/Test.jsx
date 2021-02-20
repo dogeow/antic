@@ -4,7 +4,7 @@ import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
-import axios from "../helpers/api";
+import axios from "../instance/axios";
 
 const PROJECT_BY_ID = gql`
   query($id: Int!) {

@@ -9,7 +9,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import axios from "../helpers/api";
+import axios from "../instance/axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

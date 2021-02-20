@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import * as React from "react";
 import Swal from "sweetalert2";
 
-import axios from "../helpers/api";
+import axios from "../instance/axios";
 
 const useStyles = makeStyles(() => ({
   rating: {

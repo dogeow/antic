@@ -11,7 +11,7 @@ import random from "lodash/random";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import axios from "../helpers/api";
+import axios from "../instance/axios";
 
 const useStyles = makeStyles(() => ({
   "@global": {

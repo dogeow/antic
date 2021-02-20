@@ -9,7 +9,7 @@ import {
 } from "../actions";
 import Header from "../containers/Header";
 import { logged, logout } from "../helpers";
-import axios from "../helpers/api";
+import axios from "../instance/axios";
 
 const mapStateToProps = (state) => ({
   toggleDrawer: state.lab.toggleDrawer,

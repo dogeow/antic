@@ -11,7 +11,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
-import axios from "../helpers/api";
+import axios from "../instance/axios";
 import Copyright from "./Copyright";
 
 const useStyles = makeStyles((theme) => ({

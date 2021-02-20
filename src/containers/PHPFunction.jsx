@@ -18,7 +18,7 @@ import Icon from "@mdi/react";
 import React, { useState } from "react";
 import swal from "sweetalert2";
 
-import axios from "../helpers/api";
+import axios from "../instance/axios";
 
 const NoMatch = () => {
   const [value, setValue] = useState("");

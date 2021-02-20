@@ -7,7 +7,7 @@ import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 
 import Loading from "../components/Loading";
-import axios from "../helpers/api";
+import axios from "../instance/axios";
 
 let timer = null;
 
