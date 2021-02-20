@@ -16,7 +16,7 @@ export default {
     { name: "📒PHP 函数", url: "/php-function" },
   ],
   externalMenus: [
-    { name: "🗂️学习笔记", url: "https://wiki.kunyan.li" },
-    { name: "🖌️Canvas 学习", url: "http://canvas.kunyan.li" },
+    { name: "🗂️学习笔记", url: "https://wiki.gugelong.com" },
+    { name: "🖌️Canvas 学习", url: "http://canvas.gugelong.com" },
   ],
 };

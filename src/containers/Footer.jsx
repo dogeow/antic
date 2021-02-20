@@ -116,7 +116,7 @@ const Footer = () => {
         </Grid>
       </Grid>
       <div style={{ textAlign: "center", marginBottom: 20, opacity: 0.6 }}>
-        Built By <a href="https://kunyan.li">小李世界</a> with <Heart />
+        Built By 小李世界 with <Heart />
       </div>
     </Container>
   );
