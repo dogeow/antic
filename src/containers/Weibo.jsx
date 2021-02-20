@@ -6,11 +6,12 @@ import Pagination from "@material-ui/lab/Pagination";
 import PaginationItem from "@material-ui/lab/PaginationItem";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { KeyboardDatePicker } from "@material-ui/pickers";
-import axios from "axios";
 import dayjs from "dayjs";
 import random from "lodash/random";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+import axios from "../helpers/api";
 
 const useStyles = makeStyles(() => ({
   "@global": {

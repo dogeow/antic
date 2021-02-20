@@ -2,10 +2,11 @@ import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
 import RatingUi from "@material-ui/lab/Rating";
-import axios from "axios";
 import PropTypes from "prop-types";
 import * as React from "react";
 import Swal from "sweetalert2";
+
+import axios from "../helpers/api";
 
 const useStyles = makeStyles(() => ({
   rating: {

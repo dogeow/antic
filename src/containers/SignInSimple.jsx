@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useState } from "react";
 import swal from "sweetalert2";
 
+import axios from "../helpers/api";
 import credentialsTest from "../resources/credentialsTest.json";
 
 function SignInSimple() {

@@ -1,6 +1,4 @@
-import axios from "axios";
 import Echo from "laravel-echo";
-import Swal from "sweetalert2";
 
 import consoleInfo from "./components/ConsoleInfo";
 import { logout } from "./helpers";
@@ -11,68 +9,6 @@ if (
 ) {
   logout();
 }
-
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-if (localStorage.token) {
-  axios.defaults.headers.common.Authorization = localStorage.token;
-}
-
-axios.interceptors.request.use(
-  (request) => {
-    window.request = true;
-    if (process.env.NODE_ENV === "development") {
-      window.console.log("请求了：");
-      window.console.log(request);
-    }
-
-    return request;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-axios.interceptors.response.use(
-  (response) => {
-    if (process.env.NODE_ENV === "development") {
-      window.console.log("返回了：");
-      window.console.log(response);
-    }
-
-    const errors = response.data.error;
-    if (errors) {
-      Object.values(errors).forEach((error) => {
-        error.forEach((errorMessage) => {
-          Swal.fire("提示️", errorMessage, "warning");
-        });
-      });
-    }
-
-    const newToken = response.headers.authorization;
-    if (newToken) {
-      localStorage.token = newToken;
-    }
-
-    return response;
-  },
-  (error) => {
-    if (error.response) {
-      switch (error.response.status) {
-        case 401: {
-          const text = localStorage.getItem("userId")
-            ? "登录状态过期"
-            : "尚未登录账号";
-          Swal.fire("提示️", text, "warning");
-          localStorage.removeItem("token");
-          break;
-        }
-      }
-    }
-
-    return Promise.reject(error.response);
-  }
-);
 
 consoleInfo();
 

@@ -12,8 +12,9 @@ import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+
+import axios from "../helpers/api";
 
 const Api = () => {
   const [api, setApi] = useState([]);

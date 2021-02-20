@@ -1,4 +1,3 @@
-import axios from "axios";
 import { connect } from "react-redux";
 
 import {
@@ -10,6 +9,7 @@ import {
 } from "../actions";
 import Header from "../containers/Header";
 import { logged, logout } from "../helpers";
+import axios from "../helpers/api";
 
 const mapStateToProps = (state) => ({
   toggleDrawer: state.lab.toggleDrawer,

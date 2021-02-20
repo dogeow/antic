@@ -1,5 +1,6 @@
-import axios from "axios";
 import dayjs from "dayjs";
+
+import axios from "../helpers/api";
 
 /**
  * 判断是否登录过期

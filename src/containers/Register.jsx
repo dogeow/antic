@@ -20,11 +20,11 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
-import axios from "axios";
 import React, { useState } from "react";
 import swal from "sweetalert2";
 
 import Copyright from "../components/Copyright";
+import axios from "../helpers/api";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

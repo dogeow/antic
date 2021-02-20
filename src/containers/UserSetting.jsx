@@ -1,8 +1,9 @@
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import axios from "axios";
 import React, { useState } from "react";
+
+import axios from "../helpers/api";
 
 const UserSetting = () => {
   const [currPassword, setCurrPassword] = useState("");

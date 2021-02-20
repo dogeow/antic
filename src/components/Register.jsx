@@ -8,10 +8,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import axios from "axios";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
+import axios from "../helpers/api";
 import Copyright from "./Copyright";
 
 const useStyles = makeStyles((theme) => ({

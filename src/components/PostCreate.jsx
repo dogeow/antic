@@ -20,7 +20,6 @@ import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import tableMergedCell from "@toast-ui/editor-plugin-table-merged-cell";
 import uml from "@toast-ui/editor-plugin-uml";
 import { Editor } from "@toast-ui/react-editor";
-import axios from "axios";
 import clsx from "clsx";
 import hljs from "highlight.js";
 import bash from "highlight.js/lib/languages/bash";
@@ -31,6 +30,7 @@ import React, { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 import Swal from "sweetalert2";
 
+import axios from "../helpers/api";
 import Tags from "./Post/Tags";
 
 hljs.registerLanguage("javascript", javascript);

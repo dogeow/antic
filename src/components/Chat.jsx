@@ -3,11 +3,11 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Snackbar from "@material-ui/core/Snackbar";
 import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
-import axios from "axios";
 import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 
 import Loading from "../components/Loading";
+import axios from "../helpers/api";
 
 let timer = null;
 

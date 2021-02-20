@@ -1,9 +1,10 @@
 import { gql, useQuery } from "@apollo/client";
-import axios from "axios";
 import update from "immutability-helper";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+
+import axios from "../helpers/api";
 
 const PROJECT_BY_ID = gql`
   query($id: Int!) {

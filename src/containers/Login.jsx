@@ -17,7 +17,6 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
-import axios from "axios";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { connect } from "react-redux";
@@ -26,6 +25,7 @@ import { Link as RouteLink, useHistory, useLocation } from "react-router-dom";
 import { loginAction } from "../actions";
 import Copyright from "../components/Copyright";
 import { logged } from "../helpers";
+import axios from "../helpers/api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
