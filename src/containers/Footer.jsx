@@ -83,10 +83,10 @@ const Footer = () => {
             长期计划
           </Typography>
           <ul>
-            <li>WebSocket 实时应用</li>
-            <li>Canvas / Three.js + WebSocket 像素游戏</li>
-            <li>Next.js</li>
-            <li>EasyWechat + Taro</li>
+            <li>英语</li>
+            <li>实时的应用、游戏</li>
+            <li>PHP + JavaScript</li>
+            <li>算法、底层等</li>
           </ul>
         </Grid>
         <Grid item xs={12} sm>
