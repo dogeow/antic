@@ -9,7 +9,7 @@ const Routes = () => (
     <Route
       exact
       path="/projects"
-      component={loadable(() => import("../Project"))}
+      component={loadable(() => import("../containers/Project"))}
     />
     <Route
       exact
