@@ -97,7 +97,7 @@ const SingleProject = () => {
       })
       .then(({ data }) => {
         setTitle("");
-        setTasks(tasks.concat(data));
+        setTasks([data, ...tasks]);
       })
       .catch((error) => {
         setErrors(error.response.data.errors);
