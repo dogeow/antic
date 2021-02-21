@@ -5,7 +5,7 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import axios from "../../helpers/api";
+import axios from "../../instance/axios";
 
 const NewProject = () => {
   const history = useHistory();

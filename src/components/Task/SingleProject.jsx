@@ -14,7 +14,7 @@ import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
-import axios from "../../helpers/api";
+import axios from "../../instance/axios";
 import AlertDialog from "../AlertDialog";
 
 const useStyles = makeStyles(() => ({
