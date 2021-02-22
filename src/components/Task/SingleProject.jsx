@@ -251,7 +251,7 @@ const SingleProject = () => {
                   {tasks.map((task, index) => (
                     <Draggable
                       key={task.id}
-                      draggableId={task.id}
+                      draggableId={task.id.toString()}
                       index={index}
                     >
                       {(provided, snapshot) => (
