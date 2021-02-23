@@ -1,9 +1,4 @@
-import "@toast-ui/editor/dist/i18n/zh-cn";
-import "../styles/codemirror.css";
-import "../styles/toastui-editor.css";
-import "highlight.js/styles/atom-one-dark.css";
-import "tui-color-picker/dist/tui-color-picker.css";
-import "tui-chart/dist/tui-chart.css";
+import "../styles/editor.css";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { green, red } from "@material-ui/core/colors";
@@ -14,36 +9,19 @@ import TextField from "@material-ui/core/TextField";
 import CheckIcon from "@material-ui/icons/Check";
 import ErrorIcon from "@material-ui/icons/ErrorOutline";
 import SaveIcon from "@material-ui/icons/Save";
-import chart from "@toast-ui/editor-plugin-chart";
-import codeSyntaxHightlight from "@toast-ui/editor-plugin-code-syntax-highlight";
-import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
-import tableMergedCell from "@toast-ui/editor-plugin-table-merged-cell";
-import uml from "@toast-ui/editor-plugin-uml";
-import { Editor } from "@toast-ui/react-editor";
 import clsx from "clsx";
-import hljs from "highlight.js";
-import bash from "highlight.js/lib/languages/bash";
-import javascript from "highlight.js/lib/languages/javascript";
-import json from "highlight.js/lib/languages/json";
-import php from "highlight.js/lib/languages/php";
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import MdEditor from "react-markdown-editor-lite";
 import { useRouteMatch } from "react-router-dom";
 import Swal from "sweetalert2";
 
+import CodeBlock from "../components/CodeBlock";
+import Tags from "../components/Post/Tags";
 import axios from "../instance/axios";
-import Tags from "./Post/Tags";
 
-hljs.registerLanguage("javascript", javascript);
-hljs.registerLanguage("php", php);
-hljs.registerLanguage("bash", bash);
-hljs.registerLanguage("json", json);
-
-const chartOptions = {
-  minWidth: 100,
-  maxWidth: 600,
-  minHeight: 100,
-  maxHeight: 300,
-};
+const gfm = require("remark-gfm");
 
 const useStyles = makeStyles(() => ({
   buttonSuccess: {
@@ -66,7 +44,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PostCreate = () => {
+export default (props) => {
   const classes = useStyles();
   const match = useRouteMatch();
 
@@ -78,9 +56,8 @@ const PostCreate = () => {
   const [errors, setErrors] = useState(false);
   const [edit, setEdit] = useState(false);
 
-  const editorRef = React.createRef();
+  const editorRef = useRef(null);
 
-  // 编辑时，获取文章
   useEffect(() => {
     if (match.params.id) {
       setEdit(true);
@@ -90,6 +67,10 @@ const PostCreate = () => {
       });
     }
   }, [match.params.id]);
+
+  const buttonClassname = errors
+    ? clsx({ [classes.buttonError]: errors })
+    : clsx({ [classes.buttonSuccess]: success });
 
   const handlePost = () => {
     if (!loading) {
@@ -130,39 +111,10 @@ const PostCreate = () => {
       });
   };
 
-  const handleEditorChange = () => {
-    const content = editorRef.current.getInstance().getMarkdown();
-    localStorage.post = content;
-    setPost({
-      ...post,
-      content,
-    });
-  };
-
-  const handleTitleChange = (event) => {
-    setPost({ ...post, title: event.target.value });
-  };
-
-  const buttonClassname = errors
-    ? clsx({ [classes.buttonError]: errors })
-    : clsx({ [classes.buttonSuccess]: success });
-
-  const uploadImage = (blob) => {
-    const formData = new FormData();
-
-    formData.append("emoji", blob, blob.name);
-
-    return axios.post("/emoji", formData);
-  };
-
-  const onAddImageBlob = (blob, callback) => {
-    uploadImage(blob)
-      .then((response) => {
-        callback(response.data.url, "alt text");
-      })
-      .catch((error) => {
-        window.console.log(error);
-      });
+  const handleGetMdValue = () => {
+    if (editorRef.current) {
+      return editorRef.current.getMdValue();
+    }
   };
 
   const handleCategoryChange = (e) => {
@@ -175,8 +127,48 @@ const PostCreate = () => {
   const handleDelete = (tag) => {
     window.console.log("delete");
   };
+
   const handleNew = () => {
     setNewTagOpen(true);
+  };
+
+  const handleEditorChange = ({ html, text }) => {
+    // const content = handleGetMdValue();
+    localStorage.post = text;
+    setPost({
+      ...post,
+      content: text,
+    });
+  };
+
+  const handleTitleChange = (event) => {
+    setPost({ ...post, title: event.target.value });
+  };
+
+  const handleGetHtmlValue = () => {
+    if (editorRef.current) {
+      return editorRef.current.getHtmlValue();
+    }
+  };
+
+  const uploadImage = (blob) => {
+    const formData = new FormData();
+
+    formData.append("emoji", blob, blob.name);
+
+    return axios.post("/emoji", formData);
+  };
+
+  const onAddImageBlob = (blob) => {
+    return new Promise((resolve) => {
+      uploadImage(blob)
+        .then((response) => {
+          resolve(response.data.url);
+        })
+        .catch((error) => {
+          window.console.log(error);
+        });
+    });
   };
 
   return (
@@ -218,27 +210,26 @@ const PostCreate = () => {
       {/* 正文 */}
       <Grid item xs={12}>
         {(post?.content || id === null) && (
-          <Editor
+          <MdEditor
             ref={editorRef}
+            id="editor"
+            name="text"
+            value={post.content || (edit && localStorage.post) || "666"}
+            style={{ height: "70vh" }}
+            renderHTML={(text) => (
+              <ReactMarkdown renderers={{ code: CodeBlock }} plugins={[gfm]}>
+                {text}
+              </ReactMarkdown>
+            )}
             placeholder="输入文档内容"
-            initialValue={post.content || (edit && localStorage.post) || ""}
-            previewStyle="vertical"
-            height="70vh"
-            initialEditType="markdown"
-            useCommandShortcut
-            language="zh-CN"
-            usageStatistics={false}
-            plugins={[
-              [codeSyntaxHightlight, { hljs }],
-              colorSyntax,
-              tableMergedCell,
-              uml,
-              [chart, chartOptions],
-            ]}
             onChange={handleEditorChange}
-            hooks={{
-              addImageBlobHook: onAddImageBlob,
+            config={{
+              imageUrl: "https://octodex.github.com/images/minion.png",
+              syncScrollMode: ["leftFollowRight", "rightFollowLeft"],
+              view: { html: true },
+              shortcuts: true,
             }}
+            onImageUpload={onAddImageBlob}
           />
         )}
       </Grid>
@@ -261,5 +252,3 @@ const PostCreate = () => {
     </Grid>
   );
 };
-
-export default PostCreate;

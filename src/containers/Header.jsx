@@ -26,7 +26,7 @@ import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import MuiAlert from "@material-ui/lab/Alert";
 import md5 from "md5";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link as RouteLink, useHistory, useLocation } from "react-router-dom";
 
 import Drawer from "../components/Drawer";
@@ -71,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
  * @param {boolean} onClickDrawer
  * @param {function} toggleDrawer
  * @param {function} onThemeClick
+ * @param {function} snackClose
  * @param {function} paletteMode
  * @return {JSX.Element}
  * @constructor
@@ -103,6 +104,20 @@ const Header = ({
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    if (playing) {
+      const togglePlay = () => {
+        setPlaying(!playing);
+      };
+
+      const audio = document.getElementById("music");
+      audio.addEventListener("ended", togglePlay, false);
+      return () => {
+        audio.removeEventListener("ended", togglePlay, false);
+      };
+    }
+  }, [playing]);
 
   /**
    * 设置开关
@@ -141,14 +156,14 @@ const Header = ({
       audio.src =
         "https://cdn.gugelong.com/music/%E5%92%8C%E6%A5%BD%E5%99%A8%E3%83%90%E3%83%B3%E3%83%89%20-%20%E6%9D%B1%E9%A2%A8%E7%A0%B4.mp3";
       root.append(audio);
-      setPlaying(true);
+      togglePlay();
       audio.play();
     } else {
       if (audio.paused) {
-        setPlaying(true);
+        togglePlay();
         audio.play();
       } else {
-        setPlaying(false);
+        togglePlay();
         audio.pause();
       }
     }
