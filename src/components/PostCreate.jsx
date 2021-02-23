@@ -23,34 +23,43 @@ import Tags from "../components/Post/Tags";
 import axios from "../instance/axios";
 
 const useStyles = makeStyles((theme) => {
-  console.log(theme.palette.type);
+  const background = theme.palette.background.default;
+  const black = theme.palette.common.black;
+  const white = theme.palette.common.white;
+
   return {
     "@global":
       theme.palette.type === "dark"
         ? {
             "#editor_md": {
-              backgroundColor: "#303030",
-              color: "white",
+              backgroundColor: background,
+              color: white,
             },
             "#editor_html": {
-              backgroundColor: "#303030",
-              color: "white",
+              backgroundColor: background,
+              color: white,
             },
             ".rc-md-navigation": {
-              background: "#303030",
+              background: background,
+            },
+            ".custom-html-style": {
+              color: white,
             },
           }
         : {
             "#editor_md": {
-              backgroundColor: "white",
-              color: "black",
+              backgroundColor: white,
+              color: black,
             },
             "#editor_html": {
-              backgroundColor: "white",
-              color: "black",
+              backgroundColor: white,
+              color: black,
             },
             ".rc-md-navigation": {
-              background: "white",
+              background: white,
+            },
+            ".custom-html-style": {
+              color: black,
             },
           },
     buttonSuccess: {
