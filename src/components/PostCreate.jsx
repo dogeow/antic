@@ -40,10 +40,13 @@ const useStyles = makeStyles((theme) => {
               color: white,
             },
             ".rc-md-navigation": {
-              background: background,
+              backgroundColor: background,
             },
             ".custom-html-style": {
               color: white,
+            },
+            code: {
+              backgroundColor: theme.palette.background.paper,
             },
           }
         : {
@@ -56,10 +59,13 @@ const useStyles = makeStyles((theme) => {
               color: black,
             },
             ".rc-md-navigation": {
-              background: white,
+              backgroundColor: white,
             },
             ".custom-html-style": {
               color: black,
+            },
+            code: {
+              backgroundColor: "#eee",
             },
           },
     buttonSuccess: {

@@ -1,5 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
+import { green, red } from "@material-ui/core/colors";
 import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import React, { useEffect, useState } from "react";
@@ -10,6 +12,23 @@ import Hr from "../components/Hr";
 import axios from "../instance/axios";
 import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
+
+const useStyles = makeStyles((theme) => {
+  return {
+    "@global":
+      theme.palette.type === "dark"
+        ? {
+            code: {
+              backgroundColor: theme.palette.background.paper,
+            },
+          }
+        : {
+            code: {
+              backgroundColor: "#eee",
+            },
+          },
+  };
+});
 
 const POST_BY_ID_AND_QUOTE = gql`
   query($id: Int!) {
@@ -31,6 +50,7 @@ const POST_BY_ID_AND_QUOTE = gql`
 `;
 
 const PostSingle = () => {
+  useStyles();
   const [post, setPost] = useState({});
   const [quote, setQuote] = useState("");
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
