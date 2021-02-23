@@ -27,7 +27,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
           arrow
           interactive="true"
         >
-          <div>
+          <div style={{ color: "gray" }}>
             发布于<time>{dayjs(post.created_at).fromNow()}</time>
           </div>
         </Tooltip>
@@ -43,7 +43,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
           arrow
           interactive="true"
         >
-          <div>
+          <div style={{ color: "gray" }}>
             更新于<time>{dayjs(post.updated_at).fromNow()}</time>
           </div>
         </Tooltip>
