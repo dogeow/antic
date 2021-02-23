@@ -17,6 +17,28 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
   return post ? (
     <>
       <Grid item>
+        <Chip
+          label={post?.category?.name || "未分类"}
+          color="primary"
+          variant="outlined"
+          size="small"
+        />
+      </Grid>
+      {post?.tags?.length ? (
+        <Grid item>
+          <Tags tags={post?.tags} />
+        </Grid>
+      ) : (
+        <Grid item>
+          <Chip
+            label={"无标签"}
+            color="primary"
+            variant="outlined"
+            size="small"
+          />
+        </Grid>
+      )}
+      <Grid item>
         <Tooltip
           title={dayjs(post.created_at).format("YYYY-MM-DD HH:mm:ss")}
           placement="top"
@@ -48,26 +70,8 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
           </div>
         </Tooltip>
       </Grid>
-      <Grid item>
-        <Chip
-          label={post?.category?.name || "未分类"}
-          color="primary"
-          variant="outlined"
-          size="small"
-        />
-      </Grid>
-      <Grid item>
-        <Tags tags={post?.tags} />
-      </Grid>
-      <Grid item>
-        <ButtonGroup
-          size="small"
-          color="primary"
-          aria-label="text primary button group"
-        >
-          <Button onClick={handleEdit}>编辑</Button>
-          <Button onClick={handleDelete}>删除</Button>
-        </ButtonGroup>
+      <Grid item style={{ color: "gray" }}>
+        <a onClick={handleEdit}>编辑</a> | <a onClick={handleDelete}>删除</a>
       </Grid>
     </>
   ) : (
