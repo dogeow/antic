@@ -47,7 +47,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
           disableTouchListener
           TransitionComponent={Zoom}
           arrow
-          interactive="true"
+          interactive={true}
         >
           <div style={{ color: "gray" }}>
             发布于<time>{dayjs(post.created_at).fromNow()}</time>
@@ -63,7 +63,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
           disableTouchListener
           TransitionComponent={Zoom}
           arrow
-          interactive="true"
+          interactive={true}
         >
           <div style={{ color: "gray" }}>
             更新于<time>{dayjs(post.updated_at).fromNow()}</time>
@@ -77,7 +77,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
   ) : (
     <>
       <Grid item xs={12}>
-        <Skeleton variant="rectangular" height={20} width="60%" />
+        <Skeleton variant="rect" height={20} width="60%" />
       </Grid>
     </>
   );

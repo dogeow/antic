@@ -13,7 +13,7 @@ const PostBody = ({ post }) => {
           {post.content}
         </ReactMarkdown>
       ) : (
-        <Skeleton variant="rectangular" height="60vh" />
+        <Skeleton variant="rect" height="60vh" />
       )}
     </>
   );

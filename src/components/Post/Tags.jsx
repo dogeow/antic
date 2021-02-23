@@ -29,13 +29,13 @@ const Tags = (props) => {
     <ul className={classes.root}>
       {props.tags.map((tag) => {
         return (
-          <li key={tag.name} style={{ alignSelf: "center" }}>
+          <li key={tag} style={{ alignSelf: "center" }}>
             <Chip
               size="small"
-              label={tag.name}
+              label={tag}
               onDelete={
                 state.lab.userId && props.newTagOpen
-                  ? () => props.delete(tag.name)
+                  ? () => props.delete(tag)
                   : undefined
               }
               className={classes.chip}

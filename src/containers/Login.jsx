@@ -212,7 +212,7 @@ const SignInSide = ({ dispatch }) => {
                 enterDelay={200}
                 TransitionComponent={Zoom}
                 arrow
-                interactive="true"
+                interactive={true}
                 style={{ alignSelf: "center" }}
                 onClick={handleOpen}
               >

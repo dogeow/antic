@@ -117,7 +117,7 @@
   padding: 0 8px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid gray;
   font-size: 16px;
   background: #f5f5f5;
   -webkit-user-select: none;
@@ -256,7 +256,7 @@
 .rc-md-editor {
   padding-bottom: 1px;
   position: relative;
-  border: 1px solid #e0e0e0;
+  border: 1px solid gray;
   background: #fff;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -530,7 +530,7 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-color: #e0e0e0;
+  background-color: gray;
   border-radius: 3px
 }
 
