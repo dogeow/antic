@@ -7,7 +7,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import PaginationItem from "@material-ui/lab/PaginationItem";
 import Skeleton from "@material-ui/lab/Skeleton";
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 import axios from "../instance/axios";
 
@@ -24,6 +24,7 @@ const PostList = () => {
   const [pageCount, setPageCount] = useState();
   const [currPage, setCurrPage] = useState(1);
   const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -47,6 +48,12 @@ const PostList = () => {
       setCurrPage(page);
       setPageCount(data.last_page);
     });
+  };
+
+  const handleEnterPost = (item) => {
+    localStorage.postTitle = item.title;
+    localStorage.postId = item.id;
+    history.push(`/posts/${item.id}`);
   };
 
   return (
@@ -79,8 +86,12 @@ const PostList = () => {
                 </Grid>
                 {/* 标题 */}
                 <Grid item>
-                  <Typography variant="subtitle1" component="h2">
-                    <Link to={`/posts/${item.id}`}>{item.title}</Link>
+                  <Typography
+                    variant="subtitle1"
+                    component="h2"
+                    onClick={() => handleEnterPost(item)}
+                  >
+                    {item.title}
                   </Typography>
                 </Grid>
                 {/* 标签 */}

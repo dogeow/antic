@@ -77,7 +77,9 @@ const PostSingle = () => {
         <Grid item xs={12}>
           {post ? (
             <Typography variant="h4" component="h2">
-              {post.title}
+              {parseInt(localStorage?.postId) === id
+                ? localStorage.postTitle
+                : post.title}
             </Typography>
           ) : (
             <Skeleton variant="rectangular" height={41} width="40%" />
