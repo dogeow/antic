@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     listStylePosition: "outside",
     listStyle: "none",
+    paddingInlineStart: 0,
   },
   chip: {
     margin: theme.spacing(0.5),
