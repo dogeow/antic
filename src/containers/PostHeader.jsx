@@ -28,7 +28,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
           interactive="true"
         >
           <div>
-            创建于<time>{dayjs(post.created_at).fromNow()}</time>
+            发布于<time>{dayjs(post.created_at).fromNow()}</time>
           </div>
         </Tooltip>
       </Grid>
