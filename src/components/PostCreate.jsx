@@ -15,13 +15,12 @@ import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import MdEditor from "react-markdown-editor-lite";
 import { useRouteMatch } from "react-router-dom";
+import gfm from "remark-gfm";
 import Swal from "sweetalert2";
 
 import CodeBlock from "../components/CodeBlock";
 import Tags from "../components/Post/Tags";
 import axios from "../instance/axios";
-
-const gfm = require("remark-gfm");
 
 const useStyles = makeStyles(() => ({
   buttonSuccess: {
@@ -209,29 +208,27 @@ export default (props) => {
       </Grid>
       {/* 正文 */}
       <Grid item xs={12}>
-        {(post?.content || id === null) && (
-          <MdEditor
-            ref={editorRef}
-            id="editor"
-            name="text"
-            value={post.content || (edit && localStorage.post) || "666"}
-            style={{ height: "70vh" }}
-            renderHTML={(text) => (
-              <ReactMarkdown renderers={{ code: CodeBlock }} plugins={[gfm]}>
-                {text}
-              </ReactMarkdown>
-            )}
-            placeholder="输入文档内容"
-            onChange={handleEditorChange}
-            config={{
-              imageUrl: "https://octodex.github.com/images/minion.png",
-              syncScrollMode: ["leftFollowRight", "rightFollowLeft"],
-              view: { html: true },
-              shortcuts: true,
-            }}
-            onImageUpload={onAddImageBlob}
-          />
-        )}
+        <MdEditor
+          ref={editorRef}
+          id="editor"
+          name="text"
+          value={post.content || (edit && localStorage.post) || ""}
+          style={{ height: "70vh" }}
+          renderHTML={(text) => (
+            <ReactMarkdown renderers={{ code: CodeBlock }} plugins={[gfm]}>
+              {text}
+            </ReactMarkdown>
+          )}
+          placeholder="输入文档内容"
+          onChange={handleEditorChange}
+          config={{
+            imageUrl: "https://octodex.github.com/images/minion.png",
+            syncScrollMode: ["leftFollowRight", "rightFollowLeft"],
+            view: { html: true },
+            shortcuts: true,
+          }}
+          onImageUpload={onAddImageBlob}
+        />
       </Grid>
       {/* 保存按钮 */}
       <Grid item xs={12} style={{ position: "relative", textAlign: "center" }}>
