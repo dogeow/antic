@@ -22,26 +22,57 @@ import CodeBlock from "../components/CodeBlock";
 import Tags from "../components/Post/Tags";
 import axios from "../instance/axios";
 
-const useStyles = makeStyles(() => ({
-  buttonSuccess: {
-    backgroundColor: green[500],
-    "&:hover": {
-      backgroundColor: green[700],
+const useStyles = makeStyles((theme) => {
+  console.log(theme.palette.type);
+  return {
+    "@global":
+      theme.palette.type === "dark"
+        ? {
+            "#editor_md": {
+              backgroundColor: "#303030",
+              color: "white",
+            },
+            "#editor_html": {
+              backgroundColor: "#303030",
+              color: "white",
+            },
+            ".rc-md-navigation": {
+              background: "#303030",
+            },
+          }
+        : {
+            "#editor_md": {
+              backgroundColor: "white",
+              color: "black",
+            },
+            "#editor_html": {
+              backgroundColor: "white",
+              color: "black",
+            },
+            ".rc-md-navigation": {
+              background: "white",
+            },
+          },
+    buttonSuccess: {
+      backgroundColor: green[500],
+      "&:hover": {
+        backgroundColor: green[700],
+      },
     },
-  },
-  buttonError: {
-    backgroundColor: red[500],
-    "&:hover": {
-      backgroundColor: red[700],
+    buttonError: {
+      backgroundColor: red[500],
+      "&:hover": {
+        backgroundColor: red[700],
+      },
     },
-  },
-  fabProgress: {
-    color: green[500],
-    marginBottom: -30,
-    marginLeft: -62,
-    zIndex: 1,
-  },
-}));
+    fabProgress: {
+      color: green[500],
+      marginBottom: -30,
+      marginLeft: -62,
+      zIndex: 1,
+    },
+  };
+});
 
 export default (props) => {
   const classes = useStyles();

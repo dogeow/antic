@@ -119,7 +119,6 @@
   box-sizing: border-box;
   border-bottom: 1px solid gray;
   font-size: 16px;
-  background: #f5f5f5;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -257,7 +256,6 @@
   padding-bottom: 1px;
   position: relative;
   border: 1px solid gray;
-  background: #fff;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   display: -webkit-box;
