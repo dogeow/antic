@@ -3,6 +3,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Snackbar from "@material-ui/core/Snackbar";
 import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
+import Echo from "laravel-echo";
 import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -11,15 +12,26 @@ import axios from "../instance/axios";
 
 let timer = null;
 
-export default function Chat({ chat, setPeoples, chatBoard, message }) {
+export default function Chat({ lab, chat, setPeoples, chatBoardAdd }) {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
-  const [loading, setLoading] = useState(window.Echo.socketId() === null);
+  const [loading, setLoading] = useState(window?.Echo?.socketId() === null);
+  const [message, setMessage] = useState("");
 
   const messagesEndRef = useRef(null);
   const peoplesRef = useRef(null);
 
   useEffect(() => {
+    window.Echo = new Echo({
+      broadcaster: "socket.io",
+      host: window.location.hostname + ":6001",
+      auth: {
+        headers: {
+          Authorization: lab.token,
+        },
+      },
+    });
+
     window.Echo.join("chat")
       .here((user) => {
         setLoading(false);
@@ -38,22 +50,7 @@ export default function Chat({ chat, setPeoples, chatBoard, message }) {
         setAlertMessage(`${user.name} 退出了房间`);
         setAlertOpen(true);
       });
-  }, [chat.peoples, setPeoples]);
 
-  /* 有新消息自动滚动 */
-  useEffect(() => {
-    window.Echo.private("chat").listen(".chat", (e) => {
-      chatBoard([...chat.chatBoard, e.data]);
-    });
-
-    scrollToBottom();
-
-    return () => {
-      window.Echo.private("chat").stopListening(".chat");
-    };
-  }, [chat.chatBoard, chatBoard]);
-
-  useEffect(() => {
     let typingTime;
 
     window.Echo.private("chat").listenForWhisper("typing", (e) => {
@@ -74,13 +71,21 @@ export default function Chat({ chat, setPeoples, chatBoard, message }) {
       }
     });
 
+    window.Echo.private("chat").listen(".chat", (e) => {
+      chatBoardAdd(e.data);
+    });
+
+    scrollToBottom();
+
     return () => {
       if (typingTime) {
         clearTimeout(typingTime);
       }
       window.Echo.private("chat").stopListeningForWhisper("typing");
+      window.Echo.leave("chat");
+      window.Echo.private("chat").stopListening(".chat");
     };
-  }, []);
+  }, [lab.token]);
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -89,20 +94,17 @@ export default function Chat({ chat, setPeoples, chatBoard, message }) {
   };
 
   const handlePost = () => {
-    if (chat.message === "") {
+    if (message === "") {
       return;
     }
-    chatBoard([
-      ...chat.chatBoard,
-      {
-        name: localStorage.userName,
-        message: chat.message,
-      },
-    ]);
+    chatBoardAdd({
+      name: localStorage.userName,
+      message,
+    });
     axios.post(
       "/chat",
       {
-        message: chat.message,
+        message,
       },
       {
         headers: {
@@ -110,7 +112,7 @@ export default function Chat({ chat, setPeoples, chatBoard, message }) {
         },
       }
     );
-    message("");
+    setMessage("");
   };
 
   const handleKeyDown = (e) => {
@@ -129,7 +131,7 @@ export default function Chat({ chat, setPeoples, chatBoard, message }) {
 
   const handleChange = (e) => {
     clearTimeout(timer);
-    message(e.target.value);
+    setMessage(e.target.value);
     timer = setTimeout(triggerChange, 2000);
   };
 
@@ -167,7 +169,7 @@ export default function Chat({ chat, setPeoples, chatBoard, message }) {
           <Grid item>
             <TextField
               label="发送信息"
-              value={chat.message}
+              value={message}
               fullWidth
               variant="standard"
               onChange={handleChange}

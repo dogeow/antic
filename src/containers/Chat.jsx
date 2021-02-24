@@ -5,13 +5,11 @@ import Chat from "../components/Chat";
 
 const mapStateToProps = (state) => ({
   chat: state.chat,
+  lab: state.lab,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  message: (value) => {
-    dispatch(message(value));
-  },
-  chatBoard: (value) => {
+  chatBoardAdd: (value) => {
     dispatch(chatBoard(value));
   },
   setPeoples: (value) => {

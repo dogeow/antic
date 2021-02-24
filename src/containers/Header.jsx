@@ -183,7 +183,9 @@ const Header = ({
       return;
     }
 
-    history.push("/chat");
+    if (pathname !== "/chat") {
+      history.push("/chat");
+    }
   };
 
   const handleRegister = () => {

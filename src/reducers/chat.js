@@ -6,12 +6,14 @@ const defaultState = {
 
 const chat = (state = defaultState, action) => {
   switch (action.type) {
-    case "MESSAGE":
-      return { ...state, message: action.payload };
+    case "LOGIN":
+      return { ...state, peoples: [] };
+    case "LOGOUT":
+      return { ...state, peoples: [] };
     case "PEOPLES":
       return { ...state, peoples: action.payload };
     case "CHAT_BOARD":
-      return { ...state, chatBoard: action.payload };
+      return { ...state, chatBoard: [...state.chatBoard, action.payload] };
     default:
       return state;
   }
