@@ -75,11 +75,29 @@ export default function Chat({
         deletePeople(user);
         setAlertMessage(`${user.name} 退出了房间`);
         setAlertOpen(true);
-      })
-
-      .listen(".chat", (e) => {
-        chatBoardAdd(e.data);
       });
+
+    window.Echo.private("chat").listenForWhisper("typing", (e) => {
+      if (peoplesRef.current) {
+        peoplesRef.current.innerText = peoplesRef.current.innerText.replace(
+          new RegExp(e.name, "g"),
+          `${e.name} 输入中...`
+        );
+      }
+
+      if (peoplesRef.current) {
+        typingTime = setTimeout(() => {
+          peoplesRef.current.innerText = peoplesRef.current.innerText.replace(
+            /输入中\.\.\./,
+            ""
+          );
+        }, 3000);
+      }
+    });
+
+    window.Echo.private("chat").listen(".chat", (e) => {
+      chatBoardAdd(e.data);
+    });
 
     scrollToBottom();
 
