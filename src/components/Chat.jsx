@@ -29,6 +29,7 @@ export default function Chat({
   const [loading, setLoading] = useState(window?.Echo?.socketId() === null);
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
+  const [height, setHeight] = useState(window.innerHeight);
 
   const messagesEndRef = useRef(null);
   const peoplesRef = useRef(null);
@@ -48,6 +49,14 @@ export default function Chat({
       messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
     }
   };
+
+  useEffect(() => {
+    window.onresize = resize;
+
+    function resize() {
+      setHeight(window.innerHeight);
+    }
+  }, []);
 
   useEffect(() => {
     if (lab.token === null) {
@@ -193,7 +202,10 @@ export default function Chat({
       <Grid
         container
         alignItems="stretch"
-        style={{ maxWidth: 600, margin: "auto" }}
+        style={{
+          maxWidth: 600,
+          margin: "auto",
+        }}
       >
         <Grid item xs={9} container direction="column">
           <Grid
@@ -202,7 +214,7 @@ export default function Chat({
             ref={messagesEndRef}
             alignItems="flex-start"
             alignContent="flex-start"
-            style={{ overflowY: "auto", height: "60vh" }}
+            style={{ overflowY: "auto", height: height - 150 }}
           >
             {chat?.chatBoard.length
               ? chat.chatBoard.map((content, index) => (
