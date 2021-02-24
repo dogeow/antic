@@ -5,14 +5,21 @@ import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
 import Echo from "laravel-echo";
 import _ from "lodash";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 
 import Loading from "../components/Loading";
 import axios from "../instance/axios";
 
 let timer = null;
 
-export default function Chat({ lab, chat, setPeoples, chatBoardAdd }) {
+export default function Chat({
+  lab,
+  chat,
+  addPeople,
+  addPeoples,
+  chatBoardAdd,
+  deletePeople,
+}) {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
   const [loading, setLoading] = useState(window?.Echo?.socketId() === null);
@@ -21,7 +28,13 @@ export default function Chat({ lab, chat, setPeoples, chatBoardAdd }) {
   const messagesEndRef = useRef(null);
   const peoplesRef = useRef(null);
 
-  useEffect(() => {
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
+    }
+  };
+
+  useMemo(() => {
     window.Echo = new Echo({
       broadcaster: "socket.io",
       host: window.location.hostname + ":6001",
@@ -35,18 +48,17 @@ export default function Chat({ lab, chat, setPeoples, chatBoardAdd }) {
     window.Echo.join("chat")
       .here((user) => {
         setLoading(false);
-        setPeoples(_.uniqBy([...chat.peoples, ...user], "id"));
+        addPeoples(user);
         setAlertMessage(`${_.map(user, "name")} 正在房间`);
         setAlertOpen(true);
       })
       .joining((user) => {
-        setPeoples(_.uniqBy([...chat.peoples, user], "id"));
+        addPeople(user);
         setAlertMessage(`${user.name} 加入了房间`);
         setAlertOpen(true);
       })
       .leaving((user) => {
-        _.remove(chat.peoples, { id: user.id });
-        setPeoples(chat.peoples);
+        deletePeople(user);
         setAlertMessage(`${user.name} 退出了房间`);
         setAlertOpen(true);
       });
@@ -85,13 +97,7 @@ export default function Chat({ lab, chat, setPeoples, chatBoardAdd }) {
       window.Echo.leave("chat");
       window.Echo.private("chat").stopListening(".chat");
     };
-  }, [lab.token]);
-
-  const scrollToBottom = () => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
-    }
-  };
+  }, [addPeople, addPeoples, chatBoardAdd, deletePeople, lab.token]);
 
   const handlePost = () => {
     if (message === "") {

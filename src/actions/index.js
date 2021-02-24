@@ -27,4 +27,6 @@ export const loading = createAction("LOADING");
 // chat
 export const message = createAction("MESSAGE");
 export const chatBoard = createAction("CHAT_BOARD");
-export const peoples = createAction("PEOPLES");
+export const addPeople = createAction("ADD_PEOPLE");
+export const addPeoples = createAction("ADD_PEOPLES");
+export const deletePeople = createAction("DELETE_PEOPLE");

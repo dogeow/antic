@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { chatBoard, message, peoples } from "../actions";
+import { addPeople, addPeoples, chatBoard, deletePeople } from "../actions";
 import Chat from "../components/Chat";
 
 const mapStateToProps = (state) => ({
@@ -12,8 +12,14 @@ const mapDispatchToProps = (dispatch) => ({
   chatBoardAdd: (value) => {
     dispatch(chatBoard(value));
   },
-  setPeoples: (value) => {
-    dispatch(peoples(value));
+  addPeople: (value) => {
+    dispatch(addPeople(value));
+  },
+  addPeoples: (value) => {
+    dispatch(addPeoples(value));
+  },
+  deletePeople: (value) => {
+    dispatch(deletePeople(value));
   },
 });
 

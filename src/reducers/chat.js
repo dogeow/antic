@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 const defaultState = {
   chatBoard: [],
   message: "",
@@ -10,8 +12,23 @@ const chat = (state = defaultState, action) => {
       return { ...state, peoples: [] };
     case "LOGOUT":
       return { ...state, peoples: [] };
-    case "PEOPLES":
-      return { ...state, peoples: action.payload };
+    case "ADD_PEOPLES":
+      return {
+        ...state,
+        peoples: _.uniqBy([...state.peoples, ...action.payload], "id"),
+      };
+    case "ADD_PEOPLE":
+      return {
+        ...state,
+        peoples: _.uniqBy([...state.peoples, action.payload], "id"),
+      };
+    case "DELETE_PEOPLE":
+      const peoples = chat.peoples;
+      _.remove(peoples, { id: action.payload.id });
+      return {
+        ...state,
+        peoples,
+      };
     case "CHAT_BOARD":
       return { ...state, chatBoard: [...state.chatBoard, action.payload] };
     default:
