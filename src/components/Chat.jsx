@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
 import Echo from "laravel-echo";
 import _ from "lodash";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Loading from "../components/Loading";
 import axios from "../instance/axios";
@@ -34,70 +34,60 @@ export default function Chat({
     }
   };
 
-  useMemo(() => {
-    window.Echo = new Echo({
-      broadcaster: "socket.io",
-      host: window.location.hostname + ":6001",
-      auth: {
-        headers: {
-          Authorization: lab.token,
+  useEffect(() => {
+    if (lab.token) {
+      let typingTime;
+      window.Echo = new Echo({
+        broadcaster: "socket.io",
+        host: window.location.hostname + ":6001",
+        auth: {
+          headers: {
+            Authorization: lab.token,
+          },
         },
-      },
-    });
-
-    window.Echo.join("chat")
-      .here((user) => {
-        setLoading(false);
-        addPeoples(user);
-        setAlertMessage(`${_.map(user, "name")} 正在房间`);
-        setAlertOpen(true);
-      })
-      .joining((user) => {
-        addPeople(user);
-        setAlertMessage(`${user.name} 加入了房间`);
-        setAlertOpen(true);
-      })
-      .leaving((user) => {
-        deletePeople(user);
-        setAlertMessage(`${user.name} 退出了房间`);
-        setAlertOpen(true);
+        client: window.io,
       });
 
-    let typingTime;
+      window.Echo.join("chat")
+        .here((user) => {
+          setLoading(false);
+          addPeoples(user);
+          setAlertMessage(`${_.map(user, "name")} 正在房间`);
+          setAlertOpen(true);
+        })
+        .joining((user) => {
+          addPeople(user);
+          setAlertMessage(`${user.name} 加入了房间`);
+          setAlertOpen(true);
+        })
+        .leaving((user) => {
+          deletePeople(user);
+          setAlertMessage(`${user.name} 退出了房间`);
+          setAlertOpen(true);
+        })
 
-    window.Echo.private("chat").listenForWhisper("typing", (e) => {
-      if (peoplesRef.current) {
-        peoplesRef.current.innerText = peoplesRef.current.innerText.replace(
-          new RegExp(e.name, "g"),
-          `${e.name} 输入中...`
-        );
-      }
+        .listen(".chat", (e) => {
+          chatBoardAdd(e.data);
+        });
 
-      if (peoplesRef.current) {
-        typingTime = setTimeout(() => {
-          peoplesRef.current.innerText = peoplesRef.current.innerText.replace(
-            /输入中\.\.\./,
-            ""
-          );
-        }, 3000);
-      }
-    });
+      scrollToBottom();
 
-    window.Echo.private("chat").listen(".chat", (e) => {
-      chatBoardAdd(e.data);
-    });
-
-    scrollToBottom();
-
-    return () => {
-      if (typingTime) {
-        clearTimeout(typingTime);
-      }
-      window.Echo.private("chat").stopListeningForWhisper("typing");
-      window.Echo.leave("chat");
-      window.Echo.private("chat").stopListening(".chat");
-    };
+      return () => {
+        window.Echo.private("chat").stopListeningForWhisper("typing");
+        window.Echo.private("chat").stopListening(".chat");
+        window.Echo.leave("chat");
+        if (typingTime) {
+          clearTimeout(typingTime);
+        }
+      };
+    }
   }, [addPeople, addPeoples, chatBoardAdd, deletePeople, lab.token]);
+
+  const logout = () => {
+    window.Echo.private("chat").stopListeningForWhisper("typing");
+    window.Echo.private("chat").stopListening(".chat");
+    window.Echo.leave("chat");
+  };
 
   const handlePost = () => {
     if (message === "") {
@@ -149,6 +139,7 @@ export default function Chat({
 
   return (
     <>
+      <button onClick={logout}>退出聊天</button>
       <Loading open={loading} />
       <Grid
         container
