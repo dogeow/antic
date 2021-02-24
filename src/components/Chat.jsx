@@ -11,7 +11,7 @@ import axios from "../instance/axios";
 
 let timer = null;
 
-export default function Chat({ chat, setPeoples, chatBoard }) {
+export default function Chat({ chat, setPeoples, chatBoard, message }) {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
   const [loading, setLoading] = useState(window.Echo.socketId() === null);
@@ -92,7 +92,7 @@ export default function Chat({ chat, setPeoples, chatBoard }) {
     if (chat.message === "") {
       return;
     }
-    props.chatBoard([
+    chatBoard([
       ...chat.chatBoard,
       {
         name: localStorage.userName,
@@ -110,7 +110,7 @@ export default function Chat({ chat, setPeoples, chatBoard }) {
         },
       }
     );
-    props.message("");
+    message("");
   };
 
   const handleKeyDown = (e) => {
@@ -129,7 +129,7 @@ export default function Chat({ chat, setPeoples, chatBoard }) {
 
   const handleChange = (e) => {
     clearTimeout(timer);
-    props.message(e.target.value);
+    message(e.target.value);
     timer = setTimeout(triggerChange, 2000);
   };
 
