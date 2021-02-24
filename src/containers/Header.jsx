@@ -5,14 +5,13 @@ import Container from "@material-ui/core/Container";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Snackbar from "@material-ui/core/Snackbar";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -98,6 +97,7 @@ const Header = ({
   const profileOpen = Boolean(mobileMoreAnchorEl);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [name, setName] = useState("");
 
   const [open, setOpen] = React.useState(false);
 
@@ -107,14 +107,22 @@ const Header = ({
 
   useEffect(() => {
     if (playing) {
-      const togglePlay = () => {
-        setPlaying(!playing);
-      };
-
       const audio = document.getElementById("music");
-      audio.addEventListener("ended", togglePlay, false);
+      audio.addEventListener(
+        "ended",
+        () => {
+          setPlaying(!playing);
+        },
+        false
+      );
       return () => {
-        audio.removeEventListener("ended", togglePlay, false);
+        audio.removeEventListener(
+          "ended",
+          () => {
+            setPlaying(!playing);
+          },
+          false
+        );
       };
     }
   }, [playing]);
@@ -156,14 +164,14 @@ const Header = ({
       audio.src =
         "https://cdn.gugelong.com/music/%E5%92%8C%E6%A5%BD%E5%99%A8%E3%83%90%E3%83%B3%E3%83%89%20-%20%E6%9D%B1%E9%A2%A8%E7%A0%B4.mp3";
       root.append(audio);
-      togglePlay();
+      setPlaying(!playing);
       audio.play();
     } else {
       if (audio.paused) {
-        togglePlay();
+        setPlaying(!playing);
         audio.play();
       } else {
-        togglePlay();
+        setPlaying(!playing);
         audio.pause();
       }
     }
@@ -181,6 +189,10 @@ const Header = ({
   const handleRegister = () => {
     setOpen(false);
     history.push("/register");
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   };
 
   return (
@@ -409,18 +421,26 @@ const Header = ({
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"请先登录"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            以让他人知道您的尊姓大名和头像。
-          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="请输入昵称"
+            type="text"
+            fullWidth
+            onChange={handleNameChange}
+          />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleRegister} autoFocus>
-            注册
-          </Button>
-          <Button component={RouteLink} to="/login">
-            登录
+          <Button
+            onClick={() => {
+              handleClose();
+              onTestLogin(name);
+              history.push("/chat");
+            }}
+          >
+            确定
           </Button>
         </DialogActions>
       </Dialog>

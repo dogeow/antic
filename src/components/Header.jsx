@@ -8,7 +8,7 @@ import {
   toggleTheme,
 } from "../actions";
 import Header from "../containers/Header";
-import { logged, logout } from "../helpers";
+import { logout } from "../helpers";
 import axios from "../instance/axios";
 
 const mapStateToProps = (state) => ({
@@ -33,10 +33,19 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onClickDrawer: () => dispatch(toggleDrawer()),
   onThemeClick: () => dispatch(toggleTheme()),
-  onTestLogin: () => {
-    axios.post("user/guest").then(({ data }) => {
-      dispatch(loginAction(data));
-    });
+  onTestLogin: (name = "") => {
+    axios
+      .post(
+        "user/guest",
+        name
+          ? {
+              name,
+            }
+          : {}
+      )
+      .then(({ data }) => {
+        dispatch(loginAction(data));
+      });
   },
 });
 

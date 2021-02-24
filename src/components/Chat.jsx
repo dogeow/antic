@@ -11,7 +11,7 @@ import axios from "../instance/axios";
 
 let timer = null;
 
-export default function Chat({ chat, ...props }) {
+export default function Chat({ chat, setPeoples }) {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
   const [loading, setLoading] = useState(window.Echo.socketId() === null);
@@ -23,23 +23,24 @@ export default function Chat({ chat, ...props }) {
     window.Echo.join("chat")
       .here((user) => {
         setLoading(false);
-        props.peoples(_.uniqBy([...chat.peoples, ...user], "id"));
+        setPeoples(_.uniqBy([...chat.peoples, ...user], "id"));
         setAlertMessage(`${_.map(user, "name")} 正在房间`);
         setAlertOpen(true);
       })
       .joining((user) => {
-        props.peoples(_.uniqBy([...chat.peoples, user], "id"));
+        setPeoples(_.uniqBy([...chat.peoples, user], "id"));
         setAlertMessage(`${user.name} 加入了房间`);
         setAlertOpen(true);
       })
       .leaving((user) => {
         _.remove(chat.peoples, { id: user.id });
-        props.peoples(chat.peoples);
+        setPeoples(chat.peoples);
         setAlertMessage(`${user.name} 退出了房间`);
         setAlertOpen(true);
       });
-  }, [chat.peoples, props]);
+  }, [chat.peoples, setPeoples]);
 
+  /* 有新消息自动滚动 */
   useEffect(() => {
     window.Echo.private("chat").listen(".chat", (e) => {
       props.chatBoard([...chat.chatBoard, e.data]);
@@ -79,7 +80,7 @@ export default function Chat({ chat, ...props }) {
       }
       window.Echo.private("chat").stopListeningForWhisper("typing");
     };
-  }, [chat.peoples, props]);
+  }, []);
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -141,7 +142,11 @@ export default function Chat({ chat, ...props }) {
   return (
     <>
       <Loading open={loading} />
-      <Grid container alignItems="stretch">
+      <Grid
+        container
+        alignItems="stretch"
+        style={{ maxWidth: 600, margin: "auto" }}
+      >
         <Grid item xs={9} container direction="column">
           <Grid
             item

@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
   chatBoard: (value) => {
     dispatch(chatBoard(value));
   },
-  peoples: (value) => {
+  setPeoples: (value) => {
     dispatch(peoples(value));
   },
 });
