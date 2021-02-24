@@ -48,6 +48,16 @@ document.addEventListener(
 
 window.io = require("socket.io-client");
 
+window.Echo = new Echo({
+  broadcaster: "socket.io",
+  host: window.location.hostname + ":6001",
+  auth: {
+    headers: {
+      Authorization: localStorage.token,
+    },
+  },
+});
+
 ((ns) => {
   /**
    * mbStrWidth

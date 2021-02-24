@@ -3,7 +3,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Snackbar from "@material-ui/core/Snackbar";
 import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
-import Echo from "laravel-echo";
 import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -37,52 +36,46 @@ export default function Chat({
   };
 
   useEffect(() => {
-    if (lab.token) {
-      let typingTime;
-      window.Echo = new Echo({
-        broadcaster: "socket.io",
-        host: window.location.hostname + ":6001",
-        auth: {
-          headers: {
-            Authorization: lab.token,
-          },
-        },
-        client: window.io,
+    if (lab.token === null) {
+      return;
+    }
+
+    let typingTime;
+
+    window.Echo.options.auth.headers.Authorization = lab.token;
+
+    window.Echo.join("chat")
+      .here((user) => {
+        setLoading(false);
+        addPeoples(user);
+        setAlertMessage(`${_.map(user, "name")} 正在房间`);
+        setAlertOpen(true);
+      })
+      .joining((user) => {
+        addPeople(user);
+        setAlertMessage(`${user.name} 加入了房间`);
+        setAlertOpen(true);
+      })
+      .leaving((user) => {
+        deletePeople(user);
+        setAlertMessage(`${user.name} 退出了房间`);
+        setAlertOpen(true);
+      })
+
+      .listen(".chat", (e) => {
+        chatBoardAdd(e.data);
       });
 
-      window.Echo.join("chat")
-        .here((user) => {
-          setLoading(false);
-          addPeoples(user);
-          setAlertMessage(`${_.map(user, "name")} 正在房间`);
-          setAlertOpen(true);
-        })
-        .joining((user) => {
-          addPeople(user);
-          setAlertMessage(`${user.name} 加入了房间`);
-          setAlertOpen(true);
-        })
-        .leaving((user) => {
-          deletePeople(user);
-          setAlertMessage(`${user.name} 退出了房间`);
-          setAlertOpen(true);
-        })
+    scrollToBottom();
 
-        .listen(".chat", (e) => {
-          chatBoardAdd(e.data);
-        });
-
-      scrollToBottom();
-
-      return () => {
-        window.Echo.private("chat").stopListeningForWhisper("typing");
-        window.Echo.private("chat").stopListening(".chat");
-        window.Echo.leave("chat");
-        if (typingTime) {
-          clearTimeout(typingTime);
-        }
-      };
-    }
+    return () => {
+      window.Echo.private("chat").stopListeningForWhisper("typing");
+      window.Echo.private("chat").stopListening(".chat");
+      window.Echo.leave("chat");
+      if (typingTime) {
+        clearTimeout(typingTime);
+      }
+    };
   }, [addPeople, addPeoples, chatBoardAdd, deletePeople, lab.token]);
 
   const logout = () => {
