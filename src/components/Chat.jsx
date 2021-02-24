@@ -239,6 +239,9 @@ export default function Chat({
                   </InputAdornment>
                 ),
               }}
+              onFocus={() => {
+                setHeight(document.getElementById("root").scrollTop - 150);
+              }}
             />
           </Grid>
         </Grid>
