@@ -95,13 +95,6 @@ export default function Chat({
     };
   }, [addPeople, addPeoples, chatBoardAdd, deletePeople, lab.token]);
 
-  const logout = () => {
-    window.Echo.private("chat").stopListeningForWhisper("typing");
-    window.Echo.private("chat").stopListening(".chat");
-    window.Echo.leave("chat");
-    history.push("/");
-  };
-
   const handlePost = () => {
     if (message === "") {
       return;
