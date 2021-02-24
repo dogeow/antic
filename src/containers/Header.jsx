@@ -165,17 +165,6 @@ const Header = ({
     }
   };
 
-  const handleEnterChat = () => {
-    if (localStorage.userName === undefined) {
-      setOpen(true);
-      return;
-    }
-
-    if (pathname !== "/chat") {
-      history.push("/chat");
-    }
-  };
-
   return (
     <header className={classes.root}>
       <Drawer open={toggleDrawer} onClick={onClickDrawer} />
@@ -200,7 +189,7 @@ const Header = ({
             </RouteLink>
             {matches && (
               <div style={{ marginLeft: 12 }}>
-                <Button color="inherit" onClick={handleEnterChat}>
+                <Button color="inherit" component={RouteLink} to="/chat">
                   聊天室♂
                 </Button>
                 <Button color="inherit" component={RouteLink} to="/posts">
