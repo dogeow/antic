@@ -6,6 +6,7 @@ import SendIcon from "@material-ui/icons/Send";
 import Echo from "laravel-echo";
 import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import Loading from "../components/Loading";
 import axios from "../instance/axios";
@@ -20,6 +21,7 @@ export default function Chat({
   chatBoardAdd,
   deletePeople,
 }) {
+  const history = useHistory();
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
   const [loading, setLoading] = useState(window?.Echo?.socketId() === null);
@@ -87,6 +89,7 @@ export default function Chat({
     window.Echo.private("chat").stopListeningForWhisper("typing");
     window.Echo.private("chat").stopListening(".chat");
     window.Echo.leave("chat");
+    history.push("/");
   };
 
   const handlePost = () => {
