@@ -159,12 +159,6 @@ export default (props) => {
       });
   };
 
-  const handleGetMdValue = () => {
-    if (editorRef.current) {
-      return editorRef.current.getMdValue();
-    }
-  };
-
   const handleCategoryChange = (e) => {
     setPost({
       ...post,
@@ -191,12 +185,6 @@ export default (props) => {
 
   const handleTitleChange = (event) => {
     setPost({ ...post, title: event.target.value });
-  };
-
-  const handleGetHtmlValue = () => {
-    if (editorRef.current) {
-      return editorRef.current.getHtmlValue();
-    }
   };
 
   const uploadImage = (blob) => {
