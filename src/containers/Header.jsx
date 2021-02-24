@@ -2,16 +2,12 @@ import AppBar from "@material-ui/core/AppBar";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Snackbar from "@material-ui/core/Snackbar";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -78,7 +74,6 @@ const useStyles = makeStyles((theme) => ({
 const Header = ({
   lab,
   onLogout,
-  onTestLogin,
   onClickDrawer,
   toggleDrawer,
   onThemeClick,
@@ -97,13 +92,6 @@ const Header = ({
   const profileOpen = Boolean(mobileMoreAnchorEl);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [name, setName] = useState("");
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   useEffect(() => {
     if (playing) {
@@ -186,15 +174,6 @@ const Header = ({
     if (pathname !== "/chat") {
       history.push("/chat");
     }
-  };
-
-  const handleRegister = () => {
-    setOpen(false);
-    history.push("/register");
-  };
-
-  const handleNameChange = (e) => {
-    setName(e.target.value);
   };
 
   return (
@@ -417,35 +396,6 @@ const Header = ({
           {lab.snackMessage}
         </Alert>
       </Snackbar>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="请输入昵称"
-            type="text"
-            fullWidth
-            onChange={handleNameChange}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={() => {
-              handleClose();
-              onTestLogin(name);
-              history.push("/chat");
-            }}
-          >
-            确定
-          </Button>
-        </DialogActions>
-      </Dialog>
     </header>
   );
 };

@@ -33,19 +33,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onClickDrawer: () => dispatch(toggleDrawer()),
   onThemeClick: () => dispatch(toggleTheme()),
-  onTestLogin: (name = "") => {
-    axios
-      .post(
-        "user/guest",
-        name
-          ? {
-              name,
-            }
-          : {}
-      )
-      .then(({ data }) => {
-        dispatch(loginAction(data));
-      });
+  onTestLogin: () => {
+    axios.post("user/guest").then(({ data }) => {
+      dispatch(loginAction(data));
+    });
   },
 });
 

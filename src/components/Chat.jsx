@@ -1,3 +1,7 @@
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
 import Grid from "@material-ui/core/Grid";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -14,6 +18,7 @@ let timer = null;
 
 export default function Chat({
   lab,
+  onTestLogin,
   chat,
   addPeople,
   addPeoples,
@@ -25,9 +30,20 @@ export default function Chat({
   const [alertOpen, setAlertOpen] = useState(false);
   const [loading, setLoading] = useState(window?.Echo?.socketId() === null);
   const [message, setMessage] = useState("");
+  const [name, setName] = useState("");
 
   const messagesEndRef = useRef(null);
   const peoplesRef = useRef(null);
+
+  const [open, setOpen] = React.useState(lab.token === null);
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleDialogClose = () => {
+    setOpen(false);
+  };
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -37,6 +53,7 @@ export default function Chat({
 
   useEffect(() => {
     if (lab.token === null) {
+      setOpen(true);
       return;
     }
 
@@ -135,7 +152,34 @@ export default function Chat({
 
   return (
     <>
-      <button onClick={logout}>退出聊天</button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="请输入昵称"
+            type="text"
+            fullWidth
+            onChange={handleNameChange}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => {
+              handleDialogClose();
+              onTestLogin(name);
+            }}
+          >
+            确定
+          </Button>
+        </DialogActions>
+      </Dialog>
       <Loading open={loading} />
       <Grid
         container
