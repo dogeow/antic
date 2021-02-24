@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => {
   const background = theme.palette.background.default;
   const black = theme.palette.common.black;
   const white = theme.palette.common.white;
+  const paper = theme.palette.background.paper;
 
   return {
     "@global":
@@ -46,8 +47,9 @@ const useStyles = makeStyles((theme) => {
               color: white,
             },
             code: {
-              backgroundColor: theme.palette.background.paper,
+              backgroundColor: paper,
             },
+            th: { backgroundColor: paper },
           }
         : {
             "#editor_md": {
@@ -67,6 +69,7 @@ const useStyles = makeStyles((theme) => {
             code: {
               backgroundColor: "#eee",
             },
+            th: { backgroundColor: "#f5f7fa" },
           },
     buttonSuccess: {
       backgroundColor: green[500],
