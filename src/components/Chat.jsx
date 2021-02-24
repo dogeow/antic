@@ -11,7 +11,7 @@ import axios from "../instance/axios";
 
 let timer = null;
 
-export default function Chat({ chat, setPeoples }) {
+export default function Chat({ chat, setPeoples, chatBoard }) {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
   const [loading, setLoading] = useState(window.Echo.socketId() === null);
@@ -43,7 +43,7 @@ export default function Chat({ chat, setPeoples }) {
   /* 有新消息自动滚动 */
   useEffect(() => {
     window.Echo.private("chat").listen(".chat", (e) => {
-      props.chatBoard([...chat.chatBoard, e.data]);
+      chatBoard([...chat.chatBoard, e.data]);
     });
 
     scrollToBottom();
@@ -51,7 +51,7 @@ export default function Chat({ chat, setPeoples }) {
     return () => {
       window.Echo.private("chat").stopListening(".chat");
     };
-  }, [chat.chatBoard, props]);
+  }, [chat.chatBoard, chatBoard]);
 
   useEffect(() => {
     let typingTime;
