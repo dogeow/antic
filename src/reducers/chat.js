@@ -23,11 +23,11 @@ const chat = (state = defaultState, action) => {
         peoples: _.uniqBy([...state.peoples, action.payload], "id"),
       };
     case "DELETE_PEOPLE":
-      const peoples = chat.peoples;
+      const peoples = state.peoples;
       _.remove(peoples, { id: action.payload.id });
       return {
         ...state,
-        peoples,
+        ...peoples,
       };
     case "CHAT_BOARD":
       return { ...state, chatBoard: [...state.chatBoard, action.payload] };

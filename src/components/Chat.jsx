@@ -204,7 +204,7 @@ export default function Chat({
             alignContent="flex-start"
             style={{ overflowY: "auto", height: "60vh" }}
           >
-            {chat.chatBoard.length
+            {chat?.chatBoard.length
               ? chat.chatBoard.map((content, index) => (
                   <Grid item xs={12} key={index}>
                     {content.name}: {content.message}
