@@ -9,7 +9,6 @@ import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
 import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
 
 import Loading from "../components/Loading";
 import axios from "../instance/axios";
@@ -25,7 +24,6 @@ export default function Chat({
   chatBoardAdd,
   deletePeople,
 }) {
-  const history = useHistory();
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
   const [loading, setLoading] = useState(window?.Echo?.socketId() === null);
