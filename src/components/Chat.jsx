@@ -240,7 +240,7 @@ export default function Chat({
                 ),
               }}
               onFocus={() => {
-                setHeight(document.getElementById("root").scrollTop - 150);
+                setHeight(document.getElementById("root").scrollTop);
               }}
             />
           </Grid>
