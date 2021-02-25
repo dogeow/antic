@@ -27,7 +27,7 @@ const chat = (state = defaultState, action) => {
       _.remove(peoples, { id: action.payload.id });
       return {
         ...state,
-        ...peoples,
+        peoples,
       };
     case "CHAT_BOARD":
       return { ...state, chatBoard: [...state.chatBoard, action.payload] };
