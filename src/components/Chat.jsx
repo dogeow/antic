@@ -29,11 +29,16 @@ export default function Chat({
   const [loading, setLoading] = useState(window?.Echo?.socketId() === null);
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
+  const [error, setError] = useState(false);
 
   const messagesEndRef = useRef(null);
   const peoplesRef = useRef(null);
 
   const [open, setOpen] = React.useState(lab.token === null);
+
+  const toggleError = () => {
+    setError(!error);
+  };
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -170,17 +175,28 @@ export default function Chat({
         <DialogContent>
           <TextField
             autoFocus
+            value={name}
             margin="dense"
             id="name"
-            label="请输入昵称"
+            label="昵称"
             type="text"
             fullWidth
+            required
+            error={error}
+            placeholder={error && "请输入昵称"}
+            InputLabelProps={error && { shrink: true }}
+            helperText={error && "请输入昵称"}
             onChange={handleNameChange}
           />
         </DialogContent>
         <DialogActions>
           <Button
             onClick={() => {
+              if (name.trim() === "") {
+                setName("");
+                toggleError();
+                return;
+              }
               handleDialogClose();
               onTestLogin(name);
             }}
