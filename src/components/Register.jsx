@@ -39,7 +39,7 @@ const Register = ({ history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [password_confirmation, setPassword_confirmation] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [inputErrors, setInputErrors] = useState({});
 
   const handle = (e) => {
@@ -49,7 +49,7 @@ const Register = ({ history }) => {
         name,
         email,
         password,
-        password_confirmation,
+        password_confirmation: passwordConfirmation,
       })
       .then((json) => {
         if (json.status === 201) {
@@ -142,7 +142,7 @@ const Register = ({ history }) => {
                 type="password"
                 id="password_confirmation"
                 autoComplete="password_confirmation"
-                onChange={(e) => setPassword_confirmation(e.target.value)}
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
               />
             </Grid>
           </Grid>

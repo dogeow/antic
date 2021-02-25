@@ -13,7 +13,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 const EmojiCreate = () => {
   const [data, setData] = useState();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {

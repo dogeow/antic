@@ -10,13 +10,13 @@ const Moon = () => {
   const history = useHistory();
 
   const cdn = `${process.env.REACT_APP_CDN_URL}/moon/`;
-  const [num, setNum] = React.useState([]);
-  const [name, setName] = React.useState(localStorage.getItem("name"));
-  const [status, setStatus] = React.useState("");
-  const [money, setMoney] = React.useState();
-  const [loading, setLoading] = React.useState(false);
-  const [moonHistory, setMoonHistory] = React.useState([]);
-  const [statistics, setStatistics] = React.useState({});
+  const [num, setNum] = useState([]);
+  const [name, setName] = useState(localStorage.getItem("name"));
+  const [status, setStatus] = useState("");
+  const [money, setMoney] = useState();
+  const [loading, setLoading] = useState(false);
+  const [moonHistory, setMoonHistory] = useState([]);
+  const [statistics, setStatistics] = useState({});
   const [inputErrors, setInputErrors] = useState(false);
 
   React.useEffect(() => {

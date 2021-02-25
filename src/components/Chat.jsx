@@ -34,7 +34,7 @@ export default function Chat({
   const messagesEndRef = useRef(null);
   const peoplesRef = useRef(null);
 
-  const [open, setOpen] = React.useState(lab.token === null);
+  const [open, setOpen] = useState(lab.token === null);
 
   const toggleError = () => {
     setError(!error);
