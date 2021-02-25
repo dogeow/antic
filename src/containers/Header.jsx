@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
 const Header = ({
   lab,
   onLogout,
+  onTestLogin,
   onClickDrawer,
   toggleDrawer,
   onThemeClick,
