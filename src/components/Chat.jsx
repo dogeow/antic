@@ -17,7 +17,7 @@ let timer = null;
 
 export default function Chat({
   lab,
-  onTestLogin,
+  onChatUserLogin,
   chat,
   addPeople,
   addPeoples,
@@ -200,7 +200,7 @@ export default function Chat({
                 return;
               }
               handleDialogClose();
-              onTestLogin(name);
+              onChatUserLogin(name);
             }}
           >
             确定
