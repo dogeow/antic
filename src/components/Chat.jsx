@@ -104,8 +104,6 @@ export default function Chat({
       chatBoardAdd(e.data);
     });
 
-    scrollToBottom();
-
     return () => {
       window.Echo.private("chat").stopListeningForWhisper("typing");
       window.Echo.private("chat").stopListening(".chat");
@@ -115,6 +113,10 @@ export default function Chat({
       }
     };
   }, [addPeople, addPeoples, chatBoardAdd, deletePeople, lab.token]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [chat.chatBoard]);
 
   const handlePost = () => {
     if (message === "") {
