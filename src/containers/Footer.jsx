@@ -83,10 +83,11 @@ const Footer = () => {
             长期计划
           </Typography>
           <ul>
-            <li>英语</li>
+            <li>健康</li>
             <li>PHP + JavaScript</li>
-            <li>实时的应用、游戏</li>
             <li>TDD、算法和底层等</li>
+            <li>英语</li>
+            <li>实时的应用、游戏</li>
           </ul>
         </Grid>
         <Grid item xs={12} sm>
