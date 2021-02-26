@@ -129,6 +129,7 @@ export default function Chat({
       return;
     }
     chatBoardAdd({
+      id: localStorage.userId,
       name: localStorage.userName,
       message,
     });
@@ -231,11 +232,22 @@ export default function Chat({
             style={{ overflowY: "auto", height: "60vh" }}
           >
             {chat?.chatBoard.length
-              ? chat.chatBoard.map((content, index) => (
-                  <Grid item xs={12} key={index}>
-                    {content.name}: {content.message}
-                  </Grid>
-                ))
+              ? chat.chatBoard.map((content, index) => {
+                  return content.id === localStorage.userId ? (
+                    <Grid
+                      item
+                      xs={12}
+                      key={index}
+                      style={{ textAlign: "right" }}
+                    >
+                      {content.message}
+                    </Grid>
+                  ) : (
+                    <Grid item xs={12} key={index}>
+                      {content.name}: {content.message}
+                    </Grid>
+                  );
+                })
               : "说点什么吧"}
           </Grid>
           <Grid item>
@@ -261,6 +273,7 @@ export default function Chat({
         <Grid
           item
           container
+          direction="column"
           xs={3}
           ref={peoplesRef}
           style={{
