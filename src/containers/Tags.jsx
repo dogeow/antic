@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import ChipFlow from "../components/ChipFlow";
 
-const Categories = () => {
+const Tags = () => {
   const history = useHistory();
 
   const handleClick = (tags) => {
@@ -13,4 +13,4 @@ const Categories = () => {
   return <ChipFlow path="tags" onHandleClick={handleClick} />;
 };
 
-export default Categories;
+export default Tags;

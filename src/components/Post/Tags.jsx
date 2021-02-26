@@ -32,10 +32,10 @@ const Tags = (props) => {
           <li key={tag} style={{ alignSelf: "center" }}>
             <Chip
               size="small"
-              label={tag}
+              label={tag.name}
               onDelete={
                 state.lab.userId && props.newTagOpen
-                  ? () => props.delete(tag)
+                  ? () => props.delete(tag.name)
                   : undefined
               }
               className={classes.chip}
