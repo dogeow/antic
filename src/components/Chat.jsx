@@ -273,7 +273,6 @@ export default function Chat({
         <Grid
           item
           container
-          direction="column"
           xs={3}
           ref={peoplesRef}
           style={{
@@ -285,7 +284,7 @@ export default function Chat({
           alignContent={isMobile && inputFocus ? "flex-end" : "flex-start"}
         >
           {chat.peoples.map((people) => (
-            <Grid item key={people.id}>
+            <Grid item xs={12} key={people.id}>
               {people.name}
             </Grid>
           ))}
