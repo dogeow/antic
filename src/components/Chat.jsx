@@ -9,6 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
 import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
+import { isMobile } from "react-device-detect";
 
 import Loading from "../components/Loading";
 import axios from "../instance/axios";
@@ -30,6 +31,7 @@ export default function Chat({
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
+  const [inputFocus, setInputFocus] = useState(false);
 
   const messagesEndRef = useRef(null);
   const peoplesRef = useRef(null);
@@ -38,6 +40,10 @@ export default function Chat({
 
   const toggleError = () => {
     setError(!error);
+  };
+
+  const handleToggleInputFocus = (value) => {
+    setInputFocus(value);
   };
 
   const handleNameChange = (e) => {
@@ -221,8 +227,7 @@ export default function Chat({
             item
             container
             ref={messagesEndRef}
-            alignItems="flex-start"
-            alignContent="flex-start"
+            alignContent={isMobile && inputFocus ? "flex-end" : "flex-start"}
             style={{ overflowY: "auto", height: "60vh" }}
           >
             {chat?.chatBoard.length
@@ -239,6 +244,8 @@ export default function Chat({
               value={message}
               fullWidth
               variant="standard"
+              onFocus={() => handleToggleInputFocus(true)}
+              onBlur={() => handleToggleInputFocus(false)}
               onChange={handleChange}
               onKeyDown={handleKeyDown}
               InputProps={{
@@ -253,6 +260,7 @@ export default function Chat({
         </Grid>
         <Grid
           item
+          container
           xs={3}
           ref={peoplesRef}
           style={{
@@ -261,9 +269,12 @@ export default function Chat({
             borderLeftStyle: "solid",
             paddingLeft: 8,
           }}
+          alignContent={isMobile && inputFocus ? "flex-end" : "flex-start"}
         >
           {chat.peoples.map((people) => (
-            <div key={people.id}>{people.name}</div>
+            <Grid item key={people.id}>
+              {people.name}
+            </Grid>
           ))}
         </Grid>
       </Grid>
