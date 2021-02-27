@@ -4,12 +4,14 @@ const Expire = (props) => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const visibleTimer = setTimeout(() => {
       setVisible(false);
     }, props.delay);
+
+    return () => clearTimeout(visibleTimer);
   }, [props.delay]);
 
-  return visible ? <div>{props.children}</div> : <div />;
+  return visible && <span>{props.children}</span>;
 };
 
 export default Expire;
