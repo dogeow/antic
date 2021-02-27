@@ -13,6 +13,7 @@ import { isMobile } from "react-device-detect";
 
 import Loading from "../components/Loading";
 import axios from "../instance/axios";
+import Expire from "./Expire";
 
 let timer = null;
 
@@ -28,6 +29,7 @@ export default function Chat({
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
   const [loading, setLoading] = useState(window?.Echo?.socketId() === null);
+  const [typing, setTyping] = useState(undefined);
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
@@ -89,21 +91,8 @@ export default function Chat({
       });
 
     window.Echo.private("chat").listenForWhisper("typing", (e) => {
-      if (peoplesRef.current) {
-        peoplesRef.current.innerText = peoplesRef.current.innerText.replace(
-          new RegExp(e.name, "g"),
-          `${e.name} 输入中...`
-        );
-      }
-
-      if (peoplesRef.current) {
-        typingTime = setTimeout(() => {
-          peoplesRef.current.innerText = peoplesRef.current.innerText.replace(
-            /输入中\.\.\./,
-            ""
-          );
-        }, 3000);
-      }
+      setTyping(undefined);
+      setTyping(e.id);
     });
 
     window.Echo.private("chat").listen(".chat", (e) => {
@@ -118,7 +107,7 @@ export default function Chat({
         clearTimeout(typingTime);
       }
     };
-  }, [addPeople, addPeoples, chatBoardAdd, deletePeople, lab.token]);
+  }, [typing, addPeople, addPeoples, chatBoardAdd, deletePeople, lab.token]);
 
   useEffect(() => {
     scrollToBottom();
@@ -164,12 +153,12 @@ export default function Chat({
   const handleChange = (e) => {
     clearTimeout(timer);
     setMessage(e.target.value);
-    timer = setTimeout(triggerChange, 2000);
+    timer = setTimeout(triggerChange, 500);
   };
 
   const triggerChange = () => {
     window.Echo.private("chat").whisper("typing", {
-      name: localStorage.userName,
+      id: parseInt(localStorage.userId),
     });
   };
 
@@ -283,11 +272,16 @@ export default function Chat({
           }}
           alignContent={isMobile && inputFocus ? "flex-end" : "flex-start"}
         >
-          {chat.peoples.map((people) => (
-            <Grid item xs={12} key={people.id}>
-              {people.name}
-            </Grid>
-          ))}
+          {chat.peoples.map((people) => {
+            return (
+              <Grid item xs={12} key={people.id}>
+                {people.name}
+                {typing === people.id && (
+                  <Expire delay={2000}> 输入中...</Expire>
+                )}
+              </Grid>
+            );
+          })}
         </Grid>
       </Grid>
       <Snackbar

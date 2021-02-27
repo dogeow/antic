@@ -28,6 +28,9 @@ const mapDispatchToProps = (dispatch) => ({
   deletePeople: (value) => {
     dispatch(deletePeople(value));
   },
+  typing: (value) => {
+    dispatch(typing(value));
+  },
   onChatUserLogin: (name = "") => {
     axios
       .post("user/guest", {
