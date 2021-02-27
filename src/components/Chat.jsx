@@ -220,6 +220,10 @@ export default function Chat({
             alignContent={isMobile && inputFocus ? "flex-end" : "flex-start"}
             style={{ overflowY: "auto", height: "60vh" }}
           >
+            <Grid item xs={12}>
+              机器人请在开头加上一个空格，比如「 时间」、「 md5 123456」、「
+              大小写 category」
+            </Grid>
             {chat?.chatBoard.length
               ? chat.chatBoard.map((content, index) => {
                   return content.id === localStorage.userId ? (
