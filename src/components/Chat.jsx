@@ -107,7 +107,7 @@ export default function Chat({
         clearTimeout(typingTime);
       }
     };
-  }, [typing, addPeople, addPeoples, chatBoardAdd, deletePeople, lab.token]);
+  }, [addPeople, addPeoples, chatBoardAdd, deletePeople, lab.token]);
 
   useEffect(() => {
     scrollToBottom();
