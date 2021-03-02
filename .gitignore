@@ -13,11 +13,8 @@
 
 # misc
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
+# Yarn and npm
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -25,10 +22,15 @@ yarn-error.log*
 # PhpStorm
 .idea
 
-.eslintcache
-
+# env
 .env
 .env.development
 .env.production
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
+# other cache
+.eslintcache
 .cache
