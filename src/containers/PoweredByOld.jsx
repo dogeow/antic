@@ -113,7 +113,7 @@ export default function Table() {
       <div>
         <p>
           <a
-            href="https://validator.w3.org/nu/?doc=https%3A%2F%2F233.sx%2F"
+            href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fgugelong.com%2F"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -124,7 +124,7 @@ export default function Table() {
             />
           </a>
           <a
-            href="http://jigsaw.w3.org/css-validator/validator?uri=233.sx&profile=css3svg&usermedium=all&warning=1&vextwarning="
+            href="http://jigsaw.w3.org/css-validator/validator?uri=gugelong.com&profile=css3svg&usermedium=all&warning=1&vextwarning="
             target="_blank"
             rel="noopener noreferrer"
           >
