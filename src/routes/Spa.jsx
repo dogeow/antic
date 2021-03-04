@@ -238,6 +238,10 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../containers/Chat"))}
           />
           <Route
+            path="/base64"
+            component={loadable(() => import("../containers/Base64"))}
+          />
+          <Route
             path="/test"
             component={loadable(() => import("../containers/Test"))}
           />

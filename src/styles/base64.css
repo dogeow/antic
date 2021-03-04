@@ -1,0 +1,15 @@
+body {
+  word-break: break-all;
+  font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+}
+
+.empty::before {
+  position: absolute;
+  font-size: 50px;
+  content: '任意文件\A拖到这里';
+  white-space: pre;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: gray;
+}
