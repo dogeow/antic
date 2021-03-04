@@ -6,6 +6,7 @@ import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
 import Heart from "../components/Heart";
+import Record from "../resources/beian.js";
 
 const background = [
   "camry_1.png",
@@ -117,7 +118,19 @@ const Footer = () => {
         </Grid>
       </Grid>
       <div style={{ textAlign: "center", marginBottom: 20, opacity: 0.6 }}>
-        Built By 小李世界 with <Heart />
+        <div>
+          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">
+            <img
+              src={`data:image/png;base64,${Record}`}
+              alt=""
+              style={{ verticalAlign: "top" }}
+            />
+            闽ICP备19021694号-1
+          </a>
+        </div>
+        <div>
+          Built By 小李世界 with <Heart />
+        </div>
       </div>
     </Container>
   );
