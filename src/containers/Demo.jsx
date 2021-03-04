@@ -9,6 +9,9 @@ const Demo = () => (
     <div>
       <ul>
         <li>
+          <Link to="/base64">Base64</Link>
+        </li>
+        <li>
           <Link to="/copywriting">文案编辑</Link>
         </li>
         <li>
