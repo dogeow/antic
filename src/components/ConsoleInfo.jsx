@@ -2,9 +2,12 @@
  * 控制台信息
  */
 export default function consoleInfo() {
-  if (process.env.NODE_ENV === "production") {
-    window.console.log(
-      `%c
+  if (process.env.NODE_ENV !== "production") {
+    return;
+  }
+
+  window.console.log(
+    `%c
   .---.          ,-----.     ,---.  ,---.     .-''-.
   | ,_|        .'  .-,  '.   |   /  |   |   .'_ _   \\
 ,-./  )       / ,-.|  \\ _ \\  |  |   |  .'  / ( \` )   '
@@ -16,7 +19,6 @@ export default function consoleInfo() {
   \`--------\`     '-----'        \`---\`        \`'-..-'
 
 `,
-      "color: pink"
-    );
-  }
+    "color: pink"
+  );
 }

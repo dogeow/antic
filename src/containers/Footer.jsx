@@ -6,17 +6,8 @@ import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
 import Heart from "../components/Heart";
+import backgroundImg from "../config/footerBackground";
 import Record from "../resources/beian.js";
-
-const background = [
-  "camry_1.png",
-  "camry_2.png",
-  "tesla-model-3-png-1-original.png",
-  "Supra_1.png",
-  "Supra_2.png",
-  "Supra_2.png",
-  "Mustang.png",
-];
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -24,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
       theme.palette.type === "dark"
         ? `url(${process.env.REACT_APP_CDN_URL}/bg/tesla-vector-roadster.png!/compress/true/fw/400)`
         : `url(${process.env.REACT_APP_CDN_URL}/bg/${
-            background[Math.floor(Math.random() * background.length)]
+            backgroundImg[Math.floor(Math.random() * backgroundImg.length)]
           }!/compress/true/fw/400)`,
     backgroundPosition: "right top",
     backgroundRepeat: "no-repeat",
