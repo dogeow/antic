@@ -8,10 +8,12 @@ import Snackbar from "@material-ui/core/Snackbar";
 import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
 import _ from "lodash";
+import md5 from "md5";
 import React, { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 
 import Loading from "../components/Loading";
+import { gravatarCdn } from "../config/services";
 import axios from "../instance/axios";
 import Expire from "./Expire";
 
@@ -228,7 +230,18 @@ export default function Chat({
               chat.chatBoard.map((content, index) => {
                 return content.id === localStorage.userId ? (
                   <Grid item xs={12} key={index} style={{ textAlign: "right" }}>
-                    {content.message}
+                    <span>{content.message}</span>
+                    <img
+                      alt={content.name}
+                      src={`${gravatarCdn}/${md5(
+                        lab.userEmail
+                      )}.jpg?d=monsterid&s=48`}
+                      style={{
+                        width: 24,
+                        margin: "0 8px 0 8px",
+                        verticalAlign: " text-bottom",
+                      }}
+                    />
                   </Grid>
                 ) : (
                   <Grid item xs={12} key={index}>
@@ -266,14 +279,24 @@ export default function Chat({
             borderLeftWidth: 2,
             borderLeftColor: "rgba(0, 0, 0, 0.1)",
             borderLeftStyle: "solid",
-            paddingLeft: 8,
           }}
           alignContent={isMobile && inputFocus ? "flex-end" : "flex-start"}
         >
           {chat.peoples.map((people) => {
             return (
               <Grid item xs={12} key={people.id}>
-                {people.name}
+                <img
+                  alt={people.name}
+                  src={`${gravatarCdn}/${md5(
+                    people.email
+                  )}.jpg?d=monsterid&s=48`}
+                  style={{
+                    width: 24,
+                    margin: "0 8px 0 8px",
+                    verticalAlign: " text-bottom",
+                  }}
+                />
+                <span style={{ fontSize: "1rem" }}>{people.name}</span>
                 {typing === people.id && (
                   <Expire delay={2000}> 输入中...</Expire>
                 )}
