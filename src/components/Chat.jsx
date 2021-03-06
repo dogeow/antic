@@ -118,6 +118,7 @@ export default function Chat({
     if (message === "") {
       return;
     }
+
     chatBoardAdd({
       id: localStorage.userId,
       name: localStorage.userName,
@@ -233,7 +234,7 @@ export default function Chat({
               机器人请在开头加上一个空格，比如「 时间」、「 ip」、「 md5
               123456」、「 大小写 category」
             </Grid>
-            {chat?.chatBoard.length > 1 &&
+            {chat?.chatBoard.length > 0 &&
               chat.chatBoard.map((content, index) => {
                 return content.id === localStorage.userId ? (
                   <Grid item xs={12} key={index} style={{ textAlign: "right" }}>
