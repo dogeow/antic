@@ -17,19 +17,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   chatBoardAdd: (value) => {
-    axios
-      .post(
-        "/chat",
-        {
-          message: value.message,
-        },
-        {
-          headers: {
-            "X-Socket-ID": window.Echo.socketId(),
-          },
-        }
-      )
-      .then(() => dispatch(chatBoard(value)));
+    dispatch(chatBoard(value));
   },
   addPeople: (value) => {
     dispatch(addPeople(value));

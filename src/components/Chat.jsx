@@ -13,6 +13,7 @@ import { isMobile } from "react-device-detect";
 
 import Loading from "../components/Loading";
 import Avatar from "../helpers/gravatar";
+import axios from "../instance/axios";
 import Expire from "./Expire";
 
 let timer = null;
@@ -122,6 +123,19 @@ export default function Chat({
       name: localStorage.userName,
       message,
     });
+
+    axios.post(
+      "/chat",
+      {
+        message,
+      },
+      {
+        headers: {
+          "X-Socket-ID": window.Echo.socketId(),
+        },
+      }
+    );
+
     setMessage("");
   };
 
