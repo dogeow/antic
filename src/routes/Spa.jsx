@@ -15,6 +15,10 @@ const useStyles = makeStyles({
     paddingLeft: 0,
     paddingRight: 0,
   },
+  low: {
+    paddingLeft: 4,
+    paddingRight: 4,
+  },
   backToTop: {
     position: "fixed",
     width: 50,
@@ -28,15 +32,22 @@ const useStyles = makeStyles({
 const Spa = ({ match }) => {
   const classes = useStyles();
 
+  let ContainerClass;
+  if (["/nav", "/cars"].includes(match.url)) {
+    ContainerClass = { root: classes.main };
+  } else if (["/chat"].includes(match.url)) {
+    ContainerClass = { root: classes.low };
+  } else {
+    ContainerClass = null;
+  }
+
   return (
     <>
       <Header />
       <Container
         maxWidth={["/posts/create", "/cars"].includes(match.url) ? false : "lg"}
         style={["/cars"].includes(match.url) ? null : { marginTop: "1rem" }}
-        classes={
-          ["/nav", "/cars"].includes(match.url) ? { root: classes.main } : null
-        }
+        classes={ContainerClass}
       >
         <Switch>
           <Route exact path="/" component={Index} />

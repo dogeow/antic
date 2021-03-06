@@ -3,7 +3,12 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 const Avatar = styled.img`
-  vertical-align: text-bottom;
+  vertical-align: middle;
+  ${(props) =>
+    props.marginLeft &&
+    css`
+      margin-left: ${props.marginLeft}px;
+    `};
   ${(props) =>
     props.size &&
     css`
@@ -21,6 +26,7 @@ export default function (props) {
         props.size * 2
       }`}
       size={props.size}
+      marginLeft={props.marginLeft}
     />
   );
 }

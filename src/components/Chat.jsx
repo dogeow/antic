@@ -221,12 +221,13 @@ export default function Chat({
           xs={9}
           container
           direction="column"
-          style={{ paddingRight: 8 }}
+          style={{ paddingRight: 4 }}
         >
           <Grid
             item
             container
             ref={messagesEndRef}
+            spacing={1}
             alignContent={isMobile && inputFocus ? "flex-end" : "flex-start"}
             style={{ overflowY: "auto", height: "60vh" }}
           >
@@ -238,7 +239,7 @@ export default function Chat({
               chat.chatBoard.map((content, index) => {
                 return content.id === localStorage.userId ? (
                   <Grid item xs={12} key={index} style={{ textAlign: "right" }}>
-                    <span style={{ marginRight: 8 }}>{content.message}</span>
+                    <span style={{ marginRight: 4 }}>{content.message}</span>
                     <Avatar
                       alt={content.name}
                       email={lab.userEmail}
@@ -252,7 +253,7 @@ export default function Chat({
                       email={_.find(chat.peoples, ["id", content.id])["email"]}
                       size={24}
                     />
-                    <span style={{ marginLeft: 8 }}>{content.message}</span>
+                    <span style={{ marginLeft: 4 }}>{content.message}</span>
                   </Grid>
                 );
               })}
@@ -286,17 +287,20 @@ export default function Chat({
             borderLeftWidth: 2,
             borderLeftColor: "rgba(0, 0, 0, 0.1)",
             borderLeftStyle: "solid",
-            paddingRight: 8,
+            paddingRight: 4,
           }}
           alignContent={isMobile && inputFocus ? "flex-end" : "flex-start"}
         >
           {chat.peoples.map((people) => {
             return (
               <Grid item xs={12} key={people.id}>
-                <Avatar alt={people.name} email={people.email} size={24} />
-                <span style={{ fontSize: "1rem", marginLeft: 8 }}>
-                  {people.name}
-                </span>
+                <Avatar
+                  alt={people.name}
+                  email={people.email}
+                  size={24}
+                  marginLeft={4}
+                />
+                <span style={{ marginLeft: 4 }}>{people.name}</span>
                 {typing === people.id && (
                   <Expire delay={2000}> 输入中...</Expire>
                 )}
