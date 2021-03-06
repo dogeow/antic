@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
     axios.post(
       "/chat",
       {
-        value.message,
+        message: value.message,
       },
       {
         headers: {
