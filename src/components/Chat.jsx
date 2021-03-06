@@ -201,7 +201,13 @@ export default function Chat({
           margin: "auto",
         }}
       >
-        <Grid item xs={9} container direction="column">
+        <Grid
+          item
+          xs={9}
+          container
+          direction="column"
+          style={{ paddingRight: 8 }}
+        >
           <Grid
             item
             container
@@ -217,7 +223,7 @@ export default function Chat({
               chat.chatBoard.map((content, index) => {
                 return content.id === localStorage.userId ? (
                   <Grid item xs={12} key={index} style={{ textAlign: "right" }}>
-                    <span>{content.message}</span>
+                    <span style={{ marginRight: 8 }}>{content.message}</span>
                     <Avatar
                       alt={content.name}
                       email={lab.userEmail}
@@ -226,7 +232,12 @@ export default function Chat({
                   </Grid>
                 ) : (
                   <Grid item xs={12} key={index}>
-                    {content.name}: {content.message}
+                    <Avatar
+                      alt={content.name}
+                      email={_.find(chat.peoples, ["id", content.id])["email"]}
+                      size={24}
+                    />
+                    <span style={{ marginLeft: 8 }}>{content.message}</span>
                   </Grid>
                 );
               })}
@@ -260,6 +271,7 @@ export default function Chat({
             borderLeftWidth: 2,
             borderLeftColor: "rgba(0, 0, 0, 0.1)",
             borderLeftStyle: "solid",
+            paddingRight: 8,
           }}
           alignContent={isMobile && inputFocus ? "flex-end" : "flex-start"}
         >
@@ -267,7 +279,9 @@ export default function Chat({
             return (
               <Grid item xs={12} key={people.id}>
                 <Avatar alt={people.name} email={people.email} size={24} />
-                <span style={{ fontSize: "1rem" }}>{people.name}</span>
+                <span style={{ fontSize: "1rem", marginLeft: 8 }}>
+                  {people.name}
+                </span>
                 {typing === people.id && (
                   <Expire delay={2000}> 输入中...</Expire>
                 )}

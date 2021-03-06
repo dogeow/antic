@@ -3,7 +3,6 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 const Avatar = styled.img`
-  margin: 0 8px 0 8px;
   vertical-align: text-bottom;
   ${(props) =>
     props.size &&
