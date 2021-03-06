@@ -16,12 +16,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  chatBoardAdd: (message) => {
-    dispatch(chatBoard(message));
+  chatBoardAdd: (value) => {
+    dispatch(chatBoard(value));
     axios.post(
       "/chat",
       {
-        message,
+        value.message,
       },
       {
         headers: {
