@@ -57,6 +57,7 @@
     "remark-gfm": "^1.0.0",
     "scroll-to-element": "^2.0.3",
     "socket.io-client": "2.3.0",
+    "styled-components": "^5.2.1",
     "sweetalert2": "^10.12.3",
     "video.js": "^7.10.2",
     "web-vitals": "^0.2.4"

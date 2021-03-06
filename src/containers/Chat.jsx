@@ -16,8 +16,19 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  chatBoardAdd: (value) => {
-    dispatch(chatBoard(value));
+  chatBoardAdd: (message) => {
+    dispatch(chatBoard(message));
+    axios.post(
+      "/chat",
+      {
+        message,
+      },
+      {
+        headers: {
+          "X-Socket-ID": window.Echo.socketId(),
+        },
+      }
+    );
   },
   addPeople: (value) => {
     dispatch(addPeople(value));
@@ -27,9 +38,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   deletePeople: (value) => {
     dispatch(deletePeople(value));
-  },
-  typing: (value) => {
-    dispatch(typing(value));
   },
   onChatUserLogin: (name = "") => {
     axios

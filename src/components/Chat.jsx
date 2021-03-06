@@ -8,13 +8,11 @@ import Snackbar from "@material-ui/core/Snackbar";
 import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
 import _ from "lodash";
-import md5 from "md5";
 import React, { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 
 import Loading from "../components/Loading";
-import { gravatarCdn } from "../config/services";
-import axios from "../instance/axios";
+import Avatar from "../helpers/gravatar";
 import Expire from "./Expire";
 
 let timer = null;
@@ -124,17 +122,6 @@ export default function Chat({
       name: localStorage.userName,
       message,
     });
-    axios.post(
-      "/chat",
-      {
-        message,
-      },
-      {
-        headers: {
-          "X-Socket-ID": window.Echo.socketId(),
-        },
-      }
-    );
     setMessage("");
   };
 
@@ -231,16 +218,10 @@ export default function Chat({
                 return content.id === localStorage.userId ? (
                   <Grid item xs={12} key={index} style={{ textAlign: "right" }}>
                     <span>{content.message}</span>
-                    <img
+                    <Avatar
                       alt={content.name}
-                      src={`${gravatarCdn}/${md5(
-                        lab.userEmail
-                      )}.jpg?d=monsterid&s=48`}
-                      style={{
-                        width: 24,
-                        margin: "0 8px 0 8px",
-                        verticalAlign: " text-bottom",
-                      }}
+                      email={lab.userEmail}
+                      size={24}
                     />
                   </Grid>
                 ) : (
@@ -285,17 +266,7 @@ export default function Chat({
           {chat.peoples.map((people) => {
             return (
               <Grid item xs={12} key={people.id}>
-                <img
-                  alt={people.name}
-                  src={`${gravatarCdn}/${md5(
-                    people.email
-                  )}.jpg?d=monsterid&s=48`}
-                  style={{
-                    width: 24,
-                    margin: "0 8px 0 8px",
-                    verticalAlign: " text-bottom",
-                  }}
-                />
+                <Avatar alt={people.name} email={people.email} size={24} />
                 <span style={{ fontSize: "1rem" }}>{people.name}</span>
                 {typing === people.id && (
                   <Expire delay={2000}> 输入中...</Expire>
