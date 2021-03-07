@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const ABOUT_ME = gql`
   query {
@@ -40,6 +41,16 @@ const About = () => {
           </div>
         );
       })}
+      <div>
+        <h3>其他</h3>
+        <ul>
+          <li>
+            <Link to="/self-talk">🤔自言自语</Link>
+            <Link to="/cars">🚗车车</Link>
+            <Link to="/like">💗喜欢的</Link>
+          </li>
+        </ul>
+      </div>
     </>
   );
 };

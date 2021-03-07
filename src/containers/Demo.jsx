@@ -28,7 +28,16 @@ const Demo = () => (
           <Link to="/a-z">A-Z</Link>
         </li>
         <li>
-          <Link to="/api/time">时间、时间戳</Link>
+          <Link to="/api/time">⌚️时间、时间戳</Link>
+        </li>
+        <li>
+          <Link to="/php-function">🐘PHP 函数</Link>
+        </li>
+        <li>
+          <Link to="/bookmarks">🔖谷歌书签</Link>
+        </li>
+        <li>
+          <Link to="/nav">🧭网址导航</Link>
         </li>
       </ul>
     </div>
@@ -77,10 +86,10 @@ const Demo = () => (
         </li>
         <li>
           <a href="/demos/canvas/cherry.html" target="_blank">
-            樱花
             <span role="img" aria-label="cherry">
               🌸
             </span>
+            樱花
           </a>
         </li>
       </ul>
