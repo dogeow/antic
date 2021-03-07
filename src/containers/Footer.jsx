@@ -5,9 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
-import Heart from "../components/Heart";
+import HomeFooter from "../components/HomeFooter";
 import backgroundImg from "../config/footerBackground";
-import Record from "../resources/beian.js";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -108,21 +107,7 @@ const Footer = () => {
           </ul>
         </Grid>
       </Grid>
-      <div style={{ textAlign: "center", marginBottom: 20, opacity: 0.6 }}>
-        <div>
-          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">
-            <img
-              src={`data:image/png;base64,${Record}`}
-              alt=""
-              style={{ verticalAlign: "top" }}
-            />
-            闽ICP备19021694号-1
-          </a>
-        </div>
-        <div>
-          Built By 小李世界 with <Heart />
-        </div>
-      </div>
+      <HomeFooter />
     </Container>
   );
 };
