@@ -1,5 +1,4 @@
 import "dayjs/locale/zh-cn";
-import "../styles/App.scss";
 import "../styles/App.css";
 
 import DayjsUtils from "@date-io/dayjs";
