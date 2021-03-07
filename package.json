@@ -35,7 +35,6 @@
     "lodash": "^4.17.20",
     "material-table": "^1.69.2",
     "md5": "^2.3.0",
-    "node-sass": "4",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.0.0",
