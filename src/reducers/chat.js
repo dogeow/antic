@@ -24,10 +24,13 @@ const chat = (state = defaultState, action) => {
       };
     case "DELETE_PEOPLE":
       const peoples = state.peoples;
+      const chatBoard = state.chatBoard;
       _.remove(peoples, { id: action.payload.id });
+      _.remove(chatBoard, { id: action.payload.id });
       return {
         ...state,
         peoples,
+        chatBoard,
       };
     case "CHAT_BOARD":
       return { ...state, chatBoard: [...state.chatBoard, action.payload] };
