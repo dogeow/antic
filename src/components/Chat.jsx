@@ -281,6 +281,7 @@ export default function Chat({
         <Grid
           item
           container
+          spacing={1}
           xs={3}
           ref={peoplesRef}
           style={{
