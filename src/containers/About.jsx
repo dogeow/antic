@@ -46,7 +46,11 @@ const About = () => {
         <ul>
           <li>
             <Link to="/self-talk">🤔自言自语</Link>
+          </li>
+          <li>
             <Link to="/cars">🚗车车</Link>
+          </li>
+          <li>
             <Link to="/like">💗喜欢的</Link>
           </li>
         </ul>
