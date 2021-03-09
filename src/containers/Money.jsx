@@ -3,21 +3,28 @@ import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import InputLabel from "@material-ui/core/InputLabel";
+import Snackbar from "@material-ui/core/Snackbar";
 import TextField from "@material-ui/core/TextField";
 import AddIcon from "@material-ui/icons/Add";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import SubIcon from "@material-ui/icons/Remove";
+import MuiAlert from "@material-ui/lab/Alert";
 import React, { useEffect, useState } from "react";
+
+import ClipboardButton from "../components/ClipboardButton";
 
 const emptyCost = { money: "", note: "", isCost: true };
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 const Money = () => {
   const [bills, setBills] = useState([emptyCost]);
-  const [remaining, setRemaining] = useState(0);
-
-  useEffect(() => {
-    setRemaining(1000);
-  }, []);
+  const [billText, setBillText] = useState("");
+  const [remaining, setRemaining] = useState("");
+  const [newRemaining, setNewRemaining] = useState("");
+  const [open, setOpen] = React.useState(false);
 
   const toggleIsCostState = (billIndex) => {
     setBills(
@@ -56,7 +63,7 @@ const Money = () => {
     );
   };
 
-  const calcRemaining = () => {
+  useEffect(() => {
     let money = remaining;
     bills.map((bill) => {
       if (bill.money !== "" && bill.money !== 0) {
@@ -68,21 +75,64 @@ const Money = () => {
       }
     });
 
-    return money;
+    setNewRemaining(money);
+
+    let tempBillText = "";
+
+    bills.map((bill) => {
+      if (bill.money !== "" && bill.money !== 0) {
+        tempBillText += bill.isCost
+          ? " - " + bill.money + `（${bill.note}）`
+          : " + " + bill.money + `（${bill.note}）`;
+      }
+    });
+
+    if (tempBillText !== "") {
+      setBillText(`${remaining}${tempBillText} = ${newRemaining}`);
+    }
+  }, [remaining, bills, newRemaining]);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const remainingChange = (e) => {
+    setRemaining(e.target.value);
+    setNewRemaining(e.target.value);
   };
 
   return (
     <>
       <div>
-        <h2 style={{ textAlign: "center" }}>{remaining}</h2>
+        <h2 style={{ textAlign: "center" }}>
+          <TextField
+            id="remaining"
+            label="余额"
+            type="number"
+            required
+            value={remaining}
+            onChange={remainingChange}
+          />
+        </h2>
         {bills.map((bill, index) => (
-          <Grid container spacing={1} key={index}>
-            <Grid item xs={6}>
-              <InputLabel htmlFor="input-with-icon-adornment">金额</InputLabel>
+          <Grid container spacing={2} key={index}>
+            <Grid item xs={4}>
+              <InputLabel htmlFor="money" required>
+                金额
+              </InputLabel>
               <Input
                 id="money"
                 type="number"
                 value={bill.money}
+                required
                 onChange={(e) => changeMoney(e, index)}
                 startAdornment={
                   <InputAdornment
@@ -94,29 +144,41 @@ const Money = () => {
                 }
               />
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={8}>
               <TextField
                 id="note"
                 label="备注"
+                required
+                fullWidth
                 onChange={(e) => changeNote(e, index)}
               />
             </Grid>
           </Grid>
         ))}
         <div style={{ textAlign: "center", marginTop: 20 }}>
-          <AddCircleIcon onClick={addNew} />
+          <AddCircleIcon fontSize="large" onClick={addNew} />
         </div>
-        <h2 style={{ textAlign: "right" }}>= {calcRemaining()}</h2>
+        <h2 style={{ textAlign: "right" }}>= {newRemaining}</h2>
       </div>
-      <div>
-        {remaining}
-        {bills.map((bill) => {
-          return bill.isCost
-            ? " - " + bill.money + `（${bill.note}）`
-            : " + " + bill.money + `（${bill.note}）`;
-        })}
-        = {calcRemaining()};
-      </div>
+      {billText !== "" && (
+        <div>
+          {billText}
+          <ClipboardButton text={billText} handleClick={handleClick} />
+        </div>
+      )}
+      <Snackbar
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        open={open}
+        autoHideDuration={2000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity="success">
+          复制成功
+        </Alert>
+      </Snackbar>
     </>
   );
 };
