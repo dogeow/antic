@@ -253,6 +253,10 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../containers/Base64"))}
           />
           <Route
+            path="/money"
+            component={loadable(() => import("../containers/Money"))}
+          />
+          <Route
             path="/test"
             component={loadable(() => import("../containers/Test"))}
           />
