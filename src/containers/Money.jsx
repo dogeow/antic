@@ -67,9 +67,9 @@ const Money = () => {
     bills.map((bill) => {
       if (bill.money !== "" && bill.money !== 0) {
         if (bill.isCost) {
-          money = parseFloat(money) - parseFloat(bill.money);
+          money = parseFloat(money - bill.money).toFixed(2);
         } else {
-          money = parseFloat(money) + parseFloat(bill.money);
+          money = parseFloat(money + bill.money).toFixed(2);
         }
       }
     });
