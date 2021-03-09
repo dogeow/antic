@@ -80,7 +80,8 @@ const Money = () => {
             <Grid item xs={6}>
               <InputLabel htmlFor="input-with-icon-adornment">金额</InputLabel>
               <Input
-                id="input-with-icon-adornment"
+                id="money"
+                type="number"
                 value={bill.money}
                 onChange={(e) => changeMoney(e, index)}
                 startAdornment={
@@ -95,7 +96,7 @@ const Money = () => {
             </Grid>
             <Grid item xs={6}>
               <TextField
-                id="standard-basic"
+                id="note"
                 label="备注"
                 onChange={(e) => changeNote(e, index)}
               />
