@@ -26,7 +26,6 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
     "require-jsdoc": 0,
-    "no-unused-vars": 0,
     "react/prop-types": 0,
     "react/display-name": 0,
     "simple-import-sort/imports": "error",
