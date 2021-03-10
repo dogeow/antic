@@ -30,8 +30,8 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <Container component="footer" className={classes.footer}>
-      <Grid container spacing={2}>
+    <Container component="footer">
+      <Grid container spacing={2} className={classes.footer}>
         <Grid item xs={12} sm>
           <Typography variant="h5" component="h3">
             Powered by
