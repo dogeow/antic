@@ -24,14 +24,17 @@ import { Link as RouteLink, useHistory, useLocation } from "react-router-dom";
 
 import { loginAction } from "../actions";
 import Copyright from "../components/Copyright";
+import wallpaper from "../config/wallpaper";
 import axios from "../instance/axios";
+
+const random = Math.floor(Math.random() * wallpaper.length);
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
   },
   image: {
-    backgroundImage: `url(${process.env.REACT_APP_API_URL}/random)`,
+    backgroundImage: `url(${process.env.REACT_APP_OSS_URL}/wallpaper/${wallpaper[random]})`,
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.type === "dark"
