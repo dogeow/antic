@@ -11,8 +11,8 @@ import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 
+import Avatar from "../components/gravatar";
 import Loading from "../components/Loading";
-import Avatar from "../helpers/gravatar";
 import axios from "../instance/axios";
 import Expire from "./Expire";
 
