@@ -69,7 +69,7 @@ const Money = () => {
         if (bill.isCost) {
           money = parseFloat(money - bill.money).toFixed(2);
         } else {
-          money = parseFloat(money + bill.money).toFixed(2);
+          money = (parseFloat(money) + parseFloat(bill.money)).toFixed(2);
         }
       }
     });
