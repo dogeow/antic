@@ -74,7 +74,7 @@ const SignInSide = ({ dispatch }) => {
   const { state } = useLocation();
   const classes = useStyles();
   const history = useHistory();
-  const [email, setEmail] = useState("");
+  const [account, setAccount] = useState("");
   const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -93,7 +93,7 @@ const SignInSide = ({ dispatch }) => {
     e.preventDefault();
     axios
       .post("user/login", {
-        email,
+        account,
         password,
         remember_me: rememberMe,
       })
@@ -132,21 +132,23 @@ const SignInSide = ({ dispatch }) => {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email 地址"
-              name="email"
-              autoComplete="email"
+              id="account"
+              label="账号"
+              name="account"
+              autoComplete="account"
               autoFocus
-              onChange={(e) => setEmail(e.target.value)}
-              error={inputErrors && inputErrors.email}
+              onChange={(e) => setAccount(e.target.value)}
+              error={inputErrors && inputErrors.account}
               placeholder={
-                inputErrors && inputErrors.email ? inputErrors.email : null
+                inputErrors && inputErrors.account
+                  ? inputErrors.account
+                  : "手机号码或 Email 地址"
               }
               InputLabelProps={
-                inputErrors && inputErrors.email ? { shrink: true } : {}
+                inputErrors && inputErrors.account ? { shrink: true } : {}
               }
               helperText={
-                inputErrors && inputErrors.email ? inputErrors.email[0] : ""
+                inputErrors && inputErrors.account ? inputErrors.account[0] : ""
               }
               InputProps={{
                 startAdornment: (

@@ -76,12 +76,13 @@ function a11yProps(index) {
 const Register = ({ history }) => {
   const classes = useStyles();
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [inputErrors, setInputErrors] = useState({});
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -89,13 +90,20 @@ const Register = ({ history }) => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+
+    const credentials = {
+      name,
+      password,
+      password_confirmation: passwordConfirmation,
+    };
+    if (value === 0) {
+      credentials.email = email;
+    } else {
+      credentials.phone = phone;
+    }
+
     axios
-      .post("/user/register", {
-        name,
-        email,
-        password,
-        password_confirmation: passwordConfirmation,
-      })
+      .post("/user/register", credentials)
       .then(() => {
         swal.fire({
           title: "注册成功，",
@@ -137,7 +145,6 @@ const Register = ({ history }) => {
                 label="手机号"
                 {...a11yProps(1)}
                 icon={<PhoneIphoneIcon />}
-                disabled
               />
               <Tab
                 label="GitHub"
@@ -293,7 +300,149 @@ const Register = ({ history }) => {
             </form>
           </TabPanel>
           <TabPanel value={value} index={1}>
-            手机号
+            <form className={classes.form} noValidate>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="name"
+                    label="昵称"
+                    name="name"
+                    autoComplete="name"
+                    onChange={(e) => setName(e.target.value)}
+                    error={!!inputErrors.name}
+                    placeholder={inputErrors?.name?.[0]}
+                    InputLabelProps={inputErrors?.name && { shrink: true }}
+                    helperText={inputErrors?.name?.[0]}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <AccountCircle />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="phone"
+                    label="手机号码"
+                    name="phone"
+                    autoComplete="iphone"
+                    onChange={(e) => setPhone(e.target.value)}
+                    error={!!inputErrors.phone}
+                    placeholder={inputErrors?.phone?.[0]}
+                    InputLabelProps={inputErrors?.phone && { shrink: true }}
+                    helperText={inputErrors?.phone?.[0]}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <PhoneIphoneIcon />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="password"
+                    label="密码"
+                    type={displayPassword ? "text" : "password"}
+                    id="password"
+                    autoComplete="current-password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    error={!!inputErrors.password}
+                    placeholder={inputErrors?.password?.[0]}
+                    InputLabelProps={inputErrors?.password && { shrink: true }}
+                    helperText={inputErrors?.password?.[0]}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          {displayPassword ? (
+                            <VisibilityIcon
+                              onClick={handlePassword}
+                              className="pointer"
+                            />
+                          ) : (
+                            <VisibilityOffIcon
+                              onClick={handlePassword}
+                              className="pointer"
+                            />
+                          )}
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="password_confirmation"
+                    label="确认密码"
+                    type={displayPassword ? "text" : "password"}
+                    id="password_confirmation"
+                    autoComplete="current-password-confirmation"
+                    onChange={(e) => setPasswordConfirmation(e.target.value)}
+                    error={!!inputErrors.password_confirmation}
+                    placeholder={inputErrors?.password_confirmation?.[0]}
+                    InputLabelProps={
+                      inputErrors?.password_confirmation && { shrink: true }
+                    }
+                    helperText={inputErrors?.password_confirmation?.[0]}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          {displayPassword ? (
+                            <VisibilityIcon
+                              onClick={handlePassword}
+                              className="pointer"
+                            />
+                          ) : (
+                            <VisibilityOffIcon
+                              onClick={handlePassword}
+                              className="pointer"
+                            />
+                          )}
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+              </Grid>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={handleRegister}
+              >
+                注册
+              </Button>
+              <Grid container justify="flex-end">
+                <Grid item>
+                  <Link
+                    onClick={() => {
+                      history.push("/login");
+                    }}
+                    variant="body2"
+                    color="secondary"
+                  >
+                    已经有账户？登录！
+                  </Link>
+                </Grid>
+              </Grid>
+            </form>
           </TabPanel>
           <TabPanel value={value} index={2}>
             GitHub
