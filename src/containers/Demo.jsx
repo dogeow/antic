@@ -21,23 +21,23 @@ const Demo = () => (
         </li>
         <li>
           <Link to="/demos/calculator">
-            <span role="img">🌡</span>摄氏度、华氏度转换（React 官方 Example）
+            <span role="img">🌡</span> 摄氏度、华氏度转换（React 官方 Example）
           </Link>
         </li>
         <li>
           <Link to="/a-z">A-Z</Link>
         </li>
         <li>
-          <Link to="/api/time">⌚️时间、时间戳</Link>
+          <Link to="/api/time">⌚ ️时间、时间戳</Link>
         </li>
         <li>
-          <Link to="/php-function">🐘PHP 函数</Link>
+          <Link to="/php-function">🐘 PHP 函数</Link>
         </li>
         <li>
-          <Link to="/bookmarks">🔖谷歌书签</Link>
+          <Link to="/bookmarks">🔖 谷歌书签</Link>
         </li>
         <li>
-          <Link to="/nav">🧭网址导航</Link>
+          <Link to="/nav">🧭 网址导航</Link>
         </li>
       </ul>
     </div>
@@ -88,7 +88,7 @@ const Demo = () => (
           <a href="/demos/canvas/cherry.html" target="_blank">
             <span role="img" aria-label="cherry">
               🌸
-            </span>
+            </span>{" "}
             樱花
           </a>
         </li>
@@ -111,7 +111,7 @@ const Demo = () => (
           <Link to="/piano">
             <span role="img" aria-label="钢琴">
               🎹
-            </span>
+            </span>{" "}
             钢琴（卡农）
           </Link>
         </li>
