@@ -11,7 +11,7 @@ const Logo = () => (
     </Grid>
     <Hidden only="xs">
       <Grid item>
-        <Typography variant="h6" noWrap component="h1" className="ThreeDee">
+        <Typography variant="h6" noWrap component="h1">
           {process.env.REACT_APP_NAME}
         </Typography>
       </Grid>
