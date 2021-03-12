@@ -296,7 +296,7 @@ const Header = ({
                   >
                     <MenuItem>{lab.userName}</MenuItem>
                   </RouteLink>
-                  <RouteLink to="project" onClick={() => handleCloseProfile()}>
+                  <RouteLink to="/project" onClick={() => handleCloseProfile()}>
                     <MenuItem>代办事项</MenuItem>
                   </RouteLink>
                   <RouteLink
