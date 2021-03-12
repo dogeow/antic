@@ -32,7 +32,7 @@ const Footer = () => {
   return (
     <Container component="footer">
       <Grid container spacing={2} className={classes.footer}>
-        <Grid item xs={12} sm>
+        <Grid item xs={12} sm={5}>
           <Typography variant="h5" component="h3">
             说明
           </Typography>
@@ -44,7 +44,7 @@ const Footer = () => {
             3. 如有侵犯到您的权益，请及时联系我
           </p>
         </Grid>
-        <Grid item xs={12} sm>
+        <Grid item xs={12} sm={3}>
           <Typography variant="h5" component="h3">
             长期计划
           </Typography>
@@ -56,7 +56,7 @@ const Footer = () => {
             <li>实时的应用、游戏</li>
           </ul>
         </Grid>
-        <Grid item xs={12} sm>
+        <Grid item xs={12} sm={3}>
           <Typography variant="h5" component="h3">
             网站
           </Typography>
