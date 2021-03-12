@@ -83,26 +83,11 @@ const Footer = () => {
         </Grid>
         <Grid item xs={12} sm>
           <Typography variant="h5" component="h3">
-            常用网址
+            网站
           </Typography>
           <ul>
             <li>
-              <a
-                href="https://google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                谷歌搜素
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://translate.google.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                谷歌翻译
-              </a>
+              <RouteLink to="/project/1">代办事项</RouteLink>
             </li>
           </ul>
         </Grid>
