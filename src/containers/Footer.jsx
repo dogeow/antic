@@ -34,40 +34,15 @@ const Footer = () => {
       <Grid container spacing={2} className={classes.footer}>
         <Grid item xs={12} sm>
           <Typography variant="h5" component="h3">
-            Powered by
+            说明
           </Typography>
-          <ul>
-            <li>
-              <a
-                href="https://zh-hans.reactjs.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                React
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://material-ui.com/zh/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Material-UI
-              </a>
-            </li>
-            <li>
-              <a
-                href=" https://laravel.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Laravel
-              </a>
-            </li>
-            <li>
-              <RouteLink to="/powered-by">More?</RouteLink>
-            </li>
-          </ul>
+          <p>
+            1.该实验室的各项功能都是测试版本
+            <br />
+            2. 因实验室只有自己在访问和使用，所以没有其他人的注册和信息
+            <br />
+            3. 如有侵犯到您的权益，请及时联系我
+          </p>
         </Grid>
         <Grid item xs={12} sm>
           <Typography variant="h5" component="h3">
@@ -88,6 +63,9 @@ const Footer = () => {
           <ul>
             <li>
               <RouteLink to="/project/1">代办事项</RouteLink>
+            </li>
+            <li>
+              <RouteLink to="/powered-by">Powered by</RouteLink>
             </li>
           </ul>
         </Grid>
