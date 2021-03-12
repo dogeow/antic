@@ -8,11 +8,7 @@ export default function () {
     <div style={{ textAlign: "center", marginBottom: 20, opacity: 0.6 }}>
       <div>
         <a href="http://www.beian.gov.cn/" target="_blank" rel="noreferrer">
-          <img
-            src={`data:image/png;base64,${Record}`}
-            alt=""
-            style={{ verticalAlign: "top" }}
-          />
+          <img src={Record} alt="" style={{ verticalAlign: "top" }} />
           闽公网安备 35020302033650号
         </a>
         {" | "}

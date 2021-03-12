@@ -10,6 +10,7 @@ import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
 import appConfig from "../config/app";
+import anticPic from "../resources/antic";
 
 const useStyles = makeStyles({
   list: {
@@ -70,9 +71,9 @@ const TemporaryDrawer = (props) => {
         <Divider />
         <ListItem button to="/about" component={RouteLink}>
           <img
-            src="/favicon.ico"
+            src={anticPic}
             alt="antic"
-            style={{ height: 19, marginRight: 4 }}
+            style={{ height: 20, marginRight: 4 }}
           />
           <ListItemText primary="关于我" />
         </ListItem>
