@@ -78,7 +78,7 @@ function a11yProps(index) {
 const Register = ({ history }) => {
   const classes = useStyles();
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [sentPhone, setSentPhone] = useState("");
   const [token, setToken] = useState("");
   const [sentRecaptcha, setSentRecaptcha] = useState(false);
@@ -95,13 +95,13 @@ const Register = ({ history }) => {
   };
 
   useEffect(() => {
-    if (phone.length === 11 && sentRecaptcha === false) {
-      axios.post("/recaptcha", { token, phone }).then(() => {
+    if (phoneNumber.length === 11 && sentRecaptcha === false) {
+      axios.post("/recaptcha", { token, phoneNumber }).then(() => {
         setSentRecaptcha(true);
-        alert("已发送短信至 " + phone);
+        alert("已发送短信至 " + phoneNumber);
       });
     }
-  }, [phone]);
+  }, [phoneNumber]);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -119,7 +119,7 @@ const Register = ({ history }) => {
       credentials.email = email;
     } else {
       url = "/user/register-by-phone";
-      credentials.phone = phone;
+      credentials.phoneNumber = phoneNumber;
       credentials.verify = verify;
     }
 
@@ -202,7 +202,6 @@ const Register = ({ history }) => {
                       error={!!inputErrors.name}
                       placeholder={inputErrors?.name?.[0]}
                       InputLabelProps={inputErrors?.name && { shrink: true }}
-                      helperText={inputErrors?.name?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -225,7 +224,6 @@ const Register = ({ history }) => {
                       error={!!inputErrors.email}
                       placeholder={inputErrors?.email?.[0]}
                       InputLabelProps={inputErrors?.email && { shrink: true }}
-                      helperText={inputErrors?.email?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -251,7 +249,6 @@ const Register = ({ history }) => {
                       InputLabelProps={
                         inputErrors?.password && { shrink: true }
                       }
-                      helperText={inputErrors?.password?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -286,7 +283,6 @@ const Register = ({ history }) => {
                       InputLabelProps={
                         inputErrors?.password_confirmation && { shrink: true }
                       }
-                      helperText={inputErrors?.password_confirmation?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -348,7 +344,6 @@ const Register = ({ history }) => {
                       error={!!inputErrors.name}
                       placeholder={inputErrors?.name?.[0]}
                       InputLabelProps={inputErrors?.name && { shrink: true }}
-                      helperText={inputErrors?.name?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -363,15 +358,16 @@ const Register = ({ history }) => {
                       variant="outlined"
                       required
                       fullWidth
-                      id="phone"
+                      id="phoneNumber"
                       label="手机号码"
-                      name="phone"
-                      autoComplete="iphone"
-                      onChange={(e) => setPhone(e.target.value)}
-                      error={!!inputErrors.phone}
-                      placeholder={inputErrors?.phone?.[0]}
-                      InputLabelProps={inputErrors?.phone && { shrink: true }}
-                      helperText={inputErrors?.phone?.[0]}
+                      name="phoneNumber"
+                      autoComplete="phoneNumber"
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      error={!!inputErrors.phoneNumber}
+                      placeholder={inputErrors?.phoneNumber?.[0]}
+                      InputLabelProps={
+                        inputErrors?.phoneNumber && { shrink: true }
+                      }
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -395,7 +391,6 @@ const Register = ({ history }) => {
                       error={!!inputErrors.verify}
                       placeholder={inputErrors?.verify?.[0]}
                       InputLabelProps={inputErrors?.verify && { shrink: true }}
-                      helperText={inputErrors?.verify?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -421,7 +416,6 @@ const Register = ({ history }) => {
                       InputLabelProps={
                         inputErrors?.password && { shrink: true }
                       }
-                      helperText={inputErrors?.password?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -456,7 +450,6 @@ const Register = ({ history }) => {
                       InputLabelProps={
                         inputErrors?.password_confirmation && { shrink: true }
                       }
-                      helperText={inputErrors?.password_confirmation?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
