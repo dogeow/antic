@@ -107,10 +107,10 @@ const Register = ({ history }) => {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [inputErrors, setInputErrors] = useState({});
-  const [value, setValue] = useState(0);
+  const [tabIndex, setTabIndex] = useState(0);
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setTabIndex(newValue);
   };
 
   useEffect(() => {
@@ -136,7 +136,7 @@ const Register = ({ history }) => {
       password_confirmation: passwordConfirmation,
     };
 
-    if (value === 0) {
+    if (tabIndex === 0) {
       url = "/user/register-by-email";
       credentials.email = email;
     } else {
@@ -174,7 +174,7 @@ const Register = ({ history }) => {
       useRecaptchaNet
       scriptProps={{ async: true, defer: true, appendTo: "body" }}
     >
-      {value === 1 && token === "" && sentPhone === "" && (
+      {tabIndex === 1 && token === "" && sentPhone === "" && (
         <GoogleRecaptcha onSaveToken={saveToken} />
       )}
       <Container component="main" maxWidth="xs">
@@ -188,7 +188,7 @@ const Register = ({ history }) => {
           <div>
             <AppBar position="static">
               <Tabs
-                value={value}
+                value={tabIndex}
                 onChange={handleChange}
                 aria-label="注册类型"
                 centered
@@ -208,7 +208,7 @@ const Register = ({ history }) => {
                 />
               </Tabs>
             </AppBar>
-            <TabPanel value={value} index={0}>
+            <TabPanel value={tabIndex} index={0}>
               <form className={classes.form} noValidate>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
@@ -354,7 +354,7 @@ const Register = ({ history }) => {
                 </Grid>
               </form>
             </TabPanel>
-            <TabPanel value={value} index={1}>
+            <TabPanel value={tabIndex} index={1}>
               <form className={classes.form} noValidate>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
@@ -553,7 +553,7 @@ const Register = ({ history }) => {
                 </Grid>
               </form>
             </TabPanel>
-            <TabPanel value={value} index={2}>
+            <TabPanel value={tabIndex} index={2}>
               GitHub
             </TabPanel>
           </div>
