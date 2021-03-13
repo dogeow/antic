@@ -221,7 +221,7 @@ const Register = ({ history }) => {
                       name="name"
                       autoComplete="name"
                       onChange={(e) => setName(e.target.value)}
-                      error={!!inputErrors.name}
+                      error={!!inputErrors?.name}
                       placeholder={inputErrors?.name?.[0]}
                       InputLabelProps={inputErrors?.name && { shrink: true }}
                       helperText={inputErrors?.name?.[0]}
@@ -244,7 +244,7 @@ const Register = ({ history }) => {
                       name="email"
                       autoComplete="email"
                       onChange={(e) => setEmail(e.target.value)}
-                      error={!!inputErrors.email}
+                      error={!!inputErrors?.email}
                       placeholder={inputErrors?.email?.[0]}
                       InputLabelProps={inputErrors?.email && { shrink: true }}
                       helperText={inputErrors?.email?.[0]}
@@ -268,7 +268,7 @@ const Register = ({ history }) => {
                       id="password"
                       autoComplete="current-password"
                       onChange={(e) => setPassword(e.target.value)}
-                      error={!!inputErrors.password}
+                      error={!!inputErrors?.password}
                       placeholder={inputErrors?.password?.[0]}
                       InputLabelProps={
                         inputErrors?.password && { shrink: true }
@@ -303,7 +303,7 @@ const Register = ({ history }) => {
                       id="password_confirmation"
                       autoComplete="current-password-confirmation"
                       onChange={(e) => setPasswordConfirmation(e.target.value)}
-                      error={!!inputErrors.password_confirmation}
+                      error={!!inputErrors?.password_confirmation}
                       placeholder={inputErrors?.password_confirmation?.[0]}
                       InputLabelProps={
                         inputErrors?.password_confirmation && { shrink: true }
@@ -367,7 +367,7 @@ const Register = ({ history }) => {
                       name="name"
                       autoComplete="name"
                       onChange={(e) => setName(e.target.value)}
-                      error={!!inputErrors.name}
+                      error={!!inputErrors?.name}
                       placeholder={inputErrors?.name?.[0]}
                       InputLabelProps={inputErrors?.name && { shrink: true }}
                       helperText={inputErrors?.name?.[0]}
@@ -416,7 +416,7 @@ const Register = ({ history }) => {
                         value={phoneNumber}
                         autoComplete="phone_number"
                         onChange={(e) => setPhoneNumber(e.target.value)}
-                        error={!!inputErrors.phone_number}
+                        error={!!inputErrors?.phone_number}
                         placeholder={inputErrors?.phone_number?.[0]}
                         InputLabelProps={
                           inputErrors?.phone_number && { shrink: true }
@@ -443,7 +443,7 @@ const Register = ({ history }) => {
                       id="verify"
                       autoComplete="current-verify"
                       onChange={(e) => setVerify(e.target.value)}
-                      error={!!inputErrors.verify}
+                      error={!!inputErrors?.verify}
                       placeholder={inputErrors?.verify?.[0]}
                       InputLabelProps={inputErrors?.verify && { shrink: true }}
                       helperText={inputErrors?.verify?.[0]}
@@ -467,7 +467,7 @@ const Register = ({ history }) => {
                       id="password"
                       autoComplete="current-password"
                       onChange={(e) => setPassword(e.target.value)}
-                      error={!!inputErrors.password}
+                      error={!!inputErrors?.password}
                       placeholder={inputErrors?.password?.[0]}
                       InputLabelProps={
                         inputErrors?.password && { shrink: true }
@@ -502,7 +502,7 @@ const Register = ({ history }) => {
                       id="password_confirmation"
                       autoComplete="current-password-confirmation"
                       onChange={(e) => setPasswordConfirmation(e.target.value)}
-                      error={!!inputErrors.password_confirmation}
+                      error={!!inputErrors?.password_confirmation}
                       placeholder={inputErrors?.password_confirmation?.[0]}
                       InputLabelProps={
                         inputErrors?.password_confirmation && { shrink: true }
