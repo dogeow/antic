@@ -6,7 +6,7 @@ export default (props) => {
     (token) => {
       props.onSaveToken(token);
     },
-    [props.onSaveToken]
+    [props]
   );
 
   return (

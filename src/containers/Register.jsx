@@ -123,7 +123,7 @@ const Register = ({ history }) => {
           setSentPhoneSuccess(true);
         });
     }
-  }, [phoneNumber]);
+  }, [phoneNumber, sentPhone, token]);
 
   const handleRegister = (e) => {
     e.preventDefault();
