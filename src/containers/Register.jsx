@@ -6,7 +6,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Link from "@material-ui/core/Link";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import TextField from "@material-ui/core/TextField";
@@ -75,13 +75,32 @@ function a11yProps(index) {
   };
 }
 
+const ValidationTextField = withStyles({
+  root: {
+    "& input:valid + fieldset": {
+      borderColor: "green",
+      borderWidth: 2,
+    },
+    "& input:invalid + fieldset": {
+      borderWidth: 2,
+    },
+    "& input:valid:focus + fieldset": {
+      borderLeftWidth: 6,
+      padding: "4px !important", // override inline-style
+    },
+    "& p": {
+      color: "green",
+    },
+  },
+})(TextField);
+
 const Register = ({ history }) => {
   const classes = useStyles();
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [sentPhone, setSentPhone] = useState("");
   const [token, setToken] = useState("");
-  const [sentRecaptcha, setSentRecaptcha] = useState(false);
+  const [sentPhone, setSentPhone] = useState("");
+  const [sentPhoneSuccess, setSentPhoneSuccess] = useState(false);
   const [verify, setVerify] = useState("");
   const [email, setEmail] = useState("");
   const [displayPassword, setDisplayPassword] = useState(false);
@@ -95,11 +114,14 @@ const Register = ({ history }) => {
   };
 
   useEffect(() => {
-    if (phoneNumber.length === 11 && sentRecaptcha === false) {
-      axios.post("/recaptcha", { token, phoneNumber }).then(() => {
-        setSentRecaptcha(true);
-        alert("已发送短信至 " + phoneNumber);
-      });
+    if (phoneNumber.length === 11 && sentPhone !== phoneNumber) {
+      setSentPhoneSuccess(false);
+      axios
+        .post("/recaptcha", { token, phone_number: phoneNumber })
+        .then(() => {
+          setSentPhone(phoneNumber);
+          setSentPhoneSuccess(true);
+        });
     }
   }, [phoneNumber]);
 
@@ -119,7 +141,7 @@ const Register = ({ history }) => {
       credentials.email = email;
     } else {
       url = "/user/register-by-phone";
-      credentials.phoneNumber = phoneNumber;
+      credentials.phone_number = phoneNumber;
       credentials.verify = verify;
     }
 
@@ -152,7 +174,7 @@ const Register = ({ history }) => {
       useRecaptchaNet
       scriptProps={{ async: true, defer: true, appendTo: "body" }}
     >
-      {value === 1 && token === "" && sentRecaptcha === false && (
+      {value === 1 && token === "" && sentPhone === "" && (
         <GoogleRecaptcha onSaveToken={saveToken} />
       )}
       <Container component="main" maxWidth="xs">
@@ -202,6 +224,7 @@ const Register = ({ history }) => {
                       error={!!inputErrors.name}
                       placeholder={inputErrors?.name?.[0]}
                       InputLabelProps={inputErrors?.name && { shrink: true }}
+                      helperText={inputErrors?.name?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -224,6 +247,7 @@ const Register = ({ history }) => {
                       error={!!inputErrors.email}
                       placeholder={inputErrors?.email?.[0]}
                       InputLabelProps={inputErrors?.email && { shrink: true }}
+                      helperText={inputErrors?.email?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -249,6 +273,7 @@ const Register = ({ history }) => {
                       InputLabelProps={
                         inputErrors?.password && { shrink: true }
                       }
+                      helperText={inputErrors?.password?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -283,6 +308,7 @@ const Register = ({ history }) => {
                       InputLabelProps={
                         inputErrors?.password_confirmation && { shrink: true }
                       }
+                      helperText={inputErrors?.password_confirmation?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -344,6 +370,7 @@ const Register = ({ history }) => {
                       error={!!inputErrors.name}
                       placeholder={inputErrors?.name?.[0]}
                       InputLabelProps={inputErrors?.name && { shrink: true }}
+                      helperText={inputErrors?.name?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -354,28 +381,56 @@ const Register = ({ history }) => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                      variant="outlined"
-                      required
-                      fullWidth
-                      id="phoneNumber"
-                      label="手机号码"
-                      name="phoneNumber"
-                      autoComplete="phoneNumber"
-                      onChange={(e) => setPhoneNumber(e.target.value)}
-                      error={!!inputErrors.phoneNumber}
-                      placeholder={inputErrors?.phoneNumber?.[0]}
-                      InputLabelProps={
-                        inputErrors?.phoneNumber && { shrink: true }
-                      }
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <PhoneIphoneIcon />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
+                    {phoneNumber.length === 11 && sentPhoneSuccess ? (
+                      <ValidationTextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="phone_number"
+                        label="手机号码"
+                        name="phone_number"
+                        value={phoneNumber}
+                        autoComplete="phone_number"
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        placeholder={inputErrors?.phone_number?.[0]}
+                        InputLabelProps={
+                          inputErrors?.phone_number && { shrink: true }
+                        }
+                        helperText={"已发送验证码，五分钟内有效"}
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <PhoneIphoneIcon />
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
+                    ) : (
+                      <TextField
+                        variant="outlined"
+                        required
+                        fullWidth
+                        id="phone_number"
+                        label="手机号码"
+                        name="phone_number"
+                        value={phoneNumber}
+                        autoComplete="phone_number"
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        error={!!inputErrors.phone_number}
+                        placeholder={inputErrors?.phone_number?.[0]}
+                        InputLabelProps={
+                          inputErrors?.phone_number && { shrink: true }
+                        }
+                        helperText={inputErrors?.phone_number?.[0]}
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <PhoneIphoneIcon />
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
+                    )}
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
@@ -391,6 +446,7 @@ const Register = ({ history }) => {
                       error={!!inputErrors.verify}
                       placeholder={inputErrors?.verify?.[0]}
                       InputLabelProps={inputErrors?.verify && { shrink: true }}
+                      helperText={inputErrors?.verify?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -416,6 +472,7 @@ const Register = ({ history }) => {
                       InputLabelProps={
                         inputErrors?.password && { shrink: true }
                       }
+                      helperText={inputErrors?.password?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
@@ -450,6 +507,7 @@ const Register = ({ history }) => {
                       InputLabelProps={
                         inputErrors?.password_confirmation && { shrink: true }
                       }
+                      helperText={inputErrors?.password_confirmation?.[0]}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
