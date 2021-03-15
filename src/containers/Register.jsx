@@ -4,19 +4,15 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import Link from "@material-ui/core/Link";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
-import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import EmailIcon from "@material-ui/icons/Email";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
-import SmsIcon from "@material-ui/icons/Sms";
 import React, { useEffect, useState } from "react";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import swal from "sweetalert2";
@@ -24,9 +20,13 @@ import swal from "sweetalert2";
 import Copyright from "../components/Copyright";
 import axios from "../instance/axios";
 import GoogleRecaptcha from "./Recaptcha";
+import Email from "./register/Email";
+import LoginOrRegisterButton from "./register/LoginOrRegisterButton";
 import Name from "./register/Name";
 import Password from "./register/Password";
 import PasswordConfirmation from "./register/PasswordConfirmation";
+import PhoneNumber from "./register/PhoneNumber";
+import Verify from "./register/Verify";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -74,25 +74,6 @@ function a11yProps(index) {
     "aria-controls": `register-tabpanel-${index}`,
   };
 }
-
-const ValidationTextField = withStyles({
-  root: {
-    "& input:valid + fieldset": {
-      borderColor: "green",
-      borderWidth: 2,
-    },
-    "& input:invalid + fieldset": {
-      borderWidth: 2,
-    },
-    "& input:valid:focus + fieldset": {
-      borderLeftWidth: 6,
-      padding: "4px !important", // override inline-style
-    },
-    "& p": {
-      color: "green",
-    },
-  },
-})(TextField);
 
 const Register = ({ history }) => {
   const classes = useStyles();
@@ -211,26 +192,10 @@ const Register = ({ history }) => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email 地址"
-                    name="email"
-                    autoComplete="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    error={!!inputErrors?.email}
-                    placeholder={inputErrors?.email?.[0]}
-                    InputLabelProps={inputErrors?.email && { shrink: true }}
-                    helperText={inputErrors?.email?.[0]}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <MailOutlineIcon />
-                        </InputAdornment>
-                      ),
-                    }}
+                  <Email
+                    email={email}
+                    setEmail={setEmail}
+                    error={inputErrors?.email}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -239,6 +204,7 @@ const Register = ({ history }) => {
                     displayPassword={displayPassword}
                     handlePassword={handlePassword}
                     setPassword={setPassword}
+                    error={inputErrors?.password}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -247,32 +213,11 @@ const Register = ({ history }) => {
                     displayPassword={displayPassword}
                     handlePassword={handlePassword}
                     setPasswordConfirmation={setPasswordConfirmation}
+                    error={inputErrors?.password_confirmation}
                   />
                 </Grid>
               </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={handleRegister}
-              >
-                注册
-              </Button>
-              <Grid container justify="flex-end">
-                <Grid item>
-                  <Link
-                    onClick={() => {
-                      history.push("/login");
-                    }}
-                    variant="body2"
-                    color="secondary"
-                  >
-                    已经有账户？登录！
-                  </Link>
-                </Grid>
-              </Grid>
+              <LoginOrRegisterButton handleRegister={handleRegister} />
             </form>
           </TabPanel>
           <TabPanel value={tabIndex} index={1}>
@@ -294,79 +239,18 @@ const Register = ({ history }) => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    {phoneNumber.length === 11 && sentPhoneSuccess ? (
-                      <ValidationTextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="phone_number"
-                        label="手机号码"
-                        name="phone_number"
-                        value={phoneNumber}
-                        autoComplete="phone_number"
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        placeholder={inputErrors?.phone_number?.[0]}
-                        InputLabelProps={
-                          inputErrors?.phone_number && { shrink: true }
-                        }
-                        helperText={"已发送验证码，五分钟内有效"}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <PhoneIphoneIcon />
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    ) : (
-                      <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        id="phone_number"
-                        label="手机号码"
-                        name="phone_number"
-                        value={phoneNumber}
-                        autoComplete="phone_number"
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        error={!!inputErrors?.phone_number}
-                        placeholder={inputErrors?.phone_number?.[0]}
-                        InputLabelProps={
-                          inputErrors?.phone_number && { shrink: true }
-                        }
-                        helperText={inputErrors?.phone_number?.[0]}
-                        InputProps={{
-                          startAdornment: (
-                            <InputAdornment position="start">
-                              <PhoneIphoneIcon />
-                            </InputAdornment>
-                          ),
-                        }}
-                      />
-                    )}
+                    <PhoneNumber
+                      phoneNumber={phoneNumber}
+                      sentPhoneSuccess={sentPhoneSuccess}
+                      setPhoneNumber={setPhoneNumber}
+                      error={inputErrors?.phone_number}
+                    />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                      variant="outlined"
-                      required
-                      fullWidth
-                      name="verify"
-                      label="验证码"
-                      type={displayPassword ? "text" : "password"}
-                      id="verify"
-                      autoComplete="current-verify"
-                      onChange={(e) => setVerify(e.target.value)}
-                      error={!!inputErrors?.verify}
-                      placeholder={inputErrors?.verify?.[0]}
-                      InputLabelProps={inputErrors?.verify && { shrink: true }}
-                      helperText={inputErrors?.verify?.[0]}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <SmsIcon className="pointer" />
-                          </InputAdornment>
-                        ),
-                      }}
+                    <Verify
+                      verify={verify}
+                      setVerify={setVerify}
+                      error={inputErrors?.verify}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -375,6 +259,7 @@ const Register = ({ history }) => {
                       displayPassword={displayPassword}
                       handlePassword={handlePassword}
                       setPassword={setPassword}
+                      error={inputErrors?.password}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -383,32 +268,11 @@ const Register = ({ history }) => {
                       displayPassword={displayPassword}
                       handlePassword={handlePassword}
                       setPasswordConfirmation={setPasswordConfirmation}
+                      error={inputErrors?.password_confirmation}
                     />
                   </Grid>
                 </Grid>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                  onClick={handleRegister}
-                >
-                  注册
-                </Button>
-                <Grid container justify="flex-end">
-                  <Grid item>
-                    <Link
-                      onClick={() => {
-                        history.push("/login");
-                      }}
-                      variant="body2"
-                      color="secondary"
-                    >
-                      已经有账户？登录！
-                    </Link>
-                  </Grid>
-                </Grid>
+                <LoginOrRegisterButton handleRegister={handleRegister} />
               </form>
             </GoogleReCaptchaProvider>
           </TabPanel>
