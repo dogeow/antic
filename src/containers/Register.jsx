@@ -11,15 +11,12 @@ import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import EmailIcon from "@material-ui/icons/Email";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
 import SmsIcon from "@material-ui/icons/Sms";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import React, { useEffect, useState } from "react";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import swal from "sweetalert2";
@@ -27,6 +24,9 @@ import swal from "sweetalert2";
 import Copyright from "../components/Copyright";
 import axios from "../instance/axios";
 import GoogleRecaptcha from "./Recaptcha";
+import Name from "./register/Name";
+import Password from "./register/Password";
+import PasswordConfirmation from "./register/PasswordConfirmation";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -204,26 +204,10 @@ const Register = ({ history }) => {
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="name"
-                    label="昵称"
-                    name="name"
-                    autoComplete="name"
-                    onChange={(e) => setName(e.target.value)}
-                    error={!!inputErrors?.name}
-                    placeholder={inputErrors?.name?.[0]}
-                    InputLabelProps={inputErrors?.name && { shrink: true }}
-                    helperText={inputErrors?.name?.[0]}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <AccountCircle />
-                        </InputAdornment>
-                      ),
-                    }}
+                  <Name
+                    name={name}
+                    onSetName={setName}
+                    error={inputErrors?.name}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -250,72 +234,19 @@ const Register = ({ history }) => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    name="password"
-                    label="密码"
-                    type={displayPassword ? "text" : "password"}
-                    id="password"
-                    autoComplete="current-password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    error={!!inputErrors?.password}
-                    placeholder={inputErrors?.password?.[0]}
-                    InputLabelProps={inputErrors?.password && { shrink: true }}
-                    helperText={inputErrors?.password?.[0]}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          {displayPassword ? (
-                            <VisibilityIcon
-                              onClick={handlePassword}
-                              className="pointer"
-                            />
-                          ) : (
-                            <VisibilityOffIcon
-                              onClick={handlePassword}
-                              className="pointer"
-                            />
-                          )}
-                        </InputAdornment>
-                      ),
-                    }}
+                  <Password
+                    password={password}
+                    displayPassword={displayPassword}
+                    handlePassword={handlePassword}
+                    setPassword={setPassword}
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    name="password_confirmation"
-                    label="确认密码"
-                    type={displayPassword ? "text" : "password"}
-                    id="password_confirmation"
-                    autoComplete="current-password-confirmation"
-                    onChange={(e) => setPasswordConfirmation(e.target.value)}
-                    error={!!inputErrors?.password_confirmation}
-                    placeholder={inputErrors?.password_confirmation?.[0]}
-                    InputLabelProps={
-                      inputErrors?.password_confirmation && { shrink: true }
-                    }
-                    helperText={inputErrors?.password_confirmation?.[0]}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          {displayPassword ? (
-                            <VisibilityIcon
-                              onClick={handlePassword}
-                              className="pointer"
-                            />
-                          ) : (
-                            <VisibilityOffIcon
-                              onClick={handlePassword}
-                              className="pointer"
-                            />
-                          )}
-                        </InputAdornment>
-                      ),
-                    }}
+                  <PasswordConfirmation
+                    passwordConfirmation={passwordConfirmation}
+                    displayPassword={displayPassword}
+                    handlePassword={handlePassword}
+                    setPasswordConfirmation={setPasswordConfirmation}
                   />
                 </Grid>
               </Grid>
@@ -356,26 +287,10 @@ const Register = ({ history }) => {
               <form className={classes.form} noValidate>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <TextField
-                      variant="outlined"
-                      required
-                      fullWidth
-                      id="name"
-                      label="昵称"
-                      name="name"
-                      autoComplete="name"
-                      onChange={(e) => setName(e.target.value)}
-                      error={!!inputErrors?.name}
-                      placeholder={inputErrors?.name?.[0]}
-                      InputLabelProps={inputErrors?.name && { shrink: true }}
-                      helperText={inputErrors?.name?.[0]}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <AccountCircle />
-                          </InputAdornment>
-                        ),
-                      }}
+                    <Name
+                      name={name}
+                      onSetName={setName}
+                      error={inputErrors?.name}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -455,74 +370,19 @@ const Register = ({ history }) => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                      variant="outlined"
-                      required
-                      fullWidth
-                      name="password"
-                      label="密码"
-                      type={displayPassword ? "text" : "password"}
-                      id="password"
-                      autoComplete="current-password"
-                      onChange={(e) => setPassword(e.target.value)}
-                      error={!!inputErrors?.password}
-                      placeholder={inputErrors?.password?.[0]}
-                      InputLabelProps={
-                        inputErrors?.password && { shrink: true }
-                      }
-                      helperText={inputErrors?.password?.[0]}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            {displayPassword ? (
-                              <VisibilityIcon
-                                onClick={handlePassword}
-                                className="pointer"
-                              />
-                            ) : (
-                              <VisibilityOffIcon
-                                onClick={handlePassword}
-                                className="pointer"
-                              />
-                            )}
-                          </InputAdornment>
-                        ),
-                      }}
+                    <Password
+                      password={password}
+                      displayPassword={displayPassword}
+                      handlePassword={handlePassword}
+                      setPassword={setPassword}
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                      variant="outlined"
-                      fullWidth
-                      name="password_confirmation"
-                      label="确认密码"
-                      type={displayPassword ? "text" : "password"}
-                      id="password_confirmation"
-                      autoComplete="current-password-confirmation"
-                      onChange={(e) => setPasswordConfirmation(e.target.value)}
-                      error={!!inputErrors?.password_confirmation}
-                      placeholder={inputErrors?.password_confirmation?.[0]}
-                      InputLabelProps={
-                        inputErrors?.password_confirmation && { shrink: true }
-                      }
-                      helperText={inputErrors?.password_confirmation?.[0]}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            {displayPassword ? (
-                              <VisibilityIcon
-                                onClick={handlePassword}
-                                className="pointer"
-                              />
-                            ) : (
-                              <VisibilityOffIcon
-                                onClick={handlePassword}
-                                className="pointer"
-                              />
-                            )}
-                          </InputAdornment>
-                        ),
-                      }}
+                    <PasswordConfirmation
+                      passwordConfirmation={passwordConfirmation}
+                      displayPassword={displayPassword}
+                      handlePassword={handlePassword}
+                      setPasswordConfirmation={setPasswordConfirmation}
                     />
                   </Grid>
                 </Grid>
