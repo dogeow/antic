@@ -19,6 +19,7 @@ import swal from "sweetalert2";
 import { loginAction } from "../actions";
 import Copyright from "../components/Copyright";
 import GitHubLogin from "../components/GithubLogin";
+import Loading from "../components/Loading";
 import axios from "../instance/axios";
 import GoogleRecaptcha from "./Recaptcha";
 import Email from "./register/Email";
@@ -88,6 +89,8 @@ const Register = ({ history }) => {
   const [inputErrors, setInputErrors] = useState({});
   const [tabIndex, setTabIndex] = useState(0);
 
+  const [open, setOpen] = useState(false);
+
   const handleChange = (event, newValue) => {
     setTabIndex(newValue);
   };
@@ -105,11 +108,13 @@ const Register = ({ history }) => {
   }, [phoneNumber, sentPhone, token]);
 
   const onSuccess = (response) => {
+    setOpen(true);
     axios
       .get("/oauth/github/callback?code=" + response.code)
       .then((response) => {
         dispatch(loginAction(response.data));
         history.push("/");
+        setOpen(false);
       });
   };
 
@@ -160,6 +165,7 @@ const Register = ({ history }) => {
 
   return (
     <Container component="main" maxWidth="xs">
+      <Loading open={open} />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />

@@ -42,7 +42,10 @@ class GitHubLogin extends Component {
 
     this.onRequest();
     popup.then(
-      (data) => this.onSuccess(data),
+      (data) => {
+        popup.close();
+        this.onSuccess(data);
+      },
       (error) => this.onFailure(error)
     );
   };
