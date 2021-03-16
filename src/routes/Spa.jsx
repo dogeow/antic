@@ -9,6 +9,7 @@ import Header from "../components/Header";
 import Loading from "../components/Loading";
 import Footer from "../containers/Footer";
 import Index from "../containers/Index";
+import Redirect from "../containers/Redirect";
 
 const useStyles = makeStyles({
   main: {
@@ -51,6 +52,7 @@ const Spa = ({ match }) => {
       >
         <Switch>
           <Route exact path="/" component={Index} />
+          <Route exact path="/redirect" component={Redirect} />
           <Route
             exact
             path="/posts"
@@ -260,6 +262,7 @@ const Spa = ({ match }) => {
             path="/test"
             component={loadable(() => import("../containers/Test"))}
           />
+          redirect
           <Route component={loadable(() => import("../containers/NoMatch"))} />
         </Switch>
       </Container>

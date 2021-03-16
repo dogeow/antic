@@ -1,10 +1,8 @@
 import AppBar from "@material-ui/core/AppBar";
 import Avatar from "@material-ui/core/Avatar";
 import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
@@ -15,9 +13,12 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
 import React, { useEffect, useState } from "react";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import { useDispatch } from "react-redux";
 import swal from "sweetalert2";
 
+import { loginAction } from "../actions";
 import Copyright from "../components/Copyright";
+import GitHubLogin from "../components/GithubLogin";
 import axios from "../instance/axios";
 import GoogleRecaptcha from "./Recaptcha";
 import Email from "./register/Email";
@@ -73,6 +74,7 @@ function a11yProps(index) {
 
 const Register = ({ history }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [token, setToken] = useState("");
@@ -101,6 +103,17 @@ const Register = ({ history }) => {
         });
     }
   }, [phoneNumber, sentPhone, token]);
+
+  const onSuccess = (response) => {
+    axios
+      .get("/oauth/github/callback?code=" + response.code)
+      .then((response) => {
+        dispatch(loginAction(response.data));
+        history.push("/");
+      });
+  };
+
+  const onFailure = (response) => console.error(response);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -169,12 +182,7 @@ const Register = ({ history }) => {
                 {...a11yProps(1)}
                 icon={<PhoneIphoneIcon />}
               />
-              <Tab
-                label="GitHub"
-                {...a11yProps(2)}
-                icon={<GitHubIcon />}
-                disabled
-              />
+              <Tab label="GitHub" {...a11yProps(2)} icon={<GitHubIcon />} />
             </Tabs>
           </AppBar>
           <TabPanel value={tabIndex} index={0}>
@@ -273,7 +281,12 @@ const Register = ({ history }) => {
             </GoogleReCaptchaProvider>
           </TabPanel>
           <TabPanel value={tabIndex} index={2}>
-            GitHub
+            <GitHubLogin
+              clientId={process.env.REACT_APP_GITHUB_CLIENT_ID}
+              redirectUri=""
+              onSuccess={onSuccess}
+              onFailure={onFailure}
+            />
           </TabPanel>
         </div>
       </div>
