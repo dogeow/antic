@@ -1,5 +1,3 @@
-import React from "react";
-
 import { toParams } from "../helpers";
 
 export default function () {
