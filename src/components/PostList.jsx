@@ -1,3 +1,4 @@
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -9,6 +10,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
+import { toParams } from "../helpers";
 import axios from "../instance/axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,6 +19,8 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
   },
 }));
+
+const params = toParams(window.location.search.replace(/^\?/, ""));
 
 const PostList = () => {
   const classes = useStyles();
@@ -58,7 +62,19 @@ const PostList = () => {
 
   return (
     <>
-      <Paper className={classes.paper}>
+      {params["filter[category.name]"] && (
+        <Breadcrumbs aria-label="breadcrumb">
+          <Link to="/">Home</Link>
+          <Link to="/categories">Categories</Link>
+          <Typography color="textPrimary">
+            {params["filter[category.name]"]}
+          </Typography>
+        </Breadcrumbs>
+      )}
+      <Paper
+        className={classes.paper}
+        style={{ marginTop: 20, marginBottom: 20 }}
+      >
         <Grid container spacing={2}>
           {(post.data || Array.from(new Array(6))).map((item, index) => {
             return item ? (
@@ -128,7 +144,6 @@ const PostList = () => {
         count={pageCount}
         hidePrevButton={currPage <= 1}
         hideNextButton={currPage >= post.last_page}
-        style={{ marginTop: 40 }}
         renderItem={(item) =>
           pageCount > 0 && (
             <PaginationItem
