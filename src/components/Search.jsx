@@ -1,4 +1,4 @@
-import "../styles/Search.css";
+import "@algolia/autocomplete-theme-classic";
 
 import React from "react";
 
