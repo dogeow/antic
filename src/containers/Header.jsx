@@ -25,9 +25,9 @@ import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { Link as RouteLink, useHistory, useLocation } from "react-router-dom";
 
-import Search from "../components/A";
 import Drawer from "../components/Drawer";
 import Logo from "../components/Logo";
+import Search from "../components/SearchByAutocomplete";
 import Settings from "../components/Settings";
 import { gravatarCdn } from "../config/services";
 
