@@ -25,7 +25,7 @@ const About = () => {
   }, [data]);
 
   return (
-    <>
+    <div style={{ lineHeight: 1.5 }}>
       {Object.keys(aboutMe).map(function (category) {
         return (
           <div key={category}>
@@ -55,7 +55,7 @@ const About = () => {
           </li>
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 
