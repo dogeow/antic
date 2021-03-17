@@ -27,7 +27,7 @@ import { Link as RouteLink, useHistory, useLocation } from "react-router-dom";
 
 import Drawer from "../components/Drawer";
 import Logo from "../components/Logo";
-import Search from "../components/SearchByAutocomplete";
+import Search from "../components/Search";
 import Settings from "../components/Settings";
 import { gravatarCdn } from "../config/services";
 
@@ -263,7 +263,11 @@ const Header = ({
                   </IconButton>
                 </Tooltip>
               </Hidden>
-              <SearchIcon onClick={handleSearch} />
+              <Tooltip title="搜索文章" aria-label="搜索文章">
+                <IconButton color="inherit">
+                  <SearchIcon onClick={handleSearch} />
+                </IconButton>
+              </Tooltip>
               {lab.isExpired ? (
                 <Button
                   color="inherit"

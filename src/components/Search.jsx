@@ -2,7 +2,7 @@ import "@algolia/autocomplete-theme-classic";
 
 import React from "react";
 
-import { Autocomplete } from "./SearchByAutocomplete";
+import Autocomplete from "./SearchByAutocomplete";
 
 export default function App(props) {
   return (

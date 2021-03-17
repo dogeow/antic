@@ -142,6 +142,7 @@ export default function Autocomplete(props) {
             .filter(Boolean)
             .join(" ")}
           {...autocomplete.getPanelProps({})}
+          style={{ position: "unset" }}
         >
           <div className="aa-PanelLayout">
             {autocompleteState.collections.map((collection, index) => {
