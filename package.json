@@ -4,6 +4,10 @@
   "private": true,
   "main": "index.jsx",
   "dependencies": {
+    "@algolia/autocomplete-core": "1.0.0-alpha.44",
+    "@algolia/autocomplete-preset-algolia": "1.0.0-alpha.44",
+    "@algolia/autocomplete-theme-classic": "^1.0.0-alpha.44",
+    "@algolia/client-search": "4.8.4",
     "@apollo/client": "^3.3.7",
     "@date-io/dayjs": "1.x",
     "@emotion/react": "^11.1.5",
@@ -21,6 +25,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@videojs/vhs-utils": "^2.3.0",
+    "algoliasearch": "4.8.4",
     "axios": "^0.21.0",
     "clipboard": "^2.0.6",
     "clsx": "^1.1.1",

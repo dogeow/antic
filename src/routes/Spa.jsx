@@ -173,8 +173,8 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../containers/Bookmarks"))}
           />
           <Route
-            path="/search"
-            component={loadable(() => import("../components/Search"))}
+            path="/ndd"
+            component={loadable(() => import("../components/Ndd"))}
           />
           <Route
             exact
