@@ -12,7 +12,7 @@ const searchClient = algoliasearch(
   process.env.REACT_APP_ALGOLIA_APP_KEY
 );
 
-export function Autocomplete(props) {
+export default function Autocomplete(props) {
   const [autocompleteState, setAutocompleteState] = React.useState({
     collections: [],
     completion: null,
