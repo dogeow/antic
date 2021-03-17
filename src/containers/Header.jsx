@@ -16,6 +16,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import NightsStayIcon from "@material-ui/icons/NightsStay";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
+import PersonIcon from "@material-ui/icons/Person";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import SearchIcon from "@material-ui/icons/Search";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
@@ -230,6 +231,11 @@ const Header = ({
                 </div>
               )}
               <div className={classes.blank} />
+              <Tooltip title="搜索文章" aria-label="搜索文章">
+                <IconButton color="inherit">
+                  <SearchIcon onClick={handleSearch} />
+                </IconButton>
+              </Tooltip>
               <Hidden only="xs">
                 <Tooltip
                   title="切换白天或夜晚主题"
@@ -263,22 +269,20 @@ const Header = ({
                   </IconButton>
                 </Tooltip>
               </Hidden>
-              <Tooltip title="搜索文章" aria-label="搜索文章">
-                <IconButton color="inherit">
-                  <SearchIcon onClick={handleSearch} />
-                </IconButton>
-              </Tooltip>
               {lab.isExpired ? (
-                <Button
-                  color="inherit"
-                  component={RouteLink}
-                  to={{
-                    pathname: "/login",
-                    state: { from: pathname },
-                  }}
-                >
-                  登录
-                </Button>
+                <Tooltip title="登录" aria-label="登录">
+                  <IconButton
+                    color="inherit"
+                    component={RouteLink}
+                    href="https://github.com/likunyan/antic"
+                    to={{
+                      pathname: "/login",
+                      state: { from: pathname },
+                    }}
+                  >
+                    <PersonIcon />
+                  </IconButton>
+                </Tooltip>
               ) : (
                 <div>
                   <Tooltip title="个人中心" aria-label="个人中心">
