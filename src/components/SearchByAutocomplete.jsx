@@ -43,7 +43,7 @@ export default function Autocomplete(props) {
                         hitsPerPage: 5,
                         highlightPreTag: "<mark>",
                         highlightPostTag: "</mark>",
-                        attributesToSnippet: ["title:10", "content:100"],
+                        attributesToSnippet: ["title:10", "content:25"],
                         snippetEllipsisText: "…",
                       },
                     },
@@ -144,7 +144,10 @@ export default function Autocomplete(props) {
           {...autocomplete.getPanelProps({})}
           style={{ position: "unset" }}
         >
-          <div className="aa-PanelLayout">
+          <div
+            className="aa-PanelLayout"
+            style={{ minHeight: "100%", maxHeight: "unset" }}
+          >
             {autocompleteState.collections.map((collection, index) => {
               const { source, items } = collection;
 
