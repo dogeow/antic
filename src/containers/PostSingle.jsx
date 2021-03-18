@@ -89,7 +89,7 @@ const PostSingle = () => {
         open={alertDialogOpen}
         handleClose={handleAlertDialogToggle}
         title="删除确认"
-        content="确认删除这篇文章吗？"
+        content="确认删除这篇笔记吗？"
         agree={handleDelete}
       />
       <Grid container spacing={2} alignItems="center">

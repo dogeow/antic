@@ -210,28 +210,10 @@ const Header = ({
                   <Button color="inherit" component={RouteLink} to="/posts">
                     笔记
                   </Button>
-                  <Button
-                    color="inherit"
-                    component={RouteLink}
-                    to="/categories"
-                  >
-                    分类
-                  </Button>
-                  <Button color="inherit" component={RouteLink} to="/tags">
-                    标签
-                  </Button>
-                  <Button
-                    color="inherit"
-                    style={{ marginLeft: 16 }}
-                    component={RouteLink}
-                    to="/project/1"
-                  >
-                    Todo
-                  </Button>
                 </div>
               )}
               <div className={classes.blank} />
-              <Tooltip title="搜索文章" aria-label="搜索文章">
+              <Tooltip title="搜索笔记" aria-label="搜索笔记">
                 <IconButton color="inherit">
                   <SearchIcon onClick={handleSearch} />
                 </IconButton>
@@ -256,16 +238,6 @@ const Header = ({
                     ) : (
                       <PlayCircleOutlineIcon />
                     )}
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title="GitHub 存储库" aria-label="GitHub 存储库">
-                  <IconButton
-                    color="inherit"
-                    component="a"
-                    href="https://github.com/likunyan/antic"
-                    target="_blank"
-                  >
-                    <GitHub />
                   </IconButton>
                 </Tooltip>
               </Hidden>
@@ -395,7 +367,7 @@ const Header = ({
                     history.push("/posts/create");
                   }}
                 >
-                  新建文章
+                  新建笔记
                 </MenuItem>
                 <MenuItem onClick={handleSettingOpen}>网站设置</MenuItem>
               </Menu>

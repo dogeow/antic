@@ -1,7 +1,11 @@
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import Hidden from "@material-ui/core/Hidden";
+import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
+import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
+import GitHub from "@material-ui/icons/GitHub";
 import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
@@ -65,6 +69,18 @@ const Footer = () => {
             </li>
             <li>
               <RouteLink to="/powered-by">Powered by</RouteLink>
+            </li>
+            <li>
+              <Tooltip title="GitHub 存储库" aria-label="GitHub 存储库">
+                <IconButton
+                  color="inherit"
+                  component="a"
+                  href="https://github.com/likunyan/antic"
+                  target="_blank"
+                >
+                  <GitHub fontSize="small" />
+                </IconButton>
+              </Tooltip>
             </li>
           </ul>
         </Grid>
