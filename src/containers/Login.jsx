@@ -235,9 +235,7 @@ const SignInSide = ({ dispatch }) => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <RouteLink to="/forget">
-                  <s>忘记密码？</s>
-                </RouteLink>
+                <RouteLink to="/forget">忘记密码？</RouteLink>
               </Grid>
               <Grid item>
                 <Link
