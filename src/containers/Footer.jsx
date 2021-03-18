@@ -36,15 +36,12 @@ const Footer = () => {
           <Typography variant="h5" component="h3">
             说明
           </Typography>
-          <p>
-            1.该实验室的各项功能都是测试版本
-            <br />
-            2. 因实验室只有自己在访问和使用，所以没有其他人的注册和信息
-            <br />
-            拥抱新技术、新生态，做一个现代化的程序员
-            <br />
-            3. 如有侵犯到您的权益，请及时联系我
-          </p>
+          <ul>
+            <li>该实验室的各项功能都是测试版本</li>
+            <li>因实验室只有自己在访问和使用，所以没有其他人的注册和信息</li>
+            <li>拥抱新技术、新生态，做一个现代化的程序员</li>
+            <li>如有侵犯到您的权益，请及时联系我</li>
+          </ul>
         </Grid>
         <Grid item xs={12} sm={3}>
           <Typography variant="h5" component="h3">
