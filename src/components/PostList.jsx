@@ -20,8 +20,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const params = toParams(window.location.search.replace(/^\?/, ""));
-
 const PostList = () => {
   const classes = useStyles();
   const [post, setPost] = useState({});
@@ -29,6 +27,8 @@ const PostList = () => {
   const [currPage, setCurrPage] = useState(1);
   const location = useLocation();
   const history = useHistory();
+
+  const params = toParams(window.location.search.replace(/^\?/, ""));
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
