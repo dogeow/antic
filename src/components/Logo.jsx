@@ -7,7 +7,7 @@ import * as React from "react";
 const Logo = () => (
   <Grid container alignItems="center">
     <Grid item id="favicon">
-      <Avatar alt="🦴🐲" src="/favicon.ico" />
+      <Avatar alt="Doge" src="/logo80.png" />
     </Grid>
     <Hidden only="xs">
       <Grid item>
