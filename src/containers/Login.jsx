@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
@@ -12,6 +13,7 @@ import TextField from "@material-ui/core/TextField";
 import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
 import Zoom from "@material-ui/core/Zoom";
+import ClearIcon from "@material-ui/icons/Clear";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
@@ -135,6 +137,7 @@ const SignInSide = ({ dispatch }) => {
               id="account"
               label="账号"
               name="account"
+              value={account}
               autoComplete="account"
               autoFocus
               onChange={(e) => setAccount(e.target.value)}
@@ -156,6 +159,17 @@ const SignInSide = ({ dispatch }) => {
                     <MailOutlineIcon />
                   </InputAdornment>
                 ),
+                endAdornment: account !== "" && (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="Clear"
+                      onClick={() => setAccount("")}
+                      edge="end"
+                    >
+                      <ClearIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
               }}
             />
             <TextField
@@ -164,6 +178,7 @@ const SignInSide = ({ dispatch }) => {
               required
               fullWidth
               name="password"
+              value={password}
               label="密码"
               type={displayPassword ? "text" : "password"}
               id="password"
@@ -197,6 +212,17 @@ const SignInSide = ({ dispatch }) => {
                         className="pointer"
                       />
                     )}
+                  </InputAdornment>
+                ),
+                endAdornment: password !== "" && (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="Clear"
+                      onClick={() => setPassword("")}
+                      edge="end"
+                    >
+                      <ClearIcon />
+                    </IconButton>
                   </InputAdornment>
                 ),
               }}
