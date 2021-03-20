@@ -62,12 +62,14 @@
     "remark-gfm": "^1.0.0",
     "scroll-to-element": "^2.0.3",
     "socket.io-client": "2.3.0",
+    "source-map-explorer": "^2.5.2",
     "styled-components": "^5.2.1",
     "sweetalert2": "^10.12.3",
     "video.js": "^7.10.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
