@@ -13,7 +13,7 @@ export default (props) => (
     variant="outlined"
     fullWidth
     required
-    placeholder={props.error?.[0]}
+    placeholder={props.error?.[0] || "4-16个字符（一个中文为 2 个字符）"}
     helperText={props.error?.[0]}
     error={!!props.error}
     InputLabelProps={props.error && { shrink: true }}
