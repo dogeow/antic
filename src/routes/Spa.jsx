@@ -77,6 +77,10 @@ const Spa = ({ match }) => {
             })}
           />
           <Route
+            path="/reset/:secret"
+            component={loadable(() => import("../containers/Reset"))}
+          />
+          <Route
             path="/categories"
             component={loadable(() => import("../containers/Categories"))}
           />
