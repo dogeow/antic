@@ -41,7 +41,7 @@ const Forget = () => {
     e.preventDefault();
 
     axios
-      .post("/forget", account)
+      .post("/forget", { account })
       .then(() => {
         swal.fire({
           title: "成功发送，请访问链接重置密码",
