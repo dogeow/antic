@@ -69,18 +69,16 @@ const Footer = () => {
             <li>
               <RouteLink to="/powered-by">Powered by</RouteLink>
             </li>
-            <li>
-              <Tooltip title="GitHub 存储库" aria-label="GitHub 存储库">
-                <IconButton
-                  color="inherit"
-                  component="a"
-                  href="https://github.com/likunyan/antic"
-                  target="_blank"
-                >
-                  <GitHub fontSize="small" />
-                </IconButton>
-              </Tooltip>
-            </li>
+            <Tooltip title="GitHub 存储库" aria-label="GitHub 存储库">
+              <IconButton
+                color="inherit"
+                component="a"
+                href="https://github.com/likunyan/antic"
+                target="_blank"
+              >
+                <GitHub fontSize="small" />
+              </IconButton>
+            </Tooltip>
           </ul>
         </Grid>
       </Grid>
