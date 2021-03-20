@@ -14,9 +14,9 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
 import Zoom from "@material-ui/core/Zoom";
 import ClearIcon from "@material-ui/icons/Clear";
-import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import NotListedLocationOutlinedIcon from "@material-ui/icons/NotListedLocationOutlined";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import PropTypes from "prop-types";
@@ -100,16 +100,15 @@ const SignInSide = ({ dispatch }) => {
         remember_me: rememberMe,
       })
       .then((response) => {
-        if (response.status === 202) {
-          setInputErrors(response.data.errors);
+        dispatch(loginAction(response.data));
+        if (state) {
+          history.push(state.from);
         } else {
-          dispatch(loginAction(response.data));
-          if (state) {
-            history.push(state.from);
-          } else {
-            history.push("/");
-          }
+          history.push("/");
         }
+      })
+      .catch((error) => {
+        setInputErrors(error.data.errors);
       });
   };
 
@@ -231,6 +230,7 @@ const SignInSide = ({ dispatch }) => {
             />
             <div style={{ display: "flex" }}>
               <FormControlLabel
+                style={{ marginRight: 0 }}
                 control={<Checkbox color="primary" checked={rememberMe} />}
                 label="记住我"
                 onChange={() => setRememberMe(!rememberMe)}
@@ -248,7 +248,7 @@ const SignInSide = ({ dispatch }) => {
                 style={{ alignSelf: "center" }}
                 onClick={handleOpen}
               >
-                <ErrorOutlineIcon />
+                <NotListedLocationOutlinedIcon />
               </Tooltip>
             </div>
             <Button
