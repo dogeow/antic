@@ -239,7 +239,7 @@ const SignInSide = ({ dispatch }) => {
                 open={open}
                 onClose={handleClose}
                 onOpen={handleOpen}
-                title="记住我：登录有效期三个礼拜"
+                title="记住我：登录有效期三周，否则一周"
                 placement="right"
                 enterDelay={200}
                 TransitionComponent={Zoom}
