@@ -165,6 +165,7 @@ const SignInSide = ({ dispatch }) => {
                       aria-label="Clear"
                       onClick={() => setAccount("")}
                       edge="end"
+                      tabindex="-1"
                     >
                       <ClearIcon />
                     </IconButton>
@@ -220,6 +221,7 @@ const SignInSide = ({ dispatch }) => {
                       aria-label="Clear"
                       onClick={() => setPassword("")}
                       edge="end"
+                      tabindex="-1"
                     >
                       <ClearIcon />
                     </IconButton>
