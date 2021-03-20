@@ -69,7 +69,7 @@ const PostList = () => {
           <Link to="/">Home</Link>
           <Link to="/categories">Categories</Link>
           <Typography color="textPrimary">
-            {params["filter[category.name]"]}
+            {decodeURI(params["filter[category.name]"])}
           </Typography>
         </Breadcrumbs>
       )}
