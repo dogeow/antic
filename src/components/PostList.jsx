@@ -10,6 +10,8 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
+import Categories from "../containers/Categories";
+import Tags from "../containers/Tags";
 import { toParams } from "../helpers";
 import axios from "../instance/axios";
 
@@ -71,89 +73,115 @@ const PostList = () => {
           </Typography>
         </Breadcrumbs>
       )}
-      <Paper
-        className={classes.paper}
-        style={{ marginTop: 20, marginBottom: 20 }}
-      >
-        <Grid container spacing={2}>
-          {(post.data || Array.from(new Array(6))).map((item, index) => {
-            return item ? (
-              <Grid
-                item
-                container
-                xs={12}
-                key={item.id}
-                spacing={2}
-                alignItems="center"
-              >
-                {/* 分类 */}
-                <Grid item>
-                  <Link
-                    to={`posts?filter[category.name]=${
-                      item?.category?.name || "未分类"
-                    }`}
-                  >
-                    <Chip
-                      size="small"
-                      label={item?.category?.name || "未分类"}
-                      style={{ minWidth: "81px" }}
-                    />
-                  </Link>
-                </Grid>
-                {/* 标题 */}
-                <Grid item>
-                  <Typography
-                    variant="subtitle1"
-                    component="h2"
-                    onClick={() => handleEnterPost(item)}
-                  >
-                    {item.title}
-                  </Typography>
-                </Grid>
-                {/* 标签 */}
-                <Grid item>
-                  <Grid container spacing={1}>
-                    {item.tags.length !== 0 &&
-                      item.tags.map((tag) => (
-                        <Grid item key={tag.id}>
-                          <Chip
-                            variant="outlined"
-                            size="small"
-                            label={tag.name}
-                          />
-                        </Grid>
-                      ))}
-                  </Grid>
-                </Grid>
-              </Grid>
-            ) : (
-              <Grid item container xs={12} key={index} spacing={2}>
-                <Grid item>
-                  <Skeleton width={81} height={28} animation="wave" />
-                </Grid>
-                <Grid item xs>
-                  <Skeleton width="100%" height={28} animation="wave" />
-                </Grid>
-              </Grid>
-            );
-          })}
+      <Grid container spacing={2}>
+        <Grid item xs={3}>
+          <h2>分类</h2>
+          <Paper className={classes.paper}>
+            <Categories />
+          </Paper>
         </Grid>
-      </Paper>
-      <Pagination
-        page={currPage}
-        count={pageCount}
-        hidePrevButton={currPage <= 1}
-        hideNextButton={currPage >= post.last_page}
-        renderItem={(item) =>
-          pageCount > 0 && (
-            <PaginationItem
-              {...item}
-              disabled={item.page === currPage}
-              onClick={() => handlePage(item.page)}
-            />
-          )
-        }
-      />
+        <Grid item xs={6}>
+          <h2>笔记</h2>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Paper className={classes.paper}>
+                <Grid container spacing={2}>
+                  {(post.data || Array.from(new Array(6))).map(
+                    (item, index) => {
+                      return item ? (
+                        <Grid
+                          item
+                          container
+                          xs={12}
+                          key={item.id}
+                          spacing={2}
+                          alignItems="center"
+                        >
+                          {/* 分类 */}
+                          <Grid item>
+                            <Link
+                              to={`posts?filter[category.name]=${
+                                item?.category?.name || "未分类"
+                              }`}
+                            >
+                              <Chip
+                                size="small"
+                                label={item?.category?.name || "未分类"}
+                                style={{ minWidth: "81px" }}
+                              />
+                            </Link>
+                          </Grid>
+                          {/* 标题 */}
+                          <Grid item>
+                            <Typography
+                              variant="subtitle1"
+                              component="h2"
+                              onClick={() => handleEnterPost(item)}
+                            >
+                              {item.title}
+                            </Typography>
+                          </Grid>
+                          {/* 标签 */}
+                          <Grid item>
+                            <Grid container spacing={1}>
+                              {item.tags.length !== 0 &&
+                                item.tags.map((tag) => (
+                                  <Grid item key={tag.id}>
+                                    <Chip
+                                      variant="outlined"
+                                      size="small"
+                                      label={tag.name}
+                                    />
+                                  </Grid>
+                                ))}
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                      ) : (
+                        <Grid item container xs={12} key={index} spacing={2}>
+                          <Grid item>
+                            <Skeleton width={81} height={28} animation="wave" />
+                          </Grid>
+                          <Grid item xs>
+                            <Skeleton
+                              width="100%"
+                              height={28}
+                              animation="wave"
+                            />
+                          </Grid>
+                        </Grid>
+                      );
+                    }
+                  )}
+                </Grid>
+              </Paper>
+            </Grid>
+            <Grid item xs={12}>
+              <Pagination
+                page={currPage}
+                count={pageCount}
+                hidePrevButton={currPage <= 1}
+                hideNextButton={currPage >= post.last_page}
+                renderItem={(item) =>
+                  pageCount > 0 && (
+                    <PaginationItem
+                      {...item}
+                      disabled={item.page === currPage}
+                      onClick={() => handlePage(item.page)}
+                    />
+                  )
+                }
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={3}>
+          <h2>标签</h2>
+          <Paper className={classes.paper}>
+            <Tags />
+          </Paper>
+        </Grid>
+      </Grid>
     </>
   );
 };
