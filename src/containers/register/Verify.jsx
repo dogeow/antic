@@ -11,7 +11,7 @@ export default (props) => (
     name="verify"
     value={props.verify}
     label="验证码"
-    type={props.displayPassword ? "text" : "password"}
+    type="text"
     id="verify"
     autoComplete="current-verify"
     onChange={(e) => props.setVerify(e.target.value)}
