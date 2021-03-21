@@ -143,8 +143,9 @@ const Register = ({ history }) => {
     axios
       .post(url, credentials)
       .then(() => {
+        const addition = tabIndex === 0 && "，请先验证邮箱后再登录。";
         swal.fire({
-          title: "注册成功，请先验证邮箱后再登录。",
+          title: "注册成功" + addition,
           icon: "success",
           showCloseButton: true,
         });
