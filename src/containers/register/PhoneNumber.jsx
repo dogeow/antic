@@ -37,7 +37,8 @@ export default (props) =>
       onChange={(e) => props.setPhoneNumber(e.target.value)}
       placeholder={props.error?.[0]}
       InputLabelProps={props.error && { shrink: true }}
-      helperText={"已发送验证码，五分钟内有效"}
+      error={!!props.error}
+      helperText={props.error?.[0] || "已发送验证码，五分钟内有效"}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">
