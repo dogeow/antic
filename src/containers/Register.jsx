@@ -167,6 +167,13 @@ const Register = ({ history }) => {
   return (
     <Container component="main" maxWidth="xs">
       <Loading open={open} />
+      <GoogleReCaptchaProvider
+        reCaptchaKey={process.env.REACT_APP_RECAPTCHA}
+        useRecaptchaNet
+        scriptProps={{ async: true, defer: true, appendTo: "body" }}
+      >
+        <GoogleRecaptcha onSaveToken={saveToken} />
+      </GoogleReCaptchaProvider>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -232,60 +239,51 @@ const Register = ({ history }) => {
             </form>
           </TabPanel>
           <TabPanel value={tabIndex} index={1}>
-            <GoogleReCaptchaProvider
-              reCaptchaKey={process.env.REACT_APP_RECAPTCHA}
-              useRecaptchaNet
-              scriptProps={{ async: true, defer: true, appendTo: "body" }}
-            >
-              {token === "" && sentPhone === "" && (
-                <GoogleRecaptcha onSaveToken={saveToken} />
-              )}
-              <form className={classes.form} noValidate>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <Name
-                      name={name}
-                      onSetName={setName}
-                      error={inputErrors?.name}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <PhoneNumber
-                      phoneNumber={phoneNumber}
-                      sentPhoneSuccess={sentPhoneSuccess}
-                      setPhoneNumber={setPhoneNumber}
-                      error={inputErrors?.phone_number}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Verify
-                      verify={verify}
-                      setVerify={setVerify}
-                      error={inputErrors?.verify}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Password
-                      password={password}
-                      displayPassword={displayPassword}
-                      handlePassword={handlePassword}
-                      setPassword={setPassword}
-                      error={inputErrors?.password}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <PasswordConfirmation
-                      passwordConfirmation={passwordConfirmation}
-                      displayPassword={displayPassword}
-                      handlePassword={handlePassword}
-                      setPasswordConfirmation={setPasswordConfirmation}
-                      error={inputErrors?.password_confirmation}
-                    />
-                  </Grid>
+            <form className={classes.form} noValidate>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Name
+                    name={name}
+                    onSetName={setName}
+                    error={inputErrors?.name}
+                  />
                 </Grid>
-                <LoginOrRegisterButton handleRegister={handleRegister} />
-              </form>
-            </GoogleReCaptchaProvider>
+                <Grid item xs={12}>
+                  <PhoneNumber
+                    phoneNumber={phoneNumber}
+                    sentPhoneSuccess={sentPhoneSuccess}
+                    setPhoneNumber={setPhoneNumber}
+                    error={inputErrors?.phone_number}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Verify
+                    verify={verify}
+                    setVerify={setVerify}
+                    error={inputErrors?.verify}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Password
+                    password={password}
+                    displayPassword={displayPassword}
+                    handlePassword={handlePassword}
+                    setPassword={setPassword}
+                    error={inputErrors?.password}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <PasswordConfirmation
+                    passwordConfirmation={passwordConfirmation}
+                    displayPassword={displayPassword}
+                    handlePassword={handlePassword}
+                    setPasswordConfirmation={setPasswordConfirmation}
+                    error={inputErrors?.password_confirmation}
+                  />
+                </Grid>
+              </Grid>
+              <LoginOrRegisterButton handleRegister={handleRegister} />
+            </form>
           </TabPanel>
           <TabPanel value={tabIndex} index={2}>
             <GitHubLogin
