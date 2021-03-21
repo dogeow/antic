@@ -23,6 +23,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link as RouteLink, useHistory, useLocation } from "react-router-dom";
+import swal from "sweetalert2";
 
 import { loginAction } from "../actions";
 import Copyright from "../components/Copyright";
@@ -108,7 +109,14 @@ const SignInSide = ({ dispatch }) => {
         }
       })
       .catch((error) => {
-        setInputErrors(error.data.errors);
+        if (error.data.error) {
+          swal.fire({
+            title: error.data.error,
+            icon: "warning",
+          });
+        } else {
+          setInputErrors(error.data.errors);
+        }
       });
   };
 

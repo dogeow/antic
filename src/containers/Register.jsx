@@ -144,7 +144,7 @@ const Register = ({ history }) => {
       .post(url, credentials)
       .then(() => {
         swal.fire({
-          title: "注册成功，",
+          title: "注册成功，请先验证邮箱后再登录。",
           icon: "success",
           showCloseButton: true,
         });
