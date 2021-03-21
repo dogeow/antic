@@ -1,8 +1,9 @@
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
+
+import ToLogin from "../../components/Auth/ToLogin";
 
 const useStyles = makeStyles((theme) => ({
   submit: {
@@ -27,15 +28,7 @@ export default (props) => {
       </Button>
       <Grid container justify="flex-end">
         <Grid item>
-          <Link
-            onClick={() => {
-              history.push("/login");
-            }}
-            variant="body2"
-            color="secondary"
-          >
-            已经有账户？登录！
-          </Link>
+          <ToLogin />
         </Grid>
       </Grid>
     </>

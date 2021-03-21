@@ -28,6 +28,7 @@ const lab = (state = defaultState, action) => {
         userId: action.userId,
         userName: action.userName,
         userEmail: action.userEmail,
+        snackMessage: "登录成功",
       };
     case "TOGGLE_DRAWER":
       return { ...state, toggleDrawer: !state.toggleDrawer };

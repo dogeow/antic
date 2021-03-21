@@ -279,7 +279,7 @@ const SignInSide = ({ dispatch }) => {
                   to="/register"
                   style={{ color: "#f50057" }}
                 >
-                  没有账户？注册！
+                  立即注册
                 </Link>
               </Grid>
             </Grid>

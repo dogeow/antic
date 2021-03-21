@@ -3,7 +3,6 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
@@ -12,6 +11,7 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 
 import axios from "../instance/axios";
+import ToLogin from "./Auth/ToLogin";
 import Copyright from "./Copyright";
 
 const useStyles = makeStyles((theme) => ({
@@ -158,14 +158,7 @@ const Register = ({ history }) => {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link
-                onClick={() => {
-                  history.push("/login");
-                }}
-                variant="body2"
-              >
-                已经有账户？登录！
-              </Link>
+              <ToLogin />
             </Grid>
           </Grid>
         </form>
