@@ -167,13 +167,15 @@ const Register = ({ history }) => {
   return (
     <Container component="main" maxWidth="xs">
       <Loading open={open} />
-      <GoogleReCaptchaProvider
-        reCaptchaKey={process.env.REACT_APP_RECAPTCHA}
-        useRecaptchaNet
-        scriptProps={{ async: true, defer: true, appendTo: "body" }}
-      >
-        <GoogleRecaptcha onSaveToken={saveToken} />
-      </GoogleReCaptchaProvider>
+      {token === "" && (
+        <GoogleReCaptchaProvider
+          reCaptchaKey={process.env.REACT_APP_RECAPTCHA}
+          useRecaptchaNet
+          scriptProps={{ async: true, defer: true, appendTo: "body" }}
+        >
+          <GoogleRecaptcha onSaveToken={saveToken} />
+        </GoogleReCaptchaProvider>
+      )}
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
