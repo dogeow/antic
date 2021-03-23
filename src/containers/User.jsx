@@ -1,3 +1,4 @@
+import Avatar from "@material-ui/core/Avatar";
 import Grid from "@material-ui/core/Grid";
 import dayjs from "dayjs";
 import md5 from "md5";
@@ -17,10 +18,10 @@ const User = () => {
     <Grid container spacing={2}>
       <Grid item>
         <div className="box">
-          <img
+          <Avatar
             alt={state.lab.user_name}
             src={avatar}
-            style={{ width: "150px", height: "150px" }}
+            style={{ width: 150, height: 150 }}
           />
         </div>
       </Grid>

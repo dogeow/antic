@@ -96,16 +96,22 @@ const Register = ({ history }) => {
   };
 
   useEffect(() => {
+    if (token) {
+      axios.post("/recaptcha", { token });
+    }
+  }, [token]);
+
+  useEffect(() => {
     if (phoneNumber.length === 11 && sentPhone !== phoneNumber) {
       setSentPhoneSuccess(false);
       axios
-        .post("/recaptcha", { token, phone_number: phoneNumber })
+        .post("/phoneNumberVerify", { phone_number: phoneNumber })
         .then(() => {
           setSentPhone(phoneNumber);
           setSentPhoneSuccess(true);
         });
     }
-  }, [phoneNumber, sentPhone, token]);
+  }, [phoneNumber, sentPhone]);
 
   const onSuccess = (response) => {
     setOpen(true);
@@ -143,7 +149,7 @@ const Register = ({ history }) => {
     axios
       .post(url, credentials)
       .then(() => {
-        const addition = tabIndex === 0 && "，请先验证邮箱后再登录。";
+        const addition = tabIndex === 0 ? "，请先验证邮箱后再登录。" : "";
         swal.fire({
           title: "注册成功" + addition,
           icon: "success",
