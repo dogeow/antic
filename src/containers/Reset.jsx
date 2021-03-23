@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import swal from "sweetalert2";
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Forget = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
   const match = useRouteMatch();
