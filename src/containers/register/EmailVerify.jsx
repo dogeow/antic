@@ -46,7 +46,7 @@ const Forget = () => {
     <Container component="main" maxWidth="xs">
       {isSuccess ? (
         <>
-          <h2 style={{ color: "green", textAlign: "center" }}>验证成功</h2>
+          <h2 style={{ color: "green", textAlign: "center" }}>邮箱验证成功</h2>
           <Grid container spacing={2} justify="space-around">
             <Grid item>
               <Button
@@ -69,7 +69,7 @@ const Forget = () => {
           </Grid>
         </>
       ) : (
-        <h2 style={{ color: "red", textAlign: "center" }}>验证失败</h2>
+        <h2 style={{ color: "red", textAlign: "center" }}>邮箱验证失败</h2>
       )}
     </Container>
   );
