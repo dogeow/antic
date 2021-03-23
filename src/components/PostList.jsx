@@ -1,6 +1,7 @@
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
+import Hidden from "@material-ui/core/Hidden";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -74,13 +75,15 @@ const PostList = () => {
         </Breadcrumbs>
       )}
       <Grid container spacing={2}>
-        <Grid item xs={3}>
-          <h2>分类</h2>
-          <Paper className={classes.paper}>
-            <Categories />
-          </Paper>
-        </Grid>
-        <Grid item xs={6}>
+        <Hidden smDown>
+          <Grid item xs={3}>
+            <h2>分类</h2>
+            <Paper className={classes.paper}>
+              <Categories />
+            </Paper>
+          </Grid>
+        </Hidden>
+        <Grid item xs={12} md={6}>
           <h2>笔记</h2>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -175,12 +178,14 @@ const PostList = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={3}>
-          <h2>标签</h2>
-          <Paper className={classes.paper}>
-            <Tags />
-          </Paper>
-        </Grid>
+        <Hidden smDown>
+          <Grid item xs={3}>
+            <h2>标签</h2>
+            <Paper className={classes.paper}>
+              <Tags />
+            </Paper>
+          </Grid>
+        </Hidden>
       </Grid>
     </>
   );
