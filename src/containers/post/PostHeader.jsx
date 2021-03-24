@@ -22,10 +22,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
         />
       </Grid>
       <Grid item>
-        <Tags
-          post={post}
-          tags={post?.tags && post?.tags?.length !== 0 ? post.tags : []}
-        />
+        <Tags post={post} />
       </Grid>
       <Grid item>
         <Tooltip

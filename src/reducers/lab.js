@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import { expired, logged } from "../helpers";
 
 const isExpired = expired();
@@ -15,7 +17,7 @@ const defaultState = {
   userId: localStorage.getItem("userId"),
   userName: localStorage.getItem("userName"),
   userEmail: localStorage.getItem("userEmail"),
-  post: {},
+  post: { tags: [] },
 };
 
 const lab = (state = defaultState, action) => {
@@ -58,8 +60,9 @@ const lab = (state = defaultState, action) => {
     case "POST_SAVE":
       return { ...state, post: action.payload };
     case "TAGS_DELETE":
-      console.log(action.payload);
-      return { ...state, post: { ...state.post, tags: action.payload } };
+      const newTags = state.tags;
+      _.remove(newTags, { name: action.payload });
+      return { ...state, post: { ...state.post, tags: newTags } };
     default:
       return state;
   }

@@ -56,7 +56,7 @@ const Spa = ({ match }) => {
           <Route
             exact
             path="/posts"
-            component={loadable(() => import("../components/PostList"))}
+            component={loadable(() => import("../components/post/PostList"))}
           />
           <Route
             path="/posts/create"
@@ -72,7 +72,7 @@ const Spa = ({ match }) => {
           />
           <Route
             path="/posts/:id"
-            component={loadable(() => import("../containers/post/PostSingle"), {
+            component={loadable(() => import("../components/post/PostSingle"), {
               fallback: <Loading />,
             })}
           />

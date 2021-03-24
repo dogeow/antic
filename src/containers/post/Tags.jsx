@@ -4,12 +4,8 @@ import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import React, { useState } from "react";
 import { useStore } from "react-redux";
-import { useDispatch } from "react-redux";
-
-import axios from "../../instance/axios";
 
 const Tags = ({ tags, post, tagsDelete }) => {
-  const dispatch = useDispatch();
   const store = useStore();
   const state = store.getState();
   const [newTag, setNewTag] = useState("");
@@ -28,11 +24,6 @@ const Tags = ({ tags, post, tagsDelete }) => {
     }
   };
 
-  const handleDeleteTag = (name) => {
-    axios.delete(`/posts/${post.id}/tag`, { data: { name } }).then(() => {});
-    dispatch(tagsDelete(name));
-  };
-
   return (
     <Grid container spacing={1}>
       {tags.map((tag) => (
@@ -41,7 +32,7 @@ const Tags = ({ tags, post, tagsDelete }) => {
             label={tag.name}
             size="small"
             onDelete={
-              state.lab.userId ? () => handleDeleteTag(tag.name) : undefined
+              state.lab.userId ? () => tagsDelete(post, tag.name) : undefined
             }
           />
         </Grid>

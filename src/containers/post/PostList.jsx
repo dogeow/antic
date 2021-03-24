@@ -11,10 +11,10 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
-import Categories from "../containers/Categories";
-import { toParams } from "../helpers";
-import axios from "../instance/axios";
-import Tags from "./post/Tags";
+import Categories from "../../containers/Categories";
+import { toParams } from "../../helpers";
+import axios from "../../instance/axios";
+import Tags from "../post/Tags";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

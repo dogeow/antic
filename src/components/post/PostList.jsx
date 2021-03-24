@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
 
 import { tagsDelete } from "../../actions";
-import Tags from "../../containers/post/Tags";
+import PostList from "../../containers/post/PostList";
 import axios from "../../instance/axios";
 
 const mapStateToProps = (state) => ({
-  tags: state.lab.post.tags,
+  post: state.lab.post,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -20,4 +20,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tags);
+export default connect(mapStateToProps, mapDispatchToProps)(PostList);

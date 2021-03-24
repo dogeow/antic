@@ -6,6 +6,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
+import { postSave } from "../../actions";
 import AlertDialog from "../../components/AlertDialog";
 import Hr from "../../components/Hr";
 import axios from "../../instance/axios";
@@ -48,7 +49,7 @@ const POST_BY_ID_AND_QUOTE = gql`
   }
 `;
 
-const PostSingle = () => {
+const PostSingle = ({ postSave }) => {
   useStyles();
   const [post, setPost] = useState({});
   const [quote, setQuote] = useState("");
@@ -66,8 +67,9 @@ const PostSingle = () => {
     if (data) {
       setPost(data.post);
       setQuote(data.quote);
+      postSave(data.post);
     }
-  }, [data]);
+  }, [data, postSave]);
 
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
