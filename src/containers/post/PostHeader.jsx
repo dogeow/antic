@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import * as React from "react";
 
-import Tags from "../components/Post/Tags";
+import Tags from "../../components/Post/Tags";
 
 dayjs.extend(relativeTime);
 
@@ -17,25 +17,13 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
       <Grid item>
         <Chip
           label={post?.category?.name || "未分类"}
-          color="primary"
           variant="outlined"
           size="small"
         />
       </Grid>
-      {post?.tags?.length ? (
-        <Grid item>
-          <Tags tags={post?.tags} />
-        </Grid>
-      ) : (
-        <Grid item>
-          <Chip
-            label={"无标签"}
-            color="primary"
-            variant="outlined"
-            size="small"
-          />
-        </Grid>
-      )}
+      <Grid item>
+        <Tags tags={post?.tags} />
+      </Grid>
       <Grid item>
         <Tooltip
           title={dayjs(post.created_at).format("YYYY-MM-DD HH:mm:ss")}
@@ -73,11 +61,9 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
       </Grid>
     </>
   ) : (
-    <>
-      <Grid item xs={12}>
-        <Skeleton variant="rect" height={20} width="60%" />
-      </Grid>
-    </>
+    <Grid item xs={12}>
+      <Skeleton variant="rect" height={20} width="60%" />
+    </Grid>
   );
 };
 

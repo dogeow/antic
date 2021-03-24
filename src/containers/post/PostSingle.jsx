@@ -6,9 +6,9 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
-import AlertDialog from "../components/AlertDialog";
-import Hr from "../components/Hr";
-import axios from "../instance/axios";
+import AlertDialog from "../../components/AlertDialog";
+import Hr from "../../components/Hr";
+import axios from "../../instance/axios";
 import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
 

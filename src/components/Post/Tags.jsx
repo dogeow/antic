@@ -25,7 +25,7 @@ const Tags = (props) => {
   const store = useStore();
   const state = store.getState();
 
-  return props.tags ? (
+  return props?.tags?.length ? (
     <ul className={classes.root}>
       {props.tags.map((tag) => {
         return (
@@ -57,7 +57,7 @@ const Tags = (props) => {
       )}
     </ul>
   ) : (
-    <div />
+    <Chip label="无标签" variant="outlined" size="small" />
   );
 };
 

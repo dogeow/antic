@@ -72,7 +72,7 @@ const Spa = ({ match }) => {
           />
           <Route
             path="/posts/:id"
-            component={loadable(() => import("../containers/PostSingle"), {
+            component={loadable(() => import("../containers/post/PostSingle"), {
               fallback: <Loading />,
             })}
           />
