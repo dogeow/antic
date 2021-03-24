@@ -19,8 +19,8 @@ import gfm from "remark-gfm";
 import Swal from "sweetalert2";
 
 import CodeBlock from "../components/CodeBlock";
-import Tags from "../components/Post/Tags";
 import axios from "../instance/axios";
+import Tags from "./post/Tags";
 
 const useStyles = makeStyles((theme) => {
   const background = theme.palette.background.default;

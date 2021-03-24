@@ -12,9 +12,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 import Categories from "../containers/Categories";
-import Tags from "../containers/Tags";
 import { toParams } from "../helpers";
 import axios from "../instance/axios";
+import Tags from "./post/Tags";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

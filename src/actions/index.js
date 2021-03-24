@@ -11,6 +11,8 @@ export const loginAction = (user) => ({
   userEmail: user.email,
   expiresIn: user.expires_in,
 });
+export const postSave = createAction("POST_SAVE");
+export const tagsDelete = createAction("TAGS_DELETE");
 
 // emoji
 export const whichPage = createAction("WHICH_PAGE");

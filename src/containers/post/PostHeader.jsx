@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import * as React from "react";
 
-import Tags from "../../components/Post/Tags";
+import Tags from "../../components/post/Tags";
 
 dayjs.extend(relativeTime);
 
@@ -22,7 +22,10 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
         />
       </Grid>
       <Grid item>
-        <Tags tags={post?.tags} />
+        <Tags
+          post={post}
+          tags={post?.tags && post?.tags?.length !== 0 ? post.tags : []}
+        />
       </Grid>
       <Grid item>
         <Tooltip

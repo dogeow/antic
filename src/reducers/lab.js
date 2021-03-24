@@ -15,6 +15,7 @@ const defaultState = {
   userId: localStorage.getItem("userId"),
   userName: localStorage.getItem("userName"),
   userEmail: localStorage.getItem("userEmail"),
+  post: {},
 };
 
 const lab = (state = defaultState, action) => {
@@ -35,7 +36,7 @@ const lab = (state = defaultState, action) => {
     case "SNACK_TOGGLE":
       return { ...state, snackOpen: !state.snackOpen };
     case "SNACK_MESSAGE":
-      return { ...state, snackMessage: state.payload };
+      return { ...state, snackMessage: action.payload };
     case "ACCESS_TOKEN":
       return { ...state, token: action.token };
     case "TOGGLE_THEME":
@@ -54,6 +55,11 @@ const lab = (state = defaultState, action) => {
         snackOpen: true,
         snackMessage: "登出成功",
       };
+    case "POST_SAVE":
+      return { ...state, post: action.payload };
+    case "TAGS_DELETE":
+      console.log(action.payload);
+      return { ...state, post: { ...state.post, tags: action.payload } };
     default:
       return state;
   }

@@ -82,7 +82,7 @@ const Spa = ({ match }) => {
           />
           <Route
             path="/progress"
-            component={loadable(() => import("../containers/progress"))}
+            component={loadable(() => import("../containers/Progress"))}
           />
           <Route
             path="/categories"
