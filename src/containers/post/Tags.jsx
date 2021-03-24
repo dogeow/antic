@@ -12,7 +12,7 @@ const Tags = ({ lab, tags, post, tagsDelete, tagsAdd }) => {
   };
 
   const handleSaveNewTag = () => {
-    tagsAdd(post, newTag);
+    tagsAdd(newTag);
     setNewTag("");
   };
 
@@ -30,7 +30,7 @@ const Tags = ({ lab, tags, post, tagsDelete, tagsAdd }) => {
             label={tag.name}
             variant="outlined"
             size="small"
-            onDelete={lab.userId ? () => tagsDelete(post, tag.name) : undefined}
+            onDelete={lab.userId ? () => tagsDelete(tag.name) : undefined}
           />
         </Grid>
       ))}

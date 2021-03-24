@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  tagsDelete: (post, tagName) => {
+  tagsDelete: (tagName) => {
     axios
       .delete(`/posts/${post.id}/tag`, { data: { name: tagName } })
       .then(({ data: count }) => {

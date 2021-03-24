@@ -9,20 +9,22 @@ const mapStateToProps = (state) => ({
   lab: state.lab,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  tagsDelete: (post, tagName) => {
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  tagsDelete: (tagName) => {
     axios
-      .delete(`/posts/${post.id}/tag`, { data: { name: tagName } })
+      .delete(`/posts/${ownProps.post.id}/tag`, { data: { name: tagName } })
       .then(({ data: count }) => {
         if (count === 1) {
           dispatch(tagsDelete(tagName));
         }
       });
   },
-  tagsAdd: (post, tagName) => {
-    axios.post(`/posts/${post.id}/tag`, { name: tagName }).then(({ data }) => {
-      dispatch(tagsAdd(data));
-    });
+  tagsAdd: (tagName) => {
+    axios
+      .post(`/posts/${ownProps.post.id}/tag`, { name: tagName })
+      .then(({ data }) => {
+        dispatch(tagsAdd(data));
+      });
   },
 });
 
