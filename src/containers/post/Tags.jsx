@@ -5,7 +5,7 @@ import Input from "@material-ui/core/Input";
 import React, { useState } from "react";
 import { useStore } from "react-redux";
 
-const Tags = ({ tags, post, tagsDelete }) => {
+const Tags = ({ tags, post, tagsDelete, tagsAdd }) => {
   const store = useStore();
   const state = store.getState();
   const [newTag, setNewTag] = useState("");
@@ -15,7 +15,8 @@ const Tags = ({ tags, post, tagsDelete }) => {
   };
 
   const handleSaveNewTag = () => {
-    console.log(newTag);
+    tagsAdd(post, newTag);
+    setNewTag("");
   };
 
   const handleKeyDown = (e) => {

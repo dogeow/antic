@@ -59,10 +59,20 @@ const lab = (state = defaultState, action) => {
       };
     case "POST_SAVE":
       return { ...state, post: action.payload };
-    case "TAGS_DELETE":
+    case "TAGS_DELETE": {
       const newTags = state.tags;
       _.remove(newTags, { name: action.payload });
-      return { ...state, post: { ...state.post, tags: newTags } };
+      return { ...state, post: { ...state.post, tags: newTags || [] } };
+    }
+    case "TAGS_ADD": {
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          tags: [...state.post.tags, action.payload],
+        },
+      };
+    }
     default:
       return state;
   }
