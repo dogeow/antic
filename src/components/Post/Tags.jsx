@@ -1,63 +1,60 @@
+import Button from "@material-ui/core/Button";
 import Chip from "@material-ui/core/Chip";
-import IconButton from "@material-ui/core/IconButton";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import AddIcon from "@material-ui/icons/Add";
-import * as React from "react";
+import Grid from "@material-ui/core/Grid";
+import Input from "@material-ui/core/Input";
+import React, { useState } from "react";
 import { useStore } from "react-redux";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    listStylePosition: "outside",
-    listStyle: "none",
-    paddingInlineStart: 0,
-  },
-  chip: {
-    margin: theme.spacing(0.5),
-  },
-}));
-
 const Tags = (props) => {
-  const classes = useStyles();
   const store = useStore();
   const state = store.getState();
+  const [newTag, setNewTag] = useState("");
 
-  return props?.tags?.length ? (
-    <ul className={classes.root}>
-      {props.tags.map((tag) => {
-        return (
-          <li key={tag} style={{ alignSelf: "center" }}>
+  const handleNewTag = (e) => {
+    setNewTag(e.target.value);
+  };
+
+  const handleSaveNewTag = () => {
+    console.log(newTag);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSaveNewTag();
+    }
+  };
+
+  return (
+    <Grid container spacing={1}>
+      {props?.tags?.length !== 0 &&
+        props.tags.map((tag) => (
+          <Grid item key={tag}>
             <Chip
-              size="small"
               label={tag.name}
+              size="small"
               onDelete={
-                state.lab.userId && props.newTagOpen
-                  ? () => props.delete(tag.name)
-                  : undefined
+                state.lab.userId ? () => props.delete(tag.name) : undefined
               }
-              className={classes.chip}
             />
-          </li>
-        );
-      })}
-      {props.newTagOpen && (
-        <>
-          <li>
-            <TextField label="新标签" variant="outlined" size="small" />
-          </li>
-          <li>
-            <IconButton aria-label="new" onClick={props.new}>
-              <AddIcon type="button" />
-            </IconButton>
-          </li>
-        </>
-      )}
-    </ul>
-  ) : (
-    <Chip label="无标签" variant="outlined" size="small" />
+          </Grid>
+        ))}
+      <Grid item>
+        <Input
+          value={newTag}
+          onChange={handleNewTag}
+          onKeyDown={handleKeyDown}
+          fullWidth
+          inputProps={{
+            "aria-label": "标签",
+          }}
+        />
+      </Grid>
+      <Grid item>
+        <Button variant="contained" size="small" onClick={handleSaveNewTag}>
+          添加
+        </Button>
+      </Grid>
+    </Grid>
   );
 };
 
