@@ -3,11 +3,8 @@ import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import React, { useState } from "react";
-import { useStore } from "react-redux";
 
-const Tags = ({ tags, post, tagsDelete, tagsAdd }) => {
-  const store = useStore();
-  const state = store.getState();
+const Tags = ({ lab, tags, post, tagsDelete, tagsAdd }) => {
   const [newTag, setNewTag] = useState("");
 
   const handleNewTag = (e) => {
@@ -26,15 +23,14 @@ const Tags = ({ tags, post, tagsDelete, tagsAdd }) => {
   };
 
   return (
-    <Grid container spacing={1}>
+    <Grid item container spacing={1}>
       {tags.map((tag) => (
         <Grid item key={tag}>
           <Chip
             label={tag.name}
+            variant="outlined"
             size="small"
-            onDelete={
-              state.lab.userId ? () => tagsDelete(post, tag.name) : undefined
-            }
+            onDelete={lab.userId ? () => tagsDelete(post, tag.name) : undefined}
           />
         </Grid>
       ))}

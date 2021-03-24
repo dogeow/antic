@@ -96,20 +96,33 @@ const PostSingle = ({ postSave }) => {
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={12}>
           {post ? (
-            <Typography variant="h4" component="h2">
-              {parseInt(localStorage?.postId) === id
-                ? localStorage.postTitle
-                : post.title}
-            </Typography>
+            <Grid item container>
+              <Grid item style={{ flexGrow: 1 }}>
+                <Typography variant="h6" component="h2">
+                  {parseInt(localStorage?.postId) === id
+                    ? localStorage.postTitle
+                    : post.title}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <span style={{ color: "gray" }}>
+                  <a onClick={handleEdit}>编辑</a>
+                  {" | "}
+                  <a onClick={handleDelete}>删除</a>
+                </span>
+              </Grid>
+            </Grid>
           ) : (
             <Skeleton variant="rect" height={41} width="40%" />
           )}
         </Grid>
-        <PostHeader
-          post={post}
-          handleEdit={handleEdit}
-          handleDelete={handleAlertDialogToggle}
-        />
+        <Grid item container spacing={1}>
+          <PostHeader
+            post={post}
+            handleEdit={handleEdit}
+            handleDelete={handleAlertDialogToggle}
+          />
+        </Grid>
         <Grid item xs={12}>
           <PostBody post={post} />
         </Grid>

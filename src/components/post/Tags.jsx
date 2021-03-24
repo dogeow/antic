@@ -6,6 +6,7 @@ import axios from "../../instance/axios";
 
 const mapStateToProps = (state) => ({
   tags: state.lab.post.tags,
+  lab: state.lab,
 });
 
 const mapDispatchToProps = (dispatch) => ({

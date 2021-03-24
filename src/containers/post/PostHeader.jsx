@@ -11,7 +11,7 @@ import Tags from "../../components/post/Tags";
 
 dayjs.extend(relativeTime);
 
-const PostHeader = ({ post, handleEdit, handleDelete }) => {
+const PostHeader = ({ post }) => {
   return post ? (
     <>
       <Grid item>
@@ -24,7 +24,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
       <Grid item>
         <Tags post={post} />
       </Grid>
-      <Grid item>
+      <Grid item xs={6}>
         <Tooltip
           title={dayjs(post.created_at).format("YYYY-MM-DD HH:mm:ss")}
           placement="top"
@@ -40,7 +40,7 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
           </div>
         </Tooltip>
       </Grid>
-      <Grid item>
+      <Grid item xs={6}>
         <Tooltip
           title={dayjs(post.updated_at).format("YYYY-MM-DD HH:mm:ss")}
           placement="top"
@@ -55,9 +55,6 @@ const PostHeader = ({ post, handleEdit, handleDelete }) => {
             更新于<time>{dayjs(post.updated_at).fromNow()}</time>
           </div>
         </Tooltip>
-      </Grid>
-      <Grid item style={{ color: "gray" }}>
-        <a onClick={handleEdit}>编辑</a> | <a onClick={handleDelete}>删除</a>
       </Grid>
     </>
   ) : (
