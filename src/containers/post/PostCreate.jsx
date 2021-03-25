@@ -1,4 +1,4 @@
-import "../styles/editor.css";
+import "../../styles/editor.css";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { green, red } from "@material-ui/core/colors";
@@ -18,9 +18,9 @@ import { useRouteMatch } from "react-router-dom";
 import gfm from "remark-gfm";
 import Swal from "sweetalert2";
 
-import CodeBlock from "../components/CodeBlock";
-import axios from "../instance/axios";
-import Tags from "./post/Tags";
+import CodeBlock from "../../components/CodeBlock";
+import Tags from "../../components/post/Tags";
+import axios from "../../instance/axios";
 
 const useStyles = makeStyles((theme) => {
   const background = theme.palette.background.default;
@@ -92,13 +92,18 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export default (props) => {
+export default ({
+  post,
+  postSave,
+  postCategory,
+  postContentSave,
+  postTitle,
+}) => {
   const classes = useStyles();
   const match = useRouteMatch();
 
   const [id, setId] = useState(null);
   const [newTagOpen, setNewTagOpen] = useState(false);
-  const [post, setPost] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState(false);
@@ -111,10 +116,10 @@ export default (props) => {
       setEdit(true);
       setId(match.params.id);
       axios.get(`posts/${match.params.id}`).then(({ data }) => {
-        setPost(data);
+        postSave(data);
       });
     }
-  }, [match.params.id]);
+  }, [match.params.id, postSave]);
 
   const buttonClassname = errors
     ? clsx({ [classes.buttonError]: errors })
@@ -160,10 +165,7 @@ export default (props) => {
   };
 
   const handleCategoryChange = (e) => {
-    setPost({
-      ...post,
-      category: e.target.value,
-    });
+    postCategory(e.target.value);
   };
 
   const handleDelete = (tag) => {
@@ -177,14 +179,11 @@ export default (props) => {
   const handleEditorChange = ({ html, text }) => {
     // const content = handleGetMdValue();
     localStorage.post = text;
-    setPost({
-      ...post,
-      content: text,
-    });
+    postContentSave(text);
   };
 
   const handleTitleChange = (event) => {
-    setPost({ ...post, title: event.target.value });
+    postTitle(event.target.value);
   };
 
   const uploadImage = (blob) => {
@@ -210,9 +209,8 @@ export default (props) => {
   return (
     <Grid container spacing={2} justify="center" alignItems="center">
       {/* 标题 */}
-      <Grid item xs={12} md={4}>
+      <Grid item xs={12} md>
         <TextField
-          fullWidth
           value={post.title || ""}
           variant="outlined"
           size="small"
@@ -220,10 +218,9 @@ export default (props) => {
           onChange={handleTitleChange}
         />
       </Grid>
-      <Grid item xs={3} md={2}>
+      <Grid item xs={3} md>
         {post && (
           <TextField
-            fullWidth
             variant="outlined"
             size="small"
             value={post.category || ""}
@@ -232,7 +229,7 @@ export default (props) => {
           />
         )}
       </Grid>
-      <Grid item xs={9} md={6}>
+      <Grid item xs={9} md>
         {post?.tags && (
           <Tags
             tags={post.tags}

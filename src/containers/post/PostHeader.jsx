@@ -10,10 +10,18 @@ import Tooltip from "../../components/Tooltip";
 
 dayjs.extend(relativeTime);
 
-const PostHeader = ({ post }) => {
+const PostHeader = ({ post, edit = true }) => {
   return post ? (
-    <>
-      <Grid container spacing={2}>
+    <Grid item container spacing={1}>
+      <Grid item container spacing={2}>
+        <Grid item>
+          <Tooltip content="发布于" time={post.created_at} />
+        </Grid>
+        <Grid item>
+          <Tooltip content="更新于" time={post.updated_at} />
+        </Grid>
+      </Grid>
+      <Grid item container spacing={2}>
         <Grid item>
           <Chip
             label={post?.category?.name || "未分类"}
@@ -22,18 +30,10 @@ const PostHeader = ({ post }) => {
           />
         </Grid>
         <Grid item>
-          <Tags post={post} />
+          <Tags post={post} edit={edit} />
         </Grid>
       </Grid>
-      <Grid container spacing={2}>
-        <Grid item>
-          <Tooltip content="发布于" time={post.created_at} />
-        </Grid>
-        <Grid item>
-          <Tooltip content="更新于" time={post.updated_at} />
-        </Grid>
-      </Grid>
-    </>
+    </Grid>
   ) : (
     <Grid item xs={12}>
       <Skeleton variant="rect" height={20} width="60%" />

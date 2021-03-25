@@ -60,13 +60,13 @@ const Spa = ({ match }) => {
           />
           <Route
             path="/posts/create"
-            component={loadable(() => import("../components/PostCreate"), {
+            component={loadable(() => import("../components/post/PostCreate"), {
               fallback: <Loading />,
             })}
           />
           <Route
             path="/posts/:id/edit"
-            component={loadable(() => import("../components/PostCreate"), {
+            component={loadable(() => import("../components/post/PostCreate"), {
               fallback: <Loading />,
             })}
           />

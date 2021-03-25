@@ -118,6 +118,7 @@ const PostSingle = ({ postSave }) => {
         </Grid>
         <Grid item container spacing={1}>
           <PostHeader
+            edit={false}
             post={post}
             handleEdit={handleEdit}
             handleDelete={handleAlertDialogToggle}

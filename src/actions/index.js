@@ -15,6 +15,9 @@ export const loginAction = (user) => ({
 export const postSave = createAction("POST_SAVE");
 export const tagsDelete = createAction("TAGS_DELETE");
 export const tagsAdd = createAction("TAGS_ADD");
+export const postCategory = createAction("POST_CATEGORY");
+export const postContentSave = createAction("POST_CONTENT_SAVE");
+export const postTitle = createAction("POST_TITLE");
 
 // emoji
 export const whichPage = createAction("WHICH_PAGE");

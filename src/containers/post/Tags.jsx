@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import React, { useState } from "react";
 
-const Tags = ({ lab, tags, tagsDelete, tagsAdd }) => {
+const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
   const [newTag, setNewTag] = useState("");
 
   const handleNewTag = (e) => {
@@ -30,26 +30,33 @@ const Tags = ({ lab, tags, tagsDelete, tagsAdd }) => {
             label={tag.name}
             variant="outlined"
             size="small"
-            onDelete={lab.userId ? () => tagsDelete(tag.name) : undefined}
+            onDelete={
+              lab.userId && edit ? () => tagsDelete(tag.name) : undefined
+            }
           />
         </Grid>
       ))}
-      <Grid item>
-        <Input
-          value={newTag}
-          onChange={handleNewTag}
-          onKeyDown={handleKeyDown}
-          fullWidth
-          inputProps={{
-            "aria-label": "标签",
-          }}
-        />
-      </Grid>
-      <Grid item>
-        <Button variant="contained" size="small" onClick={handleSaveNewTag}>
-          添加
-        </Button>
-      </Grid>
+
+      {edit && (
+        <>
+          <Grid item>
+            <Input
+              value={newTag}
+              onChange={handleNewTag}
+              onKeyDown={handleKeyDown}
+              fullWidth
+              inputProps={{
+                "aria-label": "标签",
+              }}
+            />
+          </Grid>
+          <Grid item>
+            <Button variant="contained" size="small" onClick={handleSaveNewTag}>
+              添加
+            </Button>
+          </Grid>
+        </>
+      )}
     </Grid>
   );
 };
