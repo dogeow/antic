@@ -11,10 +11,10 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
-import Categories from "../../containers/Categories";
+import Categories from "../../containers/post/Categories";
 import { toParams } from "../../helpers";
 import axios from "../../instance/axios";
-import Tags from "../post/Tags";
+import AllTags from "../post/AllTags";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -182,7 +182,7 @@ const PostList = () => {
           <Grid item xs={3}>
             <h2>标签</h2>
             <Paper className={classes.paper}>
-              <Tags />
+              <AllTags />
             </Paper>
           </Grid>
         </Hidden>

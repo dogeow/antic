@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
 
-import ChipFlow from "../components/ChipFlow";
+import ChipFlow from "../../components/ChipFlow";
 
 const Categories = () => {
   const history = useHistory();

@@ -86,7 +86,7 @@ const Spa = ({ match }) => {
           />
           <Route
             path="/categories"
-            component={loadable(() => import("../containers/Categories"))}
+            component={loadable(() => import("../containers/post/Categories"))}
           />
           <Route
             path="/tags"

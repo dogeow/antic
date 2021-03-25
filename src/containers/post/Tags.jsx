@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import React, { useState } from "react";
 
-const Tags = ({ lab, tags, post, tagsDelete, tagsAdd }) => {
+const Tags = ({ lab, tags, tagsDelete, tagsAdd }) => {
   const [newTag, setNewTag] = useState("");
 
   const handleNewTag = (e) => {
