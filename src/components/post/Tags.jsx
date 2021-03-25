@@ -20,6 +20,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       });
   },
   tagsAdd: (tagName) => {
+    console.log(ownProps);
     axios
       .post(`/posts/${ownProps.post.id}/tag`, { name: tagName })
       .then(({ data }) => {

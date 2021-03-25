@@ -103,7 +103,6 @@ export default ({
   const match = useRouteMatch();
 
   const [id, setId] = useState(null);
-  const [newTagOpen, setNewTagOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState(false);
@@ -168,14 +167,6 @@ export default ({
     postCategory(e.target.value);
   };
 
-  const handleDelete = (tag) => {
-    window.console.log("delete");
-  };
-
-  const handleNew = () => {
-    setNewTagOpen(true);
-  };
-
   const handleEditorChange = ({ html, text }) => {
     // const content = handleGetMdValue();
     localStorage.post = text;
@@ -211,6 +202,7 @@ export default ({
       {/* 标题 */}
       <Grid item xs={12} md>
         <TextField
+          label="标题"
           value={post.title || ""}
           variant="outlined"
           size="small"
@@ -221,6 +213,7 @@ export default ({
       <Grid item xs={3} md>
         {post && (
           <TextField
+            label="分类"
             variant="outlined"
             size="small"
             value={post.category || ""}
@@ -230,15 +223,7 @@ export default ({
         )}
       </Grid>
       <Grid item xs={9} md>
-        {post?.tags && (
-          <Tags
-            tags={post.tags}
-            delete={handleDelete}
-            new={handleNew}
-            newTagOpen={newTagOpen}
-            setNewTagOpen={setNewTagOpen}
-          />
-        )}
+        <Tags edit={true} post={post} tags={post.tags} />
       </Grid>
       {/* 正文 */}
       <Grid item xs={12}>
