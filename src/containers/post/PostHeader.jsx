@@ -21,7 +21,7 @@ const PostHeader = ({ post, edit = true }) => {
           <Tooltip content="更新于" time={post.updated_at} />
         </Grid>
       </Grid>
-      <Grid item container spacing={2}>
+      <Grid item container spacing={1} alignItems="center">
         <Grid item>
           <Chip
             label={post?.category?.name || "未分类"}

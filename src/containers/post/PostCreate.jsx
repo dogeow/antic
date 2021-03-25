@@ -210,7 +210,7 @@ export default ({
           onChange={handleTitleChange}
         />
       </Grid>
-      <Grid item xs={3} md>
+      <Grid item xs={12} md>
         {post && (
           <TextField
             label="分类"
@@ -222,7 +222,7 @@ export default ({
           />
         )}
       </Grid>
-      <Grid item xs={9} md>
+      <Grid item xs={12} md>
         <Tags edit={true} post={post} tags={post.tags} />
       </Grid>
       {/* 正文 */}
