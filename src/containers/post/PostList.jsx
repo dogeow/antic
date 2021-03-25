@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PostList = () => {
+const PostList = (props) => {
   const classes = useStyles();
   const [post, setPost] = useState({});
   const [pageCount, setPageCount] = useState();
@@ -65,6 +65,9 @@ const PostList = () => {
   };
 
   const handlePostCreate = () => {
+    if (props.post?.id) {
+      props.postRemove();
+    }
     history.push("/posts/create");
   };
 

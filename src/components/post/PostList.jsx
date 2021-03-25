@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { tagsDelete } from "../../actions";
+import { postSave, tagsDelete } from "../../actions";
 import PostList from "../../containers/post/PostList";
 import axios from "../../instance/axios";
 
@@ -17,6 +17,9 @@ const mapDispatchToProps = (dispatch) => ({
           dispatch(tagsDelete(tagName));
         }
       });
+  },
+  postRemove: () => {
+    dispatch(postSave({ tags: [] }));
   },
 });
 
