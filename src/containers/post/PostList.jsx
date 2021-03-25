@@ -73,15 +73,15 @@ const PostList = (props) => {
 
   return (
     <>
-      {params["filter[category.name]"] && (
-        <Breadcrumbs aria-label="breadcrumb">
-          <Link to="/">Home</Link>
-          <Link to="/categories">Categories</Link>
-          <Typography color="textPrimary">
-            {decodeURI(params["filter[category.name]"])}
-          </Typography>
-        </Breadcrumbs>
-      )}
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link to="/">首页</Link>
+        <Link to="/categories">分类</Link>
+        <Typography color="textPrimary">
+          {params["filter[category.name]"]
+            ? decodeURI(params["filter[category.name]"])
+            : "全部"}
+        </Typography>
+      </Breadcrumbs>
       <Grid container spacing={2}>
         <Hidden smDown>
           <Grid item xs={3}>
