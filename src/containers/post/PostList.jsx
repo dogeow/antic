@@ -5,6 +5,7 @@ import Hidden from "@material-ui/core/Hidden";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Pagination from "@material-ui/lab/Pagination";
 import PaginationItem from "@material-ui/lab/PaginationItem";
 import Skeleton from "@material-ui/lab/Skeleton";
@@ -63,6 +64,10 @@ const PostList = () => {
     history.push(`/posts/${item.id}`);
   };
 
+  const handlePostCreate = () => {
+    history.push("/posts/create");
+  };
+
   return (
     <>
       {params["filter[category.name]"] && (
@@ -84,7 +89,14 @@ const PostList = () => {
           </Grid>
         </Hidden>
         <Grid item xs={12} md={6}>
-          <h2>笔记</h2>
+          <Grid item container spacing={2} alignItems="center">
+            <Grid item>
+              <h2>笔记</h2>
+            </Grid>
+            <Grid item>
+              <AddCircleIcon onClick={handlePostCreate} />
+            </Grid>
+          </Grid>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
