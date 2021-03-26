@@ -109,7 +109,8 @@ export default ({
   const [errors, setErrors] = useState(false);
   const [edit, setEdit] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState({});
+  const [category, setCategory] = useState();
+  const [inputValue, setInputValue] = useState("");
 
   const editorRef = useRef(null);
 
@@ -150,7 +151,7 @@ export default ({
       data: {
         title: post.title,
         content: post.content,
-        category_id: post.category.id,
+        category_id: category?.id,
         tags: post.tags,
       },
     })
@@ -173,11 +174,6 @@ export default ({
         setLoading(false);
         localStorage.removeItem("post");
       });
-  };
-
-  const handleCategoryChange = (newInputValue) => {
-    setCategory(newInputValue);
-    postCategory(newInputValue);
   };
 
   const handleEditorChange = ({ html, text }) => {
@@ -228,16 +224,17 @@ export default ({
           <Autocomplete
             id="combo-box-demo"
             size="small"
-            value={category.name}
+            value={category}
             onChange={(event, newValue) => {
-              handleCategoryChange(newValue);
+              setCategory(newValue);
             }}
-            inputValue={category.name}
+            inputValue={category?.name || inputValue || ""}
             onInputChange={(event, newInputValue) => {
-              handleCategoryChange(newInputValue);
+              setInputValue(newInputValue);
             }}
             options={categories}
             getOptionLabel={(option) => option.name}
+            getOptionSelected={(option, value) => option.name === value.name}
             style={{ width: 300 }}
             renderInput={(params) => (
               <TextField {...params} label="分类" variant="outlined" />
