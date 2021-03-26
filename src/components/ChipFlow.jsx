@@ -16,9 +16,9 @@ const ChipFlow = (props) => {
   return (
     <Grid container spacing={2}>
       {items.map((item) => (
-        <Grid item key={item.id}>
+        <Grid item key={item.id || item.name}>
           <Chip
-            label={item.id}
+            label={item.name}
             variant="outlined"
             onClick={() => {
               props.onHandleClick(item.name);
