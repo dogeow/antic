@@ -228,7 +228,7 @@ export default ({
             onChange={(event, newValue) => {
               setCategory(newValue);
             }}
-            inputValue={category?.name || inputValue || ""}
+            inputValue={inputValue || ""}
             onInputChange={(event, newInputValue) => {
               setInputValue(newInputValue);
             }}
