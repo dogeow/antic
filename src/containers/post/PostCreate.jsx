@@ -121,6 +121,7 @@ export default ({
       axios.get(`posts/${match.params.id}`).then(({ data }) => {
         postSave(data);
         setCategory(data.category);
+        setInputValue(data.category.name);
       });
     }
   }, [match.params.id, postSave]);
