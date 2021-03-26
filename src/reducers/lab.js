@@ -17,7 +17,7 @@ const defaultState = {
   userId: localStorage.getItem("userId"),
   userName: localStorage.getItem("userName"),
   userEmail: localStorage.getItem("userEmail"),
-  post: { tags: [] },
+  post: { tags: [], category: { id: "", name: "" } },
 };
 
 const lab = (state = defaultState, action) => {

@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
       });
   },
   postRemove: () => {
-    dispatch(postSave({ tags: [] }));
+    dispatch(postSave({ tags: [], category: { id: "", name: "" } }));
   },
 });
 

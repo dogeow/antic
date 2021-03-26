@@ -20,12 +20,15 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       });
   },
   tagsAdd: (tagName) => {
-    console.log(ownProps);
-    axios
-      .post(`/posts/${ownProps.post.id}/tag`, { name: tagName })
-      .then(({ data }) => {
-        dispatch(tagsAdd(data));
-      });
+    if (ownProps.post?.id) {
+      axios
+        .post(`/posts/${ownProps.post.id}/tag`, { name: tagName })
+        .then(({ data }) => {
+          dispatch(tagsAdd(data));
+        });
+    } else {
+      dispatch(tagsAdd({ name: tagName }));
+    }
   },
 });
 

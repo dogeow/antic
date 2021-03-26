@@ -15,13 +15,13 @@ const ChipFlow = (props) => {
 
   return (
     <Grid container spacing={2}>
-      {items.map((item, index) => (
-        <Grid item key={index}>
+      {items.map((item) => (
+        <Grid item key={item.id}>
           <Chip
-            label={item}
+            label={item.id}
             variant="outlined"
             onClick={() => {
-              props.onHandleClick(item);
+              props.onHandleClick(item.name);
             }}
           />
         </Grid>

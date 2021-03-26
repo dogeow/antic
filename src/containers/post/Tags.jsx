@@ -43,7 +43,7 @@ const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
           <InputAdornment position="start">
             {tags.map((tag) => (
               <Chip
-                key={tag}
+                key={tag.id}
                 label={tag.name}
                 variant="outlined"
                 size="small"
@@ -61,7 +61,7 @@ const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
   ) : (
     <div className={classes.tags}>
       {tags.map((tag) => (
-        <Chip key={tag} label={tag.name} variant="outlined" size="small" />
+        <Chip key={tag.id} label={tag.name} variant="outlined" size="small" />
       ))}
     </div>
   );

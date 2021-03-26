@@ -9,6 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import CheckIcon from "@material-ui/icons/Check";
 import ErrorIcon from "@material-ui/icons/ErrorOutline";
 import SaveIcon from "@material-ui/icons/Save";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 import clsx from "clsx";
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
@@ -107,6 +108,8 @@ export default ({
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState(false);
   const [edit, setEdit] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState({});
 
   const editorRef = useRef(null);
 
@@ -116,9 +119,16 @@ export default ({
       setId(match.params.id);
       axios.get(`posts/${match.params.id}`).then(({ data }) => {
         postSave(data);
+        setCategory(data.category);
       });
     }
   }, [match.params.id, postSave]);
+
+  useEffect(() => {
+    axios.get("categories").then(({ data }) => {
+      setCategories(data);
+    });
+  }, []);
 
   const buttonClassname = errors
     ? clsx({ [classes.buttonError]: errors })
@@ -140,11 +150,13 @@ export default ({
       data: {
         title: post.title,
         content: post.content,
-        category: post.category,
+        category_id: post.category.id,
+        tags: post.tags,
       },
     })
       .then(({ data }) => {
         setId(data.id);
+        postSave(data);
         setSuccess(true);
         setLoading(false);
       })
@@ -163,8 +175,9 @@ export default ({
       });
   };
 
-  const handleCategoryChange = (e) => {
-    postCategory(e.target.value);
+  const handleCategoryChange = (newInputValue) => {
+    setCategory(newInputValue);
+    postCategory(newInputValue);
   };
 
   const handleEditorChange = ({ html, text }) => {
@@ -211,14 +224,24 @@ export default ({
         />
       </Grid>
       <Grid item xs={12} md>
-        {post && (
-          <TextField
-            label="分类"
-            variant="outlined"
+        {categories.length !== 0 && (
+          <Autocomplete
+            id="combo-box-demo"
             size="small"
-            value={post.category || ""}
-            placeholder="未分类"
-            onChange={handleCategoryChange}
+            value={category.name}
+            onChange={(event, newValue) => {
+              handleCategoryChange(newValue);
+            }}
+            inputValue={category.name}
+            onInputChange={(event, newInputValue) => {
+              handleCategoryChange(newInputValue);
+            }}
+            options={categories}
+            getOptionLabel={(option) => option.name}
+            style={{ width: 300 }}
+            renderInput={(params) => (
+              <TextField {...params} label="分类" variant="outlined" />
+            )}
           />
         )}
       </Grid>
