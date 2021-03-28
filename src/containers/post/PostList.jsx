@@ -118,14 +118,13 @@ const PostList = (props) => {
                           {/* 分类 */}
                           <Grid item>
                             <Link
-                              to={`posts?filter[category.name]=${
-                                item?.category?.name || "未分类"
-                              }`}
+                              to={`posts?filter[category.name]=${item?.category.name}`}
                             >
-                              <Chip
-                                size="small"
-                                label={item?.category?.name || "未分类"}
-                                style={{ minWidth: "81px" }}
+                              <img
+                                src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category.name}.svg`}
+                                alt={item.category.name}
+                                width="20"
+                                height="20"
                               />
                             </Link>
                           </Grid>
