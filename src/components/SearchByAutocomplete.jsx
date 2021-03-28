@@ -168,7 +168,7 @@ export default function Autocomplete(props) {
                             >
                               <div className="aa-ItemIcon">
                                 <img
-                                  src={item.image}
+                                  src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category}.svg`}
                                   alt={item.name}
                                   width="40"
                                   height="40"
