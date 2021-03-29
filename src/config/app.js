@@ -10,7 +10,7 @@ export default {
     { name: "🧣 微博热搜榜", url: "/weibo" },
   ],
   externalMenus: [
-    { name: "🗂️ 学习笔记", url: "https://wiki.gugelong.com" },
-    { name: "🖌️ Canvas 学习", url: "http://canvas.gugelong.com" },
+    { name: "🗂️ 学习笔记", url: "https://wiki.dogeow.com" },
+    { name: "🖌️ Canvas 学习", url: "https://canvas.dogeow.com" },
   ],
 };
