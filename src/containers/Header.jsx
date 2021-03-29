@@ -162,7 +162,7 @@ const Header = ({
       const audio = document.createElement("audio");
       audio.id = "music";
       audio.src =
-        "https://cdn.dogeow.com/music/%E5%92%8C%E6%A5%BD%E5%99%A8%E3%83%90%E3%83%B3%E3%83%89%20-%20%E6%9D%B1%E9%A2%A8%E7%A0%B4.mp3";
+        "https://upyun.dogeow.com/music/%E5%92%8C%E6%A5%BD%E5%99%A8%E3%83%90%E3%83%B3%E3%83%89%20-%20%E6%9D%B1%E9%A2%A8%E7%A0%B4.mp3";
       root.append(audio);
       setPlaying(!playing);
       audio.play();

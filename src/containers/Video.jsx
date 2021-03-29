@@ -10,7 +10,7 @@ const videoJsOptions = {
   controls: true,
   sources: [
     {
-      src: "https://cdn.dogeow.com/medias/mv.mp4",
+      src: "https://upyun.dogeow.com/medias/mv.mp4",
       type: "video/mp4",
     },
   ],
