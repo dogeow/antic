@@ -5,14 +5,17 @@ export const snackMessage = createAction("SNACK_MESSAGE");
 export const snackToggleAction = createAction("SNACK_TOGGLE");
 export const loginAction = (user) => ({
   type: "LOGIN",
-  token: user.access_token,
-  userId: user.id,
-  userName: user.name,
-  userEmail: user.email,
-  expiresIn: user.expires_in,
+  payload: {
+    token: user.access_token,
+    userId: user.id,
+    userName: user.name,
+    userEmail: user.email,
+    expiresIn: user.expires_in,
+  },
 });
 // post
 export const postSave = createAction("POST_SAVE");
+export const changeUser = createAction("CHANGE_USER");
 export const tagsDelete = createAction("TAGS_DELETE");
 export const tagsAdd = createAction("TAGS_ADD");
 export const postCategory = createAction("POST_CATEGORY");

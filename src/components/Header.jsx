@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 
 import {
+  changeUser,
   loginAction,
   logoutAction,
   snackToggleAction,
@@ -54,6 +55,9 @@ const mapDispatchToProps = (dispatch) => ({
     axios.post("user/guest").then(({ data }) => {
       dispatch(loginAction(data));
     });
+  },
+  onChangeUser: (user) => {
+    dispatch(changeUser(user));
   },
 });
 

@@ -23,16 +23,27 @@ const defaultState = {
 
 const lab = (state = defaultState, action) => {
   switch (action.type) {
-    case "LOGIN":
+    case "CHANGE_USER":
       logged(action);
+      return {
+        ...state,
+        isExpired: false,
+        token: `Bearer ${action.payload.token}`,
+        userId: action.payload.userId,
+        userName: action.payload.userName,
+        userEmail: action.payload.userEmail,
+        snackMessage: "切换用户成功",
+      };
+    case "LOGIN":
+      logged(action.payload);
       const users = _.uniqBy(
         [
           ...state.users,
           {
-            token: `Bearer ${action.token}`,
-            userId: action.userId,
-            userName: action.userName,
-            userEmail: action.userEmail,
+            token: `Bearer ${action.payload.token}`,
+            userId: action.payload.userId,
+            userName: action.payload.userName,
+            userEmail: action.payload.userEmail,
           },
         ],
         "userId"
@@ -41,10 +52,10 @@ const lab = (state = defaultState, action) => {
       return {
         ...state,
         isExpired: false,
-        token: `Bearer ${action.token}`,
-        userId: action.userId,
-        userName: action.userName,
-        userEmail: action.userEmail,
+        token: `Bearer ${action.payload.token}`,
+        userId: action.payload.userId,
+        userName: action.payload.userName,
+        userEmail: action.payload.userEmail,
         snackMessage: "登录成功",
         users: users,
       };

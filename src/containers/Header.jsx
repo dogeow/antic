@@ -2,6 +2,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
@@ -16,6 +17,7 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import NightsStayIcon from "@material-ui/icons/NightsStay";
 import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import PersonIcon from "@material-ui/icons/Person";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import SearchIcon from "@material-ui/icons/Search";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
@@ -70,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
  * @param {function} onThemeClick
  * @param {function} snackClose
  * @param {function} paletteMode
+ * @param {function} onChangeUser
  * @return {JSX.Element}
  * @constructor
  */
@@ -82,6 +85,7 @@ const Header = ({
   onThemeClick,
   snackClose,
   paletteMode,
+  onChangeUser,
 }) => {
   const { pathname } = useLocation();
   const classes = useStyles();
@@ -291,19 +295,53 @@ const Header = ({
                       to={`/user/${lab.userId}`}
                       onClick={() => handleCloseProfile()}
                     >
-                      <MenuItem>{lab.userName}</MenuItem>
+                      <div style={{ textAlign: "center", fontSize: "1rem" }}>
+                        <Avatar
+                          alt={lab.userName}
+                          src={`${gravatarCdn}/${md5(
+                            lab.userEmail
+                          )}.jpg?d=monsterid&s=160`}
+                          style={{ width: 80, height: 80, margin: "0 auto" }}
+                        />
+                        {lab.userName}
+                      </div>
                     </RouteLink>
-                    <RouteLink
-                      to="/project"
-                      onClick={() => handleCloseProfile()}
-                    >
-                      <MenuItem>代办事项</MenuItem>
-                    </RouteLink>
-                    <RouteLink
-                      to={`/user/${lab.userId}/setting`}
-                      onClick={() => handleCloseProfile()}
-                    >
-                      <MenuItem>个人设置</MenuItem>
+                    {lab.users.map((user) => {
+                      return (
+                        user.userEmail !== lab.userEmail && (
+                          <MenuItem
+                            onClick={() => {
+                              onChangeUser(user);
+                              handleCloseProfile();
+                            }}
+                          >
+                            <Avatar
+                              alt={user.userName}
+                              src={`${gravatarCdn}/${md5(
+                                user.userEmail
+                              )}.jpg?d=monsterid&s=160`}
+                            />
+                            <span
+                              style={{
+                                margin: "0 10px 0 10px",
+                                fontSize: "0.8rem",
+                              }}
+                            >
+                              {user.userName}
+                              <br />
+                              {user.userEmail}
+                            </span>
+                          </MenuItem>
+                        )
+                      );
+                    })}
+                    <RouteLink to="/login" onClick={() => handleCloseProfile()}>
+                      <MenuItem>
+                        <PersonAddIcon style={{ width: 40 }} />
+                        <span style={{ margin: "0 10px 0 10px" }}>
+                          添加其他账号
+                        </span>
+                      </MenuItem>
                     </RouteLink>
                     <MenuItem
                       onClick={() => {
@@ -311,7 +349,7 @@ const Header = ({
                         onLogout();
                       }}
                     >
-                      登出
+                      退出所有账号
                     </MenuItem>
                   </Menu>
                 </div>
