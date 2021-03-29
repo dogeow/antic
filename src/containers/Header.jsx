@@ -24,7 +24,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import md5 from "md5";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
-import { Link as RouteLink, useHistory, useLocation } from "react-router-dom";
+import { Link as RouteLink, useLocation } from "react-router-dom";
 
 import Drawer from "../components/Drawer";
 import Logo from "../components/Logo";
