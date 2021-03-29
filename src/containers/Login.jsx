@@ -264,16 +264,14 @@ const SignInSide = ({ dispatch }) => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <RouteLink to="/forget">忘记密码？</RouteLink>
+                <Typography style={{ color: "#f50057" }}>
+                  免密登录测试账号
+                </Typography>
               </Grid>
               <Grid item>
-                <Link
-                  component={RouteLink}
-                  to="/register"
-                  style={{ color: "#f50057" }}
-                >
-                  立即注册
-                </Link>
+                <RouteLink to="/forget">
+                  <Typography>忘记密码？</Typography>
+                </RouteLink>
               </Grid>
             </Grid>
             <Box mt={5}>

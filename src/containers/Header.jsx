@@ -65,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
  * 菜单栏
  * @param {object} lab
  * @param {function} onLogout
- * @param {function} onTestLogin
  * @param {boolean} onClickDrawer
  * @param {function} toggleDrawer
  * @param {function} onThemeClick
@@ -78,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
 const Header = ({
   lab,
   onLogout,
-  onTestLogin,
   onClickDrawer,
   toggleDrawer,
   onThemeClick,
@@ -389,22 +387,6 @@ const Header = ({
                   {lab.paletteMode === "dark" ? "白天☀️️" : "黑夜🌌"}
                   模式
                 </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    setAnchorEl(null);
-                    onTestLogin();
-                  }}
-                >
-                  登录测试账号
-                </MenuItem>
-                <MenuItem
-                  onClick={() => {
-                    setAnchorEl(null);
-                    history.push("/posts/create");
-                  }}
-                >
-                  新建笔记
-                </MenuItem>
                 <MenuItem onClick={handleSettingOpen}>网站设置</MenuItem>
               </Menu>
             </Toolbar>
@@ -434,7 +416,6 @@ const Header = ({
 Header.propTypes = {
   lab: PropTypes.object.isRequired,
   onLogout: PropTypes.func.isRequired,
-  onTestLogin: PropTypes.func.isRequired,
   onClickDrawer: PropTypes.func.isRequired,
   toggleDrawer: PropTypes.bool.isRequired,
   onThemeClick: PropTypes.func.isRequired,
