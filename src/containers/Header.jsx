@@ -86,7 +86,6 @@ const Header = ({
 }) => {
   const { pathname } = useLocation();
   const classes = useStyles();
-  const history = useHistory();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
 

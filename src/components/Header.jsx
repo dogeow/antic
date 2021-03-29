@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 
 import {
   changeUser,
-  loginAction,
   logoutAction,
   snackToggleAction,
   toggleDrawer,
