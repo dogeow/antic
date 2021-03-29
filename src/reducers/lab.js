@@ -17,6 +17,7 @@ const defaultState = {
   userId: localStorage.getItem("userId"),
   userName: localStorage.getItem("userName"),
   userEmail: localStorage.getItem("userEmail"),
+  users: localStorage.users ? JSON.parse(localStorage.users) : [],
   post: { tags: [], category: { id: "", name: "" } },
 };
 
@@ -24,6 +25,19 @@ const lab = (state = defaultState, action) => {
   switch (action.type) {
     case "LOGIN":
       logged(action);
+      const users = _.uniqBy(
+        [
+          ...state.users,
+          {
+            token: `Bearer ${action.token}`,
+            userId: action.userId,
+            userName: action.userName,
+            userEmail: action.userEmail,
+          },
+        ],
+        "userId"
+      );
+      localStorage.setItem("users", JSON.stringify(users));
       return {
         ...state,
         isExpired: false,
@@ -32,6 +46,7 @@ const lab = (state = defaultState, action) => {
         userName: action.userName,
         userEmail: action.userEmail,
         snackMessage: "登录成功",
+        users: users,
       };
     case "TOGGLE_DRAWER":
       return { ...state, toggleDrawer: !state.toggleDrawer };
@@ -55,7 +70,8 @@ const lab = (state = defaultState, action) => {
         userName: null,
         userEmail: null,
         snackOpen: true,
-        snackMessage: "登出成功",
+        snackMessage: "退出成功",
+        users: [],
       };
     case "POST_SAVE":
       return { ...state, post: action.payload };

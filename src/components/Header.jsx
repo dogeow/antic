@@ -27,9 +27,26 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onLogout: () => {
     logout();
-    axios.post("user/logout").then(() => {
-      dispatch(logoutAction());
-    });
+    const requests = [];
+    if (localStorage.users) {
+      JSON.parse(localStorage.users).map((user) => {
+        requests.push(
+          axios.post(
+            "/user/logout",
+            {},
+            {
+              headers: {
+                Authorization: user.token,
+              },
+            }
+          )
+        );
+        Promise.all(requests).then(function ([acct, perms]) {
+          dispatch(logoutAction());
+          localStorage.removeItem("users");
+        });
+      });
+    }
   },
   onClickDrawer: () => dispatch(toggleDrawer()),
   onThemeClick: () => dispatch(toggleTheme()),
