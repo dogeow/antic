@@ -6,7 +6,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -125,9 +124,23 @@ const SignInSide = ({ dispatch }) => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            登录
-          </Typography>
+          <Grid container justify="center" alignItems="flex-end" spacing={1}>
+            <Grid item>
+              <Typography component="h1" variant="h5">
+                登录
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography>或</Typography>
+            </Grid>
+            <Grid item>
+              <Typography component="h2" variant="h5">
+                <RouteLink to="/register" style={{ color: "#f50057" }}>
+                  注册
+                </RouteLink>
+              </Typography>
+            </Grid>
+          </Grid>
           <form className={classes.form} noValidate>
             <TextField
               variant="outlined"
@@ -264,13 +277,22 @@ const SignInSide = ({ dispatch }) => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Typography style={{ color: "#f50057" }}>
+                <Typography
+                  variant="body2"
+                  style={{ color: "#f50057" }}
+                  onClick={() => {
+                    axios.post("user/guest").then(({ data }) => {
+                      dispatch(loginAction(data));
+                      history.push("/");
+                    });
+                  }}
+                >
                   免密登录测试账号
                 </Typography>
               </Grid>
               <Grid item>
                 <RouteLink to="/forget">
-                  <Typography>忘记密码？</Typography>
+                  <Typography variant="body2">忘记密码？</Typography>
                 </RouteLink>
               </Grid>
             </Grid>
