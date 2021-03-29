@@ -21,14 +21,14 @@ import Copyright from "../components/Copyright";
 import GitHubLogin from "../components/GithubLogin";
 import Loading from "../components/Loading";
 import axios from "../instance/axios";
+import Email from "./auth/Email";
+import LoginOrRegisterButton from "./auth/LoginOrRegisterButton";
+import Name from "./auth/Name";
+import Password from "./auth/Password";
+import PasswordConfirmation from "./auth/PasswordConfirmation";
+import PhoneNumber from "./auth/PhoneNumber";
+import Verify from "./auth/Verify";
 import GoogleRecaptcha from "./Recaptcha";
-import Email from "./register/Email";
-import LoginOrRegisterButton from "./register/LoginOrRegisterButton";
-import Name from "./register/Name";
-import Password from "./register/Password";
-import PasswordConfirmation from "./register/PasswordConfirmation";
-import PhoneNumber from "./register/PhoneNumber";
-import Verify from "./register/Verify";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

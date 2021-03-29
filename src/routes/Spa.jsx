@@ -100,13 +100,11 @@ const Spa = ({ match }) => {
           />
           <Route
             path="/forget"
-            component={loadable(() => import("../containers/Forget"))}
+            component={loadable(() => import("../containers/auth/Forget"))}
           />
           <Route
             path="/emailVerify/:secret"
-            component={loadable(() =>
-              import("../containers/register/EmailVerify")
-            )}
+            component={loadable(() => import("../containers/auth/EmailVerify"))}
           />
           <Route
             exact
@@ -249,10 +247,6 @@ const Spa = ({ match }) => {
           <Route
             path="/music"
             component={loadable(() => import("../containers/Music"))}
-          />
-          <Route
-            path="/timeline"
-            component={loadable(() => import("../containers/TimeLine"))}
           />
           <Route
             path="/copywriting"

@@ -10,7 +10,7 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import React, { useState } from "react";
 import swal from "sweetalert2";
 
-import axios from "../instance/axios";
+import axios from "../../instance/axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
