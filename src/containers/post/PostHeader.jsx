@@ -1,4 +1,3 @@
-import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
 import Skeleton from "@material-ui/lab/Skeleton";
 import dayjs from "dayjs";
