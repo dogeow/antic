@@ -118,7 +118,7 @@ const PostList = (props) => {
                           {/* 分类 */}
                           <Grid item>
                             <Link
-                              to={`posts?filter[category.name]=${item?.category.name}`}
+                              to={`/posts?filter[category.name]=${item?.category.name}`}
                             >
                               <img
                                 src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category.name}.svg`}

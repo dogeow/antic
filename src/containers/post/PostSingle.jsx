@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Skeleton from "@material-ui/lab/Skeleton";
 import React, { useEffect, useState } from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { Link, useHistory, useRouteMatch } from "react-router-dom";
 
 import AlertDialog from "../../components/AlertDialog";
 import Hr from "../../components/Hr";
@@ -96,7 +96,21 @@ const PostSingle = ({ postSave }) => {
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={12}>
           {post ? (
-            <Grid item container>
+            <Grid item container alignItems="center" spacing={1}>
+              {post?.category && (
+                <Grid item>
+                  <Link
+                    to={`/posts?filter[category.name]=${post.category.name}`}
+                  >
+                    <img
+                      src={`${process.env.REACT_APP_CDN_URL}/logo/${post.category.name}.svg`}
+                      alt={post.category.name}
+                      width="20"
+                      height="20"
+                    />
+                  </Link>
+                </Grid>
+              )}
               <Grid item style={{ flexGrow: 1 }}>
                 <Typography variant="h6" component="h2">
                   {parseInt(localStorage?.postId) === id

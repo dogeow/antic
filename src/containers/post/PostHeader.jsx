@@ -23,18 +23,7 @@ const PostHeader = ({ post, edit = true }) => {
           </Grid>
         )}
       </Grid>
-      <Grid item container spacing={1} alignItems="center">
-        <Grid item>
-          <Chip
-            label={post?.category?.name || "未分类"}
-            variant="outlined"
-            size="small"
-          />
-        </Grid>
-        <Grid item>
-          <Tags post={post} edit={edit} />
-        </Grid>
-      </Grid>
+      <Tags post={post} edit={edit} />
     </Grid>
   ) : (
     <Grid item xs={12}>
