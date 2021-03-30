@@ -25,7 +25,10 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 200,
     paddingTop: "2rem",
     marginTop: "2rem",
-    borderTop: "1px solid rgba(211,224,233,.15)",
+    borderTop:
+      theme.palette.type === "dark"
+        ? "1px dashed rgba(211,224,233,.15)"
+        : "1px dashed rgba(211,224,233,1)",
   },
 }));
 
