@@ -35,6 +35,7 @@ const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
   return edit ? (
     <TextField
       label="标签"
+      fullWidth
       variant="outlined"
       value={newTag}
       size="small"

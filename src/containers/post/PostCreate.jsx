@@ -209,18 +209,8 @@ export default ({
 
   return (
     <Grid container spacing={2} justify="center" alignItems="center">
-      {/* 标题 */}
-      <Grid item xs={12} md>
-        <TextField
-          label="标题"
-          value={post.title || ""}
-          variant="outlined"
-          size="small"
-          placeholder="请输入标题..."
-          onChange={handleTitleChange}
-        />
-      </Grid>
-      <Grid item xs={12} md>
+      {/* 头部 */}
+      <Grid item xs={12} md={2}>
         {categories.length !== 0 && (
           <Autocomplete
             id="combo-box-demo"
@@ -236,12 +226,22 @@ export default ({
             options={categories}
             getOptionLabel={(option) => option.name}
             getOptionSelected={(option, value) => option.name === value.name}
-            style={{ width: 300 }}
             renderInput={(params) => (
               <TextField {...params} label="分类" variant="outlined" />
             )}
           />
         )}
+      </Grid>
+      <Grid item xs={12} md>
+        <TextField
+          label="标题"
+          fullWidth
+          value={post.title || ""}
+          variant="outlined"
+          size="small"
+          placeholder="请输入标题..."
+          onChange={handleTitleChange}
+        />
       </Grid>
       <Grid item xs={12} md>
         <Tags edit={true} post={post} tags={post.tags} />
