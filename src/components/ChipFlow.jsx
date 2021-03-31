@@ -1,31 +1,25 @@
+import Badge from "@material-ui/core/Badge";
 import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
-import React, { useEffect, useState } from "react";
-
-import axios from "../instance/axios";
+import React from "react";
 
 const ChipFlow = (props) => {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    axios.get(props.path).then(({ data }) => {
-      setItems(data);
-    });
-  }, [props.path]);
-
   return (
     <Grid container spacing={2}>
-      {items.map((item) => (
-        <Grid item key={item.id || item.name}>
-          <Chip
-            label={item.name}
-            variant="outlined"
-            onClick={() => {
-              props.onHandleClick(item.name);
-            }}
-          />
-        </Grid>
-      ))}
+      {props.items.length !== 0 &&
+        props.items.map((item) => (
+          <Grid item key={item.id || item.name}>
+            <Badge badgeContent={item.count}>
+              <Chip
+                label={item.name}
+                variant="outlined"
+                onClick={() => {
+                  props.onHandleClick(item.name);
+                }}
+              />
+            </Badge>
+          </Grid>
+        ))}
     </Grid>
   );
 };
