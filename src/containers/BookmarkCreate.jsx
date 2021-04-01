@@ -8,12 +8,18 @@ import axios from "../instance/axios";
 const BookmarkCreate = () => {
   const [url, setUrl] = useState("");
   const [title, setTitle] = useState("");
+  const [titleStatus, setTitleStatus] = useState("");
   const [success, setSuccess] = useState(false);
 
   const handleGetTitle = () => {
-    axios.post("/url-title", { url }).then(({ data }) => {
-      setTitle(data.title);
-    });
+    axios
+      .post("/url-title", { url })
+      .then(({ data }) => {
+        setTitle(data.title);
+      })
+      .catch(() => {
+        setTitleStatus("超时");
+      });
   };
 
   const handleUrlSave = () => {
@@ -33,10 +39,13 @@ const BookmarkCreate = () => {
             size="small"
             value={url}
             onChange={(e) => {
+              setTitleStatus("");
               setSuccess(false);
               setTitle("");
               setUrl(e.target.value);
             }}
+            error={titleStatus !== ""}
+            helperText={titleStatus}
           />
         </Grid>
         <Grid item md>
@@ -52,7 +61,10 @@ const BookmarkCreate = () => {
           size="small"
           variant="outlined"
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => {
+            setTitleStatus("");
+            setTitle(e.target.value);
+          }}
         />
       </Grid>
       <Grid item xs={12}>

@@ -17,6 +17,7 @@ export default function App(props) {
           zIndex: 900,
           height: "-webkit-fill-available",
           backgroundColor: "white",
+          overflow: "scroll",
         }}
       >
         <Autocomplete
