@@ -12,6 +12,14 @@ import HomeFooter from "../components/HomeFooter";
 import backgroundImg from "../config/footerBackground";
 
 const useStyles = makeStyles((theme) => ({
+  "@global": {
+    "@media screen and (min-width: 600px)": {
+      footer: {
+        position: "absolute",
+        bottom: 0,
+      },
+    },
+  },
   footer: {
     backgroundImage:
       theme.palette.type === "dark"
