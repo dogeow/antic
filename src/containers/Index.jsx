@@ -5,11 +5,13 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
-  a: {
-    display: "block",
-  },
-  "a:hover": {
-    backgroundColor: "rgba(255, 255, 255, 0.12)",
+  "@global": {
+    "#project a": {
+      display: "block",
+    },
+    "#project a:hover": {
+      backgroundColor: "rgba(255, 255, 255, 0.12)",
+    },
   },
 }));
 
@@ -17,7 +19,7 @@ const Index = () => {
   useStyles();
 
   return (
-    <Container maxWidth="xs">
+    <Container maxWidth="xs" id="project">
       <Grid
         container
         spacing={2}
