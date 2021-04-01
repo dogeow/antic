@@ -187,7 +187,11 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../components/Piano"))}
           />
           <Route
-            path="/bookmarks"
+            path="/bookmark/create"
+            component={loadable(() => import("../containers/BookmarkCreate"))}
+          />
+          <Route
+            path="/bookmarks/old"
             component={loadable(() => import("../containers/Bookmarks"))}
           />
           <Route

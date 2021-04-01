@@ -1,9 +1,10 @@
 import { createAutocomplete } from "@algolia/autocomplete-core";
 import { getAlgoliaHits } from "@algolia/autocomplete-preset-algolia";
+import StarIcon from "@material-ui/icons/Star";
 import algoliasearch from "algoliasearch/lite";
 import React from "react";
-import { Link } from "react-router-dom";
 
+import Link from "../components/Link";
 import { ClearIcon } from "./ClearIcon";
 import { SearchIcon } from "./SearchIcon";
 
@@ -52,6 +53,30 @@ export default function Autocomplete(props) {
               },
               getItemUrl({ item }) {
                 return `/posts/${item.id}`;
+              },
+            },
+            {
+              sourceId: "bookmarks",
+              getItems({ query }) {
+                return getAlgoliaHits({
+                  searchClient,
+                  queries: [
+                    {
+                      indexName: "bookmarks",
+                      query,
+                      params: {
+                        hitsPerPage: 5,
+                        highlightPreTag: "<mark>",
+                        highlightPostTag: "</mark>",
+                        attributesToSnippet: ["title:20", "url:255"],
+                        snippetEllipsisText: "…",
+                      },
+                    },
+                  ],
+                });
+              },
+              getItemUrl({ item }) {
+                return item.url;
               },
             },
           ];
@@ -153,6 +178,9 @@ export default function Autocomplete(props) {
 
               return (
                 <section key={`source-${index}`} className="aa-Source">
+                  <h3 style={{ color: "blue", padding: "10px 5px" }}>
+                    {source.sourceId}
+                  </h3>
                   {items.length > 0 && (
                     <ul
                       className="aa-List"
@@ -161,18 +189,30 @@ export default function Autocomplete(props) {
                     >
                       {items.map((item) => {
                         return (
-                          <Link to={`/posts/${item.id}`} key={item.objectID}>
+                          <Link
+                            to={
+                              item.__autocomplete_indexName === "bookmarks"
+                                ? item.url
+                                : `/posts/${item.id}`
+                            }
+                            key={item.objectID}
+                          >
                             <li
                               className="aa-Item"
                               {...autocomplete.getItemProps({ item, source })}
                             >
                               <div className="aa-ItemIcon">
-                                <img
-                                  src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category}.svg`}
-                                  alt={item.name}
-                                  width="40"
-                                  height="40"
-                                />
+                                {item.__autocomplete_indexName ===
+                                "bookmarks" ? (
+                                  <StarIcon style={{ color: "orange" }} />
+                                ) : (
+                                  <img
+                                    src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category}.svg`}
+                                    alt={item.name}
+                                    width="40"
+                                    height="40"
+                                  />
+                                )}
                               </div>
                               <div className="aa-ItemContent">
                                 <div
@@ -184,7 +224,9 @@ export default function Autocomplete(props) {
                                 <div
                                   className="aa-ItemContentDescription"
                                   dangerouslySetInnerHTML={{
-                                    __html: item._snippetResult.content.value,
+                                    __html: item._snippetResult?.content
+                                      ? item._snippetResult.content.value
+                                      : item._snippetResult.url.value,
                                   }}
                                 />
                               </div>
