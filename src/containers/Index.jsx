@@ -5,13 +5,11 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
-  "@global": {
-    a: {
-      display: "block",
-    },
-    "a:hover": {
-      backgroundColor: "rgba(255, 255, 255, 0.12)",
-    },
+  a: {
+    display: "block",
+  },
+  "a:hover": {
+    backgroundColor: "rgba(255, 255, 255, 0.12)",
   },
 }));
 

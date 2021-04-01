@@ -13,10 +13,12 @@ import backgroundImg from "../config/footerBackground";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
-    "@media screen and (min-width: 600px)": {
+    "@media screen and (min-width: 600px) and (min-height: 600px)": {
       footer: {
         position: "absolute",
         bottom: 0,
+        right: 0,
+        left: 0,
       },
     },
   },
