@@ -78,13 +78,9 @@ const PostList = (props) => {
         </Grid>
       </Hidden>
       <Grid item xs={12} md={6}>
-        <Grid item container spacing={2} alignItems="center">
-          <Grid item>
-            <h2>笔记</h2>
-          </Grid>
-          <Grid item>
-            <AddCircleIcon onClick={handlePostCreate} />
-          </Grid>
+        <Grid item style={{ display: "flex", alignItems: "center" }}>
+          <h2>笔记</h2>
+          <AddCircleIcon style={{ marginLeft: 5 }} onClick={handlePostCreate} />
         </Grid>
         <Grid container spacing={2}>
           <Grid item xs={12}>
