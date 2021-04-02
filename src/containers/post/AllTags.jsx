@@ -16,7 +16,7 @@ const Categories = () => {
   }, []);
 
   const handleClick = (category) => {
-    history.push(`/posts?filter[tag.name]=${category}`);
+    history.push(`/posts?filter[tags.name]=${category}`);
   };
 
   return <ChipFlow items={items} onHandleClick={handleClick} />;
