@@ -8,12 +8,16 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Pagination from "@material-ui/lab/Pagination";
 import PaginationItem from "@material-ui/lab/PaginationItem";
 import Skeleton from "@material-ui/lab/Skeleton";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 import Categories from "../../containers/post/Categories";
 import axios from "../../instance/axios";
 import AllTags from "../post/AllTags";
+
+dayjs.extend(relativeTime);
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -120,20 +124,23 @@ const PostList = (props) => {
                         </Typography>
                       </Grid>
                       {/* 标签 */}
-                      <Grid item>
-                        <Grid container spacing={1}>
-                          {item.tags.length !== 0 &&
-                            item.tags.map((tag) => (
-                              <Grid item key={tag.id}>
-                                <Chip
-                                  variant="outlined"
-                                  size="small"
-                                  label={tag.name}
-                                />
-                              </Grid>
-                            ))}
+                      <Hidden smDown>
+                        <Grid item>
+                          <Grid container spacing={1}>
+                            {item.tags.length !== 0 &&
+                              item.tags.map((tag) => (
+                                <Grid item key={tag.id}>
+                                  <Chip
+                                    variant="outlined"
+                                    size="small"
+                                    label={tag.name}
+                                  />
+                                </Grid>
+                              ))}
+                          </Grid>
                         </Grid>
-                      </Grid>
+                      </Hidden>
+                      <Grid item>{dayjs(item.updated_at).fromNow()}</Grid>
                     </Grid>
                   ) : (
                     <Grid item container xs={12} key={index} spacing={2}>
