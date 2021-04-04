@@ -3,7 +3,13 @@ import _ from "lodash";
 const defaultState = {
   chatBoard: [],
   message: "",
-  peoples: [],
+  peoples: [
+    {
+      id: 0,
+      name: "机器人",
+      email: undefined,
+    },
+  ],
 };
 
 const chat = (state = defaultState, action) => {

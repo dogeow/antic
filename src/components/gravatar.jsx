@@ -22,9 +22,13 @@ export default function (props) {
   return (
     <Avatar
       alt={props.alt}
-      src={`${gravatarCdn}/${md5(props.email)}.jpg?d=monsterid&s=${
-        props.size * 2
-      }`}
+      src={
+        props.email
+          ? `${gravatarCdn}/${md5(props.email)}.jpg?d=monsterid&s=${
+              props.size * 2
+            }`
+          : `${process.env.REACT_APP_CDN_URL}/Robot.svg`
+      }
       size={props.size}
       marginLeft={props.marginLeft}
     />
