@@ -46,6 +46,7 @@ const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
           <Chip
             key={index}
             variant="outlined"
+            size="small"
             label={option}
             {...getTagProps({ index })}
             onDelete={lab.userId && edit ? () => tagsDelete(option) : undefined}
@@ -57,6 +58,7 @@ const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
           {...params}
           variant="outlined"
           label="标签"
+          size="small"
           placeholder="新标签"
         />
       )}
