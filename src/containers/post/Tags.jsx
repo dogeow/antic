@@ -18,17 +18,12 @@ const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
   const classes = useStyles();
 
   const [allTags, setAllTags] = useState([]);
-  const [newTag, setNewTag] = useState([]);
 
   useEffect(() => {
     axios.get("/tags").then(({ data }) => {
       setAllTags(data);
     });
   }, []);
-
-  const handleSaveNewTag = (newValue) => {
-    tagsAdd(newValue);
-  };
 
   return edit ? (
     <Autocomplete
@@ -38,8 +33,7 @@ const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
       freeSolo
       value={tags.map((tag) => tag.name)}
       onChange={(event, newValue) => {
-        setNewTag(newValue);
-        handleSaveNewTag(newValue);
+        tagsAdd(newValue);
       }}
       renderTags={(value, getTagProps) =>
         value.map((option, index) => (
