@@ -102,7 +102,7 @@ const lab = (state = defaultState, action) => {
         ...state,
         post: {
           ...state.post,
-          tags: [...state.post.tags, action.payload],
+          tags: action.payload,
         },
       };
     }

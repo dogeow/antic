@@ -1,8 +1,10 @@
 import Chip from "@material-ui/core/Chip";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import React, { useState } from "react";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import React, { useEffect, useState } from "react";
+
+import axios from "../../instance/axios";
 
 const useStyles = makeStyles((theme) => ({
   tags: {
@@ -15,49 +17,49 @@ const useStyles = makeStyles((theme) => ({
 const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
   const classes = useStyles();
 
-  const [newTag, setNewTag] = useState("");
+  const [allTags, setAllTags] = useState([]);
+  const [newTag, setNewTag] = useState([]);
 
-  const handleNewTag = (e) => {
-    setNewTag(e.target.value);
-  };
+  useEffect(() => {
+    axios.get("/tags").then(({ data }) => {
+      setAllTags(data);
+    });
+  }, []);
 
-  const handleSaveNewTag = () => {
-    tagsAdd(newTag);
-    setNewTag("");
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      handleSaveNewTag();
-    }
+  const handleSaveNewTag = (newValue) => {
+    tagsAdd(newValue);
   };
 
   return edit ? (
-    <TextField
-      label="标签"
-      fullWidth
-      variant="outlined"
-      value={newTag}
-      size="small"
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            {tags.map((tag) => (
-              <Chip
-                key={tag.id}
-                label={tag.name}
-                variant="outlined"
-                size="small"
-                onDelete={
-                  lab.userId && edit ? () => tagsDelete(tag.name) : undefined
-                }
-              />
-            ))}
-          </InputAdornment>
-        ),
+    <Autocomplete
+      multiple
+      id="tags-filled"
+      options={allTags.map((option) => option.name)}
+      freeSolo
+      value={tags.map((tag) => tag.name)}
+      onChange={(event, newValue) => {
+        setNewTag(newValue);
+        handleSaveNewTag(newValue);
       }}
-      onChange={handleNewTag}
-      onKeyDown={handleKeyDown}
+      renderTags={(value, getTagProps) =>
+        value.map((option, index) => (
+          <Chip
+            key={index}
+            variant="outlined"
+            label={option}
+            {...getTagProps({ index })}
+            onDelete={lab.userId && edit ? () => tagsDelete(option) : undefined}
+          />
+        ))
+      }
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          variant="outlined"
+          label="标签"
+          placeholder="新标签"
+        />
+      )}
     />
   ) : (
     <div className={classes.tags}>
