@@ -56,7 +56,10 @@ const Footer = () => {
             <li>该实验室的各项功能都是测试版本</li>
             <li>因实验室只有自己在访问和使用，所以没有其他人的注册和信息</li>
             <li>拥抱新技术、新生态，做一个现代化的程序员</li>
-            <li>如有侵犯到您的权益，请及时联系我</li>
+            <li>
+              If there is any copyright infringement, please notify us at once
+              and we'll delete it.
+            </li>
           </ul>
         </Grid>
         <Grid item xs={12} sm={3}>

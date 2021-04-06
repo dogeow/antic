@@ -43,6 +43,10 @@ instance.interceptors.response.use(
   },
   (error) => {
     if (error.response) {
+      if (error.response.config.url === "/user/logout") {
+        return error;
+      }
+
       switch (error.response.status) {
         case 400:
           window.console.log(error);
