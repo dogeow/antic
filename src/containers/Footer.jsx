@@ -58,7 +58,7 @@ const Footer = () => {
             <li>拥抱新技术、新生态，做一个现代化的程序员</li>
             <li>
               If there is any copyright infringement, please notify us at once
-              and we'll delete it.
+              and we&apos;ll delete it.
             </li>
           </ul>
         </Grid>
