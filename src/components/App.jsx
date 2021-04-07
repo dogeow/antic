@@ -30,6 +30,9 @@ const App = ({ paletteMode }) => {
     palette: {
       type: paletteMode,
     },
+    typography: {
+      fontFamily: "'JetBrains Mono', monospace",
+    },
   });
 
   return (
