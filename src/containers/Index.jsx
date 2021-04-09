@@ -18,13 +18,7 @@ const Index = () => {
   useStyles();
 
   return (
-    <Grid
-      item
-      container
-      justify="center"
-      alignItems="center"
-      style={{ textAlign: "center", flexGrow: 1 }}
-    >
+    <>
       <Grid item xs={6}>
         <Link to="/posts">
           <span role="img" style={{ fontSize: "3rem" }}>
@@ -55,7 +49,7 @@ const Index = () => {
           <div>Demo</div>
         </Link>
       </Grid>
-    </Grid>
+    </>
   );
 };
 

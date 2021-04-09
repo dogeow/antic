@@ -52,7 +52,19 @@ const Spa = ({ match }) => {
       classes={ContainerClass}
     >
       <Header />
-      <Container maxWidth="lg">
+      <Grid
+        item
+        container
+        component={Container}
+        maxWidth="lg"
+        justify={match.url === "/" ? "center" : undefined}
+        alignItems={match.url === "/" ? "center" : undefined}
+        style={
+          match.url === "/"
+            ? { display: "flex", textAlign: "center", flexGrow: 1 }
+            : { display: "flex" }
+        }
+      >
         <Switch>
           <Route exact path="/" component={Index} />
           <Route exact path="/redirect" component={Redirect} />
@@ -286,7 +298,7 @@ const Spa = ({ match }) => {
           redirect
           <Route component={loadable(() => import("../containers/NoMatch"))} />
         </Switch>
-      </Container>
+      </Grid>
       {["/"].includes(match.url) && <Footer />}
       {["/"].includes(match.url) || (
         <ScrollUpButton
