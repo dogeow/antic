@@ -18,11 +18,11 @@ const useStyles = makeStyles((theme) => ({
         : `url(${process.env.REACT_APP_CDN_URL}/bg/${
             backgroundImg[Math.floor(Math.random() * backgroundImg.length)]
           }!/compress/true/fw/400)`,
-    backgroundPosition: "right top",
+    backgroundPosition: "right 20px bottom",
     backgroundRepeat: "no-repeat",
     backgroundSize: 200,
     minHeight: 200,
-    paddingTop: "2rem",
+    padding: "2rem 10px 0 10px",
     marginTop: "2rem",
     borderTop:
       theme.palette.type === "dark"
@@ -35,8 +35,14 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <footer style={{ lineHeight: 1.6 }}>
-      <Grid item container spacing={2} className={classes.footer}>
+    <>
+      <Grid
+        item
+        container
+        className={classes.footer}
+        component="footer"
+        style={{ lineHeight: 1.6 }}
+      >
         <Grid item xs={12} sm={5}>
           <Typography variant="h5" component="h3">
             说明
@@ -88,7 +94,7 @@ const Footer = () => {
         </Grid>
       </Grid>
       <HomeFooter />
-    </footer>
+    </>
   );
 };
 
