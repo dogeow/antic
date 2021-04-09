@@ -17,10 +17,6 @@ const useStyles = makeStyles({
     paddingLeft: 0,
     paddingRight: 0,
   },
-  low: {
-    paddingLeft: 4,
-    paddingRight: 4,
-  },
   backToTop: {
     position: "fixed",
     width: 50,
@@ -37,10 +33,8 @@ const Spa = ({ match }) => {
   let ContainerClass;
   if (["/nav", "/cars"].includes(match.url)) {
     ContainerClass = { root: classes.main };
-  } else if (["/chat"].includes(match.url)) {
-    ContainerClass = { root: classes.low };
   } else {
-    ContainerClass = null;
+    ContainerClass = undefined;
   }
 
   return (
@@ -49,7 +43,6 @@ const Spa = ({ match }) => {
       direction="column"
       maxWidth={["/posts/create", "/cars"].includes(match.url) ? false : "lg"}
       style={{ minHeight: "100vh" }}
-      classes={ContainerClass}
     >
       <Header />
       <Grid
@@ -58,6 +51,7 @@ const Spa = ({ match }) => {
         maxWidth="lg"
         justify={match.url === "/" ? "center" : undefined}
         alignItems={match.url === "/" ? "center" : undefined}
+        classes={ContainerClass}
         style={
           match.url === "/"
             ? { display: "flex", textAlign: "center", flexGrow: 1 }
