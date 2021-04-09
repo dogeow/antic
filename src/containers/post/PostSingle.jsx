@@ -86,6 +86,65 @@ const PostSingle = ({ postSave }) => {
 
   return (
     <>
+      <Grid item xs={12}>
+        {post ? (
+          <Grid item container alignItems="center" spacing={1}>
+            {post?.category && (
+              <Grid item>
+                <Link to={`/posts?filter[category.name]=${post.category.name}`}>
+                  <img
+                    src={`${process.env.REACT_APP_CDN_URL}/logo/${post.category.name}.svg`}
+                    alt={post.category.name}
+                    width="20"
+                    height="20"
+                  />
+                </Link>
+              </Grid>
+            )}
+            <Grid item style={{ flexGrow: 1 }}>
+              <Typography variant="h6" component="h2">
+                {parseInt(localStorage?.postId) === id
+                  ? localStorage.postTitle
+                  : post.title}
+              </Typography>
+            </Grid>
+            <Grid item>
+              <span style={{ color: "gray" }}>
+                <a onClick={handleEdit}>编辑</a>
+                {" | "}
+                <a onClick={handleDelete}>删除</a>
+              </span>
+            </Grid>
+          </Grid>
+        ) : (
+          <Skeleton variant="rect" height={41} width="40%" />
+        )}
+      </Grid>
+      <Grid item container spacing={1}>
+        <PostHeader
+          edit={false}
+          post={post}
+          handleEdit={handleEdit}
+          handleDelete={handleAlertDialogToggle}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <PostBody post={post} />
+      </Grid>
+      <Hr />
+      <Grid
+        item
+        xs={12}
+        style={{
+          borderColor: "gray",
+          borderLeftStyle: "solid",
+          borderLeftWidth: 2,
+          color: "gray",
+          marginBottom: 40,
+        }}
+      >
+        {quote}
+      </Grid>
       <AlertDialog
         open={alertDialogOpen}
         handleClose={handleAlertDialogToggle}
@@ -93,69 +152,6 @@ const PostSingle = ({ postSave }) => {
         content="确认删除这篇笔记吗？"
         agree={handleDelete}
       />
-      <Grid container spacing={2} alignItems="center">
-        <Grid item xs={12}>
-          {post ? (
-            <Grid item container alignItems="center" spacing={1}>
-              {post?.category && (
-                <Grid item>
-                  <Link
-                    to={`/posts?filter[category.name]=${post.category.name}`}
-                  >
-                    <img
-                      src={`${process.env.REACT_APP_CDN_URL}/logo/${post.category.name}.svg`}
-                      alt={post.category.name}
-                      width="20"
-                      height="20"
-                    />
-                  </Link>
-                </Grid>
-              )}
-              <Grid item style={{ flexGrow: 1 }}>
-                <Typography variant="h6" component="h2">
-                  {parseInt(localStorage?.postId) === id
-                    ? localStorage.postTitle
-                    : post.title}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <span style={{ color: "gray" }}>
-                  <a onClick={handleEdit}>编辑</a>
-                  {" | "}
-                  <a onClick={handleDelete}>删除</a>
-                </span>
-              </Grid>
-            </Grid>
-          ) : (
-            <Skeleton variant="rect" height={41} width="40%" />
-          )}
-        </Grid>
-        <Grid item container spacing={1}>
-          <PostHeader
-            edit={false}
-            post={post}
-            handleEdit={handleEdit}
-            handleDelete={handleAlertDialogToggle}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <PostBody post={post} />
-        </Grid>
-        <Hr />
-        <Grid
-          item
-          xs={12}
-          style={{
-            borderColor: "gray",
-            borderLeftStyle: "solid",
-            borderLeftWidth: 2,
-            color: "gray",
-            marginBottom: 40,
-          }}
-        >
-          {quote}
-        </Grid>
-      </Grid>
     </>
   );
 };
