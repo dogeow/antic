@@ -37,9 +37,6 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   sectionDesktop: {
     display: "none",
     [theme.breakpoints.up("md")]: {
@@ -180,7 +177,7 @@ const Header = ({
   return (
     <>
       <Search searching={searching} closeSearch={closeSearch} />
-      <header className={classes.root}>
+      <header>
         <Drawer open={toggleDrawer} onClick={onClickDrawer} />
         <AppBar position="static">
           <Container
