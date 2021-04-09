@@ -51,11 +51,8 @@ const Spa = ({ match }) => {
       style={{ minHeight: "100vh" }}
       classes={ContainerClass}
     >
-      <Grid item>
-        <Header />
-      </Grid>
+      <Header />
       <Grid
-        item
         container
         component={Container}
         maxWidth="lg"
