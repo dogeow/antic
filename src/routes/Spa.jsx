@@ -44,7 +44,7 @@ const Spa = ({ match }) => {
       maxWidth={["/posts/create", "/cars"].includes(match.url) ? false : "lg"}
       style={{ minHeight: "100vh" }}
     >
-      <Grid item style={{marginBottom: 16}>
+      <Grid item style={{ marginBottom: 16 }}>
         <Header />
       </Grid>
       <Grid
