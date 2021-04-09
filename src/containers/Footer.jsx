@@ -1,3 +1,4 @@
+import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,8 +23,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: 200,
     minHeight: 200,
-    padding: "2rem 10px 0 10px",
-    marginTop: "2rem",
+    paddingTop: "2rem ",
     borderTop:
       theme.palette.type === "dark"
         ? "1px dashed rgba(211,224,233,.15)"
@@ -35,7 +35,7 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <>
+    <Container maxWidth="lg">
       <Grid
         item
         container
@@ -94,7 +94,7 @@ const Footer = () => {
         </Grid>
       </Grid>
       <HomeFooter />
-    </>
+    </Container>
   );
 };
 
