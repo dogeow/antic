@@ -48,7 +48,6 @@ const Spa = ({ match }) => {
         <Header />
       </Grid>
       <Grid
-        item
         container
         component={Container}
         maxWidth="lg"
