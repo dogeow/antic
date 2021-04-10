@@ -31,7 +31,7 @@
 				color: rgba(127,255,255,0.75);
 				background: transparent;
 				outline: 1px solid rgba(127,255,255,0.75);
-				border: 0px;
+				border: 0;
 				padding: 5px 10px;
 				cursor: pointer;
 			}
@@ -60,26 +60,14 @@
 
 		<script>
 
-			const table = [
-				'铃华优子',
-				'新垣结衣',
-				'MJ',
-				'夏季大三角&猎户座',
-				'模拟赛车',
-				'编程',
-				'Key社&AIR',
-				'特斯拉',
-				'花',
-				'React',
-				'我的世界',
-				'猫',
-				'狗',
-				'音乐',
-				'树莓派',
-				'暴雪',
-				'塞尔达',
-				'Ubuntu',
-				'MediaWiki']
+      const table = [
+        'AIR.jpg', 'macbook.jpeg', '特斯拉.jpg', '守望先锋.png',
+        'Blizzard_Entertainment_Logo.svg', '狗.jpg', '塞尔达.png', '我的世界.png',
+        'Live_for_Speed.png', '猫.jpg', '滑板车.png', '夏季大三角.jpg',
+        'MJ.jpeg', '花.jpg', '宫崎骏.webp', '尼古拉斯凯奇.jpg',
+        'MediaWiki.png', '编程.jpg', '新垣结衣.jpg',
+        'React.svg', '音乐.jpg', '模拟赛车.jpg',
+        'Ubuntu.png', '树莓派.jpg', '铃华优子.jpg']
 
 			let camera, scene, renderer
 			let controls
@@ -107,7 +95,7 @@
 					element.className = 'element';
 
 					const img = new Image()
-					img.src = "https://upyun.dogeow.com/like/"+table[i]+'.jpg';
+					img.src = "https://upyun.dogeow.com/like/"+table[i];
                     img.width=140;
 					element.appendChild( img );
 
