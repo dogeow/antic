@@ -111,12 +111,8 @@ export default function Autocomplete(props) {
   }, [getEnvironmentProps, formRef, inputRef, panelRef]);
 
   return (
-    <div
-      className="aa-Autocomplete"
-      {...autocomplete.getRootProps({})}
-      style={{ padding: 10 }}
-    >
-      <div style={{ display: "flex" }}>
+    <div className="aa-Autocomplete" {...autocomplete.getRootProps({})}>
+      <div style={{ display: "flex", paddingTop: 10 }}>
         <form
           ref={formRef}
           className="aa-Form"

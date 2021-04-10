@@ -27,6 +27,18 @@ export default function App(props) {
           autoFocus={true}
           closeSearch={props.closeSearch}
         />
+        <div
+          style={{
+            position: "fixed",
+            bottom: 0,
+            right: 20,
+          }}
+        >
+          <img
+            src="https://upyun.dogeow.com/search-by-algolia-light-background.svg"
+            alt="algolia"
+          />
+        </div>
       </div>
     )
   );
