@@ -1,51 +1,37 @@
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import TreeItem from "@material-ui/lab/TreeItem";
-import TreeView from "@material-ui/lab/TreeView";
-import * as React from "react";
+import { gql, useQuery } from "@apollo/client";
+import React, { useEffect, useState } from "react";
 
-import chromeBookmarks from "../resources/Bookmarks.json";
-
-const subFolder = (project) => {
-  if (project.type === "folder") {
-    // 文件夹
-    return (
-      <TreeItem key={project.id} nodeId={project.id} label={project.name}>
-        {subFolder(project.children)}
-      </TreeItem>
-    );
+const BOOKMARKS = gql`
+  query {
+    bookmarks {
+      id
+      title
+      url
+    }
   }
-  if (project.type === "url") {
-    // 单个链接
-    return (
-      <a
-        key={project.id}
-        href={project.url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <TreeItem nodeId={project.id} label={project.name} />
-      </a>
-    );
-  }
-  // 子目录下的所有物件
-  const array = [];
-  project.map((children) => array.push(subFolder(children)));
+`;
 
-  return array;
-};
+export default () => {
+  const { data } = useQuery(BOOKMARKS);
+  const [bookmarks, setBookmarks] = useState([]);
 
-const bookmarks = chromeBookmarks.roots.bookmark_bar.children;
+  useEffect(() => {
+    if (data) {
+      setBookmarks(data.bookmarks);
+    }
+  }, [data]);
 
-const Bookmarks = () => {
   return (
-    <TreeView
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpandIcon={<ChevronRightIcon />}
-    >
-      {bookmarks.map((children) => subFolder(children))}
-    </TreeView>
+    <div style={{ lineHeight: "2rem" }}>
+      {bookmarks.map((bookmark) => {
+        return (
+          <div key={bookmark.id}>
+            <a href={bookmark.url} target="_blank" rel="noreferrer">
+              {bookmark.title}
+            </a>
+          </div>
+        );
+      })}
+    </div>
   );
 };
-
-export default Bookmarks;
