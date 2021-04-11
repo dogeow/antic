@@ -99,6 +99,7 @@ const PostList = (props) => {
                       key={item.id}
                       spacing={2}
                       alignItems="center"
+                      style={{ flexWrap: "nowrap" }}
                     >
                       {/* 分类 */}
                       <Grid item>

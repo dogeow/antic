@@ -60,6 +60,7 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "remark-gfm": "^1.0.0",
+    "remark-toc": "^7.2.0",
     "scroll-to-element": "^2.0.3",
     "socket.io-client": "2.3.0",
     "source-map-explorer": "^2.5.2",
