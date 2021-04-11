@@ -136,6 +136,7 @@ const PostSingle = ({ postSave }) => {
         item
         xs={12}
         style={{
+          paddingLeft: 10,
           borderColor: "gray",
           borderLeftStyle: "solid",
           borderLeftWidth: 2,
