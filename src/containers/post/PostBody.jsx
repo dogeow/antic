@@ -8,13 +8,11 @@ import CodeBlock from "../../components/CodeBlock";
 
 const PostBody = ({ post }) =>
   post?.content ? (
-    <ReactMarkdown
-      renderers={{ code: CodeBlock }}
-      plugins={[gfm, remarkToc]}
-      style={{ overflowWrap: " break-word" }}
-    >
-      {post.content}
-    </ReactMarkdown>
+    <div style={{ overflowWrap: "break-word" }}>
+      <ReactMarkdown renderers={{ code: CodeBlock }} plugins={[gfm, remarkToc]}>
+        {post.content}
+      </ReactMarkdown>
+    </div>
   ) : (
     <Skeleton variant="rect" height="60vh" />
   );
