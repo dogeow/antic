@@ -24,7 +24,7 @@ const defaultState = {
 const lab = (state = defaultState, action) => {
   switch (action.type) {
     case "CHANGE_USER":
-      logged(action);
+      logged(action.payload);
       return {
         ...state,
         isExpired: false,
