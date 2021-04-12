@@ -9,17 +9,11 @@ const Progress = () => {
       <h1>2021 年度计划（敦促）</h1>
       <Card>
         <CardContent>
-          <h2>英语</h2>
-          <ul>
-            <li>单词</li>
-            <li>阅读：短语、书籍（7天计划）</li>
-          </ul>
-          <h2>健康（跑步）</h2>
-          <h2>网站（PHP + JavaScript）</h2>
-          <ul>
-            <li>一个基础的网站</li>
-            <li>可以的话，实时 + Canvas</li>
-          </ul>
+          <h2>英语（单词、短语）</h2>
+          <h2>健康</h2>
+          <h2>网站（Laravel + React）</h2>
+          <h2>小程序、TDD</h2>
+          <h2>扩展包</h2>
         </CardContent>
       </Card>
     </Container>
