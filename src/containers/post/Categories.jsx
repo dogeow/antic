@@ -1,19 +1,31 @@
+import { gql, useQuery } from "@apollo/client";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
+const CATEGORIES = gql`
+  query {
+    categories {
+      id
+      name
+      count
+    }
+  }
+`;
+
 import ChipFlow from "../../components/ChipFlow";
-import axios from "../../instance/axios";
 
 const Categories = () => {
   const history = useHistory();
   const [items, setItems] = useState([]);
 
+  const { data } = useQuery(CATEGORIES);
+
   useEffect(() => {
-    axios.get("/posts/categories/count").then(({ data }) => {
-      setItems(data);
-    });
-  }, []);
+    if (data) {
+      setItems(data.categories);
+    }
+  }, [data]);
 
   const handleClick = (category) => {
     history.push(`/posts?filter[category.name]=${category}`);
