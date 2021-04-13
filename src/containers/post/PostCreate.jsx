@@ -3,8 +3,10 @@ import "../../styles/editor.css";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { green, red } from "@material-ui/core/colors";
 import Fab from "@material-ui/core/Fab";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import Switch from "@material-ui/core/Switch";
 import TextField from "@material-ui/core/TextField";
 import CheckIcon from "@material-ui/icons/Check";
 import ErrorIcon from "@material-ui/icons/ErrorOutline";
@@ -93,13 +95,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export default ({
-  post,
-  postSave,
-  postCategory,
-  postContentSave,
-  postTitle,
-}) => {
+export default ({ post, postSave, postModify, postContentSave, postTitle }) => {
   const classes = useStyles();
   const match = useRouteMatch();
 
@@ -111,6 +107,10 @@ export default ({
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState();
   const [inputValue, setInputValue] = useState("");
+
+  const handlePublicChange = (event) => {
+    postModify("public", event.target.checked);
+  };
 
   const editorRef = useRef(null);
 
@@ -154,6 +154,7 @@ export default ({
         content: post.content,
         category_id: category?.id,
         tags: post.tags,
+        public: post.public,
       },
     })
       .then(({ data }) => {
@@ -271,20 +272,35 @@ export default ({
         />
       </Grid>
       {/* 保存按钮 */}
-      <Grid item xs={12} style={{ position: "relative", textAlign: "center" }}>
-        <Fab
-          aria-label="save"
-          color="primary"
-          className={buttonClassname}
-          onClick={handlePost}
-        >
-          {success ? <CheckIcon /> : errors ? <ErrorIcon /> : <SaveIcon />}
-        </Fab>
-        <CircularProgress
-          size={68}
-          className={classes.fabProgress}
-          style={{ visibility: loading ? "visible" : "hidden" }}
-        />
+      <Grid container alignItems="center" justify="center">
+        <Grid item>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={post.public}
+                onChange={handlePublicChange}
+                name="public"
+                color="primary"
+              />
+            }
+            label="公开"
+          />
+        </Grid>
+        <Grid item>
+          <Fab
+            aria-label="save"
+            color="primary"
+            className={buttonClassname}
+            onClick={handlePost}
+          >
+            {success ? <CheckIcon /> : errors ? <ErrorIcon /> : <SaveIcon />}
+          </Fab>
+          <CircularProgress
+            size={68}
+            className={classes.fabProgress}
+            style={{ visibility: loading ? "visible" : "hidden" }}
+          />
+        </Grid>
       </Grid>
     </Grid>
   );

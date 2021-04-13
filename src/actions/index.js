@@ -15,6 +15,7 @@ export const loginAction = (user) => ({
 });
 // post
 export const postSave = createAction("POST_SAVE");
+export const postModify = createAction("POST_MODIFY");
 export const changeUser = createAction("CHANGE_USER");
 export const tagsDelete = createAction("TAGS_DELETE");
 export const tagsAdd = createAction("TAGS_ADD");
