@@ -95,7 +95,14 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-export default ({ post, postSave, postModify, postContentSave, postTitle }) => {
+export default ({
+  post,
+  postSave,
+  postModify,
+  postContentSave,
+  postTitle,
+  history,
+}) => {
   const classes = useStyles();
   const match = useRouteMatch();
 
@@ -162,6 +169,9 @@ export default ({ post, postSave, postModify, postContentSave, postTitle }) => {
         postSave(data);
         setSuccess(true);
         setLoading(false);
+        if (method === "post") {
+          history.replace(`/posts/${data.id}/edit`);
+        }
       })
       .catch(({ data }) => {
         const errors = data.errors;
