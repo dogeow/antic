@@ -277,7 +277,7 @@ export default ({ post, postSave, postModify, postContentSave, postTitle }) => {
           <FormControlLabel
             control={
               <Switch
-                checked={post.public}
+                checked={!!post.public}
                 onChange={handlePublicChange}
                 name="public"
                 color="primary"
