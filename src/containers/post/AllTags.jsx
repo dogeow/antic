@@ -1,19 +1,31 @@
+import { gql, useQuery } from "@apollo/client";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import ChipFlow from "../../components/ChipFlow";
-import axios from "../../instance/axios";
 
-const Categories = () => {
+const TAGS = gql`
+  query {
+    TagsCount {
+      id
+      name
+      count
+    }
+  }
+`;
+
+const AllTags = () => {
   const history = useHistory();
   const [items, setItems] = useState([]);
 
+  const { data } = useQuery(TAGS);
+
   useEffect(() => {
-    axios.get("/posts/tags/count").then(({ data }) => {
-      setItems(data);
-    });
-  }, []);
+    if (data) {
+      setItems(data.TagsCount);
+    }
+  }, [data]);
 
   const handleClick = (category) => {
     history.push(`/posts?filter[tags.name]=${category}`);
@@ -22,4 +34,4 @@ const Categories = () => {
   return <ChipFlow items={items} onHandleClick={handleClick} />;
 };
 
-export default Categories;
+export default AllTags;
