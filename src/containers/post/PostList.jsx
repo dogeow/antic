@@ -141,7 +141,9 @@ const PostList = (props) => {
                           </Grid>
                         </Grid>
                       </Hidden>
-                      <Grid item>{dayjs(item.updated_at).fromNow()}</Grid>
+                      <Grid item style={item.public ? null : { color: "red" }}>
+                        {dayjs(item.updated_at).fromNow()}
+                      </Grid>
                     </Grid>
                   ) : (
                     <Grid item container xs={12} key={index} spacing={2}>
