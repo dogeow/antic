@@ -24,12 +24,12 @@ const lab = (state = defaultState, action) => {
     case "POST_CATEGORY":
       return { ...state, category: action.payload };
     case "TAGS_DELETE": {
-      const newTags = state.post.tags;
+      const newTags = state.tags;
       _.remove(newTags, { name: action.payload });
       return { ...state, tags: newTags || [] };
     }
     case "TAGS_ADD": {
-      return { ...state, tags: action.payload };
+      return { ...state, tags: [...state.tags, action.payload] };
     }
     default:
       return state;
