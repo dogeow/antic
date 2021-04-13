@@ -78,7 +78,7 @@ const Footer = () => {
               <RouteLink to="/project/1">代办事项</RouteLink>
             </li>
             <li>
-              <RouteLink to="/powered-by">Powered by</RouteLink>
+              <RouteLink to="/powered_by">Powered by</RouteLink>
             </li>
             <Tooltip title="GitHub 存储库" aria-label="GitHub 存储库">
               <IconButton

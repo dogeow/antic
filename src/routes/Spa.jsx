@@ -243,7 +243,7 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../demo/Font"))}
           />
           <Route
-            path="/powered-by"
+            path="/powered_by"
             component={loadable(() => import("../containers/PoweredBy"), {
               fallback: <Loading />,
             })}
