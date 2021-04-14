@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -48,6 +48,14 @@ const POST_BY_ID_AND_QUOTE = gql`
   }
 `;
 
+const DELETE_POST_BY_ID = gql`
+  mutation($id: ID!) {
+    deletePost(id: $id) {
+      title
+    }
+  }
+`;
+
 const PostSingle = ({ postSave }) => {
   useStyles();
   const [post, setPost] = useState({});
@@ -57,6 +65,8 @@ const PostSingle = ({ postSave }) => {
   const history = useHistory();
   const match = useRouteMatch();
   const id = parseInt(match.params.id, 10);
+
+  const [deletePost] = useMutation(DELETE_POST_BY_ID);
 
   const { data } = useQuery(POST_BY_ID_AND_QUOTE, {
     variables: { id: id },
@@ -76,7 +86,7 @@ const PostSingle = ({ postSave }) => {
 
   const handleDelete = () => {
     setAlertDialogOpen(!alertDialogOpen);
-    axios.delete(`posts/${id}`);
+    deletePost({ variables: { id: id } });
     history.push("/posts");
   };
 
