@@ -1,10 +1,9 @@
+import { gql, useQuery } from "@apollo/client";
 import Chip from "@material-ui/core/Chip";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import React, { useEffect, useState } from "react";
-
-import axios from "../../instance/axios";
 
 const useStyles = makeStyles((theme) => ({
   tags: {
@@ -14,16 +13,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const TAGS = gql`
+  query {
+    tags {
+      id
+      name
+    }
+  }
+`;
+
 const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
   const classes = useStyles();
 
   const [allTags, setAllTags] = useState([]);
 
+  const { data } = useQuery(TAGS);
+
   useEffect(() => {
-    axios.get("/tags").then(({ data }) => {
-      setAllTags(data);
-    });
-  }, []);
+    if (data) {
+      setAllTags(data.tags);
+    }
+  }, [data]);
 
   return edit ? (
     <Autocomplete
