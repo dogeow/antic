@@ -1,17 +1,33 @@
+import { gql, useQuery } from "@apollo/client";
 import Grid from "@material-ui/core/Grid";
 import React, { useEffect, useState } from "react";
 
-import axios from "../instance/axios";
 import Card from "./Card";
+
+const LIKES = gql`
+  query {
+    likes {
+      id
+      name
+      sub_header
+      img
+      link
+      intro
+      feeling
+    }
+  }
+`;
 
 const Like = () => {
   const [like, setLike] = useState([]);
 
+  const { data } = useQuery(LIKES);
+
   useEffect(() => {
-    axios.get("like").then(({ data }) => {
-      setLike(data);
-    });
-  }, []);
+    if (data) {
+      setLike(data.likes);
+    }
+  }, [data]);
 
   return (
     <Grid container justify="flex-start" spacing={2}>
