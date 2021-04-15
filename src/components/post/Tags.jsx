@@ -5,19 +5,23 @@ import Tags from "../../containers/post/Tags";
 import axios from "../../instance/axios";
 
 const mapStateToProps = (state) => ({
-  tags: state.lab.post.tags,
+  tags: state.post.tags,
   lab: state.lab,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   tagsDelete: (tagName) => {
-    axios
-      .delete(`/posts/${ownProps.post.id}/tag`, { data: { name: tagName } })
-      .then(({ data: count }) => {
-        if (count === 1) {
-          dispatch(tagsDelete(tagName));
-        }
-      });
+    if (ownProps.post?.id) {
+      axios
+        .delete(`/posts/${ownProps.post.id}/tag`, { data: { name: tagName } })
+        .then(({ data: count }) => {
+          if (count === 1) {
+            dispatch(tagsDelete(tagName));
+          }
+        });
+    } else {
+      dispatch(tagsDelete(tagName));
+    }
   },
   tagsAdd: (tagName) => {
     if (ownProps.post?.id) {

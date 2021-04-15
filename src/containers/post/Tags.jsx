@@ -43,7 +43,7 @@ const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
       freeSolo
       value={tags.map((tag) => tag.name)}
       onChange={(event, newValue) => {
-        tagsAdd(newValue);
+        tagsAdd(event.target.value);
       }}
       renderTags={(value, getTagProps) =>
         value.map((option, index) => (
