@@ -19,6 +19,7 @@ export const postModify = createAction("POST_MODIFY");
 export const changeUser = createAction("CHANGE_USER");
 export const tagsDelete = createAction("TAGS_DELETE");
 export const tagsAdd = createAction("TAGS_ADD");
+export const tags = createAction("TAGS");
 export const postCategory = createAction("POST_CATEGORY");
 export const postContentSave = createAction("POST_CONTENT_SAVE");
 export const postTitle = createAction("POST_TITLE");

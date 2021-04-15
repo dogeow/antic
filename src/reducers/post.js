@@ -31,6 +31,9 @@ const lab = (state = defaultState, action) => {
     case "TAGS_ADD": {
       return { ...state, tags: [...state.tags, action.payload] };
     }
+    case "TAGS": {
+      return { ...state, tags: action.payload };
+    }
     default:
       return state;
   }
