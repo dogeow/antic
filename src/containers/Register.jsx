@@ -12,7 +12,6 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
 import React, { useEffect, useState } from "react";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert2";
 
@@ -28,7 +27,6 @@ import Password from "./auth/Password";
 import PasswordConfirmation from "./auth/PasswordConfirmation";
 import PhoneNumber from "./auth/PhoneNumber";
 import Verify from "./auth/Verify";
-import GoogleRecaptcha from "./Recaptcha";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -78,7 +76,6 @@ const Register = ({ history }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [token, setToken] = useState("");
   const [sentPhone, setSentPhone] = useState("");
   const [sentPhoneSuccess, setSentPhoneSuccess] = useState(false);
   const [verify, setVerify] = useState("");
@@ -94,12 +91,6 @@ const Register = ({ history }) => {
   const handleChange = (event, newValue) => {
     setTabIndex(newValue);
   };
-
-  useEffect(() => {
-    if (token) {
-      axios.post("/recaptcha", { token });
-    }
-  }, [token]);
 
   useEffect(() => {
     if (phoneNumber.length === 11 && sentPhone !== phoneNumber) {
@@ -166,22 +157,9 @@ const Register = ({ history }) => {
     setDisplayPassword(!displayPassword);
   };
 
-  const saveToken = (token) => {
-    setToken(token);
-  };
-
   return (
     <Container component="main" maxWidth="xs">
       <Loading open={open} />
-      {token === "" && (
-        <GoogleReCaptchaProvider
-          reCaptchaKey={process.env.REACT_APP_RECAPTCHA}
-          useRecaptchaNet
-          scriptProps={{ async: true, defer: true, appendTo: "body" }}
-        >
-          <GoogleRecaptcha onSaveToken={saveToken} />
-        </GoogleReCaptchaProvider>
-      )}
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
