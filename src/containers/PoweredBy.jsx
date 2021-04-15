@@ -2,7 +2,7 @@ import * as React from "react";
 
 export default function PowerBy() {
   return (
-    <>
+    <div style={{ flexFlow: "column" }}>
       <div>
         <h2>整体</h2>
         <ul>
@@ -54,6 +54,6 @@ export default function PowerBy() {
           <li>Overwatch Pointer</li>
         </ul>
       </div>
-    </>
+    </div>
   );
 }
