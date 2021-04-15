@@ -8,7 +8,10 @@ import rootReducer from "./reducers";
 const middlewareEnhancer = applyMiddleware(loggerMiddleware, thunkMiddleware);
 
 let composedEnhancers;
-if (process.env.NODE_ENV === "development") {
+if (
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+  process.env.NODE_ENV === "development"
+) {
   composedEnhancers = compose(
     middlewareEnhancer,
     monitorReducerEnhancer,
