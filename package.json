@@ -50,6 +50,7 @@
     "react-google-recaptcha-v3": "^1.8.0",
     "react-markdown": "^5.0.3",
     "react-markdown-editor-lite": "^1.2.4",
+    "react-markdown-heading": "^1.1.3",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",

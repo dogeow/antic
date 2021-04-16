@@ -2,8 +2,11 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import Skeleton from "@material-ui/lab/Skeleton";
+import clsx from "clsx";
 import React, { useEffect, useState } from "react";
+import ReactMarkdownHeading from "react-markdown-heading";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
 
 import AlertDialog from "../../components/AlertDialog";
@@ -13,6 +16,32 @@ import PostHeader from "./PostHeader";
 
 const useStyles = makeStyles((theme) => {
   return {
+    toc: {
+      display: "none",
+      position: "fixed",
+      top: 145,
+      right: 10,
+      minWidth: 100,
+      maxWidth: 350,
+      maxHeight: 500,
+      background: "grey",
+      overflowY: "auto",
+      zIndex: 1,
+      listStyleType: "none",
+      border: "1px solid #aaa",
+    },
+    displayToc: {
+      display: "block",
+      position: "fixed",
+      background: "grey",
+      padding: "5px 5px 0 5px",
+      top: 110,
+      right: 10,
+      zIndex: 1,
+    },
+    display: {
+      display: "block",
+    },
     "@global":
       theme.palette.type === "dark"
         ? {
@@ -56,16 +85,21 @@ const DELETE_POST_BY_ID = gql`
 `;
 
 const PostSingle = ({ postSave }) => {
-  useStyles();
+  const classes = useStyles();
   const [post, setPost] = useState({});
   const [quote, setQuote] = useState("");
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
+  const [menu, setMenu] = useState(false);
 
   const history = useHistory();
   const match = useRouteMatch();
   const id = parseInt(match.params.id, 10);
 
   const [deletePost] = useMutation(DELETE_POST_BY_ID);
+
+  const handleToggleMenu = () => {
+    setMenu(!menu);
+  };
 
   const { data } = useQuery(POST_BY_ID_AND_QUOTE, {
     variables: { id: id },
@@ -95,6 +129,19 @@ const PostSingle = ({ postSave }) => {
 
   return (
     <>
+      <div className={classes.displayToc} onClick={handleToggleMenu}>
+        <FormatListNumberedIcon />
+      </div>
+      <div
+        className={clsx(classes.toc, {
+          [classes.display]: menu === true,
+        })}
+      >
+        <ReactMarkdownHeading
+          markdown={post?.content ? post.content : ""}
+          hyperlink={true}
+        />
+      </div>
       <Grid item xs={12}>
         {post ? (
           <Grid item container alignItems="center" spacing={1}>
