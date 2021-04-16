@@ -1,7 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 
 const CATEGORIES = gql`
   query {
@@ -15,8 +14,7 @@ const CATEGORIES = gql`
 
 import ChipFlow from "../../components/ChipFlow";
 
-const Categories = () => {
-  const history = useHistory();
+const Categories = (props) => {
   const [items, setItems] = useState([]);
 
   const { data } = useQuery(CATEGORIES);
@@ -27,11 +25,12 @@ const Categories = () => {
     }
   }, [data]);
 
-  const handleClick = (category) => {
-    history.push(`/posts?filter[category.name]=${category}`);
-  };
-
-  return <ChipFlow items={items} onHandleClick={handleClick} />;
+  return (
+    <ChipFlow
+      items={items}
+      onHandleClick={(category) => props.changeCategory(category)}
+    />
+  );
 };
 
 export default Categories;

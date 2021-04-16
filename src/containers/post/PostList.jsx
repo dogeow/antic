@@ -53,22 +53,57 @@ const POST_LIST = gql`
   }
 `;
 
+const TAG = gql`
+  query($name: String!, $page: Int) {
+    tag(name: $name, first: 10, page: $page) {
+      data {
+        posts {
+          id
+          title
+          updated_at
+          public
+          category {
+            id
+            name
+          }
+          tags {
+            id
+            name
+          }
+        }
+      }
+      paginatorInfo {
+        perPage
+        currentPage
+        lastPage
+      }
+    }
+  }
+`;
+
 const CATEGORY = gql`
-  query($name: String!) {
-    category(name: $name) {
-      posts {
-        id
-        title
-        updated_at
-        public
-        category {
+  query($name: String!, $page: Int) {
+    category(name: $name, first: 10, page: $page) {
+      data {
+        posts {
           id
-          name
+          title
+          updated_at
+          public
+          category {
+            id
+            name
+          }
+          tags {
+            id
+            name
+          }
         }
-        tags {
-          id
-          name
-        }
+      }
+      paginatorInfo {
+        perPage
+        currentPage
+        lastPage
       }
     }
   }
@@ -82,6 +117,11 @@ const PostList = (props) => {
   const history = useHistory();
 
   const [getPosts, { data }] = useLazyQuery(POST_LIST);
+  const [getPostsByCategory, { data: postsByCategory }] = useLazyQuery(
+    CATEGORY
+  );
+
+  const [getPostsByTag, { data: postsByTag }] = useLazyQuery(TAG);
 
   useEffect(() => getPosts(), [getPosts]);
 
@@ -93,11 +133,32 @@ const PostList = (props) => {
     }
   }, [data]);
 
+  useEffect(() => {
+    if (postsByCategory) {
+      setPost(postsByCategory.category.data[0].posts);
+      setCurrPage(postsByCategory.category.paginatorInfo.currentPage);
+      setPageCount(postsByCategory.category.paginatorInfo.lastPage);
+    }
+  }, [postsByCategory]);
+
+  useEffect(() => {
+    if (postsByTag) {
+      setPost(postsByTag.tag.data[0].posts);
+      setCurrPage(postsByTag.tag.paginatorInfo.currentPage);
+      setPageCount(postsByTag.tag.paginatorInfo.lastPage);
+    }
+  }, [postsByTag]);
+
   const handlePage = (page) => {
     getPosts({ variables: { page: page } });
-    setPost(data.posts.data);
-    setCurrPage(data.posts.paginatorInfo.currentPage);
-    setPageCount(data.posts.paginatorInfo.lastPage);
+  };
+
+  const changeCategory = (name) => {
+    getPostsByCategory({ variables: { name } });
+  };
+
+  const changeTag = (name) => {
+    getPostsByTag({ variables: { name } });
   };
 
   const handleEnterPost = (item) => {
@@ -119,7 +180,7 @@ const PostList = (props) => {
         <Grid item xs={3}>
           <h2>分类</h2>
           <Paper className={classes.paper}>
-            <Categories />
+            <Categories changeCategory={changeCategory} />
           </Paper>
         </Grid>
       </Hidden>
@@ -145,16 +206,13 @@ const PostList = (props) => {
                     >
                       {/* 分类 */}
                       <Grid item>
-                        <Link
-                          to={`/posts?filter[category.name]=${item?.category.name}`}
-                        >
-                          <img
-                            src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category.name}.svg`}
-                            alt={item.category.name}
-                            width="20"
-                            height="20"
-                          />
-                        </Link>
+                        <img
+                          src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category.name}.svg`}
+                          alt={item.category.name}
+                          width="20"
+                          height="20"
+                          onClick={() => changeCategory(item?.category.name)}
+                        />
                       </Grid>
                       {/* 标题 */}
                       <Grid item style={{ flexGrow: 1 }}>
@@ -224,7 +282,7 @@ const PostList = (props) => {
         <Grid item xs={3}>
           <h2>标签</h2>
           <Paper className={classes.paper}>
-            <AllTags />
+            <AllTags changeTag={changeTag} />
           </Paper>
         </Grid>
       </Hidden>

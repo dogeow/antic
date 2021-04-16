@@ -1,7 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 
 import ChipFlow from "../../components/ChipFlow";
 
@@ -15,8 +14,7 @@ const TAGS = gql`
   }
 `;
 
-const AllTags = () => {
-  const history = useHistory();
+const AllTags = (props) => {
   const [items, setItems] = useState([]);
 
   const { data } = useQuery(TAGS);
@@ -27,11 +25,9 @@ const AllTags = () => {
     }
   }, [data]);
 
-  const handleClick = (category) => {
-    history.push(`/posts?filter[tags.name]=${category}`);
-  };
-
-  return <ChipFlow items={items} onHandleClick={handleClick} />;
+  return (
+    <ChipFlow items={items} onHandleClick={(tag) => props.changeTag(tag)} />
+  );
 };
 
 export default AllTags;
