@@ -1,5 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
-import { useLazyQuery } from "@apollo/client";
+import { gql, useLazyQuery } from "@apollo/client";
 import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
@@ -13,7 +12,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import Categories from "../../containers/post/Categories";
 import AllTags from "../post/AllTags";
