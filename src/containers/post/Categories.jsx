@@ -23,7 +23,7 @@ const Categories = () => {
 
   useEffect(() => {
     if (data) {
-      setItems(data.categories);
+      setItems(_.orderBy(data.categories, ["count"], ["desc"]));
     }
   }, [data]);
 
