@@ -1,5 +1,6 @@
 import "../../styles/editor.css";
 
+import { gql, useLazyQuery } from "@apollo/client";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { green, red } from "@material-ui/core/colors";
 import Fab from "@material-ui/core/Fab";
@@ -95,6 +96,26 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
+const POST_BY_ID = gql`
+  query($id: Int!) {
+    post(id: $id) {
+      id
+      title
+      content
+      updated_at
+      public
+      category {
+        id
+        name
+      }
+      tags {
+        id
+        name
+      }
+    }
+  }
+`;
+
 export default ({
   post,
   postSave,
@@ -115,29 +136,37 @@ export default ({
   const [category, setCategory] = useState();
   const [inputValue, setInputValue] = useState("");
 
-  const handlePublicChange = (event) => {
-    postModify("public", event.target.checked);
-  };
+  const [getPost, { data }] = useLazyQuery(POST_BY_ID);
 
-  const editorRef = useRef(null);
+  useEffect(() => {
+    if (data) {
+      postSave(data.post);
+      setCategory(data.post.category.name);
+      setInputValue(data.post.category.name);
+    }
+  }, [data, postSave]);
 
   useEffect(() => {
     if (match.params.id) {
       setEdit(true);
       setId(match.params.id);
-      axios.get(`posts/${match.params.id}`).then(({ data }) => {
-        postSave(data);
-        setCategory(data.category);
-        setInputValue(data.category.name);
+      getPost({
+        variables: { id: parseInt(match.params.id) },
       });
     }
-  }, [match.params.id, postSave]);
+  }, [getPost, match.params.id]);
 
   useEffect(() => {
     axios.get("categories").then(({ data }) => {
       setCategories(data);
     });
   }, []);
+
+  const handlePublicChange = (event) => {
+    postModify("public", event.target.checked);
+  };
+
+  const editorRef = useRef(null);
 
   const buttonClassname = errors
     ? clsx({ [classes.buttonError]: errors })
