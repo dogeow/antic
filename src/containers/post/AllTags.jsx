@@ -23,7 +23,7 @@ const AllTags = () => {
 
   useEffect(() => {
     if (data) {
-      setItems(data.TagsCount);
+      setItems(_.orderBy(data.TagsCount, ["count"], ["desc"]));
     }
   }, [data]);
 
