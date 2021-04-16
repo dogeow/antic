@@ -1,3 +1,5 @@
+import { gql, useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
@@ -11,10 +13,9 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import React, { useEffect, useState } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import Categories from "../../containers/post/Categories";
-import axios from "../../instance/axios";
 import AllTags from "../post/AllTags";
 
 dayjs.extend(relativeTime);
@@ -26,36 +27,77 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const POST_LIST = gql`
+  query($page: Int) {
+    posts(first: 10, page: $page) {
+      data {
+        id
+        title
+        updated_at
+        public
+        category {
+          id
+          name
+        }
+        tags {
+          id
+          name
+        }
+      }
+      paginatorInfo {
+        perPage
+        currentPage
+        lastPage
+      }
+    }
+  }
+`;
+
+const CATEGORY = gql`
+  query($name: String!) {
+    category(name: $name) {
+      posts {
+        id
+        title
+        updated_at
+        public
+        category {
+          id
+          name
+        }
+        tags {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
+
 const PostList = (props) => {
   const classes = useStyles();
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState([]);
   const [pageCount, setPageCount] = useState();
   const [currPage, setCurrPage] = useState(1);
-  const location = useLocation();
   const history = useHistory();
 
+  const [getPosts, { data }] = useLazyQuery(POST_LIST);
+
+  useEffect(() => getPosts(), [getPosts]);
+
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const categoryValue = searchParams.get("filter[category.name]");
-    const category =
-      categoryValue !== null ? `?filter[category.name]=${categoryValue}` : "";
-
-    const tagValue = searchParams.get("filter[tags.name]");
-    const tag = tagValue !== null ? `?filter[tags.name]=${tagValue}` : "";
-
-    axios.get(`posts${category}${tag}`).then(({ data }) => {
-      setPost(data);
-      setCurrPage(data.current_page);
-      setPageCount(data.last_page);
-    });
-  }, [location]);
+    if (data) {
+      setPost(data.posts.data);
+      setCurrPage(data.posts.paginatorInfo.currentPage);
+      setPageCount(data.posts.paginatorInfo.lastPage);
+    }
+  }, [data]);
 
   const handlePage = (page) => {
-    axios.get(`posts?page[number]=${page}`).then(({ data }) => {
-      setPost(data);
-      setCurrPage(page);
-      setPageCount(data.last_page);
-    });
+    getPosts({ variables: { page: page } });
+    setPost(data.posts.data);
+    setCurrPage(data.posts.paginatorInfo.currentPage);
+    setPageCount(data.posts.paginatorInfo.lastPage);
   };
 
   const handleEnterPost = (item) => {
@@ -90,7 +132,7 @@ const PostList = (props) => {
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               <Grid container spacing={2}>
-                {(post.data || Array.from(new Array(6))).map((item, index) => {
+                {(post || Array.from(new Array(6))).map((item, index) => {
                   return item ? (
                     <Grid
                       item
@@ -164,7 +206,7 @@ const PostList = (props) => {
               page={currPage}
               count={pageCount}
               hidePrevButton={currPage <= 1}
-              hideNextButton={currPage >= post.last_page}
+              hideNextButton={currPage >= pageCount}
               renderItem={(item) =>
                 pageCount > 0 && (
                   <PaginationItem
