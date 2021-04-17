@@ -15,20 +15,18 @@ const User = () => {
   )}.jpg?d=monsterid&s=300`;
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} alignItems="center">
       <Grid item>
-        <div className="box">
-          <Avatar
-            alt={state.lab.user_name}
-            src={avatar}
-            style={{ width: 150, height: 150 }}
-          />
-        </div>
+        <Avatar
+          alt={state.lab.user_name}
+          src={avatar}
+          style={{ width: 150, height: 150 }}
+        />
       </Grid>
       <Grid item>
-        <Grid>ID：{state.lab.userId}</Grid>
-        <Grid>昵称：{state.lab.userName}</Grid>
-        <Grid>邮箱：{state.lab.userEmail}</Grid>
+        <div>ID：{state.lab.userId}</div>
+        <div>昵称：{state.lab.userName}</div>
+        <div>邮箱：{state.lab.userEmail}</div>
       </Grid>
       <Grid item xs={12}>
         <ul>
