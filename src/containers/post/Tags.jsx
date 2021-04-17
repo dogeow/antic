@@ -69,8 +69,8 @@ const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
     />
   ) : (
     <div className={classes.tags}>
-      {tags.map((tag) => (
-        <Chip key={tag.id} label={tag.name} variant="outlined" size="small" />
+      {tags.map((tag, index) => (
+        <Chip key={index} label={tag.name} variant="outlined" size="small" />
       ))}
     </div>
   );
