@@ -209,17 +209,22 @@ const Header = ({
                 </div>
               )}
               <div className={classes.blank} />
-              <Tooltip title="搜索笔记" aria-label="搜索笔记">
+              <Tooltip
+                title="搜索笔记"
+                aria-label="搜索笔记"
+                onClick={handleSearch}
+              >
                 <IconButton color="inherit">
-                  <SearchIcon onClick={handleSearch} />
+                  <SearchIcon />
                 </IconButton>
               </Tooltip>
               <Hidden only="xs">
                 <Tooltip
                   title="切换白天或夜晚主题"
                   aria-label="切换白天或夜晚主题"
+                  onClick={onThemeClick}
                 >
-                  <IconButton color="inherit" onClick={onThemeClick}>
+                  <IconButton color="inherit">
                     {lab.paletteMode === "dark" ? (
                       <NightsStayIcon />
                     ) : (
@@ -227,8 +232,12 @@ const Header = ({
                     )}
                   </IconButton>
                 </Tooltip>
-                <Tooltip title="播放音乐" aria-label="播放音乐">
-                  <IconButton color="inherit" onClick={playMusic}>
+                <Tooltip
+                  title="播放音乐"
+                  aria-label="播放音乐"
+                  onClick={playMusic}
+                >
+                  <IconButton color="inherit">
                     {playing === true ? (
                       <PauseCircleOutlineIcon />
                     ) : (
@@ -299,7 +308,7 @@ const Header = ({
                         {lab.userName}
                       </div>
                     </RouteLink>
-                    {lab.users.map((user) => {
+                    {lab.users.map((user, index) => {
                       return (
                         user.userEmail !== lab.userEmail && (
                           <MenuItem
@@ -307,6 +316,7 @@ const Header = ({
                               onChangeUser(user);
                               handleCloseProfile();
                             }}
+                            key={index}
                           >
                             <Avatar
                               alt={user.userName}
@@ -347,12 +357,11 @@ const Header = ({
                   </Menu>
                 </div>
               )}
-              <Tooltip title="更多" aria-label="更多">
+              <Tooltip title="更多" aria-label="更多" onClick={handleMenu}>
                 <IconButton
                   aria-label="show more"
                   aria-controls="menu"
                   aria-haspopup="true"
-                  onClick={handleMenu}
                   color="inherit"
                 >
                   <MoreIcon />

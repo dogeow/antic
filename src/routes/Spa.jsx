@@ -41,7 +41,7 @@ const Spa = ({ match }) => {
     <Grid
       container
       direction="column"
-      maxWidth={["/posts/create", "/cars"].includes(match.url) ? false : "lg"}
+      maxwidth={["/posts/create", "/cars"].includes(match.url) ? false : "lg"}
       style={{ minHeight: "100vh" }}
     >
       <Grid item style={{ marginBottom: 16 }}>
