@@ -4,10 +4,11 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
+import InputBase from "@material-ui/core/InputBase";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Snackbar from "@material-ui/core/Snackbar";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -23,8 +24,9 @@ import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import MuiAlert from "@material-ui/lab/Alert";
 import md5 from "md5";
 import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link as RouteLink, useLocation } from "react-router-dom";
+import { useEvent, useList } from "react-use";
 
 import Drawer from "../components/Drawer";
 import Logo from "../components/Logo";
@@ -37,24 +39,29 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const useStyles = makeStyles((theme) => ({
-  sectionDesktop: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "flex",
-    },
-  },
-  sectionMobile: {
-    display: "flex",
-    [theme.breakpoints.up("md")]: {
-      display: "none",
-    },
-  },
   blank: {
     flexGrow: 1,
   },
   containerRoot: {
     paddingLeft: 0,
     paddingRight: 0,
+  },
+  search: {
+    display: "flex",
+    padding: 4,
+    alignItems: "center",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+  },
+  searchIcon: {
+    paddingRight: 4,
+  },
+  inputInput: {
+    width: "8ch",
+    textAlign: "center",
   },
 }));
 
@@ -93,6 +100,7 @@ const Header = ({
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [searching, setSearching] = useState(false);
+  const [metaKey, setMetaKey] = useState(false);
 
   useEffect(() => {
     if (playing) {
@@ -115,6 +123,27 @@ const Header = ({
       };
     }
   }, [playing]);
+
+  const onKeyDown = useCallback(
+    ({ key }) => {
+      // 不在搜索时才记录 Meta
+      if (key === "Meta" && searching === false) {
+        setMetaKey(true);
+      } else if (key === "k" && metaKey) {
+        if (searching) {
+          setSearching(false);
+        } else {
+          handleSearch();
+        }
+        setMetaKey(false);
+      } else if (key === "Escape" && searching) {
+        setSearching(false);
+      }
+    },
+    [searching, metaKey]
+  );
+
+  useEvent("keydown", onKeyDown);
 
   /**
    * 设置开关
@@ -209,15 +238,31 @@ const Header = ({
                 </div>
               )}
               <div className={classes.blank} />
-              <Tooltip
-                title="搜索笔记"
-                aria-label="搜索笔记"
-                onClick={handleSearch}
-              >
-                <IconButton color="inherit">
-                  <SearchIcon />
-                </IconButton>
-              </Tooltip>
+              <Hidden smDown>
+                <div className={classes.search} onFocus={handleSearch}>
+                  <InputBase
+                    placeholder="⌘ + k"
+                    classes={{
+                      input: classes.inputInput,
+                    }}
+                    inputProps={{ "aria-label": "search" }}
+                  />
+                  <div className={classes.searchIcon} onClick={handleSearch}>
+                    <SearchIcon />
+                  </div>
+                </div>
+              </Hidden>
+              <Hidden mdUp>
+                <Tooltip
+                  title="搜索笔记"
+                  aria-label="搜索笔记"
+                  onClick={handleSearch}
+                >
+                  <IconButton color="inherit">
+                    <SearchIcon />
+                  </IconButton>
+                </Tooltip>
+              </Hidden>
               <Hidden only="xs">
                 <Tooltip
                   title="切换白天或夜晚主题"
