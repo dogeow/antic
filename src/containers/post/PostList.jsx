@@ -28,7 +28,11 @@ const useStyles = makeStyles((theme) => ({
 
 const POST_LIST = gql`
   query($page: Int) {
-    posts(first: 10, page: $page) {
+    posts(
+      first: 10
+      page: $page
+      orderBy: [{ column: UPDATED_AT, order: DESC }]
+    ) {
       data {
         id
         title
