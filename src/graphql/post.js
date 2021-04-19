@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const POST_LIST = () => gql`
+const POST_LIST = gql`
   query($page: Int) {
     posts(
       first: 10
@@ -30,7 +30,7 @@ export const POST_LIST = () => gql`
   }
 `;
 
-export const CATEGORY = () => gql`
+const CATEGORY = gql`
   query($name: String!, $page: Int) {
     category(name: $name, first: 10, page: $page) {
       data {
@@ -58,7 +58,7 @@ export const CATEGORY = () => gql`
   }
 `;
 
-export const TAG = () => gql`
+const TAG = gql`
   query($name: String!, $page: Int) {
     tag(name: $name, first: 10, page: $page) {
       data {
@@ -85,3 +85,15 @@ export const TAG = () => gql`
     }
   }
 `;
+
+const TAGS = gql`
+  query {
+    TagsCount {
+      id
+      name
+      count
+    }
+  }
+`;
+
+export { POST_LIST, CATEGORY, TAG, TAGS };

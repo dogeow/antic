@@ -16,6 +16,7 @@ import ChipFlow from "../../components/ChipFlow";
 
 const Categories = (props) => {
   const [items, setItems] = useState([]);
+  const [category, setCategory] = useState(undefined);
 
   const { data } = useQuery(CATEGORIES);
 
@@ -28,7 +29,11 @@ const Categories = (props) => {
   return (
     <ChipFlow
       items={items}
-      onHandleClick={(category) => props.changeCategory(category)}
+      currentSelect={category}
+      onHandleClick={(category) => {
+        setCategory(category);
+        props.changeCategory(category);
+      }}
     />
   );
 };

@@ -1,21 +1,13 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import * as React from "react";
 import { useEffect, useState } from "react";
 
 import ChipFlow from "../../components/ChipFlow";
-
-const TAGS = gql`
-  query {
-    TagsCount {
-      id
-      name
-      count
-    }
-  }
-`;
+import { TAGS } from "../../graphql/post";
 
 const AllTags = (props) => {
   const [items, setItems] = useState([]);
+  const [tag, setTag] = useState(undefined);
 
   const { data } = useQuery(TAGS);
 
@@ -26,7 +18,14 @@ const AllTags = (props) => {
   }, [data]);
 
   return (
-    <ChipFlow items={items} onHandleClick={(tag) => props.changeTag(tag)} />
+    <ChipFlow
+      items={items}
+      currentSelect={tag}
+      onHandleClick={(tag) => {
+        setTag(tag);
+        props.changeTag(tag);
+      }}
+    />
   );
 };
 
