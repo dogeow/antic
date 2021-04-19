@@ -15,8 +15,8 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Categories from "../../containers/post/Categories";
+import { CATEGORY, POST_LIST, TAG } from "../../graphql/post";
 import AllTags from "../post/AllTags";
-
 dayjs.extend(relativeTime);
 
 const useStyles = makeStyles((theme) => ({
@@ -25,92 +25,6 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
   },
 }));
-
-const POST_LIST = gql`
-  query($page: Int) {
-    posts(
-      first: 10
-      page: $page
-      orderBy: [{ column: UPDATED_AT, order: DESC }]
-    ) {
-      data {
-        id
-        title
-        updated_at
-        public
-        category {
-          id
-          name
-        }
-        tags {
-          id
-          name
-        }
-      }
-      paginatorInfo {
-        perPage
-        currentPage
-        lastPage
-      }
-    }
-  }
-`;
-
-const TAG = gql`
-  query($name: String!, $page: Int) {
-    tag(name: $name, first: 10, page: $page) {
-      data {
-        posts {
-          id
-          title
-          updated_at
-          public
-          category {
-            id
-            name
-          }
-          tags {
-            id
-            name
-          }
-        }
-      }
-      paginatorInfo {
-        perPage
-        currentPage
-        lastPage
-      }
-    }
-  }
-`;
-
-const CATEGORY = gql`
-  query($name: String!, $page: Int) {
-    category(name: $name, first: 10, page: $page) {
-      data {
-        posts {
-          id
-          title
-          updated_at
-          public
-          category {
-            id
-            name
-          }
-          tags {
-            id
-            name
-          }
-        }
-      }
-      paginatorInfo {
-        perPage
-        currentPage
-        lastPage
-      }
-    }
-  }
-`;
 
 const PostList = (props) => {
   const classes = useStyles();
