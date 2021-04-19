@@ -294,7 +294,6 @@ const Spa = ({ match }) => {
             path="/test"
             component={loadable(() => import("../containers/Test"))}
           />
-          redirect
           <Route component={loadable(() => import("../containers/NoMatch"))} />
         </Switch>
       </Grid>
