@@ -1,4 +1,4 @@
-import { gql, useLazyQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";

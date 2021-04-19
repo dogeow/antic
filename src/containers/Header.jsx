@@ -26,7 +26,7 @@ import md5 from "md5";
 import PropTypes from "prop-types";
 import React, { useCallback, useEffect, useState } from "react";
 import { Link as RouteLink, useLocation } from "react-router-dom";
-import { useEvent, useList } from "react-use";
+import { useEvent } from "react-use";
 
 import Drawer from "../components/Drawer";
 import Logo from "../components/Logo";
