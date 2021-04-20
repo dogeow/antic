@@ -1,9 +1,18 @@
+import Grid from "@material-ui/core/Grid";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 import React, { useEffect, useRef, useState } from "react";
 
 const musics = ["大声说爱我 - 刘依纯.mp3", "和楽器バンド - 東風破.mp3"];
 
 const Music = () => {
   const [no, setNo] = useState(0);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
 
   const audio = useRef(null);
 
@@ -28,27 +37,39 @@ const Music = () => {
   };
 
   return (
-    <div>
-      <div>
-        {musics.map((music, index) => {
-          return (
-            <div key={index} onClick={() => playMusic(index)}>
-              {music === musics[no] ? "➡️" + music : music}
-            </div>
-          );
-        })}
-      </div>
-      <audio
-        id="music"
-        ref={audio}
-        src={`${process.env.REACT_APP_CDN_URL}/music/${musics[no]}`}
-        controls="controls"
-        preload="auto"
-        controlsList="nodownload"
-      >
-        你的浏览器不支持audio标签
-      </audio>
-      <div>
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <List component="nav" dense="true" aria-label="main mailbox folders">
+          {musics.map((music, index) => {
+            return (
+              <ListItem
+                button
+                key={index}
+                selected={selectedIndex === index}
+                onClick={(event) => {
+                  handleListItemClick(event, index);
+                  playMusic(index);
+                }}
+              >
+                <ListItemText primary={music} />
+              </ListItem>
+            );
+          })}
+        </List>
+      </Grid>
+      <Grid item xs={12}>
+        <audio
+          id="music"
+          ref={audio}
+          src={`${process.env.REACT_APP_CDN_URL}/music/${musics[no]}`}
+          controls="controls"
+          preload="auto"
+          controlsList="nodownload"
+        >
+          你的浏览器不支持audio标签
+        </audio>
+      </Grid>
+      <Grid item xs={12}>
         <button type="button" onClick={() => audio.current.play()}>
           播放声音
         </button>
@@ -71,8 +92,8 @@ const Music = () => {
         >
           降低音量
         </button>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 };
 
