@@ -156,7 +156,7 @@ const Moon = () => {
             <h1>来吗？</h1>
           </Grid>
           <Grid item xs={12}>
-            <img src="${cdn}Roll_the_dice.jpg" width="75" alt="roll" />
+            <img src={`${cdn}Roll_the_dice.jpg`} width="75" alt="roll" />
           </Grid>
           <Grid item xs={12}>
             <TextField
