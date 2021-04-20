@@ -12,6 +12,12 @@ const Demo = () => (
           <Link to="/base64">Base64</Link>
         </li>
         <li>
+          <Link to="/music">音乐播放器</Link>
+        </li>
+        <li>
+          <Link to="/moon">博饼月🥮</Link>
+        </li>
+        <li>
           <Link to="/copywriting">文案编辑</Link>
         </li>
         <li>

@@ -10,7 +10,7 @@ const videoJsOptions = {
   controls: true,
   sources: [
     {
-      src: "https://upyun.dogeow.com/medias/mv.mp4",
+      src: `${process.env.REACT_APP_CDN_URL}medias/mv.mp4`,
       type: "video/mp4",
     },
   ],
