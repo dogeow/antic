@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const musics = ["大声说爱我 - 刘依纯.mp3", "和楽器バンド - 東風破.mp3"];
 
@@ -22,12 +22,19 @@ const Music = () => {
     return audio.current.removeEventListener("ended", () => musicEnd(), false);
   });
 
+  const playMusic = (index) => {
+    setNo(index);
+    audio.current.autoplay = 1;
+  };
+
   return (
     <div>
       <div>
         {musics.map((music, index) => {
           return (
-            <div key={index}>{music === musics[no] ? "➡️" + music : music}</div>
+            <div key={index} onClick={() => playMusic(index)}>
+              {music === musics[no] ? "➡️" + music : music}
+            </div>
           );
         })}
       </div>
@@ -42,22 +49,16 @@ const Music = () => {
         你的浏览器不支持audio标签
       </audio>
       <div>
-        <button
-          type="button"
-          onClick={() => document.getElementById("music").play()}
-        >
+        <button type="button" onClick={() => audio.current.play()}>
           播放声音
         </button>
-        <button
-          type="button"
-          onClick={() => document.getElementById("music").pause()}
-        >
+        <button type="button" onClick={() => audio.current.pause()}>
           暂停声音
         </button>
         <button
           type="button"
           onClick={() => {
-            document.getElementById("music").volume += 0.1;
+            audio.current.volume += 0.1;
           }}
         >
           提高音量
@@ -65,7 +66,7 @@ const Music = () => {
         <button
           type="button"
           onClick={() => {
-            document.getElementById("music").volume -= 0.1;
+            audio.current.volume -= 0.1;
           }}
         >
           降低音量
