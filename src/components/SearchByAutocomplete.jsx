@@ -112,7 +112,7 @@ export default function Autocomplete(props) {
 
   return (
     <div className="aa-Autocomplete" {...autocomplete.getRootProps({})}>
-      <div style={{ display: "flex", paddingTop: 10 }}>
+      <div style={{ display: "flex", padding: 4 }}>
         <form
           ref={formRef}
           className="aa-Form"
@@ -146,6 +146,7 @@ export default function Autocomplete(props) {
             border: 0,
             color: "#5468ff",
             backgroundColor: "none",
+            marginLeft: 4,
           }}
           onClick={props.closeSearch}
         >
