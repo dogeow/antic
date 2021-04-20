@@ -290,10 +290,6 @@ const Spa = ({ match }) => {
             path="/money"
             component={loadable(() => import("../containers/Money"))}
           />
-          <Route
-            path="/test"
-            component={loadable(() => import("../containers/Test"))}
-          />
           <Route component={loadable(() => import("../containers/NoMatch"))} />
         </Switch>
       </Grid>

@@ -109,8 +109,8 @@ const Money = () => {
   };
 
   return (
-    <>
-      <div>
+    <Grid container>
+      <Grid item xs={12}>
         <h2 style={{ textAlign: "center" }}>
           <TextField
             id="remaining"
@@ -158,12 +158,12 @@ const Money = () => {
           <AddCircleIcon fontSize="large" onClick={addNew} />
         </div>
         <h2 style={{ textAlign: "right" }}>= {newRemaining}</h2>
-      </div>
+      </Grid>
       {billText !== "" && (
-        <div>
+        <Grid item xs={12}>
           {billText}
           <ClipboardButton text={billText} handleClick={handleClick} />
-        </div>
+        </Grid>
       )}
       <Snackbar
         anchorOrigin={{
@@ -178,7 +178,7 @@ const Money = () => {
           复制成功
         </Alert>
       </Snackbar>
-    </>
+    </Grid>
   );
 };
 

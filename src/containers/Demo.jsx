@@ -15,6 +15,9 @@ const Demo = () => (
           <Link to="/copywriting">文案编辑</Link>
         </li>
         <li>
+          <Link to="/money">记账</Link>
+        </li>
+        <li>
           <a href="/demos/jqueryselectors" target="_blank">
             jQuery 选择器在线测试
           </a>
