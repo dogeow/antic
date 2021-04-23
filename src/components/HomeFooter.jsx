@@ -1,5 +1,6 @@
 import Grid from "@material-ui/core/Grid";
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 import Used from "../components/Used";
 import Record from "../resources/beian";
@@ -28,7 +29,19 @@ export default function () {
         <Used />
       </Grid>
       <Grid item>
-        Built By 小李世界 with <Heart />
+        Built By{" "}
+        <Link
+          to="/about"
+          style={{
+            textDecorationLine: "underline",
+            textDecorationStyle: "wavy",
+            textDecorationColor: "green",
+          }}
+        >
+          小李世界
+        </Link>
+        {" with "}
+        <Heart />
       </Grid>
     </Grid>
   );
