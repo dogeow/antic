@@ -204,16 +204,18 @@ export default ({
       })
       .catch(({ data }) => {
         const errors = data.errors;
-        setErrors(errors);
-        Swal.fire(
-          errors.message,
-          (undefined !== errors.title ? errors.title[0] : "") +
-            (undefined !== errors.content ? errors.content[0] : ""),
-          "error"
-        );
+        if (errors) {
+          setErrors(errors);
+          Swal.fire(
+            errors.message,
+            (undefined !== errors.title ? errors.title[0] : "") +
+              (undefined !== errors.content ? errors.content[0] : ""),
+            "error"
+          );
+          localStorage.removeItem("post");
+        }
         setSuccess(false);
         setLoading(false);
-        localStorage.removeItem("post");
       });
   };
 
