@@ -17,7 +17,12 @@ import PostHeader from "./PostHeader";
 const useStyles = makeStyles((theme) => {
   return {
     toc: {
-      display: "none",
+      [theme.breakpoints.up("md")]: {
+        display: "block",
+      },
+      [theme.breakpoints.down("md")]: {
+        display: "none",
+      },
       position: "fixed",
       top: 145,
       right: 10,
