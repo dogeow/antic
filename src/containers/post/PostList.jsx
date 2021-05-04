@@ -1,9 +1,11 @@
 import { useLazyQuery } from "@apollo/client";
 import Chip from "@material-ui/core/Chip";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
+import Switch from "@material-ui/core/Switch";
 import Typography from "@material-ui/core/Typography";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Pagination from "@material-ui/lab/Pagination";
@@ -29,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const PostList = (props) => {
   const classes = useStyles();
   const [post, setPost] = useState([]);
+  const [isSecret, setIsSecret] = useState(false);
   const [pageCount, setPageCount] = useState();
   const [currPage, setCurrPage] = useState(1);
   const history = useHistory();
@@ -39,6 +42,10 @@ const PostList = (props) => {
   );
 
   const [getPostsByTag, { data: postsByTag }] = useLazyQuery(TAG);
+
+  const handleChange = () => {
+    setIsSecret(!isSecret);
+  };
 
   useEffect(() => getPosts(), [getPosts]);
 
@@ -102,9 +109,27 @@ const PostList = (props) => {
         </Grid>
       </Hidden>
       <Grid item xs={12} md={6}>
-        <Grid item style={{ display: "flex", alignItems: "center" }}>
-          <h2>笔记</h2>
-          <AddCircleIcon style={{ marginLeft: 5 }} onClick={handlePostCreate} />
+        <Grid container justify="space-between" alignItems="center">
+          <Grid item style={{ display: "flex", alignItems: "center" }}>
+            <h2>笔记</h2>
+            <AddCircleIcon
+              style={{ marginLeft: 5 }}
+              onClick={handlePostCreate}
+            />
+          </Grid>
+          <Grid item>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={isSecret}
+                  onChange={handleChange}
+                  name="only secret"
+                  color="primary"
+                />
+              }
+              label="only secret"
+            />
+          </Grid>
         </Grid>
         <Grid container spacing={2}>
           <Grid item xs={12}>
