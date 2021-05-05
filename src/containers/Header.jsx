@@ -126,23 +126,34 @@ const Header = ({
 
   const onKeyDown = useCallback(
     ({ key }) => {
+      console.log(key);
       // 不在搜索时才记录 Meta
-      if (key === "Meta" && searching === false) {
-        setMetaKey(true);
-      } else if (key === "k" && metaKey) {
-        if (searching) {
-          setSearching(false);
-        } else {
+      if (searching === false) {
+        if (key === "k" && metaKey) {
           handleSearch();
+          setMetaKey(false);
+        } else if (key === "Meta") {
+          setMetaKey(true);
+        } else {
+          setMetaKey(false);
         }
-        setMetaKey(false);
-      } else if (key === "Escape" && searching) {
-        setSearching(false);
+      } else {
+        if (key === "Escape") {
+          setSearching(false);
+          setMetaKey(false);
+        }
       }
     },
     [searching, metaKey]
   );
 
+  const onKeyUp = useCallback(({ key }) => {
+    if (key === "Meta") {
+      setMetaKey(false);
+    }
+  }, []);
+
+  useEvent("keyup", onKeyUp);
   useEvent("keydown", onKeyDown);
 
   /**
