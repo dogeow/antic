@@ -2,6 +2,7 @@ import Grid from "@material-ui/core/Grid";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
+import ExternalLink from "../components/ExternalLink";
 import PowerBy from "../components/PowerBy";
 import Record from "../resources/beian";
 import Heart from "./Heart";
@@ -15,15 +16,15 @@ export default function () {
       style={{ textAlign: "center", marginBottom: 20, opacity: 0.6 }}
     >
       <Grid item>
-        <a href="http://www.beian.gov.cn/" target="_blank" rel="noreferrer">
+        <ExternalLink url={"http://www.beian.gov.cn/"}>
           <img src={Record} alt="" style={{ verticalAlign: "top" }} />
-          闽公网安备 35020302033650号
-        </a>
+          闽公网安备35020302033650号
+        </ExternalLink>
       </Grid>
       <Grid item>
-        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">
+        <ExternalLink url={"https://beian.miit.gov.cn/"}>
           闽ICP备19021694号
-        </a>
+        </ExternalLink>
       </Grid>
       <Grid item>
         <PowerBy />
