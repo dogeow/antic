@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import ExternalLink from "../components/ExternalLink";
 import PowerBy from "../components/PowerBy";
-import Record from "../resources/beian";
+import Record from "../resources/svg/beian";
 import Heart from "./Heart";
 
 export default function () {

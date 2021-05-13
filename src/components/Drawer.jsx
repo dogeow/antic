@@ -10,7 +10,7 @@ import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
 import appConfig from "../config/app";
-import anticPic from "../resources/antic";
+import anticPic from "../resources/svg/antic";
 
 const useStyles = makeStyles({
   list: {
