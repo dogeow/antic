@@ -16,8 +16,9 @@ instance.interceptors.request.use(
   (request) => {
     window.request = true;
     if (process.env.NODE_ENV === "development") {
-      window.console.log("请求了：");
+      console.group("请求");
       window.console.log(request);
+      console.groupEnd();
     }
 
     return request;
@@ -30,8 +31,9 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => {
     if (process.env.NODE_ENV === "development") {
-      window.console.log("返回了：");
+      console.group("返回");
       window.console.log(response);
+      console.groupEnd();
     }
 
     const newToken = response.headers.authorization;
