@@ -2,7 +2,7 @@ import Grid from "@material-ui/core/Grid";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import Used from "../components/Used";
+import PowerBy from "../components/PowerBy";
 import Record from "../resources/beian";
 import Heart from "./Heart";
 
@@ -26,7 +26,7 @@ export default function () {
         </a>
       </Grid>
       <Grid item>
-        <Used />
+        <PowerBy />
       </Grid>
       <Grid item>
         Built By{" "}
