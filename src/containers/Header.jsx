@@ -61,7 +61,10 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     width: "8ch",
+    color: "white",
     textAlign: "center",
+    padding: "unset",
+    fontSize: "1.5rem",
   },
 }));
 
