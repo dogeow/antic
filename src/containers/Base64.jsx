@@ -1,20 +1,32 @@
 import "../styles/base64.css";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
-const load = (event) => {
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    document
-      .getElementById("empty")
-      .insertAdjacentHTML("afterBegin", "<p>" + e.target.result + "</p>");
-    document.getElementById("empty").classList.remove("empty");
-  };
-  reader.readAsDataURL(event.dataTransfer.files[0]);
-  event.preventDefault();
-};
+import { snackMessage } from "../actions";
+import ClipboardButton from "../components/ClipboardButton";
 
 export default function () {
+  const dispatch = useDispatch();
+  const [base64Str, setBase64St] = useState("");
+
+  const handleClick = () => {
+    dispatch(snackMessage("复制成功"));
+  };
+
+  const load = (event) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setBase64St(e.target.result);
+      document
+        .getElementById("empty")
+        .insertAdjacentHTML("afterBegin", "<p>" + e.target.result + "</p>");
+      document.getElementById("empty").classList.remove("empty");
+    };
+    reader.readAsDataURL(event.dataTransfer.files[0]);
+    event.preventDefault();
+  };
+
   useEffect(() => {
     window.addEventListener(
       "dragenter",
@@ -55,5 +67,10 @@ export default function () {
     };
   }, []);
 
-  return <div id="empty" className="empty" />;
+  return (
+    <>
+      <ClipboardButton text={base64Str} handleClick={handleClick} />
+      <div id="empty" className="empty" />
+    </>
+  );
 }

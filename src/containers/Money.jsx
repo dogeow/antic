@@ -2,28 +2,24 @@ import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import InputLabel from "@material-ui/core/InputLabel";
-import Snackbar from "@material-ui/core/Snackbar";
 import TextField from "@material-ui/core/TextField";
 import AddIcon from "@material-ui/icons/Add";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import SubIcon from "@material-ui/icons/Remove";
-import MuiAlert from "@material-ui/lab/Alert";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
+import { snackMessage } from "../actions";
 import ClipboardButton from "../components/ClipboardButton";
 
 const emptyCost = { money: "", note: "", isCost: true };
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-
 const Money = () => {
+  const dispatch = useDispatch();
   const [bills, setBills] = useState([emptyCost]);
   const [billText, setBillText] = useState("");
   const [remaining, setRemaining] = useState("");
   const [newRemaining, setNewRemaining] = useState("");
-  const [open, setOpen] = React.useState(false);
 
   const toggleIsCostState = (billIndex) => {
     setBills(
@@ -92,15 +88,7 @@ const Money = () => {
   }, [remaining, bills, newRemaining]);
 
   const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
+    dispatch(snackMessage("复制成功"));
   };
 
   const remainingChange = (e) => {
@@ -165,19 +153,6 @@ const Money = () => {
           <ClipboardButton text={billText} handleClick={handleClick} />
         </Grid>
       )}
-      <Snackbar
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        open={open}
-        autoHideDuration={2000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity="success">
-          复制成功
-        </Alert>
-      </Snackbar>
     </Grid>
   );
 };

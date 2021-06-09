@@ -64,7 +64,7 @@ const lab = (state = defaultState, action) => {
     case "SNACK_TOGGLE":
       return { ...state, snackOpen: !state.snackOpen };
     case "SNACK_MESSAGE":
-      return { ...state, snackMessage: action.payload };
+      return { ...state, snackOpen: true, snackMessage: action.payload };
     case "ACCESS_TOKEN":
       return { ...state, token: action.token };
     case "TOGGLE_THEME":
