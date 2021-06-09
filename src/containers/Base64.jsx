@@ -2,6 +2,18 @@ import "../styles/base64.css";
 
 import React, { useEffect } from "react";
 
+const load = (event) => {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    document
+      .getElementById("empty")
+      .insertAdjacentHTML("afterBegin", "<p>" + e.target.result + "</p>");
+    document.getElementById("empty").classList.remove("empty");
+  };
+  reader.readAsDataURL(event.dataTransfer.files[0]);
+  event.preventDefault();
+};
+
 export default function () {
   useEffect(() => {
     window.addEventListener(
@@ -20,21 +32,7 @@ export default function () {
       false
     );
 
-    window.addEventListener(
-      "drop",
-      (event) => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          document
-            .getElementById("empty")
-            .insertAdjacentHTML("afterBegin", "<p>" + e.target.result + "</p>");
-          document.getElementById("empty").classList.remove("empty");
-        };
-        reader.readAsDataURL(event.dataTransfer.files[0]);
-        event.preventDefault();
-      },
-      false
-    );
+    window.addEventListener("drop", load, false);
 
     return () => {
       window.removeEventListener(
@@ -53,24 +51,7 @@ export default function () {
         false
       );
 
-      window.removeEventListener(
-        "drop",
-        (event) => {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            document
-              .getElementById("empty")
-              .insertAdjacentHTML(
-                "afterBegin",
-                "<p>" + e.target.result + "</p>"
-              );
-            document.getElementById("empty").classList.remove("empty");
-          };
-          reader.readAsDataURL(event.dataTransfer.files[0]);
-          event.preventDefault();
-        },
-        false
-      );
+      window.removeEventListener("drop", load, false);
     };
   }, []);
 
