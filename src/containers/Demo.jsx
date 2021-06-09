@@ -66,9 +66,6 @@ const Demo = () => (
           </a>
         </li>
         <li>
-          <Link to="/demos/clock">Time</Link>
-        </li>
-        <li>
           <Link to="/demos/font">Typography 字体展示</Link>
         </li>
       </ul>
