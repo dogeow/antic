@@ -1,5 +1,6 @@
 import Echo from "laravel-echo";
 
+import changeTitle from "./components/ChangeTitle";
 import consoleInfo from "./components/ConsoleInfo";
 import { logout } from "./helpers";
 
@@ -11,34 +12,7 @@ if (
 }
 
 consoleInfo();
-
-// 网页当前状态判断
-let state;
-let visibilityChange;
-if (typeof document.hidden !== "undefined") {
-  visibilityChange = "visibilitychange";
-  state = "visibilityState";
-} else if (typeof document.mozHidden !== "undefined") {
-  visibilityChange = "mozvisibilitychange";
-  state = "mozVisibilityState";
-} else if (typeof document.msHidden !== "undefined") {
-  visibilityChange = "msvisibilitychange";
-  state = "msVisibilityState";
-} else if (typeof document.webkitHidden !== "undefined") {
-  visibilityChange = "webkitvisibilitychange";
-  state = "webkitVisibilityState";
-}
-// 添加监听器，在title里显示状态变化
-document.addEventListener(
-  visibilityChange,
-  () => {
-    document.title =
-      document[state] === "hidden"
-        ? `记得回来！- ${process.env.REACT_APP_NAME}`
-        : `欢迎回来！- ${process.env.REACT_APP_NAME}`;
-  },
-  false
-);
+changeTitle();
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -47,7 +21,6 @@ document.addEventListener(
  */
 
 window.io = require("socket.io-client");
-
 window.Echo = new Echo({
   broadcaster: "socket.io",
   host: window.location.hostname + ":6001",
