@@ -129,7 +129,6 @@ const Header = ({
 
   const onKeyDown = useCallback(
     ({ key }) => {
-      console.log(key);
       // 不在搜索时才记录 Meta
       if (searching === false) {
         if (key === "k" && metaKey) {
