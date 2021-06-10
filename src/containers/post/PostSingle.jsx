@@ -124,6 +124,9 @@ const PostSingle = ({ postSave }) => {
 
   const handleDelete = () => {
     setAlertDialogOpen(!alertDialogOpen);
+  };
+
+  const confirmDelete = () => {
     deletePost({ variables: { id: id } });
     history.push("/posts");
   };
@@ -210,9 +213,9 @@ const PostSingle = ({ postSave }) => {
       <AlertDialog
         open={alertDialogOpen}
         handleClose={handleAlertDialogToggle}
-        title="删除确认"
-        content="确认删除这篇笔记吗？"
-        agree={handleDelete}
+        title="删除此文章"
+        content="删除后，无法找回"
+        agree={confirmDelete}
       />
     </>
   );
