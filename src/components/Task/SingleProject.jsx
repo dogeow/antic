@@ -156,7 +156,7 @@ const SingleProject = () => {
     setEditId(undefined);
   };
 
-  const handleDelete = () => {
+  const handleClose = () => {
     setAlertDialogOpen(!alertDialogOpen);
   };
 
@@ -187,7 +187,7 @@ const SingleProject = () => {
     <>
       <AlertDialog
         open={alertDialogOpen}
-        handleClose={handleDelete}
+        handleClose={handleClose}
         title={`删除「${project.name} 」项目！`}
         content="删除后，任务也将一同被删除！"
         agree={handleMarkProjectAsCompleted}
