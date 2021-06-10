@@ -1,5 +1,6 @@
 import "../styles/base64.css";
 
+import Grid from "@material-ui/core/Grid";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -20,7 +21,12 @@ export default function () {
       setBase64St(e.target.result);
       document
         .getElementById("empty")
-        .insertAdjacentHTML("afterBegin", "<p>" + e.target.result + "</p>");
+        .insertAdjacentHTML(
+          "afterBegin",
+          '<textarea style="width:100%;height:100%;">' +
+            e.target.result +
+            "</textarea>"
+        );
       document.getElementById("empty").classList.remove("empty");
     };
     reader.readAsDataURL(event.dataTransfer.files[0]);
@@ -68,9 +74,22 @@ export default function () {
   }, []);
 
   return (
-    <>
-      <ClipboardButton text={base64Str} handleClick={handleClick} />
-      <div id="empty" className="empty" />
-    </>
+    <Grid
+      container
+      direction="row"
+      spacing={1}
+      style={{ height: "calc(100vh - 120px)" }}
+    >
+      <Grid item xs={12}>
+        <ClipboardButton text={base64Str} handleClick={handleClick} />
+      </Grid>
+      <Grid
+        xs={12}
+        id="empty"
+        item
+        className="empty"
+        style={{ height: "100%" }}
+      />
+    </Grid>
   );
 }
