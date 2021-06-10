@@ -156,7 +156,7 @@ const SingleProject = () => {
     setEditId(undefined);
   };
 
-  const handleClose = () => {
+  const handleAlertDialogToggle = () => {
     setAlertDialogOpen(!alertDialogOpen);
   };
 
@@ -187,7 +187,7 @@ const SingleProject = () => {
     <>
       <AlertDialog
         open={alertDialogOpen}
-        handleClose={handleClose}
+        handleClose={handleAlertDialogToggle}
         title={`删除「${project.name} 」项目！`}
         content="删除后，任务也将一同被删除！"
         agree={handleMarkProjectAsCompleted}
@@ -202,7 +202,7 @@ const SingleProject = () => {
           </Typography>
         </Grid>
         <Grid item>
-          <IconButton aria-label="delete" onClick={handleDelete}>
+          <IconButton aria-label="delete" onClick={handleAlertDialogToggle}>
             <DeleteIcon />
           </IconButton>
         </Grid>
