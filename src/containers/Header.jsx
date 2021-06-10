@@ -242,11 +242,11 @@ const Header = ({
               </RouteLink>
               {matches && (
                 <div style={{ marginLeft: 12 }}>
-                  <Button color="inherit" component={RouteLink} to="/chat">
-                    聊天室♂
-                  </Button>
                   <Button color="inherit" component={RouteLink} to="/posts">
                     笔记
+                  </Button>
+                  <Button color="inherit" component={RouteLink} to="/chat">
+                    聊天室♂
                   </Button>
                 </div>
               )}
