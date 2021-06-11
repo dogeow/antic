@@ -275,8 +275,8 @@ const SignInSide = ({ dispatch }) => {
             >
               登录
             </Button>
-            <Grid container>
-              <Grid item xs>
+            <Grid container justify="space-between">
+              <Grid item>
                 <Typography
                   variant="body2"
                   style={{ color: "#f50057" }}
