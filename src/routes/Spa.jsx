@@ -113,11 +113,12 @@ const Spa = ({ match }) => {
             component={loadable(() => import("../containers/Register"))}
           />
           <Route
+            exact
             path="/forget"
             component={loadable(() => import("../containers/auth/Forget"))}
           />
           <Route
-            path="/emailVerify/:secret"
+            path="/forget/:secret"
             component={loadable(() => import("../containers/auth/EmailVerify"))}
           />
           <Route
