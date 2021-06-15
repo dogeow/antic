@@ -1,51 +1,42 @@
 import Grid from "@material-ui/core/Grid";
-import Snackbar from "@material-ui/core/Snackbar";
 import Typography from "@material-ui/core/Typography";
-import MuiAlert from "@material-ui/lab/Alert";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { useDispatch } from "react-redux";
 
+import { snackMessage } from "../../actions";
 import axios from "../../instance/axios";
-
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 const EmojiCreate = () => {
   const [data, setData] = useState();
-  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  const onDrop = useCallback((acceptedFiles) => {
-    const file = new Blob([acceptedFiles[0]]);
-    const formData = new FormData();
-    formData.append("emoji", file, acceptedFiles[0].name);
-    axios
-      .post("/emoji", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Accept: "image/*",
-        },
-        transformRequest: [(data) => data],
-        onUploadProgress(e) {
-          const percentage = Math.round((e.loaded * 100) / e.total) || 0;
-          if (percentage < 100) {
-            window.console.log(`${percentage}%`); // 上传进度
-          }
-        },
-      })
-      .then(({ data }) => {
-        setData(data);
-        setOpen(true);
-      });
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles) => {
+      const file = new Blob([acceptedFiles[0]]);
+      const formData = new FormData();
+      formData.append("emoji", file, acceptedFiles[0].name);
+      axios
+        .post("/emoji", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Accept: "image/*",
+          },
+          transformRequest: [(data) => data],
+          onUploadProgress(e) {
+            const percentage = Math.round((e.loaded * 100) / e.total) || 0;
+            if (percentage < 100) {
+              window.console.log(`${percentage}%`); // 上传进度
+            }
+          },
+        })
+        .then(({ data }) => {
+          setData(data);
+          dispatch(snackMessage("上传成功"));
+        });
+    },
+    [dispatch]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -75,19 +66,6 @@ const EmojiCreate = () => {
           <img src={data.url} alt="上传的图片" style={{ maxWidth: "100%" }} />
         )}
       </Grid>
-      <Snackbar
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        open={open}
-        autoHideDuration={2000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity="success">
-          上传成功
-        </Alert>
-      </Snackbar>
     </Grid>
   );
 };
