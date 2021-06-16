@@ -1,4 +1,9 @@
+import Accordion from "@material-ui/core/Accordion";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import React from "react";
 
 import ImgList from "../../components/ImgList";
@@ -8,9 +13,19 @@ const EmojiCreate = () => {
   return (
     <Grid container spacing={2} justify="center" alignItems="flex-end">
       <Upload path="/emoji" />
-      <ImgList />
       <Grid item xs={12}>
-        更多照片？
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography> 更多照片？</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <ImgList />
+          </AccordionDetails>
+        </Accordion>
       </Grid>
       <Grid container justify="space-between">
         <Grid item>分类</Grid>
