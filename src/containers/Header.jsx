@@ -218,260 +218,258 @@ const Header = ({
 
   return (
     <>
-      <Search searching={searching} closeSearch={closeSearch} />
-      <header>
-        <Drawer open={toggleDrawer} onClick={onClickDrawer} />
-        <AppBar position="static">
-          <Container
-            maxWidth="lg"
-            classes={{
-              root: classes.containerRoot,
-            }}
-          >
-            <Toolbar>
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                onClick={onClickDrawer}
+      <Drawer open={toggleDrawer} onClick={onClickDrawer} />
+      <AppBar position="static">
+        <Container
+          maxWidth="lg"
+          classes={{
+            root: classes.containerRoot,
+          }}
+        >
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={onClickDrawer}
+            >
+              <MenuIcon />
+            </IconButton>
+            <RouteLink to="/">
+              <Logo />
+            </RouteLink>
+            {matches && (
+              <div style={{ marginLeft: 12 }}>
+                <Button color="inherit" component={RouteLink} to="/posts">
+                  笔记
+                </Button>
+                <Button color="inherit" component={RouteLink} to="/chat">
+                  聊天室♂
+                </Button>
+              </div>
+            )}
+            <div className={classes.blank} />
+            <Hidden smDown>
+              <div className={classes.search} onFocus={handleSearch}>
+                <InputBase
+                  placeholder="⌘ + k"
+                  classes={{
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ "aria-label": "search" }}
+                />
+                <div className={classes.searchIcon} onClick={handleSearch}>
+                  <SearchIcon />
+                </div>
+              </div>
+            </Hidden>
+            <Hidden mdUp>
+              <Tooltip
+                title="搜索笔记"
+                aria-label="搜索笔记"
+                onClick={handleSearch}
               >
-                <MenuIcon />
-              </IconButton>
-              <RouteLink to="/">
-                <Logo />
-              </RouteLink>
-              {matches && (
-                <div style={{ marginLeft: 12 }}>
-                  <Button color="inherit" component={RouteLink} to="/posts">
-                    笔记
-                  </Button>
-                  <Button color="inherit" component={RouteLink} to="/chat">
-                    聊天室♂
-                  </Button>
-                </div>
-              )}
-              <div className={classes.blank} />
-              <Hidden smDown>
-                <div className={classes.search} onFocus={handleSearch}>
-                  <InputBase
-                    placeholder="⌘ + k"
-                    classes={{
-                      input: classes.inputInput,
-                    }}
-                    inputProps={{ "aria-label": "search" }}
-                  />
-                  <div className={classes.searchIcon} onClick={handleSearch}>
-                    <SearchIcon />
-                  </div>
-                </div>
-              </Hidden>
-              <Hidden mdUp>
-                <Tooltip
-                  title="搜索笔记"
-                  aria-label="搜索笔记"
-                  onClick={handleSearch}
+                <IconButton color="inherit">
+                  <SearchIcon />
+                </IconButton>
+              </Tooltip>
+            </Hidden>
+            <Hidden only="xs">
+              <Tooltip
+                title="切换白天或夜晚主题"
+                aria-label="切换白天或夜晚主题"
+                onClick={onThemeClick}
+              >
+                <IconButton color="inherit">
+                  {lab.paletteMode === "dark" ? (
+                    <NightsStayIcon />
+                  ) : (
+                    <WbSunnyIcon />
+                  )}
+                </IconButton>
+              </Tooltip>
+              <Tooltip
+                title="播放音乐"
+                aria-label="播放音乐"
+                onClick={playMusic}
+              >
+                <IconButton color="inherit">
+                  {playing === true ? (
+                    <PauseCircleOutlineIcon />
+                  ) : (
+                    <PlayCircleOutlineIcon />
+                  )}
+                </IconButton>
+              </Tooltip>
+            </Hidden>
+            {lab.isExpired ? (
+              <Tooltip title="登录" aria-label="登录">
+                <IconButton
+                  color="inherit"
+                  component={RouteLink}
+                  href="https://github.com/likunyan/antic"
+                  to={{
+                    pathname: "/login",
+                    state: { from: pathname },
+                  }}
                 >
-                  <IconButton color="inherit">
-                    <SearchIcon />
-                  </IconButton>
-                </Tooltip>
-              </Hidden>
-              <Hidden only="xs">
-                <Tooltip
-                  title="切换白天或夜晚主题"
-                  aria-label="切换白天或夜晚主题"
-                  onClick={onThemeClick}
-                >
-                  <IconButton color="inherit">
-                    {lab.paletteMode === "dark" ? (
-                      <NightsStayIcon />
-                    ) : (
-                      <WbSunnyIcon />
-                    )}
-                  </IconButton>
-                </Tooltip>
-                <Tooltip
-                  title="播放音乐"
-                  aria-label="播放音乐"
-                  onClick={playMusic}
-                >
-                  <IconButton color="inherit">
-                    {playing === true ? (
-                      <PauseCircleOutlineIcon />
-                    ) : (
-                      <PlayCircleOutlineIcon />
-                    )}
-                  </IconButton>
-                </Tooltip>
-              </Hidden>
-              {lab.isExpired ? (
-                <Tooltip title="登录" aria-label="登录">
+                  <PersonIcon />
+                </IconButton>
+              </Tooltip>
+            ) : (
+              <div>
+                <Tooltip title="个人中心" aria-label="个人中心">
                   <IconButton
+                    aria-label="account of current user"
+                    aria-controls="profile"
+                    aria-haspopup="true"
                     color="inherit"
-                    component={RouteLink}
-                    href="https://github.com/likunyan/antic"
-                    to={{
-                      pathname: "/login",
-                      state: { from: pathname },
-                    }}
+                    onClick={handleProfileMenu}
                   >
-                    <PersonIcon />
+                    <Avatar
+                      alt={lab.userName}
+                      src={`${gravatarCdn}/${md5(
+                        lab.userEmail
+                      )}.jpg?d=monsterid&s=80`}
+                    />
                   </IconButton>
                 </Tooltip>
-              ) : (
-                <div>
-                  <Tooltip title="个人中心" aria-label="个人中心">
-                    <IconButton
-                      aria-label="account of current user"
-                      aria-controls="profile"
-                      aria-haspopup="true"
-                      color="inherit"
-                      onClick={handleProfileMenu}
-                    >
+                <Menu
+                  id="profile"
+                  anchorEl={mobileMoreAnchorEl}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={profileOpen}
+                  onClose={handleCloseProfile}
+                >
+                  <RouteLink
+                    to={`/user/${lab.userId}`}
+                    onClick={() => handleCloseProfile()}
+                  >
+                    <div style={{ textAlign: "center", fontSize: "1rem" }}>
                       <Avatar
                         alt={lab.userName}
                         src={`${gravatarCdn}/${md5(
                           lab.userEmail
-                        )}.jpg?d=monsterid&s=80`}
+                        )}.jpg?d=monsterid&s=160`}
+                        style={{ width: 80, height: 80, margin: "0 auto" }}
                       />
-                    </IconButton>
-                  </Tooltip>
-                  <Menu
-                    id="profile"
-                    anchorEl={mobileMoreAnchorEl}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    open={profileOpen}
-                    onClose={handleCloseProfile}
-                  >
-                    <RouteLink
-                      to={`/user/${lab.userId}`}
-                      onClick={() => handleCloseProfile()}
-                    >
-                      <div style={{ textAlign: "center", fontSize: "1rem" }}>
-                        <Avatar
-                          alt={lab.userName}
-                          src={`${gravatarCdn}/${md5(
-                            lab.userEmail
-                          )}.jpg?d=monsterid&s=160`}
-                          style={{ width: 80, height: 80, margin: "0 auto" }}
-                        />
-                        {lab.userName}
-                      </div>
-                    </RouteLink>
-                    {lab.users.map((user, index) => {
-                      return (
-                        user.userEmail !== lab.userEmail && (
-                          <MenuItem
-                            onClick={() => {
-                              onChangeUser(user);
-                              handleCloseProfile();
+                      {lab.userName}
+                    </div>
+                  </RouteLink>
+                  {lab.users.map((user, index) => {
+                    return (
+                      user.userEmail !== lab.userEmail && (
+                        <MenuItem
+                          onClick={() => {
+                            onChangeUser(user);
+                            handleCloseProfile();
+                          }}
+                          key={index}
+                        >
+                          <Avatar
+                            alt={user.userName}
+                            src={`${gravatarCdn}/${md5(
+                              user.userEmail
+                            )}.jpg?d=monsterid&s=160`}
+                          />
+                          <span
+                            style={{
+                              margin: "0 10px 0 10px",
+                              fontSize: "0.8rem",
                             }}
-                            key={index}
                           >
-                            <Avatar
-                              alt={user.userName}
-                              src={`${gravatarCdn}/${md5(
-                                user.userEmail
-                              )}.jpg?d=monsterid&s=160`}
-                            />
-                            <span
-                              style={{
-                                margin: "0 10px 0 10px",
-                                fontSize: "0.8rem",
-                              }}
-                            >
-                              {user.userName}
-                              <br />
-                              {user.userEmail}
-                            </span>
-                          </MenuItem>
-                        )
-                      );
-                    })}
-                    <RouteLink to="/login" onClick={() => handleCloseProfile()}>
-                      <MenuItem>
-                        <PersonAddIcon style={{ width: 40 }} />
-                        <span style={{ margin: "0 10px 0 10px" }}>
-                          添加其他账号
-                        </span>
-                      </MenuItem>
-                    </RouteLink>
-                    <MenuItem
-                      onClick={() => {
-                        setMobileMoreAnchorEl(null);
-                        onLogout();
-                      }}
-                    >
-                      退出所有账号
+                            {user.userName}
+                            <br />
+                            {user.userEmail}
+                          </span>
+                        </MenuItem>
+                      )
+                    );
+                  })}
+                  <RouteLink to="/login" onClick={() => handleCloseProfile()}>
+                    <MenuItem>
+                      <PersonAddIcon style={{ width: 40 }} />
+                      <span style={{ margin: "0 10px 0 10px" }}>
+                        添加其他账号
+                      </span>
                     </MenuItem>
-                  </Menu>
-                </div>
-              )}
-              <Tooltip title="更多" aria-label="更多" onClick={handleMenu}>
-                <IconButton
-                  aria-label="show more"
-                  aria-controls="menu"
-                  aria-haspopup="true"
-                  color="inherit"
-                >
-                  <MoreIcon />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                id="menu"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={isMenuOpen}
-                onClose={handleMobileMenuClose}
+                  </RouteLink>
+                  <MenuItem
+                    onClick={() => {
+                      setMobileMoreAnchorEl(null);
+                      onLogout();
+                    }}
+                  >
+                    退出所有账号
+                  </MenuItem>
+                </Menu>
+              </div>
+            )}
+            <Tooltip title="更多" aria-label="更多" onClick={handleMenu}>
+              <IconButton
+                aria-label="show more"
+                aria-controls="menu"
+                aria-haspopup="true"
+                color="inherit"
               >
-                <MenuItem
-                  onClick={() => {
-                    setAnchorEl(null);
-                    onThemeClick();
-                  }}
-                >
-                  切换为
-                  {lab.paletteMode === "dark" ? "白天☀️️" : "黑夜🌌"}
-                  模式
-                </MenuItem>
-                <MenuItem onClick={handleSettingOpen}>网站设置</MenuItem>
-              </Menu>
-            </Toolbar>
-          </Container>
-        </AppBar>
-        <Settings
-          open={settingsOpen}
-          onClose={handleSettingClose}
-          onThemeClick={onThemeClick}
-          paletteMode={paletteMode}
-        />
-        <Snackbar
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-          open={lab.snackOpen}
-          autoHideDuration={2000}
-          onClose={snackClose}
-        >
-          <Alert severity="success" onClose={snackClose}>
-            {lab.snackMessage}
-          </Alert>
-        </Snackbar>
-      </header>
+                <MoreIcon />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              id="menu"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={isMenuOpen}
+              onClose={handleMobileMenuClose}
+            >
+              <MenuItem
+                onClick={() => {
+                  setAnchorEl(null);
+                  onThemeClick();
+                }}
+              >
+                切换为
+                {lab.paletteMode === "dark" ? "白天☀️️" : "黑夜🌌"}
+                模式
+              </MenuItem>
+              <MenuItem onClick={handleSettingOpen}>网站设置</MenuItem>
+            </Menu>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      <Search searching={searching} closeSearch={closeSearch} />
+      <Settings
+        open={settingsOpen}
+        onClose={handleSettingClose}
+        onThemeClick={onThemeClick}
+        paletteMode={paletteMode}
+      />
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={lab.snackOpen}
+        autoHideDuration={2000}
+        onClose={snackClose}
+      >
+        <Alert severity="success" onClose={snackClose}>
+          {lab.snackMessage}
+        </Alert>
+      </Snackbar>
     </>
   );
 };
