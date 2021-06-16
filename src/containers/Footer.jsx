@@ -1,4 +1,3 @@
-import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
@@ -12,6 +11,9 @@ import HomeFooter from "../components/HomeFooter";
 import backgroundImg from "../config/footerBackground";
 
 const useStyles = makeStyles((theme) => ({
+  "@global": {
+    ul: { listStyleType: "none", textAlign: "initial", paddingInlineStart: 20 },
+  },
   footer: {
     backgroundImage:
       theme.palette.type === "dark"
@@ -35,12 +37,11 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <Container maxWidth="lg">
+    <>
       <Grid
-        item
         container
-        className={classes.footer}
         component="footer"
+        className={classes.footer}
         style={{ lineHeight: 1.6 }}
       >
         <Grid item xs={12} sm={5}>
@@ -94,7 +95,7 @@ const Footer = () => {
         </Grid>
       </Grid>
       <HomeFooter />
-    </Container>
+    </>
   );
 };
 
