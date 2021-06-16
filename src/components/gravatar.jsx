@@ -1,6 +1,7 @@
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import md5 from "md5";
 import React from "react";
-import styled, { css } from "styled-components";
 
 const Avatar = styled.img`
   vertical-align: middle;
