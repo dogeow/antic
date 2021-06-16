@@ -219,7 +219,7 @@ const Header = ({
   return (
     <>
       <Drawer open={toggleDrawer} onClick={onClickDrawer} />
-      <AppBar position="static">
+      <AppBar position="static" component="div">
         <Container
           maxWidth="lg"
           classes={{
