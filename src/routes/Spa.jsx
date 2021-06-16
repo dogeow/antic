@@ -291,24 +291,28 @@ const Spa = ({ match }) => {
             path="/color"
             component={loadable(() => import("../containers/Color"))}
           />
+          <Route
+            path="/goods"
+            component={loadable(() => import("../containers/goods/Index"))}
+          />
           <Route component={loadable(() => import("../containers/NoMatch"))} />
         </Switch>
+        {["/"].includes(match.url) && <Footer />}
+        {["/"].includes(match.url) || (
+          <ScrollUpButton
+            ShowAtPosition={500}
+            ContainerClassName="AnyClassForContainer"
+            TransitionClassName="AnyClassForTransition"
+            style={{ outline: "none", boxShadow: "none" }}
+          >
+            <img
+              src={`${process.env.REACT_APP_CDN_URL}/bfr.png`}
+              width="24"
+              alt="Back to top arrow"
+            />
+          </ScrollUpButton>
+        )}
       </Grid>
-      {["/"].includes(match.url) && <Footer />}
-      {["/"].includes(match.url) || (
-        <ScrollUpButton
-          ShowAtPosition={500}
-          ContainerClassName="AnyClassForContainer"
-          TransitionClassName="AnyClassForTransition"
-          style={{ outline: "none", boxShadow: "none" }}
-        >
-          <img
-            src={`${process.env.REACT_APP_CDN_URL}/bfr.png`}
-            width="24"
-            alt="Back to top arrow"
-          />
-        </ScrollUpButton>
-      )}
     </Grid>
   );
 };
