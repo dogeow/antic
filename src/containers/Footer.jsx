@@ -37,13 +37,8 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <>
-      <Grid
-        container
-        component="footer"
-        className={classes.footer}
-        style={{ lineHeight: 1.6 }}
-      >
+    <Grid container component="footer" spacing={2} style={{ lineHeight: 1.6 }}>
+      <Grid item container className={classes.footer}>
         <Grid item xs={12} sm={5}>
           <Typography variant="h5" component="h3">
             说明
@@ -95,7 +90,7 @@ const Footer = () => {
         </Grid>
       </Grid>
       <HomeFooter />
-    </>
+    </Grid>
   );
 };
 

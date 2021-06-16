@@ -10,6 +10,7 @@ import Heart from "./Heart";
 export default function () {
   return (
     <Grid
+      item
       container
       spacing={1}
       justify="center"
