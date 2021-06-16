@@ -1,3 +1,4 @@
+import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
@@ -37,7 +38,13 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <Grid container component="footer" spacing={2} style={{ lineHeight: 1.6 }}>
+    <Grid
+      container
+      component={Container}
+      maxWidth="lg"
+      spacing={2}
+      style={{ lineHeight: 1.6 }}
+    >
       <Grid item container className={classes.footer}>
         <Grid item xs={12} sm={5}>
           <Typography variant="h5" component="h3">
