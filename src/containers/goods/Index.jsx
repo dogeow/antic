@@ -1,12 +1,14 @@
 import Grid from "@material-ui/core/Grid";
 import React from "react";
 
+import ImgList from "../../components/ImgList";
 import Upload from "../../components/Upload";
 
 const EmojiCreate = () => {
   return (
     <Grid container spacing={2} justify="center" alignItems="flex-end">
       <Upload path="/emoji" />
+      <ImgList />
       <Grid item xs={12}>
         更多照片？
       </Grid>
