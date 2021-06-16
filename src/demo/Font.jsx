@@ -17,18 +17,19 @@ const type = [
   "overline",
 ];
 
+type.reverse();
+
 const Font = () => (
-  <>
+  <div style={{ overflow: "scroll" }}>
     {type.map((item) => (
       <Typography variant={item} component="h2" key={item}>
-        马斯克的
         <span role="img" aria-label="火箭飞离地球">
           🌍🚀
         </span>
-        是人类未来的基石，Written in 2020。
+        马斯克，0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ。
       </Typography>
     ))}
-  </>
+  </div>
 );
 
 export default Font;
