@@ -2,6 +2,7 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
+import clsx from "clsx";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -26,7 +27,7 @@ const NewProject = () => {
         history.push("/project");
       })
       .catch((error) => {
-        setErrors(error.response.data.errors);
+        setErrors(error.data.errors);
       });
   };
 
@@ -45,8 +46,9 @@ const NewProject = () => {
               }}
               id="name"
               type="text"
-              className={`classes.input form-control
-              ${errors.name && "is-invalid"}`}
+              className={clsx("classes.input", "form-control", {
+                "is-invalid": !!errors.name,
+              })}
               error={!!errors.name}
               placeholder={errors.name ? errors.name[0] : ""}
               name="name"
