@@ -67,7 +67,7 @@ const PostList = (props) => {
 
   useEffect(() => {
     if (postsByTag) {
-      setPost(postsByTag.tag.data[0].posts);
+      setPost(postsByTag.tag.data.map((item) => item.posts[0]));
       setCurrPage(postsByTag.tag.paginatorInfo.currentPage);
       setPageCount(postsByTag.tag.paginatorInfo.lastPage);
     }
