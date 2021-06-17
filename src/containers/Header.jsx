@@ -217,7 +217,7 @@ const Header = ({
   };
 
   return (
-    <>
+    <header>
       <Drawer open={toggleDrawer} onClick={onClickDrawer} />
       <AppBar position="static" component="div">
         <Container
@@ -470,7 +470,7 @@ const Header = ({
           {lab.snackMessage}
         </Alert>
       </Snackbar>
-    </>
+    </header>
   );
 };
 

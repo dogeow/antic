@@ -41,13 +41,12 @@ const Spa = ({ match }) => {
     <Grid
       container
       direction="column"
+      spacing={1}
       style={{ minHeight: "100vh" }}
-      spacing={2}
     >
-      <Grid item component="header">
-        <Header />
-      </Grid>
+      <Header />
       <Grid
+        item
         container
         component={Container}
         maxWidth="lg"
