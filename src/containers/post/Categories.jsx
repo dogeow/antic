@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import Skeleton from "@material-ui/lab/Skeleton";
 import * as React from "react";
 import { useEffect, useState } from "react";
 
@@ -26,7 +27,7 @@ const Categories = (props) => {
     }
   }, [data]);
 
-  return (
+  return items.length ? (
     <ChipFlow
       items={items}
       currentSelect={category}
@@ -35,6 +36,8 @@ const Categories = (props) => {
         props.changeCategory(category);
       }}
     />
+  ) : (
+    <Skeleton variant="rect" height="24rem" />
   );
 };
 
