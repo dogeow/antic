@@ -49,8 +49,14 @@ const Spa = ({ match }) => {
         classes={ContainerClass}
         style={
           match.url === "/"
-            ? { display: "flex", textAlign: "center", flexGrow: 1 }
-            : { display: "flex" }
+            ? {
+                display: "flex",
+                marginTop: 16,
+                marginBottom: 16,
+                textAlign: "center",
+                flexGrow: 1,
+              }
+            : { display: "flex", marginTop: 16, marginBottom: 16 }
         }
       >
         <Switch>

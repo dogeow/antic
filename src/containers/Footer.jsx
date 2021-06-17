@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: 200,
     minHeight: 200,
-    paddingTop: "2rem ",
+    paddingTop: 16,
     borderTop:
       theme.palette.type === "dark"
         ? "1px dashed rgba(211,224,233,.15)"
