@@ -38,12 +38,7 @@ const Spa = ({ match }) => {
   }
 
   return (
-    <Grid
-      container
-      direction="column"
-      spacing={1}
-      style={{ minHeight: "100vh" }}
-    >
+    <Grid container direction="column" style={{ minHeight: "100vh" }}>
       <Header />
       <Grid
         container

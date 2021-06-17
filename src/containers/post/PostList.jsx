@@ -99,7 +99,7 @@ const PostList = (props) => {
   };
 
   return (
-    <Grid container spacing={2}>
+    <Grid container>
       <Hidden smDown>
         <Grid item xs={3}>
           <h2>分类</h2>
