@@ -15,6 +15,12 @@ const useStyles = makeStyles((theme) => ({
   "@global": {
     ul: { listStyleType: "none", textAlign: "initial", paddingInlineStart: 20 },
   },
+  hr: {
+    border:
+      theme.palette.type === "dark"
+        ? "1px dashed rgba(211,224,233,.15)"
+        : "1px dashed rgba(211,224,233,1)",
+  },
   footer: {
     backgroundImage:
       theme.palette.type === "dark"
@@ -27,10 +33,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 200,
     minHeight: 200,
     paddingTop: 16,
-    borderTop:
-      theme.palette.type === "dark"
-        ? "1px dashed rgba(211,224,233,.15)"
-        : "1px dashed rgba(211,224,233,1)",
   },
 }));
 
@@ -44,6 +46,7 @@ const Footer = () => {
       maxWidth="lg"
       style={{ lineHeight: 1.6 }}
     >
+      <Grid item xs={12} className={classes.hr} />
       <Grid item container className={classes.footer}>
         <Grid item xs={12} sm={5}>
           <Typography variant="h5" component="h3">
