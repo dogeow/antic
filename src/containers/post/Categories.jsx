@@ -33,7 +33,7 @@ const Categories = (props) => {
       currentSelect={category}
       onHandleClick={(category) => {
         setCategory(category);
-        props.changeCategory(category);
+        props.changeCategory(parseInt(category));
       }}
     />
   ) : (

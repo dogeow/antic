@@ -17,7 +17,7 @@ const ChipFlow = (props) => {
                 }
                 color={props.currentSelect === item.id ? "primary" : "default"}
                 onClick={() => {
-                  props.onHandleClick(parseInt(item.id));
+                  props.onHandleClick(item.id);
                 }}
               />
             </Badge>
