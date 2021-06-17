@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const POST_BY_ID_AND_QUOTE = gql`
+const POST_BY_ID = gql`
   query($id: Int!) {
     post(id: $id) {
       id
@@ -77,7 +77,6 @@ const POST_BY_ID_AND_QUOTE = gql`
         name
       }
     }
-    quote
   }
 `;
 
@@ -92,7 +91,6 @@ const DELETE_POST_BY_ID = gql`
 const PostSingle = ({ postSave }) => {
   const classes = useStyles();
   const [post, setPost] = useState({});
-  const [quote, setQuote] = useState("");
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
   const [menu, setMenu] = useState(false);
 
@@ -106,14 +104,13 @@ const PostSingle = ({ postSave }) => {
     setMenu(!menu);
   };
 
-  const { data } = useQuery(POST_BY_ID_AND_QUOTE, {
+  const { data } = useQuery(POST_BY_ID, {
     variables: { id: id },
   });
 
   useEffect(() => {
     if (data) {
       setPost(data.post);
-      setQuote(data.quote);
       postSave(data.post);
     }
   }, [data, postSave]);
@@ -194,21 +191,6 @@ const PostSingle = ({ postSave }) => {
       </Grid>
       <Grid item xs={12}>
         <PostBody post={post} />
-      </Grid>
-      <Hr />
-      <Grid
-        item
-        xs={12}
-        style={{
-          paddingLeft: 10,
-          borderColor: "gray",
-          borderLeftStyle: "solid",
-          borderLeftWidth: 2,
-          color: "gray",
-          marginBottom: 40,
-        }}
-      >
-        {quote}
       </Grid>
       <AlertDialog
         open={alertDialogOpen}
