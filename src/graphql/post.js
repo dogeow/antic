@@ -31,22 +31,24 @@ const POST_LIST = gql`
 `;
 
 const CATEGORY = gql`
-  query($name: String!, $page: Int) {
-    category(name: $name, first: 10, page: $page) {
+  query($id: Int!, $page: Int) {
+    posts(
+      where: { column: CATEGORY_ID, operator: EQ, value: $id }
+      first: 10
+      page: $page
+    ) {
       data {
-        posts {
+        id
+        title
+        updated_at
+        public
+        category {
           id
-          title
-          updated_at
-          public
-          category {
-            id
-            name
-          }
-          tags {
-            id
-            name
-          }
+          name
+        }
+        tags {
+          id
+          name
         }
       }
       paginatorInfo {

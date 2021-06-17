@@ -77,8 +77,8 @@ const PostList = (props) => {
     getPosts({ variables: { page: page } });
   };
 
-  const changeCategory = (name) => {
-    getPostsByCategory({ variables: { name } });
+  const changeCategory = (id) => {
+    getPostsByCategory({ variables: { id } });
   };
 
   const changeTag = (name) => {
@@ -153,7 +153,7 @@ const PostList = (props) => {
                           alt={item.category.name}
                           width="20"
                           height="20"
-                          onClick={() => changeCategory(item?.category.name)}
+                          onClick={() => changeCategory(item?.category.id)}
                         />
                       </Grid>
                       {/* 标题 */}
