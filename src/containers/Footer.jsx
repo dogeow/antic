@@ -63,10 +63,10 @@ const Footer = () => {
           </Typography>
           <ul>
             <li>健康</li>
-            <li>PHP + JavaScript</li>
-            <li>TDD、算法和底层等</li>
             <li>英语</li>
+            <li>PHP + JavaScript</li>
             <li>实时的应用、游戏</li>
+            <li>TDD、算法和底层等</li>
           </ul>
         </Grid>
         <Grid item xs={12} sm={3}>
