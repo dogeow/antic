@@ -13,13 +13,11 @@ const ChipFlow = (props) => {
               <Chip
                 label={item.name}
                 variant={
-                  props.currentSelect === item.name ? "default" : "outlined"
+                  props.currentSelect === item.id ? "default" : "outlined"
                 }
-                color={
-                  props.currentSelect === item.name ? "primary" : "default"
-                }
+                color={props.currentSelect === item.id ? "primary" : "default"}
                 onClick={() => {
-                  props.onHandleClick(item.name);
+                  props.onHandleClick(parseInt(item.id));
                 }}
               />
             </Badge>

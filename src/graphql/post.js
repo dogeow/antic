@@ -32,11 +32,7 @@ const POST_LIST = gql`
 
 const CATEGORY = gql`
   query($id: Int!, $page: Int) {
-    posts(
-      where: { column: CATEGORY_ID, operator: EQ, value: $id }
-      first: 10
-      page: $page
-    ) {
+    posts(category_id: $id, first: 10, page: $page) {
       data {
         id
         title

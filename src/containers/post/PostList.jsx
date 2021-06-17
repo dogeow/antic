@@ -59,9 +59,9 @@ const PostList = (props) => {
 
   useEffect(() => {
     if (postsByCategory) {
-      setPost(postsByCategory.category.data[0].posts);
-      setCurrPage(postsByCategory.category.paginatorInfo.currentPage);
-      setPageCount(postsByCategory.category.paginatorInfo.lastPage);
+      setPost(postsByCategory.posts.data);
+      setCurrPage(postsByCategory.posts.paginatorInfo.currentPage);
+      setPageCount(postsByCategory.posts.paginatorInfo.lastPage);
     }
   }, [postsByCategory]);
 
