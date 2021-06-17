@@ -80,6 +80,9 @@ const Footer = () => {
             <li>
               <RouteLink to="/powered_by">Powered by</RouteLink>
             </li>
+            <li>
+              <RouteLink to="/docs">网站文档</RouteLink>
+            </li>
             <Tooltip title="GitHub 存储库" aria-label="GitHub 存储库">
               <IconButton
                 color="inherit"

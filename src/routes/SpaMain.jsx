@@ -235,6 +235,10 @@ const SpaMain = () => (
       path="/goods"
       component={loadable(() => import("../containers/goods/Index"))}
     />
+    <Route
+      path="/docs"
+      component={loadable(() => import("../containers/Docs"))}
+    />
     <Route component={loadable(() => import("../containers/NoMatch"))} />
   </Switch>
 );
