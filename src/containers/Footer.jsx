@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
 import GitHub from "@material-ui/icons/GitHub";
+import clsx from "clsx";
 import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
@@ -13,9 +14,6 @@ import Hr from "../components/Hr";
 import backgroundImg from "../config/footerBackground";
 
 const useStyles = makeStyles((theme) => ({
-  "@global": {
-    ul: { listStyleType: "none", textAlign: "initial", paddingInlineStart: 20 },
-  },
   footer: {
     backgroundImage:
       theme.palette.type === "dark"
@@ -42,7 +40,7 @@ const Footer = () => {
       style={{ lineHeight: 1.6 }}
     >
       <Hr />
-      <Grid item container className={classes.footer}>
+      <Grid item container className={clsx(classes.footer, classes.ul)}>
         <Grid item xs={12} sm={5}>
           <Typography variant="h5" component="h3">
             说明

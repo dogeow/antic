@@ -3,6 +3,12 @@ body {
   transition-duration: 2s;
 }
 
+ul {
+  list-style-type: none;
+  text-align: initial;
+  padding-inline-start: 20px;
+}
+
 .grecaptcha-badge {
   display: none;
 }

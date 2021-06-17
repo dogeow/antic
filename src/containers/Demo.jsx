@@ -18,7 +18,9 @@ const Demo = () => (
           <Link to="/music">音乐播放器</Link>
         </li>
         <li>
-          <Link to="/moon">博饼月🥮</Link>
+          <Link to="/moon">
+            <span role="img">🥮</span> 博饼
+          </Link>
         </li>
         <li>
           <Link to="/copywriting">文案编辑</Link>
