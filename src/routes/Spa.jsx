@@ -48,10 +48,10 @@ const Spa = ({ match }) => {
         <Header />
       </Grid>
       <Grid
-        item
         container
         component={Container}
         maxWidth="lg"
+        spacing={1}
         justify={match.url === "/" ? "center" : undefined}
         alignItems={match.url === "/" ? "center" : undefined}
         classes={ContainerClass}

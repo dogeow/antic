@@ -43,6 +43,7 @@ const Footer = () => {
       container
       component={Container}
       maxWidth="lg"
+      spacing={1}
       style={{ lineHeight: 1.6 }}
     >
       <Grid item container className={classes.footer}>
