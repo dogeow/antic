@@ -135,69 +135,76 @@ const PostList = (props) => {
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               <Grid container spacing={2}>
-                {(post || Array.from(new Array(6))).map((item, index) => {
-                  return item ? (
-                    <Grid
-                      item
-                      container
-                      xs={12}
-                      key={item.id}
-                      spacing={2}
-                      alignItems="center"
-                      style={{ flexWrap: "nowrap" }}
-                    >
-                      {/* 分类 */}
-                      <Grid item>
-                        <img
-                          src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category.name}.svg`}
-                          alt={item.category.name}
-                          width="20"
-                          height="20"
-                          onClick={() => changeCategory(item?.category.id)}
-                        />
-                      </Grid>
-                      {/* 标题 */}
-                      <Grid item style={{ flexGrow: 1 }}>
-                        <Typography
-                          variant="subtitle1"
-                          component="h2"
-                          onClick={() => handleEnterPost(item)}
-                        >
-                          {item.title}
-                        </Typography>
-                      </Grid>
-                      {/* 标签 */}
-                      <Hidden smDown>
+                {post.length !== 0
+                  ? post.map((item, index) => (
+                      <Grid
+                        item
+                        container
+                        xs={12}
+                        key={item.id}
+                        spacing={2}
+                        alignItems="center"
+                        style={{ flexWrap: "nowrap" }}
+                      >
+                        {/* 分类 */}
                         <Grid item>
-                          <Grid container spacing={1}>
-                            {item.tags.length !== 0 &&
-                              item.tags.map((tag) => (
-                                <Grid item key={tag.id}>
-                                  <Chip
-                                    variant="outlined"
-                                    size="small"
-                                    label={tag.name}
-                                  />
-                                </Grid>
-                              ))}
-                          </Grid>
+                          <img
+                            src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category.name}.svg`}
+                            alt={item.category.name}
+                            width="20"
+                            height="20"
+                            onClick={() => changeCategory(item?.category.id)}
+                          />
                         </Grid>
-                      </Hidden>
-                      <Grid item style={item.public ? null : { color: "red" }}>
-                        {dayjs(item.updated_at).fromNow()}
+                        {/* 标题 */}
+                        <Grid item style={{ flexGrow: 1 }}>
+                          <Typography
+                            variant="subtitle1"
+                            component="h2"
+                            onClick={() => handleEnterPost(item)}
+                          >
+                            {item.title}
+                          </Typography>
+                        </Grid>
+                        {/* 标签 */}
+                        <Hidden smDown>
+                          <Grid item>
+                            <Grid container spacing={1}>
+                              {item.tags.length !== 0 &&
+                                item.tags.map((tag) => (
+                                  <Grid item key={tag.id}>
+                                    <Chip
+                                      variant="outlined"
+                                      size="small"
+                                      label={tag.name}
+                                    />
+                                  </Grid>
+                                ))}
+                            </Grid>
+                          </Grid>
+                        </Hidden>
+                        <Grid
+                          item
+                          style={item.public ? null : { color: "red" }}
+                        >
+                          {dayjs(item.updated_at).fromNow()}
+                        </Grid>
                       </Grid>
-                    </Grid>
-                  ) : (
-                    <Grid item container xs={12} key={index} spacing={2}>
-                      <Grid item>
-                        <Skeleton width={81} height={28} animation="wave" />
+                    ))
+                  : Array.from(new Array(10)).map((index) => (
+                      <Grid item container xs={12} spacing={2} key={index}>
+                        <Grid item>
+                          <Skeleton width={40} height="28px" animation="wave" />
+                        </Grid>
+                        <Grid item xs>
+                          <Skeleton
+                            width="100%"
+                            height="28px"
+                            animation="wave"
+                          />
+                        </Grid>
                       </Grid>
-                      <Grid item xs>
-                        <Skeleton width="100%" height={28} animation="wave" />
-                      </Grid>
-                    </Grid>
-                  );
-                })}
+                    ))}
               </Grid>
             </Paper>
           </Grid>

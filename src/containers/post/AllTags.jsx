@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client";
+import Skeleton from "@material-ui/lab/Skeleton";
 import * as React from "react";
 import { useEffect, useState } from "react";
 
@@ -17,7 +18,7 @@ const AllTags = (props) => {
     }
   }, [data]);
 
-  return (
+  return items.length ? (
     <ChipFlow
       items={items}
       currentSelect={tag}
@@ -26,6 +27,8 @@ const AllTags = (props) => {
         props.changeTag(tag);
       }}
     />
+  ) : (
+    <Skeleton variant="rect" height="24rem" />
   );
 };
 
