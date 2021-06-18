@@ -14,7 +14,7 @@ export default () => (
     <Route
       exact
       path="/login"
-      component={loadable(() => import("../containers/Login"))}
+      component={loadable(() => import("../containers/users/Login"))}
     />
     <Route
       path="/dashboard"

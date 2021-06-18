@@ -15,18 +15,18 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert2";
 
-import { loginAction } from "../actions";
-import Copyright from "../components/Copyright";
-import GitHubLogin from "../components/GithubLogin";
-import Loading from "../components/Loading";
-import axios from "../instance/axios";
-import Email from "./auth/Email";
-import LoginOrRegisterButton from "./auth/LoginOrRegisterButton";
-import Name from "./auth/Name";
-import Password from "./auth/Password";
-import PasswordConfirmation from "./auth/PasswordConfirmation";
-import PhoneNumber from "./auth/PhoneNumber";
-import Verify from "./auth/Verify";
+import { loginAction } from "../../actions";
+import Copyright from "../../components/Copyright";
+import GitHubLogin from "../../components/GithubLogin";
+import Loading from "../../components/Loading";
+import axios from "../../instance/axios";
+import Email from "../auth/Email";
+import LoginOrRegisterButton from "../auth/LoginOrRegisterButton";
+import Name from "../auth/Name";
+import Password from "../auth/Password";
+import PasswordConfirmation from "../auth/PasswordConfirmation";
+import PhoneNumber from "../auth/PhoneNumber";
+import Verify from "../auth/Verify";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

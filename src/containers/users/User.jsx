@@ -5,7 +5,7 @@ import md5 from "md5";
 import * as React from "react";
 import { useSelector } from "react-redux";
 
-import { gravatarCdn } from "../config/services";
+import { gravatarCdn } from "../../config/services";
 
 const User = () => {
   const lab = useSelector((state) => state.lab);

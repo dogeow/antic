@@ -9,8 +9,8 @@ import SubIcon from "@material-ui/icons/Remove";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { snackMessage } from "../actions";
-import ClipboardButton from "../components/ClipboardButton";
+import { snackMessage } from "../../actions";
+import ClipboardButton from "../../components/ClipboardButton";
 
 const emptyCost = { money: "", note: "", isCost: true };
 

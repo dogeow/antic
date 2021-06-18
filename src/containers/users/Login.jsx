@@ -23,10 +23,10 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link as RouteLink, useHistory, useLocation } from "react-router-dom";
 
-import { loginAction } from "../actions";
-import Copyright from "../components/Copyright";
-import wallpaper from "../config/wallpaper";
-import axios from "../instance/axios";
+import { loginAction } from "../../actions";
+import Copyright from "../../components/Copyright";
+import wallpaper from "../../config/wallpaper";
+import axios from "../../instance/axios";
 
 const random = Math.floor(Math.random() * wallpaper.length);
 

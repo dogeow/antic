@@ -35,7 +35,7 @@ const SpaMain = () => (
     />
     <Route
       path="/reset/:secret"
-      component={loadable(() => import("../containers/Reset"))}
+      component={loadable(() => import("../containers/users/Reset"))}
     />
     <Route
       path="/bookmarks"
@@ -55,7 +55,7 @@ const SpaMain = () => (
     />
     <Route
       path="/register"
-      component={loadable(() => import("../containers/Register"))}
+      component={loadable(() => import("../containers/users/Register"))}
     />
     <Route
       exact
@@ -69,16 +69,16 @@ const SpaMain = () => (
     <Route
       exact
       path="/api"
-      component={loadable(() => import("../containers/Api"))}
+      component={loadable(() => import("../containers/tools/Api"))}
     />
     <Route
       exact
       path="/api/time"
-      component={loadable(() => import("../containers/Time"))}
+      component={loadable(() => import("../containers/tools/Time"))}
     />
     <Route
       path="/about"
-      component={loadable(() => import("../containers/About"))}
+      component={loadable(() => import("../containers/site/About"))}
     />
     <Route
       exact
@@ -135,7 +135,7 @@ const SpaMain = () => (
     />
     <Route
       path="/a-z"
-      component={loadable(() => import("../containers/A2Z"))}
+      component={loadable(() => import("../containers/tools/A2Z"))}
     />
     <Route
       path="/piano"
@@ -156,11 +156,11 @@ const SpaMain = () => (
     <Route
       exact
       path="/user/:id"
-      component={loadable(() => import("../containers/User"))}
+      component={loadable(() => import("../containers/users/User"))}
     />
     <Route
       path="/user/:id/setting"
-      component={loadable(() => import("../containers/UserSetting"))}
+      component={loadable(() => import("../containers/users/UserSetting"))}
     />
     <Route
       exact
@@ -173,7 +173,7 @@ const SpaMain = () => (
     />
     <Route
       path="/demos/parking"
-      component={loadable(() => import("../containers/Parking"))}
+      component={loadable(() => import("../containers/tools/Parking"))}
     />
     <Route
       path="/demos/font"
@@ -181,7 +181,7 @@ const SpaMain = () => (
     />
     <Route
       path="/powered_by"
-      component={loadable(() => import("../containers/PoweredBy"), {
+      component={loadable(() => import("../containers/site/PoweredBy"), {
         fallback: <Loading />,
       })}
     />
@@ -191,17 +191,17 @@ const SpaMain = () => (
     />
     <Route
       path="/cars"
-      component={loadable(() => import("../containers/Cars"), {
+      component={loadable(() => import("../containers/me/Cars"), {
         fallback: <Loading />,
       })}
     />
     <Route
       path="/video"
-      component={loadable(() => import("../containers/Video"))}
+      component={loadable(() => import("../containers/demos/Video"))}
     />
     <Route
       path="/music"
-      component={loadable(() => import("../containers/Music"))}
+      component={loadable(() => import("../containers/demos/Music"))}
     />
     <Route
       path="/copywriting"
@@ -221,15 +221,15 @@ const SpaMain = () => (
     />
     <Route
       path="/base64"
-      component={loadable(() => import("../containers/Base64"))}
+      component={loadable(() => import("../containers/tools/Base64"))}
     />
     <Route
       path="/money"
-      component={loadable(() => import("../containers/Money"))}
+      component={loadable(() => import("../containers/tools/Money"))}
     />
     <Route
       path="/color"
-      component={loadable(() => import("../containers/Color"))}
+      component={loadable(() => import("../containers/tools/Color"))}
     />
     <Route
       path="/goods"
@@ -237,7 +237,7 @@ const SpaMain = () => (
     />
     <Route
       path="/docs"
-      component={loadable(() => import("../containers/Docs"))}
+      component={loadable(() => import("../containers/site/Docs"))}
     />
     <Route component={loadable(() => import("../containers/NoMatch"))} />
   </Switch>

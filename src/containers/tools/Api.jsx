@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import React, { useEffect, useState } from "react";
 
-import axios from "../instance/axios";
+import axios from "../../instance/axios";
 
 const Api = () => {
   const [api, setApi] = useState([]);

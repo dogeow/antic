@@ -11,10 +11,10 @@ import { useRouteMatch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import swal from "sweetalert2";
 
-import { loginAction } from "../actions";
-import axios from "../instance/axios";
-import Password from "./auth/Password";
-import PasswordConfirmation from "./auth/PasswordConfirmation";
+import { loginAction } from "../../actions";
+import axios from "../../instance/axios";
+import Password from "../auth/Password";
+import PasswordConfirmation from "../auth/PasswordConfirmation";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

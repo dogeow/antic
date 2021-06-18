@@ -3,7 +3,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import dayjs from "dayjs";
 import * as React from "react";
 
-import ClipboardButton from "../components/ClipboardButton";
+import ClipboardButton from "../../components/ClipboardButton";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
