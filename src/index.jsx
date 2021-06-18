@@ -1,3 +1,5 @@
+import "./styles/App.css";
+
 import { ApolloProvider } from "@apollo/client";
 import * as React from "react";
 import { render } from "react-dom";
@@ -12,6 +14,8 @@ if (process.env.NODE_ENV === "production") {
     Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN });
   });
 }
+
+require("./bootstrap");
 
 render(
   <React.StrictMode>

@@ -1,5 +1,4 @@
 import "dayjs/locale/zh-cn";
-import "../styles/App.css";
 
 import DayjsUtils from "@date-io/dayjs";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,8 +12,6 @@ import { BrowserRouter } from "react-router-dom";
 
 import Routes from "../routes";
 import ScrollToTop from "./ScrollToTop";
-
-require("../bootstrap");
 
 dayjs.locale("zh-cn");
 
