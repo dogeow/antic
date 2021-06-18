@@ -1,19 +1,10 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import Skeleton from "@material-ui/lab/Skeleton";
 import * as React from "react";
 import { useEffect, useState } from "react";
 
-const CATEGORIES = gql`
-  query {
-    categories {
-      id
-      name
-      count
-    }
-  }
-`;
-
 import ChipFlow from "../../components/ChipFlow";
+import { CATEGORIES } from "../../graphql/post";
 
 const Categories = (props) => {
   const [items, setItems] = useState([]);

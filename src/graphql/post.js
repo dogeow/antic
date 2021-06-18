@@ -84,6 +84,16 @@ const TAG = gql`
   }
 `;
 
+const CATEGORIES = gql`
+  query {
+    categories {
+      id
+      name
+      count
+    }
+  }
+`;
+
 const TAGS = gql`
   query {
     TagsCount {
@@ -94,4 +104,4 @@ const TAGS = gql`
   }
 `;
 
-export { POST_LIST, CATEGORY, TAG, TAGS };
+export { POST_LIST, CATEGORY, TAG, TAGS, CATEGORIES };
