@@ -6,21 +6,21 @@ import { useEffect, useState } from "react";
 import ChipFlow from "../../components/ChipFlow";
 import { CATEGORIES } from "../../graphql/post";
 
-const Categories = (props) => {
-  const [items, setItems] = useState([]);
+export default (props) => {
+  const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState(undefined);
 
   const { data } = useQuery(CATEGORIES);
 
   useEffect(() => {
     if (data) {
-      setItems(_.orderBy(data.categories, ["count"], ["desc"]));
+      setCategories(_.orderBy(data.categories, ["count"], ["desc"]));
     }
   }, [data]);
 
-  return items.length ? (
+  return categories.length ? (
     <ChipFlow
-      items={items}
+      items={categories}
       currentSelect={category}
       onHandleClick={(category) => {
         setCategory(category);
@@ -31,5 +31,3 @@ const Categories = (props) => {
     <Skeleton variant="rect" height="24rem" />
   );
 };
-
-export default Categories;
