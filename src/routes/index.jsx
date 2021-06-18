@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 
 import Spa from "./Spa";
 
-const Routes = () => (
+export default () => (
   <Switch>
     <Route
       exact
@@ -23,5 +23,3 @@ const Routes = () => (
     <Route path="*" component={Spa} />
   </Switch>
 );
-
-export default Routes;
