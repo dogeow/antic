@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 
 import Loading from "../components/Loading";
 import Index from "../containers";
-import Redirect from "../containers/Redirect";
+import Redirect from "../containers/users/Redirect";
 
 const SpaMain = () => (
   <Switch>
@@ -121,7 +121,7 @@ const SpaMain = () => (
     />
     <Route
       path="/self-talk"
-      component={loadable(() => import("../containers/SelfTalk"), {
+      component={loadable(() => import("../containers/me/SelfTalk"), {
         fallback: <Loading />,
       })}
     />
@@ -205,7 +205,7 @@ const SpaMain = () => (
     />
     <Route
       path="/copywriting"
-      component={loadable(() => import("../containers/Copywriting"))}
+      component={loadable(() => import("../containers/tools/Copywriting"))}
     />
     <Route
       path="/moon"

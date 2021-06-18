@@ -5,7 +5,7 @@ import RefreshIcon from "@material-ui/icons/Refresh";
 import RemoveIcon from "@material-ui/icons/Remove";
 import React, { useEffect, useState } from "react";
 
-import SpeedDial from "../components/SpeedDial";
+import SpeedDial from "../../components/SpeedDial";
 
 const useStyles = makeStyles(() => ({
   quote: {
