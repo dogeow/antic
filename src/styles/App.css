@@ -1,16 +1,14 @@
+@charset "UTF-8"; /* 动画。「明亮 / 黑暗」主题切换时的渐变， */
 body {
   transition-property: background-color;
   transition-duration: 2s;
 }
 
+/* reset */
 ul {
   list-style-type: none;
   text-align: initial;
   padding-inline-start: 20px;
-}
-
-.grecaptcha-badge {
-  display: none;
 }
 
 /* 更改默认行为 start */
@@ -40,7 +38,6 @@ blockquote {
   background: #303030 !important;
   color: white !important;
 }
-
 /* 更改默认行为 end */
 
 /* 鼠标样式 start */
@@ -60,7 +57,6 @@ input.MuiSwitch-input,
 input {
   cursor: url("../resources/cursor/text.cur"), auto;
 }
-
 /* 鼠标样式 end */
 
 /* 微博热搜榜 start */
@@ -75,7 +71,6 @@ input {
 .new {
   border-left: 1px solid green;
 }
-
 /* 微博热搜榜 end */
 
 .quote {
@@ -106,7 +101,7 @@ input {
   display: block;
   position: fixed;
   top: 85px;
-  right: 0px;
+  right: 0;
   min-width: 100px;
   max-width: 350px;
   max-height: 500px;
@@ -225,7 +220,6 @@ h4:hover .header-anchor {
   overflow-y: scroll;
 }
 
-@charset "UTF-8";
 .top-jumper {
   position: fixed;
   right: 11%;
