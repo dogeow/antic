@@ -233,7 +233,7 @@ const SpaMain = () => (
     />
     <Route
       path="/goods"
-      component={loadable(() => import("../containers/goods/Index"))}
+      component={loadable(() => import("../containers/goods"))}
     />
     <Route
       path="/docs"
