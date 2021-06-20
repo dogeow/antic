@@ -1,8 +1,9 @@
 import { gql } from "@apollo/client";
 
 const POST_LIST = gql`
-  query($page: Int) {
+  query($page: Int, $categoryId: Int) {
     posts(
+      category_id: $categoryId
       first: 10
       page: $page
       orderBy: [{ column: UPDATED_AT, order: DESC }]

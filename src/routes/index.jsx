@@ -16,6 +16,7 @@ export default () => (
       path="/login"
       component={loadable(() => import("../containers/users/Login"))}
     />
+    <Route path="/admin" component={loadable(() => import("./Admin"))} />
     <Route
       path="/dashboard"
       component={loadable(() => import("./Dashboard"))}

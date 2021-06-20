@@ -34,6 +34,7 @@ const PostList = (props) => {
   const [isSecret, setIsSecret] = useState(false);
   const [pageCount, setPageCount] = useState();
   const [currPage, setCurrPage] = useState(1);
+  const [currCategory, setCurrCategory] = useState();
   const history = useHistory();
 
   const [getPosts, { data }] = useLazyQuery(POST_LIST);
@@ -74,10 +75,15 @@ const PostList = (props) => {
   }, [postsByTag]);
 
   const handlePage = (page) => {
-    getPosts({ variables: { page: page } });
+    getPosts(
+      currCategory
+        ? { variables: { page: page, categoryId: currCategory } }
+        : { variables: { page: page } }
+    );
   };
 
   const changeCategory = (id) => {
+    setCurrCategory(id);
     getPostsByCategory({ variables: { id } });
   };
 
