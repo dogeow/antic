@@ -1,7 +1,12 @@
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AppBar from "@material-ui/core/AppBar";
+import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import Tab from "@material-ui/core/Tab";
+import Tabs from "@material-ui/core/Tabs";
+import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import React from "react";
@@ -9,47 +14,93 @@ import React from "react";
 import ImgList from "../../components/ImgList";
 import Upload from "../../components/Upload";
 
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <Grid
+      item
+      container
+      spacing={2}
+      xs={12}
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <>{children}</>}
+    </Grid>
+  );
+}
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
 const EmojiCreate = () => {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <Grid container spacing={2} justify="center" alignItems="flex-end">
-      <Upload path="/emoji" />
       <Grid item xs={12}>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
+        <AppBar position="static">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="simple tabs example"
           >
-            <Typography> 更多照片？</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <ImgList />
-          </AccordionDetails>
-        </Accordion>
+            <Tab label="基础信息" {...a11yProps(0)} />
+            <Tab label="更多信息" {...a11yProps(0)} />
+            <Tab label="交易信息" {...a11yProps(1)} />
+          </Tabs>
+        </AppBar>
       </Grid>
-      <Grid container justify="space-between">
-        <Grid item>分类</Grid>
-        <Grid item>分类</Grid>
-      </Grid>
-      <Grid item xs={12}>
-        标题
-      </Grid>
-      <Grid item xs={12}>
-        <h3>草稿</h3>
-        <ul>
-          <li>
-            随着生活水平提高，闲置东西越来越多，有时候我们可以用不玩的 Switch 换
-            GoPro，或者互相借用。但是，这个系统不是全部公开的，默认是仅限于自己和自己的朋友或亲戚之间。因为，咸鱼那些交易比较麻烦，东西不值钱的，也没必要浪费时间去弄，比如
-            VGA 线自己不再使用了，但是可以放着，朋友需要就可以拿去。
-          </li>
-          <li>
-            一：管理自己的物品。二：可以设置为免费或者物物交换、可互相借用
-          </li>
-          <li>一般都是手机操作，界面和操作要友好</li>
-          <li>一键查看自己需要的东西</li>
-          <li>属性可以自己添加</li>
-        </ul>
-      </Grid>
+      <TabPanel value={value} index={0}>
+        <Upload keyName="goods" />
+        <Grid container justify="space-between">
+          <Grid item xs>
+            <TextField label="分类" />
+          </Grid>
+          <Grid item xs>
+            <TextField label="名字" />
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <Button variant="contained" color="primary">
+            添加
+          </Button>
+        </Grid>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <Grid item xs={12}>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography> 更多照片？</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <ImgList />
+            </AccordionDetails>
+          </Accordion>
+        </Grid>
+        <Grid item xs={12}>
+          <TextField label="标签" />
+        </Grid>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        交易
+      </TabPanel>
     </Grid>
   );
 };
