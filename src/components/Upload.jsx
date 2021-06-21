@@ -14,7 +14,8 @@ const Upload = (props) => {
     (acceptedFiles) => {
       const file = new Blob([acceptedFiles[0]]);
       const formData = new FormData();
-      formData.append("emoji", file, acceptedFiles[0].name);
+      formData.append("name", props.path);
+      formData.append(props.path, file, acceptedFiles[0].name);
       axios
         .post(props.path, formData, {
           headers: {
