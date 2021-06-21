@@ -14,10 +14,10 @@ const Upload = (props) => {
     (acceptedFiles) => {
       const file = new Blob([acceptedFiles[0]]);
       const formData = new FormData();
-      formData.append("name", props.path);
-      formData.append(props.path, file, acceptedFiles[0].name);
+      formData.append("key", props.keyName);
+      formData.append(props.keyName, file, acceptedFiles[0].name);
       axios
-        .post(props.path, formData, {
+        .post("images", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Accept: "image/*",
@@ -35,7 +35,7 @@ const Upload = (props) => {
           dispatch(snackMessage("上传成功"));
         });
     },
-    [dispatch, props.path]
+    [dispatch, props.keyName]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });

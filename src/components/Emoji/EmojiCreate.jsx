@@ -6,7 +6,7 @@ import Upload from "../../components/Upload";
 const EmojiCreate = () => {
   return (
     <Grid container spacing={2} justify="center" alignItems="flex-end">
-      <Upload path="/emoji" />
+      <Upload keyName="emoji" />
     </Grid>
   );
 };
