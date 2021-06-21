@@ -40,6 +40,10 @@ const Dashboard = () => {
             })}
           />
           <Route path="/dashboard/application" component={Application} />
+          <Route
+            path="/dashboard/pics"
+            component={loadable(() => import("../containers/dashboard/Pics"))}
+          />
           <Route component={NoMatch} />
         </Switch>
       </main>
