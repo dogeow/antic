@@ -29,6 +29,7 @@
     "axios": "^0.21.0",
     "clipboard": "^2.0.6",
     "clsx": "^1.1.1",
+    "connected-react-router": "^6.9.1",
     "dayjs": "^1.10.4",
     "emotion": "^11.0.0",
     "graphql": "^15.4.0",
