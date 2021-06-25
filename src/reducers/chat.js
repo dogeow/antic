@@ -1,3 +1,4 @@
+import produce from "immer";
 import _ from "lodash";
 
 const defaultState = {
@@ -12,37 +13,29 @@ const defaultState = {
   ],
 };
 
-const chat = (state = defaultState, action) => {
-  switch (action.type) {
-    case "LOGIN":
-      return { ...state, peoples: [] };
-    case "LOGOUT":
-      return { ...state, peoples: [] };
-    case "ADD_PEOPLES":
-      return {
-        ...state,
-        peoples: _.uniqBy([...state.peoples, ...action.payload], "id"),
-      };
-    case "ADD_PEOPLE":
-      return {
-        ...state,
-        peoples: _.uniqBy([...state.peoples, action.payload], "id"),
-      };
-    case "DELETE_PEOPLE":
-      const peoples = state.peoples;
-      const chatBoard = state.chatBoard;
-      _.remove(peoples, { id: action.payload.id });
-      _.remove(chatBoard, { id: action.payload.id });
-      return {
-        ...state,
-        peoples,
-        chatBoard,
-      };
-    case "CHAT_BOARD":
-      return { ...state, chatBoard: [...state.chatBoard, action.payload] };
-    default:
-      return state;
-  }
-};
-
-export default chat;
+export default (state = defaultState, action) =>
+  produce(state, (draft) => {
+    switch (action.type) {
+      case "LOGIN":
+        draft.peoples = [];
+        break;
+      case "LOGOUT":
+        draft.peoples = [];
+        break;
+      case "ADD_PEOPLES":
+        draft.peoples.push(...action.payload);
+        draft.peoples = _.uniqBy(draft.peoples, "id");
+        break;
+      case "ADD_PEOPLE":
+        draft.peoples.push(action.payload);
+        draft.peoples = _.uniqBy(draft.peoples, "id");
+        break;
+      case "DELETE_PEOPLE":
+        _.remove(draft.peoples, { id: action.payload.id });
+        _.remove(draft.chatBoard, { id: action.payload.id });
+        break;
+      case "CHAT_BOARD":
+        draft.chatBoard.push(action.payload);
+        break;
+    }
+  });

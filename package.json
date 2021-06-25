@@ -34,6 +34,7 @@
     "emotion": "^11.0.0",
     "graphql": "^15.4.0",
     "imagesloaded": "^4.1.4",
+    "immer": "^9.0.3",
     "immutability-helper": "^3.1.1",
     "immutable": "^4.0.0-rc.12",
     "is-hotkey": "^0.2.0",
