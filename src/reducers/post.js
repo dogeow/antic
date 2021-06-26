@@ -1,3 +1,4 @@
+import produce from "immer";
 import _ from "lodash";
 
 const defaultState = {
@@ -9,34 +10,36 @@ const defaultState = {
   category: { id: "", name: "" },
 };
 
-const lab = (state = defaultState, action) => {
-  switch (action.type) {
-    case "POST_SAVE":
-      return { ...action.payload };
-    case "POST_MODIFY":
-      const fieldAndValue = {};
-      fieldAndValue[action.payload.field] = action.payload.value;
-      return { ...state, ...fieldAndValue };
-    case "POST_CONTENT_SAVE":
-      return { ...state, content: action.payload };
-    case "POST_TITLE":
-      return { ...state, title: action.payload };
-    case "POST_CATEGORY":
-      return { ...state, category: action.payload };
-    case "TAGS_DELETE": {
-      const newTags = state.tags;
-      _.remove(newTags, { name: action.payload });
-      return { ...state, tags: newTags || [] };
+export default (state = defaultState, action) =>
+  produce(state, (draft) => {
+    switch (action.type) {
+      case "POST_SAVE":
+        draft = { ...action.payload };
+        break;
+      case "POST_MODIFY":
+        draft[action.payload.field] = action.payload.value;
+        break;
+      case "POST_CONTENT_SAVE":
+        draft.content = action.payload;
+        break;
+      case "POST_TITLE":
+        draft.title = action.payload;
+        break;
+      case "POST_CATEGORY":
+        draft.category = action.payload;
+        break;
+      case "TAGS_DELETE": {
+        _.remove(draft.tags, { name: action.payload });
+        draft.tags = draft.tags || [];
+        break;
+      }
+      case "TAGS_ADD": {
+        draft.tags.push(action.payload);
+        break;
+      }
+      case "TAGS": {
+        draft.tags = action.payload;
+        break;
+      }
     }
-    case "TAGS_ADD": {
-      return { ...state, tags: [...state.tags, action.payload] };
-    }
-    case "TAGS": {
-      return { ...state, tags: action.payload };
-    }
-    default:
-      return state;
-  }
-};
-
-export default lab;
+  });

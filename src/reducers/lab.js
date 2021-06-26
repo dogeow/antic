@@ -1,3 +1,4 @@
+import produce from "immer";
 import _ from "lodash";
 
 import { expired, logged } from "../helpers";
@@ -21,94 +22,84 @@ const defaultState = {
   post: { tags: [], category: { id: "", name: "" } },
 };
 
-const lab = (state = defaultState, action) => {
-  switch (action.type) {
-    case "CHANGE_USER":
-      logged(action.payload);
-      return {
-        ...state,
-        isExpired: false,
-        token: `Bearer ${action.payload.token}`,
-        userId: action.payload.userId,
-        userName: action.payload.userName,
-        userEmail: action.payload.userEmail,
-        snackMessage: "切换用户成功",
-      };
-    case "LOGIN":
-      logged(action.payload);
-      const users = _.uniqBy(
-        [
-          ...state.users,
-          {
+export default (state = defaultState, action) =>
+  produce(state, (draft) => {
+    switch (action.type) {
+      case "CHANGE_USER":
+        logged(action.payload);
+        draft.isExpired = false;
+        draft.token = `Bearer ${action.payload.token}`;
+        draft.userId = action.payload.userId;
+        draft.userName = action.payload.userName;
+        draft.userEmail = action.payload.userEmail;
+        draft.snackMessage = "切换用户成功";
+        break;
+      case "LOGIN":
+        logged(action.payload);
+        const users = _.uniqBy(
+          draft.users.push({
             token: `Bearer ${action.payload.token}`,
             userId: action.payload.userId,
             userName: action.payload.userName,
             userEmail: action.payload.userEmail,
-          },
-        ],
-        "userId"
-      );
-      localStorage.setItem("users", JSON.stringify(users));
-      return {
-        ...state,
-        isExpired: false,
-        token: `Bearer ${action.payload.token}`,
-        userId: action.payload.userId,
-        userName: action.payload.userName,
-        userEmail: action.payload.userEmail,
-        snackMessage: "登录成功",
-        users: users,
-      };
-    case "TOGGLE_DRAWER":
-      return { ...state, toggleDrawer: !state.toggleDrawer };
-    case "SNACK_TOGGLE":
-      return { ...state, snackOpen: !state.snackOpen };
-    case "SNACK_MESSAGE":
-      return { ...state, snackOpen: true, snackMessage: action.payload };
-    case "ACCESS_TOKEN":
-      return { ...state, token: action.token };
-    case "TOGGLE_THEME":
-      return {
-        ...state,
-        paletteMode: state.paletteMode === "dark" ? "light" : "dark",
-      };
-    case "LOGOUT":
-      return {
-        ...state,
-        isExpired: true,
-        token: null,
-        userId: null,
-        userName: null,
-        userEmail: null,
-        snackOpen: true,
-        snackMessage: "退出成功",
-        users: [],
-      };
-    case "POST_SAVE":
-      return { ...state, post: action.payload };
-    case "POST_CONTENT_SAVE":
-      return { ...state, post: { ...state.post, content: action.payload } };
-    case "POST_TITLE":
-      return { ...state, post: { ...state.post, title: action.payload } };
-    case "POST_CATEGORY":
-      return { ...state, post: { ...state.post, category: action.payload } };
-    case "TAGS_DELETE": {
-      const newTags = state.post.tags;
-      _.remove(newTags, { name: action.payload });
-      return { ...state, post: { ...state.post, tags: newTags || [] } };
+          }),
+          "userId"
+        );
+        localStorage.setItem("users", JSON.stringify(users));
+        draft.isExpired = false;
+        draft.toke = `Bearer ${action.payload.token}`;
+        draft.userId = action.payload.userId;
+        draft.userName = action.payload.userName;
+        draft.userEmail = action.payload.userEmail;
+        draft.snackMessage = "登录成功";
+        draft.users = users;
+        break;
+      case "TOGGLE_DRAWER":
+        draft.toggleDrawer = !state.toggleDrawer;
+        break;
+      case "SNACK_TOGGLE":
+        draft.snackOpen = !state.snackOpen;
+        break;
+      case "SNACK_MESSAGE":
+        draft.snackOpen = true;
+        draft.snackMessage = action.payload;
+        break;
+      case "ACCESS_TOKEN":
+        draft.token = action.token;
+        break;
+      case "TOGGLE_THEME":
+        draft.paletteMode = draft.paletteMode === "dark" ? "light" : "dark";
+        break;
+      case "LOGOUT":
+        draft.isExpired = true;
+        draft.token = null;
+        draft.userId = null;
+        draft.userName = null;
+        draft.userEmail = null;
+        draft.snackOpen = true;
+        draft.snackMessage = "退出成功";
+        draft.users = [];
+        break;
+      case "POST_SAVE":
+        draft.post = action.payload;
+        break;
+      case "POST_CONTENT_SAVE":
+        draft.post.content = action.payload;
+        break;
+      case "POST_TITLE":
+        draft.post.title = action.payload;
+        break;
+      case "POST_CATEGORY":
+        draft.post.category = action.payload;
+        break;
+      case "TAGS_DELETE": {
+        _.remove(draft.post.tags, { name: action.payload });
+        draft.post.tags = draft.post.tags || [];
+        break;
+      }
+      case "TAGS_ADD": {
+        draft.post.tags = action.payload;
+        break;
+      }
     }
-    case "TAGS_ADD": {
-      return {
-        ...state,
-        post: {
-          ...state.post,
-          tags: action.payload,
-        },
-      };
-    }
-    default:
-      return state;
-  }
-};
-
-export default lab;
+  });
