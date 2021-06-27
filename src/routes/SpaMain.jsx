@@ -6,7 +6,7 @@ import Loading from "../components/Loading";
 import Index from "../containers";
 import Redirect from "../containers/users/Redirect";
 
-const SpaMain = () => (
+export default (
   <Switch>
     <Route exact path="/" component={Index} />
     <Route exact path="/redirect" component={Redirect} />
@@ -242,4 +242,3 @@ const SpaMain = () => (
     <Route component={loadable(() => import("../containers/NoMatch"))} />
   </Switch>
 );
-export default SpaMain;

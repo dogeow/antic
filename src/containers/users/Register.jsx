@@ -16,9 +16,9 @@ import { useDispatch } from "react-redux";
 import swal from "sweetalert2";
 
 import { loginAction } from "../../actions";
-import Copyright from "../../components/Copyright";
 import GitHubLogin from "../../components/GithubLogin";
 import Loading from "../../components/Loading";
+import Copyright from "../../components/site/Copyright";
 import axios from "../../instance/axios";
 import Email from "../auth/Email";
 import LoginOrRegisterButton from "../auth/LoginOrRegisterButton";

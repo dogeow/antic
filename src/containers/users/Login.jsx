@@ -24,7 +24,7 @@ import { connect } from "react-redux";
 import { Link as RouteLink, useHistory, useLocation } from "react-router-dom";
 
 import { loginAction } from "../../actions";
-import Copyright from "../../components/Copyright";
+import Copyright from "../../components/site/Copyright";
 import wallpaper from "../../config/wallpaper";
 import axios from "../../instance/axios";
 

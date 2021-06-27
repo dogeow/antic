@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 
 import axios from "../instance/axios";
 import ToLogin from "./Auth/ToLogin";
-import Copyright from "./Copyright";
+import Copyright from "./site/Copyright";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

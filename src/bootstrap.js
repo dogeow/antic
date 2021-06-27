@@ -1,7 +1,7 @@
 import Echo from "laravel-echo";
 
-import changeTitle from "./components/ChangeTitle";
 import consoleInfo from "./components/ConsoleInfo";
+import changeTitle from "./components/site/ChangeTitle";
 import { logout } from "./helpers";
 
 if (
