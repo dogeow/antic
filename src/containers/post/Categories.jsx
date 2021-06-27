@@ -21,6 +21,7 @@ export default (props) => {
   return categories.length ? (
     <ChipFlow
       items={categories}
+      type="id"
       currentSelect={category}
       onHandleClick={(category) => {
         setCategory(category);

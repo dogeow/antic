@@ -35,6 +35,7 @@ const PostList = (props) => {
   const [pageCount, setPageCount] = useState();
   const [currPage, setCurrPage] = useState(1);
   const [currCategory, setCurrCategory] = useState();
+  const [currTag, setCurrTag] = useState();
   const history = useHistory();
 
   const [getPosts, { data }] = useLazyQuery(POST_LIST);
@@ -68,6 +69,7 @@ const PostList = (props) => {
 
   useEffect(() => {
     if (postsByTag) {
+      console.log(postsByTag.tag.data.map((item) => item.posts[0]));
       setPost(postsByTag.tag.data.map((item) => item.posts[0]));
       setCurrPage(postsByTag.tag.paginatorInfo.currentPage);
       setPageCount(postsByTag.tag.paginatorInfo.lastPage);
@@ -83,11 +85,14 @@ const PostList = (props) => {
   };
 
   const changeCategory = (id) => {
+    setCurrTag(undefined);
     setCurrCategory(id);
     getPostsByCategory({ variables: { id } });
   };
 
   const changeTag = (name) => {
+    setCurrCategory(undefined);
+    setCurrTag(name);
     getPostsByTag({ variables: { name } });
   };
 
@@ -142,61 +147,63 @@ const PostList = (props) => {
             <Paper className={classes.paper}>
               <Grid container spacing={2}>
                 {post.length !== 0
-                  ? post.map((item, index) => (
-                      <Grid
-                        item
-                        container
-                        xs={12}
-                        key={item.id}
-                        spacing={2}
-                        alignItems="center"
-                        style={{ flexWrap: "nowrap" }}
-                      >
-                        {/* 分类 */}
-                        <Grid item>
-                          <img
-                            src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category.name}.svg`}
-                            alt={item.category.name}
-                            width="20"
-                            height="20"
-                            onClick={() => changeCategory(item?.category.id)}
-                          />
-                        </Grid>
-                        {/* 标题 */}
-                        <Grid item style={{ flexGrow: 1 }}>
-                          <Typography
-                            variant="subtitle1"
-                            component="h2"
-                            onClick={() => handleEnterPost(item)}
-                          >
-                            {item.title}
-                          </Typography>
-                        </Grid>
-                        {/* 标签 */}
-                        <Hidden smDown>
-                          <Grid item>
-                            <Grid container spacing={1}>
-                              {item.tags.length !== 0 &&
-                                item.tags.map((tag) => (
-                                  <Grid item key={tag.id}>
-                                    <Chip
-                                      variant="outlined"
-                                      size="small"
-                                      label={tag.name}
-                                    />
-                                  </Grid>
-                                ))}
-                            </Grid>
-                          </Grid>
-                        </Hidden>
+                  ? post.map((item) => {
+                      return (
                         <Grid
                           item
-                          style={item.public ? null : { color: "red" }}
+                          container
+                          xs={12}
+                          key={item.id}
+                          spacing={2}
+                          alignItems="center"
+                          style={{ flexWrap: "nowrap" }}
                         >
-                          {dayjs(item.updated_at).fromNow()}
+                          {/* 分类 */}
+                          <Grid item>
+                            <img
+                              src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category.name}.svg`}
+                              alt={item.category.name}
+                              width="20"
+                              height="20"
+                              onClick={() => changeCategory(item?.category.id)}
+                            />
+                          </Grid>
+                          {/* 标题 */}
+                          <Grid item style={{ flexGrow: 1 }}>
+                            <Typography
+                              variant="subtitle1"
+                              component="h2"
+                              onClick={() => handleEnterPost(item)}
+                            >
+                              {item.title}
+                            </Typography>
+                          </Grid>
+                          {/* 标签 */}
+                          <Hidden smDown>
+                            <Grid item>
+                              <Grid container spacing={1}>
+                                {item.tags.length !== 0 &&
+                                  item.tags.map((tag) => (
+                                    <Grid item key={tag.id}>
+                                      <Chip
+                                        variant="outlined"
+                                        size="small"
+                                        label={tag.name}
+                                      />
+                                    </Grid>
+                                  ))}
+                              </Grid>
+                            </Grid>
+                          </Hidden>
+                          <Grid
+                            item
+                            style={item.public ? null : { color: "red" }}
+                          >
+                            {dayjs(item.updated_at).fromNow()}
+                          </Grid>
                         </Grid>
-                      </Grid>
-                    ))
+                      );
+                    })
                   : Array.from(new Array(10)).map((index) => (
                       <Grid item container xs={12} spacing={2} key={index}>
                         <Grid item>

@@ -21,6 +21,7 @@ const AllTags = (props) => {
   return items.length ? (
     <ChipFlow
       items={items}
+      type="name"
       currentSelect={tag}
       onHandleClick={(tag) => {
         setTag(tag);
