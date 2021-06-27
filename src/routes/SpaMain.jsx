@@ -6,7 +6,7 @@ import Loading from "../components/Loading";
 import Index from "../containers";
 import Redirect from "../containers/users/Redirect";
 
-export default (
+export default () => (
   <Switch>
     <Route exact path="/" component={Index} />
     <Route exact path="/redirect" component={Redirect} />
