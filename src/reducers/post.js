@@ -14,7 +14,9 @@ export default (state = defaultState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
       case "POST_SAVE":
-        draft = { ...action.payload };
+        Object.entries(action.payload).forEach(([k, v]) => {
+          draft[k] = v;
+        });
         break;
       case "POST_MODIFY":
         draft[action.payload.field] = action.payload.value;
