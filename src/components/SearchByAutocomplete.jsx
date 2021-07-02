@@ -41,7 +41,7 @@ export default function Autocomplete(props) {
                       indexName: "posts",
                       query,
                       params: {
-                        hitsPerPage: 5,
+                        hitsPerPage: 10,
                         highlightPreTag: "<mark>",
                         highlightPostTag: "</mark>",
                         attributesToSnippet: ["title:10", "content:10"],
@@ -164,11 +164,11 @@ export default function Autocomplete(props) {
             .filter(Boolean)
             .join(" ")}
           {...autocomplete.getPanelProps({})}
-          style={{ position: "unset" }}
+          style={{ position: "unset", overflow: "scroll", height: "85vh" }}
         >
           <div
             className="aa-PanelLayout"
-            style={{ minHeight: "100%", maxHeight: "unset" }}
+            style={{ height: "unset", maxHeight: "unset" }}
           >
             {autocompleteState.collections.map((collection, index) => {
               const { source, items } = collection;
