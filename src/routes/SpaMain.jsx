@@ -239,6 +239,10 @@ export default () => (
       path="/docs"
       component={loadable(() => import("../containers/site/Docs"))}
     />
+    <Route
+      path="/roads"
+      component={loadable(() => import("../containers/Roads"))}
+    />
     <Route component={loadable(() => import("../containers/NoMatch"))} />
   </Switch>
 );

@@ -4,6 +4,7 @@ import consoleInfo from "./components/ConsoleInfo";
 import changeTitle from "./components/site/ChangeTitle";
 import { logout } from "./helpers";
 
+// LocalStorage 数据过期时的处理
 if (
   localStorage.access_token_expired_at &&
   localStorage.access_token_expired_at < Date.now() / 1000
@@ -11,7 +12,9 @@ if (
   logout();
 }
 
+// Chrome 控制台信息
 consoleInfo();
+
 changeTitle();
 
 /**
@@ -19,7 +22,6 @@ changeTitle();
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-
 if (process.env.NODE_ENV === "production") {
   window.io = require("socket.io-client");
   window.Echo = new Echo({
@@ -33,6 +35,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+// 增加 JavaScript 没有的函数（PHP 上的）
 ((ns) => {
   /**
    * mbStrWidth
