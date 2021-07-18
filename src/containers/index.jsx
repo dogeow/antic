@@ -1,7 +1,7 @@
+import styled from "@emotion/styled";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import * as React from "react";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   "@global": {
@@ -19,36 +19,25 @@ const Index = () => {
 
   return (
     <>
-      <Grid item xs={6}>
-        <Link to="/posts">
-          <span role="img" style={{ fontSize: "3rem" }}>
-            📄
-          </span>
-          <div>笔记</div>
-        </Link>
+      <Grid item xs={12}>
+        <img
+          src={`${process.env.REACT_APP_CDN_URL}/logo/Laravel-name.svg`}
+          style={{ width: 220 }}
+        />
       </Grid>
-      <Grid item xs={6}>
-        <Link to="/chat">
-          <span style={{ fontSize: "3rem" }}>♂</span>
-          <div>聊天室</div>
-        </Link>
+      <Grid item xs={12}>
+        <img
+          src={`${process.env.REACT_APP_CDN_URL}/logo/React-name.svg`}
+          style={{ width: 220 }}
+        />
       </Grid>
-      <Grid item xs={6}>
-        <Link to="/api">
-          <span role="img" style={{ fontSize: "3rem" }}>
-            ⚙️
-          </span>
-          <div>便民 API</div>
-        </Link>
+      <Grid item xs={12}>
+        <img
+          src={`${process.env.REACT_APP_CDN_URL}/logo/Docker.svg`}
+          style={{ width: 100 }}
+        />
       </Grid>
-      <Grid item xs={6}>
-        <Link to="/demo">
-          <span role="img" style={{ fontSize: "3rem" }}>
-            📦
-          </span>
-          <div>Demo</div>
-        </Link>
-      </Grid>
+      <Grid item xs={12}></Grid>
     </>
   );
 };
