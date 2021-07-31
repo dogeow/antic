@@ -1,7 +1,7 @@
 import Grid from "@material-ui/core/Grid";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import axios from "../instance/axios";
 
@@ -9,7 +9,11 @@ export default () => {
   const [mediawiki, setMediawiki] = useState("");
   const [markdown, setMarkdown] = useState("");
 
-  const change = () => {
+  useEffect(() => {
+    if (mediawiki === "") {
+      return;
+    }
+
     axios
       .post("/mediawiki-to-markdown", {
         mediawiki,
@@ -17,14 +21,13 @@ export default () => {
       .then(({ data }) => {
         setMarkdown(data);
       });
-  };
-
-  const changeMarkdown = (e) => {
-    setMarkdown(e.target.value);
-  };
+  }, [mediawiki]);
 
   const changeMediawiki = (e) => {
     setMediawiki(e.target.value);
+  };
+  const changeMarkdown = (e) => {
+    setMarkdown(e.target.value);
   };
 
   return (
@@ -32,18 +35,18 @@ export default () => {
       <Grid item xs={5}>
         <TextareaAutosize
           name="mediawiki"
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%", overflow: "auto" }}
           value={mediawiki}
           onChange={changeMediawiki}
         />
       </Grid>
       <Grid item xs={2} style={{ alignSelf: "center", textAlign: "center" }}>
-        <ArrowForwardIcon onClick={change} />
+        <ArrowForwardIcon />
       </Grid>
       <Grid item xs={5}>
         <TextareaAutosize
           name="markdown"
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%", overflow: "auto" }}
           value={markdown}
           onChange={changeMarkdown}
         />
