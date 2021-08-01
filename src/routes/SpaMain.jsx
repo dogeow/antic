@@ -233,7 +233,7 @@ export default () => (
     />
     <Route
       path="/goods"
-      component={loadable(() => import("../containers/goods/index"))}
+      component={loadable(() => import("../containers/goods"))}
     />
     <Route
       path="/docs"
