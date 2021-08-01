@@ -246,6 +246,9 @@ const Header = ({
                 <Button color="inherit" component={RouteLink} to="/chat">
                   聊天室♂
                 </Button>
+                <Button color="inherit" component={RouteLink} to="/demo">
+                  DEMO
+                </Button>
               </div>
             )}
             <div className={classes.blank} />
