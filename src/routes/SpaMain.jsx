@@ -247,6 +247,10 @@ export default () => (
       path="/mediawiki-to-markdown"
       component={loadable(() => import("../containers/MediaWikiToMarkdown"))}
     />
+    <Route
+      path="/markdown"
+      component={loadable(() => import("../containers/markdown"))}
+    />
     <Route component={loadable(() => import("../containers/NoMatch"))} />
   </Switch>
 );
