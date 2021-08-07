@@ -1,13 +1,12 @@
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import { loginAction } from "actions";
+import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-
-import { loginAction } from "../../actions";
-import axios from "../../instance/axios";
 
 const Forget = () => {
   const dispatch = useDispatch();

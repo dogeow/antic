@@ -7,13 +7,13 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Snackbar from "@material-ui/core/Snackbar";
 import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
+import Avatar from "components/gravatar";
+import Loading from "components/Loading";
+import axios from "instance/axios";
 import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 
-import Avatar from "../components/gravatar";
-import Loading from "../components/Loading";
-import axios from "../instance/axios";
 import Expire from "./Expire";
 
 let timer = null;

@@ -1,10 +1,9 @@
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import ChipFlow from "components/ChipFlow";
 import * as React from "react";
 import { Link, useHistory } from "react-router-dom";
-
-import ChipFlow from "../../components/ChipFlow";
 
 const Categories = () => {
   const history = useHistory();

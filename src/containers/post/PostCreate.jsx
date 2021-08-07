@@ -1,4 +1,4 @@
-import "../../styles/editor.css";
+import "styles/editor.css";
 
 import { gql, useLazyQuery } from "@apollo/client";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -14,6 +14,9 @@ import ErrorIcon from "@material-ui/icons/ErrorOutline";
 import SaveIcon from "@material-ui/icons/Save";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import clsx from "clsx";
+import CodeBlock from "components/CodeBlock";
+import Tags from "components/post/Tags";
+import axios from "instance/axios";
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -21,10 +24,6 @@ import MdEditor from "react-markdown-editor-lite";
 import { useRouteMatch } from "react-router-dom";
 import gfm from "remark-gfm";
 import Swal from "sweetalert2";
-
-import CodeBlock from "../../components/CodeBlock";
-import Tags from "../../components/post/Tags";
-import axios from "../../instance/axios";
 
 const useStyles = makeStyles((theme) => {
   const background = theme.palette.background.default;

@@ -22,17 +22,16 @@ import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import SearchIcon from "@material-ui/icons/Search";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import MuiAlert from "@material-ui/lab/Alert";
+import Drawer from "components/Drawer";
+import Logo from "components/Logo";
+import Search from "components/Search";
+import Settings from "components/Settings";
+import { gravatarCdn } from "config/services";
 import md5 from "md5";
 import PropTypes from "prop-types";
 import React, { useCallback, useEffect, useState } from "react";
 import { Link as RouteLink, useLocation } from "react-router-dom";
 import { useEvent } from "react-use";
-
-import Drawer from "../components/Drawer";
-import Logo from "../components/Logo";
-import Search from "../components/Search";
-import Settings from "../components/Settings";
-import { gravatarCdn } from "../config/services";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;

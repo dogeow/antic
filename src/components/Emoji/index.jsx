@@ -1,5 +1,3 @@
-import { connect } from "react-redux";
-
 import {
   expandCategory,
   expandTag,
@@ -8,7 +6,9 @@ import {
   selectCategory,
   selectTag,
   whichPage,
-} from "../../actions";
+} from "actions";
+import { connect } from "react-redux";
+
 import Emoji from "./Emoji";
 
 const mapStateToProps = (state) => ({

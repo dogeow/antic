@@ -1,11 +1,11 @@
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import Header from "components/Header";
+import Footer from "containers/Footer";
 import * as React from "react";
 import ScrollUpButton from "react-scroll-up-button";
 
-import Header from "../components/Header";
-import Footer from "../containers/Footer";
 import SpaMain from "./SpaMain";
 
 const useStyles = makeStyles({

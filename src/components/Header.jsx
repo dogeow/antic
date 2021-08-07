@@ -1,15 +1,14 @@
-import { connect } from "react-redux";
-
 import {
   changeUser,
   logoutAction,
   snackToggleAction,
   toggleDrawer,
   toggleTheme,
-} from "../actions";
-import Header from "../containers/Header";
-import { logout } from "../helpers";
-import axios from "../instance/axios";
+} from "actions";
+import Header from "containers/Header";
+import { logout } from "helpers";
+import axios from "instance/axios";
+import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
   toggleDrawer: state.lab.toggleDrawer,

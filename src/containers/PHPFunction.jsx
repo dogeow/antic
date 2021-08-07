@@ -15,10 +15,9 @@ import ClearIcon from "@material-ui/icons/Clear";
 import SearchIcon from "@material-ui/icons/Search";
 import { mdiLoading } from "@mdi/js";
 import Icon from "@mdi/react";
+import axios from "instance/axios";
 import React, { useState } from "react";
 import swal from "sweetalert2";
-
-import axios from "../instance/axios";
 
 const NoMatch = () => {
   const [value, setValue] = useState("");

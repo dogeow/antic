@@ -1,8 +1,8 @@
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
+import Copyright from "components/site/Copyright";
 import * as React from "react";
 
-import Copyright from "../../components/site/Copyright";
 import Site from "./Site";
 
 const useStyles = makeStyles((theme) => ({

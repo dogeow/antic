@@ -7,11 +7,10 @@ import PaginationItem from "@material-ui/lab/PaginationItem";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import dayjs from "dayjs";
+import axios from "instance/axios";
 import random from "lodash/random";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-import axios from "../instance/axios";
 
 const useStyles = makeStyles(() => ({
   "@global": {

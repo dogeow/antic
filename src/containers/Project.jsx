@@ -1,9 +1,8 @@
-import "../styles/project.css";
+import "styles/project.css";
 
 import { makeStyles } from "@material-ui/core/styles";
+import projects from "config/projects.json";
 import * as React from "react";
-
-import projects from "../config/projects.json";
 
 const useStyles = makeStyles(() => ({
   bg: {

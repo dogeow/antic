@@ -6,11 +6,10 @@ import TextField from "@material-ui/core/TextField";
 import AddIcon from "@material-ui/icons/Add";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import SubIcon from "@material-ui/icons/Remove";
+import { snackMessage } from "actions";
+import ClipboardButton from "components/ClipboardButton";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-
-import { snackMessage } from "../../actions";
-import ClipboardButton from "../../components/ClipboardButton";
 
 const emptyCost = { money: "", note: "", isCost: true };
 

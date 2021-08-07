@@ -1,11 +1,10 @@
 import Grid from "@material-ui/core/Grid";
 import Skeleton from "@material-ui/lab/Skeleton";
+import Tags from "components/post/Tags";
+import Tooltip from "components/Tooltip";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import * as React from "react";
-
-import Tags from "../../components/post/Tags";
-import Tooltip from "../../components/Tooltip";
 
 dayjs.extend(relativeTime);
 

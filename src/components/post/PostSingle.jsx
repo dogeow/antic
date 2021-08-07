@@ -1,7 +1,6 @@
+import { postSave } from "actions";
+import PostSingle from "containers/post/PostSingle";
 import { connect } from "react-redux";
-
-import { postSave } from "../../actions";
-import PostSingle from "../../containers/post/PostSingle";
 
 const mapStateToProps = (state) => ({
   post: state.lab.post,

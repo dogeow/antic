@@ -1,9 +1,8 @@
 import Grid from "@material-ui/core/Grid";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
-
-import axios from "../instance/axios";
 
 export default () => {
   const [mediawiki, setMediawiki] = useState("");

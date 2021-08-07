@@ -1,8 +1,7 @@
 import isEqual from "lodash/isEqual";
 import uniq from "lodash/uniq";
 import { isMobile } from "react-device-detect";
-
-import face from "../resources/face.json";
+import face from "resources/face.json";
 
 /**
  * 分类筛选

@@ -1,9 +1,8 @@
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import ClipboardButton from "components/ClipboardButton";
 import dayjs from "dayjs";
 import * as React from "react";
-
-import ClipboardButton from "../../components/ClipboardButton";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;

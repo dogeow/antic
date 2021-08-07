@@ -1,11 +1,10 @@
 import Input from "@material-ui/core/Input";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
+import localization from "config/localization";
+import axios from "instance/axios";
 import MaterialTable from "material-table";
 import * as React from "react";
-
-import localization from "../config/localization";
-import axios from "../instance/axios";
 
 const useStyles = makeStyles(() => ({
   tableRoot: {

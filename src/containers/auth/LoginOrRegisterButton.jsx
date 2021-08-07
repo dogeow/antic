@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 
-import ToLogin from "../../components/Auth/ToLogin";
+import ToLogin from "components/Auth/ToLogin";
 
 const useStyles = makeStyles((theme) => ({
   submit: {

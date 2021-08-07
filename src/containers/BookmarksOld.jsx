@@ -4,7 +4,7 @@ import TreeItem from "@material-ui/lab/TreeItem";
 import TreeView from "@material-ui/lab/TreeView";
 import * as React from "react";
 
-import chromeBookmarks from "../resources/Bookmarks.json";
+import chromeBookmarks from "resources/Bookmarks.json";
 
 const subFolder = (project) => {
   if (project.type === "folder") {

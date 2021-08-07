@@ -1,8 +1,7 @@
 import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
 import * as React from "react";
-
-import face from "../../resources/face.json";
+import face from "resources/face.json";
 
 const TagsElem = (props) => {
   // 获取各标签的图片数量

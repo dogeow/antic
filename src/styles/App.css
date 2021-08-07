@@ -44,7 +44,7 @@ blockquote {
 
 /* 鼠标样式 start */
 html {
-  cursor: url("../resources/cursor/pointer.cur"), auto;
+  cursor: url("resources/cursor/pointer.cur"), auto;
 }
 
 a:hover,
@@ -53,11 +53,11 @@ button,
 li.MuiListItem-button,
 input.MuiSwitch-input,
 .pointer {
-  cursor: url("../resources/cursor/link.cur"), auto;
+  cursor: url("resources/cursor/link.cur"), auto;
 }
 
 input {
-  cursor: url("../resources/cursor/text.cur"), auto;
+  cursor: url("resources/cursor/text.cur"), auto;
 }
 /* 鼠标样式 end */
 

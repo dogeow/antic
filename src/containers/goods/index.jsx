@@ -9,10 +9,9 @@ import Tabs from "@material-ui/core/Tabs";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ImgList from "components/ImgList";
+import Upload from "components/Upload";
 import React from "react";
-
-import ImgList from "../../components/ImgList";
-import Upload from "../../components/Upload";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

@@ -1,6 +1,5 @@
+import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
-
-import axios from "../instance/axios";
 
 const WeiboAbout = () => {
   const [statistics, setStatistics] = useState([]);

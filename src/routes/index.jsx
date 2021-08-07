@@ -9,12 +9,12 @@ export default () => (
     <Route
       exact
       path="/projects"
-      component={loadable(() => import("../containers/Project"))}
+      component={loadable(() => import("containers/Project"))}
     />
     <Route
       exact
       path="/login"
-      component={loadable(() => import("../containers/users/Login"))}
+      component={loadable(() => import("containers/users/Login"))}
     />
     <Route path="/admin" component={loadable(() => import("./Admin"))} />
     <Route

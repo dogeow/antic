@@ -1,13 +1,12 @@
-import { connect } from "react-redux";
-
 import {
   postCategory,
   postContentSave,
   postModify,
   postSave,
   postTitle,
-} from "../../actions";
-import PostCreate from "../../containers/post/PostCreate";
+} from "actions";
+import PostCreate from "containers/post/PostCreate";
+import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
   post: state.post,

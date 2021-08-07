@@ -3,9 +3,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
+import { getHost } from "helpers";
 import * as React from "react";
-
-import { getHost } from "../../helpers";
 
 const useStyles = makeStyles(() => ({
   card: {

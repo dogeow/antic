@@ -1,14 +1,13 @@
-import { connect } from "react-redux";
-
 import {
   addPeople,
   addPeoples,
   chatBoard,
   deletePeople,
   loginAction,
-} from "../actions";
-import Chat from "../components/Chat";
-import axios from "../instance/axios";
+} from "actions";
+import Chat from "components/Chat";
+import axios from "instance/axios";
+import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
   chat: state.chat,

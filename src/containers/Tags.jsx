@@ -1,7 +1,6 @@
+import ChipFlow from "components/ChipFlow";
 import * as React from "react";
 import { useHistory } from "react-router-dom";
-
-import ChipFlow from "../components/ChipFlow";
 
 const Tags = () => {
   const history = useHistory();

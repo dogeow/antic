@@ -1,8 +1,7 @@
+import { tags, tagsAdd, tagsDelete } from "actions";
+import Tags from "containers/post/Tags";
+import axios from "instance/axios";
 import { connect } from "react-redux";
-
-import { tags, tagsAdd, tagsDelete } from "../../actions";
-import Tags from "../../containers/post/Tags";
-import axios from "../../instance/axios";
 
 const mapStateToProps = (state) => ({
   tags: state.post.tags,

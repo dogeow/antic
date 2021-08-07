@@ -1,4 +1,4 @@
-import { toParams, toQuery } from "../helpers/index";
+import { toParams, toQuery } from "helpers/index";
 
 class PopupWindow {
   constructor(id, url, options = {}) {

@@ -5,12 +5,11 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { makeStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import appConfig from "config/app";
 import PropTypes from "prop-types";
 import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
-
-import appConfig from "../config/app";
-import anticPic from "../resources/svg/antic";
+import anticPic from "resources/svg/antic";
 
 const useStyles = makeStyles({
   list: {

@@ -18,15 +18,14 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import NotListedLocationOutlinedIcon from "@material-ui/icons/NotListedLocationOutlined";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import { loginAction } from "actions";
+import Copyright from "components/site/Copyright";
+import wallpaper from "config/wallpaper";
+import axios from "instance/axios";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link as RouteLink, useHistory, useLocation } from "react-router-dom";
-
-import { loginAction } from "../../actions";
-import Copyright from "../../components/site/Copyright";
-import wallpaper from "../../config/wallpaper";
-import axios from "../../instance/axios";
 
 const random = Math.floor(Math.random() * wallpaper.length);
 

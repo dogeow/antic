@@ -6,12 +6,11 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
 import GitHub from "@material-ui/icons/GitHub";
 import clsx from "clsx";
+import HomeFooter from "components/HomeFooter";
+import Hr from "components/Hr";
+import backgroundImg from "config/footerBackground";
 import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
-
-import HomeFooter from "../components/HomeFooter";
-import Hr from "../components/Hr";
-import backgroundImg from "../config/footerBackground";
 
 const useStyles = makeStyles((theme) => ({
   footer: {

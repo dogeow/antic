@@ -1,7 +1,6 @@
 import Grid from "@material-ui/core/Grid";
+import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
-
-import axios from "../../instance/axios";
 
 export default () => {
   const [pics, setPics] = useState([]);

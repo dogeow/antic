@@ -11,14 +11,13 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Pagination from "@material-ui/lab/Pagination";
 import PaginationItem from "@material-ui/lab/PaginationItem";
 import Skeleton from "@material-ui/lab/Skeleton";
+import AllTags from "containers/post/AllTags";
+import Categories from "containers/post/Categories";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { CATEGORY, POST_LIST, TAG } from "graphql/post";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-
-import Categories from "../../containers/post/Categories";
-import { CATEGORY, POST_LIST, TAG } from "../../graphql/post";
-import AllTags from "../post/AllTags";
 dayjs.extend(relativeTime);
 
 const useStyles = makeStyles((theme) => ({

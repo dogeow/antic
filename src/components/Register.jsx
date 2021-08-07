@@ -7,10 +7,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import axios from "instance/axios";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
-import axios from "../instance/axios";
 import ToLogin from "./Auth/ToLogin";
 import Copyright from "./site/Copyright";
 

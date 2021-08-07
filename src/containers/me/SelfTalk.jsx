@@ -3,9 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import RemoveIcon from "@material-ui/icons/Remove";
+import SpeedDial from "components/SpeedDial";
 import React, { useEffect, useState } from "react";
-
-import SpeedDial from "../../components/SpeedDial";
 
 const useStyles = makeStyles(() => ({
   quote: {

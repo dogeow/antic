@@ -2,8 +2,7 @@ import Badge from "@material-ui/core/Badge";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import * as React from "react";
-
-import face from "../../resources/face.json";
+import face from "resources/face.json";
 
 const CategoriesElem = (props) => {
   let categories = [];

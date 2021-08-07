@@ -5,16 +5,15 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import { loginAction } from "actions";
+import Password from "containers/auth/Password";
+import PasswordConfirmation from "containers/auth/PasswordConfirmation";
+import axios from "instance/axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import swal from "sweetalert2";
-
-import { loginAction } from "../../actions";
-import axios from "../../instance/axios";
-import Password from "../auth/Password";
-import PasswordConfirmation from "../auth/PasswordConfirmation";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

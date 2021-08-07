@@ -11,22 +11,21 @@ import EmailIcon from "@material-ui/icons/Email";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
+import { loginAction } from "actions";
+import GitHubLogin from "components/GithubLogin";
+import Loading from "components/Loading";
+import Copyright from "components/site/Copyright";
+import Email from "containers/auth/Email";
+import LoginOrRegisterButton from "containers/auth/LoginOrRegisterButton";
+import Name from "containers/auth/Name";
+import Password from "containers/auth/Password";
+import PasswordConfirmation from "containers/auth/PasswordConfirmation";
+import PhoneNumber from "containers/auth/PhoneNumber";
+import Verify from "containers/auth/Verify";
+import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert2";
-
-import { loginAction } from "../../actions";
-import GitHubLogin from "../../components/GithubLogin";
-import Loading from "../../components/Loading";
-import Copyright from "../../components/site/Copyright";
-import axios from "../../instance/axios";
-import Email from "../auth/Email";
-import LoginOrRegisterButton from "../auth/LoginOrRegisterButton";
-import Name from "../auth/Name";
-import Password from "../auth/Password";
-import PasswordConfirmation from "../auth/PasswordConfirmation";
-import PhoneNumber from "../auth/PhoneNumber";
-import Verify from "../auth/Verify";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

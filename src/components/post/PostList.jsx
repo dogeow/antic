@@ -1,8 +1,7 @@
+import { postSave, tagsDelete } from "actions";
+import PostList from "containers/post/PostList";
+import axios from "instance/axios";
 import { connect } from "react-redux";
-
-import { postSave, tagsDelete } from "../../actions";
-import PostList from "../../containers/post/PostList";
-import axios from "../../instance/axios";
 
 const mapStateToProps = (state) => ({
   post: state.lab.post,

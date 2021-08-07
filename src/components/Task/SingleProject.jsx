@@ -8,13 +8,12 @@ import Typography from "@material-ui/core/Typography";
 import DeleteIcon from "@material-ui/icons/Delete";
 import RadioButtonChecked from "@material-ui/icons/RadioButtonChecked";
 import RadioButtonUnchecked from "@material-ui/icons/RadioButtonUnchecked";
+import AlertDialog from "components/AlertDialog";
 import update from "immutability-helper";
+import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useHistory, useRouteMatch } from "react-router-dom";
-
-import axios from "../../instance/axios";
-import AlertDialog from "../AlertDialog";
 
 const useStyles = makeStyles(() => ({
   green: {

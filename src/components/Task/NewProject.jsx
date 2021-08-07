@@ -3,10 +3,9 @@ import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import clsx from "clsx";
+import axios from "instance/axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-
-import axios from "../../instance/axios";
 
 const NewProject = () => {
   const history = useHistory();

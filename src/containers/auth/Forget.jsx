@@ -7,10 +7,9 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import axios from "instance/axios";
 import React, { useState } from "react";
 import swal from "sweetalert2";
-
-import axios from "../../instance/axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

@@ -3,8 +3,8 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import * as React from "react";
 import { useEffect, useState } from "react";
 
-import ChipFlow from "../../components/ChipFlow";
-import { TAGS } from "../../graphql/post";
+import ChipFlow from "components/ChipFlow";
+import { TAGS } from "graphql/post";
 
 const AllTags = (props) => {
   const [items, setItems] = useState([]);

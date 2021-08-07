@@ -1,7 +1,6 @@
 import Grid from "@material-ui/core/Grid";
+import Upload from "components/Upload";
 import React from "react";
-
-import Upload from "../../components/Upload";
 
 const EmojiCreate = () => {
   return (

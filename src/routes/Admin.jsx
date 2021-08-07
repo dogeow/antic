@@ -1,7 +1,6 @@
+import Index from "containers/admin";
 import * as React from "react";
 import { Route, Switch } from "react-router-dom";
-
-import Index from "../containers/admin";
 
 const Admin = () => (
   <Switch>

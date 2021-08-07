@@ -1,6 +1,6 @@
 import "@toast-ui/editor/dist/i18n/zh-cn";
-import "../styles/codemirror.css";
-import "../styles/toastui-editor.css";
+import "styles/codemirror.css";
+import "styles/toastui-editor.css";
 import "highlight.js/styles/atom-one-dark.css";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "tui-chart/dist/tui-chart.css";
@@ -30,7 +30,7 @@ import React, { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 import Swal from "sweetalert2";
 
-import axios from "../instance/axios";
+import axios from "instance/axios";
 import Tags from "./Post/Tags";
 
 hljs.registerLanguage("javascript", javascript);
