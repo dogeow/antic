@@ -10,6 +10,7 @@ import { Editor } from "@toast-ui/react-editor";
 import Prism from "prismjs";
 import React from "react";
 
+import "prismjs/components/prism-markup-templating.js";
 import "prismjs/components/prism-javascript.js";
 import "prismjs/components/prism-php.js";
 import "prismjs/components/prism-bash.js";
