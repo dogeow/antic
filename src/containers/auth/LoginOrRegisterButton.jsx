@@ -1,9 +1,8 @@
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import React from "react";
-
 import ToLogin from "components/Auth/ToLogin";
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
   submit: {

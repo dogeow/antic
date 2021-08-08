@@ -1,10 +1,9 @@
 import { useQuery } from "@apollo/client";
 import Skeleton from "@material-ui/lab/Skeleton";
-import * as React from "react";
-import { useEffect, useState } from "react";
-
 import ChipFlow from "components/ChipFlow";
 import { TAGS } from "graphql/post";
+import * as React from "react";
+import { useEffect, useState } from "react";
 
 const AllTags = (props) => {
   const [items, setItems] = useState([]);
