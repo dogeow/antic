@@ -132,7 +132,7 @@ export default ({
   const [errors, setErrors] = useState(false);
   const [edit, setEdit] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState(null);
   const [inputValue, setInputValue] = useState("");
 
   const [getPost, { data }] = useLazyQuery(POST_BY_ID);
@@ -140,7 +140,7 @@ export default ({
   useEffect(() => {
     if (data) {
       postSave(data.post);
-      setCategory(data.post.category.name);
+      setCategory(data.post.category);
       setInputValue(data.post.category.name);
     }
   }, [data, postSave]);
@@ -172,10 +172,12 @@ export default ({
     : clsx({ [classes.buttonSuccess]: success });
 
   const handlePost = () => {
-    if (!loading) {
-      setSuccess(false);
-      setLoading(true);
+    if (success) {
+      alert("已经保存，无需再次保存");
     }
+
+    setSuccess(false);
+    setLoading(true);
 
     // 新增或修改
     const url = id ? `posts/${id}` : "posts";
@@ -195,8 +197,8 @@ export default ({
       .then(({ data }) => {
         setId(data.id);
         postSave(data);
-        setSuccess(true);
         setLoading(false);
+        setSuccess(true);
         if (method === "post") {
           history.replace(`/posts/${data.id}/edit`);
         }
@@ -262,6 +264,11 @@ export default ({
             value={category}
             onChange={(event, newValue) => {
               setCategory(newValue);
+              if (newValue) {
+                setInputValue(newValue.name);
+              } else {
+                setInputValue("");
+              }
             }}
             inputValue={inputValue || ""}
             onInputChange={(event, newInputValue) => {
