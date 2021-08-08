@@ -219,6 +219,9 @@ export default ({
   };
 
   const handleEditorChange = ({ html, text }) => {
+    if (success) {
+      setSuccess(false);
+    }
     // const content = handleGetMdValue();
     localStorage.post = text;
     postContentSave(text);
