@@ -21,7 +21,7 @@ import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import MdEditor from "react-markdown-editor-lite";
-import { useRouteMatch } from "react-router-dom";
+import { useLocation, useRouteMatch } from "react-router-dom";
 import gfm from "remark-gfm";
 import Swal from "sweetalert2";
 
@@ -125,6 +125,7 @@ export default ({
 }) => {
   const classes = useStyles();
   const match = useRouteMatch();
+  const { state } = useLocation();
 
   const [id, setId] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -137,13 +138,17 @@ export default ({
 
   const [getPost, { data }] = useLazyQuery(POST_BY_ID);
 
-  useEffect(() => {
+  const savePost = React.useCallback(() => {
     if (data) {
       postSave(data.post);
       setCategory(data.post.category);
       setInputValue(data.post.category.name);
     }
   }, [data, postSave]);
+
+  useEffect(() => {
+    savePost();
+  }, [savePost]);
 
   useEffect(() => {
     if (match.params.id) {
@@ -155,11 +160,17 @@ export default ({
     }
   }, [getPost, match.params.id]);
 
+  const getCategories = React.useCallback(() => {
+    if (categories.length === 0) {
+      axios.get("categories").then(({ data }) => {
+        setCategories(data);
+      });
+    }
+  }, [categories]);
+
   useEffect(() => {
-    axios.get("categories").then(({ data }) => {
-      setCategories(data);
-    });
-  }, []);
+    getCategories();
+  }, [getCategories]);
 
   const handlePublicChange = (event) => {
     postModify("public", event.target.checked);
@@ -200,7 +211,10 @@ export default ({
         setLoading(false);
         setSuccess(true);
         if (method === "post") {
-          history.replace(`/posts/${data.id}/edit`);
+          history.replace({
+            pathname: `/posts/${data.id}/edit`,
+            state: { from: "/posts/create" },
+          });
         }
       })
       .catch(({ data }) => {
@@ -219,6 +233,12 @@ export default ({
         setLoading(false);
       });
   };
+
+  useEffect(() => {
+    if (state && state.from === "/posts/create") {
+      setSuccess(true);
+    }
+  }, [state]);
 
   const handleEditorChange = ({ html, text }) => {
     if (success) {
