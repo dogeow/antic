@@ -44,6 +44,7 @@ const Site = () => {
               <TableCell>站点</TableCell>
               <TableCell>在线</TableCell>
               <TableCell>更新</TableCell>
+              <TableCell>最后更新于</TableCell>
               <TableCell>收录</TableCell>
             </TableRow>
           </TableHead>
@@ -73,6 +74,7 @@ const Site = () => {
                     <Close style={{ color: "red" }} />
                   )}
                 </TableCell>
+                <TableCell>{site.last_updated_at}</TableCell>
                 <TableCell component="td" scope="row">
                   {site.seo}
                 </TableCell>
