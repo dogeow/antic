@@ -18,6 +18,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { CATEGORY, POST_LIST, TAG } from "graphql/post";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+
 dayjs.extend(relativeTime);
 
 const useStyles = makeStyles((theme) => ({
@@ -125,19 +126,6 @@ const PostList = (props) => {
             <AddCircleIcon
               style={{ marginLeft: 5 }}
               onClick={handlePostCreate}
-            />
-          </Grid>
-          <Grid item>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={isSecret}
-                  onChange={handleChange}
-                  name="only secret"
-                  color="primary"
-                />
-              }
-              label="only secret"
             />
           </Grid>
         </Grid>
