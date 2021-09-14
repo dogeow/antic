@@ -233,7 +233,7 @@ export default function Chat({
           >
             <Grid item xs={12}>
               机器人请在开头加上一个空格，比如「 时间」、「 ip」、「 md5
-              123456」、「 大小写 category」
+              123456」、「 单复数 category」
             </Grid>
             {chat?.chatBoard.length > 0 &&
               chat.chatBoard.map((content, index) => {
