@@ -226,6 +226,7 @@ export default () => (
       path="/markdown"
       component={loadable(() => import("containers/markdown"))}
     />
+    <Route path="/test" component={loadable(() => import("containers/Test"))} />
     <Route component={loadable(() => import("containers/NoMatch"))} />
   </Switch>
 );
