@@ -36,6 +36,7 @@
     "connected-react-router": "^6.9.1",
     "dayjs": "^1.10.4",
     "emotion": "^11.0.0",
+    "file-saver": "^2.0.5",
     "graphql": "^15.4.0",
     "imagesloaded": "^4.1.4",
     "immer": "^9.0.3",
