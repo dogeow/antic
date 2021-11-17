@@ -1,13 +1,13 @@
 import loadable from "@loadable/component";
 import Loading from "components/Loading";
-import Index from "containers";
+import PostList from "containers/post/PostList";
 import Redirect from "containers/users/Redirect";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 export default () => (
   <Switch>
-    <Route exact path="/" component={Index} />
+    <Route exact path="/" component={PostList} />
     <Route exact path="/redirect" component={Redirect} />
     <Route
       exact
