@@ -1,6 +1,5 @@
-import { connect } from "react-redux";
-
 import App from "components/App";
+import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
   paletteMode: state.lab.paletteMode,

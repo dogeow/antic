@@ -1,11 +1,9 @@
 import { useLazyQuery } from "@apollo/client";
 import Chip from "@material-ui/core/Chip";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import Switch from "@material-ui/core/Switch";
 import Typography from "@material-ui/core/Typography";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Pagination from "@material-ui/lab/Pagination";
@@ -17,7 +15,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { CATEGORY, POST_LIST, TAG } from "graphql/post";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 dayjs.extend(relativeTime);
 
@@ -30,13 +28,13 @@ const useStyles = makeStyles((theme) => ({
 
 const PostList = (props) => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const [post, setPost] = useState([]);
   const [isSecret, setIsSecret] = useState(false);
   const [pageCount, setPageCount] = useState();
   const [currPage, setCurrPage] = useState(1);
   const [currCategory, setCurrCategory] = useState();
   const [currTag, setCurrTag] = useState();
-  const history = useHistory();
 
   const [getPosts, { data }] = useLazyQuery(POST_LIST);
   const [getPostsByCategory, { data: postsByCategory }] = useLazyQuery(
@@ -99,14 +97,14 @@ const PostList = (props) => {
   const handleEnterPost = (item) => {
     localStorage.postTitle = item.title;
     localStorage.postId = item.id;
-    history.push(`/posts/${item.id}`);
+    navigate(`/posts/${item.id}`);
   };
 
   const handlePostCreate = () => {
     if (props.post?.id) {
       props.postRemove();
     }
-    history.push("/posts/create");
+    navigate("/posts/create");
   };
 
   return (
@@ -134,64 +132,62 @@ const PostList = (props) => {
             <Paper className={classes.paper}>
               <Grid container spacing={2}>
                 {post.length !== 0
-                  ? post.map((item) => {
-                      return (
+                  ? post.map((item) => (
+                      <Grid
+                        item
+                        container
+                        xs={12}
+                        key={item.id}
+                        spacing={2}
+                        alignItems="center"
+                        style={{ flexWrap: "nowrap" }}
+                      >
+                        {/* 分类 */}
+                        <Grid item>
+                          <img
+                            src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category.name}.svg`}
+                            alt={item.category.name}
+                            width="20"
+                            height="20"
+                            onClick={() => changeCategory(item?.category.id)}
+                          />
+                        </Grid>
+                        {/* 标题 */}
+                        <Grid item style={{ flexGrow: 1 }}>
+                          <Typography
+                            variant="subtitle1"
+                            component="h2"
+                            onClick={() => handleEnterPost(item)}
+                          >
+                            {item.title}
+                          </Typography>
+                        </Grid>
+                        {/* 标签 */}
+                        <Hidden smDown>
+                          <Grid item>
+                            <Grid container spacing={1}>
+                              {item.tags.length !== 0 &&
+                                item.tags.map((tag) => (
+                                  <Grid item key={tag.id}>
+                                    <Chip
+                                      variant="outlined"
+                                      size="small"
+                                      label={tag.name}
+                                    />
+                                  </Grid>
+                                ))}
+                            </Grid>
+                          </Grid>
+                        </Hidden>
                         <Grid
                           item
-                          container
-                          xs={12}
-                          key={item.id}
-                          spacing={2}
-                          alignItems="center"
-                          style={{ flexWrap: "nowrap" }}
+                          style={item.public ? null : { color: "red" }}
                         >
-                          {/* 分类 */}
-                          <Grid item>
-                            <img
-                              src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category.name}.svg`}
-                              alt={item.category.name}
-                              width="20"
-                              height="20"
-                              onClick={() => changeCategory(item?.category.id)}
-                            />
-                          </Grid>
-                          {/* 标题 */}
-                          <Grid item style={{ flexGrow: 1 }}>
-                            <Typography
-                              variant="subtitle1"
-                              component="h2"
-                              onClick={() => handleEnterPost(item)}
-                            >
-                              {item.title}
-                            </Typography>
-                          </Grid>
-                          {/* 标签 */}
-                          <Hidden smDown>
-                            <Grid item>
-                              <Grid container spacing={1}>
-                                {item.tags.length !== 0 &&
-                                  item.tags.map((tag) => (
-                                    <Grid item key={tag.id}>
-                                      <Chip
-                                        variant="outlined"
-                                        size="small"
-                                        label={tag.name}
-                                      />
-                                    </Grid>
-                                  ))}
-                              </Grid>
-                            </Grid>
-                          </Hidden>
-                          <Grid
-                            item
-                            style={item.public ? null : { color: "red" }}
-                          >
-                            {dayjs(item.updated_at).fromNow()}
-                          </Grid>
+                          {dayjs(item.updated_at).fromNow()}
                         </Grid>
-                      );
-                    })
-                  : Array.from(new Array(10)).map((index) => (
+                      </Grid>
+                    ))
+                  : Array.from(new Array(10)).map((value, index) => (
                       <Grid item container xs={12} spacing={2} key={index}>
                         <Grid item>
                           <Skeleton width={40} height="28px" animation="wave" />

@@ -109,7 +109,7 @@ const Register = ({ history }) => {
       .get("/oauth/github/callback?code=" + response.code)
       .then((response) => {
         dispatch(loginAction(response.data));
-        history.push("/");
+        navigate("/");
         setOpen(false);
       });
   };
@@ -145,7 +145,7 @@ const Register = ({ history }) => {
           icon: "success",
           showCloseButton: true,
         });
-        history.push("/login");
+        navigate("/login");
       })
       .catch((error) => {
         setInputErrors(error.data.errors);

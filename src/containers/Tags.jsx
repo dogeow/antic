@@ -1,12 +1,12 @@
 import ChipFlow from "components/ChipFlow";
 import * as React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Tags = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleClick = (tags) => {
-    history.push(`/posts?filter[tags.name]=${tags}`);
+    navigate(`/posts?filter[tags.name]=${tags}`);
   };
 
   return <ChipFlow path="tags" onHandleClick={handleClick} />;

@@ -25,7 +25,7 @@ import axios from "instance/axios";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Link as RouteLink, useHistory, useLocation } from "react-router-dom";
+import { Link as RouteLink, useLocation, useNavigate } from "react-router-dom";
 
 const random = Math.floor(Math.random() * wallpaper.length);
 
@@ -71,9 +71,9 @@ const useStyles = makeStyles((theme) => ({
  * @constructor
  */
 const SignInSide = ({ dispatch }) => {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const classes = useStyles();
-  const history = useHistory();
   const [account, setAccount] = useState("");
   const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState("");
@@ -100,9 +100,9 @@ const SignInSide = ({ dispatch }) => {
       .then((response) => {
         dispatch(loginAction(response.data));
         if (state) {
-          history.push(state.from);
+          navigate(state.from);
         } else {
-          history.push("/");
+          navigate("/");
         }
       })
       .catch((error) => {
@@ -282,7 +282,7 @@ const SignInSide = ({ dispatch }) => {
                   onClick={() => {
                     axios.post("user/guest").then(({ data }) => {
                       dispatch(loginAction(data));
-                      history.push("/");
+                      navigate("/");
                     });
                   }}
                 >

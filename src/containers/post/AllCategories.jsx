@@ -3,13 +3,13 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ChipFlow from "components/ChipFlow";
 import * as React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Categories = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleClick = (category) => {
-    history.push(`/posts?filter[category.name]=${category}`);
+    navigate(`/posts?filter[category.name]=${category}`);
   };
 
   return (

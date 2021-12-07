@@ -5,10 +5,10 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import clsx from "clsx";
 import axios from "instance/axios";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NewProject = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -23,7 +23,7 @@ const NewProject = () => {
         description,
       })
       .then(() => {
-        history.push("/project");
+        navigate("/project");
       })
       .catch((error) => {
         setErrors(error.data.errors);

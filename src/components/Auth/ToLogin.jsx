@@ -1,14 +1,14 @@
 import Link from "@material-ui/core/Link";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function () {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <Link
       onClick={() => {
-        history.push("/login");
+        navigate("/login");
       }}
       variant="body2"
       color="secondary"

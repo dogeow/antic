@@ -2,11 +2,11 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Header from "components/Header";
+import Loading from "components/Loading";
 import Footer from "containers/Footer";
-import * as React from "react";
+import React, { Suspense } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import ScrollUpButton from "react-scroll-up-button";
-
-import SpaMain from "./SpaMain";
 
 const useStyles = makeStyles({
   main: {
@@ -23,8 +23,9 @@ const useStyles = makeStyles({
   },
 });
 
-const Spa = ({ match }) => {
+export default () => {
   const classes = useStyles();
+  const location = useLocation();
 
   return (
     <Grid container direction="column" style={{ minHeight: "100vh" }}>
@@ -33,15 +34,15 @@ const Spa = ({ match }) => {
         container
         component={Container}
         maxWidth="lg"
-        justify={match.url === "/" ? "center" : undefined}
-        alignItems={match.url === "/" ? "center" : undefined}
+        justify={location.pathname === "/" ? "center" : undefined}
+        alignItems={location.pathname === "/" ? "center" : undefined}
         classes={
-          ["/nav", "/cars"].includes(match.url)
+          ["/nav", "/cars"].includes(location.pathname)
             ? { root: classes.main }
             : undefined
         }
         style={
-          match.url === "/"
+          location.pathname === "/"
             ? {
                 display: "flex",
                 marginTop: 16,
@@ -52,10 +53,12 @@ const Spa = ({ match }) => {
             : { display: "flex", marginTop: 16, marginBottom: 16 }
         }
       >
-        <SpaMain />
+        <Suspense fallback={<Loading />}>
+          <Outlet />
+        </Suspense>
       </Grid>
-      {["/"].includes(match.url) && <Footer />}
-      {["/"].includes(match.url) || (
+      {["/"].includes(location.pathname) && <Footer />}
+      {["/"].includes(location.pathname) || (
         <ScrollUpButton
           ShowAtPosition={500}
           ContainerClassName="AnyClassForContainer"
@@ -72,5 +75,3 @@ const Spa = ({ match }) => {
     </Grid>
   );
 };
-
-export default Spa;

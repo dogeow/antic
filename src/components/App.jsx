@@ -25,9 +25,9 @@ dayjs.locale("zh-cn");
 const App = ({ paletteMode }) => {
   return (
     <BrowserRouter>
-      <ScrollToTop />
       <MuiPickersUtilsProvider utils={DayjsUtils} locale="zh-cn">
         <ThemeProvider theme={themeCustomization({ paletteMode })}>
+          <ScrollToTop />
           <CssBaseline />
           <Routes />
         </ThemeProvider>

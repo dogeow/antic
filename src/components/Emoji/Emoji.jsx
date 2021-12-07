@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import imagesLoaded from "imagesloaded";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Spinner from "react-spinner-children";
 import Viewer from "react-viewer";
 import face from "resources/face.json";
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Emoji = ({ loading, ...props }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
   const classes = useStyles();
@@ -49,7 +49,7 @@ const Emoji = ({ loading, ...props }) => {
   });
 
   const handleUpload = () => {
-    history.push("/emoji/create");
+    navigate("/emoji/create");
   };
 
   const handleSearch = () => {

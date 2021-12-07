@@ -3,10 +3,10 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import axios from "instance/axios";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Moon = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const cdn = `${process.env.REACT_APP_CDN_URL}/moon/`;
   const [num, setNum] = useState([]);
@@ -34,7 +34,7 @@ const Moon = () => {
     axios.post("moon", { name }).then((resp) => {
       if (resp.status === 201) {
         localStorage.name = resp.data.name;
-        history.push("/moon");
+        navigate("/moon");
       } else {
         setInputErrors(resp.data.errors);
       }

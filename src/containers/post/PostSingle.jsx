@@ -6,10 +6,9 @@ import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import Skeleton from "@material-ui/lab/Skeleton";
 import clsx from "clsx";
 import AlertDialog from "components/AlertDialog";
-import Hr from "components/Hr";
 import React, { useEffect, useState } from "react";
 import ReactMarkdownHeading from "react-markdown-heading";
-import { Link, useHistory, useRouteMatch } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
@@ -94,9 +93,10 @@ const PostSingle = ({ postSave }) => {
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
   const [menu, setMenu] = useState(false);
 
-  const history = useHistory();
-  const match = useRouteMatch();
-  const id = parseInt(match.params.id, 10);
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const theId = searchParams.get("id");
+  const id = parseInt(theId, 10);
 
   const [deletePost] = useMutation(DELETE_POST_BY_ID);
 
@@ -116,7 +116,7 @@ const PostSingle = ({ postSave }) => {
   }, [data, postSave]);
 
   const handleEdit = () => {
-    history.push(`/posts/${id}/edit`);
+    navigate(`/posts/${id}/edit`);
   };
 
   const handleDelete = () => {
@@ -125,7 +125,7 @@ const PostSingle = ({ postSave }) => {
 
   const confirmDelete = () => {
     deletePost({ variables: { id: id } });
-    history.push("/posts");
+    navigate("/posts");
   };
 
   const handleAlertDialogToggle = () => {

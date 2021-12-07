@@ -21,7 +21,7 @@ import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import MdEditor from "react-markdown-editor-lite";
-import { useLocation, useRouteMatch } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import gfm from "remark-gfm";
 import Swal from "sweetalert2";
 
@@ -115,16 +115,11 @@ const POST_BY_ID = gql`
   }
 `;
 
-export default ({
-  post,
-  postSave,
-  postModify,
-  postContentSave,
-  postTitle,
-  history,
-}) => {
+export default ({ post, postSave, postModify, postContentSave, postTitle }) => {
   const classes = useStyles();
-  const match = useRouteMatch();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const theId = searchParams.get("id");
   const { state } = useLocation();
 
   const [id, setId] = useState(null);
@@ -151,14 +146,14 @@ export default ({
   }, [savePost]);
 
   useEffect(() => {
-    if (match.params.id) {
+    if (theId) {
       setEdit(true);
-      setId(match.params.id);
+      setId(theId);
       getPost({
-        variables: { id: parseInt(match.params.id) },
+        variables: { id: parseInt(theId) },
       });
     }
-  }, [getPost, match.params.id]);
+  }, [getPost, theId]);
 
   const getCategories = React.useCallback(() => {
     if (categories.length === 0) {
@@ -211,7 +206,8 @@ export default ({
         setLoading(false);
         setSuccess(true);
         if (method === "post") {
-          history.replace({
+          navigate({
+            replace: true,
             pathname: `/posts/${data.id}/edit`,
             state: { from: "/posts/create" },
           });

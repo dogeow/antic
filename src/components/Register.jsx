@@ -60,7 +60,7 @@ const Register = ({ history }) => {
             showConfirmButton: false,
             timer: 2000,
           });
-          history.push("/login");
+          navigate("/login");
         } else {
           alert("注册失败！");
         }

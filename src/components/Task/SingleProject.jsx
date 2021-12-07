@@ -13,7 +13,7 @@ import update from "immutability-helper";
 import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   green: {
@@ -59,9 +59,10 @@ const getListStyle = (isDraggingOver) => ({
 
 const SingleProject = () => {
   const classes = useStyles();
-  const history = useHistory();
-  const match = useRouteMatch();
-  const projectId = parseInt(match.params.id);
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const id = searchParams.get("id");
+  const projectId = parseInt(id);
 
   const [project, setProject] = useState({});
   const [tasks, setTasks] = useState([]);
@@ -115,7 +116,7 @@ const SingleProject = () => {
 
   const handleMarkProjectAsCompleted = () => {
     axios.delete(`projects/${projectId}`);
-    history.push("/project");
+    navigate("/project");
   };
 
   const handleUndoMarkTaskAsCompleted = (taskId) => {

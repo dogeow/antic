@@ -5,26 +5,23 @@ import { loginAction } from "actions";
 import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useRouteMatch } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Forget = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const match = useRouteMatch();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isSuccess, setIsSuccess] = useState(false);
 
+  const secret = searchParams.get("secret");
+
   useEffect(() => {
-    if (match.params.secret) {
-      axios
-        .post("/emailVerify", {
-          secret: match.params.secret,
-        })
-        .then((response) => {
-          setIsSuccess(true);
-        });
+    if (secret) {
+      axios.post("/emailVerify", { secret }).then((response) => {
+        setIsSuccess(true);
+      });
     }
-  }, [history, match.params.secret]);
+  }, [navigate, secret]);
 
   const handleAutoLogin = () => {
     axios
@@ -33,12 +30,12 @@ const Forget = () => {
       })
       .then((response) => {
         dispatch(loginAction(response.data));
-        history.push("/");
+        navigate("/");
       });
   };
 
   const handleManualLogin = () => {
-    history.push("/login");
+    navigate("/login");
   };
 
   return (

@@ -11,8 +11,7 @@ import PasswordConfirmation from "containers/auth/PasswordConfirmation";
 import axios from "instance/axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useRouteMatch } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import swal from "sweetalert2";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,9 +36,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Forget = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const classes = useStyles();
-  const match = useRouteMatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const secret = searchParams.get("secret");
   const [inputErrors, setInputErrors] = useState({});
   const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState("");
@@ -56,7 +56,7 @@ const Forget = () => {
       .post("/reset", {
         password,
         password_confirmation: passwordConfirmation,
-        secret: match.params.secret,
+        secret,
       })
       .then((response) => {
         swal.fire({
@@ -65,7 +65,7 @@ const Forget = () => {
           showCloseButton: true,
         });
         dispatch(loginAction(response.data));
-        history.push("/");
+        navigate("/");
       })
       .catch((error) => {
         setInputErrors(error.data.errors);
