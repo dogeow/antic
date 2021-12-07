@@ -240,10 +240,7 @@ const Header = ({
               <Logo />
             </RouteLink>
             {matches && (
-              <div style={{ marginLeft: 12 }}>
-                <Button color="inherit" component={RouteLink} to="/posts">
-                  笔记
-                </Button>
+              <div style={{ marginLeft: 6 }}>
                 <Button color="inherit" component={RouteLink} to="/chat">
                   聊天室♂
                 </Button>
