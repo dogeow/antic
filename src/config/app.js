@@ -3,9 +3,8 @@ export default {
   fullWidth: ["login"],
   menus: [
     { name: "♂ 聊天室", url: "/chat" },
-    { name: "📄 笔记", url: "/posts" },
     { name: "📦 一些 Demo", url: "/demo" },
-    { name: "⚙️ 便民 API", url: "/api" },
+    { name: "⚙️ API", url: "/api" },
     { name: "🙀 表情", url: "/emoji" },
     { name: "🧣 微博热搜榜", url: "/weibo" },
   ],
