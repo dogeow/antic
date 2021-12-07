@@ -1,10 +1,11 @@
-import { KeyboardDatePicker } from "@material-ui/pickers";
 import ErrorOutline from "@mui/icons-material/ErrorOutline";
+import DatePicker from "@mui/lab/DatePicker";
 import Grid from "@mui/material/Grid";
 import Hidden from "@mui/material/Hidden";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import Skeleton from "@mui/material/Skeleton";
+import TextField from "@mui/material/TextField";
 import makeStyles from "@mui/styles/makeStyles";
 import dayjs from "dayjs";
 import axios from "instance/axios";
@@ -59,18 +60,13 @@ const Weibo = () => {
   return (
     <Grid container spacing={2} justifyContent="center">
       <Grid item xs={12}>
-        <KeyboardDatePicker
-          margin="normal"
-          id="date-picker-dialog"
+        <DatePicker
           label="日期"
           format="YYYY-MM-DD"
           disableFuture
           value={selectedDate}
           onChange={handleDateChange}
-          KeyboardButtonProps={{
-            "aria-label": "change date",
-          }}
-          style={{ marginLeft: 12 }}
+          renderInput={(props) => <TextField {...props} />}
         />
         <div style={{ float: "right", marginRight: 12 }}>
           <Link to="/weibo/about">

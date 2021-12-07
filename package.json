@@ -9,7 +9,6 @@
     "@algolia/autocomplete-theme-classic": "^1.0.0-alpha.44",
     "@algolia/client-search": "4.8.6",
     "@apollo/client": "^3.3.7",
-    "@date-io/dayjs": "1.x",
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
     "@iconify-icons/logos": "^1.1.10",

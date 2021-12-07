@@ -1,7 +1,7 @@
 import "dayjs/locale/zh-cn";
 
-import DayjsUtils from "@date-io/dayjs";
-import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import AdapterDayjs from "@mui/lab/AdapterDayjs";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import CssBaseline from "@mui/material/CssBaseline";
 import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
 import themeCustomization from "config/theme";
@@ -25,7 +25,7 @@ dayjs.locale("zh-cn");
 const App = ({ paletteMode }) => {
   return (
     <BrowserRouter>
-      <MuiPickersUtilsProvider utils={DayjsUtils} locale="zh-cn">
+      <LocalizationProvider dateAdapter={AdapterDayjs} locale="zh-cn">
         <StyledEngineProvider injectFirst>
           <ThemeProvider theme={themeCustomization({ paletteMode })}>
             <ScrollToTop />
@@ -33,7 +33,7 @@ const App = ({ paletteMode }) => {
             <Routes />
           </ThemeProvider>
         </StyledEngineProvider>
-      </MuiPickersUtilsProvider>
+      </LocalizationProvider>
     </BrowserRouter>
   );
 };
