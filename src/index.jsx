@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// 增加 JavaScript 没有的函数（PHP 上的）、Chrome 控制台信息，LocalStorage 数据过期时的处理
+// 增加 JavaScript 没有的函数（PHP 上的函数）、Chrome 控制台信息，LocalStorage 数据过期时的处理等
 require("./bootstrap");
 
 render(
