@@ -8,7 +8,7 @@ import clsx from "clsx";
 import AlertDialog from "components/AlertDialog";
 import React, { useEffect, useState } from "react";
 import ReactMarkdownHeading from "react-markdown-heading";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
@@ -89,14 +89,12 @@ const DELETE_POST_BY_ID = gql`
 
 const PostSingle = ({ postSave }) => {
   const classes = useStyles();
+  const { id } = useParams();
   const [post, setPost] = useState({});
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
   const [menu, setMenu] = useState(false);
 
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const theId = searchParams.get("id");
-  const id = parseInt(theId, 10);
 
   const [deletePost] = useMutation(DELETE_POST_BY_ID);
 
@@ -105,7 +103,7 @@ const PostSingle = ({ postSave }) => {
   };
 
   const { data } = useQuery(POST_BY_ID, {
-    variables: { id: id },
+    variables: { id: parseInt(id, 10) },
   });
 
   useEffect(() => {
