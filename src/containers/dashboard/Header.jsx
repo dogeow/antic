@@ -104,6 +104,7 @@ const Header = () => {
               classes.menuButton,
               open && classes.menuButtonHidden
             )}
+            size="large"
           >
             <MenuIcon />
           </IconButton>
@@ -116,7 +117,7 @@ const Header = () => {
           >
             <Link to="/dashboard">仪表盘</Link>
           </Typography>
-          <IconButton color="inherit">
+          <IconButton color="inherit" size="large">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
@@ -131,7 +132,7 @@ const Header = () => {
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleDrawerClose} size="large">
             <ChevronLeftIcon />
           </IconButton>
         </div>

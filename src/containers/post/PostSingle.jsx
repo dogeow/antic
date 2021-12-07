@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => {
       [theme.breakpoints.up("md")]: {
         display: "block",
       },
-      [theme.breakpoints.down("lg")]: {
+      [theme.breakpoints.down("xl")]: {
         display: "none",
       },
       position: "fixed",

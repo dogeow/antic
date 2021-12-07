@@ -192,7 +192,7 @@ const SingleProject = () => {
         content="删除后，任务也将一同被删除！"
         agree={handleMarkProjectAsCompleted}
       />
-      <Grid container spacing={2} justify="space-between">
+      <Grid container spacing={2} justifyContent="space-between">
         <Grid item>
           <Typography variant="h4" component="h1">
             {project.name}
@@ -202,13 +202,17 @@ const SingleProject = () => {
           </Typography>
         </Grid>
         <Grid item>
-          <IconButton aria-label="delete" onClick={handleAlertDialogToggle}>
+          <IconButton
+            aria-label="delete"
+            onClick={handleAlertDialogToggle}
+            size="large"
+          >
             <DeleteIcon />
           </IconButton>
         </Grid>
         <Grid item xs={12}>
           <form onSubmit={handleAddNewTask}>
-            <Grid container spacing={2} justify="space-between">
+            <Grid container spacing={2} justifyContent="space-between">
               <Grid item style={{ flexGrow: 1 }}>
                 <Input
                   fullWidth

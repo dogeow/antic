@@ -253,7 +253,7 @@ const Header = ({
               </div>
             )}
             <div className={classes.blank} />
-            <Hidden mdDown>
+            <Hidden lgDown>
               <div className={classes.search} onFocus={handleSearch}>
                 <InputBase
                   placeholder="⌘ + k"

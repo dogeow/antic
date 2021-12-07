@@ -104,7 +104,7 @@ const PostList = (props) => {
 
   return (
     <Grid container spacing={2}>
-      <Hidden mdDown>
+      <Hidden lgDown>
         <Grid item xs={3} container direction="column" spacing={1}>
           <Grid item>
             <Typography variant="h5" component="div">
@@ -166,7 +166,7 @@ const PostList = (props) => {
                           </Typography>
                         </Grid>
                         {/* 标签 */}
-                        <Hidden mdDown>
+                        <Hidden lgDown>
                           <Grid item>
                             <Grid container spacing={1}>
                               {item.tags.length !== 0 &&
@@ -226,7 +226,7 @@ const PostList = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Hidden mdDown>
+      <Hidden lgDown>
         <Grid item xs={3} container direction="column" spacing={1}>
           <Grid item>
             <Typography variant="h5" component="div">
