@@ -33,7 +33,7 @@ const POST_LIST = gql`
 
 const CATEGORY = gql`
   query($id: Int!, $page: Int) {
-    posts(category_id: $id, first: 10, page: $page) {
+    posts(category_id: $id, first: 8, page: $page) {
       data {
         id
         title
@@ -59,7 +59,7 @@ const CATEGORY = gql`
 
 const TAG = gql`
   query($name: String!, $page: Int) {
-    tag(name: $name, first: 10, page: $page) {
+    tag(name: $name, first: 8, page: $page) {
       data {
         posts {
           id

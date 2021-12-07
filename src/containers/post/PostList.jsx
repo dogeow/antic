@@ -35,9 +35,12 @@ const PostList = (props) => {
   const [currCategory, setCurrCategory] = useState();
   const [currTag, setCurrTag] = useState();
 
-  const [getPosts, { data }] = useLazyQuery(POST_LIST);
+  const [getPosts, { data }] = useLazyQuery(POST_LIST, {
+    fetchPolicy: "no-cache",
+  });
   const [getPostsByCategory, { data: postsByCategory }] = useLazyQuery(
-    CATEGORY
+    CATEGORY,
+    { fetchPolicy: "no-cache" }
   );
 
   const [getPostsByTag, { data: postsByTag }] = useLazyQuery(TAG);
@@ -80,7 +83,11 @@ const PostList = (props) => {
   const changeCategory = (id) => {
     setCurrTag(undefined);
     setCurrCategory(id);
-    getPostsByCategory({ variables: { id } });
+    if (id) {
+      getPostsByCategory({ variables: { id } });
+    } else {
+      getPosts();
+    }
   };
 
   const changeTag = (name) => {
@@ -119,7 +126,7 @@ const PostList = (props) => {
         </Grid>
       </Hidden>
       <Grid item xs={12} md={6} container direction="column" spacing={1}>
-        <Grid item container justifyContent="space-between" alignItems="center">
+        <Grid item container justifyContent="space-between">
           <Grid item style={{ display: "flex", alignItems: "center" }}>
             <Typography variant="h5" component="div">
               笔记

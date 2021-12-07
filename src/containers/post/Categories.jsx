@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default (props) => {
   const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState(undefined);
+  const [currCategory, setCurrCategory] = useState(undefined);
 
   const { data } = useQuery(CATEGORIES);
 
@@ -21,10 +21,15 @@ export default (props) => {
     <ChipFlow
       items={categories}
       type="id"
-      currentSelect={category}
+      currentSelect={currCategory}
       onHandleClick={(category) => {
-        setCategory(category);
-        props.changeCategory(parseInt(category));
+        if (currCategory === category) {
+          setCurrCategory(undefined);
+          props.changeCategory(undefined);
+        } else {
+          setCurrCategory(category);
+          props.changeCategory(parseInt(category));
+        }
       }}
     />
   ) : (
