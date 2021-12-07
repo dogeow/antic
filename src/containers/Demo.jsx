@@ -9,6 +9,9 @@ const Demo = () => (
     <div>
       <ul>
         <li>
+          <Link to="/diff">文本对比</Link>
+        </li>
+        <li>
           <Link to="/mediawiki-to-markdown">MediaWiki 转 Markdown</Link>
         </li>
         <li>
