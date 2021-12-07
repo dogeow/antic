@@ -1,5 +1,5 @@
 // TODO 部分改为 CSS in JS
-import "./styles/App.css";
+import "./styles/index.css";
 
 import { ApolloProvider } from "@apollo/client";
 import * as React from "react";

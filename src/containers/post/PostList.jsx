@@ -134,7 +134,7 @@ const PostList = (props) => {
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               <Grid container spacing={2}>
-                {post.length !== 0
+                {post.length
                   ? post.map((item) => (
                       <Grid
                         item
@@ -142,7 +142,6 @@ const PostList = (props) => {
                         xs={12}
                         key={item.id}
                         spacing={2}
-                        alignItems="center"
                         style={{ flexWrap: "nowrap" }}
                       >
                         {/* 分类 */}
@@ -156,10 +155,10 @@ const PostList = (props) => {
                           />
                         </Grid>
                         {/* 标题 */}
-                        <Grid item style={{ flexGrow: 1 }}>
+                        <Grid item style={{ flexGrow: 1, textAlign: "left" }}>
                           <Typography
                             variant="subtitle1"
-                            component="h1"
+                            component="h2"
                             onClick={() => handleEnterPost(item)}
                           >
                             {item.title}
