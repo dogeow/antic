@@ -1,9 +1,9 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
-import Skeleton from "@material-ui/lab/Skeleton";
+import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
+import Grid from "@mui/material/Grid";
+import Skeleton from "@mui/material/Skeleton";
+import Typography from "@mui/material/Typography";
+import makeStyles from "@mui/styles/makeStyles";
 import clsx from "clsx";
 import AlertDialog from "components/AlertDialog";
 import React, { useEffect, useState } from "react";
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => {
       [theme.breakpoints.up("md")]: {
         display: "block",
       },
-      [theme.breakpoints.down("md")]: {
+      [theme.breakpoints.down("lg")]: {
         display: "none",
       },
       position: "fixed",
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => {
       display: "block",
     },
     "@global":
-      theme.palette.type === "dark"
+      theme.palette.mode === "dark"
         ? {
             code: {
               backgroundColor: theme.palette.background.paper,
@@ -178,7 +178,7 @@ const PostSingle = ({ postSave }) => {
             </Grid>
           </Grid>
         ) : (
-          <Skeleton variant="rect" height={41} width="40%" />
+          <Skeleton variant="rectangular" height={41} width="40%" />
         )}
       </Grid>
       <Grid item container spacing={1}>

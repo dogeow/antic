@@ -1,10 +1,10 @@
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
-import { makeStyles } from "@material-ui/core/styles";
-import Tooltip from "@material-ui/core/Tooltip";
-import Typography from "@material-ui/core/Typography";
-import GitHub from "@material-ui/icons/GitHub";
+import GitHub from "@mui/icons-material/GitHub";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import makeStyles from "@mui/styles/makeStyles";
 import clsx from "clsx";
 import HomeFooter from "components/HomeFooter";
 import Hr from "components/Hr";
@@ -15,7 +15,7 @@ import { Link as RouteLink } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundImage:
-      theme.palette.type === "dark"
+      theme.palette.mode === "dark"
         ? `url(${process.env.REACT_APP_CDN_URL}/bg/tesla-vector-roadster.png!/compress/true/fw/400)`
         : `url(${process.env.REACT_APP_CDN_URL}/bg/${
             backgroundImg[Math.floor(Math.random() * backgroundImg.length)]
@@ -32,12 +32,7 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <Grid
-      container
-      component={Container}
-      maxWidth="lg"
-      style={{ lineHeight: 1.6 }}
-    >
+    <Grid container component={Container} maxWidth="lg">
       <Hr />
       <Grid item container className={clsx(classes.footer, classes.ul)}>
         <Grid item xs={12} sm={5}>
@@ -86,6 +81,7 @@ const Footer = () => {
                 component="a"
                 href="https://github.com/likunyan/antic"
                 target="_blank"
+                size="large"
               >
                 <GitHub fontSize="small" />
               </IconButton>

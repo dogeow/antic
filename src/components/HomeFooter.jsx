@@ -1,4 +1,4 @@
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import ExternalLink from "components/ExternalLink";
 import PowerBy from "components/PowerBy";
 import * as React from "react";
@@ -13,7 +13,7 @@ export default function () {
       item
       container
       spacing={1}
-      justify="center"
+      justifyContent="center"
       style={{ textAlign: "center", marginBottom: 20 }}
     >
       <Grid item>
@@ -34,7 +34,7 @@ export default function () {
         {" with "}
         <Heart />
       </Grid>
-      <Grid container justify="center" spacing={1}>
+      <Grid container justifyContent="center" spacing={1}>
         <Grid item style={{ opacity: 0.6 }}>
           <ExternalLink href={"http://www.beian.gov.cn/"}>
             <img src={Record} alt="" style={{ verticalAlign: "top" }} />

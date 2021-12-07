@@ -1,8 +1,8 @@
-import Badge from "@material-ui/core/Badge";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
+import Badge from "@mui/material/Badge";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 

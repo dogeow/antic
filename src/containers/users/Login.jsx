@@ -1,23 +1,23 @@
-import Avatar from "@material-ui/core/Avatar";
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Tooltip from "@material-ui/core/Tooltip";
-import Typography from "@material-ui/core/Typography";
-import Zoom from "@material-ui/core/Zoom";
-import ClearIcon from "@material-ui/icons/Clear";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import MailOutlineIcon from "@material-ui/icons/MailOutline";
-import NotListedLocationOutlinedIcon from "@material-ui/icons/NotListedLocationOutlined";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import ClearIcon from "@mui/icons-material/Clear";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import NotListedLocationOutlinedIcon from "@mui/icons-material/NotListedLocationOutlined";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import Paper from "@mui/material/Paper";
+import TextField from "@mui/material/TextField";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import Zoom from "@mui/material/Zoom";
+import makeStyles from "@mui/styles/makeStyles";
 import { loginAction } from "actions";
 import Copyright from "components/site/Copyright";
 import wallpaper from "config/wallpaper";
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `url(${process.env.REACT_APP_OSS_URL}/wallpaper/${wallpaper[random]})`,
     backgroundRepeat: "no-repeat",
     backgroundColor:
-      theme.palette.type === "dark"
+      theme.palette.mode === "dark"
         ? theme.palette.grey[900]
         : theme.palette.grey[50],
     backgroundSize: "cover",
@@ -123,7 +123,12 @@ const SignInSide = ({ dispatch }) => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Grid container justify="center" alignItems="flex-end" spacing={1}>
+          <Grid
+            container
+            justifyContent="center"
+            alignItems="flex-end"
+            spacing={1}
+          >
             <Grid item>
               <Typography component="h1" variant="h5">
                 登录
@@ -178,6 +183,7 @@ const SignInSide = ({ dispatch }) => {
                       onClick={() => setAccount("")}
                       edge="end"
                       tabindex="-1"
+                      size="large"
                     >
                       <ClearIcon />
                     </IconButton>
@@ -234,6 +240,7 @@ const SignInSide = ({ dispatch }) => {
                       onClick={() => setPassword("")}
                       edge="end"
                       tabindex="-1"
+                      size="large"
                     >
                       <ClearIcon />
                     </IconButton>
@@ -274,7 +281,7 @@ const SignInSide = ({ dispatch }) => {
             >
               登录
             </Button>
-            <Grid container justify="space-between">
+            <Grid container justifyContent="space-between">
               <Grid item>
                 <Typography
                   variant="body2"

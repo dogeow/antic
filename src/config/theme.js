@@ -1,11 +1,13 @@
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import { adaptV4Theme, createTheme } from "@mui/material/styles";
 
 export default (option) =>
-  createMuiTheme({
-    palette: {
-      type: option.paletteMode,
-    },
-    typography: {
-      fontFamily: "'JetBrains Mono', monospace",
-    },
-  });
+  createTheme(
+    adaptV4Theme({
+      palette: {
+        mode: option.paletteMode,
+      },
+      typography: {
+        fontFamily: "'JetBrains Mono', monospace",
+      },
+    })
+  );

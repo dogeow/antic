@@ -1,5 +1,5 @@
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import * as React from "react";
 
 const cars = [
@@ -37,7 +37,7 @@ export default function Cars() {
           <Grid
             container
             item
-            justify="center"
+            justifyContent="center"
             style={{ background: car.color }}
             key={car.name}
           >

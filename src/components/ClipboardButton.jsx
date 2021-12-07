@@ -1,5 +1,5 @@
-import IconButton from "@material-ui/core/IconButton";
-import FileCopyIcon from "@material-ui/icons/FileCopy";
+import FileCopyIcon from "@mui/icons-material/FileCopy";
+import IconButton from "@mui/material/IconButton";
 import * as React from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 

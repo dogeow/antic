@@ -1,7 +1,7 @@
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Grid from "@material-ui/core/Grid";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Grid from "@mui/material/Grid";
+import TextareaAutosize from "@mui/material/TextareaAutosize";
 import * as React from "react";
 
 const emojis = ["❗️", "‼️", "✔️️"];
@@ -21,11 +21,11 @@ export default function Copywriting() {
   };
 
   return (
-    <Grid container spacing={2} justify="center">
+    <Grid container spacing={2} justifyContent="center">
       <Grid item xs={12} style={{ textAlign: "center" }}>
         <TextareaAutosize
           ref={textInput}
-          rowsMin={6}
+          minRows={6}
           placeholder="请输入..."
           value={text}
           style={{ width: 272, fontFamily: "auto" }}

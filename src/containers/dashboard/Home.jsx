@@ -1,5 +1,5 @@
-import Container from "@material-ui/core/Container";
-import { makeStyles } from "@material-ui/core/styles";
+import Container from "@mui/material/Container";
+import makeStyles from "@mui/styles/makeStyles";
 import Copyright from "components/site/Copyright";
 import * as React from "react";
 

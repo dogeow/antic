@@ -1,6 +1,6 @@
-import Input from "@material-ui/core/Input";
-import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
+import Input from "@mui/material/Input";
+import Paper from "@mui/material/Paper";
+import makeStyles from "@mui/styles/makeStyles";
 import localization from "config/localization";
 import axios from "instance/axios";
 import MaterialTable from "material-table";

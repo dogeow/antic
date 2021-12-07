@@ -1,6 +1,6 @@
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 import ChipFlow from "components/ChipFlow";
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";

@@ -1,4 +1,4 @@
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 

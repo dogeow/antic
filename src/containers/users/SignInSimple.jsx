@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import swal from "sweetalert2";
-
 import axios from "instance/axios";
+import React, { useState } from "react";
 import credentialsTest from "resources/credentialsTest.json";
+import swal from "sweetalert2";
 
 function SignInSimple() {
   const [email, setEmail] = useState("");

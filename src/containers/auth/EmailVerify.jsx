@@ -1,6 +1,6 @@
-import Button from "@material-ui/core/Button";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 import { loginAction } from "actions";
 import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
@@ -43,7 +43,7 @@ const Forget = () => {
       {isSuccess ? (
         <>
           <h2 style={{ color: "green", textAlign: "center" }}>邮箱验证成功</h2>
-          <Grid container spacing={2} justify="space-around">
+          <Grid container spacing={2} justifyContent="space-around">
             <Grid item>
               <Button
                 variant="contained"

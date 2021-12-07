@@ -1,6 +1,6 @@
 // *https://www.registers.service.gov.uk/registers/country/use-the-api*
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
 import * as React from "react";
 
 export default function Asynchronous(props) {
@@ -17,7 +17,7 @@ export default function Asynchronous(props) {
         setOpen(false);
       }}
       autoComplete
-      getOptionSelected={(option, value) => option.name === value.name}
+      isOptionEqualToValue={(option, value) => option.name === value.name}
       getOptionLabel={(option) => option.name}
       options={props.options}
       defaultValue=""

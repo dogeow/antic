@@ -5,15 +5,15 @@ import "highlight.js/styles/atom-one-dark.css";
 import "tui-color-picker/dist/tui-color-picker.css";
 import "tui-chart/dist/tui-chart.css";
 
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { green, red } from "@material-ui/core/colors";
-import Fab from "@material-ui/core/Fab";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import CheckIcon from "@material-ui/icons/Check";
-import ErrorIcon from "@material-ui/icons/ErrorOutline";
-import SaveIcon from "@material-ui/icons/Save";
+import CheckIcon from "@mui/icons-material/Check";
+import ErrorIcon from "@mui/icons-material/ErrorOutline";
+import SaveIcon from "@mui/icons-material/Save";
+import CircularProgress from "@mui/material/CircularProgress";
+import { green, red } from "@mui/material/colors";
+import Fab from "@mui/material/Fab";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import makeStyles from "@mui/styles/makeStyles";
 import chart from "@toast-ui/editor-plugin-chart";
 import codeSyntaxHightlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
@@ -26,11 +26,11 @@ import bash from "highlight.js/lib/languages/bash";
 import javascript from "highlight.js/lib/languages/javascript";
 import json from "highlight.js/lib/languages/json";
 import php from "highlight.js/lib/languages/php";
+import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 import { useRouteMatch } from "react-router-dom";
 import Swal from "sweetalert2";
 
-import axios from "instance/axios";
 import Tags from "./Post/Tags";
 
 hljs.registerLanguage("javascript", javascript);
@@ -180,7 +180,7 @@ const PostCreate = () => {
   };
 
   return (
-    <Grid container spacing={2} justify="center" alignItems="center">
+    <Grid container spacing={2} justifyContent="center" alignItems="center">
       {/* 标题 */}
       <Grid item xs={12} md={4}>
         <TextField

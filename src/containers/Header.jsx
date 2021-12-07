@@ -1,27 +1,28 @@
-import AppBar from "@material-ui/core/AppBar";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import Container from "@material-ui/core/Container";
-import Hidden from "@material-ui/core/Hidden";
-import IconButton from "@material-ui/core/IconButton";
-import InputBase from "@material-ui/core/InputBase";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import Snackbar from "@material-ui/core/Snackbar";
-import { fade, makeStyles, useTheme } from "@material-ui/core/styles";
-import Toolbar from "@material-ui/core/Toolbar";
-import Tooltip from "@material-ui/core/Tooltip";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import MenuIcon from "@material-ui/icons/Menu";
-import MoreIcon from "@material-ui/icons/MoreVert";
-import NightsStayIcon from "@material-ui/icons/NightsStay";
-import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
-import PersonIcon from "@material-ui/icons/Person";
-import PersonAddIcon from "@material-ui/icons/PersonAdd";
-import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import SearchIcon from "@material-ui/icons/Search";
-import WbSunnyIcon from "@material-ui/icons/WbSunny";
-import MuiAlert from "@material-ui/lab/Alert";
+import MenuIcon from "@mui/icons-material/Menu";
+import MoreIcon from "@mui/icons-material/MoreVert";
+import NightsStayIcon from "@mui/icons-material/NightsStay";
+import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
+import PersonIcon from "@mui/icons-material/Person";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import SearchIcon from "@mui/icons-material/Search";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import MuiAlert from "@mui/material/Alert";
+import AppBar from "@mui/material/AppBar";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Hidden from "@mui/material/Hidden";
+import IconButton from "@mui/material/IconButton";
+import InputBase from "@mui/material/InputBase";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Snackbar from "@mui/material/Snackbar";
+import { alpha, useTheme } from "@mui/material/styles";
+import Toolbar from "@mui/material/Toolbar";
+import Tooltip from "@mui/material/Tooltip";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import makeStyles from "@mui/styles/makeStyles";
 import Drawer from "components/Drawer";
 import Logo from "components/Logo";
 import Search from "components/Search";
@@ -50,9 +51,9 @@ const useStyles = makeStyles((theme) => ({
     padding: 4,
     alignItems: "center",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
     "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
   },
   searchIcon: {
@@ -231,6 +232,7 @@ const Header = ({
               color="inherit"
               aria-label="menu"
               onClick={onClickDrawer}
+              size="large"
             >
               <MenuIcon />
             </IconButton>
@@ -251,7 +253,7 @@ const Header = ({
               </div>
             )}
             <div className={classes.blank} />
-            <Hidden smDown>
+            <Hidden mdDown>
               <div className={classes.search} onFocus={handleSearch}>
                 <InputBase
                   placeholder="⌘ + k"
@@ -271,7 +273,7 @@ const Header = ({
                 aria-label="搜索笔记"
                 onClick={handleSearch}
               >
-                <IconButton color="inherit">
+                <IconButton color="inherit" size="large">
                   <SearchIcon />
                 </IconButton>
               </Tooltip>
@@ -282,7 +284,7 @@ const Header = ({
                 aria-label="切换白天或夜晚主题"
                 onClick={onThemeClick}
               >
-                <IconButton color="inherit">
+                <IconButton color="inherit" size="large">
                   {lab.paletteMode === "dark" ? (
                     <NightsStayIcon />
                   ) : (
@@ -295,7 +297,7 @@ const Header = ({
                 aria-label="播放音乐"
                 onClick={playMusic}
               >
-                <IconButton color="inherit">
+                <IconButton color="inherit" size="large">
                   {playing === true ? (
                     <PauseCircleOutlineIcon />
                   ) : (
@@ -314,6 +316,7 @@ const Header = ({
                     pathname: "/login",
                     state: { from: pathname },
                   }}
+                  size="large"
                 >
                   <PersonIcon />
                 </IconButton>
@@ -327,6 +330,7 @@ const Header = ({
                     aria-haspopup="true"
                     color="inherit"
                     onClick={handleProfileMenu}
+                    size="large"
                   >
                     <Avatar
                       alt={lab.userName}
@@ -421,6 +425,7 @@ const Header = ({
                 aria-controls="menu"
                 aria-haspopup="true"
                 color="inherit"
+                size="large"
               >
                 <MoreIcon />
               </IconButton>

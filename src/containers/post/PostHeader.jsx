@@ -1,5 +1,5 @@
-import Grid from "@material-ui/core/Grid";
-import Skeleton from "@material-ui/lab/Skeleton";
+import Grid from "@mui/material/Grid";
+import Skeleton from "@mui/material/Skeleton";
 import Tags from "components/post/Tags";
 import Tooltip from "components/Tooltip";
 import dayjs from "dayjs";
@@ -25,7 +25,7 @@ const PostHeader = ({ post, edit = true }) => {
     </Grid>
   ) : (
     <Grid item xs={12}>
-      <Skeleton variant="rect" height={20} width="60%" />
+      <Skeleton variant="rectangular" height={20} width="60%" />
     </Grid>
   );
 };

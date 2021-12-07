@@ -1,13 +1,13 @@
-import Paper from "@material-ui/core/Paper";
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Check from "@material-ui/icons/Check";
-import Close from "@material-ui/icons/Close";
-import RadioButtonChecked from "@material-ui/icons/RadioButtonChecked";
+import Check from "@mui/icons-material/Check";
+import Close from "@mui/icons-material/Close";
+import RadioButtonChecked from "@mui/icons-material/RadioButtonChecked";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import makeStyles from "@mui/styles/makeStyles";
 import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 

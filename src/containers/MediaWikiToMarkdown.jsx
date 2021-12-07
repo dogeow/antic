@@ -1,6 +1,6 @@
-import Grid from "@material-ui/core/Grid";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Grid from "@mui/material/Grid";
+import TextareaAutosize from "@mui/material/TextareaAutosize";
 import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 

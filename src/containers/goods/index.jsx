@@ -1,14 +1,14 @@
-import Accordion from "@material-ui/core/Accordion";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Tab from "@material-ui/core/Tab";
-import Tabs from "@material-ui/core/Tabs";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AppBar from "@mui/material/AppBar";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import ImgList from "components/ImgList";
 import Upload from "components/Upload";
 import React from "react";
@@ -48,7 +48,7 @@ const EmojiCreate = () => {
   };
 
   return (
-    <Grid container spacing={2} justify="center" alignItems="flex-end">
+    <Grid container spacing={2} justifyContent="center" alignItems="flex-end">
       <Grid item xs={12}>
         <AppBar position="static">
           <Tabs
@@ -64,7 +64,7 @@ const EmojiCreate = () => {
       </Grid>
       <TabPanel value={value} index={0}>
         <Upload keyName="goods" />
-        <Grid container justify="space-between">
+        <Grid container justifyContent="space-between">
           <Grid item xs>
             <TextField label="分类" />
           </Grid>

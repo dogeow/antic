@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import React, { useEffect, useState } from "react";
 
 import ProjectHeader from "./ProjectHeader";

@@ -4,7 +4,7 @@ import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import "prismjs/themes/prism.css";
 import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css";
 
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import { Editor } from "@toast-ui/react-editor";
 import Prism from "prismjs";
@@ -23,7 +23,7 @@ const PostCreate = () => {
   };
 
   return (
-    <Grid container spacing={2} justify="center" alignItems="center">
+    <Grid container spacing={2} justifyContent="center" alignItems="center">
       <Grid item xs={12}>
         <Editor
           ref={editorRef}

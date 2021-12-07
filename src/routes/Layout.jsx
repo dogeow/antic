@@ -1,6 +1,6 @@
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import makeStyles from "@mui/styles/makeStyles";
 import Header from "components/Header";
 import Loading from "components/Loading";
 import Footer from "containers/Footer";
@@ -34,7 +34,7 @@ export default () => {
         container
         component={Container}
         maxWidth="lg"
-        justify={location.pathname === "/" ? "center" : undefined}
+        justifyContent={location.pathname === "/" ? "center" : undefined}
         alignItems={location.pathname === "/" ? "center" : undefined}
         classes={
           ["/nav", "/cars"].includes(location.pathname)

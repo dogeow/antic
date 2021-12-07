@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import Skeleton from "@material-ui/lab/Skeleton";
+import Skeleton from "@mui/material/Skeleton";
 import ChipFlow from "components/ChipFlow";
 import { TAGS } from "graphql/post";
 import * as React from "react";
@@ -28,7 +28,7 @@ const AllTags = (props) => {
       }}
     />
   ) : (
-    <Skeleton variant="rect" height="24rem" />
+    <Skeleton variant="rectangular" height="24rem" />
   );
 };
 

@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import React, { useEffect, useState } from "react";
 
 import Card from "./Card";
@@ -30,7 +30,7 @@ const Like = () => {
   }, [data]);
 
   return (
-    <Grid container justify="flex-start" spacing={2}>
+    <Grid container justifyContent="flex-start" spacing={2}>
       {like.map((item) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={item.id}>
           <Card

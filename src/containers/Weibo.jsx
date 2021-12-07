@@ -1,11 +1,11 @@
-import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
-import { makeStyles } from "@material-ui/core/styles";
-import ErrorOutline from "@material-ui/icons/ErrorOutline";
-import Pagination from "@material-ui/lab/Pagination";
-import PaginationItem from "@material-ui/lab/PaginationItem";
-import Skeleton from "@material-ui/lab/Skeleton";
 import { KeyboardDatePicker } from "@material-ui/pickers";
+import ErrorOutline from "@mui/icons-material/ErrorOutline";
+import Grid from "@mui/material/Grid";
+import Hidden from "@mui/material/Hidden";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
+import Skeleton from "@mui/material/Skeleton";
+import makeStyles from "@mui/styles/makeStyles";
 import dayjs from "dayjs";
 import axios from "instance/axios";
 import random from "lodash/random";
@@ -57,7 +57,7 @@ const Weibo = () => {
   };
 
   return (
-    <Grid container spacing={2} justify="center">
+    <Grid container spacing={2} justifyContent="center">
       <Grid item xs={12}>
         <KeyboardDatePicker
           margin="normal"
@@ -117,7 +117,7 @@ const Weibo = () => {
                   <tr key={index}>
                     <td colSpan={2}>
                       <Skeleton
-                        variant="rect"
+                        variant="rectangular"
                         width={`${random(20, 88)}%`}
                         height={20}
                       />

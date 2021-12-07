@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
-import { makeStyles } from "@material-ui/core/styles";
-import AddIcon from "@material-ui/icons/Add";
-import RefreshIcon from "@material-ui/icons/Refresh";
-import RemoveIcon from "@material-ui/icons/Remove";
+import AddIcon from "@mui/icons-material/Add";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import RemoveIcon from "@mui/icons-material/Remove";
+import makeStyles from "@mui/styles/makeStyles";
 import SpeedDial from "components/SpeedDial";
 import React, { useEffect, useState } from "react";
 

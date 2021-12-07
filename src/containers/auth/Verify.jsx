@@ -1,6 +1,6 @@
-import InputAdornment from "@material-ui/core/InputAdornment";
-import TextField from "@material-ui/core/TextField";
-import SmsIcon from "@material-ui/icons/Sms";
+import SmsIcon from "@mui/icons-material/Sms";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
 import React from "react";
 
 export default (props) => (

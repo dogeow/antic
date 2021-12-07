@@ -1,4 +1,4 @@
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import * as React from "react";
 
 const FilterStatistics = (props) => {
@@ -8,7 +8,7 @@ const FilterStatistics = (props) => {
     <Grid
       container
       spacing={0}
-      justify="center"
+      justifyContent="center"
       style={{ marginTop: 5, marginBottom: 1 }}
     >
       筛选结果：共 {filterNum} 张，共 {Math.ceil(filterNum / pageLimit)}{" "}

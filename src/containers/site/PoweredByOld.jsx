@@ -1,7 +1,6 @@
+import localization from "config/localization";
 import MaterialTable from "material-table";
 import React, { useState } from "react";
-
-import localization from "config/localization";
 
 export default function Table() {
   const [project, setProject] = useState([]);

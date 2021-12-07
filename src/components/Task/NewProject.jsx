@@ -1,7 +1,7 @@
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Input from "@material-ui/core/Input";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import Input from "@mui/material/Input";
+import OutlinedInput from "@mui/material/OutlinedInput";
 import clsx from "clsx";
 import axios from "instance/axios";
 import React, { useState } from "react";

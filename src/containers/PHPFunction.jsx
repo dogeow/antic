@@ -1,20 +1,20 @@
-import FormControl from "@material-ui/core/FormControl";
-import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import InputLabel from "@material-ui/core/InputLabel";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import ClearIcon from "@material-ui/icons/Clear";
-import SearchIcon from "@material-ui/icons/Search";
 import { mdiLoading } from "@mdi/js";
 import Icon from "@mdi/react";
+import ClearIcon from "@mui/icons-material/Clear";
+import SearchIcon from "@mui/icons-material/Search";
+import FormControl from "@mui/material/FormControl";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 import axios from "instance/axios";
 import React, { useState } from "react";
 import swal from "sweetalert2";
@@ -72,7 +72,6 @@ const NoMatch = () => {
     <Grid>
       <Grid
         container
-        justify="center"
         justifyContent="center"
         alignItems="center"
         style={{ marginTop: "20%" }}
@@ -96,6 +95,7 @@ const NoMatch = () => {
                         onClick={handleClickSearch}
                         onMouseDown={handleMouseDownSearch}
                         edge="end"
+                        size="large"
                       >
                         <Icon path={mdiLoading} spin size={1} />
                       </IconButton>
@@ -110,6 +110,7 @@ const NoMatch = () => {
                           onClick={handleClear}
                           onMouseDown={handleMouseDownSearch}
                           edge="end"
+                          size="large"
                         >
                           <ClearIcon />
                         </IconButton>
@@ -121,6 +122,7 @@ const NoMatch = () => {
                         onClick={handleClickSearch}
                         onMouseDown={handleMouseDownSearch}
                         edge="end"
+                        size="large"
                       >
                         <SearchIcon />
                       </IconButton>
@@ -134,13 +136,7 @@ const NoMatch = () => {
         </Grid>
       </Grid>
       {phpFunction.length > 0 && (
-        <Grid
-          container
-          justify="center"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2}
-        >
+        <Grid container justifyContent="center" alignItems="center" spacing={2}>
           <Grid item>
             <TableContainer component={Paper}>
               <Table aria-label="simple table">

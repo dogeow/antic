@@ -1,14 +1,14 @@
 import { useLazyQuery } from "@apollo/client";
-import Chip from "@material-ui/core/Chip";
-import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
-import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
-import Pagination from "@material-ui/lab/Pagination";
-import PaginationItem from "@material-ui/lab/PaginationItem";
-import Skeleton from "@material-ui/lab/Skeleton";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import Chip from "@mui/material/Chip";
+import Grid from "@mui/material/Grid";
+import Hidden from "@mui/material/Hidden";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
+import Paper from "@mui/material/Paper";
+import Skeleton from "@mui/material/Skeleton";
+import Typography from "@mui/material/Typography";
+import makeStyles from "@mui/styles/makeStyles";
 import AllTags from "containers/post/AllTags";
 import Categories from "containers/post/Categories";
 import dayjs from "dayjs";
@@ -104,7 +104,7 @@ const PostList = (props) => {
 
   return (
     <Grid container spacing={2}>
-      <Hidden smDown>
+      <Hidden mdDown>
         <Grid item xs={3} container direction="column" spacing={1}>
           <Grid item>
             <Typography variant="h5" component="div">
@@ -119,7 +119,7 @@ const PostList = (props) => {
         </Grid>
       </Hidden>
       <Grid item xs={12} md={6} container direction="column" spacing={1}>
-        <Grid item container justify="space-between" alignItems="center">
+        <Grid item container justifyContent="space-between" alignItems="center">
           <Grid item style={{ display: "flex", alignItems: "center" }}>
             <Typography variant="h5" component="div">
               笔记
@@ -166,7 +166,7 @@ const PostList = (props) => {
                           </Typography>
                         </Grid>
                         {/* 标签 */}
-                        <Hidden smDown>
+                        <Hidden mdDown>
                           <Grid item>
                             <Grid container spacing={1}>
                               {item.tags.length !== 0 &&
@@ -190,7 +190,7 @@ const PostList = (props) => {
                         </Grid>
                       </Grid>
                     ))
-                  : Array.from(new Array(10)).map((value, index) => (
+                  : Array.from(new Array(8)).map((value, index) => (
                       <Grid item container xs={12} spacing={2} key={index}>
                         <Grid item>
                           <Skeleton width={40} height="28px" animation="wave" />
@@ -226,7 +226,7 @@ const PostList = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Hidden smDown>
+      <Hidden mdDown>
         <Grid item xs={3} container direction="column" spacing={1}>
           <Grid item>
             <Typography variant="h5" component="div">

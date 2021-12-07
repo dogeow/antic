@@ -1,5 +1,5 @@
-import Avatar from "@material-ui/core/Avatar";
-import Grid from "@material-ui/core/Grid";
+import Avatar from "@mui/material/Avatar";
+import Grid from "@mui/material/Grid";
 import { gravatarCdn } from "config/services";
 import dayjs from "dayjs";
 import md5 from "md5";

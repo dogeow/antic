@@ -1,7 +1,7 @@
-import Grid from "@material-ui/core/Grid";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
+import Grid from "@mui/material/Grid";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 import React, { useEffect, useRef, useState } from "react";
 
 const musics = ["大声说爱我 - 刘依纯.mp3", "和楽器バンド - 東風破.mp3"];

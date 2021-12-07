@@ -1,15 +1,15 @@
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import Collapse from "@material-ui/core/Collapse";
-import { red } from "@material-ui/core/colors";
-import IconButton from "@material-ui/core/IconButton";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ShareIcon from "@material-ui/icons/Share";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ShareIcon from "@mui/icons-material/Share";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import Collapse from "@mui/material/Collapse";
+import { red } from "@mui/material/colors";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import makeStyles from "@mui/styles/makeStyles";
 import clsx from "clsx";
 import * as React from "react";
 
@@ -67,7 +67,7 @@ export default function RecipeReviewCard({
       </CardContent>
       <CardActions disableSpacing>
         <a href={link} target="_blank" rel="noopener noreferrer">
-          <IconButton aria-label="share">
+          <IconButton aria-label="share" size="large">
             <ShareIcon />
           </IconButton>
         </a>
@@ -78,6 +78,7 @@ export default function RecipeReviewCard({
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
+          size="large"
         >
           <ExpandMoreIcon />
         </IconButton>

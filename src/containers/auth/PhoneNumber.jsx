@@ -1,7 +1,7 @@
-import InputAdornment from "@material-ui/core/InputAdornment";
-import { withStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import PhoneIphoneIcon from "@material-ui/icons/PhoneIphone";
+import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
+import withStyles from "@mui/styles/withStyles";
 import React from "react";
 
 const ValidationTextField = withStyles({

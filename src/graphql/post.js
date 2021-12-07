@@ -4,7 +4,7 @@ const POST_LIST = gql`
   query($page: Int, $categoryId: Int) {
     posts(
       category_id: $categoryId
-      first: 10
+      first: 8
       page: $page
       orderBy: [{ column: UPDATED_AT, order: DESC }]
     ) {

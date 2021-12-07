@@ -1,18 +1,18 @@
 import "styles/editor.css";
 
 import { gql, useLazyQuery } from "@apollo/client";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { green, red } from "@material-ui/core/colors";
-import Fab from "@material-ui/core/Fab";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-import Switch from "@material-ui/core/Switch";
-import TextField from "@material-ui/core/TextField";
-import CheckIcon from "@material-ui/icons/Check";
-import ErrorIcon from "@material-ui/icons/ErrorOutline";
-import SaveIcon from "@material-ui/icons/Save";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+import CheckIcon from "@mui/icons-material/Check";
+import ErrorIcon from "@mui/icons-material/ErrorOutline";
+import SaveIcon from "@mui/icons-material/Save";
+import Autocomplete from "@mui/material/Autocomplete";
+import CircularProgress from "@mui/material/CircularProgress";
+import { green, red } from "@mui/material/colors";
+import Fab from "@mui/material/Fab";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Grid from "@mui/material/Grid";
+import Switch from "@mui/material/Switch";
+import TextField from "@mui/material/TextField";
+import makeStyles from "@mui/styles/makeStyles";
 import clsx from "clsx";
 import CodeBlock from "components/CodeBlock";
 import Tags from "components/post/Tags";
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => {
 
   return {
     "@global":
-      theme.palette.type === "dark"
+      theme.palette.mode === "dark"
         ? {
             "#editor_md": {
               backgroundColor: background,
@@ -270,7 +270,7 @@ export default ({ post, postSave, postModify, postContentSave, postTitle }) => {
   };
 
   return (
-    <Grid container spacing={2} justify="center" alignItems="center">
+    <Grid container spacing={2} justifyContent="center" alignItems="center">
       {/* 头部 */}
       <Grid item xs={12} md={2}>
         {categories.length !== 0 && (
@@ -292,7 +292,7 @@ export default ({ post, postSave, postModify, postContentSave, postTitle }) => {
             }}
             options={categories}
             getOptionLabel={(option) => option.name}
-            getOptionSelected={(option, value) => option.name === value.name}
+            isOptionEqualToValue={(option, value) => option.name === value.name}
             renderInput={(params) => (
               <TextField {...params} label="分类" variant="outlined" />
             )}
@@ -338,7 +338,7 @@ export default ({ post, postSave, postModify, postContentSave, postTitle }) => {
         />
       </Grid>
       {/* 保存按钮 */}
-      <Grid container alignItems="center" justify="center">
+      <Grid container alignItems="center" justifyContent="center">
         <Grid item>
           <FormControlLabel
             control={

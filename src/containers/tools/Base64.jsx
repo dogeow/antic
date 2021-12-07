@@ -1,6 +1,6 @@
 import "styles/base64.css";
 
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import { snackMessage } from "actions";
 import ClipboardButton from "components/ClipboardButton";
 import React, { useEffect, useState } from "react";

@@ -1,5 +1,5 @@
-import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert from "@material-ui/lab/Alert";
+import MuiAlert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 import ClipboardButton from "components/ClipboardButton";
 import dayjs from "dayjs";
 import * as React from "react";

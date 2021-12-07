@@ -1,7 +1,7 @@
 import { Icon, InlineIcon } from "@iconify/react";
 import reactRouter from "@iconify-icons/logos/react-router";
 import reduxIcon from "@iconify-icons/logos/redux";
-import { makeStyles } from "@material-ui/core/styles";
+import makeStyles from "@mui/styles/makeStyles";
 import React from "react";
 
 const width = 30;

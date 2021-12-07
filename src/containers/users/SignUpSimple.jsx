@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-
 import axios from "instance/axios";
+import React, { useState } from "react";
 import credentialsTest from "resources/credentialsTest.json";
 
 function SignUpSimple() {

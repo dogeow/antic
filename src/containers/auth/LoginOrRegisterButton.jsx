@@ -1,6 +1,6 @@
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import makeStyles from "@mui/styles/makeStyles";
 import ToLogin from "components/Auth/ToLogin";
 import React from "react";
 
@@ -25,7 +25,7 @@ export default (props) => {
       >
         注册
       </Button>
-      <Grid container justify="flex-end">
+      <Grid container justifyContent="flex-end">
         <Grid item>
           <ToLogin />
         </Grid>
