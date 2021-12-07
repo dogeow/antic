@@ -162,7 +162,7 @@ const PostList = (props) => {
                           />
                         </Grid>
                         {/* 标题 */}
-                        <Grid item style={{ flexGrow: 1, textAlign: "left" }}>
+                        <Grid item style={{ flexGrow: 1 }}>
                           <Typography
                             variant="subtitle1"
                             component="h2"
