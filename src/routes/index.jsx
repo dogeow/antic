@@ -31,7 +31,6 @@ const WeiboAbout = lazy(() => import("containers/WeiboAbout"));
 const Project = lazy(() => import("components/Task/Project"));
 const NewProject = lazy(() => import("components/Task/NewProject"));
 const SingleProject = lazy(() => import("components/Task/SingleProject"));
-const TodoList = lazy(() => import("components/TodoList"));
 const Nav = lazy(() => import("components/Nav"));
 const A2Z = lazy(() => import("containers/tools/A2Z"));
 const Piano = lazy(() => import("components/Piano"));
@@ -92,7 +91,6 @@ export default () => (
         <Route path="/project" element={<Project />} />
         <Route path="/project/create" element={<NewProject />} />
         <Route path="/project/:id" element={<SingleProject />} />
-        <Route path="/todo" element={<TodoList />} />
         <Route path="/self-talk" element={<SelfTalk />} />
         <Route path="/like" element={<Like />} />
         <Route path="/nav" element={<Nav />} />
