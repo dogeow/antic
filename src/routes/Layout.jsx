@@ -34,8 +34,6 @@ export default () => {
         container
         component={Container}
         maxWidth="lg"
-        justifyContent={location.pathname === "/" ? "center" : undefined}
-        alignItems={location.pathname === "/" ? "center" : undefined}
         classes={
           ["/nav", "/cars"].includes(location.pathname)
             ? { root: classes.main }
@@ -47,7 +45,6 @@ export default () => {
                 display: "flex",
                 marginTop: 16,
                 marginBottom: 16,
-                textAlign: "center",
                 flexGrow: 1,
               }
             : { display: "flex", marginTop: 16, marginBottom: 16 }
