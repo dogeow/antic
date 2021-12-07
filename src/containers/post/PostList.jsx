@@ -30,7 +30,6 @@ const PostList = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [post, setPost] = useState([]);
-  const [isSecret, setIsSecret] = useState(false);
   const [pageCount, setPageCount] = useState();
   const [currPage, setCurrPage] = useState(1);
   const [currCategory, setCurrCategory] = useState();
@@ -42,10 +41,6 @@ const PostList = (props) => {
   );
 
   const [getPostsByTag, { data: postsByTag }] = useLazyQuery(TAG);
-
-  const handleChange = () => {
-    setIsSecret(!isSecret);
-  };
 
   useEffect(() => getPosts(), [getPosts]);
 
@@ -110,24 +105,32 @@ const PostList = (props) => {
   return (
     <Grid container spacing={2}>
       <Hidden smDown>
-        <Grid item xs={3}>
-          <h2>分类</h2>
-          <Paper className={classes.paper}>
-            <Categories changeCategory={changeCategory} />
-          </Paper>
+        <Grid item xs={3} container direction="column" spacing={1}>
+          <Grid item>
+            <Typography variant="h5" component="div">
+              分类
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Paper className={classes.paper}>
+              <Categories changeCategory={changeCategory} />
+            </Paper>
+          </Grid>
         </Grid>
       </Hidden>
-      <Grid item xs={12} md={6}>
-        <Grid container justify="space-between" alignItems="center">
+      <Grid item xs={12} md={6} container direction="column" spacing={1}>
+        <Grid item container justify="space-between" alignItems="center">
           <Grid item style={{ display: "flex", alignItems: "center" }}>
-            <h2>笔记</h2>
+            <Typography variant="h5" component="div">
+              笔记
+            </Typography>
             <AddCircleIcon
               style={{ marginLeft: 5 }}
               onClick={handlePostCreate}
             />
           </Grid>
         </Grid>
-        <Grid container spacing={2}>
+        <Grid item container spacing={2}>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               <Grid container spacing={2}>
@@ -156,7 +159,7 @@ const PostList = (props) => {
                         <Grid item style={{ flexGrow: 1 }}>
                           <Typography
                             variant="subtitle1"
-                            component="h2"
+                            component="h1"
                             onClick={() => handleEnterPost(item)}
                           >
                             {item.title}
@@ -224,11 +227,17 @@ const PostList = (props) => {
         </Grid>
       </Grid>
       <Hidden smDown>
-        <Grid item xs={3}>
-          <h2>标签</h2>
-          <Paper className={classes.paper}>
-            <AllTags changeTag={changeTag} />
-          </Paper>
+        <Grid item xs={3} container direction="column" spacing={1}>
+          <Grid item>
+            <Typography variant="h5" component="div">
+              标签
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Paper className={classes.paper}>
+              <AllTags changeTag={changeTag} />
+            </Paper>
+          </Grid>
         </Grid>
       </Hidden>
     </Grid>

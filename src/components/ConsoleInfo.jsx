@@ -1,8 +1,9 @@
 /**
- * 控制台信息
+ * display in console（在控制台显示）
+ * @param {string} env
  */
-export default function consoleInfo() {
-  if (process.env.NODE_ENV !== "production") {
+export default function displayInConsole(env) {
+  if (process.env.NODE_ENV !== env) {
     return;
   }
 

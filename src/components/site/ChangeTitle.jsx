@@ -1,4 +1,4 @@
-export default function () {
+export default function (leave, come) {
   // 网页当前状态判断
   let state;
   let visibilityChange;
@@ -16,14 +16,11 @@ export default function () {
     state = "webkitVisibilityState";
   }
 
-  // 添加监听器，在title里显示状态变化
+  // 添加监听器，在 title 里显示状态变化
   document.addEventListener(
     visibilityChange,
     () => {
-      document.title =
-        document[state] === "hidden"
-          ? `记得回来！- ${process.env.REACT_APP_NAME}`
-          : `欢迎回来！- ${process.env.REACT_APP_NAME}`;
+      document.title = document[state] === "hidden" ? leave : come;
     },
     false
   );

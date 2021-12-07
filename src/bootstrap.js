@@ -13,9 +13,12 @@ if (
 }
 
 // Chrome 控制台信息
-consoleInfo();
+consoleInfo("production");
 
-changeTitle();
+changeTitle(
+  `记得回来！- ${process.env.REACT_APP_NAME}`,
+  `欢迎回来！- ${process.env.REACT_APP_NAME}`
+);
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
