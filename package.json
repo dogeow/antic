@@ -2,7 +2,6 @@
   "name": "learn",
   "version": "0.1.0",
   "private": true,
-  "main": "index.jsx",
   "dependencies": {
     "@algolia/autocomplete-core": "1.0.0-alpha.44",
     "@algolia/autocomplete-preset-algolia": "1.0.0-alpha.44",
@@ -107,6 +106,7 @@
     "@babel/preset-react": "^7.12.7",
     "babel-eslint": "^10.1.0",
     "babel-plugin-direct-import": "^1.0.0",
+    "copy-webpack-plugin": "6",
     "customize-cra": "^1.0.0",
     "eslint": "^7.15.0",
     "eslint-config-google": "^0.14.0",
@@ -116,6 +116,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "prettier": "^2.2.1",
+    "react-app-rewire-multiple-entry": "^2.2.1",
     "react-app-rewired": "^2.1.8"
   }
 }

@@ -69,6 +69,11 @@ export default () => (
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/redirect" element={<Redirect />} />
+      {["/popup.html", "/index.html"].map((path, index) => (
+        <Route path={path} element={<Layout />} key={index}>
+          <Route index element={<PostList />} />
+        </Route>
+      ))}
       <Route path="/" element={<Layout />}>
         <Route index element={<PostList />} />
         <Route path="/data" element={<Data />} />
