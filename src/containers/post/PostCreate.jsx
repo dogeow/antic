@@ -276,6 +276,7 @@ export default ({ post, postSave, postModify, postContentSave, postTitle }) => {
         {categories.length !== 0 && (
           <Autocomplete
             id="combo-box-demo"
+            autoHighlight
             size="small"
             value={category}
             onChange={(event, newValue) => {

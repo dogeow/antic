@@ -39,6 +39,7 @@ const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
     <Autocomplete
       multiple
       id="tags-filled"
+      autoHighlight
       options={allTags.map((option) => option.name)}
       freeSolo
       value={tags.map((tag) => tag.name)}

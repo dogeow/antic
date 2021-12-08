@@ -12,6 +12,7 @@ export default () => {
         <Grid item xs={6}>
           <textarea
             value={oldValue}
+            placeholder="请输入要对比的内容"
             onChange={(e) => setOldValue(e.target.value)}
             style={{ width: "100%", height: "40vh", overflow: "auto" }}
           />
@@ -19,6 +20,7 @@ export default () => {
         <Grid item xs={6}>
           <textarea
             value={newValue}
+            placeholder="请输入要对比的内容"
             onChange={(e) => setNewValue(e.target.value)}
             style={{ width: "100%", height: "40vh", overflow: "auto" }}
           />
