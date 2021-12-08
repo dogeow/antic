@@ -62,6 +62,7 @@ const markdown = lazy(() => import("containers/markdown"));
 const Test = lazy(() => import("containers/Test"));
 const NoMatch = lazy(() => import("containers/NoMatch"));
 const Diff = lazy(() => import("containers/Diff"));
+const Data = lazy(() => import("containers/Data"));
 
 export default () => (
   <Suspense fallback={<Loading />}>
@@ -70,6 +71,7 @@ export default () => (
       <Route path="/redirect" element={<Redirect />} />
       <Route path="/" element={<Layout />}>
         <Route index element={<PostList />} />
+        <Route path="/data" element={<Data />} />
         <Route path="/diff" element={<Diff />} />
         <Route path="/posts" element={<PostList />} />
         <Route path="/posts/create" element={<PostCreate />} />
