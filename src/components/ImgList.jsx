@@ -4,7 +4,7 @@ import {
   ImageList,
   ImageListItem,
   ImageListItemBar,
-} from "@mui/material/IconButton";
+} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import React from "react";
 
