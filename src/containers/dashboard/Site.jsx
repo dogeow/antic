@@ -1,12 +1,14 @@
 import Check from "@mui/icons-material/Check";
 import Close from "@mui/icons-material/Close";
 import RadioButtonChecked from "@mui/icons-material/RadioButtonChecked";
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import axios from "instance/axios";
 import React, { useEffect, useState } from "react";

@@ -1,9 +1,11 @@
-import Divider from "@mui/material/Divider";
-import Link from "@mui/material/Link";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import {
+  Divider,
+  Link,
+  List,
+  ListItem,
+  ListItemText,
+  SwipeableDrawer,
+} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import appConfig from "config/app";
 import PropTypes from "prop-types";

@@ -1,12 +1,14 @@
 import SendIcon from "@mui/icons-material/Send";
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import Grid from "@mui/material/Grid";
-import InputAdornment from "@mui/material/InputAdornment";
-import Snackbar from "@mui/material/Snackbar";
-import TextField from "@mui/material/TextField";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  Grid,
+  InputAdornment,
+  Snackbar,
+  TextField,
+} from "@mui/material";
 import Avatar from "components/gravatar";
 import Loading from "components/Loading";
 import axios from "instance/axios";

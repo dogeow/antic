@@ -1,13 +1,15 @@
 import { useLazyQuery } from "@apollo/client";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import Chip from "@mui/material/Chip";
-import Grid from "@mui/material/Grid";
-import Hidden from "@mui/material/Hidden";
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
-import Paper from "@mui/material/Paper";
-import Skeleton from "@mui/material/Skeleton";
-import Typography from "@mui/material/Typography";
+import {
+  Chip,
+  Grid,
+  Hidden,
+  Pagination,
+  PaginationItem,
+  Paper,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import AllTags from "containers/post/AllTags";
 import Categories from "containers/post/Categories";

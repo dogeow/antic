@@ -1,7 +1,4 @@
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Grid from "@mui/material/Grid";
-import TextareaAutosize from "@mui/material/TextareaAutosize";
+import { Button, ButtonGroup, Grid, TextareaAutosize } from "@mui/material";
 import * as React from "react";
 
 const emojis = ["❗️", "‼️", "✔️️"];

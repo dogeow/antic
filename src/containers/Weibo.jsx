@@ -1,11 +1,13 @@
 import ErrorOutline from "@mui/icons-material/ErrorOutline";
 import DatePicker from "@mui/lab/DatePicker";
-import Grid from "@mui/material/Grid";
-import Hidden from "@mui/material/Hidden";
-import Pagination from "@mui/material/Pagination";
-import PaginationItem from "@mui/material/PaginationItem";
-import Skeleton from "@mui/material/Skeleton";
-import TextField from "@mui/material/TextField";
+import {
+  Grid,
+  Hidden,
+  Pagination,
+  PaginationItem,
+  Skeleton,
+  TextField,
+} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import dayjs from "dayjs";
 import axios from "instance/axios";

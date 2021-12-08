@@ -7,21 +7,23 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import SearchIcon from "@mui/icons-material/Search";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
-import MuiAlert from "@mui/material/Alert";
-import AppBar from "@mui/material/AppBar";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import Hidden from "@mui/material/Hidden";
-import IconButton from "@mui/material/IconButton";
-import InputBase from "@mui/material/InputBase";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Snackbar from "@mui/material/Snackbar";
+import {
+  Alert as MuiAlert,
+  AppBar,
+  Avatar,
+  Button,
+  Container,
+  Hidden,
+  IconButton,
+  InputBase,
+  Menu,
+  MenuItem,
+  Snackbar,
+  Toolbar,
+  Tooltip,
+  useMediaQuery,
+} from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
-import Toolbar from "@mui/material/Toolbar";
-import Tooltip from "@mui/material/Tooltip";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import makeStyles from "@mui/styles/makeStyles";
 import Drawer from "components/Drawer";
 import Logo from "components/Logo";

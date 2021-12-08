@@ -1,6 +1,4 @@
-import Badge from "@mui/material/Badge";
-import Chip from "@mui/material/Chip";
-import Grid from "@mui/material/Grid";
+import { Badge, Chip, Grid } from "@mui/material";
 import React from "react";
 
 const ChipFlow = (props) => {

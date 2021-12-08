@@ -1,6 +1,5 @@
 // *https://www.registers.service.gov.uk/registers/country/use-the-api*
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
+import { Autocomplete, TextField } from "@mui/material";
 import * as React from "react";
 
 export default function Asynchronous(props) {

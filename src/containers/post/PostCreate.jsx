@@ -4,14 +4,16 @@ import { gql, useLazyQuery } from "@apollo/client";
 import CheckIcon from "@mui/icons-material/Check";
 import ErrorIcon from "@mui/icons-material/ErrorOutline";
 import SaveIcon from "@mui/icons-material/Save";
-import Autocomplete from "@mui/material/Autocomplete";
-import CircularProgress from "@mui/material/CircularProgress";
+import {
+  Autocomplete,
+  CircularProgress,
+  Fab,
+  FormControlLabel,
+  Grid,
+  Switch,
+  TextField,
+} from "@mui/material";
 import { green, red } from "@mui/material/colors";
-import Fab from "@mui/material/Fab";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Grid from "@mui/material/Grid";
-import Switch from "@mui/material/Switch";
-import TextField from "@mui/material/TextField";
 import makeStyles from "@mui/styles/makeStyles";
 import clsx from "clsx";
 import CodeBlock from "components/CodeBlock";

@@ -1,17 +1,19 @@
-import Autocomplete from "@mui/material/Autocomplete";
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
-import Icon from "@mui/material/Icon";
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import TextareaAutosize from "@mui/material/TextareaAutosize";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
+import {
+  Autocomplete,
+  Button,
+  Grid,
+  Icon,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextareaAutosize,
+  TextField,
+  Typography,
+} from "@mui/material";
 import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 

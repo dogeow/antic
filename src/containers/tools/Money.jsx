@@ -1,11 +1,13 @@
 import AddIcon from "@mui/icons-material/Add";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import SubIcon from "@mui/icons-material/Remove";
-import Grid from "@mui/material/Grid";
-import Input from "@mui/material/Input";
-import InputAdornment from "@mui/material/InputAdornment";
-import InputLabel from "@mui/material/InputLabel";
-import TextField from "@mui/material/TextField";
+import {
+  Grid,
+  Input,
+  InputAdornment,
+  InputLabel,
+  TextField,
+} from "@mui/material";
 import { snackMessage } from "actions";
 import ClipboardButton from "components/ClipboardButton";
 import React, { useEffect, useState } from "react";
