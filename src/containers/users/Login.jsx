@@ -24,9 +24,8 @@ import { loginAction } from "actions";
 import Copyright from "components/site/Copyright";
 import wallpaper from "config/wallpaper";
 import axios from "instance/axios";
-import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link as RouteLink, useLocation, useNavigate } from "react-router-dom";
 
 const random = Math.floor(Math.random() * wallpaper.length);
@@ -65,23 +64,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-/**
- *
- * @param {object} props
- * @param {function} props.dispatch
- * @return {JSX.Element}
- * @constructor
- */
-const SignInSide = ({ dispatch }) => {
+export default () => {
   const navigate = useNavigate();
   const { state } = useLocation();
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [account, setAccount] = useState("");
   const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [inputErrors, setInputErrors] = useState(false);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -313,9 +306,3 @@ const SignInSide = ({ dispatch }) => {
     </Grid>
   );
 };
-
-SignInSide.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
-
-export default connect()(SignInSide);

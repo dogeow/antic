@@ -3376,6 +3376,15 @@ babel-plugin-emotion@^10.0.27:
     find-root "^1.1.0"
     source-map "^0.5.7"
 
+babel-plugin-file-loader@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.nlark.com/babel-plugin-file-loader/download/babel-plugin-file-loader-2.0.0.tgz#e9f7ecbd0f1131483f6f06a2a4cbc1574c00534f"
+  integrity sha1-6ffsvQ8RMUg/bwaipMvBV0wAU08=
+  dependencies:
+    big.js "^5.2.2"
+    fs-extra "^8.1.0"
+    mime "^2.4.4"
+
 babel-plugin-istanbul@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-istanbul/-/babel-plugin-istanbul-6.0.0.tgz#e159ccdc9af95e0b570c75b4573b7c34d671d765"

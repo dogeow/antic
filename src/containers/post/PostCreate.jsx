@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { green, red } from "@mui/material/colors";
 import makeStyles from "@mui/styles/makeStyles";
+import { postContentSave, postModify, postSave, postTitle } from "actions";
 import clsx from "clsx";
 import CodeBlock from "components/CodeBlock";
 import Tags from "components/post/Tags";
@@ -23,6 +24,8 @@ import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import MdEditor from "react-markdown-editor-lite";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import gfm from "remark-gfm";
 import Swal from "sweetalert2";
@@ -117,9 +120,11 @@ const POST_BY_ID = gql`
   }
 `;
 
-export default ({ post, postSave, postModify, postContentSave, postTitle }) => {
+export default () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const post = useSelector((state) => state.post);
   const [searchParams, setSearchParams] = useSearchParams();
   const theId = searchParams.get("id");
   const { state } = useLocation();
@@ -137,11 +142,11 @@ export default ({ post, postSave, postModify, postContentSave, postTitle }) => {
 
   const savePost = React.useCallback(() => {
     if (data) {
-      postSave(data.post);
+      dispatch(postSave(data.post));
       setCategory(data.post.category);
       setInputValue(data.post.category.name);
     }
-  }, [data, postSave]);
+  }, [data, dispatch]);
 
   useEffect(() => {
     savePost();
@@ -170,7 +175,7 @@ export default ({ post, postSave, postModify, postContentSave, postTitle }) => {
   }, [getCategories]);
 
   const handlePublicChange = (event) => {
-    postModify("public", event.target.checked);
+    dispatch(postModify("public", event.target.checked));
   };
 
   const editorRef = useRef(null);
@@ -204,7 +209,7 @@ export default ({ post, postSave, postModify, postContentSave, postTitle }) => {
     })
       .then(({ data }) => {
         setId(data.id);
-        postSave(data);
+        dispatch(postSave(data));
         setLoading(false);
         setSuccess(true);
         if (method === "post") {
@@ -244,11 +249,11 @@ export default ({ post, postSave, postModify, postContentSave, postTitle }) => {
     }
     // const content = handleGetMdValue();
     localStorage.post = text;
-    postContentSave(text);
+    dispatch(postContentSave(text));
   };
 
   const handleTitleChange = (event) => {
-    postTitle(event.target.value);
+    dispatch(postTitle(event.target.value));
   };
 
   const uploadImage = (blob) => {

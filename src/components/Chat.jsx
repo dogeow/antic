@@ -9,26 +9,29 @@ import {
   Snackbar,
   TextField,
 } from "@mui/material";
+import {
+  addPeople,
+  addPeoples,
+  chatBoard,
+  deletePeople,
+  loginAction,
+} from "actions";
 import Avatar from "components/gravatar";
 import Loading from "components/Loading";
 import axios from "instance/axios";
 import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
+import { useDispatch, useSelector } from "react-redux";
 
 import Expire from "./Expire";
 
 let timer = null;
 
-export default function Chat({
-  lab,
-  onChatUserLogin,
-  chat,
-  addPeople,
-  addPeoples,
-  chatBoardAdd,
-  deletePeople,
-}) {
+export default function Chat() {
+  const dispatch = useDispatch();
+  const chat = useSelector((state) => state.chat);
+  const lab = useSelector((state) => state.lab);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
   const [loading, setLoading] = useState(window?.Echo?.socketId() === null);
@@ -78,7 +81,7 @@ export default function Chat({
     window.Echo.join("chat")
       .here((user) => {
         setLoading(false);
-        addPeoples(user);
+        dispatch(addPeoples(user));
         setAlertMessage(`${_.map(user, "name")} 正在房间`);
         setAlertOpen(true);
       })
@@ -88,7 +91,7 @@ export default function Chat({
         setAlertOpen(true);
       })
       .leaving((user) => {
-        deletePeople(user);
+        dispatch(deletePeople(user));
         setAlertMessage(`${user.name} 退出了房间`);
         setAlertOpen(true);
       });
@@ -99,7 +102,7 @@ export default function Chat({
     });
 
     window.Echo.private("chat").listen(".chat", (e) => {
-      chatBoardAdd(e.data);
+      dispatch(chatBoard(e.data));
     });
 
     return () => {
@@ -110,7 +113,7 @@ export default function Chat({
         clearTimeout(typingTime);
       }
     };
-  }, [addPeople, addPeoples, chatBoardAdd, deletePeople, lab.token]);
+  }, [dispatch, lab.token]);
 
   useEffect(() => {
     scrollToBottom();
@@ -121,11 +124,13 @@ export default function Chat({
       return;
     }
 
-    chatBoardAdd({
-      id: localStorage.userId,
-      name: localStorage.userName,
-      message,
-    });
+    dispatch(
+      chatBoard({
+        id: localStorage.userId,
+        name: localStorage.userName,
+        message,
+      })
+    );
 
     axios.post(
       "/chat",
@@ -202,7 +207,13 @@ export default function Chat({
                 return;
               }
               handleDialogClose();
-              onChatUserLogin(name);
+              axios
+                .post("user/guest", {
+                  name,
+                })
+                .then(({ data }) => {
+                  dispatch(loginAction(data));
+                });
             }}
           >
             确定

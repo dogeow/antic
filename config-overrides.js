@@ -6,7 +6,6 @@ const {
   addWebpackPlugin,
 } = require("customize-cra");
 const CopyPlugin = require("copy-webpack-plugin");
-
 const multipleEntry = require("react-app-rewire-multiple-entry")([
   {
     entry: "src/index.js",
