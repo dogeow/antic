@@ -58,17 +58,34 @@ const Roads = lazy(() => import("containers/Roads"));
 const MediaWikiToMarkdown = lazy(() =>
   import("containers/MediaWikiToMarkdown")
 );
-const markdown = lazy(() => import("containers/markdown"));
+const Markdown = lazy(() => import("containers/markdown"));
 const Test = lazy(() => import("containers/Test"));
 const NoMatch = lazy(() => import("containers/NoMatch"));
 const Diff = lazy(() => import("containers/Diff"));
 const Data = lazy(() => import("containers/Data"));
+const Dashboard = lazy(() => import("containers/dashboard/Layout"));
+const DashboardHome = lazy(() => import("containers/dashboard/Home"));
+const DashboardPics = lazy(() => import("containers/dashboard/Pics"));
+const DashboardSite = lazy(() => import("containers/dashboard/Site"));
+const DashboardApplication = lazy(() =>
+  import("containers/dashboard/Application")
+);
 
 export default () => (
   <Suspense fallback={<Loading />}>
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/redirect" element={<Redirect />} />
+      <Route path="/dashboard" element={<Dashboard />}>
+        <Route index element={<DashboardHome />} />
+        <Route path="/dashboard/site" element={<DashboardSite />} />
+        <Route
+          path="/dashboard/application"
+          element={<DashboardApplication />}
+        />
+        <Route path="/dashboard/pics" element={<DashboardPics />} />
+        <Route element={NoMatch} />
+      </Route>
       <Route path="/" element={<Layout />}>
         <Route index element={<PostList />} />
         {["/popup.html", "/index.html"].map((path, index) => (
@@ -131,7 +148,7 @@ export default () => (
           path="/mediawiki-to-markdown"
           element={<MediaWikiToMarkdown />}
         />
-        <Route path="/markdown" element={<markdown />} />
+        <Route path="/markdown" element={<Markdown />} />
         <Route path="/test" element={<Test />} />
         <Route path="*" element={<NoMatch />} />
       </Route>
