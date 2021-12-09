@@ -6,17 +6,6 @@ const plugins = [
   [
     '@babel/plugin-syntax-jsx'
   ],
-  [
-    "file-loader",
-    {
-      "name": "[hash].[ext]",
-      "extensions": ["png", "jpg", "jpeg", "gif", "svg", "ico", "json"],
-      "publicPath": "/public",
-      "outputPath": "/public",
-      "context": "",
-      "limit": 0
-    }
-  ]
 ];
 
 const presets = [
