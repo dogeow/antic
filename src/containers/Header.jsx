@@ -25,14 +25,22 @@ import {
 } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
 import makeStyles from "@mui/styles/makeStyles";
+import {
+  changeUser,
+  logoutAction,
+  snackToggleAction,
+  toggleDrawer as toggleDrawerAction,
+  toggleTheme,
+} from "actions";
 import Drawer from "components/Drawer";
 import Logo from "components/Logo";
 import Search from "components/Search";
 import Settings from "components/Settings";
 import { gravatarCdn } from "config/services";
+import { logout } from "helpers";
 import md5 from "md5";
-import PropTypes from "prop-types";
 import React, { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link as RouteLink, useLocation } from "react-router-dom";
 import { useEvent } from "react-use";
 
@@ -70,34 +78,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-/**
- * 菜单栏
- * @param {object} lab
- * @param {function} onLogout
- * @param {boolean} onClickDrawer
- * @param {function} toggleDrawer
- * @param {function} onThemeClick
- * @param {function} snackClose
- * @param {function} paletteMode
- * @param {function} onChangeUser
- * @return {JSX.Element}
- * @constructor
- */
-const Header = ({
-  lab,
-  onLogout,
-  onClickDrawer,
-  toggleDrawer,
-  onThemeClick,
-  snackClose,
-  paletteMode,
-  onChangeUser,
-}) => {
+const Header = () => {
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
-
+  const toggleDrawer = useSelector((state) => state.lab.toggleDrawer);
+  const paletteMode = useSelector((state) => state.lab.paletteMode);
+  const lab = useSelector((state) => state.lab);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
@@ -220,7 +209,10 @@ const Header = ({
 
   return (
     <header>
-      <Drawer open={toggleDrawer} onClick={onClickDrawer} />
+      <Drawer
+        open={toggleDrawer}
+        onClick={() => dispatch(toggleDrawerAction())}
+      />
       <AppBar position="static" component="div">
         <Container
           maxWidth="lg"
@@ -233,7 +225,7 @@ const Header = ({
               edge="start"
               color="inherit"
               aria-label="menu"
-              onClick={onClickDrawer}
+              onClick={() => dispatch(toggleDrawerAction())}
               size="large"
             >
               <MenuIcon />
@@ -284,7 +276,7 @@ const Header = ({
               <Tooltip
                 title="切换白天或夜晚主题"
                 aria-label="切换白天或夜晚主题"
-                onClick={onThemeClick}
+                onClick={() => dispatch(toggleTheme())}
               >
                 <IconButton color="inherit" size="large">
                   {lab.paletteMode === "dark" ? (
@@ -359,7 +351,7 @@ const Header = ({
                 >
                   <RouteLink
                     to={`/user/${lab.userId}`}
-                    onClick={() => handleCloseProfile()}
+                    onClick={handleCloseProfile}
                   >
                     <div style={{ textAlign: "center", fontSize: "1rem" }}>
                       <Avatar
@@ -377,7 +369,7 @@ const Header = ({
                       user.userEmail !== lab.userEmail && (
                         <MenuItem
                           onClick={() => {
-                            onChangeUser(user);
+                            dispatch(changeUser(user));
                             handleCloseProfile();
                           }}
                           key={index}
@@ -413,7 +405,27 @@ const Header = ({
                   <MenuItem
                     onClick={() => {
                       setMobileMoreAnchorEl(null);
-                      onLogout();
+                      logout();
+                      const requests = [];
+                      if (localStorage.users) {
+                        JSON.parse(localStorage.users).map((user) => {
+                          requests.push(
+                            axios.post(
+                              "/user/logout",
+                              {},
+                              {
+                                headers: {
+                                  Authorization: user.token,
+                                },
+                              }
+                            )
+                          );
+                          Promise.all(requests).then(function ([acct, perms]) {
+                            dispatch(logoutAction());
+                            localStorage.removeItem("users");
+                          });
+                        });
+                      }
                     }}
                   >
                     退出所有账号
@@ -450,7 +462,7 @@ const Header = ({
               <MenuItem
                 onClick={() => {
                   setAnchorEl(null);
-                  onThemeClick();
+                  dispatch(toggleTheme());
                 }}
               >
                 切换为
@@ -466,30 +478,36 @@ const Header = ({
       <Settings
         open={settingsOpen}
         onClose={handleSettingClose}
-        onThemeClick={onThemeClick}
+        onThemeClick={() => dispatch(toggleTheme())}
         paletteMode={paletteMode}
       />
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={lab.snackOpen}
         autoHideDuration={2000}
-        onClose={snackClose}
+        onClose={(event, reason) => {
+          if (reason === "clickaway") {
+            return;
+          }
+
+          dispatch(snackToggleAction());
+        }}
       >
-        <Alert severity="success" onClose={snackClose}>
+        <Alert
+          severity="success"
+          onClose={(event, reason) => {
+            if (reason === "clickaway") {
+              return;
+            }
+
+            dispatch(snackToggleAction());
+          }}
+        >
           {lab.snackMessage}
         </Alert>
       </Snackbar>
     </header>
   );
-};
-
-Header.propTypes = {
-  lab: PropTypes.object.isRequired,
-  onLogout: PropTypes.func.isRequired,
-  onClickDrawer: PropTypes.func.isRequired,
-  toggleDrawer: PropTypes.bool.isRequired,
-  onThemeClick: PropTypes.func.isRequired,
-  paletteMode: PropTypes.oneOf(["dark", "light"]).isRequired,
 };
 
 export default Header;

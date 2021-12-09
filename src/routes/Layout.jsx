@@ -1,9 +1,9 @@
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import makeStyles from "@mui/styles/makeStyles";
-import Header from "components/Header";
 import Loading from "components/Loading";
 import Footer from "containers/Footer";
+import Header from "containers/Header";
 import React, { Suspense } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import ScrollUpButton from "react-scroll-up-button";
