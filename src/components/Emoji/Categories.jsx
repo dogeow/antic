@@ -1,22 +1,24 @@
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import * as React from "react";
+import { useSelector } from "react-redux";
 
 import CategoriesElem from "./CategoriesElem";
 
 const Category = (props) => {
+  const expandCategory = useSelector((state) => state.emoji.expandCategory);
   const color = props.selectedCategory === "全部" ? "secondary" : "primary";
 
   return (
     <Grid container alignItems="center">
       <Grid item>
         <Button variant="contained" onClick={() => props.toggleCategory()}>
-          {props.expandCategory ? "分类 <<" : "分类 >>"}
+          {expandCategory ? "分类 <<" : "分类 >>"}
         </Button>
       </Grid>
       ：
       <Grid item>
-        {props.expandCategory ? (
+        {expandCategory ? (
           <Button
             variant={
               props.lab.paletteMode === "dark" ? "outlined" : "contained"
@@ -30,7 +32,7 @@ const Category = (props) => {
           props.selectedCategory
         )}
       </Grid>
-      {props.expandCategory && <CategoriesElem {...props} />}
+      {expandCategory && <CategoriesElem {...props} />}
     </Grid>
   );
 };
