@@ -4,6 +4,12 @@ import consoleInfo from "./components/ConsoleInfo";
 import changeTitle from "./components/site/ChangeTitle";
 import { logout } from "./helpers";
 
+if (process.env.NODE_ENV === "production") {
+  import("@sentry/react").then((Sentry) => {
+    Sentry.init({ dsn: process.env.REACT_APP_SENTRY_DSN });
+  });
+}
+
 // LocalStorage 数据过期时的处理
 if (
   localStorage.access_token_expired_at &&
