@@ -1,24 +1,23 @@
 {
-  "name": "antic",
   "short_name": "antic",
-  "version": "0.0.1",
-  "manifest_version": 2,
-  "description": "create-react-app for extensions",
-  "icons": {
-    "128": "logo192.png"
-  },
-  "permissions": [],
-  "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": true
-  },
-  "browser_action": {
-    "default_icon": "logo192.png",
-    "default_popup": "popup.html"
-  },
-  "options_page": "index.html",
+  "name": "antic",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo80.png",
+      "type": "image/png",
+      "sizes": "80x80"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",

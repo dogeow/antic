@@ -1,0 +1,21 @@
+{
+  "name": "antic",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "create-react-app for extensions",
+  "icons": {
+    "128": "logo192.png"
+  },
+  "permissions": [],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_icon": "logo192.png",
+    "default_popup": "popup.html"
+  },
+  "options_page": "index.html"
+}
