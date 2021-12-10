@@ -28,6 +28,7 @@ const devServerConfig = () => (config) => {
 
 const copyPlugin = new CopyPlugin({
   patterns: [
+    { from: "public/manifest_chrome.json", to: "manifest.json" },
     { from: "public", to: "" },
     { from: "src/background.js", to: "" },
   ],
