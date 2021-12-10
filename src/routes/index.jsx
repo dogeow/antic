@@ -17,7 +17,6 @@ const PostSingle = lazy(() => import("components/post/PostSingle"));
 const Cars = lazy(() => import("containers/me/Cars"));
 const Reset = lazy(() => import("containers/users/Reset"));
 const Bookmarks = lazy(() => import("containers/Bookmarks"));
-const Progress = lazy(() => import("containers/Progress"));
 const AllCategories = lazy(() => import("containers/post/AllCategories"));
 const Tags = lazy(() => import("containers/Tags"));
 const Register = lazy(() => import("containers/users/Register"));
@@ -54,12 +53,11 @@ const Money = lazy(() => import("containers/tools/Money"));
 const Color = lazy(() => import("containers/tools/Color"));
 const Goods = lazy(() => import("containers/goods"));
 const Docs = lazy(() => import("containers/site/Docs"));
-const Roads = lazy(() => import("containers/Roads"));
 const MediaWikiToMarkdown = lazy(() =>
   import("containers/MediaWikiToMarkdown")
 );
 const Markdown = lazy(() => import("containers/markdown"));
-const Test = lazy(() => import("containers/Test"));
+const Download = lazy(() => import("containers/Test"));
 const NoMatch = lazy(() => import("containers/NoMatch"));
 const Diff = lazy(() => import("containers/Diff"));
 const Data = lazy(() => import("containers/Data"));
@@ -88,68 +86,89 @@ export default () => (
       </Route>
       <Route path="/" element={<Layout />}>
         <Route index element={<PostList />} />
-        {["/popup.html", "/index.html"].map((path, index) => (
-          <Route path={path} element={<PostList />} key={index} />
-        ))}
-        <Route path="/data" element={<Data />} />
-        <Route path="/diff" element={<Diff />} />
+
+        {/* Auth */}
+        <Route path="/register" element={<Register />} />
+        <Route path="/reset/:secret" element={<Reset />} />
+        <Route path="/forget" element={<Forget />} />
+        <Route path="/forget/:secret" element={<EmailVerify />} />
+        <Route path="/user/:id" element={<User />} />
+        <Route path="/user/:id/setting" element={<UserSetting />} />
+
+        {/* Posts */}
         <Route path="/posts" element={<PostList />} />
         <Route path="/posts/create" element={<PostCreate />} />
         <Route path="/posts/:id/edit" element={<PostCreate />} />
         <Route path="/posts/:id" element={<PostSingle />} />
-        <Route path="/reset/:secret" element={<Reset />} />
-        <Route path="/bookmarks" element={<Bookmarks />} />
-        <Route path="/progress" element={<Progress />} />
         <Route path="/categories" element={<AllCategories />} />
         <Route path="/tags" element={<Tags />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forget" element={<Forget />} />
-        <Route path="/forget/:secret" element={<EmailVerify />} />
-        <Route path="/api" element={<Api />} />
-        <Route path="/api/time" element={<Time />} />
-        <Route path="/about" element={<About />} />
+
+        {/* 待办事项 */}
+        <Route path="/project" element={<Project />} />
+        <Route path="/project/create" element={<NewProject />} />
+        <Route path="/project/:id" element={<SingleProject />} />
+
+        <Route path="/chat" element={<Chat />} />
+
+        {/* Demos */}
+        <Route path="/bookmarks" element={<Bookmarks />} />
         <Route path="/weibo" element={<Weibo />} />
         <Route path="/weibo/about" element={<WeiboAbout />} />
         <Route path="/emoji" element={<Emoji />} />
         <Route path="/emoji/create" element={<EmojiCreate />} />
-        <Route path="/project" element={<Project />} />
-        <Route path="/project/create" element={<NewProject />} />
-        <Route path="/project/:id" element={<SingleProject />} />
-        <Route path="/self-talk" element={<SelfTalk />} />
-        <Route path="/like" element={<Like />} />
         <Route path="/nav" element={<Nav />} />
-        <Route path="/a-z" element={<A2Z />} />
         <Route path="/piano" element={<Piano />} />
         <Route path="/bookmark/create" element={<BookmarkCreate />} />
-        <Route path="/bookmarks/old" element={<Bookmarks />} />
-        <Route path="/ndd" element={<Ndd />} />
-        <Route path="/user/:id" element={<User />} />
-        <Route path="/user/:id/setting" element={<UserSetting />} />
         <Route path="/demo" element={<Demo />} />
         <Route path="/demos/calculator" element={<Calculator />} />
         <Route path="/demos/parking" element={<Parking />} />
         <Route path="/demos/font" element={<Font />} />
-        <Route path="/powered_by" element={<PoweredBy />} />
-        <Route path="/like" element={<Like />} />
-        <Route path="/cars" element={<Cars />} />
-        <Route path="/video" element={<Video />} />
-        <Route path="/music" element={<Music />} />
-        <Route path="/copywriting" element={<Copywriting />} />
+        <Route path="/download" element={<Download />} />
         <Route path="/moon" element={<Moon />} />
-        <Route path="/php-function" element={<PHPFunction />} />
-        <Route path="/chat" element={<Chat />} />
+
+        {/* 小工具 持续更新 */}
+        <Route path="/diff" element={<Diff />} />
+        <Route path="/a-z" element={<A2Z />} />
+        <Route path="/ndd" element={<Ndd />} />
         <Route path="/base64" element={<Base64 />} />
         <Route path="/money" element={<Money />} />
         <Route path="/color" element={<Color />} />
-        <Route path="/goods" element={<Goods />} />
-        <Route path="/docs" element={<Docs />} />
-        <Route path="/roads" element={<Roads />} />
         <Route
           path="/mediawiki-to-markdown"
           element={<MediaWikiToMarkdown />}
         />
+        <Route path="/copywriting" element={<Copywriting />} />
+        <Route path="/php-function" element={<PHPFunction />} />
+
+        {/* API */}
+        <Route path="/api" element={<Api />} />
+        <Route path="/api/time" element={<Time />} />
+
+        {/* Example 示例 */}
+        <Route path="/video" element={<Video />} />
+        <Route path="/music" element={<Music />} />
+
+        {/* 关于我 */}
+        <Route path="/about" element={<About />} />
+        <Route path="/self-talk" element={<SelfTalk />} />
+        <Route path="/like" element={<Like />} />
+        <Route path="/powered_by" element={<PoweredBy />} />
+        <Route path="/like" element={<Like />} />
+        <Route path="/cars" element={<Cars />} />
+        <Route path="/docs" element={<Docs />} />
+
+        {/* 开发中 */}
         <Route path="/markdown" element={<Markdown />} />
-        <Route path="/test" element={<Test />} />
+        <Route path="/goods" element={<Goods />} />
+
+        {/* 谷歌 Chrome 扩展开发 */}
+        {["/popup.html", "/index.html"].map((path, index) => (
+          <Route path={path} element={<PostList />} key={index} />
+        ))}
+
+        {/* 测试 */}
+        <Route path="/data" element={<Data />} />
+
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>
