@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import makeStyles from "@mui/styles/makeStyles";
-import ToLogin from "components/Auth/ToLogin";
+import ToLogin from "components/auth/ToLogin";
 import React from "react";
 
 const useStyles = makeStyles((theme) => ({
