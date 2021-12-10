@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import * as React from "react";
 import chromeBookmarks from "resources/Bookmarks.json";
 
-import SubNav from "./Nav/SubNav";
+import SubNav from "./nav/SubNav";
 
 const bookmarks = chromeBookmarks.roots.bookmark_bar.children;
 

@@ -30,7 +30,7 @@ const WeiboAbout = lazy(() => import("containers/demos/WeiboAbout"));
 const Project = lazy(() => import("components/task/Project"));
 const NewProject = lazy(() => import("components/task/NewProject"));
 const SingleProject = lazy(() => import("components/task/SingleProject"));
-const Nav = lazy(() => import("components/nav"));
+const Nav = lazy(() => import("components/Nav"));
 const A2Z = lazy(() => import("containers/tools/A2Z"));
 const Piano = lazy(() => import("components/Piano"));
 const BookmarkCreate = lazy(() => import("containers/BookmarkCreate"));
