@@ -32,6 +32,7 @@ export default function Chat() {
   const dispatch = useDispatch();
   const chat = useSelector((state) => state.chat);
   const lab = useSelector((state) => state.lab);
+
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
   const [loading, setLoading] = useState(window?.Echo?.socketId() === null);
@@ -86,7 +87,7 @@ export default function Chat() {
         setAlertOpen(true);
       })
       .joining((user) => {
-        addPeople(user);
+        dispatch(addPeople(user));
         setAlertMessage(`${user.name} 加入了房间`);
         setAlertOpen(true);
       })
@@ -134,9 +135,7 @@ export default function Chat() {
 
     axios.post(
       "/chat",
-      {
-        message,
-      },
+      { message },
       {
         headers: {
           "X-Socket-ID": window.Echo.socketId(),
