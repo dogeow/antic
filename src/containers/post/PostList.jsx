@@ -113,7 +113,7 @@ const PostList = (props) => {
 
   return (
     <Grid container spacing={2}>
-      <Hidden lgDown>
+      <Hidden mdDown>
         <Grid item xs={3} container direction="column" spacing={1}>
           <Grid item>
             <Typography variant="h5" component="div">
@@ -234,7 +234,7 @@ const PostList = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Hidden lgDown>
+      <Hidden mdDown>
         <Grid item xs={3} container direction="column" spacing={1}>
           <Grid item>
             <Typography variant="h5" component="div">
