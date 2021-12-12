@@ -38,6 +38,7 @@ import Search from "components/Search";
 import Settings from "components/Settings";
 import { gravatarCdn } from "config/services";
 import { logout } from "helpers";
+import axios from "instance/axios";
 import md5 from "md5";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -405,7 +406,6 @@ const Header = () => {
                   <MenuItem
                     onClick={() => {
                       setMobileMoreAnchorEl(null);
-                      logout();
                       const requests = [];
                       if (localStorage.users) {
                         JSON.parse(localStorage.users).map((user) => {
@@ -426,6 +426,7 @@ const Header = () => {
                           });
                         });
                       }
+                      logout();
                     }}
                   >
                     退出所有账号

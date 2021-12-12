@@ -35,16 +35,17 @@ export default (state = defaultState, action) =>
         break;
       case "LOGIN":
         logged(action.payload);
-        const users = _.uniqBy(
-          draft.users.push({
-            token: `Bearer ${action.payload.token}`,
-            userId: action.payload.userId,
-            userName: action.payload.userName,
-            userEmail: action.payload.userEmail,
-          }),
-          "userId"
-        );
+        let users = draft.users;
+        users.push({
+          token: `Bearer ${action.payload.token}`,
+          userId: action.payload.userId,
+          userName: action.payload.userName,
+          userEmail: action.payload.userEmail,
+        });
+        users = _.uniqBy(users, "userId");
+        draft.users = users;
         localStorage.setItem("users", JSON.stringify(users));
+
         draft.isExpired = false;
         draft.toke = `Bearer ${action.payload.token}`;
         draft.userId = action.payload.userId;
