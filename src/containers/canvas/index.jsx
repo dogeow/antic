@@ -17,12 +17,13 @@ export default () => {
 
     setUsers(
       produce((draft) => {
-        const user = draft.find((user) => user.id === localStorage.id);
+        const user = draft.find((user) => user.id === localStorage.userId);
         if (user) {
           user.loc = loc;
         } else {
           draft.push({
-            id: localStorage.id,
+            id: localStorage.userId,
+            name: localStorage.userName,
             loc,
           });
         }
@@ -72,10 +73,12 @@ export default () => {
   const draw = (ctx, frameCount) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
+    ctx.save();
     for (const user of users) {
-      ctx.fillStyle = "rgb(100, 0, 0)";
-      ctx.fillRect(user.loc.x, user.loc.y, 10, 10);
+      ctx.font = "24px JetBrains Mono, monospace";
+      ctx.fillText(user.name, user.loc.x, user.loc.y);
     }
+    ctx.restore();
   };
 
   const canvasRef = useCanvas(draw);
