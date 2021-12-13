@@ -23,27 +23,28 @@ export default () => {
   }
 
   const game = useCallback((e) => {
-    const x = e.pageX;
-    const y = e.pageY;
     const canvas = e.target;
-    const loc = getPointOnCanvas(canvas, x, y);
-    loc.x = Math.floor(loc.x / TILE_SIZE);
-    loc.y = Math.floor(loc.y / TILE_SIZE);
+    let { x, y } = getPointOnCanvas(canvas, e.pageX, e.pageY);
+    x = Math.floor(x / TILE_SIZE);
+    y = Math.floor(y / TILE_SIZE);
 
-    if (checkMapCollision(loc.x, loc.y)) {
+    if (checkMapCollision(x, y)) {
       return;
     }
 
     setUsers(
       produce((draft) => {
-        const user = draft.find((user) => user.id === localStorage.userId);
+        const userId = parseInt(localStorage.userId);
+        const user = draft.find((user) => user.id === userId);
         if (user) {
-          user.loc = loc;
+          user.x = x;
+          user.y = y;
         } else {
           draft.push({
-            id: localStorage.userId,
+            id: userId,
             name: localStorage.userName,
-            loc,
+            x,
+            y,
           });
         }
       })
@@ -51,7 +52,7 @@ export default () => {
 
     axios.post(
       "/game",
-      { loc },
+      { x, y },
       {
         headers: {
           "X-Socket-ID": window.Echo.socketId(),
@@ -64,12 +65,20 @@ export default () => {
   useEffect(() => {
     window.Echo.options.auth.headers.Authorization = token;
 
+    window.Echo.join("game")
+      .here((users) => {
+        setUsers(users);
+      })
+      .joining((user) => {})
+      .leaving((user) => {});
+
     window.Echo.private("game").listen(".game", (e) => {
       setUsers(
         produce((draft) => {
           const user = draft.find((user) => user.id === e.data.id);
           if (user) {
-            user.loc = e.data.loc;
+            user.x = e.data.x;
+            user.y = e.data.y;
           } else {
             draft.push(e.data);
           }
@@ -125,19 +134,22 @@ export default () => {
 
     ctx.save();
     for (const user of users) {
-      // ctx.font = "24px JetBrains Mono, monospace";
-      // ctx.fillText(user.name, user.loc.x, user.loc.y);
+      const x = user.x * TILE_SIZE;
+      const y = user.y * TILE_SIZE;
+
       ctx.drawImage(
         document.querySelector("#character"),
         0,
         0,
         32 - 5,
         32 - 5,
-        user.loc.x * TILE_SIZE,
-        user.loc.y * TILE_SIZE,
+        x,
+        y,
         32,
         32
       );
+      ctx.font = "12px JetBrains Mono, monospace";
+      ctx.fillText(user.name, x, y - 4);
     }
     ctx.restore();
   };
@@ -162,7 +174,7 @@ export default () => {
           src="assets/heroes/heroes.png"
         />
       </div>
-      <canvas id="canvas" ref={canvasRef} width="800px" height="400px" />
+      <canvas id="canvas" ref={canvasRef} width="800px" height="800px" />
     </>
   );
 };
