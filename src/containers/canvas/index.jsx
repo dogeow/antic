@@ -1,4 +1,8 @@
-import { getPointOnCanvas } from "helpers/canvas";
+import {
+  canvasSupport,
+  getPointOnCanvas,
+  isCanvasSupported,
+} from "helpers/canvas";
 import useCanvas from "hooks/useCanvas";
 import produce from "immer";
 import axios from "instance/axios";
@@ -16,6 +20,10 @@ export default () => {
   const [users, setUsers] = useState([]);
   const token = useSelector((state) => state.lab.token);
   const { COLS, ROWS } = MAP_DIMENSIONS;
+
+  if (!isCanvasSupported()) {
+    return <div>不支持 Canvas</div>;
+  }
 
   const game = useCallback((e) => {
     const x = e.pageX;

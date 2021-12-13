@@ -6,3 +6,8 @@ export function getPointOnCanvas(canvas, x, y) {
     y: y - bbox.top * (canvas.height / bbox.height),
   };
 }
+
+export function isCanvasSupported() {
+  const elem = document.createElement("canvas");
+  return !!(elem.getContext && elem.getContext("2d"));
+}
