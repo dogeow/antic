@@ -306,17 +306,21 @@ export default function Chat() {
         >
           {chat.peoples.map((people) => {
             return (
-              <Grid item xs={12} key={people.id}>
-                <Avatar
-                  alt={people.name}
-                  email={people.email}
-                  size={24}
-                  marginLeft={4}
-                />
-                <span style={{ marginLeft: 4 }}>{people.name}</span>
-                {typing === people.id && (
-                  <Expire delay={2000}> 输入中...</Expire>
-                )}
+              <Grid item xs={12} container key={people.id}>
+                <Grid item xs={12}>
+                  <Avatar
+                    alt={people.name}
+                    email={people.email}
+                    size={24}
+                    marginLeft={4}
+                  />
+                  {typing === people.id && (
+                    <Expire delay={2000}> 输入中...</Expire>
+                  )}
+                </Grid>
+                <Grid item>
+                  <span style={{ marginLeft: 4 }}>{people.name}</span>
+                </Grid>
               </Grid>
             );
           })}
