@@ -1,8 +1,4 @@
-import {
-  canvasSupport,
-  getPointOnCanvas,
-  isCanvasSupported,
-} from "helpers/canvas";
+import { getPointOnCanvas, isCanvasSupported } from "helpers/canvas";
 import useCanvas from "hooks/useCanvas";
 import produce from "immer";
 import axios from "instance/axios";
@@ -30,6 +26,8 @@ export default () => {
     const y = e.pageY;
     const canvas = e.target;
     const loc = getPointOnCanvas(canvas, x, y);
+    loc.x = Math.floor(loc.x / TILE_SIZE);
+    loc.y = Math.floor(loc.y / TILE_SIZE);
 
     setUsers(
       produce((draft) => {
@@ -130,8 +128,8 @@ export default () => {
         0,
         32 - 5,
         32 - 5,
-        user.loc.x,
-        user.loc.y,
+        user.loc.x * TILE_SIZE,
+        user.loc.y * TILE_SIZE,
         32,
         32
       );
