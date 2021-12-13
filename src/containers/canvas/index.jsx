@@ -11,6 +11,7 @@ import {
   MAP_TILE_IMAGES,
   TILE_SIZE,
 } from "./constants";
+import { checkMapCollision } from "./utils";
 
 export default () => {
   const [users, setUsers] = useState([]);
@@ -28,6 +29,10 @@ export default () => {
     const loc = getPointOnCanvas(canvas, x, y);
     loc.x = Math.floor(loc.x / TILE_SIZE);
     loc.y = Math.floor(loc.y / TILE_SIZE);
+
+    if (checkMapCollision(loc.x, loc.y)) {
+      return;
+    }
 
     setUsers(
       produce((draft) => {
