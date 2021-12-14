@@ -62,6 +62,12 @@ export default () => {
     );
   }, []);
 
+  useEffect(() => {
+    axios.get("game").then(({ data }) => {
+      setMonsters(data.monsters);
+    });
+  }, []);
+
   // WebSocket
   useEffect(() => {
     window.Echo.options.auth.headers.Authorization = token;
@@ -149,7 +155,23 @@ export default () => {
     drawLayer(LAYERS[0]);
     drawLayer(LAYERS[1]);
 
-    ctx.save();
+    for (const monster of monsters) {
+      const x = monster.x * TILE_SIZE;
+      const y = monster.y * TILE_SIZE;
+
+      ctx.drawImage(
+        document.querySelector("#monster"),
+        0,
+        0,
+        32,
+        32,
+        x,
+        y,
+        32,
+        32
+      );
+    }
+
     for (const user of users) {
       const x = user.x * TILE_SIZE;
       const y = user.y * TILE_SIZE;
@@ -159,7 +181,7 @@ export default () => {
         0,
         0,
         32 - 5,
-        32 - 5,
+        32,
         x,
         y,
         32,
@@ -168,25 +190,6 @@ export default () => {
       ctx.font = "12px JetBrains Mono, monospace";
       ctx.fillText(user.name, x, y - 4);
     }
-    ctx.restore();
-
-    for (const monster of monsters) {
-      const x = monster.x * TILE_SIZE;
-      const y = monster.y * TILE_SIZE;
-
-      ctx.drawImage(
-        document.querySelector("#monster"),
-        0,
-        0,
-        64,
-        64,
-        x,
-        y,
-        32,
-        32
-      );
-    }
-    ctx.restore();
   };
 
   const canvasRef = useCanvas(draw);
