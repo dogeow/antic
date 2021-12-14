@@ -3,6 +3,7 @@ export default {
   fullWidth: ["login"],
   menus: [
     { name: "♂ 聊天室", url: "/chat" },
+    { name: "🎮 游戏", url: "/game" },
     { name: "📦 一些 Demo", url: "/demo" },
     { name: "⚙️ API", url: "/api" },
     { name: "🙀 表情", url: "/emoji" },

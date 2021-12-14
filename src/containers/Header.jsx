@@ -239,6 +239,9 @@ const Header = () => {
                 <Button color="inherit" component={RouteLink} to="/chat">
                   聊天室♂
                 </Button>
+                <Button color="inherit" component={RouteLink} to="/game">
+                  游戏
+                </Button>
                 <Button color="inherit" component={RouteLink} to="/api">
                   API
                 </Button>
