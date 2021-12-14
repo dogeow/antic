@@ -61,7 +61,7 @@ const Download = lazy(() => import("containers/demos/Download"));
 const NoMatch = lazy(() => import("containers/NoMatch"));
 const Diff = lazy(() => import("containers/tools/Diff"));
 const Data = lazy(() => import("containers/Data"));
-const Canvas = lazy(() => import("containers/canvas"));
+const Game = lazy(() => import("containers/game"));
 const Dashboard = lazy(() => import("containers/dashboard/Layout"));
 const DashboardHome = lazy(() => import("containers/dashboard/Home"));
 const DashboardPics = lazy(() => import("containers/dashboard/Pics"));
@@ -169,7 +169,7 @@ export default () => (
 
         {/* 测试 */}
         <Route path="/data" element={<Data />} />
-        <Route path="/canvas" element={<Canvas />} />
+        <Route path="/game" element={<Game />} />
 
         <Route path="*" element={<NoMatch />} />
       </Route>
