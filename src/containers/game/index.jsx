@@ -126,8 +126,8 @@ export default () => {
     drawLayer(ctx, LAYERS[0]);
     drawLayer(ctx, LAYERS[1]);
 
-    drawUsers(ctx, users);
     drawMonster(ctx, monsters);
+    drawUsers(ctx, users);
   };
 
   const canvasRef = useCanvas(draw);
