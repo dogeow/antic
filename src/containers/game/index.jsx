@@ -15,6 +15,7 @@ import { checkMapCollision } from "./utils";
 
 export default () => {
   const [users, setUsers] = useState([]);
+  const [monsters, setMonsters] = useState([]);
   const token = useSelector((state) => state.lab.token);
   const { COLS, ROWS } = MAP_DIMENSIONS;
 
@@ -73,17 +74,33 @@ export default () => {
       .leaving((user) => {});
 
     window.Echo.private("game").listen(".game", (e) => {
-      setUsers(
-        produce((draft) => {
-          const user = draft.find((user) => user.id === e.data.id);
-          if (user) {
-            user.x = e.data.x;
-            user.y = e.data.y;
-          } else {
-            draft.push(e.data);
-          }
-        })
-      );
+      if (e.data.x && e.data.y) {
+        setUsers(
+          produce((draft) => {
+            const user = draft.find((user) => user.id === e.data.id);
+            if (user) {
+              user.x = e.data.x;
+              user.y = e.data.y;
+            } else {
+              draft.push(e.data);
+            }
+          })
+        );
+      } else {
+        setMonsters(
+          produce((draft) => {
+            const monster = draft.find(
+              (monster) => monster.id === e.data.monster
+            );
+            if (monster) {
+              monster.x = e.data.monster.x;
+              monster.y = e.data.monster.y;
+            } else {
+              draft.push(e.data.monster);
+            }
+          })
+        );
+      }
     });
 
     return () => {
@@ -152,6 +169,24 @@ export default () => {
       ctx.fillText(user.name, x, y - 4);
     }
     ctx.restore();
+
+    for (const monster of monsters) {
+      const x = monster.x * TILE_SIZE;
+      const y = monster.y * TILE_SIZE;
+
+      ctx.drawImage(
+        document.querySelector("#monster"),
+        0,
+        0,
+        64,
+        64,
+        x,
+        y,
+        32,
+        32
+      );
+    }
+    ctx.restore();
   };
 
   const canvasRef = useCanvas(draw);
@@ -172,6 +207,12 @@ export default () => {
           alt="character"
           className="images-buffer"
           src="assets/heroes/heroes.png"
+        />
+        <img
+          id="monster"
+          alt="monster"
+          className="images-buffer"
+          src="assets/monsters/monster.png"
         />
       </div>
       <canvas id="canvas" ref={canvasRef} width="800px" height="800px" />
