@@ -5,19 +5,16 @@ import axios from "instance/axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import {
-  LAYERS,
-  MAP_DIMENSIONS,
-  MAP_TILE_IMAGES,
-  TILE_SIZE,
-} from "./constants";
+import { LAYERS, MAP_TILE_IMAGES, TILE_SIZE } from "./constants";
+import drawLayer from "./drawLayer";
+import drawMonster from "./drawMonster";
+import drawUsers from "./drawUsers";
 import { checkMapCollision } from "./utils";
 
 export default () => {
   const [users, setUsers] = useState([]);
   const [monsters, setMonsters] = useState([]);
   const token = useSelector((state) => state.lab.token);
-  const { COLS, ROWS } = MAP_DIMENSIONS;
 
   if (!isCanvasSupported()) {
     return <div>不支持 Canvas</div>;
@@ -126,70 +123,11 @@ export default () => {
   const draw = (ctx, frameCount) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-    const drawLayer = (grid) => {
-      for (let i = 0; i < ROWS; i++) {
-        for (let j = 0; j < COLS; j++) {
-          const item = grid[i][j];
-          if (!item) {
-            // empty tile
-            continue;
-          }
-          const img = document.querySelector(`#map-tile-img-${item}`);
-          const x = j * TILE_SIZE;
-          const y = i * TILE_SIZE;
-          ctx.drawImage(
-            img,
-            0,
-            0,
-            TILE_SIZE,
-            TILE_SIZE,
-            x,
-            y,
-            TILE_SIZE,
-            TILE_SIZE
-          );
-        }
-      }
-    };
+    drawLayer(ctx, LAYERS[0]);
+    drawLayer(ctx, LAYERS[1]);
 
-    drawLayer(LAYERS[0]);
-    drawLayer(LAYERS[1]);
-
-    for (const monster of monsters) {
-      const x = monster.x * TILE_SIZE;
-      const y = monster.y * TILE_SIZE;
-
-      ctx.drawImage(
-        document.querySelector("#monster"),
-        0,
-        0,
-        32,
-        32,
-        x,
-        y,
-        32,
-        32
-      );
-    }
-
-    for (const user of users) {
-      const x = user.x * TILE_SIZE;
-      const y = user.y * TILE_SIZE;
-
-      ctx.drawImage(
-        document.querySelector("#character"),
-        0,
-        0,
-        32 - 5,
-        32,
-        x,
-        y,
-        32,
-        32
-      );
-      ctx.font = "12px JetBrains Mono, monospace";
-      ctx.fillText(user.name, x, y - 4);
-    }
+    drawUsers(ctx, users);
+    drawMonster(ctx, monsters);
   };
 
   const canvasRef = useCanvas(draw);
