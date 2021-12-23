@@ -10,17 +10,15 @@ dayjs.extend(relativeTime);
 
 const PostHeader = ({ post, edit = true }) => {
   return post ? (
-    <Grid item container spacing={1}>
-      <Grid item container spacing={2}>
-        <Grid item>
-          <Tooltip content="发布于" time={post.created_at} />
-        </Grid>
-        {post.created_at !== post.updated_at && (
-          <Grid item>
-            <Tooltip content="更新于" time={post.updated_at} />
-          </Grid>
-        )}
+    <Grid container spacing={1}>
+      <Grid item>
+        <Tooltip content="发布于" time={post.created_at} />
       </Grid>
+      {post.created_at !== post.updated_at && (
+        <Grid item>
+          <Tooltip content="更新于" time={post.updated_at} />
+        </Grid>
+      )}
       <Tags post={post} edit={edit} />
     </Grid>
   ) : (
