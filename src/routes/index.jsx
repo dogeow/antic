@@ -51,8 +51,8 @@ const Chat = lazy(() => import("components/Chat"));
 const Base64 = lazy(() => import("containers/tools/Base64"));
 const Money = lazy(() => import("containers/tools/Money"));
 const Color = lazy(() => import("containers/tools/Color"));
-const Goods = lazy(() => import("containers/goods"));
 const Docs = lazy(() => import("containers/site/Docs"));
+const Something = lazy(() => import("containers/Something"));
 const MediaWikiToMarkdown = lazy(() =>
   import("containers/tools/MediaWikiToMarkdown")
 );
@@ -95,6 +95,8 @@ export default () => (
         <Route path="/forget/:secret" element={<EmailVerify />} />
         <Route path="/user/:id" element={<User />} />
         <Route path="/user/:id/setting" element={<UserSetting />} />
+
+        <Route path="/something" element={<Something />} />
 
         {/* Posts */}
         <Route path="/posts" element={<PostList />} />
@@ -160,7 +162,6 @@ export default () => (
 
         {/* 开发中 */}
         <Route path="/markdown" element={<Markdown />} />
-        <Route path="/goods" element={<Goods />} />
 
         {/* 谷歌 Chrome 扩展开发 */}
         {["/popup.html", "/index.html"].map((path, index) => (
