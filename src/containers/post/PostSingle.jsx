@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => {
 });
 
 const POST_BY_ID = gql`
-  query($id: Int!) {
+  query ($id: Int!) {
     post(id: $id) {
       id
       title
@@ -80,7 +80,7 @@ const POST_BY_ID = gql`
 `;
 
 const DELETE_POST_BY_ID = gql`
-  mutation($id: ID!) {
+  mutation ($id: ID!) {
     deletePost(id: $id) {
       title
     }

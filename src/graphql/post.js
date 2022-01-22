@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 const POST_LIST = gql`
-  query($page: Int, $categoryId: Int) {
+  query ($page: Int, $categoryId: Int) {
     posts(
       category_id: $categoryId
       first: 8
@@ -32,7 +32,7 @@ const POST_LIST = gql`
 `;
 
 const CATEGORY = gql`
-  query($id: Int!, $page: Int) {
+  query ($id: Int!, $page: Int) {
     posts(category_id: $id, first: 8, page: $page) {
       data {
         id
@@ -58,7 +58,7 @@ const CATEGORY = gql`
 `;
 
 const TAG = gql`
-  query($name: String!, $page: Int) {
+  query ($name: String!, $page: Int) {
     tag(name: $name, first: 8, page: $page) {
       data {
         posts {
