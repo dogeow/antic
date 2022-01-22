@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* 动画。「明亮 / 黑暗」主题切换时的渐变， */
+/* 动画。「明亮 / 黑暗」主题切换时的渐变。 */
 body {
   transition-property: background-color;
   transition-duration: 2s;

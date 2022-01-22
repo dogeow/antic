@@ -73,8 +73,10 @@ const DashboardApplication = lazy(() =>
 export default () => (
   <Suspense fallback={<Loading />}>
     <Routes>
+      {/* 注册、登陆和找回密码 */}
       <Route path="/login" element={<Login />} />
       <Route path="/redirect" element={<Redirect />} />
+      {/* 后台 */}
       <Route path="/dashboard" element={<Dashboard />}>
         <Route index element={<DashboardHome />} />
         <Route path="/dashboard/site" element={<DashboardSite />} />
@@ -85,6 +87,8 @@ export default () => (
         <Route path="/dashboard/pics" element={<DashboardPics />} />
         <Route element={NoMatch} />
       </Route>
+
+      {/*  */}
       <Route path="/" element={<Layout />}>
         <Route index element={<PostList />} />
 
@@ -95,8 +99,6 @@ export default () => (
         <Route path="/forget/:secret" element={<EmailVerify />} />
         <Route path="/user/:id" element={<User />} />
         <Route path="/user/:id/setting" element={<UserSetting />} />
-
-        <Route path="/something" element={<Something />} />
 
         {/* Posts */}
         <Route path="/posts" element={<PostList />} />
@@ -110,8 +112,6 @@ export default () => (
         <Route path="/project" element={<Project />} />
         <Route path="/project/create" element={<NewProject />} />
         <Route path="/project/:id" element={<SingleProject />} />
-
-        <Route path="/chat" element={<Chat />} />
 
         {/* Demos */}
         <Route path="/bookmarks" element={<Bookmarks />} />
@@ -171,6 +171,9 @@ export default () => (
         {/* 测试 */}
         <Route path="/data" element={<Data />} />
         <Route path="/game" element={<Game />} />
+
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/something" element={<Something />} />
 
         <Route path="*" element={<NoMatch />} />
       </Route>
