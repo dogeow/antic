@@ -38,7 +38,7 @@
     "file-saver": "^2.0.5",
     "graphql": "^15.4.0",
     "imagesloaded": "^4.1.4",
-    "immer": "^9.0.3",
+    "immer": "^9.0.12",
     "immutability-helper": "^3.1.1",
     "immutable": "^4.0.0-rc.12",
     "is-hotkey": "^0.2.0",
