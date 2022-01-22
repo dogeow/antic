@@ -59,7 +59,7 @@
     "react-markdown-heading": "^1.1.3",
     "react-redux": "^7.2.2",
     "react-router-dom": "6",
-    "react-scripts": "4.0.1",
+    "react-scripts": "5.0.0",
     "react-scroll-up-button": "^1.6.4",
     "react-spinner-children": "^1.0.8",
     "react-syntax-highlighter": "^15.4.3",
@@ -78,9 +78,9 @@
   },
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -106,7 +106,6 @@
     "@babel/preset-react": "^7.12.7",
     "babel-eslint": "^10.1.0",
     "babel-plugin-direct-import": "^1.0.0",
-    "customize-cra": "^1.0.0",
     "eslint": "^7.15.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^7.0.0",
@@ -115,7 +114,6 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "prettier": "^2.2.1",
-    "react-app-rewire-multiple-entry": "^2.2.1",
-    "react-app-rewired": "^2.1.8"
+    "react-app-rewire-multiple-entry": "^2.2.1"
   }
 }
