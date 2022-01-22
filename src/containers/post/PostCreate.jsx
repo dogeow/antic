@@ -19,6 +19,7 @@ import { postContentSave, postModify, postSave, postTitle } from "actions";
 import clsx from "clsx";
 import CodeBlock from "components/CodeBlock";
 import Tags from "components/post/Tags";
+import { POST_BY_ID } from "graphql/post";
 import axios from "instance/axios";
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
@@ -99,26 +100,6 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
-
-const POST_BY_ID = gql`
-  query ($id: Int!) {
-    post(id: $id) {
-      id
-      title
-      content
-      updated_at
-      public
-      category {
-        id
-        name
-      }
-      tags {
-        id
-        name
-      }
-    }
-  }
-`;
 
 export default () => {
   const classes = useStyles();

@@ -105,4 +105,40 @@ const TAGS = gql`
   }
 `;
 
-export { POST_LIST, CATEGORY, TAG, TAGS, CATEGORIES };
+const POST_BY_ID = gql`
+  query ($id: Int!) {
+    post(id: $id) {
+      id
+      title
+      content
+      created_at
+      updated_at
+      category {
+        id
+        name
+      }
+      tags {
+        id
+        name
+      }
+    }
+  }
+`;
+
+const DELETE_POST_BY_ID = gql`
+  mutation ($id: ID!) {
+    deletePost(id: $id) {
+      title
+    }
+  }
+`;
+
+export {
+  POST_LIST,
+  CATEGORY,
+  TAG,
+  TAGS,
+  CATEGORIES,
+  POST_BY_ID,
+  DELETE_POST_BY_ID,
+};

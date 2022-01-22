@@ -1,11 +1,11 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 import Grid from "@mui/material/Grid";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
-import clsx from "clsx";
 import AlertDialog from "components/AlertDialog";
+import { DELETE_POST_BY_ID, POST_BY_ID } from "graphql/post";
 import React, { useEffect, useState } from "react";
 import ReactMarkdownHeading from "react-markdown-heading";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -54,32 +54,6 @@ const useStyles = makeStyles((theme) => {
           },
   };
 });
-
-const POST_BY_ID = gql`
-  query ($id: Int!) {
-    post(id: $id) {
-      id
-      title
-      content
-      created_at
-      updated_at
-      category {
-        name
-      }
-      tags {
-        name
-      }
-    }
-  }
-`;
-
-const DELETE_POST_BY_ID = gql`
-  mutation ($id: ID!) {
-    deletePost(id: $id) {
-      title
-    }
-  }
-`;
 
 const PostSingle = ({ postSave }) => {
   const classes = useStyles();
