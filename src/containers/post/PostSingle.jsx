@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => {
       minWidth: 100,
       maxWidth: 350,
       maxHeight: 500,
-      background: "grey",
       overflowY: "auto",
       zIndex: 1,
       listStyleType: "none",
@@ -36,7 +35,6 @@ const useStyles = makeStyles((theme) => {
     },
     displayToc: {
       position: "fixed",
-      background: "grey",
       padding: "5px 5px 0 5px",
       top: 110,
       right: 10,
