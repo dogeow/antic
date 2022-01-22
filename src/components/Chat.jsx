@@ -39,7 +39,7 @@ export default function Chat() {
   const [typing, setTyping] = useState(undefined);
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState({});
   const [inputFocus, setInputFocus] = useState(false);
 
   const messagesEndRef = useRef(null);
@@ -190,10 +190,12 @@ export default function Chat() {
             type="text"
             fullWidth
             required
-            error={error}
-            placeholder={error && "请输入昵称"}
-            InputLabelProps={error && { shrink: true }}
-            helperText={error && "请输入昵称"}
+            error={Object.keys(error).length !== 0}
+            placeholder={Object.keys(error).length !== 0 ? "请输入昵称" : ""}
+            InputLabelProps={
+              Object.keys(error).length !== 0 ? { shrink: true } : {}
+            }
+            helperText={Object.keys(error).length !== 0 && "请输入昵称"}
             onChange={handleNameChange}
           />
         </DialogContent>

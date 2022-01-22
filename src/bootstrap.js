@@ -31,18 +31,16 @@ changeTitle(
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-if (process.env.NODE_ENV === "production") {
-  window.io = require("socket.io-client");
-  window.Echo = new Echo({
-    broadcaster: "socket.io",
-    host: window.location.hostname + ":6001",
-    auth: {
-      headers: {
-        Authorization: localStorage.token,
-      },
+window.io = require("socket.io-client");
+window.Echo = new Echo({
+  broadcaster: "socket.io",
+  host: window.location.hostname + ":6001",
+  auth: {
+    headers: {
+      Authorization: localStorage.token,
     },
-  });
-}
+  },
+});
 
 // 增加 JavaScript 没有的函数（PHP 上的）
 ((ns) => {
