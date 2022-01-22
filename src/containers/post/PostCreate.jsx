@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme) => {
 });
 
 const POST_BY_ID = gql`
-  query($id: Int!) {
+  query ($id: Int!) {
     post(id: $id) {
       id
       title

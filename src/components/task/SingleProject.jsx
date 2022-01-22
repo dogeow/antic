@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const PROJECT_BY_ID = gql`
-  query($id: Int!) {
+  query ($id: Int!) {
     project(id: $id) {
       id
       name
