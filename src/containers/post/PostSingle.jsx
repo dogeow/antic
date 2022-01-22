@@ -35,16 +35,12 @@ const useStyles = makeStyles((theme) => {
       border: "1px solid #aaa",
     },
     displayToc: {
-      display: "block",
       position: "fixed",
       background: "grey",
       padding: "5px 5px 0 5px",
       top: 110,
       right: 10,
       zIndex: 1,
-    },
-    display: {
-      display: "block",
     },
     "@global":
       theme.palette.mode === "dark"
@@ -92,6 +88,7 @@ const PostSingle = ({ postSave }) => {
   const { id } = useParams();
   const [post, setPost] = useState({});
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
+  const [tocButtonDisplay, setTocButtonDisplay] = useState(false);
   const [menu, setMenu] = useState(false);
 
   const navigate = useNavigate();
@@ -110,8 +107,15 @@ const PostSingle = ({ postSave }) => {
     if (data) {
       setPost(data.post);
       postSave(data.post);
+
+      // 当 TOC 的 heading 大于等于 2 时，才显示 TOC 按钮
+      const regexp = RegExp("^#{2}", "mg");
+      const content = post.content || "";
+      if (Array.from(content.matchAll(regexp)).length >= 2) {
+        setTocButtonDisplay(true);
+      }
     }
-  }, [data, postSave]);
+  }, [data, post.content, postSave]);
 
   const handleEdit = () => {
     navigate(`/posts/${id}/edit`);
@@ -132,19 +136,21 @@ const PostSingle = ({ postSave }) => {
 
   return (
     <>
-      <div className={classes.displayToc} onClick={handleToggleMenu}>
-        <FormatListNumberedIcon />
-      </div>
-      <div
-        className={clsx(classes.toc, {
-          [classes.display]: menu === true,
-        })}
-      >
-        <ReactMarkdownHeading
-          markdown={post?.content ? post.content : ""}
-          hyperlink={true}
-        />
-      </div>
+      {tocButtonDisplay && (
+        <div>
+          <div className={classes.displayToc} onClick={handleToggleMenu}>
+            <FormatListNumberedIcon />
+          </div>
+          {menu && (
+            <div className={classes.toc}>
+              <ReactMarkdownHeading
+                markdown={post?.content ? post.content : ""}
+                hyperlink={true}
+              />
+            </div>
+          )}
+        </div>
+      )}
       <Grid item xs={12}>
         {post ? (
           <Grid item container alignItems="center" spacing={1}>
