@@ -232,7 +232,7 @@ const Header = () => {
               <MenuIcon />
             </IconButton>
             <RouteLink to="/">
-              <Logo />
+              <Logo shadow={true} />
             </RouteLink>
             {matches && (
               <div style={{ marginLeft: 6 }}>
