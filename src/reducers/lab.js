@@ -15,7 +15,7 @@ const defaultState = {
   token: localStorage.getItem("token"),
   userId: localStorage.getItem("userId"),
   userName: localStorage.getItem("userName"),
-  userEmail: localStorage.getItem("userEmail"),
+  userEmail: localStorage.getItem("userEmail") || "",
   users: localStorage.users ? JSON.parse(localStorage.users) : [],
   post: { tags: [], category: { id: "", name: "" } },
 };
