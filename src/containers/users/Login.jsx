@@ -86,24 +86,26 @@ export default () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    axios
-      .post("user/login", {
-        account,
-        password,
-        remember_me: rememberMe,
-      })
-      .then((response) => {
-        dispatch(loginAction(response.data));
-        if (state) {
-          navigate(state.from);
-        } else {
-          navigate("/");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        setInputErrors(error?.data?.errors);
-      });
+    axios.get("sanctum/csrf-cookie").then((response) => {
+      axios
+        .post("user/login", {
+          account,
+          password,
+          remember_me: rememberMe,
+        })
+        .then((response) => {
+          dispatch(loginAction(response.data));
+          if (state) {
+            navigate(state.from);
+          } else {
+            navigate("/");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          setInputErrors(error?.data?.errors);
+        });
+    });
   };
 
   const handlePassword = () => {
