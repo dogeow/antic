@@ -1,8 +1,7 @@
-import { expired, logged } from "helpers";
+import { logged } from "helpers";
 import produce from "immer";
 import _ from "lodash";
 
-const isExpired = expired();
 const hour = new Date().getHours();
 const isRest = (hour >= 18 && hour <= 24) || (hour >= 0 && hour <= 6);
 const paletteMode = isRest ? "dark" : "light";
@@ -12,7 +11,7 @@ const defaultState = {
   snackMessage: "",
   toggleDrawer: false,
   paletteMode,
-  isExpired: isExpired,
+  isExpired: false,
   token: localStorage.getItem("token"),
   userId: localStorage.getItem("userId"),
   userName: localStorage.getItem("userName"),
