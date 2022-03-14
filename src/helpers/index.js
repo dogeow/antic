@@ -2,21 +2,11 @@ import dayjs from "dayjs";
 import axios from "instance/axios";
 
 /**
- * 判断是否登录过期
- * @return {boolean}
- */
-export const expired = () => {
-  const expiredAt = localStorage.access_token_expired_at;
-  return !(expiredAt && dayjs().isBefore(dayjs.unix(expiredAt)));
-};
-
-/**
  * 登录
  * @param {object} data
  */
 export const logged = (data) => {
   localStorage.token = `Bearer ${data.token}`;
-  localStorage.access_token_expired_at = dayjs().unix() + data.expiresIn;
   localStorage.userId = data.userId;
   localStorage.userName = data.userName;
   localStorage.userEmail = data.userEmail;
@@ -33,7 +23,6 @@ export const logout = () => {
   localStorage.removeItem("userId");
   localStorage.removeItem("userName");
   localStorage.removeItem("userEmail");
-  localStorage.removeItem("access_token_expired_at");
 };
 
 /**

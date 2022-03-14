@@ -27,12 +27,6 @@ const User = () => {
       <Grid item xs={12}>
         <ul>
           <li>User-Agent：{navigator.userAgent}</li>
-          <li>
-            Token 到期时间：
-            {dayjs
-              .unix(localStorage.access_token_expired_at)
-              .format("YYYY-MM-DD HH:mm:ss")}
-          </li>
         </ul>
       </Grid>
     </Grid>

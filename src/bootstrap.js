@@ -10,14 +10,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// LocalStorage 数据过期时的处理
-if (
-  localStorage.access_token_expired_at &&
-  localStorage.access_token_expired_at < Date.now() / 1000
-) {
-  logout();
-}
-
 // Chrome 控制台信息
 consoleInfo("production");
 
