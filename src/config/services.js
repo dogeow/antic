@@ -1,1 +1,1 @@
-export const gravatarCdn = "https://sdn.geekzu.org/avatar";
+export const gravatarCdn = "https://gravatar.loli.net/avatar";
