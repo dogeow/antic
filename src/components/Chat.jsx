@@ -16,7 +16,7 @@ import {
   deletePeople,
   loginAction,
 } from "actions";
-import Avatar from "components/gravatar";
+import Avatar from "components/Gravatar";
 import Loading from "components/Loading";
 import axios from "instance/axios";
 import _ from "lodash";
