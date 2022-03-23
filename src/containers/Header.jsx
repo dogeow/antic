@@ -37,7 +37,7 @@ import Logo from "components/Logo";
 import Search from "components/Search";
 import Settings from "components/Settings";
 import { gravatarCdn } from "config/services";
-import { logout } from "helpers";
+import { getGravatarAddress, logout } from "helpers";
 import axios from "instance/axios";
 import md5 from "md5";
 import React, { useCallback, useEffect, useState } from "react";
@@ -332,9 +332,7 @@ const Header = () => {
                   >
                     <Avatar
                       alt={lab.userName}
-                      src={`${gravatarCdn}/${md5(
-                        lab.userEmail
-                      )}.jpg?d=monsterid&s=80`}
+                      src={getGravatarAddress(lab.email)}
                     />
                   </IconButton>
                 </Tooltip>

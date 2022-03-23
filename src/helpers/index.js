@@ -1,5 +1,7 @@
-import dayjs from "dayjs";
 import axios from "instance/axios";
+import md5 from "md5";
+
+import { gravatarCdn } from "../config/services";
 
 /**
  * 登录
@@ -39,6 +41,14 @@ export const getHost = (url) => {
   }
 
   return false;
+};
+
+export const getGravatarAddress = (email) => {
+  if (email) {
+    return `${gravatarCdn}/${md5(lab.userEmail)}.jpg?d=monsterid&s=80`;
+  }
+
+  return gravatarCdn;
 };
 
 /**
