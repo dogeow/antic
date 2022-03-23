@@ -16,7 +16,7 @@ import clsx from "clsx";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { MainListItems, SecondaryListItems } from "./listItems";
+import { MainListItems, SecondaryListItems } from "./ListItems";
 
 const drawerWidth = 240;
 
