@@ -31,38 +31,28 @@ const cars = [
 
 export default function Cars() {
   return (
-    <>
-      <Grid container>
-        {cars.map((car) => (
-          <Grid
-            container
-            item
-            justifyContent="center"
-            style={{ background: car.color }}
-            key={car.name}
-          >
-            <Grid item>
-              <Typography variant="h2" gutterBottom>
-                {car.name}
-              </Typography>
-            </Grid>
-            <Grid container item>
-              {Array.from(new Array(car.imagesCount).keys()).map((value) => (
-                <Grid item key={value} xs={12} md={4}>
-                  <img
-                    src={`https://upyun.dogeow.com/cars/${car.name}/${
-                      value + 1
-                    }.${car.extension}!/compress/true/fw/800`}
-                    width="100%"
-                    alt={`${car.name}_${value + 1}`}
-                    style={{ paddingBottom: 16 }}
-                  />
-                </Grid>
-              ))}
-            </Grid>
+    <div>
+      {cars.map((car) => (
+        <div style={{ background: car.color }} key={car.name}>
+          <Typography variant="h2" gutterBottom>
+            {car.name}
+          </Typography>
+          <Grid container>
+            {Array.from(new Array(car.imagesCount).keys()).map((value) => (
+              <Grid item key={value} xs={12} md={4}>
+                <img
+                  src={`https://upyun.dogeow.com/cars/${car.name}/${
+                    value + 1
+                  }.${car.extension}!/compress/true/fw/800`}
+                  width="100%"
+                  alt={`${car.name}_${value + 1}`}
+                  style={{ paddingBottom: 16 }}
+                />
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
-    </>
+        </div>
+      ))}
+    </div>
   );
 }
