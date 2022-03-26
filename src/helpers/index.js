@@ -44,7 +44,6 @@ export const getHost = (url) => {
 };
 
 export const getGravatarAddress = (email) => {
-  console.log(email);
   if (email) {
     return `${gravatarCdn}/${md5(email)}.jpg?d=monsterid&s=160`;
   }
