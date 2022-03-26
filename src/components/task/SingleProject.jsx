@@ -107,13 +107,13 @@ const SingleProject = () => {
       return { ...item, is_completed: 1 };
     });
     setTasks(newValues);
-    axios.put(`projects/${projectId}/tasks/${taskId}`, {
+    axios.put(`projects/${project.id}/tasks/${taskId}`, {
       is_completed: 1,
     });
   };
 
   const handleMarkProjectAsCompleted = () => {
-    axios.delete(`projects/${projectId}`);
+    axios.delete(`projects/${project.id}`);
     navigate("/project");
   };
 
@@ -123,7 +123,7 @@ const SingleProject = () => {
       return { ...item, is_completed: 0 };
     });
     setTasks(newValues);
-    axios.put(`projects/${projectId}/tasks/${taskId}`, {
+    axios.put(`projects/${project.id}/tasks/${taskId}`, {
       is_completed: 0,
     });
   };
@@ -146,7 +146,7 @@ const SingleProject = () => {
 
   const handleEditPut = (task) => {
     if (focus !== task.title) {
-      axios.put(`projects/${projectId}/tasks/${task.id}`, {
+      axios.put(`projects/${project.id}/tasks/${task.id}`, {
         title: task.title,
       });
     }
@@ -176,7 +176,7 @@ const SingleProject = () => {
       })
     );
 
-    axios.put(`projects/${projectId}/tasks/${result.draggableId}`, {
+    axios.put(`projects/${project.id}/tasks/${result.draggableId}`, {
       order: result.destination.index,
     });
   };
