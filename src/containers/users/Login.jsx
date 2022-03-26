@@ -278,31 +278,35 @@ export default () => {
             >
               登录
             </Button>
-            <Grid container justifyContent="space-between">
-              <Grid item>
-                <Typography
-                  variant="body2"
-                  style={{ color: "#f50057" }}
-                  onClick={() => {
-                    axios.post("user/guest").then(({ data }) => {
-                      dispatch(loginAction(data));
-                      navigate("/");
-                    });
-                  }}
-                >
-                  免密登录测试账号
-                </Typography>
-              </Grid>
-              <Grid item>
-                <RouteLink to="/forget">
-                  <Typography variant="body2">忘记密码？</Typography>
-                </RouteLink>
-              </Grid>
-            </Grid>
-            <Box mt={5}>
-              <Copyright />
-            </Box>
           </form>
+          <Grid
+            container
+            justifyContent="space-between"
+            style={{ marginTop: 24 }}
+          >
+            <Grid item>
+              <Typography
+                variant="body2"
+                style={{ color: "#f50057" }}
+                onClick={() => {
+                  axios.post("user/guest").then(({ data }) => {
+                    dispatch(loginAction(data));
+                    navigate("/");
+                  });
+                }}
+              >
+                免密登录测试账号
+              </Typography>
+            </Grid>
+            <Grid item>
+              <RouteLink to="/forget">
+                <Typography variant="body2">忘记密码？</Typography>
+              </RouteLink>
+            </Grid>
+          </Grid>
+          <Box mt={5}>
+            <Copyright />
+          </Box>
         </div>
       </Grid>
     </Grid>
