@@ -208,13 +208,15 @@ export default function Chat() {
                 return;
               }
               handleDialogClose();
-              axios
-                .post("user/guest", {
-                  name,
-                })
-                .then(({ data }) => {
-                  dispatch(loginAction(data));
-                });
+              axios.get("sanctum/csrf-cookie").then((response) => {
+                axios
+                  .post("user/guest", {
+                    name,
+                  })
+                  .then(({ data }) => {
+                    dispatch(loginAction(data));
+                  });
+              });
             }}
           >
             确定

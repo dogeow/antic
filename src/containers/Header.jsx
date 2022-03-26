@@ -36,10 +36,8 @@ import Drawer from "components/Drawer";
 import Logo from "components/Logo";
 import Search from "components/Search";
 import Settings from "components/Settings";
-import { gravatarCdn } from "config/services";
 import { getGravatarAddress, logout } from "helpers";
 import axios from "instance/axios";
-import md5 from "md5";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as RouteLink, useLocation } from "react-router-dom";
@@ -332,7 +330,7 @@ const Header = () => {
                   >
                     <Avatar
                       alt={lab.userName}
-                      src={getGravatarAddress(lab.email)}
+                      src={getGravatarAddress(lab.userEmail)}
                     />
                   </IconButton>
                 </Tooltip>
@@ -358,9 +356,7 @@ const Header = () => {
                     <div style={{ textAlign: "center", fontSize: "1rem" }}>
                       <Avatar
                         alt={lab.userName}
-                        src={`${gravatarCdn}/${md5(
-                          lab.userEmail
-                        )}.jpg?d=monsterid&s=160`}
+                        src={getGravatarAddress(lab.userEmail)}
                         style={{ width: 80, height: 80, margin: "0 auto" }}
                       />
                       {lab.userName}
@@ -378,9 +374,7 @@ const Header = () => {
                         >
                           <Avatar
                             alt={user.userName}
-                            src={`${gravatarCdn}/${md5(
-                              user.userEmail
-                            )}.jpg?d=monsterid&s=160`}
+                            src={getGravatarAddress(lab.userEmail)}
                           />
                           <span
                             style={{
