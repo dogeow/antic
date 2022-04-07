@@ -12,3 +12,6 @@ jobs:
           steps:
             - run: yarn
       - run: yarn test a
+      - run:
+      name: Danger
+      command: yarn danger ci
