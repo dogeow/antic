@@ -8,7 +8,6 @@ jobs:
       tag: '14.19.1'
     steps:
       - checkout
-      - node/install-packages
       - run: yarn
       - run: yarn test a
       - run:
