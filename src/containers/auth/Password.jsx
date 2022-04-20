@@ -17,7 +17,7 @@ export default (props) => (
     autoComplete="current-password"
     onChange={(e) => props.setPassword(e.target.value)}
     error={!!props.error}
-    placeholder={props.error?.[0] || "8个字符以上"}
+    placeholder="8个字符以上"
     InputLabelProps={props.error && { shrink: true }}
     helperText={props.error?.[0]}
     InputProps={{

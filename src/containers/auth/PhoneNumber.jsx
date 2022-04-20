@@ -35,7 +35,6 @@ export default (props) =>
       value={props.phoneNumber}
       autoComplete="phone_number"
       onChange={(e) => props.setPhoneNumber(e.target.value)}
-      placeholder={props.error?.[0]}
       InputLabelProps={props.error && { shrink: true }}
       error={!!props.error}
       helperText={props.error?.[0] || "已发送验证码，五分钟内有效"}
@@ -59,7 +58,6 @@ export default (props) =>
       autoComplete="phone_number"
       onChange={(e) => props.setPhoneNumber(e.target.value)}
       error={!!props.error}
-      placeholder={props.error?.[0]}
       InputLabelProps={props.error && { shrink: true }}
       helperText={props.error?.[0]}
       InputProps={{

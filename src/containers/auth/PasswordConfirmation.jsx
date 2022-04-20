@@ -16,7 +16,6 @@ export default (props) => (
     autoComplete="current-password-confirmation"
     onChange={(e) => props.setPasswordConfirmation(e.target.value)}
     error={!!props.error}
-    placeholder={props.error?.[0]}
     InputLabelProps={props.error && { shrink: true }}
     helperText={props.error?.[0]}
     InputProps={{

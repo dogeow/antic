@@ -78,11 +78,7 @@ const Forget = () => {
               autoFocus
               onChange={(e) => setAccount(e.target.value)}
               error={inputErrors && inputErrors.account}
-              placeholder={
-                inputErrors && inputErrors.account
-                  ? inputErrors.account
-                  : "手机号码或 Email 地址"
-              }
+              placeholder="手机号码或 Email 地址"
               InputLabelProps={
                 inputErrors && inputErrors.account ? { shrink: true } : {}
               }

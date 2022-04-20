@@ -15,7 +15,7 @@ export default (props) => (
     autoComplete="email"
     onChange={(e) => props.setEmail(e.target.value)}
     error={!!props.error}
-    placeholder={props.error?.[0]}
+    placeholder="username@example.com"
     InputLabelProps={props.error && { shrink: true }}
     helperText={props.error?.[0]}
     InputProps={{
