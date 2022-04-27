@@ -62,13 +62,8 @@ const NoMatch = lazy(() => import("containers/NoMatch"));
 const Diff = lazy(() => import("containers/tools/Diff"));
 const Data = lazy(() => import("containers/Data"));
 const Game = lazy(() => import("containers/game"));
-const Dashboard = lazy(() => import("containers/dashboard/Layout"));
-const DashboardHome = lazy(() => import("containers/dashboard/Home"));
-const DashboardPics = lazy(() => import("containers/dashboard/Pics"));
-const DashboardSite = lazy(() => import("containers/dashboard/Site"));
-const DashboardApplication = lazy(() =>
-  import("containers/dashboard/Application")
-);
+const Pic = lazy(() => import("containers/Pic"));
+const Site = lazy(() => import("containers/Site"));
 
 export default () => (
   <Suspense fallback={<Loading />}>
@@ -76,21 +71,12 @@ export default () => (
       {/* 注册、登陆和找回密码 */}
       <Route path="/login" element={<Login />} />
       <Route path="/redirect" element={<Redirect />} />
-      {/* 后台 */}
-      <Route path="/dashboard" element={<Dashboard />}>
-        <Route index element={<DashboardHome />} />
-        <Route path="/dashboard/site" element={<DashboardSite />} />
-        <Route
-          path="/dashboard/application"
-          element={<DashboardApplication />}
-        />
-        <Route path="/dashboard/pics" element={<DashboardPics />} />
-        <Route element={NoMatch} />
-      </Route>
 
-      {/*  */}
       <Route path="/" element={<Layout />}>
         <Route index element={<PostList />} />
+
+        <Route path="/sites" element={<Site />} />
+        <Route path="/pics" element={<Pic />} />
 
         {/* Auth */}
         <Route path="/register" element={<Register />} />
