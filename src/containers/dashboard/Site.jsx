@@ -77,9 +77,6 @@ const Site = () => {
                   )}
                 </TableCell>
                 <TableCell>{site.last_updated_at}</TableCell>
-                <TableCell component="td" scope="row">
-                  {site.seo}
-                </TableCell>
               </TableRow>
             ))}
           </TableBody>
