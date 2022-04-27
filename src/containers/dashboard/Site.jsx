@@ -47,7 +47,6 @@ const Site = () => {
               <TableCell>在线</TableCell>
               <TableCell>更新</TableCell>
               <TableCell>最后更新于</TableCell>
-              <TableCell>收录</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
