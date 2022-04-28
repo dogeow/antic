@@ -26,6 +26,15 @@ a:link {
 a:hover {
   color: unset;
 }
+
+blockquote {
+  position: relative;
+  margin: 16px 0;
+  padding: 5px 8px 5px 30px;
+  background: none repeat scroll 0 0 rgba(102, 128, 153, 0.05);
+  border: none;
+  border-left: 10px solid #d6dbdf;
+}
 /* 更改默认行为 end */
 
 /* 鼠标样式 start */
@@ -61,6 +70,30 @@ input {
 }
 /* 微博热搜榜 end */
 
+.quote {
+  font-family: cursive;
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+#favicon {
+  position: relative;
+  animation: antic 4s 1s;
+  animation-direction: alternate;
+}
+
+@keyframes antic {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: 233px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
 .table-of-contents {
   display: block;
   position: fixed;
@@ -80,7 +113,22 @@ input {
   -moz-box-shadow: 0 1px 8px #000;
 }
 
-/* 返回顶部 start */
+h2:hover .header-anchor {
+  opacity: 1;
+}
+
+h3:hover .header-anchor {
+  opacity: 1;
+}
+
+h4:hover .header-anchor {
+  opacity: 1;
+}
+
+.header-anchor {
+  opacity: 0.2;
+}
+
 .AnyClassForContainer {
   position: fixed;
   right: 12px;
@@ -95,6 +143,80 @@ input {
   bottom: 50px;
 }
 
+/* react-autosuggest start */
+.react-autosuggest__container {
+  position: relative;
+}
+
+.react-autosuggest__input {
+  width: 240px;
+  height: 30px;
+  padding: 10px 20px;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.react-autosuggest__input--focused {
+  outline: none;
+}
+
+.react-autosuggest__input--open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.react-autosuggest__suggestions-container {
+  display: none;
+}
+
+.react-autosuggest__suggestions-container--open {
+  display: block;
+  position: absolute;
+  top: 51px;
+  width: 280px;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  z-index: 2;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: #ddd;
+}
+/* react-autosuggest end */
+
+#containerimg {
+  background: #f1f1fa;
+  width: 400px;
+  height: 300px;
+  display: block;
+  margin: 10px auto;
+  border: 0;
+}
+
+#container {
+  height: calc(100vh - 310px);
+  overflow-y: scroll;
+}
+
 .top-jumper {
   position: fixed;
   right: 11%;
@@ -106,7 +228,6 @@ input {
   border-radius: 4px;
   font-size: 12px;
 }
-
 .top-jumper:before {
   content: "▲";
   display: block;
@@ -114,11 +235,9 @@ input {
   color: #aaa;
   line-height: 42px;
 }
-
 .top-jumper:hover:before {
   content: "回顶部";
 }
-/* 返回顶部 end */
 
 kbd {
   -webkit-border-radius: 4px;
@@ -139,11 +258,13 @@ kbd {
   padding: 3px;
 }
 
-blockquote {
-  position: relative;
-  margin: 16px 0;
-  padding: 5px 8px 5px 30px;
-  background: none repeat scroll 0 0 rgba(102, 128, 153, 0.05);
-  border: none;
-  border-left: 10px solid #d6dbdf;
+.hr {
+  border-top: 1px dashed rgba(211, 224, 233, 0.15);
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
+
+.dark {
+  background: #303030 !important;
+  color: white !important;
 }
