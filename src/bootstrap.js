@@ -2,7 +2,7 @@ import Echo from "laravel-echo";
 
 import consoleInfo from "./components/ConsoleInfo";
 import changeTitle from "./components/site/ChangeTitle";
-import { logout } from "./helpers";
+import axios from "./instance/axios";
 
 if (process.env.NODE_ENV === "production") {
   import("@sentry/react").then((Sentry) => {
@@ -23,14 +23,34 @@ changeTitle(
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
-window.io = require("socket.io-client");
+window.Pusher = require("pusher-js");
+
 window.Echo = new Echo({
-  broadcaster: "socket.io",
-  host: window.location.hostname + ":6001",
-  auth: {
-    headers: {
-      Authorization: localStorage.token,
-    },
+  broadcaster: "pusher",
+  key: process.env.REACT_APP_PUSHER_APP_KEY,
+  wsHost: process.env.REACT_APP_PUSHER_HOST,
+  wsPort: process.env.REACT_APP_PUSHER_PORT,
+  wssPort: process.env.REACT_APP_PUSHER_PORT,
+  forceTLS: false,
+  encrypted: true,
+  disableStats: true,
+  enabledTransports: ["ws", "wss"],
+  authorizer: (channel, options) => {
+    return {
+      authorize: (socketId, callback) => {
+        axios
+          .post("/broadcasting/auth", {
+            socket_id: socketId,
+            channel_name: channel.name,
+          })
+          .then((response) => {
+            callback(false, response.data);
+          })
+          .catch((error) => {
+            callback(true, error);
+          });
+      },
+    };
   },
 });
 

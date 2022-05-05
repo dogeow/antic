@@ -1,5 +1,6 @@
 const plugins = [
   [
+    'recharts',
     'babel-plugin-direct-import',
     {modules: ['@mui/material', '@mui/icons-material']}
   ],
