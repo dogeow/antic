@@ -22,7 +22,7 @@ export default () => (
       <Img src={laravel} alt="Laravel" />
     </ExternalLink>
     {" + "}
-    <ExternalLink href="https://material-ui.com">
+    <ExternalLink href="https://mui.com">
       <Img src={materialUi} alt="Material-UI" />
     </ExternalLink>
     {" + "}
