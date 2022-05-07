@@ -7,6 +7,12 @@ import Record from "resources/svg/beian";
 
 import Heart from "./Heart";
 
+const greenWaveUnderline = {
+  textDecorationLine: "underline",
+  textDecorationStyle: "wavy",
+  textDecorationColor: "green",
+};
+
 export default function () {
   return (
     <Grid
@@ -21,14 +27,7 @@ export default function () {
       </Grid>
       <Grid item>
         Built By{" "}
-        <Link
-          to="/about"
-          style={{
-            textDecorationLine: "underline",
-            textDecorationStyle: "wavy",
-            textDecorationColor: "green",
-          }}
-        >
+        <Link to="/about" style={greenWaveUnderline}>
           小李世界
         </Link>
         {" with "}
