@@ -1,3 +1,4 @@
+import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import NightsStayIcon from "@mui/icons-material/NightsStay";
@@ -13,6 +14,7 @@ import {
   Avatar,
   Button,
   Container,
+  Divider,
   Hidden,
   IconButton,
   InputBase,
@@ -357,7 +359,7 @@ const Header = () => {
                       <Avatar
                         alt={lab.userName}
                         src={getGravatarAddress(lab.userEmail)}
-                        style={{ width: 80, height: 80, margin: "0 auto" }}
+                        style={{ width: 80, height: 80, margin: "20px auto" }}
                       />
                       {lab.userName}
                     </div>
@@ -390,6 +392,7 @@ const Header = () => {
                       )
                     );
                   })}
+                  <Divider />
                   <RouteLink to="/login" onClick={() => handleCloseProfile()}>
                     <MenuItem>
                       <PersonAddIcon style={{ width: 40 }} />
@@ -424,7 +427,10 @@ const Header = () => {
                       logout();
                     }}
                   >
-                    退出所有账号
+                    <LogoutIcon style={{ width: 40 }} />
+                    <span style={{ margin: "0 10px 0 10px" }}>
+                      退出所有账号
+                    </span>
                   </MenuItem>
                 </Menu>
               </div>
