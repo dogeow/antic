@@ -13,7 +13,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import dayjs from "dayjs";
 import axios from "instance/axios";
 import random from "lodash/random";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
@@ -35,46 +35,27 @@ const Weibo = () => {
   const [pageCount, setPageCount] = useState();
   const [currPage, setCurrPage] = useState(1);
 
+  const setData = (data) => {
+    setWeibo(data);
+    setCurrPage(data.current_page);
+    setPageCount(data.last_page);
+  };
+
   useEffect(() => {
     const selectDate = dayjs(selectedDate).format("YYYY-MM-DD");
     axios
       .get(`weibo?date=${selectDate}&page[number]=${currPage}`)
       .then(({ data }) => {
-        setWeibo(data);
-        setCurrPage(data.current_page);
-        setPageCount(data.last_page);
+        setData(data);
       });
   }, [selectedDate, currPage]);
-
-  const handlePage = (page) => {
-    axios
-      .post(
-        `weibo?date=${dayjs(selectedDate).format(
-          "Y-MM-DD"
-        )}&page[number]=${page}`
-      )
-      .then(({ data }) => {
-        setWeibo(data);
-        setCurrPage(page);
-        setPageCount(data.last_page);
-      });
-  };
-
-  const goToThisDay = (day) => {
-    axios.get(`weibo?date=${day}&page[number]=${currPage}`).then(({ data }) => {
-      handleDateChange(day);
-      setWeibo(data);
-      setCurrPage(data.current_page);
-      setPageCount(data.last_page);
-    });
-  };
 
   return (
     <>
       <Alert
         severity="warning"
         style={{ marginBottom: 20 }}
-        onClick={() => goToThisDay("2022-02-28")}
+        onClick={() => handleDateChange(new Date("2022-02-28"))}
       >
         该功能已停止更新，只有旧数据。最后更新日期是：2022-02-28。点击该警示框跳转到该日期。
       </Alert>
@@ -155,7 +136,7 @@ const Weibo = () => {
               <PaginationItem
                 {...item}
                 disabled={item.page === currPage}
-                onClick={() => handlePage(item.page)}
+                onClick={() => setCurrPage(item.page)}
               />
             )}
           />
