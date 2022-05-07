@@ -60,10 +60,23 @@ const Weibo = () => {
       });
   };
 
+  const goToThisDay = (day) => {
+    axios.get(`weibo?date=${day}&page[number]=${currPage}`).then(({ data }) => {
+      handleDateChange(day);
+      setWeibo(data);
+      setCurrPage(data.current_page);
+      setPageCount(data.last_page);
+    });
+  };
+
   return (
     <>
-      <Alert severity="warning" style={{ marginBottom: 20 }}>
-        该功能已停止更新，只有旧数据。
+      <Alert
+        severity="warning"
+        style={{ marginBottom: 20 }}
+        onClick={() => goToThisDay("2022-02-28")}
+      >
+        该功能已停止更新，只有旧数据。最后更新日期是：2022-02-28。点击该警示框跳转到该日期。
       </Alert>
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12}>
