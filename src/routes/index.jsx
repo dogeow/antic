@@ -64,6 +64,7 @@ const Data = lazy(() => import("containers/Data"));
 const Game = lazy(() => import("containers/game"));
 const Pic = lazy(() => import("containers/Pic"));
 const Site = lazy(() => import("containers/Site"));
+const Test = lazy(() => import("containers/Test"));
 
 export default () => (
   <Suspense fallback={<Loading />}>
@@ -160,6 +161,8 @@ export default () => (
 
         <Route path="/chat" element={<Chat />} />
         <Route path="/something" element={<Something />} />
+
+        <Route path="/test" element={<Test />} />
 
         <Route path="*" element={<NoMatch />} />
       </Route>
