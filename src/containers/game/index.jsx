@@ -67,8 +67,6 @@ export default () => {
 
   // WebSocket
   useEffect(() => {
-    window.Echo.options.auth.headers.Authorization = token;
-
     window.Echo.join("game")
       .here((users) => {
         setUsers(users);
