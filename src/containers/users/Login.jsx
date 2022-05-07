@@ -249,7 +249,7 @@ export default () => {
               <FormControlLabel
                 style={{ marginRight: 0 }}
                 control={<Checkbox color="primary" checked={rememberMe} />}
-                label="记住我"
+                label="保持登录状态"
                 onChange={() => setRememberMe(!rememberMe)}
               />
               <Tooltip
