@@ -40,7 +40,7 @@ const NoMatch = () => {
     setPhpFunction([]);
     setLoading(true);
     axios
-      .post("php-function", {
+      .get("php-function", {
         search: value,
       })
       .then((response) => {
