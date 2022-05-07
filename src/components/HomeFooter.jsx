@@ -34,14 +34,19 @@ export default function () {
         {" with "}
         <Heart />
       </Grid>
-      <Grid container justifyContent="center" spacing={1}>
-        <Grid item style={{ opacity: 0.6 }}>
+      <Grid
+        container
+        justifyContent="center"
+        spacing={1}
+        style={{ opacity: 0.6 }}
+      >
+        <Grid item>
           <ExternalLink href={"http://www.beian.gov.cn/"}>
             <img src={Record} alt="" style={{ verticalAlign: "top" }} />
             闽公网安备35020302033650号
           </ExternalLink>
         </Grid>
-        <Grid item style={{ opacity: 0.6 }}>
+        <Grid item>
           <ExternalLink href={"https://beian.miit.gov.cn/"}>
             闽ICP备19021694号
           </ExternalLink>
