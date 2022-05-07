@@ -3,7 +3,7 @@ import ExternalLink from "components/ExternalLink";
 import PowerBy from "components/PowerBy";
 import * as React from "react";
 import { Link } from "react-router-dom";
-import Record from "resources/svg/beian";
+import ministryOfPublicSecurityInChinaIcon from "resources/svg/ministryOfPublicSecurityInChina";
 
 import Heart from "./Heart";
 
@@ -12,6 +12,17 @@ const greenWaveUnderline = {
   textDecorationStyle: "wavy",
   textDecorationColor: "green",
 };
+
+const BuiltBy = () => (
+  <>
+    Built By{" "}
+    <Link to="/about" style={greenWaveUnderline}>
+      小李世界
+    </Link>
+    {" with "}
+    <Heart />
+  </>
+);
 
 export default function () {
   return (
@@ -26,12 +37,7 @@ export default function () {
         <PowerBy />
       </Grid>
       <Grid item>
-        Built By{" "}
-        <Link to="/about" style={greenWaveUnderline}>
-          小李世界
-        </Link>
-        {" with "}
-        <Heart />
+        <BuiltBy />
       </Grid>
       <Grid
         container
@@ -41,7 +47,11 @@ export default function () {
       >
         <Grid item>
           <ExternalLink href={"http://www.beian.gov.cn/"}>
-            <img src={Record} alt="" style={{ verticalAlign: "top" }} />
+            <img
+              src={ministryOfPublicSecurityInChinaIcon}
+              alt=""
+              style={{ verticalAlign: "top" }}
+            />
             闽公网安备35020302033650号
           </ExternalLink>
         </Grid>
