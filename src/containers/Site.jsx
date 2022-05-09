@@ -11,6 +11,7 @@ import {
   TableRow,
 } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
+import { DataGrid } from "@mui/x-data-grid";
 import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 
@@ -27,6 +28,46 @@ const Site = () => {
   const classes = useStyles();
   const [sites, setSites] = useState([]);
 
+  const columns = [
+    {
+      field: "domain",
+      headerName: "站点",
+      renderCell: (params) => (
+        <a
+          href={`http://${params.row.domain}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {params.row.domain}
+        </a>
+      ),
+    },
+    {
+      field: "online",
+      headerName: "在线",
+      renderCell: (params) =>
+        params.row.online ? (
+          <RadioButtonChecked className={classes.root} />
+        ) : (
+          <RadioButtonChecked style={{ color: "red" }} />
+        ),
+    },
+    {
+      field: "today_latest",
+      headerName: "更新",
+      renderCell: (params) =>
+        params.row?.today_latest?.status ? (
+          <Check className={classes.root} />
+        ) : (
+          <Close style={{ color: "red" }} />
+        ),
+    },
+    {
+      field: "last_updated_at",
+      headerName: "最后更新于",
+    },
+  ];
+
   useEffect(() => {
     axios
       .get("site")
@@ -39,48 +80,16 @@ const Site = () => {
   }, []);
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 460 }} aria-label="simple table" size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>站点</TableCell>
-            <TableCell>在线</TableCell>
-            <TableCell>更新</TableCell>
-            <TableCell>最后更新于</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {sites.map((site) => (
-            <TableRow key={site.id}>
-              <TableCell component="td" scope="row">
-                <a
-                  href={`http://${site.domain}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {site.domain}
-                </a>
-              </TableCell>
-              <TableCell component="td" scope="row">
-                {site.online ? (
-                  <RadioButtonChecked className={classes.root} />
-                ) : (
-                  <RadioButtonChecked style={{ color: "red" }} />
-                )}
-              </TableCell>
-              <TableCell component="td" scope="row">
-                {site.today_latest && site.today_latest.status ? (
-                  <Check className={classes.root} />
-                ) : (
-                  <Close style={{ color: "red" }} />
-                )}
-              </TableCell>
-              <TableCell>{site.last_updated_at}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div style={{ width: "100%" }}>
+      <DataGrid
+        rows={sites}
+        columns={columns}
+        pageSize={100}
+        rowsPerPageOptions={[10, 50]}
+        disableSelectionOnClick
+        autoHeight
+      ></DataGrid>
+    </div>
   );
 };
 
