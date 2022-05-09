@@ -6,6 +6,7 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableContainer,
   TableHead,
   TableRow,
 } from "@mui/material";
@@ -38,50 +39,48 @@ const Site = () => {
   }, []);
 
   return (
-    <div>
-      <Paper className={classes.tableRoot}>
-        <Table aria-label="simple table" size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell>站点</TableCell>
-              <TableCell>在线</TableCell>
-              <TableCell>更新</TableCell>
-              <TableCell>最后更新于</TableCell>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 460 }} aria-label="simple table" size="small">
+        <TableHead>
+          <TableRow>
+            <TableCell>站点</TableCell>
+            <TableCell>在线</TableCell>
+            <TableCell>更新</TableCell>
+            <TableCell>最后更新于</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {sites.map((site) => (
+            <TableRow key={site.id}>
+              <TableCell component="td" scope="row">
+                <a
+                  href={`http://${site.domain}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {site.domain}
+                </a>
+              </TableCell>
+              <TableCell component="td" scope="row">
+                {site.online ? (
+                  <RadioButtonChecked className={classes.root} />
+                ) : (
+                  <RadioButtonChecked style={{ color: "red" }} />
+                )}
+              </TableCell>
+              <TableCell component="td" scope="row">
+                {site.today_latest && site.today_latest.status ? (
+                  <Check className={classes.root} />
+                ) : (
+                  <Close style={{ color: "red" }} />
+                )}
+              </TableCell>
+              <TableCell>{site.last_updated_at}</TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {sites.map((site) => (
-              <TableRow key={site.id}>
-                <TableCell component="td" scope="row">
-                  <a
-                    href={`http://${site.domain}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {site.domain}
-                  </a>
-                </TableCell>
-                <TableCell component="td" scope="row">
-                  {site.online ? (
-                    <RadioButtonChecked className={classes.root} />
-                  ) : (
-                    <RadioButtonChecked style={{ color: "red" }} />
-                  )}
-                </TableCell>
-                <TableCell component="td" scope="row">
-                  {site.today_latest && site.today_latest.status ? (
-                    <Check className={classes.root} />
-                  ) : (
-                    <Close style={{ color: "red" }} />
-                  )}
-                </TableCell>
-                <TableCell>{site.last_updated_at}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
-    </div>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
