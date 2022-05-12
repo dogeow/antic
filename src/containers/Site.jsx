@@ -32,6 +32,7 @@ const Site = () => {
     {
       field: "domain",
       headerName: "站点",
+      width: 180,
       renderCell: (params) => (
         <a
           href={`http://${params.row.domain}`}
