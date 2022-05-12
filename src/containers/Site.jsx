@@ -1,19 +1,14 @@
 import Check from "@mui/icons-material/Check";
 import Close from "@mui/icons-material/Close";
 import RadioButtonChecked from "@mui/icons-material/RadioButtonChecked";
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import { DataGrid } from "@mui/x-data-grid";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
+
+dayjs.extend(relativeTime);
 
 const useStyles = makeStyles(() => ({
   tableRoot: {
@@ -66,6 +61,7 @@ const Site = () => {
     {
       field: "last_updated_at",
       headerName: "最后更新于",
+      renderCell: (params) => dayjs(params.row.last_updated_at).fromNow(),
     },
   ];
 
