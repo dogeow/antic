@@ -61,7 +61,10 @@ const Site = () => {
     {
       field: "last_updated_at",
       headerName: "最后更新于",
-      renderCell: (params) => dayjs(params.row.last_updated_at).fromNow(),
+      renderCell: (params) =>
+        params.row.last_updated_at
+          ? dayjs(params.row.last_updated_at).fromNow()
+          : "-",
     },
   ];
 
