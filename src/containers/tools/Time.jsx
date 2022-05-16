@@ -34,20 +34,11 @@ const yesterdayStartUnix = dayjs(todayStartDateTime).subtract(1, "days").unix();
 const yesterdayStartTime = dayjs(todayStartDateTime)
   .subtract(1, "days")
   .format("YYYY-MM-DD HH:mm:ss");
-const yesterdayEndUnix = yesterdayStartUnix + 86400;
-const yesterdayEndTime = dayjs(todayStartDateTime)
-  .subtract(1, "second")
-  .format("YYYY-MM-DD HH:mm:ss");
 
 // 明天
 const tomorrowStartUnix = dayjs(todayStartDateTime).add(1, "days").unix();
 const tomorrowStartTime = dayjs(todayStartDateTime)
   .add(1, "days")
-  .format("YYYY-MM-DD HH:mm:ss");
-const tomorrowEndUnix = tomorrowStartUnix + 86400;
-const tomorrowEndTime = dayjs(todayStartDateTime)
-  .add(2, "days")
-  .subtract(1, "second")
   .format("YYYY-MM-DD HH:mm:ss");
 
 // 这个月
@@ -55,8 +46,6 @@ const monthStartDateTime = dayjs()
   .startOf("month")
   .format("YYYY-MM-DD 00:00:00");
 const monthStartUnixTime = dayjs(monthStartDateTime).unix();
-const monthEndDateTime = dayjs().endOf("month").format("YYYY-MM-DD 23:59:59");
-const monthEndUnixTime = dayjs(monthEndDateTime).unix();
 // 上月
 const lastDayStartDateTime = dayjs(monthStartDateTime)
   .subtract(1, "month")
@@ -95,11 +84,6 @@ const Time = () => {
         {getClipboardButton(yesterdayStartUnix)}({yesterdayStartTime}
         {getClipboardButton(yesterdayStartTime)})
       </div>
-      <div>
-        结束时间戳：{yesterdayEndUnix}
-        {getClipboardButton(yesterdayEndUnix)}({yesterdayEndTime}
-        {getClipboardButton(yesterdayEndTime)})
-      </div>
       <h2>今天</h2>
       <div>
         开始时间：{todayStartDateTime}
@@ -131,21 +115,11 @@ const Time = () => {
         {getClipboardButton(tomorrowStartUnix)}({tomorrowStartTime}
         {getClipboardButton(tomorrowStartTime)})
       </div>
-      <div>
-        结束时间戳：{tomorrowEndUnix}
-        {getClipboardButton(tomorrowEndUnix)}({tomorrowEndTime}
-        {getClipboardButton(tomorrowEndTime)})
-      </div>
       <h2>月份 </h2>
       <div>
         本月开始：{monthStartDateTime}
         {getClipboardButton(monthStartDateTime)}（{monthStartUnixTime}
         {getClipboardButton(monthStartUnixTime)}）
-      </div>
-      <div>
-        本月结束：{monthEndDateTime}
-        {getClipboardButton(monthEndDateTime)}（{monthEndUnixTime}
-        {getClipboardButton(monthEndUnixTime)}）
       </div>
       <div>
         上月开始：{lastDayStartDateTime}
