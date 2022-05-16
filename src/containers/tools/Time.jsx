@@ -8,10 +8,6 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-// yesterday, today, tomorrow
-// start, now, end
-// date, datetime / unixTime
-
 // 今天日期
 const todayDate = dayjs().format("YYYY-MM-DD"); // 2020-04-22
 
