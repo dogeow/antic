@@ -25,16 +25,16 @@ const nowUnixTime = dayjs().unix();
 
 // 今天结束
 const todayEndDateTime = dayjs(todayDate)
-  .add(86400 - 1, "second")
+  .add(86400, "second")
   .format("YYYY-MM-DD HH:mm:ss");
-const todayEndUnixTime = todayStartUnixTime + 86400 - 1;
+const todayEndUnixTime = todayStartUnixTime + 86400;
 
 // 昨天
 const yesterdayStartUnix = dayjs(todayStartDateTime).subtract(1, "days").unix();
 const yesterdayStartTime = dayjs(todayStartDateTime)
   .subtract(1, "days")
   .format("YYYY-MM-DD HH:mm:ss");
-const yesterdayEndUnix = yesterdayStartUnix + 86400 - 1;
+const yesterdayEndUnix = yesterdayStartUnix + 86400;
 const yesterdayEndTime = dayjs(todayStartDateTime)
   .subtract(1, "second")
   .format("YYYY-MM-DD HH:mm:ss");
@@ -44,7 +44,7 @@ const tomorrowStartUnix = dayjs(todayStartDateTime).add(1, "days").unix();
 const tomorrowStartTime = dayjs(todayStartDateTime)
   .add(1, "days")
   .format("YYYY-MM-DD HH:mm:ss");
-const tomorrowEndUnix = tomorrowStartUnix + 86400 - 1;
+const tomorrowEndUnix = tomorrowStartUnix + 86400;
 const tomorrowEndTime = dayjs(todayStartDateTime)
   .add(2, "days")
   .subtract(1, "second")
