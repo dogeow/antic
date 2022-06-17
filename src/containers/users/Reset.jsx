@@ -7,7 +7,7 @@ import PasswordConfirmation from "components/auth/PasswordConfirmation";
 import axios from "instance/axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert2";
 
 const useStyles = makeStyles((theme) => ({
