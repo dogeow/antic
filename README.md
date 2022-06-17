@@ -21,3 +21,9 @@
 - [React-Router](https://reacttraining.com/react-router/)
 - [React](https://zh-hans.reactjs.org/)
 - [Material-UI](https://material-ui.com/zh/)
+
+## Project supported by JetBrains
+
+Many thanks to Jetbrains for kindly providing a license for me to work on this and other open-source projects.
+
+[![](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/?from=https://github.com/likunyan)
