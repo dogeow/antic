@@ -7,7 +7,7 @@ import PasswordConfirmation from "components/auth/PasswordConfirmation";
 import axios from "instance/axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import swal from "sweetalert2";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,12 +34,12 @@ const Forget = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const classes = useStyles();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const secret = searchParams.get("secret");
   const [inputErrors, setInputErrors] = useState({});
   const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
+  const { secret } = useParams();
 
   const handlePassword = () => {
     setDisplayPassword(!displayPassword);

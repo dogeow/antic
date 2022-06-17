@@ -5,15 +5,14 @@ import { loginAction } from "actions";
 import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Forget = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const secret = searchParams.get("secret");
+  const { secret } = useParams();
 
   useEffect(() => {
     if (secret) {
