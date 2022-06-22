@@ -11,11 +11,11 @@ const defaultState = {
   snackMessage: "",
   toggleDrawer: false,
   paletteMode,
-  isExpired: false,
+  isExpired: true,
   token: localStorage.getItem("token"),
   userId: localStorage.getItem("userId"),
   userName: localStorage.getItem("userName"),
-  userEmail: localStorage.getItem("userEmail") || "",
+  userEmail: localStorage.getItem("userEmail"),
   users: localStorage.users ? JSON.parse(localStorage.users) : [],
   post: { tags: [], category: { id: "", name: "" } },
 };
