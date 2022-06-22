@@ -64,6 +64,7 @@ const Data = lazy(() => import("containers/Data"));
 const Game = lazy(() => import("containers/game"));
 const Pic = lazy(() => import("containers/Pic"));
 const Site = lazy(() => import("containers/Site"));
+const Translate = lazy(() => import("containers/Translate"));
 const Test = lazy(() => import("containers/Test"));
 
 export default () => (
@@ -163,6 +164,7 @@ export default () => (
         <Route path="/something" element={<Something />} />
 
         <Route path="/test" element={<Test />} />
+        <Route path="/translate" element={<Translate />} />
 
         <Route path="*" element={<NoMatch />} />
       </Route>

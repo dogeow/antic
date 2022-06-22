@@ -1,9 +1,9 @@
 import "dayjs/locale/zh-cn";
 
 import AdapterDayjs from "@mui/lab/AdapterDayjs";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 import themeCustomization from "config/theme";
 import dayjs from "dayjs";
 import * as React from "react";
