@@ -1,5 +1,6 @@
 # Lab
 
+[![Build Status](http://drone.dogeow.com:880/api/badges/likunyan/antic/status.svg)](http://drone.dogeow.com:880/likunyan/antic)
 [![CircleCI](https://circleci.com/gh/likunyan/antic.svg?style=shield)](https://circleci.com/gh/likunyan/antic)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
