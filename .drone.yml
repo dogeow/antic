@@ -3,9 +3,23 @@ type: docker
 name: default
 
 steps:
-  - name: frontend
+  - name: build
     image: node
     commands:
-       - pwd
-#      - yarn
-#      - yarn run build
+      - yarn
+      - yarn run build
+  - name: rsync
+    image: drillster/drone-rsync
+    settings:
+      user: root
+      key:
+        from_secret: ssh_key
+      hosts:
+        - 172.22.253.15
+      # 来源项目目录
+      source: ./build/*
+      # 目标服务器目录
+      target: /var/www/antic/static
+#      script:
+#        - cd /var/www/antic
+#        - ls
