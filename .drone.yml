@@ -10,6 +10,43 @@ steps:
       - yarn run build
   - name: rsync
     image: drillster/drone-rsync
+    environment:
+      DOMAIN:
+        from_secret: DOMAIN
+      API_DOMAIN:
+        from_secret: API_DOMAIN
+      PROTOCOL:
+        from_secret: PROTOCOL
+      SKIP_PREFLIGHT_CHECK:
+        from_secret: SKIP_PREFLIGHT_CHECK
+      REACT_APP_DOMAIN:
+        from_secret: REACT_APP_DOMAIN
+      REACT_APP_URL:
+        from_secret: REACT_APP_URL
+      REACT_APP_API_DOMAIN:
+        from_secret: REACT_APP_API_DOMAIN
+      REACT_APP_API_URL:
+        from_secret: REACT_APP_API_URL
+      REACT_APP_FUNDEBUG_API_KEY:
+        from_secret: REACT_APP_FUNDEBUG_API_KEY
+      REACT_APP_CDN_URL:
+        from_secret: REACT_APP_CDN_URL
+      REACT_APP_OSS_URL:
+        from_secret: REACT_APP_OSS_URL
+      REACT_APP_ALGOLIA_APP_ID:
+        from_secret: REACT_APP_ALGOLIA_APP_ID
+      REACT_APP_ALGOLIA_APP_KEY:
+        from_secret: REACT_APP_ALGOLIA_APP_KEY
+      REACT_APP_NAME:
+        from_secret: REACT_APP_NAME
+      REACT_APP_SENTRY_DSN:
+        from_secret: REACT_APP_SENTRY_DSN
+      REACT_APP_PUSHER_APP_KEY:
+        from_secret: REACT_APP_PUSHER_APP_KEY
+      REACT_APP_PUSHER_HOST:
+        from_secret: REACT_APP_PUSHER_HOST
+      REACT_APP_PUSHER_PORT:
+        from_secret: REACT_APP_PUSHER_PORT
     settings:
       user: root
       key:
@@ -18,6 +55,7 @@ steps:
         - 172.22.253.15
       # 来源项目目录
       source: ./build/*
+      delete: true
       # 目标服务器目录
       target: /var/www/antic/static
 #      script:
