@@ -42,6 +42,8 @@ steps:
         from_secret: REACT_APP_PUSHER_HOST
       REACT_APP_PUSHER_PORT:
         from_secret: REACT_APP_PUSHER_PORT
+      REACT_APP_GITHUB_CLIENT_ID:
+        from_secret: REACT_APP_GITHUB_CLIENT_ID
     commands:
       - yarn
       - yarn run build
