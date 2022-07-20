@@ -68,7 +68,5 @@ steps:
 #        - ls
 
 trigger:
-  branch:
-    - master
   event:
     - push
