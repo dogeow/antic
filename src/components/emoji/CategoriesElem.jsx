@@ -2,7 +2,8 @@ import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import * as React from "react";
-import face from "resources/face.json";
+
+import face from "../../resources/face.json";
 
 const CategoriesElem = (props) => {
   let categories = [];

@@ -2,11 +2,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Avatar, Button, Container, Grid, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert2";
 
-import { loginAction } from "../../actions";
 import Password from "../../components/auth/Password";
 import PasswordConfirmation from "../../components/auth/PasswordConfirmation";
 import axios from "../../instance/axios";
@@ -32,9 +30,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Forget = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const classes = useStyles();
+  const [user, setUser] = useRecoilState(userState);
   const [inputErrors, setInputErrors] = useState({});
   const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState("");
@@ -55,13 +53,19 @@ const Forget = () => {
         password_confirmation: passwordConfirmation,
         secret,
       })
-      .then((response) => {
+      .then(({ data }) => {
         swal.fire({
           title: "重置成功，正在登录",
           icon: "success",
           showCloseButton: true,
         });
-        dispatch(loginAction(response.data));
+        setUser({
+          token: data.access_token,
+          userId: data.id,
+          userName: data.name,
+          userEmail: data.email,
+          expiresIn: data.expires_in,
+        });
         navigate("/");
       })
       .catch((error) => {

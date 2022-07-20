@@ -3,9 +3,10 @@ import Grid from "@mui/material/Grid";
 import Input from "@mui/material/Input";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import clsx from "clsx";
-import axios from "instance/axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import axios from "../../instance/axios";
 
 const NewProject = () => {
   const navigate = useNavigate();

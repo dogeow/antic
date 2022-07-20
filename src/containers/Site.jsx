@@ -5,8 +5,9 @@ import makeStyles from "@mui/styles/makeStyles";
 import { DataGrid } from "@mui/x-data-grid";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
+
+import axios from "../instance/axios";
 
 dayjs.extend(relativeTime);
 

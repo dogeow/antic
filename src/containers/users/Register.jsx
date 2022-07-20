@@ -13,12 +13,10 @@ import {
   Typography,
 } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useRecoilState } from "recoil";
 import swal from "sweetalert2";
 
-import { loginAction } from "../../actions";
 import Email from "../../components/auth/Email";
 import LoginOrRegisterButton from "../../components/auth/LoginOrRegisterButton";
 import Name from "../../components/auth/Name";
@@ -29,6 +27,8 @@ import Verify from "../../components/auth/Verify";
 import GitHubLogin from "../../components/GithubLogin";
 import Loading from "../../components/Loading";
 import Copyright from "../../components/site/Copyright";
+import axios from "../../instance/axios";
+import { userState } from "../../states";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -73,9 +73,8 @@ function a11yProps(index) {
   };
 }
 
-const Register = ({ history }) => {
+const Register = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [sentPhone, setSentPhone] = useState("");
@@ -87,7 +86,7 @@ const Register = ({ history }) => {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [inputErrors, setInputErrors] = useState({});
   const [tabIndex, setTabIndex] = useState(0);
-
+  const [user, setUser] = useRecoilState(userState);
   const [open, setOpen] = useState(false);
 
   const handleChange = (event, newValue) => {
@@ -111,7 +110,14 @@ const Register = ({ history }) => {
     axios
       .get("/oauth/github/callback?code=" + response.code)
       .then((response) => {
-        dispatch(loginAction(response.data));
+        const data = response.data;
+        setUser({
+          token: data.access_token,
+          userId: data.id,
+          userName: data.name,
+          userEmail: data.email,
+          expiresIn: data.expires_in,
+        });
         navigate("/");
         setOpen(false);
       });

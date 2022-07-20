@@ -21,13 +21,13 @@ import {
 } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Link as RouteLink, useLocation, useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 
-import { loginAction } from "../../actions";
 import Copyright from "../../components/site/Copyright";
 import wallpaper from "../../config/wallpaper";
 import axios from "../../instance/axios";
+import { userState } from "../../states";
 
 const random = Math.floor(Math.random() * wallpaper.length);
 
@@ -70,8 +70,8 @@ const useStyles = makeStyles((theme) => ({
 export default () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const dispatch = useDispatch();
   const classes = useStyles();
+  const [user, setUser] = useRecoilState(userState);
   const [account, setAccount] = useState("");
   const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState("");
@@ -96,8 +96,14 @@ export default () => {
           password,
           remember_me: rememberMe,
         })
-        .then((response) => {
-          dispatch(loginAction(response.data));
+        .then(({ data }) => {
+          setUser({
+            token: data.access_token,
+            userId: data.id,
+            userName: data.name,
+            userEmail: data.email,
+            expiresIn: data.expires_in,
+          });
           if (state) {
             navigate(state.from);
           } else {
@@ -293,7 +299,13 @@ export default () => {
                 style={{ color: "#f50057" }}
                 onClick={() => {
                   axios.post("user/guest").then(({ data }) => {
-                    dispatch(loginAction(data));
+                    setUser({
+                      token: data.access_token,
+                      userId: data.id,
+                      userName: data.name,
+                      userEmail: data.email,
+                      expiresIn: data.expires_in,
+                    });
                     navigate("/");
                   });
                 }}

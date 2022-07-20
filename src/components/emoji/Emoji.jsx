@@ -7,9 +7,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Spinner from "react-spinner-children";
 import Viewer from "react-viewer";
-import face from "resources/face.json";
 import Swal from "sweetalert2";
 
+import face from "../../resources/face.json";
 import BootNav from "./BootNav";
 import Filter from "./Filter";
 import FilterStatistics from "./FilterStatistics";

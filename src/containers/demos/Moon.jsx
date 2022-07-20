@@ -1,9 +1,10 @@
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import axios from "instance/axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import axios from "../../instance/axios";
 
 const Moon = () => {
   const navigate = useNavigate();

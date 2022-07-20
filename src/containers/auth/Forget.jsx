@@ -9,9 +9,10 @@ import {
   Typography,
 } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import axios from "instance/axios";
 import React, { useState } from "react";
 import swal from "sweetalert2";
+
+import axios from "../../instance/axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

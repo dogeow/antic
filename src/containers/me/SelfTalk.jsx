@@ -5,7 +5,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useEffect, useState } from "react";
 
-import SpeedDial from "../components/SpeedDial";
+import SpeedDial from "../../components/SpeedDial";
 
 const useStyles = makeStyles(() => ({
   quote: {

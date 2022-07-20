@@ -9,12 +9,12 @@ import Input from "@mui/material/Input/Input";
 import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
 import update from "immutability-helper";
-import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useNavigate, useParams } from "react-router-dom";
 
-import AlertDialog from "../components/AlertDialog";
+import AlertDialog from "../../components/AlertDialog";
+import axios from "../../instance/axios";
 
 const useStyles = makeStyles(() => ({
   green: {

@@ -17,9 +17,10 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import axios from "instance/axios";
 import React, { useState } from "react";
 import swal from "sweetalert2";
+
+import axios from "../../instance/axios";
 
 const NoMatch = () => {
   const [value, setValue] = useState("");

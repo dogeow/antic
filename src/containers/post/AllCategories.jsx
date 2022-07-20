@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import ChipFlow from "../components/ChipFlow";
+import ChipFlow from "../../components/ChipFlow";
 
 const Categories = () => {
   const navigate = useNavigate();

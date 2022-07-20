@@ -14,8 +14,9 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
+
+import axios from "../../instance/axios";
 
 const Api = () => {
   const [api, setApi] = useState([]);

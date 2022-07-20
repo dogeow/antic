@@ -3,8 +3,9 @@ import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
-import { getHost } from "helpers";
 import * as React from "react";
+
+import { getHost } from "../../helpers";
 
 const useStyles = makeStyles(() => ({
   card: {

@@ -1,8 +1,9 @@
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import makeStyles from "@mui/styles/makeStyles";
-import axios from "instance/axios";
 import * as React from "react";
+
+import axios from "../instance/axios";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {

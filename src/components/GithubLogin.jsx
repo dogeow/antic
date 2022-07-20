@@ -1,8 +1,8 @@
 import Button from "@mui/material/Button";
-import { toQuery } from "helpers/index";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 
+import { toQuery } from "../helpers/index";
 import PopupWindow from "./PopupWindow";
 
 class GitHubLogin extends Component {

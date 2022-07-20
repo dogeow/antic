@@ -2,17 +2,16 @@ import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
 
-import { loginAction } from "../../actions";
 import axios from "../../instance/axios";
+import { userState } from "../../states";
 
 const Forget = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isSuccess, setIsSuccess] = useState(false);
-
+  const [user, setUser] = useRecoilState(userState);
   const { secret } = useParams();
 
   useEffect(() => {
@@ -28,8 +27,14 @@ const Forget = () => {
       .post("/autoLogin", {
         secret: match.params.secret,
       })
-      .then((response) => {
-        dispatch(loginAction(response.data));
+      .then(({ data }) => {
+        setUser({
+          token: data.access_token,
+          userId: data.id,
+          userName: data.name,
+          userEmail: data.email,
+          expiresIn: data.expires_in,
+        });
         navigate("/");
       });
   };
