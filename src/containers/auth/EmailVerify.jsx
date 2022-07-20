@@ -1,11 +1,12 @@
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-import { loginAction } from "actions";
-import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+
+import { loginAction } from "../../actions";
+import axios from "../../instance/axios";
 
 const Forget = () => {
   const dispatch = useDispatch();

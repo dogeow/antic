@@ -20,13 +20,14 @@ import {
   Zoom,
 } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import { loginAction } from "actions";
-import Copyright from "components/site/Copyright";
-import wallpaper from "config/wallpaper";
-import axios from "instance/axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link as RouteLink, useLocation, useNavigate } from "react-router-dom";
+
+import { loginAction } from "../../actions";
+import Copyright from "../../components/site/Copyright";
+import wallpaper from "../../config/wallpaper";
+import axios from "../../instance/axios";
 
 const random = Math.floor(Math.random() * wallpaper.length);
 
@@ -35,7 +36,9 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: `url(${process.env.REACT_APP_OSS_URL}/wallpaper/${wallpaper[random]})`,
+    backgroundImage: `url(${import.meta.env.VITE_OSS_URL}/wallpaper/${
+      wallpaper[random]
+    })`,
     backgroundRepeat: "no-repeat",
     backgroundColor:
       theme.palette.mode === "dark"

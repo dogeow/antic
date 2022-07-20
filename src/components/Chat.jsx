@@ -9,43 +9,38 @@ import {
   Snackbar,
   TextField,
 } from "@mui/material";
-import {
-  addPeople,
-  addPeoples,
-  chatBoard,
-  deletePeople,
-  loginAction,
-} from "actions";
-import Avatar from "components/Gravatar";
-import Loading from "components/Loading";
-import axios from "instance/axios";
 import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
-import { useDispatch, useSelector } from "react-redux";
+import { useRecoilState } from "recoil";
 
+import Avatar from "../components/Gravatar";
+import Loading from "../components/Loading";
+import axios from "../instance/axios";
+import { chatBoardState, peopleState, personState, userState } from "../states";
 import Expire from "./Expire";
 
 let timer = null;
 
 export default function Chat() {
-  const dispatch = useDispatch();
-  const chat = useSelector((state) => state.chat);
-  const lab = useSelector((state) => state.lab);
-
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
   const [loading, setLoading] = useState(window?.Echo?.socketId() === null);
   const [typing, setTyping] = useState(undefined);
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
+  const [person, setPerson] = useRecoilState(personState);
+  const [people, setPeople] = useRecoilState(peopleState);
+  const [chatBoard, setChatBoard] = useRecoilState(chatBoardState);
+  const [user, setUser] = useRecoilState(userState);
+
   const [error, setError] = useState({});
   const [inputFocus, setInputFocus] = useState(false);
 
   const messagesEndRef = useRef(null);
-  const peoplesRef = useRef(null);
+  const peopleRef = useRef(null);
 
-  const [open, setOpen] = useState(lab.token === null);
+  const [open, setOpen] = useState(user.token === null);
 
   const toggleError = () => {
     setError(!error);
@@ -70,7 +65,7 @@ export default function Chat() {
   };
 
   useEffect(() => {
-    if (lab.token === null) {
+    if (user.token === null) {
       setOpen(true);
       return;
     }
@@ -80,17 +75,17 @@ export default function Chat() {
     window.Echo.join("chat")
       .here((user) => {
         setLoading(false);
-        dispatch(addPeoples(user));
+        setPeople(user);
         setAlertMessage(`${_.map(user, "name")} 正在房间`);
         setAlertOpen(true);
       })
       .joining((user) => {
-        dispatch(addPeople(user));
+        setPeople((people) => [...people, user]);
         setAlertMessage(`${user.name} 加入了房间`);
         setAlertOpen(true);
       })
       .leaving((user) => {
-        dispatch(deletePeople(user));
+        setPeople((people) => _.without(people, user));
         setAlertMessage(`${user.name} 退出了房间`);
         setAlertOpen(true);
       });
@@ -101,7 +96,7 @@ export default function Chat() {
     });
 
     window.Echo.private("chat").listen(".chat", (e) => {
-      dispatch(chatBoard(e.data));
+      setChatBoard((chatBoard) => [...chatBoard, e.data]);
     });
 
     return () => {
@@ -112,24 +107,24 @@ export default function Chat() {
         clearTimeout(typingTime);
       }
     };
-  }, [dispatch, lab.token]);
+  }, [user.token]);
 
   useEffect(() => {
     scrollToBottom();
-  }, [chat.chatBoard]);
+  }, [chatBoard]);
 
   const handlePost = () => {
     if (message === "") {
       return;
     }
-
-    dispatch(
-      chatBoard({
+    setChatBoard((chatBoard) => [
+      ...chatBoard,
+      {
         id: localStorage.userId,
         name: localStorage.userName,
         message,
-      })
-    );
+      },
+    ]);
 
     axios.post(
       "/chat",
@@ -212,7 +207,13 @@ export default function Chat() {
                     name,
                   })
                   .then(({ data }) => {
-                    dispatch(loginAction(data));
+                    setUser({
+                      token: data.access_token,
+                      userId: data.id,
+                      userName: data.name,
+                      userEmail: data.email,
+                      expiresIn: data.expires_in,
+                    });
                   });
               });
             }}
@@ -249,14 +250,14 @@ export default function Chat() {
               机器人请在开头加上一个空格，比如「 时间」、「 ip」、「 md5
               123456」、「 单复数 category」
             </Grid>
-            {chat?.chatBoard.length > 0 &&
-              chat.chatBoard.map((content, index) => {
+            {chatBoard.length > 0 &&
+              chatBoard.map((content, index) => {
                 return content.id === localStorage.userId ? (
                   <Grid item xs={12} key={index} style={{ textAlign: "right" }}>
                     <span style={{ marginRight: 4 }}>{content.message}</span>
                     <Avatar
                       alt={content.name}
-                      email={lab.userEmail}
+                      email={user.userEmail}
                       size={24}
                     />
                   </Grid>
@@ -264,7 +265,7 @@ export default function Chat() {
                   <Grid item xs={12} key={index}>
                     <Avatar
                       alt={content.name}
-                      email={_.find(chat.peoples, ["id", content.id])["email"]}
+                      email={_.find(people, ["id", content.id])["email"]}
                       size={24}
                     />
                     <span style={{ marginLeft: 4 }}>{content.message}</span>
@@ -297,7 +298,7 @@ export default function Chat() {
           container
           spacing={1}
           xs={3}
-          ref={peoplesRef}
+          ref={peopleRef}
           style={{
             borderLeftWidth: 2,
             borderLeftColor: "rgba(0, 0, 0, 0.1)",
@@ -306,22 +307,22 @@ export default function Chat() {
           }}
           alignContent={isMobile && inputFocus ? "flex-end" : "flex-start"}
         >
-          {chat.peoples.map((people) => {
+          {people.map((person) => {
             return (
               <Grid item xs={12} container key={people.id}>
                 <Grid item xs={12}>
                   <Avatar
-                    alt={people.name}
-                    email={people.email}
+                    alt={person.name}
+                    email={person.email}
                     size={24}
                     marginLeft={4}
                   />
-                  {typing === people.id && (
+                  {typing === person.id && (
                     <Expire delay={2000}> 输入中...</Expire>
                   )}
                 </Grid>
                 <Grid item>
-                  <span style={{ marginLeft: 4 }}>{people.name}</span>
+                  <span style={{ marginLeft: 4 }}>{person.name}</span>
                 </Grid>
               </Grid>
             );

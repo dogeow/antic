@@ -1,10 +1,11 @@
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
-import { gravatarCdn } from "config/services";
 import dayjs from "dayjs";
 import md5 from "md5";
 import * as React from "react";
 import { useSelector } from "react-redux";
+
+import { gravatarCdn } from "../config/services";
 
 const User = () => {
   const lab = useSelector((state) => state.lab);

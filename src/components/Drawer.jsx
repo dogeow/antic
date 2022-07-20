@@ -7,11 +7,12 @@ import {
   SwipeableDrawer,
 } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import appConfig from "config/app";
 import PropTypes from "prop-types";
 import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
-import anticPic from "resources/svg/antic";
+
+import appConfig from "../config/app";
+import anticPic from "../resources/svg/antic";
 
 const useStyles = makeStyles({
   list: {

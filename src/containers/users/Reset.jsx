@@ -1,14 +1,15 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Avatar, Button, Container, Grid, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import { loginAction } from "actions";
-import Password from "components/auth/Password";
-import PasswordConfirmation from "components/auth/PasswordConfirmation";
-import axios from "instance/axios";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert2";
+
+import { loginAction } from "../../actions";
+import Password from "../../components/auth/Password";
+import PasswordConfirmation from "../../components/auth/PasswordConfirmation";
+import axios from "../../instance/axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

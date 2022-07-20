@@ -1,10 +1,10 @@
 import Grid from "@mui/material/Grid";
-import ExternalLink from "components/ExternalLink";
-import PowerBy from "components/PowerBy";
 import * as React from "react";
 import { Link } from "react-router-dom";
-import ministryOfPublicSecurityInChinaIcon from "resources/svg/ministryOfPublicSecurityInChina";
 
+import ExternalLink from "../components/ExternalLink";
+import PowerBy from "../components/PowerBy";
+import ministryOfPublicSecurityInChinaIcon from "../resources/svg/ministryOfPublicSecurityInChina";
 import Heart from "./Heart";
 
 const greenWaveUnderline = {
@@ -15,7 +15,7 @@ const greenWaveUnderline = {
 
 const BuiltBy = () => (
   <>
-    Built By{" "}
+    ⛏ Built By{" "}
     <Link to="/about" style={greenWaveUnderline}>
       小李世界
     </Link>

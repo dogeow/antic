@@ -17,7 +17,7 @@ const Avatar = styled.img`
     `};
 `;
 
-import { gravatarCdn } from "config/services";
+import { gravatarCdn } from "../config/services";
 
 export default function (props) {
   return (
@@ -28,7 +28,7 @@ export default function (props) {
           ? `${gravatarCdn}/${md5(props.email)}.jpg?d=monsterid&s=${
               props.size * 2
             }`
-          : `${process.env.REACT_APP_CDN_URL}/Robot.svg`
+          : `${import.meta.env.VITE_CDN_URL}/Robot.svg`
       }
       size={props.size}
       marginLeft={props.marginLeft}

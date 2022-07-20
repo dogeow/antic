@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Moon = () => {
   const navigate = useNavigate();
 
-  const cdn = `${process.env.REACT_APP_CDN_URL}/moon/`;
+  const cdn = `${import.meta.env.VITE_CDN_URL}/moon/`;
   const [num, setNum] = useState([]);
   const [name, setName] = useState(localStorage.getItem("name"));
   const [status, setStatus] = useState("");

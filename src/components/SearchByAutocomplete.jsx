@@ -2,15 +2,15 @@ import { createAutocomplete } from "@algolia/autocomplete-core";
 import { getAlgoliaHits } from "@algolia/autocomplete-preset-algolia";
 import StarIcon from "@mui/icons-material/Star";
 import algoliasearch from "algoliasearch/lite";
-import Link from "components/Link";
 import React from "react";
 
+import Link from "../components/Link";
 import { ClearIcon } from "./ClearIcon";
 import { SearchIcon } from "./SearchIcon";
 
 const searchClient = algoliasearch(
-  process.env.REACT_APP_ALGOLIA_APP_ID,
-  process.env.REACT_APP_ALGOLIA_APP_KEY
+  import.meta.env.VITE_ALGOLIA_APP_ID,
+  import.meta.env.VITE_ALGOLIA_APP_KEY
 );
 
 export default function Autocomplete(props) {
@@ -204,7 +204,9 @@ export default function Autocomplete(props) {
                                   <StarIcon style={{ color: "orange" }} />
                                 ) : (
                                   <img
-                                    src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category}.svg`}
+                                    src={`${
+                                      import.meta.env.VITE_CDN_URL
+                                    }/logo/${item.category}.svg`}
                                     alt={item.name}
                                     width="40"
                                     height="40"

@@ -11,13 +11,16 @@ import {
   Typography,
 } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import AllTags from "containers/post/AllTags";
-import Categories from "containers/post/Categories";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { CATEGORY, POST_LIST, TAG } from "graphql/post";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+
+import AllTags from "../../containers/post/AllTags";
+import Categories from "../../containers/post/Categories";
+import { CATEGORY, POST_LIST, TAG } from "../../graphql/post";
+import { postState } from "../../states";
 
 dayjs.extend(relativeTime);
 
@@ -31,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 const PostList = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useRecoilState(postState);
   const [pageCount, setPageCount] = useState();
   const [currPage, setCurrPage] = useState(1);
   const [currCategory, setCurrCategory] = useState();
@@ -106,7 +109,7 @@ const PostList = (props) => {
 
   const handlePostCreate = () => {
     if (props.post?.id) {
-      props.postRemove();
+      setPost({ tags: [], category: { id: "", name: "" } });
     }
     navigate("/posts/create");
   };
@@ -156,7 +159,9 @@ const PostList = (props) => {
                         {/* 分类 */}
                         <Grid item>
                           <img
-                            src={`${process.env.REACT_APP_CDN_URL}/logo/${item.category.name}.svg`}
+                            src={`${import.meta.env.VITE_CDN_URL}/logo/${
+                              item.category.name
+                            }.svg`}
                             alt={item.category.name}
                             width="20"
                             height="20"

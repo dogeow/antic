@@ -1,9 +1,10 @@
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import ChipFlow from "components/ChipFlow";
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
+
+import ChipFlow from "../components/ChipFlow";
 
 const Categories = () => {
   const navigate = useNavigate();

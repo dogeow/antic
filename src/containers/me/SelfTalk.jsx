@@ -3,8 +3,9 @@ import AddIcon from "@mui/icons-material/Add";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import RemoveIcon from "@mui/icons-material/Remove";
 import makeStyles from "@mui/styles/makeStyles";
-import SpeedDial from "components/SpeedDial";
 import React, { useEffect, useState } from "react";
+
+import SpeedDial from "../components/SpeedDial";
 
 const useStyles = makeStyles(() => ({
   quote: {

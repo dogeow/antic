@@ -1,10 +1,11 @@
 import Skeleton from "@mui/material/Skeleton";
 import makeStyles from "@mui/styles/makeStyles";
-import CodeBlock from "components/CodeBlock";
 import * as React from "react";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import remarkToc from "remark-toc";
+
+import CodeBlock from "../../components/CodeBlock";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {

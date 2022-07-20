@@ -8,10 +8,11 @@ import {
   InputLabel,
   TextField,
 } from "@mui/material";
-import { snackMessage } from "actions";
-import ClipboardButton from "components/ClipboardButton";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+
+import { snackMessage } from "../../actions";
+import ClipboardButton from "../../components/ClipboardButton";
 
 const emptyCost = { money: "", note: "", isCost: true };
 

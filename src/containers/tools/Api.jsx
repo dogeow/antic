@@ -45,7 +45,7 @@ const Api = () => {
       <Grid item xs={12}>
         <Typography component="h3" variant="h6">
           前缀：
-          {process.env.REACT_APP_API_URL}
+          {import.meta.env.VITE_API_URL}
         </Typography>
       </Grid>
 

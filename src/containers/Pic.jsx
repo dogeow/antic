@@ -18,7 +18,7 @@ export default () => {
           <Grid item key={pic.id} xs={6} md={3} lg={4}>
             <img
               style={{ width: "100%" }}
-              src={`${process.env.REACT_APP_OSS_URL}/${pic.folder}/${pic.name}`}
+              src={`${import.meta.env.VITE_OSS_URL}/${pic.folder}/${pic.name}`}
               alt={pic.name}
             />
           </Grid>

@@ -15,10 +15,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import ImgList from "components/ImgList";
-import Upload from "components/Upload";
 import produce from "immer";
 import React, { useCallback, useState } from "react";
+
+import ImgList from "../components/ImgList";
+import Upload from "../components/Upload";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

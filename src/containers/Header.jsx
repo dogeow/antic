@@ -27,23 +27,26 @@ import {
 } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
 import makeStyles from "@mui/styles/makeStyles";
-import {
-  changeUser,
-  logoutAction,
-  snackToggleAction,
-  toggleDrawer as toggleDrawerAction,
-  toggleTheme,
-} from "actions";
-import Drawer from "components/Drawer";
-import Logo from "components/Logo";
-import Search from "components/Search";
-import Settings from "components/Settings";
-import { getGravatarAddress, logout } from "helpers";
-import axios from "instance/axios";
 import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link as RouteLink, useLocation } from "react-router-dom";
 import { useEvent } from "react-use";
+import { useRecoilState } from "recoil";
+
+import Drawer from "../components/Drawer";
+import Logo from "../components/Logo";
+import Search from "../components/Search";
+import Settings from "../components/Settings";
+import { getGravatarAddress, logout } from "../helpers";
+import axios from "../instance/axios";
+import {
+  isExpiredState,
+  isSnackOpenState,
+  paletteModeState,
+  snackMessageState,
+  toggleDrawerState,
+  usersState,
+  userState,
+} from "../states";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -81,13 +84,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const { pathname } = useLocation();
-  const dispatch = useDispatch();
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
-  const toggleDrawer = useSelector((state) => state.lab.toggleDrawer);
-  const paletteMode = useSelector((state) => state.lab.paletteMode);
-  const lab = useSelector((state) => state.lab);
+  const [user, setUser] = useRecoilState(userState);
+  const [users, setUsers] = useRecoilState(usersState);
+  const [snackMessage, setSnackMessage] = useRecoilState(snackMessageState);
+  const [isSnackOpen, setIsSnackOpen] = useRecoilState(isSnackOpenState);
+  const [isExpired, setIsExpired] = useRecoilState(isExpiredState);
+  const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
+  const [toggleDrawer, setToggleDrawer] = useRecoilState(toggleDrawerState);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
@@ -212,7 +218,7 @@ const Header = () => {
     <header>
       <Drawer
         open={toggleDrawer}
-        onClick={() => dispatch(toggleDrawerAction())}
+        onClick={() => setToggleDrawer(!toggleDrawer)}
       />
       <AppBar position="static" component="div">
         <Container
@@ -226,7 +232,7 @@ const Header = () => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              onClick={() => dispatch(toggleDrawerAction())}
+              onClick={() => setToggleDrawer(!toggleDrawer)}
               size="large"
             >
               <MenuIcon />
@@ -280,10 +286,12 @@ const Header = () => {
               <Tooltip
                 title="切换白天或夜晚主题"
                 aria-label="切换白天或夜晚主题"
-                onClick={() => dispatch(toggleTheme())}
+                onClick={() =>
+                  setPaletteMode(paletteMode === "light" ? "dark" : "light")
+                }
               >
                 <IconButton color="inherit" size="large">
-                  {lab.paletteMode === "dark" ? (
+                  {paletteMode === "dark" ? (
                     <NightsStayIcon />
                   ) : (
                     <WbSunnyIcon />
@@ -304,7 +312,7 @@ const Header = () => {
                 </IconButton>
               </Tooltip>
             </Hidden>
-            {lab.isExpired ? (
+            {isExpired ? (
               <Tooltip title="登录" aria-label="登录">
                 <IconButton
                   color="inherit"
@@ -331,8 +339,8 @@ const Header = () => {
                     size="large"
                   >
                     <Avatar
-                      alt={lab.userName}
-                      src={getGravatarAddress(lab.userEmail)}
+                      alt={user.userName}
+                      src={getGravatarAddress(user.userEmail)}
                     />
                   </IconButton>
                 </Tooltip>
@@ -352,31 +360,31 @@ const Header = () => {
                   onClose={handleCloseProfile}
                 >
                   <RouteLink
-                    to={`/user/${lab.userId}`}
+                    to={`/user/${user.userId}`}
                     onClick={handleCloseProfile}
                   >
                     <div style={{ textAlign: "center", fontSize: "1rem" }}>
                       <Avatar
-                        alt={lab.userName}
-                        src={getGravatarAddress(lab.userEmail)}
+                        alt={user.userName}
+                        src={getGravatarAddress(user.userEmail)}
                         style={{ width: 80, height: 80, margin: "20px auto" }}
                       />
-                      {lab.userName}
+                      {user.userName}
                     </div>
                   </RouteLink>
-                  {lab.users.map((user, index) => {
+                  {users.map((user, index) => {
                     return (
-                      user.userEmail !== lab.userEmail && (
+                      user.userEmail !== user.userEmail && (
                         <MenuItem
                           onClick={() => {
-                            dispatch(changeUser(user));
+                            setUser(user);
                             handleCloseProfile();
                           }}
                           key={index}
                         >
                           <Avatar
                             alt={user.userName}
-                            src={getGravatarAddress(lab.userEmail)}
+                            src={getGravatarAddress(user.userEmail)}
                           />
                           <span
                             style={{
@@ -419,7 +427,16 @@ const Header = () => {
                             )
                           );
                           Promise.all(requests).then(function ([acct, perms]) {
-                            dispatch(logoutAction());
+                            setUser({
+                              userId: "",
+                              userEmail: "",
+                              userName: "",
+                              token: "",
+                            });
+                            setIsExpired(true);
+                            setSnackMessage("退出成功");
+                            setIsSnackOpen(true);
+                            setUsers([]);
                             localStorage.removeItem("users");
                           });
                         });
@@ -464,11 +481,11 @@ const Header = () => {
               <MenuItem
                 onClick={() => {
                   setAnchorEl(null);
-                  dispatch(toggleTheme());
+                  setPaletteMode(paletteMode === "light" ? "dark" : "light");
                 }}
               >
                 切换为
-                {lab.paletteMode === "dark" ? "白天☀️️" : "黑夜🌌"}
+                {paletteMode === "dark" ? "白天☀️️" : "黑夜🌌"}
                 模式
               </MenuItem>
               <MenuItem onClick={handleSettingOpen}>网站设置</MenuItem>
@@ -480,19 +497,21 @@ const Header = () => {
       <Settings
         open={settingsOpen}
         onClose={handleSettingClose}
-        onThemeClick={() => dispatch(toggleTheme())}
+        onThemeClick={() =>
+          setPaletteMode(paletteMode === "light" ? "dark" : "light")
+        }
         paletteMode={paletteMode}
       />
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        open={lab.snackOpen}
+        open={isSnackOpen}
         autoHideDuration={2000}
         onClose={(event, reason) => {
           if (reason === "clickaway") {
             return;
           }
 
-          dispatch(snackToggleAction());
+          setIsSnackOpen(!isSnackOpen);
         }}
       >
         <Alert
@@ -502,10 +521,10 @@ const Header = () => {
               return;
             }
 
-            dispatch(snackToggleAction());
+            setIsSnackOpen(!isSnackOpen);
           }}
         >
-          {lab.snackMessage}
+          {snackMessage}
         </Alert>
       </Snackbar>
     </header>

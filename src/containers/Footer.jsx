@@ -8,18 +8,21 @@ import {
 } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import clsx from "clsx";
-import HomeFooter from "components/HomeFooter";
-import Hr from "components/Hr";
-import backgroundImg from "config/footerBackground";
 import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
+
+import HomeFooter from "../components/HomeFooter";
+import Hr from "../components/Hr";
+import backgroundImg from "../config/footerBackground";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundImage:
       theme.palette.mode === "dark"
-        ? `url(${process.env.REACT_APP_CDN_URL}/bg/tesla-vector-roadster.png!/compress/true/fw/400)`
-        : `url(${process.env.REACT_APP_CDN_URL}/bg/${
+        ? `url(${
+            import.meta.env.VITE_CDN_URL
+          }/bg/tesla-vector-roadster.png!/compress/true/fw/400)`
+        : `url(${import.meta.env.VITE_CDN_URL}/bg/${
             backgroundImg[Math.floor(Math.random() * backgroundImg.length)]
           }!/compress/true/fw/400)`,
     backgroundPosition: "right 20px bottom",

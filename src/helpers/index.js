@@ -1,7 +1,7 @@
-import axios from "instance/axios";
 import md5 from "md5";
 
 import { gravatarCdn } from "../config/services";
+import axios from "../instance/axios";
 
 /**
  * 登录

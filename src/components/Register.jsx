@@ -9,10 +9,10 @@ import {
   Typography,
 } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import axios from "instance/axios";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
+import axios from "../instance/axios";
 import ToLogin from "./Auth/ToLogin";
 import Copyright from "./site/Copyright";
 

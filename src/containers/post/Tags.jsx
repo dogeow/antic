@@ -3,7 +3,8 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Chip from "@mui/material/Chip";
 import TextField from "@mui/material/TextField";
 import makeStyles from "@mui/styles/makeStyles";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useRecoilState } from "recoil";
 
 const useStyles = makeStyles((theme) => ({
   tags: {
@@ -22,10 +23,16 @@ const TAGS = gql`
   }
 `;
 
-const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
+import axios from "../../instance/axios";
+import { allTagsState, postState, tagsState, userState } from "../../states";
+
+const Tags = ({ edit }) => {
   const classes = useStyles();
 
-  const [allTags, setAllTags] = useState([]);
+  const [allTags, setAllTags] = useRecoilState(allTagsState);
+  const [tags, setTags] = useRecoilState(tagsState);
+  const [post, setPost] = useRecoilState(postState);
+  const [user, setUser] = useRecoilState(userState);
 
   const { data } = useQuery(TAGS);
 
@@ -44,7 +51,11 @@ const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
       freeSolo
       value={tags.map((tag) => tag.name)}
       onChange={(event, newValue) => {
-        tagsAdd(event.target.value);
+        axios
+          .post(`/posts/${post.id}/tag`, { name: event.target.value })
+          .then(({ data }) => {
+            setTags((tags) => [...tags, data]);
+          });
       }}
       renderTags={(value, getTagProps) =>
         value.map((option, index) => (
@@ -54,7 +65,21 @@ const Tags = ({ lab, tags, tagsDelete, tagsAdd, edit }) => {
             size="small"
             label={option}
             {...getTagProps({ index })}
-            onDelete={lab.userId && edit ? () => tagsDelete(option) : undefined}
+            onDelete={
+              user.userId && edit
+                ? (option) => {
+                    axios
+                      .delete(`/posts/${post.id}/tag`, {
+                        data: { name: option },
+                      })
+                      .then(({ data: count }) => {
+                        if (count === 1) {
+                          // todo
+                        }
+                      });
+                  }
+                : undefined
+            }
           />
         ))
       }

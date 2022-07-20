@@ -13,21 +13,22 @@ import {
   Typography,
 } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import { loginAction } from "actions";
-import Email from "components/auth/Email";
-import LoginOrRegisterButton from "components/auth/LoginOrRegisterButton";
-import Name from "components/auth/Name";
-import Password from "components/auth/Password";
-import PasswordConfirmation from "components/auth/PasswordConfirmation";
-import PhoneNumber from "components/auth/PhoneNumber";
-import Verify from "components/auth/Verify";
-import GitHubLogin from "components/GithubLogin";
-import Loading from "components/Loading";
-import Copyright from "components/site/Copyright";
 import axios from "instance/axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert2";
+
+import { loginAction } from "../../actions";
+import Email from "../../components/auth/Email";
+import LoginOrRegisterButton from "../../components/auth/LoginOrRegisterButton";
+import Name from "../../components/auth/Name";
+import Password from "../../components/auth/Password";
+import PasswordConfirmation from "../../components/auth/PasswordConfirmation";
+import PhoneNumber from "../../components/auth/PhoneNumber";
+import Verify from "../../components/auth/Verify";
+import GitHubLogin from "../../components/GithubLogin";
+import Loading from "../../components/Loading";
+import Copyright from "../../components/site/Copyright";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -274,7 +275,7 @@ const Register = ({ history }) => {
           </TabPanel>
           <TabPanel value={tabIndex} index={2}>
             <GitHubLogin
-              clientId={process.env.REACT_APP_GITHUB_CLIENT_ID}
+              clientId={import.meta.env.VITE_GITHUB_CLIENT_ID}
               redirectUri=""
               onSuccess={onSuccess}
               onFailure={onFailure}

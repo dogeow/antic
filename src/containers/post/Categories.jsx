@@ -1,9 +1,11 @@
 import { useQuery } from "@apollo/client";
 import Skeleton from "@mui/material/Skeleton";
-import ChipFlow from "components/ChipFlow";
-import { CATEGORIES } from "graphql/post";
+import _ from "lodash";
 import * as React from "react";
 import { useEffect, useState } from "react";
+
+import ChipFlow from "../../components/ChipFlow";
+import { CATEGORIES } from "../../graphql/post";
 
 export default (props) => {
   const [categories, setCategories] = useState([]);

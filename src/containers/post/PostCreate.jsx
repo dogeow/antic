@@ -1,6 +1,6 @@
-import "styles/editor.css";
+import "../../styles/editor.css";
 
-import { gql, useLazyQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import CheckIcon from "@mui/icons-material/Check";
 import ErrorIcon from "@mui/icons-material/ErrorOutline";
 import SaveIcon from "@mui/icons-material/Save";
@@ -15,21 +15,20 @@ import {
 } from "@mui/material";
 import { green, red } from "@mui/material/colors";
 import makeStyles from "@mui/styles/makeStyles";
-import { postContentSave, postModify, postSave, postTitle } from "actions";
 import clsx from "clsx";
-import CodeBlock from "components/CodeBlock";
-import Tags from "components/post/Tags";
-import { POST_BY_ID } from "graphql/post";
-import axios from "instance/axios";
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import MdEditor from "react-markdown-editor-lite";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import gfm from "remark-gfm";
 import Swal from "sweetalert2";
+
+import CodeBlock from "../../components/CodeBlock";
+import { POST_BY_ID } from "../../graphql/post";
+import axios from "../../instance/axios";
+import Tags from "../post/Tags";
 
 const useStyles = makeStyles((theme) => {
   const background = theme.palette.background.default;
@@ -101,15 +100,16 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
+import { postState } from "../../states";
+
 export default () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const post = useSelector((state) => state.post);
   const params = useParams();
   const theId = params.id;
   const { state } = useLocation();
 
+  const [post, setPost] = useRecoilState(postState);
   const [id, setId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -123,11 +123,11 @@ export default () => {
 
   const savePost = React.useCallback(() => {
     if (data) {
-      dispatch(postSave(data.post));
+      setPost(data.post);
       setCategory(data.post.category);
       setInputValue(data.post.category.name);
     }
-  }, [data, dispatch]);
+  }, [data]);
 
   useEffect(() => {
     savePost();
@@ -156,7 +156,7 @@ export default () => {
   }, [getCategories]);
 
   const handlePublicChange = (event) => {
-    dispatch(postModify("public", event.target.checked));
+    setPost(() => ({ ...post, public: event.target.checked }));
   };
 
   const editorRef = useRef(null);
@@ -190,7 +190,7 @@ export default () => {
     })
       .then(({ data }) => {
         setId(data.id);
-        dispatch(postSave(data));
+        setPost(data);
         setLoading(false);
         setSuccess(true);
         if (method === "post") {
@@ -230,11 +230,11 @@ export default () => {
     }
     // const content = handleGetMdValue();
     localStorage.post = text;
-    dispatch(postContentSave(text));
+    setPost(() => ({ ...post, content: text }));
   };
 
   const handleTitleChange = (event) => {
-    dispatch(postTitle(event.target.value));
+    setPost(() => ({ ...post, title: event.target.value }));
   };
 
   const uploadImage = (blob) => {

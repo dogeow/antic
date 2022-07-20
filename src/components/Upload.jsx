@@ -1,9 +1,10 @@
 import Grid from "@mui/material/Grid";
-import { snackMessage } from "actions";
-import axios from "instance/axios";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useDispatch } from "react-redux";
+
+import { snackMessage } from "../actions";
+import axios from "../instance/axios";
 
 const Upload = (props) => {
   const [data, setData] = useState();

@@ -61,7 +61,7 @@ const Music = () => {
         <audio
           id="music"
           ref={audio}
-          src={`${process.env.REACT_APP_CDN_URL}/music/${musics[no]}`}
+          src={`${import.meta.env.VITE_CDN_URL}/music/${musics[no]}`}
           controls="controls"
           preload="auto"
           controlsList="nodownload"

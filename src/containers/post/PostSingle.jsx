@@ -4,12 +4,14 @@ import Grid from "@mui/material/Grid";
 import Skeleton from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
-import AlertDialog from "components/AlertDialog";
-import { DELETE_POST_BY_ID, POST_BY_ID } from "graphql/post";
 import React, { useEffect, useState } from "react";
 import ReactMarkdownHeading from "react-markdown-heading";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
 
+import AlertDialog from "../../components/AlertDialog";
+import { DELETE_POST_BY_ID, POST_BY_ID } from "../../graphql/post";
+import { postState } from "../../states";
 import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
 
@@ -55,12 +57,12 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const PostSingle = ({ postSave }) => {
+const PostSingle = () => {
   const classes = useStyles();
   const { id } = useParams();
-  const [post, setPost] = useState({});
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
   const [tocButtonDisplay, setTocButtonDisplay] = useState(false);
+  const [post, setPost] = useRecoilState(postState);
   const [menu, setMenu] = useState(false);
 
   const navigate = useNavigate();
@@ -78,7 +80,6 @@ const PostSingle = ({ postSave }) => {
   useEffect(() => {
     if (data) {
       setPost(data.post);
-      postSave(data.post);
 
       // 当 TOC 的 heading 大于等于 2 时，才显示 TOC 按钮
       const regexp = RegExp("^#{2}", "mg");
@@ -87,7 +88,7 @@ const PostSingle = ({ postSave }) => {
         setTocButtonDisplay(true);
       }
     }
-  }, [data, post.content, postSave]);
+  }, [data, post.content]);
 
   const handleEdit = () => {
     navigate(`/posts/${id}/edit`);
@@ -130,7 +131,9 @@ const PostSingle = ({ postSave }) => {
               <Grid item>
                 <Link to={`/posts?filter[category.name]=${post.category.name}`}>
                   <img
-                    src={`${process.env.REACT_APP_CDN_URL}/logo/${post.category.name}.svg`}
+                    src={`${import.meta.env.VITE_CDN_URL}/logo/${
+                      post.category.name
+                    }.svg`}
                     alt={post.category.name}
                     width="20"
                     height="20"
