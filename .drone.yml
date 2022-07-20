@@ -63,3 +63,9 @@ steps:
 #      script:
 #        - cd /var/www/antic
 #        - ls
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
