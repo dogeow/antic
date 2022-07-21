@@ -62,8 +62,6 @@ steps:
   - name: rsync
     image: drillster/drone-rsync
     volumes:
-      - name: cache
-        path: /drone/src/node_modules
       - name: env
         path: /drone/src/.env
     settings:
