@@ -6,7 +6,7 @@ steps:
   - name: yarn install
     image: node
     commands:
-      - yarn
+      - yarn install --registry https://registry.npm.taobao.org/
   - name: yarn build
     image: node
     environment:
