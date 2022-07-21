@@ -1,9 +1,10 @@
 import "./styles/index.css";
 
 import { ApolloProvider } from "@apollo/client";
-import * as React from "react";
+import React, { useEffect } from "react";
 import { render } from "react-dom";
 import { RecoilRoot } from "recoil";
+import { useRecoilSnapshot } from "recoil";
 
 import bootstrap from "./bootstrap";
 import App from "./components/App";
@@ -13,10 +14,23 @@ import reportWebVitals from "./reportWebVitals";
 // Sentry、增加 JavaScript 没有的函数（PHP 上的函数）、Chrome 控制台信息，LocalStorage 数据过期时的处理等
 bootstrap();
 
+function DebugObserver() {
+  const snapshot = useRecoilSnapshot();
+  useEffect(() => {
+    console.debug("The following atoms were modified:");
+    for (const node of snapshot.getNodes_UNSTABLE({ isModified: true })) {
+      console.debug(node.key, snapshot.getLoadable(node));
+    }
+  }, [snapshot]);
+
+  return null;
+}
+
 render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <RecoilRoot>
+        <DebugObserver />
         <App />
       </RecoilRoot>
     </ApolloProvider>
