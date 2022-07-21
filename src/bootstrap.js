@@ -5,8 +5,11 @@ import consoleInfo from "./components/ConsoleInfo";
 import changeTitle from "./components/site/ChangeTitle";
 import axios from "./instance/axios";
 
+/**
+ * Sentry、增加 JavaScript 没有的函数（PHP 上的函数）、Chrome 控制台信息，LocalStorage 数据过期时的处理等
+ */
 export default function bootstrap() {
-  if (process.env.NODE_ENV === "production") {
+  if (import.meta.env.PROD) {
     import("@sentry/react").then((Sentry) => {
       Sentry.init({ dsn: import.meta.env.VITE_SENTRY_DSN });
     });

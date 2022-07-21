@@ -11,7 +11,6 @@ import App from "./components/App";
 import client from "./instance/graphQL";
 import reportWebVitals from "./reportWebVitals";
 
-// Sentry、增加 JavaScript 没有的函数（PHP 上的函数）、Chrome 控制台信息，LocalStorage 数据过期时的处理等
 bootstrap();
 
 function DebugObserver() {
@@ -30,7 +29,7 @@ render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <RecoilRoot>
-        <DebugObserver />
+        {import.meta.env.DEV && <DebugObserver />}
         <App />
       </RecoilRoot>
     </ApolloProvider>
