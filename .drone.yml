@@ -3,11 +3,17 @@ type: docker
 name: default
 
 steps:
-  - name: yarn install
-    image: node
+  - name: restore-cache
+    image: drillster/drone-volume-cache
     volumes:
       - name: cache
-        path: /drone/src/node_modules
+        path: /cache
+    settings:
+      restore: true
+      mount:
+        - ./node_modules
+  - name: yarn install
+    image: node
     commands:
       - yarn install --registry https://registry.npm.taobao.org/
   - name: yarn build
@@ -58,6 +64,8 @@ steps:
     volumes:
       - name: cache
         path: /drone/src/node_modules
+      - name: env
+        path: /drone/src/.env
     settings:
       user: root
       key:
@@ -72,7 +80,15 @@ steps:
 #      script:
 #        - cd /var/www/antic
 #        - ls
-
+  - name: rebuild-cache
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      rebuild: true
+      mount:
+        - ./node_modules
 trigger:
   event:
     - push
@@ -81,4 +97,7 @@ volumes:
   - name: cache
     host:
       path: /tmp/cache
+  - name: env
+    host:
+      path: /var/www/antic/.env
 
