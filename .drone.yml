@@ -3,6 +3,15 @@ type: docker
 name: default
 
 steps:
+  - name: restore-cache
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      restore: true
+      mount:
+        - ./node_modules
   - name: yarn install
     image: node
     commands:
@@ -66,7 +75,23 @@ steps:
 #      script:
 #        - cd /var/www/antic
 #        - ls
+  - name: rebuild-cache
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      rebuild: true
+      mount:
+        - ./node_modules
+
 
 trigger:
   event:
     - push
+
+volumes:
+  - name: cache
+    host:
+      path: /tmp/cache
+
