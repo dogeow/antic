@@ -1,5 +1,5 @@
 import ErrorOutline from "@mui/icons-material/ErrorOutline";
-import DatePicker from "@mui/lab/DatePicker";
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import {
   Grid,
   Hidden,

@@ -1,10 +1,9 @@
-import "dayjs/locale/zh-cn";
-
-import AdapterDayjs from "@mui/lab/AdapterDayjs";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
+import zhCNLocale from "dayjs/locale/zh-cn";
 import * as React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -21,7 +20,10 @@ export default () => {
 
   return (
     <BrowserRouter>
-      <LocalizationProvider dateAdapter={AdapterDayjs} locale="zh-cn">
+      <LocalizationProvider
+        dateAdapter={AdapterDayjs}
+        adapterLocale={zhCNLocale}
+      >
         <ThemeProvider theme={themeCustomization({ paletteMode })}>
           <ScrollToTop />
           <CssBaseline />

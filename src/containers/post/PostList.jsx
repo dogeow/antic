@@ -58,7 +58,7 @@ const PostList = (props) => {
       setCurrPage(data.posts.paginatorInfo.currentPage);
       setPageCount(data.posts.paginatorInfo.lastPage);
     }
-  }, [data]);
+  }, [data, setPost]);
 
   useEffect(() => {
     if (postsByCategory) {
@@ -66,7 +66,7 @@ const PostList = (props) => {
       setCurrPage(postsByCategory.posts.paginatorInfo.currentPage);
       setPageCount(postsByCategory.posts.paginatorInfo.lastPage);
     }
-  }, [postsByCategory]);
+  }, [postsByCategory, setPost]);
 
   useEffect(() => {
     if (postsByTag) {
@@ -75,7 +75,7 @@ const PostList = (props) => {
       setCurrPage(postsByTag.tag.paginatorInfo.currentPage);
       setPageCount(postsByTag.tag.paginatorInfo.lastPage);
     }
-  }, [postsByTag]);
+  }, [postsByTag, setPost]);
 
   const handlePage = (page) => {
     getPosts(
