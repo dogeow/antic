@@ -15,8 +15,6 @@ steps:
     volumes:
       - name: cache
         path: /drone/src/node_modules
-      - name: env
-        path: /drone/src/.env
     environment:
       DOMAIN:
         from_secret: DOMAIN
@@ -81,7 +79,4 @@ volumes:
   - name: cache
     host:
       path: /tmp/antic/cache
-  - name: env
-    host:
-      path: /var/www/antic/.env
 
