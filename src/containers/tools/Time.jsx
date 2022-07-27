@@ -5,9 +5,9 @@ import * as React from "react";
 
 import ClipboardButton from "../../components/ClipboardButton";
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 // 今天日期
 const todayDate = dayjs().format("YYYY-MM-DD"); // 2020-04-22
@@ -137,7 +137,7 @@ const Time = () => {
         autoHideDuration={2000}
         onClose={handleClose}
       >
-        <Alert onClose={handleClose} severity="success">
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
           复制成功
         </Alert>
       </Snackbar>
