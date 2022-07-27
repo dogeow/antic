@@ -24,7 +24,7 @@ const nowUnixTime = dayjs().unix();
 const todayEndDateTime = dayjs(todayDate)
   .add(86400, "second")
   .format("YYYY-MM-DD HH:mm:ss");
-const todayEndUnixTime = todayStartUnixTime + 86400;
+const todayEndUnixTime = todayStartUnixTime + 86400 - 1;
 
 // 昨天
 const yesterdayStartUnix = dayjs(todayStartDateTime).subtract(1, "days").unix();
