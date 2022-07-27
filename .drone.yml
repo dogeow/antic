@@ -66,10 +66,8 @@ steps:
         from_secret: ssh_key
       hosts:
         - 172.22.253.15
-      # 来源项目目录
       source: ./dist/*
       delete: true
-      # 目标服务器目录
       target: /var/www/antic/static
 #      script:
 #        - cd /var/www/antic
@@ -82,7 +80,7 @@ trigger:
 volumes:
   - name: cache
     host:
-      path: /tmp/cache
+      path: /tmp/antic/cache
   - name: env
     host:
       path: /var/www/antic/.env
