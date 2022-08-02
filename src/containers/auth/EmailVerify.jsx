@@ -33,7 +33,6 @@ const Forget = () => {
           userId: data.id,
           userName: data.name,
           userEmail: data.email,
-          expiresIn: data.expires_in,
         });
         navigate("/");
       });

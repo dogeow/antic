@@ -8,13 +8,15 @@ import axios from "../instance/axios";
  * @param {object} data
  */
 export const logged = (data) => {
-  localStorage.token = `Bearer ${data.token}`;
-  localStorage.userId = data.userId;
-  localStorage.userName = data.userName;
-  localStorage.userEmail = data.userEmail;
-  axios.defaults.headers.common.Authorization = data.token.startsWith("Bearer")
-    ? data.token
-    : `Bearer ${data.token}`;
+  localStorage.token = `Bearer ${data.access_token}`;
+  localStorage.userId = data.id;
+  localStorage.userName = data.name;
+  localStorage.userEmail = data.email;
+  axios.defaults.headers.common.Authorization = data.access_token.startsWith(
+    "Bearer"
+  )
+    ? data.access_token
+    : `Bearer ${data.access_token}`;
 };
 
 /**

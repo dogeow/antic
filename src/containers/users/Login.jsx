@@ -26,8 +26,9 @@ import { useRecoilState } from "recoil";
 
 import Copyright from "../../components/site/Copyright";
 import wallpaper from "../../config/wallpaper";
+import { logged } from "../../helpers";
 import axios from "../../instance/axios";
-import { userState } from "../../states";
+import { isExpiredState, userState } from "../../states";
 
 const random = Math.floor(Math.random() * wallpaper.length);
 
@@ -72,6 +73,7 @@ export default () => {
   const { state } = useLocation();
   const classes = useStyles();
   const [user, setUser] = useRecoilState(userState);
+  const [isExpired, setIsExpired] = useRecoilState(isExpiredState);
   const [account, setAccount] = useState("");
   const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState("");
@@ -97,13 +99,16 @@ export default () => {
           remember_me: rememberMe,
         })
         .then(({ data }) => {
+          console.log(data);
+          setIsExpired(false);
+          const token = "Bearer " + data.access_token;
           setUser({
-            token: data.access_token,
+            token,
             userId: data.id,
             userName: data.name,
             userEmail: data.email,
-            expiresIn: data.expires_in,
           });
+          logged(data);
           if (state) {
             navigate(state.from);
           } else {
@@ -304,7 +309,6 @@ export default () => {
                       userId: data.id,
                       userName: data.name,
                       userEmail: data.email,
-                      expiresIn: data.expires_in,
                     });
                     navigate("/");
                   });

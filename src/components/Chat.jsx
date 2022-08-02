@@ -212,7 +212,6 @@ export default function Chat() {
                       userId: data.id,
                       userName: data.name,
                       userEmail: data.email,
-                      expiresIn: data.expires_in,
                     });
                   });
               });
@@ -309,7 +308,7 @@ export default function Chat() {
         >
           {people.map((person) => {
             return (
-              <Grid item xs={12} container key={people.id}>
+              <Grid item xs={12} container key={person.id}>
                 <Grid item xs={12}>
                   <Avatar
                     alt={person.name}
