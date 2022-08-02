@@ -2,27 +2,28 @@ import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
 import md5 from "md5";
 import * as React from "react";
-import { useSelector } from "react-redux";
+import { useRecoilState } from "recoil";
 
 import { gravatarCdn } from "../../config/services";
+import { userState } from "../../states";
 
 const User = () => {
-  const lab = useSelector((state) => state.lab);
-  const avatar = `${gravatarCdn}/${md5(lab.userEmail)}.jpg?d=monsterid&s=300`;
+  const [user, setUser] = useRecoilState(userState);
+  const avatar = `${gravatarCdn}/${md5(user.userEmail)}.jpg?d=monsterid&s=300`;
 
   return (
     <Grid container spacing={2} alignItems="center">
       <Grid item>
         <Avatar
-          alt={lab.user_name}
+          alt={user.userName}
           src={avatar}
           style={{ width: 150, height: 150 }}
         />
       </Grid>
       <Grid item>
-        <div>ID：{lab.userId}</div>
-        <div>昵称：{lab.userName}</div>
-        <div>邮箱：{lab.userEmail}</div>
+        <div>ID：{user.userId}</div>
+        <div>昵称：{user.userName}</div>
+        <div>邮箱：{user.userEmail}</div>
       </Grid>
       <Grid item xs={12}>
         <ul>

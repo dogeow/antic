@@ -9,19 +9,19 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useRecoilState } from "recoil";
 
-import { snackMessage } from "../../actions";
 import ClipboardButton from "../../components/ClipboardButton";
+import { snackMessageState } from "../../states";
 
 const emptyCost = { money: "", note: "", isCost: true };
 
 const Money = () => {
-  const dispatch = useDispatch();
   const [bills, setBills] = useState([emptyCost]);
   const [billText, setBillText] = useState("");
   const [remaining, setRemaining] = useState("");
   const [newRemaining, setNewRemaining] = useState("");
+  const [snackMessage, setSnackMessage] = useRecoilState(snackMessageState);
 
   const toggleIsCostState = (billIndex) => {
     setBills(
@@ -90,7 +90,7 @@ const Money = () => {
   }, [remaining, bills, newRemaining]);
 
   const handleClick = () => {
-    dispatch(snackMessage("复制成功"));
+    setSnackMessage("复制成功");
   };
 
   const remainingChange = (e) => {

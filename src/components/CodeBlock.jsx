@@ -1,12 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useRecoilState } from "recoil";
+
+import { paletteModeState } from "../states";
 
 const CodeBlock = (props) => {
   const { language, value } = props;
 
-  const paletteMode = useSelector((state) => state.lab.paletteMode);
+  const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
 
   return (
     <SyntaxHighlighter

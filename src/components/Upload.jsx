@@ -1,14 +1,15 @@
 import Grid from "@mui/material/Grid";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { useDispatch } from "react-redux";
+import { useRecoilState } from "recoil";
 
 import { snackMessage } from "../actions";
 import axios from "../instance/axios";
+import { snackMessageState } from "../states";
 
 const Upload = (props) => {
   const [data, setData] = useState();
-  const dispatch = useDispatch();
+  const [snackMessage, setSnackMessage] = useRecoilState(snackMessageState);
 
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -32,7 +33,7 @@ const Upload = (props) => {
         })
         .then(({ data }) => {
           setData(data);
-          dispatch(snackMessage("上传成功"));
+          setSnackMessage("上传成功");
         });
     },
     [dispatch, props.keyName]

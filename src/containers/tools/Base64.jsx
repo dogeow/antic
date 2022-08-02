@@ -2,17 +2,17 @@ import "../../styles/base64.css";
 
 import Grid from "@mui/material/Grid";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useRecoilState } from "recoil";
 
-import { snackMessage } from "../../actions";
 import ClipboardButton from "../../components/ClipboardButton";
+import { snackMessageState } from "../../states";
 
 export default function () {
-  const dispatch = useDispatch();
   const [base64Str, setBase64St] = useState("");
+  const [snackMessage, setSnackMessage] = useRecoilState(snackMessageState);
 
   const handleClick = () => {
-    dispatch(snackMessage("复制成功"));
+    setSnackMessage("复制成功");
   };
 
   const load = (event) => {
