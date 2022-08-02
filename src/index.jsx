@@ -2,7 +2,7 @@ import "./styles/index.css";
 
 import { ApolloProvider } from "@apollo/client";
 import React, { useEffect } from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { RecoilRoot } from "recoil";
 import { useRecoilSnapshot } from "recoil";
 
@@ -25,7 +25,10 @@ function DebugObserver() {
   return null;
 }
 
-render(
+const container = document.querySelector("#root");
+const root = createRoot(container);
+
+root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <RecoilRoot>
@@ -33,8 +36,7 @@ render(
         <App />
       </RecoilRoot>
     </ApolloProvider>
-  </React.StrictMode>,
-  document.querySelector("#root")
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

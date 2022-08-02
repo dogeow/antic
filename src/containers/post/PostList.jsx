@@ -50,7 +50,9 @@ const PostList = (props) => {
 
   const [getPostsByTag, { data: postsByTag }] = useLazyQuery(TAG);
 
-  useEffect(() => getPosts(), [getPosts]);
+  useEffect(() => {
+    getPosts();
+  }, [getPosts]);
 
   useEffect(() => {
     if (data) {
