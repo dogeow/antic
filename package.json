@@ -45,7 +45,7 @@
     "immutability-helper": "^3.1.1",
     "immutable": "^4.0.0-rc.12",
     "is-hotkey": "^0.2.0",
-    "laravel-echo": "^1.10.0",
+    "laravel-echo": "^1.13.1",
     "lodash": "^4.17.20",
     "md5": "^2.3.0",
     "prismjs": "^1.27.0",

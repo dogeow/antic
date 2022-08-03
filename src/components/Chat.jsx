@@ -72,8 +72,6 @@ export default function Chat() {
 
     let typingTime;
 
-    window.Echo.options.auth.headers.Authorization = user.token;
-
     window.Echo.join("chat")
       .here((user) => {
         setLoading(false);

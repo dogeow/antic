@@ -3796,10 +3796,10 @@ ky@^0.12.0:
   resolved "https://registry.npmmirror.com/ky/-/ky-0.12.0.tgz#c05be95e6745ba422a6d2cc8ae964164962279f9"
   integrity sha512-t9b7v3V2fGwAcQnnDDQwKQGF55eWrf4pwi1RN08Fy8b/9GEwV7Ea0xQiaSW6ZbeghBHIwl8kgnla4vVo9seepQ==
 
-laravel-echo@^1.10.0:
-  version "1.11.7"
-  resolved "https://registry.npmmirror.com/laravel-echo/-/laravel-echo-1.11.7.tgz#f9e4e6ce8069eaeca0b41924dd237629bf9f4bcb"
-  integrity sha512-LhEZp/RbdtdMlhptJyn452+aXfz+A1UW2bhJM7NROgXhnNgj+6P9BkG9JcPCBMernp5TGkOGI6A0NPbkAWYWGg==
+laravel-echo@^1.13.1:
+  version "1.13.1"
+  resolved "https://registry.npmmirror.com/laravel-echo/-/laravel-echo-1.13.1.tgz#fe7d0c997a38a6fb6eb36f147a57b23b4090cdd9"
+  integrity sha512-tvJtbE0ppEwlO/rcFyN1JCLunDUG5pIVFWORSCkzkGEcJQzB+Eevs9PpIvsMtkz2JTNbUPHU+5GSkSh1/TIr4A==
 
 levn@^0.4.1:
   version "0.4.1"

@@ -99,7 +99,6 @@ export default () => {
           remember_me: rememberMe,
         })
         .then(({ data }) => {
-          console.log(data);
           setIsExpired(false);
           const token = "Bearer " + data.access_token;
           setUser({
