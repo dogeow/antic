@@ -23,7 +23,9 @@
 - [React](https://zh-hans.reactjs.org/)
 - [Material-UI](https://material-ui.com/zh/)
 
-## Project supported by JetBrains
+## Acknowledgements
+
+### Project supported by JetBrains
 
 Many thanks to Jetbrains for kindly providing a license for me to work on this and other open-source projects.
 
