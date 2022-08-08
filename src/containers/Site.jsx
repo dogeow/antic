@@ -67,6 +67,10 @@ const Site = () => {
           ? dayjs(params.row.last_updated_at).fromNow()
           : "-",
     },
+    {
+      field: "note",
+      headerName: "备注",
+    },
   ];
 
   useEffect(() => {
