@@ -12,7 +12,7 @@ export const toggleDrawerState = atom({
 
 export const isExpiredState = atom({
   key: "isExpired",
-  default: true,
+  default: localStorage.token === undefined,
 });
 
 export const isSnackOpenState = atom({
@@ -28,10 +28,10 @@ export const snackMessageState = atom({
 export const userState = atom({
   key: "user",
   default: {
-    token: "",
-    userId: "",
-    userEmail: "",
-    userName: "",
+    token: localStorage.token || "",
+    userId: localStorage.userId || "",
+    userEmail: localStorage.userEmail || "",
+    userName: localStorage.userName || "",
   },
 });
 
