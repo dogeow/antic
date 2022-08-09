@@ -76,7 +76,7 @@
     "remark-toc": "^7.2.0",
     "scroll-to-element": "^2.0.3",
     "source-map-explorer": "^2.5.2",
-    "sweetalert2": "^10.12.3",
+    "sweetalert2": "^11.4.24",
     "video.js": "^7.10.2",
     "vite": "^3.0.2",
     "web-vitals": "^0.2.4"
