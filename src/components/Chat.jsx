@@ -29,7 +29,6 @@ export default function Chat() {
   const [typing, setTyping] = useState(undefined);
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
-  const [person, setPerson] = useRecoilState(personState);
   const [people, setPeople] = useRecoilState(peopleState);
   const [chatBoard, setChatBoard] = useRecoilState(chatBoardState);
   const [user, setUser] = useRecoilState(userState);
