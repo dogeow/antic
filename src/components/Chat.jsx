@@ -73,16 +73,22 @@ export default function Chat() {
     let typingTime;
 
     window.Echo.join("chat")
-      .here((user) => {
+      .here((herePeople) => {
         setLoading(false);
-        setPeople(user);
-        setAlertMessage(`${_.map(user, "name")} 正在房间`);
-        setAlertOpen(true);
+        const newPeople = _.uniqBy([...people, ...herePeople], "id");
+        setPeople(newPeople);
+        if (_.find(newPeople, ["id", parseInt(user.userId)])) {
+          setAlertMessage("您已加入房间");
+          setAlertOpen(true);
+        }
       })
       .joining((user) => {
-        setPeople((people) => [...people, user]);
-        setAlertMessage(`${user.name} 加入了房间`);
-        setAlertOpen(true);
+        const newPeople = _.uniqBy([...people, user], "id");
+        if (people !== newPeople) {
+          setPeople(newPeople);
+          setAlertMessage(`${user.name} 加入了房间`);
+          setAlertOpen(true);
+        }
       })
       .leaving((user) => {
         setPeople((people) => _.without(people, user));
