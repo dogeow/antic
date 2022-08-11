@@ -6,29 +6,29 @@
 
 [//]: # (![GitHub Action]&#40;https://github.com/likunyan/antic/workflows/React/badge.svg&#41;)
 
-[中文](README_ZH.md)
+[English](README.md)
 
-## Intro
+## 介绍
 
-Learn the React.Use ES6，React Hook...
+学习 React。使用 ES6，React Hook。
 
-## Backend
+## 后端
 
-Use [Laravel](https://learnku.com/laravel) - The PHP Framework For Web Artisans.
+使用 [Laravel](https://learnku.com/laravel) - 为艺术家创造的 PHP 框架。
 
-GitHub Link: https://github.com/likunyan/antic-api
+GitHub 地址：https://github.com/likunyan/antic-api
 
-## Power by
+## 驱动
 - [Redux](https://cn.redux.js.org/)
 - [React-Redux](https://www.redux.org.cn/)
 - [React-Router](https://reacttraining.com/react-router/)
 - [React](https://zh-hans.reactjs.org/)
 - [Material-UI](https://material-ui.com/zh/)
 
-## Acknowledgements
+## 致谢
 
-### Project supported by JetBrains
+### JetBrains 支持了该项目
 
-Many thanks to Jetbrains for kindly providing a license for me to work on this and other open-source projects.
+非常感谢 Jetbrains 为我提供了一份许可证书，用来开发这个和其他开源项目。
 
 [![](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/?from=https://github.com/likunyan)

@@ -192,7 +192,7 @@ export default () => {
                       aria-label="Clear"
                       onClick={() => setAccount("")}
                       edge="end"
-                      tabindex="-1"
+                      tabIndex="-1"
                       size="large"
                     >
                       <ClearIcon />
@@ -249,7 +249,7 @@ export default () => {
                       aria-label="Clear"
                       onClick={() => setPassword("")}
                       edge="end"
-                      tabindex="-1"
+                      tabIndex="-1"
                       size="large"
                     >
                       <ClearIcon />
