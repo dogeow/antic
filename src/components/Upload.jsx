@@ -3,7 +3,6 @@ import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useRecoilState } from "recoil";
 
-import { snackMessage } from "../actions";
 import axios from "../instance/axios";
 import { snackMessageState } from "../states";
 
