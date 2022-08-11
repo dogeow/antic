@@ -7,7 +7,6 @@ export default {
     { name: "一些 Demo", url: "/demo" },
     { name: "API", url: "/api" },
     { name: "物品", url: "/something" },
-    { name: "表情", url: "/emoji" },
     { name: "微博热搜榜", url: "/weibo" },
   ],
   externalMenus: [

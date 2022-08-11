@@ -17,7 +17,7 @@ import { useRecoilState } from "recoil";
 import Avatar from "../components/Gravatar";
 import Loading from "../components/Loading";
 import axios from "../instance/axios";
-import { chatBoardState, peopleState, personState, userState } from "../states";
+import { chatBoardState, peopleState, userState } from "../states";
 import Expire from "./Expire";
 
 let timer = null;

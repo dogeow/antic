@@ -1,12 +1,14 @@
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import * as React from "react";
-import { useSelector } from "react-redux";
+import { useRecoilState } from "recoil";
 
+import { expandCategoryState } from "../../states/emoji";
 import CategoriesElem from "./CategoriesElem";
 
 const Category = (props) => {
-  const expandCategory = useSelector((state) => state.emoji.expandCategory);
+  const [expandCategory, setExpandCategory] =
+    useRecoilState(expandCategoryState);
   const color = props.selectedCategory === "全部" ? "secondary" : "primary";
 
   return (

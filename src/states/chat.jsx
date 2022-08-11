@@ -1,9 +1,8 @@
 import { atom } from "recoil";
 
-export const personState = atom({
-  key: "person",
-  default: {},
-});
+// todo 用户离开，聊天内容删掉
+
+// _.remove(draft.peoples, { id: userid });
 
 export const peopleState = atom({
   key: "people",
