@@ -37,7 +37,8 @@ import Logo from "../components/Logo";
 import Search from "../components/Search";
 import Settings from "../components/Settings";
 import { getGravatarAddress, logout } from "../helpers";
-import axios from "../instance/axios";
+import { emptyUser } from "../objects/user";
+import { logoutRequest } from "../requests/user";
 import {
   isExpiredState,
   isSnackOpenState,
@@ -415,38 +416,27 @@ const Header = () => {
                       const requests = [];
                       if (localStorage.users) {
                         JSON.parse(localStorage.users).map((user) => {
-                          requests.push(
-                            axios.post(
-                              "/user/logout",
-                              {},
-                              {
-                                headers: {
-                                  Authorization: user.token,
-                                },
-                              }
-                            )
-                          );
+                          requests.push(logoutRequest(user.token));
                           Promise.all(requests).then(function ([acct, perms]) {
-                            setUser({
-                              userId: "",
-                              userEmail: "",
-                              userName: "",
-                              token: "",
-                            });
-                            setIsExpired(true);
-                            setSnackMessage("退出成功");
-                            setIsSnackOpen(true);
-                            setUsers([]);
                             localStorage.removeItem("users");
+                            setUsers([]);
                           });
                         });
                       }
-                      logout();
+                      if (localStorage.token) {
+                        logoutRequest(user.token).then(() => {
+                          setUser(emptyUser);
+                          logout();
+                        });
+                        setIsExpired(true);
+                      }
+                      setSnackMessage("退出成功");
+                      setIsSnackOpen(true);
                     }}
                   >
                     <LogoutIcon style={{ width: 40 }} />
                     <span style={{ margin: "0 10px 0 10px" }}>
-                      退出所有账号
+                      {localStorage.users ? "注销所有账号" : "注销"}
                     </span>
                   </MenuItem>
                 </Menu>
