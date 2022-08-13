@@ -1,6 +1,6 @@
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ClearIcon from "@mui/icons-material/Clear";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import NotListedLocationOutlinedIcon from "@mui/icons-material/NotListedLocationOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -147,14 +147,12 @@ export default () => {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography>或</Typography>
+              <Typography style={{ color: "#f50057" }}>或</Typography>
             </Grid>
             <Grid item>
-              <Typography component="h2" variant="h5">
-                <RouteLink to="/register" style={{ color: "#f50057" }}>
-                  注册
-                </RouteLink>
-              </Typography>
+              <RouteLink to="/register" style={{ color: "#f50057" }}>
+                <Typography>注册</Typography>
+              </RouteLink>
             </Grid>
           </Grid>
           <form className={classes.form} noValidate>
@@ -185,7 +183,7 @@ export default () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <MailOutlineIcon />
+                    <AccountCircleIcon />
                   </InputAdornment>
                 ),
                 endAdornment: account !== "" && (
