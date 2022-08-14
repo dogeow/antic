@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -42,8 +42,7 @@ const Music = () => {
         <List component="nav" dense="true" aria-label="main mailbox folders">
           {musics.map((music, index) => {
             return (
-              <ListItem
-                button
+              <ListItemButton
                 key={index}
                 selected={selectedIndex === index}
                 onClick={(event) => {
@@ -52,7 +51,7 @@ const Music = () => {
                 }}
               >
                 <ListItemText primary={music} />
-              </ListItem>
+              </ListItemButton>
             );
           })}
         </List>
@@ -69,7 +68,7 @@ const Music = () => {
           你的浏览器不支持audio标签
         </audio>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} spacing={1}>
         <button type="button" onClick={() => audio.current.play()}>
           播放声音
         </button>

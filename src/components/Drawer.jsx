@@ -2,7 +2,7 @@ import {
   Divider,
   Link,
   List,
-  ListItem,
+  ListItemButton,
   ListItemText,
   SwipeableDrawer,
 } from "@mui/material";
@@ -52,14 +52,13 @@ const TemporaryDrawer = (props) => {
     >
       <List>
         {appConfig.menus.map((menu, index) => (
-          <ListItem button to={menu.url} component={RouteLink} key={index}>
+          <ListItemButton to={menu.url} component={RouteLink} key={index}>
             <ListItemText primary={menu.name} />
-          </ListItem>
+          </ListItemButton>
         ))}
         <Divider />
         {appConfig.externalMenus.map((menu) => (
-          <ListItem
-            button
+          <ListItemButton
             component={Link}
             underline="none"
             style={{ cursor: "alias" }}
@@ -68,17 +67,17 @@ const TemporaryDrawer = (props) => {
             key={menu.url}
           >
             <ListItemText primary={menu.name} />
-          </ListItem>
+          </ListItemButton>
         ))}
         <Divider />
-        <ListItem button to="/about" component={RouteLink}>
+        <ListItemButton to="/about" component={RouteLink}>
           <img
             src={anticPic}
             alt="antic"
             style={{ height: 20, marginRight: 4 }}
           />
           <ListItemText primary="关于我" />
-        </ListItem>
+        </ListItemButton>
       </List>
     </div>
   );

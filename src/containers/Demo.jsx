@@ -18,7 +18,9 @@ const Demo = () => (
           <Link to="/color">颜色查看器</Link>
         </li>
         <li>
-          <Link to="/goods">物品管理</Link>
+          <a href="https://thing.dogeow.com" target="_blank" rel="noreferrer">
+            物品管理
+          </a>
         </li>
         <li>
           <Link to="/base64">Base64</Link>
