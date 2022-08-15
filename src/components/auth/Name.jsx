@@ -6,18 +6,18 @@ import React from "react";
 export default (props) => (
   <TextField
     id="name"
-    label="昵称"
     name="name"
+    label="昵称"
     value={props.name}
     autoComplete="name"
     variant="outlined"
-    fullWidth
     required
+    fullWidth
     placeholder="4-16个字符（一个中文为 2 个字符）"
     helperText={props.error?.[0]}
-    error={!!props.error}
     InputLabelProps={props.error && { shrink: true }}
     onChange={(e) => props.onSetName(e.target.value)}
+    error={!!props.error}
     InputProps={{
       startAdornment: (
         <InputAdornment position="start">

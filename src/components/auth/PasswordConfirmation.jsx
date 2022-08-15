@@ -6,13 +6,13 @@ import React from "react";
 
 export default (props) => (
   <TextField
-    variant="outlined"
-    fullWidth
-    name="password_confirmation"
-    value={props.passwordConfirmation}
-    label="确认密码"
     type={props.displayPassword ? "text" : "password"}
     id="password_confirmation"
+    name="password_confirmation"
+    label="确认密码"
+    value={props.passwordConfirmation}
+    fullWidth
+    variant="outlined"
     autoComplete="current-password-confirmation"
     onChange={(e) => props.setPasswordConfirmation(e.target.value)}
     error={!!props.error}

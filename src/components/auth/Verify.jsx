@@ -5,14 +5,14 @@ import React from "react";
 
 export default (props) => (
   <TextField
-    variant="outlined"
-    required
-    fullWidth
-    name="verify"
-    value={props.verify}
-    label="验证码"
     type="text"
     id="verify"
+    name="verify"
+    label="验证码"
+    value={props.verify}
+    required
+    fullWidth
+    variant="outlined"
     autoComplete="current-verify"
     onChange={(e) => props.setVerify(e.target.value)}
     error={!!props.error}

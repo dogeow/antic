@@ -9,15 +9,15 @@ export default (props) => (
     required
     fullWidth
     id="email"
-    label="Email 地址"
     name="email"
+    label="Email 地址"
     value={props.email}
     autoComplete="email"
-    onChange={(e) => props.setEmail(e.target.value)}
-    error={!!props.error}
     placeholder="username@example.com"
+    onChange={(e) => props.setEmail(e.target.value)}
     InputLabelProps={props.error && { shrink: true }}
     helperText={props.error?.[0]}
+    error={!!props.error}
     InputProps={{
       startAdornment: (
         <InputAdornment position="start">
