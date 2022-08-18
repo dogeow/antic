@@ -318,7 +318,7 @@ const Header = () => {
                 <IconButton
                   color="inherit"
                   component={RouteLink}
-                  href="https://github.com/likunyan/antic"
+                  href="https://github.com/dogeow/antic"
                   to={{
                     pathname: "/login",
                     state: { from: pathname },

@@ -84,7 +84,7 @@ const Footer = () => {
               <IconButton
                 color="inherit"
                 component="a"
-                href="https://github.com/likunyan/antic"
+                href="https://github.com/dogeow/antic"
                 target="_blank"
                 size="large"
               >
