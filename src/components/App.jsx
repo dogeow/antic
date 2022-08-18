@@ -4,7 +4,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import zhCNLocale from "dayjs/locale/zh-cn";
-import * as React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
@@ -17,6 +17,21 @@ dayjs.locale("zh-cn");
 
 export default () => {
   const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
+
+  useEffect(() => {
+    const handle = (e) => {
+      const newColorScheme = e.matches ? "dark" : "light";
+      setPaletteMode(newColorScheme);
+    };
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", handle);
+    return () => {
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .removeEventListener("change", handle);
+    };
+  }, [setPaletteMode]);
 
   return (
     <BrowserRouter>

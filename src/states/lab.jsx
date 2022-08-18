@@ -2,7 +2,11 @@ import { atom } from "recoil";
 
 export const paletteModeState = atom({
   key: "paletteMode",
-  default: "dark",
+  default:
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light",
 });
 
 export const toggleDrawerState = atom({
