@@ -3,7 +3,7 @@
  * @param {string} env
  */
 export default function displayInConsole(env) {
-  if (process.env.NODE_ENV !== env) {
+  if (import.meta.env.DEV) {
     return;
   }
 
