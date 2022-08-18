@@ -192,7 +192,7 @@ export default () => {
                       aria-label="Clear"
                       onClick={() => setAccount("")}
                       edge="end"
-                      tabIndex="-1"
+                      tabIndex={-1}
                       size="large"
                     >
                       <ClearIcon />
