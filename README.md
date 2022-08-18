@@ -1,10 +1,10 @@
 # Lab
 
-[![Build Status](https://drone.dogeow.com/api/badges/likunyan/antic/status.svg)](http://drone.dogeow.com:880/likunyan/antic)
-[![CircleCI](https://circleci.com/gh/likunyan/antic.svg?style=shield)](https://circleci.com/gh/likunyan/antic)
+[![Build Status](https://drone.dogeow.com/api/badges/dogeow/antic/status.svg)](http://drone.dogeow.com:880/dogeow/antic)
+[![CircleCI](https://circleci.com/gh/dogeow/antic.svg?style=shield)](https://circleci.com/gh/dogeow/antic)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-[//]: # (![GitHub Action]&#40;https://github.com/likunyan/antic/workflows/React/badge.svg&#41;)
+[//]: # (![GitHub Action]&#40;https://github.com/dogeow/antic/workflows/React/badge.svg&#41;)
 
 [中文](README_ZH.md)
 
@@ -16,7 +16,7 @@ Learn the React.Use ES6，React Hook...
 
 Use [Laravel](https://learnku.com/laravel) - The PHP Framework For Web Artisans.
 
-GitHub Link: https://github.com/likunyan/antic-api
+GitHub Link: https://github.com/dogeow/antic-api
 
 ## Power by
 - [Redux](https://cn.redux.js.org/)
@@ -31,4 +31,4 @@ GitHub Link: https://github.com/likunyan/antic-api
 
 Many thanks to Jetbrains for kindly providing a license for me to work on this and other open-source projects.
 
-[![](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/?from=https://github.com/likunyan)
+[![](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/?from=https://github.com/dogeow)
