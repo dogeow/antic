@@ -55,16 +55,6 @@ const About = () => {
           </li>
         </ul>
       </div>
-      <div>
-        <h3>期望</h3>
-        <ul>
-          <li>OW 2</li>
-          <li>暗黑手游</li>
-          <li>特斯拉全自动驾驶</li>
-          <li>苹果汽车</li>
-          <li>Material-UI V5</li>
-        </ul>
-      </div>
     </div>
   );
 };

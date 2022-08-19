@@ -82,37 +82,6 @@ export default function Chat() {
   };
 
   useEffect(() => {
-    window.Echo = new Echo({
-      broadcaster: "pusher",
-      key: import.meta.env.VITE_PUSHER_APP_KEY,
-      wsHost: import.meta.env.VITE_PUSHER_HOST,
-      wsPort: import.meta.env.VITE_PUSHER_PORT,
-      wssPort: import.meta.env.VITE_PUSHER_PORT,
-      forceTLS: false,
-      encrypted: true,
-      disableStats: true,
-      enabledTransports: ["ws", "wss"],
-      authorizer: (channel, options) => {
-        return {
-          authorize: localStorage.getItem("token")
-            ? (socketId, callback) => {
-                axios
-                  .post("/broadcasting/auth", {
-                    socket_id: socketId,
-                    channel_name: channel.name,
-                  })
-                  .then((response) => {
-                    callback(false, response.data);
-                  })
-                  .catch((error) => {
-                    callback(true, error);
-                  });
-              }
-            : () => {},
-        };
-      },
-    });
-
     let typingTime;
 
     window.Echo.private("chat").listenForWhisper("typing", (e) => {
@@ -151,12 +120,21 @@ export default function Chat() {
         }
       })
       .joining((user) => {
-        const newPeople = _.uniqBy([user, ...people], "id");
-        if (people !== newPeople) {
+        const index = people.findIndex((person) => person.id === user.id);
+        if (index) {
+          const newPeople = replaceItemAtIndex(people, index, {
+            ...user,
+            active: true,
+          });
           setPeople(newPeople);
-          setAlertMessage(`${user.name} 加入了房间`);
-          setAlertOpen(true);
+        } else {
+          const newPeople = _.uniqBy([user, ...people], "id");
+          if (people !== newPeople) {
+            setPeople(newPeople);
+          }
         }
+        setAlertMessage(`${user.name} 加入了房间`);
+        setAlertOpen(true);
       })
       .leaving((user) => {
         const index = people.findIndex((person) => person === user);
