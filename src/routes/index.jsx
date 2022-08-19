@@ -51,7 +51,6 @@ const Base64 = lazy(() => import("../containers/tools/Base64"));
 const Money = lazy(() => import("../containers/tools/Money"));
 const Color = lazy(() => import("../containers/tools/Color"));
 const Docs = lazy(() => import("../containers/site/Docs"));
-const Something = lazy(() => import("../containers/Something"));
 const MediaWikiToMarkdown = lazy(() =>
   import("../containers/tools/MediaWikiToMarkdown")
 );
@@ -159,7 +158,6 @@ export default () => (
         <Route path="/game" element={<Game />} />
 
         <Route path="/chat" element={<Chat />} />
-        <Route path="/something" element={<Something />} />
 
         <Route path="/test" element={<Test />} />
         <Route path="/translate" element={<Translate />} />

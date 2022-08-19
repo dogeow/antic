@@ -9,7 +9,7 @@ import {
   Snackbar,
   TextField,
 } from "@mui/material";
-import Echo from "laravel-echo";
+import produce from "immer";
 import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
@@ -137,12 +137,12 @@ export default function Chat() {
         setAlertOpen(true);
       })
       .leaving((user) => {
-        const index = people.findIndex((person) => person === user);
-        const newPeople = replaceItemAtIndex(people, index, {
-          ...user,
-          active: false,
-        });
-        setPeople(newPeople);
+        setPeople(
+          produce((draft) => {
+            const person = draft.find((person) => person.id === user.id);
+            person.active = false;
+          })
+        );
         setAlertMessage(`${user.name} 退出了房间`);
         setAlertOpen(true);
       });

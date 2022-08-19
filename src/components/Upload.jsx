@@ -35,7 +35,7 @@ const Upload = (props) => {
           setSnackMessage("上传成功");
         });
     },
-    [dispatch, props.keyName]
+    [props.keyName]
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
