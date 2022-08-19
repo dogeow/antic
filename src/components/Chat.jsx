@@ -114,7 +114,6 @@ export default function Chat() {
 
     window.Echo.join("chat")
       .here((herePeople) => {
-        console.log(herePeople);
         setLoading(false);
         const newPeople = _.uniqBy([...people, ...herePeople], "id");
         setPeople(newPeople);
@@ -124,7 +123,6 @@ export default function Chat() {
         }
       })
       .joining((user) => {
-        console.log(user);
         const newPeople = _.uniqBy([...people, user], "id");
         if (people !== newPeople) {
           setPeople(newPeople);

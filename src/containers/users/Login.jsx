@@ -29,7 +29,7 @@ import wallpaper from "../../config/wallpaper";
 import { logged } from "../../helpers";
 import axios from "../../instance/axios";
 import { isExpiredState, usersState, userState } from "../../states";
-
+import LoginGuest from "../auth/LoginGuest";
 const random = Math.floor(Math.random() * wallpaper.length);
 
 const useStyles = makeStyles((theme) => ({
@@ -298,23 +298,7 @@ export default () => {
             style={{ marginTop: 24 }}
           >
             <Grid item>
-              <Typography
-                variant="body2"
-                style={{ color: "#f50057" }}
-                onClick={() => {
-                  axios.post("user/guest").then(({ data }) => {
-                    setUser({
-                      token: data.access_token,
-                      userId: data.id,
-                      userName: data.name,
-                      userEmail: data.email,
-                    });
-                    navigate("/");
-                  });
-                }}
-              >
-                免密登录测试账号
-              </Typography>
+              <LoginGuest />
             </Grid>
             <Grid item>
               <RouteLink to="/forget">
