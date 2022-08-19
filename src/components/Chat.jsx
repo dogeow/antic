@@ -151,7 +151,7 @@ export default function Chat() {
         }
       })
       .joining((user) => {
-        const newPeople = _.uniqBy([...people, user], "id");
+        const newPeople = _.uniqBy([user, ...people], "id");
         if (people !== newPeople) {
           setPeople(newPeople);
           setAlertMessage(`${user.name} 加入了房间`);
