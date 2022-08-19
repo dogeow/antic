@@ -82,13 +82,6 @@ export default function Chat() {
   };
 
   useEffect(() => {
-    if (user.token === null) {
-      setOpen(true);
-      return;
-    }
-
-    let typingTime;
-
     window.Echo = new Echo({
       broadcaster: "pusher",
       key: import.meta.env.VITE_PUSHER_APP_KEY,
@@ -120,6 +113,33 @@ export default function Chat() {
       },
     });
 
+    let typingTime;
+
+    window.Echo.private("chat").listenForWhisper("typing", (e) => {
+      setTyping(undefined);
+      setTyping(e.id);
+    });
+
+    window.Echo.private("chat").listen(".chat", (e) => {
+      setChatBoard((chatBoard) => [...chatBoard, e.data]);
+    });
+
+    return () => {
+      window.Echo.private("chat").stopListeningForWhisper("typing");
+      window.Echo.private("chat").stopListening(".chat");
+      window.Echo.leave("chat");
+      if (typingTime) {
+        clearTimeout(typingTime);
+      }
+    };
+  }, [user.token]);
+
+  useEffect(() => {
+    if (user.token === null) {
+      setOpen(true);
+      return;
+    }
+
     window.Echo.join("chat")
       .here((herePeople) => {
         setLoading(false);
@@ -148,25 +168,7 @@ export default function Chat() {
         setAlertMessage(`${user.name} 退出了房间`);
         setAlertOpen(true);
       });
-
-    window.Echo.private("chat").listenForWhisper("typing", (e) => {
-      setTyping(undefined);
-      setTyping(e.id);
-    });
-
-    window.Echo.private("chat").listen(".chat", (e) => {
-      setChatBoard((chatBoard) => [...chatBoard, e.data]);
-    });
-
-    return () => {
-      window.Echo.private("chat").stopListeningForWhisper("typing");
-      window.Echo.private("chat").stopListening(".chat");
-      window.Echo.leave("chat");
-      if (typingTime) {
-        clearTimeout(typingTime);
-      }
-    };
-  }, [user.token]);
+  }, [user.token, people]);
 
   useEffect(() => {
     scrollToBottom();
