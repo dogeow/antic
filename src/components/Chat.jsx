@@ -30,6 +30,14 @@ import Expire from "./Expire";
 
 let timer = null;
 
+function replaceItemAtIndex(arr, index, newValue) {
+  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+}
+
+function removeItemAtIndex(arr, index) {
+  return [...arr.slice(0, index), ...arr.slice(index + 1)];
+}
+
 export default function Chat() {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
@@ -131,7 +139,12 @@ export default function Chat() {
         }
       })
       .leaving((user) => {
-        setPeople((people) => _.without(people, user));
+        const index = people.findIndex((person) => person === user);
+        const newPeople = replaceItemAtIndex(people, index, {
+          ...user,
+          active: false,
+        });
+        setPeople(newPeople);
         setAlertMessage(`${user.name} 退出了房间`);
         setAlertOpen(true);
       });
@@ -372,7 +385,10 @@ export default function Chat() {
                   )}
                 </Grid>
                 <Grid item>
-                  <span style={{ marginLeft: 4 }}>{person.name}</span>
+                  <span style={{ marginLeft: 4 }}>
+                    {person.name}
+                    {person.active === false && "（离线）"}
+                  </span>
                 </Grid>
               </Grid>
             );
