@@ -1,6 +1,7 @@
 import axios from "instance/axios";
 import React, { useState } from "react";
-import credentialsTest from "resources/credentialsTest.json";
+
+import config from "../../config";
 
 function SignUpSimple() {
   const [name, setName] = useState("");
@@ -17,9 +18,9 @@ function SignUpSimple() {
   };
 
   const handleCredentialsTest = () => {
-    setName(credentialsTest.name);
-    setEmail(credentialsTest.email);
-    setPassword(credentialsTest.password);
+    setName(config.testUser.name);
+    setEmail(config.testUser.email);
+    setPassword(config.testUser.password);
   };
 
   return (
@@ -62,9 +63,9 @@ function SignUpSimple() {
       </div>
       <div>
         <ul>
-          <li>昵称：{credentialsTest.name}</li>
-          <li>邮箱：{credentialsTest.email}</li>
-          <li>密码：{credentialsTest.password}</li>
+          <li>昵称：{config.testUser.name}</li>
+          <li>邮箱：{config.testUser.email}</li>
+          <li>密码：{config.testUser.password}</li>
         </ul>
         <button onClick={handleCredentialsTest}>一键填入测试用户凭证</button>
       </div>

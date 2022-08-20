@@ -1,7 +1,8 @@
 import axios from "instance/axios";
 import React, { useState } from "react";
-import credentialsTest from "resources/credentialsTest.json";
 import swal from "sweetalert2";
+
+import config from "../../config";
 
 function SignInSimple() {
   const [email, setEmail] = useState("");
@@ -24,8 +25,8 @@ function SignInSimple() {
   };
 
   const handleCredentialsTest = () => {
-    setEmail(credentialsTest.email);
-    setPassword(credentialsTest.password);
+    setEmail(config.testUser.email);
+    setPassword(config.testUser.password);
   };
 
   return (
@@ -58,8 +59,8 @@ function SignInSimple() {
       </div>
       <div>
         <ul>
-          <li>昵称：{credentialsTest.email}</li>
-          <li>密码：{credentialsTest.password}</li>
+          <li>昵称：{config.testUser.email}</li>
+          <li>密码：{config.testUser.password}</li>
         </ul>
         <button onClick={handleCredentialsTest}>一键填入测试用户凭证</button>
       </div>
