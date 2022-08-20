@@ -10,7 +10,14 @@
 
 ## Intro
 
-Learn the React.Use ES6，React Hook...
+Learn the React, Use:
+
+- ES6
+- React Hook
+- React Router
+- Recoil
+- React Redux
+- Apollo GraphQL
 
 ## Backend
 

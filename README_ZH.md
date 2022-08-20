@@ -10,7 +10,14 @@
 
 ## 介绍
 
-学习 React。使用 ES6，React Hook。
+学习 React，使用：
+
+- ES6
+- React Hook
+- React Router
+- Recoil
+- React Redux
+- Apollo GraphQL
 
 ## 后端
 
