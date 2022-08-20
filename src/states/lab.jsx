@@ -1,12 +1,22 @@
 import { atom } from "recoil";
 
-export const paletteModeState = atom({
-  key: "paletteMode",
-  default:
+// 夜晚模式
+let paletteMode;
+const hour = new Date().getHours();
+const isRest = (hour >= 23 && hour <= 24) || (hour >= 0 && hour <= 5);
+if (isRest) {
+  paletteMode = "dark";
+} else {
+  paletteMode =
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches
       ? "dark"
-      : "light",
+      : "light";
+}
+
+export const paletteModeState = atom({
+  key: "paletteMode",
+  default: paletteMode,
 });
 
 export const toggleDrawerState = atom({

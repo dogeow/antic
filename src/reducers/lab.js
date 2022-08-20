@@ -6,20 +6,6 @@ const hour = new Date().getHours();
 const isRest = (hour >= 18 && hour <= 24) || (hour >= 0 && hour <= 6);
 const paletteMode = isRest ? "dark" : "light";
 
-const defaultState = {
-  snackOpen: false,
-  snackMessage: "",
-  toggleDrawer: false,
-  paletteMode,
-  isExpired: true,
-  token: localStorage.getItem("token"),
-  userId: localStorage.getItem("userId"),
-  userName: localStorage.getItem("userName"),
-  userEmail: localStorage.getItem("userEmail"),
-  users: localStorage.users ? JSON.parse(localStorage.users) : [],
-  post: { tags: [], category: { id: "", name: "" } },
-};
-
 export default (state = defaultState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
