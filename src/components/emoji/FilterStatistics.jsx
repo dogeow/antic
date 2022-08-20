@@ -1,8 +1,17 @@
 import Grid from "@mui/material/Grid";
 import * as React from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+
+import {
+  currentPageState,
+  filteredEmojiListState,
+  pageLimitState,
+} from "../../states/emoji";
 
 const FilterStatistics = (props) => {
-  const { filterNum, currentPage, pageLimit } = props;
+  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
+  const [pageLimit, setPageLimit] = useRecoilState(pageLimitState);
+  const filteredFaces = useRecoilValue(filteredEmojiListState);
 
   return (
     <Grid
@@ -11,8 +20,9 @@ const FilterStatistics = (props) => {
       justifyContent="center"
       style={{ marginTop: 5, marginBottom: 1 }}
     >
-      筛选结果：共 {filterNum} 张，共 {Math.ceil(filterNum / pageLimit)}{" "}
-      页，当前第 {currentPage} 页。
+      筛选结果：共 {filteredFaces.length} 张，共{" "}
+      {Math.ceil(filteredFaces.length / pageLimit)} 页，当前第 {currentPage}{" "}
+      页。
     </Grid>
   );
 };

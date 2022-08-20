@@ -1,106 +1,20 @@
-import isEqual from "lodash/isEqual";
-import uniq from "lodash/uniq";
-import { isMobile } from "react-device-detect";
 import face from "resources/face.json";
 
-/**
- * 分类筛选
- * @param {array} gifs 表情数组
- * @param {string} category 点击了哪个分类
- * @return {array} 符合该分类的表情数组
- */
-function categoryFilter(gifs, category) {
-  if (category === "全部") {
-    return gifs;
-  }
-  const filter = [];
-  gifs.map((gif) => {
-    return gif.category === category ? filter.push(gif) : null;
-  });
-
-  return filter;
-}
-
-/**
- * 标签筛选
- * @param {array} gifs 表情数组
- * @param {string} tagState 已被选择的标签
- * @return {array} 符合该标签的数组
- */
-function tagFilter(gifs, tagState) {
-  if (tagState === "全部") {
-    return gifs;
-  }
-
-  const filter = [];
-  for (const gif of gifs) {
-    if (gif.tag.includes(tagState)) {
-      filter.push(gif);
-    }
-  }
-
-  return filter;
-}
-
-/**
- * 返回表情数组所有的标签
- * @param {array} gifs 表情数组
- * @return {array}
- */
-function allTag(gifs) {
-  let tagsList = [];
-  gifs.map((gif) => {
-    return (tagsList = tagsList.concat(gif.tag));
-  });
-
-  return uniq(tagsList);
-}
-
-/**
- * 计算偏移量
- * @param {int} whichPage 第几页
- * @param {int} pageLimit 一页显示几张
- * @return {{start: number, end: number}}
- */
-function offset(whichPage, pageLimit) {
-  return {
-    start: (whichPage - 1) * pageLimit,
-    end: (whichPage - 1) * pageLimit + pageLimit,
-  };
-}
-
-function getCategoryAndTagData(data, selectedCategory, selectedTag) {
-  return tagFilter(categoryFilter(data, selectedCategory), selectedTag);
-}
-
 const defaultState = {
-  // Data
-  data: face.slice(0, 9), // 表情数据
-  // Selected
-  selectedCategory: "全部",
-  selectedTag: "全部",
-  currentPage: 1, // 当前页面
   allEmoji: false,
   // Display
-  displayTag: allTag(face), // 显示该分类下的标签
-  pageLimit: 9, // 每页几条数据（表情）
+
   // Statistics
   filterStatistics: { pageNum: Math.ceil(face.length / 9) },
   filterNum: face.length, // 筛选后共有几张
   // Switch Status
-  expandCategory: !isMobile, // 展开分类？
-  expandTag: !isMobile, // 展开标签？
+
   faceIsLoading: true, // 表情图片正在加载中？
 };
 
 export default (state = defaultState, action) => {
   let data = {};
   switch (action.type) {
-    case "LOADING":
-      return {
-        ...state,
-        faceIsLoading: action.payload,
-      };
     case "SELECT_CATEGORY": {
       if (action.payload === state.selectedCategory) {
         // 分类多次点击原样返回

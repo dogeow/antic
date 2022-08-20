@@ -23,9 +23,7 @@ export default function () {
         .getElementById("empty")
         .insertAdjacentHTML(
           "afterBegin",
-          '<textarea style="width:100%;height:100%;">' +
-            e.target.result +
-            "</textarea>"
+          '<textarea style="width:100%;height:100%;">' + e.target.result + "</textarea>"
         );
       document.getElementById("empty").classList.remove("empty");
     };
@@ -74,22 +72,11 @@ export default function () {
   }, []);
 
   return (
-    <Grid
-      container
-      direction="row"
-      spacing={1}
-      style={{ height: "calc(100vh - 120px)" }}
-    >
+    <Grid container direction="row" spacing={1} style={{ height: "calc(100vh - 120px)" }}>
       <Grid item xs={12}>
         <ClipboardButton text={base64Str} handleClick={handleClick} />
       </Grid>
-      <Grid
-        xs={12}
-        id="empty"
-        item
-        className="empty"
-        style={{ height: "100%" }}
-      />
+      <Grid xs={12} id="empty" item className="empty" style={{ height: "100%" }} />
     </Grid>
   );
 }

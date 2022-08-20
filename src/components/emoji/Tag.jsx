@@ -1,36 +1,40 @@
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import * as React from "react";
+import { useRecoilState } from "recoil";
 
+import { paletteModeState } from "../../states";
+import { expandTagState, selectedTagState } from "../../states/emoji";
 import TagsElem from "./TagsElem";
 
-const Tag = (props) => {
-  const color = props.selectedTag === "全部" ? "secondary" : "primary";
+const Tag = () => {
+  const [selectedTag, setSelectedTag] = useRecoilState(selectedTagState);
+  const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
+  const [expandTag, setExpandTag] = useRecoilState(expandTagState);
+  const color = selectedTag === "全部" ? "secondary" : "primary";
 
   return (
     <Grid container alignItems="center">
       <Grid item>
-        <Button variant="contained" onClick={() => props.toggleTag()}>
-          {props.expandTag ? "标签 <<" : "标签 >>"}
+        <Button variant="contained" onClick={() => setExpandTag(!expandTag)}>
+          {expandTag ? "标签 <<" : "标签 >>"}
         </Button>
       </Grid>
+      {"："}
       <Grid item>
-        ：
-        {props.expandTag ? (
+        {expandTag ? (
           <Button
-            variant={
-              props.lab.paletteMode === "dark" ? "outlined" : "contained"
-            }
+            variant={paletteMode === "dark" ? "outlined" : "contained"}
             color={color}
-            onClick={() => props.selectTag("全部")}
+            onClick={() => setSelectedTag("全部")}
           >
             全部
           </Button>
         ) : (
-          props.selectedTag
+          selectedTag
         )}
       </Grid>
-      {props.expandTag && <TagsElem {...props} />}
+      {expandTag && <TagsElem />}
     </Grid>
   );
 };

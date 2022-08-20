@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+.app {
+  height: 100vh;
+  /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+}
+
 /* 渐变。「明亮 / 黑暗」主题切换时的渐变。 */
 body {
   transition-property: background-color;

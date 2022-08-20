@@ -7,9 +7,22 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Spinner from "react-spinner-children";
 import Viewer from "react-viewer";
+import { useRecoilState, useRecoilValue } from "recoil";
 import Swal from "sweetalert2";
 
-import face from "../../resources/face.json";
+import faces from "../../resources/face.json";
+import {
+  currentPageState,
+  displayTagState,
+  expandCategoryState,
+  expandTagState,
+  faceIsLoadingState,
+  filteredEmojiListState,
+  pageLimitState,
+  searchState,
+  selectedCategoryState,
+  selectedTagState,
+} from "../../states/emoji";
 import BootNav from "./BootNav";
 import Filter from "./Filter";
 import FilterStatistics from "./FilterStatistics";
@@ -30,23 +43,41 @@ const useStyles = makeStyles((theme) => ({
 
 const Emoji = ({ loading, ...props }) => {
   const navigate = useNavigate();
+  const [selectedCategory, setSelectedCategory] = useRecoilState(selectedCategoryState);
+  const filteredFaces = useRecoilValue(filteredEmojiListState);
+  const [search, setSearch] = useRecoilState(searchState);
+  const [faceIsLoading, setFaceIsLoading] = useRecoilState(faceIsLoadingState);
+  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
+  const [pageLimit, setPageLimit] = useRecoilState(pageLimitState);
+  const [displayTag, setDisplayTag] = useRecoilState(displayTagState);
+  const [selectedTag, setSelectedTag] = useRecoilState(selectedTagState);
+  const [expandTag, setExpandTag] = useRecoilState(expandTagState);
+  const [expandCategory, setExpandCategory] = useRecoilState(expandCategoryState);
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
   const classes = useStyles();
 
   useEffect(() => {
     const imgLoad = imagesLoaded("#emoji");
-    imgLoad.on("done", () => loading(false));
+    imgLoad.on("done", () => setFaceIsLoading(false));
 
     return () => imgLoad.off("done");
-  }, [loading]);
+  }, [setFaceIsLoading]);
 
-  face.map((item) => {
+  const face = [];
+  Object.entries(faces).forEach((item) => {
     item.src = `${import.meta.env.VITE_CDN_URL}/emoji/${item.fileName}`;
     item.alt = item.fileName;
-
-    return item;
+    face.push(item);
   });
+
+  const toggleTag = () => {
+    setExpandTag(!expandTag);
+  };
+
+  const toggleCategory = () => {
+    setExpandCategory(!expandCategory);
+  };
 
   const handleUpload = () => {
     navigate("/emoji/create");
@@ -62,7 +93,9 @@ const Emoji = ({ loading, ...props }) => {
         if (!value) {
           return "没有输入！";
         }
-        props.search(value);
+        setSearch(value);
+        setCurrentPage(1);
+        setFaceIsLoading(true);
         Swal.close();
         return null;
       },
@@ -74,42 +107,21 @@ const Emoji = ({ loading, ...props }) => {
       <Button variant="contained" onClick={() => handleSearch()}>
         搜索
       </Button>
-      <Button
-        variant="contained"
-        color="secondary"
-        onClick={() => handleUpload()}
-        style={{ marginLeft: 20 }}
-      >
+      <Button variant="contained" color="secondary" onClick={() => handleUpload()} style={{ marginLeft: 20 }}>
         上传
       </Button>
       <hr className={classes.hr} />
       <Filter
-        lab={props.lab}
-        selectedCategory={props.emoji.selectedCategory}
-        selectedTag={props.emoji.selectedTag}
-        toggleTag={props.toggleTag}
-        expandTag={props.emoji.expandTag}
-        expandCategory={props.emoji.expandCategory}
-        toggleCategory={props.toggleCategory}
-        displayTag={props.emoji.displayTag}
-        selectCategory={props.selectCategory}
-        selectTag={props.selectTag}
+        toggleTag={toggleTag}
+        expandTag={expandTag}
+        expandCategory={expandCategory}
+        toggleCategory={toggleCategory}
+        displayTag={displayTag}
       />
-      <FilterStatistics
-        filterNum={props.emoji.filterNum}
-        currentPage={props.emoji.currentPage}
-        pageLimit={props.emoji.pageLimit}
-      />
-      <Grid
-        id="emoji"
-        container
-        justifyContent="center"
-        alignItems="flex-end"
-        spacing={2}
-        style={{ marginBottom: 80 }}
-      >
-        {props.emoji.data.length > 0 ? (
-          props.emoji.data.map((item, index) => (
+      <FilterStatistics />
+      <Grid id="emoji" container justifyContent="center" alignItems="flex-end" spacing={2} style={{ marginBottom: 80 }}>
+        {filteredFaces.length > 0 ? (
+          filteredFaces.map((item, index) => (
             <Grid key={index} item xs={4} style={{ textAlign: "center" }}>
               <img
                 id={index}
@@ -118,10 +130,7 @@ const Emoji = ({ loading, ...props }) => {
                 width="100"
                 onClick={() => {
                   setVisible(true);
-                  setIndex(
-                    (props.emoji.currentPage - 1) * props.emoji.pageLimit +
-                      index
-                  );
+                  setIndex((currentPage - 1) * pageLimit + index);
                 }}
               />
               <Typography variant="body2" component="h3">
@@ -135,19 +144,9 @@ const Emoji = ({ loading, ...props }) => {
           </Grid>
         )}
       </Grid>
-      <Viewer
-        visible={visible}
-        onClose={() => setVisible(false)}
-        images={face}
-        activeIndex={index}
-      />
-      <BootNav
-        filterNum={props.emoji.filterNum}
-        currentPage={props.emoji.currentPage}
-        whichPage={props.whichPage}
-        pageLimit={props.emoji.pageLimit}
-      />
-      <Spinner loaded={!props.emoji.faceIsLoading} config={customSpinConfig} />
+      <Viewer visible={visible} onClose={() => setVisible(false)} images={face} activeIndex={index} />
+      <BootNav />
+      <Spinner loaded={!faceIsLoading} config={customSpinConfig} />
     </Grid>
   );
 };

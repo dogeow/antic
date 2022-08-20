@@ -10,6 +10,7 @@ const Login = lazy(() => import("../containers/users/Login"));
 const Redirect = lazy(() => import("../containers/users/Redirect"));
 const SelfTalk = lazy(() => import("../containers/me/SelfTalk"));
 const PoweredBy = lazy(() => import("../containers/site/PoweredBy"));
+const Emoji = lazy(() => import("../components/emoji/Emoji"));
 const EmojiCreate = lazy(() => import("../components/emoji/EmojiCreate"));
 const PostCreate = lazy(() => import("../containers/post/PostCreate"));
 const PostSingle = lazy(() => import("../containers/post/PostSingle"));
@@ -103,6 +104,7 @@ export default () => (
         <Route path="/bookmarks" element={<Bookmarks />} />
         <Route path="/weibo" element={<Weibo />} />
         <Route path="/weibo/about" element={<WeiboAbout />} />
+        <Route path="/emoji" element={<Emoji />} />
         <Route path="/emoji/create" element={<EmojiCreate />} />
         <Route path="/nav" element={<Nav />} />
         <Route path="/piano" element={<Piano />} />

@@ -3,11 +3,27 @@ import LastPage from "@mui/icons-material/LastPage";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import * as React from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import scrollToElement from "scroll-to-element";
 import Swal from "sweetalert2";
 
+import {
+  currentPageState,
+  faceIsLoadingState,
+  filteredEmojiListState,
+  pageLimitState,
+} from "../../states/emoji";
+
 const BootNav = (props) => {
-  const { currentPage, whichPage, filterNum, pageLimit } = props;
+  const filteredFaces = useRecoilValue(filteredEmojiListState);
+  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
+  const [pageLimit, setPageLimit] = useRecoilState(pageLimitState);
+  const [faceIsLoading, setFaceIsLoading] = useRecoilState(faceIsLoadingState);
+
+  const currentPageHandle = (value) => {
+    setCurrentPage(value);
+  };
+
   const handlePageSwitch = (action) => {
     if (action === "Previous") {
       if (currentPage <= 1) {
@@ -20,10 +36,11 @@ const BootNav = (props) => {
         });
         return;
       }
-      whichPage(currentPage - 1);
+      setFaceIsLoading(true);
+      setCurrentPage(currentPage - 1);
     }
     if (action === "Next") {
-      if (currentPage >= Math.ceil(filterNum / pageLimit)) {
+      if (currentPage >= Math.ceil(filteredFaces.length / pageLimit)) {
         Swal.fire({
           position: "center",
           type: "info",
@@ -32,7 +49,8 @@ const BootNav = (props) => {
           timer: 1000,
         });
       } else {
-        whichPage(currentPage + 1);
+        setFaceIsLoading(true);
+        setCurrentPage(currentPage + 1);
       }
     }
     scrollToElement("#emoji");

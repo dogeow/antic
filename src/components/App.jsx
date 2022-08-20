@@ -6,19 +6,21 @@ import dayjs from "dayjs";
 import zhCNLocale from "dayjs/locale/zh-cn";
 import Echo from "laravel-echo";
 import React, { useEffect } from "react";
+import { isMobile as isMobileHandle } from "react-device-detect";
 import { BrowserRouter } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import themeCustomization from "../config/theme";
 import axios from "../instance/axios";
 import Routes from "../routes";
-import { paletteModeState, userState } from "../states";
+import { isMobileState, paletteModeState, userState } from "../states";
 import ScrollToTop from "./ScrollToTop";
 
 dayjs.locale("zh-cn");
 
 export default () => {
   const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
+  const [isMobile, setIsMobile] = useRecoilState(isMobileState);
   const [user, setUser] = useRecoilState(userState);
 
   useEffect(() => {
@@ -59,22 +61,32 @@ export default () => {
       const newColorScheme = e.matches ? "dark" : "light";
       setPaletteMode(newColorScheme);
     };
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", handle);
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", handle);
     return () => {
-      window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .removeEventListener("change", handle);
+      window.matchMedia("(prefers-color-scheme: dark)").removeEventListener("change", handle);
     };
   }, [setPaletteMode]);
 
+  const changeVh = () => {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  };
+
+  useEffect(() => {
+    changeVh();
+
+    window.addEventListener("resize", () => {
+      changeVh();
+    });
+
+    return () => {
+      window.removeEventListener("resize", changeVh, false);
+    };
+  }, []);
+
   return (
     <BrowserRouter>
-      <LocalizationProvider
-        dateAdapter={AdapterDayjs}
-        adapterLocale={zhCNLocale}
-      >
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={zhCNLocale}>
         <ThemeProvider theme={themeCustomization({ paletteMode })}>
           <ScrollToTop />
           <CssBaseline />

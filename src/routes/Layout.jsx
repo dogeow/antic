@@ -29,17 +29,13 @@ export default () => {
   const location = useLocation();
 
   return (
-    <Grid container direction="column" style={{ minHeight: "100vh" }}>
+    <Grid id="app" container direction="column" style={{ minHeight: "100vh" }}>
       <Header />
       <Grid
         container
         component={Container}
         maxWidth="lg"
-        classes={
-          ["/nav", "/cars"].includes(location.pathname)
-            ? { root: classes.main }
-            : undefined
-        }
+        classes={["/nav", "/cars"].includes(location.pathname) ? { root: classes.main } : undefined}
         style={
           location.pathname === "/"
             ? {
@@ -63,11 +59,7 @@ export default () => {
           TransitionClassName="AnyClassForTransition"
           style={{ outline: "none", boxShadow: "none" }}
         >
-          <img
-            src={`${import.meta.env.VITE_CDN_URL}/bfr.png`}
-            width="24"
-            alt="Back to top arrow"
-          />
+          <img src={`${import.meta.env.VITE_CDN_URL}/bfr.png`} width="24" alt="Back to top arrow" />
         </ScrollUpButton>
       )}
     </Grid>

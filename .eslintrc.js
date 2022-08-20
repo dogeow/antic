@@ -3,13 +3,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: [
-    "plugin:react/recommended",
-    "google",
-    "prettier",
-    "prettier/react",
-    "plugin:prettier/recommended",
-  ],
+  extends: ["plugin:react/recommended", "google", "prettier", "prettier/react", "plugin:prettier/recommended"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
@@ -24,7 +18,7 @@ module.exports = {
   },
   plugins: ["react", "prettier", "simple-import-sort", "react-hooks"],
   rules: {
-    "prettier/prettier": "error",
+    "prettier/prettier": ["error", { printWidth: 120 }],
     "require-jsdoc": 0,
     "no-unused-vars": 0,
     "no-invalid-this": 0,
