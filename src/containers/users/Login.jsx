@@ -25,26 +25,21 @@ import { Link as RouteLink, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import Copyright from "../../components/site/Copyright";
-import wallpaper from "../../config/wallpaper";
+import config from "../../config";
 import { logged } from "../../helpers";
 import axios from "../../instance/axios";
 import { isExpiredState, usersState, userState } from "../../states";
 import LoginGuest from "../auth/LoginGuest";
-const random = Math.floor(Math.random() * wallpaper.length);
+const random = Math.floor(Math.random() * config.wallpaper.length);
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
   },
   image: {
-    backgroundImage: `url(${import.meta.env.VITE_OSS_URL}/wallpaper/${
-      wallpaper[random]
-    })`,
+    backgroundImage: `url(${import.meta.env.VITE_OSS_URL}/wallpaper/${config.wallpaper[random]})`,
     backgroundRepeat: "no-repeat",
-    backgroundColor:
-      theme.palette.mode === "dark"
-        ? theme.palette.grey[900]
-        : theme.palette.grey[50],
+    backgroundColor: theme.palette.mode === "dark" ? theme.palette.grey[900] : theme.palette.grey[50],
     backgroundSize: "cover",
     backgroundPosition: "center",
   },
@@ -135,12 +130,7 @@ export default () => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Grid
-            container
-            justifyContent="center"
-            alignItems="flex-end"
-            spacing={1}
-          >
+          <Grid container justifyContent="center" alignItems="flex-end" spacing={1}>
             <Grid item>
               <Typography component="h1" variant="h5">
                 登录
@@ -169,17 +159,9 @@ export default () => {
               autoFocus
               onChange={(e) => setAccount(e.target.value)}
               error={inputErrors && inputErrors.account}
-              placeholder={
-                inputErrors && inputErrors.account
-                  ? inputErrors.account
-                  : "手机号码或 Email 地址"
-              }
-              InputLabelProps={
-                inputErrors && inputErrors.account ? { shrink: true } : {}
-              }
-              helperText={
-                inputErrors && inputErrors.account ? inputErrors.account[0] : ""
-              }
+              placeholder={inputErrors && inputErrors.account ? inputErrors.account : "手机号码或 Email 地址"}
+              InputLabelProps={inputErrors && inputErrors.account ? { shrink: true } : {}}
+              helperText={inputErrors && inputErrors.account ? inputErrors.account[0] : ""}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -188,13 +170,7 @@ export default () => {
                 ),
                 endAdornment: account !== "" && (
                   <InputAdornment position="end">
-                    <IconButton
-                      aria-label="Clear"
-                      onClick={() => setAccount("")}
-                      edge="end"
-                      tabIndex={-1}
-                      size="large"
-                    >
+                    <IconButton aria-label="Clear" onClick={() => setAccount("")} edge="end" tabIndex={-1} size="large">
                       <ClearIcon />
                     </IconButton>
                   </InputAdornment>
@@ -214,32 +190,16 @@ export default () => {
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
               error={inputErrors && inputErrors.password}
-              placeholder={
-                inputErrors && inputErrors.password
-                  ? inputErrors.password
-                  : null
-              }
-              InputLabelProps={
-                inputErrors && inputErrors.password ? { shrink: true } : {}
-              }
-              helperText={
-                inputErrors && inputErrors.password
-                  ? inputErrors.password[0]
-                  : ""
-              }
+              placeholder={inputErrors && inputErrors.password ? inputErrors.password : null}
+              InputLabelProps={inputErrors && inputErrors.password ? { shrink: true } : {}}
+              helperText={inputErrors && inputErrors.password ? inputErrors.password[0] : ""}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
                     {displayPassword ? (
-                      <VisibilityIcon
-                        onClick={handlePassword}
-                        className="pointer"
-                      />
+                      <VisibilityIcon onClick={handlePassword} className="pointer" />
                     ) : (
-                      <VisibilityOffIcon
-                        onClick={handlePassword}
-                        className="pointer"
-                      />
+                      <VisibilityOffIcon onClick={handlePassword} className="pointer" />
                     )}
                   </InputAdornment>
                 ),
@@ -292,11 +252,7 @@ export default () => {
               登录
             </Button>
           </form>
-          <Grid
-            container
-            justifyContent="space-between"
-            style={{ marginTop: 24 }}
-          >
+          <Grid container justifyContent="space-between" style={{ marginTop: 24 }}>
             <Grid item>
               <LoginGuest />
             </Grid>

@@ -1,11 +1,5 @@
 import GitHub from "@mui/icons-material/GitHub";
-import {
-  Container,
-  Grid,
-  IconButton,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { Container, Grid, IconButton, Tooltip, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import clsx from "clsx";
 import * as React from "react";
@@ -13,17 +7,15 @@ import { Link as RouteLink } from "react-router-dom";
 
 import HomeFooter from "../components/HomeFooter";
 import Hr from "../components/Hr";
-import backgroundImg from "../config/footerBackground";
+import config from "../config";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundImage:
       theme.palette.mode === "dark"
-        ? `url(${
-            import.meta.env.VITE_CDN_URL
-          }/bg/tesla-vector-roadster.png!/compress/true/fw/400)`
+        ? `url(${import.meta.env.VITE_CDN_URL}/bg/tesla-vector-roadster.png!/compress/true/fw/400)`
         : `url(${import.meta.env.VITE_CDN_URL}/bg/${
-            backgroundImg[Math.floor(Math.random() * backgroundImg.length)]
+            config.backgroundImg[Math.floor(Math.random() * backgroundImg.length)]
           }!/compress/true/fw/400)`,
     backgroundPosition: "right 20px bottom",
     backgroundRepeat: "no-repeat",
@@ -48,10 +40,7 @@ const Footer = () => {
             <li>该实验室的各项功能都是测试版本</li>
             <li>拥抱新技术、新生态，做一个现代化的程序员</li>
             <li>因实验室只有自己在访问和使用，所以没有其他人的注册和信息</li>
-            <li>
-              If there is any copyright infringement, please notify us at once
-              and we&apos;ll delete it.
-            </li>
+            <li>If there is any copyright infringement, please notify us at once and we&apos;ll delete it.</li>
           </ul>
         </Grid>
         <Grid item xs={12} sm={3}>
