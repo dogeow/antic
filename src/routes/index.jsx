@@ -52,9 +52,7 @@ const Base64 = lazy(() => import("../containers/tools/Base64"));
 const Money = lazy(() => import("../containers/tools/Money"));
 const Color = lazy(() => import("../containers/tools/Color"));
 const Docs = lazy(() => import("../containers/site/Docs"));
-const MediaWikiToMarkdown = lazy(() =>
-  import("../containers/tools/MediaWikiToMarkdown")
-);
+const MediaWikiToMarkdown = lazy(() => import("../containers/tools/MediaWikiToMarkdown"));
 const Markdown = lazy(() => import("../containers/markdown"));
 const Download = lazy(() => import("../containers/demos/Download"));
 const NoMatch = lazy(() => import("../containers/NoMatch"));
@@ -123,10 +121,7 @@ export default () => (
         <Route path="/base64" element={<Base64 />} />
         <Route path="/money" element={<Money />} />
         <Route path="/color" element={<Color />} />
-        <Route
-          path="/mediawiki-to-markdown"
-          element={<MediaWikiToMarkdown />}
-        />
+        <Route path="/mediawiki-to-markdown" element={<MediaWikiToMarkdown />} />
         <Route path="/copywriting" element={<Copywriting />} />
         <Route path="/php-function" element={<PHPFunction />} />
 
@@ -149,20 +144,15 @@ export default () => (
 
         {/* 开发中 */}
         <Route path="/markdown" element={<Markdown />} />
-
-        {/* 谷歌 Chrome 扩展开发 */}
-        {["/popup.html", "/index.html"].map((path, index) => (
-          <Route path={path} element={<PostList />} key={index} />
-        ))}
+        <Route path="/translate" element={<Translate />} />
 
         {/* 测试 */}
+        <Route path="/test" element={<Test />} />
         <Route path="/data" element={<Data />} />
         <Route path="/game" element={<Game />} />
 
+        {/* 聊天室*/}
         <Route path="/chat" element={<Chat />} />
-
-        <Route path="/test" element={<Test />} />
-        <Route path="/translate" element={<Translate />} />
 
         <Route path="*" element={<NoMatch />} />
       </Route>

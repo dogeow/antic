@@ -6,7 +6,6 @@ import dayjs from "dayjs";
 import zhCNLocale from "dayjs/locale/zh-cn";
 import Echo from "laravel-echo";
 import React, { useEffect } from "react";
-import { isMobile as isMobileHandle } from "react-device-detect";
 import { BrowserRouter } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
@@ -55,6 +54,7 @@ export default () => {
     });
   }, [user.token]);
 
+  // 网站主题跟随电脑系统主题
   useEffect(() => {
     const handle = (e) => {
       const newColorScheme = e.matches ? "dark" : "light";
@@ -71,6 +71,7 @@ export default () => {
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   };
 
+  // 手机浏览器的高度问题，搜索以上句子可以找到相配合的地方
   useEffect(() => {
     changeVh();
 
@@ -87,8 +88,8 @@ export default () => {
     <BrowserRouter>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={zhCNLocale}>
         <ThemeProvider theme={themeCustomization({ paletteMode })}>
-          <ScrollToTop />
           <CssBaseline />
+          <ScrollToTop />
           <Routes />
         </ThemeProvider>
       </LocalizationProvider>
