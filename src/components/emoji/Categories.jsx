@@ -3,11 +3,10 @@ import Grid from "@mui/material/Grid";
 import * as React from "react";
 import { useRecoilState } from "recoil";
 
-import { paletteModeState } from "../../states";
-import { expandCategoryState, selectedCategoryState } from "../../states/emoji";
+import { expandCategoryState, paletteModeState, selectedCategoryState } from "../../states";
 import CategoriesElem from "./CategoriesElem";
 
-const Category = (props) => {
+const Category = () => {
   const [expandCategory, setExpandCategory] = useRecoilState(expandCategoryState);
   const [selectedCategory, setSelectedCategory] = useRecoilState(selectedCategoryState);
   const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);

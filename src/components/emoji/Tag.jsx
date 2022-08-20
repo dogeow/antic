@@ -3,8 +3,7 @@ import Grid from "@mui/material/Grid";
 import * as React from "react";
 import { useRecoilState } from "recoil";
 
-import { paletteModeState } from "../../states";
-import { expandTagState, selectedTagState } from "../../states/emoji";
+import { expandTagState, paletteModeState, selectedTagState } from "../../states";
 import TagsElem from "./TagsElem";
 
 const Tag = () => {
