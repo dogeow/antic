@@ -134,11 +134,7 @@ const SingleProject = () => {
   };
 
   const handleEditChange = (event, index, task) => {
-    setTasks(
-      tasks.map((item) =>
-        item.id === task.id ? { ...task, title: event.target.value } : item
-      )
-    );
+    setTasks(tasks.map((item) => (item.id === task.id ? { ...task, title: event.target.value } : item)));
   };
 
   const handleFocus = (task) => {
@@ -160,10 +156,7 @@ const SingleProject = () => {
   };
 
   const onDragEnd = (result) => {
-    if (
-      !result.destination ||
-      result.destination.index === result.source.index
-    ) {
+    if (!result.destination || result.destination.index === result.source.index) {
       return;
     }
 
@@ -201,11 +194,7 @@ const SingleProject = () => {
           </Typography>
         </Grid>
         <Grid item>
-          <IconButton
-            aria-label="delete"
-            onClick={handleAlertDialogToggle}
-            size="large"
-          >
+          <IconButton aria-label="delete" onClick={handleAlertDialogToggle} size="large">
             <DeleteIcon />
           </IconButton>
         </Grid>
@@ -245,17 +234,9 @@ const SingleProject = () => {
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="droppable">
               {(provided, snapshot) => (
-                <div
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                  style={getListStyle(snapshot.isDraggingOver)}
-                >
+                <div {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                   {tasks.map((task, index) => (
-                    <Draggable
-                      key={task.id}
-                      draggableId={task.id.toString()}
-                      index={index}
-                    >
+                    <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
                       {(provided, snapshot) => (
                         <Grid
                           key={task.id}
@@ -265,25 +246,16 @@ const SingleProject = () => {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          style={getItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style
-                          )}
+                          style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
                         >
                           <Grid item>
                             {task.is_completed ? (
                               <RadioButtonChecked
                                 className={classes.green}
-                                onClick={() =>
-                                  handleUndoMarkTaskAsCompleted(task.id)
-                                }
+                                onClick={() => handleUndoMarkTaskAsCompleted(task.id)}
                               />
                             ) : (
-                              <RadioButtonUnchecked
-                                onClick={() =>
-                                  handleMarkTaskAsCompleted(task.id)
-                                }
-                              />
+                              <RadioButtonUnchecked onClick={() => handleMarkTaskAsCompleted(task.id)} />
                             )}
                           </Grid>
                           <Grid item xs>
@@ -294,15 +266,10 @@ const SingleProject = () => {
                                 value={task.title}
                                 onFocus={() => handleFocus(task)}
                                 onBlur={() => handleEditPut(task)}
-                                onChange={(event) =>
-                                  handleEditChange(event, index, task)
-                                }
+                                onChange={(event) => handleEditChange(event, index, task)}
                               />
                             ) : (
-                              <Typography
-                                component="h3"
-                                onClick={() => handleEdit(index)}
-                              >
+                              <Typography component="h3" onClick={() => handleEdit(index)}>
                                 {task.title}
                               </Typography>
                             )}

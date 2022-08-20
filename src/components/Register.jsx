@@ -1,13 +1,5 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import {
-  Avatar,
-  Box,
-  Button,
-  Container,
-  Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Avatar, Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
@@ -129,9 +121,7 @@ const Register = ({ history }) => {
                 error={!!inputErrors.password}
                 placeholder={inputErrors.password ? inputErrors.password : null}
                 InputLabelProps={inputErrors.password ? { shrink: true } : {}}
-                helperText={
-                  inputErrors.password ? inputErrors.password[0] : null
-                }
+                helperText={inputErrors.password ? inputErrors.password[0] : null}
               />
             </Grid>
             <Grid item xs={12}>

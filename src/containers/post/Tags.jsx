@@ -51,11 +51,9 @@ const Tags = ({ edit }) => {
       freeSolo
       value={tags.map((tag) => tag.name)}
       onChange={(event, newValue) => {
-        axios
-          .post(`/posts/${post.id}/tag`, { name: event.target.value })
-          .then(({ data }) => {
-            setTags((tags) => [...tags, data]);
-          });
+        axios.post(`/posts/${post.id}/tag`, { name: event.target.value }).then(({ data }) => {
+          setTags((tags) => [...tags, data]);
+        });
       }}
       renderTags={(value, getTagProps) =>
         value.map((option, index) => (
@@ -84,13 +82,7 @@ const Tags = ({ edit }) => {
         ))
       }
       renderInput={(params) => (
-        <TextField
-          {...params}
-          variant="outlined"
-          label="标签"
-          size="small"
-          placeholder="新标签"
-        />
+        <TextField {...params} variant="outlined" label="标签" size="small" placeholder="新标签" />
       )}
     />
   ) : (

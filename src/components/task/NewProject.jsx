@@ -74,12 +74,7 @@ const NewProject = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              style={{ width: "100%" }}
-            >
+            <Button type="submit" variant="contained" color="primary" style={{ width: "100%" }}>
               创建
             </Button>
           </Grid>

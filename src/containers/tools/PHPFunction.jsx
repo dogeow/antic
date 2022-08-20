@@ -73,13 +73,7 @@ const NoMatch = () => {
 
   return (
     <Grid>
-      <Grid
-        container
-        justifyContent="center"
-        alignItems="center"
-        style={{ marginTop: "20%" }}
-        spacing={2}
-      >
+      <Grid container justifyContent="center" alignItems="center" style={{ marginTop: "20%" }} spacing={2}>
         <Grid item>
           <FormControl variant="outlined" size="small" style={{ width: 350 }}>
             <InputLabel htmlFor="search">函数名</InputLabel>

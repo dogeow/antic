@@ -2,16 +2,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
-import {
-  AppBar,
-  Avatar,
-  Box,
-  Container,
-  Grid,
-  Tab,
-  Tabs,
-  Typography,
-} from "@mui/material";
+import { AppBar, Avatar, Box, Container, Grid, Tab, Tabs, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -96,30 +87,26 @@ const Register = () => {
   useEffect(() => {
     if (phoneNumber.length === 11 && sentPhone !== phoneNumber) {
       setSentPhoneSuccess(false);
-      axios
-        .post("/phoneNumberVerify", { phone_number: phoneNumber })
-        .then(() => {
-          setSentPhone(phoneNumber);
-          setSentPhoneSuccess(true);
-        });
+      axios.post("/phoneNumberVerify", { phone_number: phoneNumber }).then(() => {
+        setSentPhone(phoneNumber);
+        setSentPhoneSuccess(true);
+      });
     }
   }, [phoneNumber, sentPhone]);
 
   const onSuccess = (response) => {
     setOpen(true);
-    axios
-      .get("/oauth/github/callback?code=" + response.code)
-      .then((response) => {
-        const data = response.data;
-        setUser({
-          token: data.access_token,
-          userId: data.id,
-          userName: data.name,
-          userEmail: data.email,
-        });
-        navigate("/");
-        setOpen(false);
+    axios.get("/oauth/github/callback?code=" + response.code).then((response) => {
+      const data = response.data;
+      setUser({
+        token: data.access_token,
+        userId: data.id,
+        userName: data.name,
+        userEmail: data.email,
       });
+      navigate("/");
+      setOpen(false);
+    });
   };
 
   const onFailure = (response) => console.error(response);
@@ -176,19 +163,9 @@ const Register = () => {
         </Typography>
         <div>
           <AppBar position="static">
-            <Tabs
-              value={tabIndex}
-              onChange={handleChange}
-              aria-label="注册类型"
-              centered
-              variant="fullWidth"
-            >
+            <Tabs value={tabIndex} onChange={handleChange} aria-label="注册类型" centered variant="fullWidth">
               <Tab label="邮箱" {...a11yProps(0)} icon={<EmailIcon />} />
-              <Tab
-                label="手机号"
-                {...a11yProps(1)}
-                icon={<PhoneIphoneIcon />}
-              />
+              <Tab label="手机号" {...a11yProps(1)} icon={<PhoneIphoneIcon />} />
               <Tab label="GitHub" {...a11yProps(2)} icon={<GitHubIcon />} />
             </Tabs>
           </AppBar>
@@ -196,18 +173,10 @@ const Register = () => {
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Name
-                    name={name}
-                    onSetName={setName}
-                    error={inputErrors?.name}
-                  />
+                  <Name name={name} onSetName={setName} error={inputErrors?.name} />
                 </Grid>
                 <Grid item xs={12}>
-                  <Email
-                    email={email}
-                    setEmail={setEmail}
-                    error={inputErrors?.email}
-                  />
+                  <Email email={email} setEmail={setEmail} error={inputErrors?.email} />
                 </Grid>
                 <Grid item xs={12}>
                   <Password
@@ -235,11 +204,7 @@ const Register = () => {
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Name
-                    name={name}
-                    onSetName={setName}
-                    error={inputErrors?.name}
-                  />
+                  <Name name={name} onSetName={setName} error={inputErrors?.name} />
                 </Grid>
                 <Grid item xs={12}>
                   <PhoneNumber
@@ -250,11 +215,7 @@ const Register = () => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <Verify
-                    verify={verify}
-                    setVerify={setVerify}
-                    error={inputErrors?.verify}
-                  />
+                  <Verify verify={verify} setVerify={setVerify} error={inputErrors?.verify} />
                 </Grid>
                 <Grid item xs={12}>
                   <Password

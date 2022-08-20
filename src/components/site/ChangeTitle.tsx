@@ -1,6 +1,6 @@
-export default function (leave, come) {
+export default function (leave: string, come: string) {
   // 网页当前状态判断
-  let state;
+  let state: string;
   let visibilityChange;
   if (typeof document.hidden !== "undefined") {
     visibilityChange = "visibilitychange";

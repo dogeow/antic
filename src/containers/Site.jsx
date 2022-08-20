@@ -30,11 +30,7 @@ const Site = () => {
       headerName: "站点",
       width: 180,
       renderCell: (params) => (
-        <a
-          href={`http://${params.row.domain}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={`http://${params.row.domain}`} target="_blank" rel="noopener noreferrer">
           {params.row.domain}
         </a>
       ),
@@ -53,19 +49,12 @@ const Site = () => {
       field: "today_latest",
       headerName: "更新",
       renderCell: (params) =>
-        params.row?.today_latest?.status ? (
-          <Check className={classes.root} />
-        ) : (
-          <Close style={{ color: "red" }} />
-        ),
+        params.row?.today_latest?.status ? <Check className={classes.root} /> : <Close style={{ color: "red" }} />,
     },
     {
       field: "last_updated_at",
       headerName: "最后更新于",
-      renderCell: (params) =>
-        params.row.last_updated_at
-          ? dayjs(params.row.last_updated_at).fromNow()
-          : "-",
+      renderCell: (params) => (params.row.last_updated_at ? dayjs(params.row.last_updated_at).fromNow() : "-"),
     },
     {
       field: "note",

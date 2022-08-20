@@ -1,6 +1,14 @@
 {
   "compilerOptions": {
-    "baseUrl": "src"
+    "jsx": "react",
+    "baseUrl": "src",
+    "target": "es2015",
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "moduleResolution":"node",
+    "typeRoots": ["./src/types", "./types"]
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }

@@ -3,7 +3,7 @@ import "./styles/index.css";
 import { ApolloProvider } from "@apollo/client";
 import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
-import { RecoilRoot } from "recoil";
+import { RecoilRoot, Snapshot } from "recoil";
 import { useRecoilSnapshot } from "recoil";
 
 import bootstrap from "./bootstrap";
@@ -14,7 +14,7 @@ import reportWebVitals from "./reportWebVitals";
 bootstrap();
 
 function DebugObserver() {
-  const snapshot = useRecoilSnapshot();
+  const snapshot: Snapshot = useRecoilSnapshot();
   useEffect(() => {
     console.debug("The following atoms were modified:");
     for (const node of snapshot.getNodes_UNSTABLE({ isModified: true })) {
@@ -32,7 +32,7 @@ root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <RecoilRoot>
-        {import.meta.env.DEV && <DebugObserver />}
+        {/* {import.meta.env.DEV && <DebugObserver />}*/}
         <App />
       </RecoilRoot>
     </ApolloProvider>

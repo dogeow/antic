@@ -58,13 +58,7 @@ const Api = () => {
             setParam(newValue);
           }}
           renderInput={(params) => (
-            <TextField
-              {...params}
-              label="方法"
-              variant="outlined"
-              size="small"
-              style={{ width: 200 }}
-            />
+            <TextField {...params} label="方法" variant="outlined" size="small" style={{ width: 200 }} />
           )}
         />
       </Grid>
@@ -82,12 +76,7 @@ const Api = () => {
       </Grid>
 
       <Grid item>
-        <Button
-          variant="contained"
-          color="primary"
-          endIcon={<Icon>send</Icon>}
-          onClick={() => send()}
-        >
+        <Button variant="contained" color="primary" endIcon={<Icon>send</Icon>} onClick={() => send()}>
           Send
         </Button>
       </Grid>

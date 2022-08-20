@@ -2,7 +2,6 @@ import pusher from "pusher-js";
 
 import consoleInfo from "./components/ConsoleInfo";
 import changeTitle from "./components/site/ChangeTitle";
-import axios from "./instance/axios";
 
 /**
  * Sentry、增加 JavaScript 没有的函数（PHP 上的函数）、Chrome 控制台信息，LocalStorage 数据过期时的处理等
@@ -15,7 +14,7 @@ export default function bootstrap() {
   }
 
   // Chrome 控制台信息
-  consoleInfo("production");
+  consoleInfo();
 
   changeTitle(`记得回来！- ${import.meta.env.VITE_NAME}`, `欢迎回来！- ${import.meta.env.VITE_NAME}`);
 
@@ -33,45 +32,44 @@ export default function bootstrap() {
    * @see http://php.net/manual/ja/function.mb-strwidth.php
    */
   // eslint-disable-next-line no-extend-native
-  String.prototype.mbStrWidth = (str) => {
-    const l = str.length;
-    let c = "";
-    let length = 0;
-    for (let i = 0; i < l; i++) {
-      c = str.charCodeAt(i);
-      if (c >= 0x0000 && c <= 0x0019) {
-        length += 0;
-      } else if (c >= 0x0020 && c <= 0x1fff) {
-        length += 1;
-      } else if (c >= 0x2000 && c <= 0xff60) {
-        length += 2;
-      } else if (c >= 0xff61 && c <= 0xff9f) {
-        length += 1;
-      } else if (c >= 0xffa0) {
-        length += 2;
+  String.prototype.mbStrWidth = (str: string) => {
+    const strLength = str.length;
+    let strCOde = 0;
+    let mbStrLength = 0;
+    for (let i = 0; i < strLength; i++) {
+      strCOde = str.charCodeAt(i);
+      if (strCOde >= 0x0000 && strCOde <= 0x0019) {
+        mbStrLength += 0;
+      } else if (strCOde >= 0x0020 && strCOde <= 0x1fff) {
+        mbStrLength += 1;
+      } else if (strCOde >= 0x2000 && strCOde <= 0xff60) {
+        mbStrLength += 2;
+      } else if (strCOde >= 0xff61 && strCOde <= 0xff9f) {
+        mbStrLength += 1;
+      } else if (strCOde >= 0xffa0) {
+        mbStrLength += 2;
       }
     }
 
-    return length;
+    return mbStrLength;
   };
 
   /**
    * mbStrImWidth
    * @param {string} str
-   * @param {int} start
-   * @param {int}  width
+   * @param {number} start
+   * @param {number}  width
    * @param {string} trimMarker
    * @return {string}
    * @see http://www.php.net/manual/ja/function.mb-strimwidth.php
    */
   // eslint-disable-next-line no-extend-native
-  String.prototype.mbStrImWidth = (str, start, width, trimMarker = "") => {
+  String.prototype.mbStrImWidth = (str: string, start: number, width: number, trimMarker: string = ""): string => {
     const trimMakerWidth = trimMarker.mbStrWidth;
     const l = str.length;
     let trimmedLength = 0;
     let trimmedStr = "";
     for (let i = start; i < l; i++) {
-      // const charCode = str.charCodeAt(i);
       const c = str.charAt(i);
       const charWidth = c.mbStrWidth;
       const next = str.charAt(i + 1);

@@ -1,14 +1,5 @@
 import SendIcon from "@mui/icons-material/Send";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  Grid,
-  InputAdornment,
-  Snackbar,
-  TextField,
-} from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, Grid, InputAdornment, Snackbar, TextField } from "@mui/material";
 import produce from "immer";
 import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
@@ -19,13 +10,7 @@ import Avatar from "../components/Gravatar";
 import Loading from "../components/Loading";
 import { logged } from "../helpers";
 import axios from "../instance/axios";
-import {
-  chatBoardState,
-  isExpiredState,
-  peopleState,
-  usersState,
-  userState,
-} from "../states";
+import { chatBoardState, isExpiredState, peopleState, usersState, userState } from "../states";
 import Expire from "./Expire";
 
 let timer = null;
@@ -224,9 +209,7 @@ export default function Chat() {
             required
             error={Object.keys(error).length !== 0}
             placeholder={Object.keys(error).length !== 0 ? "请输入昵称" : ""}
-            InputLabelProps={
-              Object.keys(error).length !== 0 ? { shrink: true } : {}
-            }
+            InputLabelProps={Object.keys(error).length !== 0 ? { shrink: true } : {}}
             helperText={Object.keys(error).length !== 0 && "请输入昵称"}
             onChange={handleNameChange}
           />
@@ -274,13 +257,7 @@ export default function Chat() {
           margin: "auto",
         }}
       >
-        <Grid
-          item
-          xs={9}
-          container
-          direction="column"
-          style={{ paddingRight: 4 }}
-        >
+        <Grid item xs={9} container direction="column" style={{ paddingRight: 4 }}>
           <Grid
             item
             container
@@ -290,27 +267,18 @@ export default function Chat() {
             style={{ overflowY: "auto", height: "60vh" }}
           >
             <Grid item xs={12}>
-              机器人请在开头加上一个空格，比如「 时间」、「 ip」、「 md5
-              123456」、「 单复数 category」
+              机器人请在开头加上一个空格，比如「 时间」、「 ip」、「 md5 123456」、「 单复数 category」
             </Grid>
             {chatBoard.length > 0 &&
               chatBoard.map((content, index) => {
                 return content.id === localStorage.userId ? (
                   <Grid item xs={12} key={index} style={{ textAlign: "right" }}>
                     <span style={{ marginRight: 4 }}>{content.message}</span>
-                    <Avatar
-                      alt={content.name}
-                      email={user.userEmail}
-                      size={24}
-                    />
+                    <Avatar alt={content.name} email={user.userEmail} size={24} />
                   </Grid>
                 ) : (
                   <Grid item xs={12} key={index}>
-                    <Avatar
-                      alt={content.name}
-                      email={_.find(people, ["id", content.id])["email"]}
-                      size={24}
-                    />
+                    <Avatar alt={content.name} email={_.find(people, ["id", content.id])["email"]} size={24} />
                     <span style={{ marginLeft: 4 }}>{content.message}</span>
                   </Grid>
                 );
@@ -354,15 +322,8 @@ export default function Chat() {
             return (
               <Grid item xs={12} container key={person.id}>
                 <Grid item xs={12}>
-                  <Avatar
-                    alt={person.name}
-                    email={person.email}
-                    size={24}
-                    marginLeft={4}
-                  />
-                  {typing === person.id && (
-                    <Expire delay={2000}> 输入中...</Expire>
-                  )}
+                  <Avatar alt={person.name} email={person.email} size={24} marginLeft={4} />
+                  {typing === person.id && <Expire delay={2000}> 输入中...</Expire>}
                 </Grid>
                 <Grid item>
                   <span style={{ marginLeft: 4 }}>

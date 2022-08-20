@@ -99,48 +99,12 @@ const Moon = () => {
       {localStorage.name ? (
         <div>
           <div>
-            <img
-              src={`${cdn}${
-                num[0] ? `${num[0]}.gif` : loading ? "none.gif" : "1.png"
-              }`}
-              width="50"
-              alt={num[0]}
-            />
-            <img
-              src={`${cdn}${
-                num[1] ? `${num[1]}.gif` : loading ? "none.gif" : "1.png"
-              }`}
-              width="50"
-              alt={num[1]}
-            />
-            <img
-              src={`${cdn}${
-                num[2] ? `${num[2]}.gif` : loading ? "none.gif" : "1.png"
-              }`}
-              width="50"
-              alt={num[2]}
-            />
-            <img
-              src={`${cdn}${
-                num[3] ? `${num[3]}.gif` : loading ? "none.gif" : "1.png"
-              }`}
-              width="50"
-              alt={num[3]}
-            />
-            <img
-              src={`${cdn}${
-                num[4] ? `${num[4]}.gif` : loading ? "none.gif" : "1.png"
-              }`}
-              width="50"
-              alt={num[4]}
-            />
-            <img
-              src={`${cdn}${
-                num[5] ? `${num[5]}.gif` : loading ? "none.gif" : "1.png"
-              }`}
-              width="50"
-              alt={num[5]}
-            />
+            <img src={`${cdn}${num[0] ? `${num[0]}.gif` : loading ? "none.gif" : "1.png"}`} width="50" alt={num[0]} />
+            <img src={`${cdn}${num[1] ? `${num[1]}.gif` : loading ? "none.gif" : "1.png"}`} width="50" alt={num[1]} />
+            <img src={`${cdn}${num[2] ? `${num[2]}.gif` : loading ? "none.gif" : "1.png"}`} width="50" alt={num[2]} />
+            <img src={`${cdn}${num[3] ? `${num[3]}.gif` : loading ? "none.gif" : "1.png"}`} width="50" alt={num[3]} />
+            <img src={`${cdn}${num[4] ? `${num[4]}.gif` : loading ? "none.gif" : "1.png"}`} width="50" alt={num[4]} />
+            <img src={`${cdn}${num[5] ? `${num[5]}.gif` : loading ? "none.gif" : "1.png"}`} width="50" alt={num[5]} />
           </div>
           <div>
             <Button variant="contained" color="primary" onClick={handleStart}>
@@ -164,20 +128,10 @@ const Moon = () => {
               label="联系方式"
               variant="outlined"
               onChange={handleChange}
-              helperText={
-                inputErrors && inputErrors.name
-                  ? inputErrors.name[0]
-                  : "以便发奖"
-              }
+              helperText={inputErrors && inputErrors.name ? inputErrors.name[0] : "以便发奖"}
               error={inputErrors && inputErrors.name}
-              placeholder={
-                inputErrors && inputErrors.name
-                  ? inputErrors.name
-                  : "姓名、微信号、手机"
-              }
-              InputLabelProps={
-                inputErrors && inputErrors.name ? { shrink: true } : {}
-              }
+              placeholder={inputErrors && inputErrors.name ? inputErrors.name : "姓名、微信号、手机"}
+              InputLabelProps={inputErrors && inputErrors.name ? { shrink: true } : {}}
             />
           </Grid>
           <Grid item xs={12}>
@@ -193,36 +147,12 @@ const Moon = () => {
           <ol>
             {moonHistory.map((item) => (
               <li key={item.id}>
-                <img
-                  src={`${cdn}history/${item.num1}.png`}
-                  width="25"
-                  alt={item.num1}
-                />
-                <img
-                  src={`${cdn}history/${item.num2}.png`}
-                  width="25"
-                  alt={item.num2}
-                />
-                <img
-                  src={`${cdn}history/${item.num3}.png`}
-                  width="25"
-                  alt={item.num3}
-                />
-                <img
-                  src={`${cdn}history/${item.num4}.png`}
-                  width="25"
-                  alt={item.num4}
-                />
-                <img
-                  src={`${cdn}history/${item.num5}.png`}
-                  width="25"
-                  alt={item.num5}
-                />
-                <img
-                  src={`${cdn}history/${item.num6}.png`}
-                  width="25"
-                  alt={item.num6}
-                />
+                <img src={`${cdn}history/${item.num1}.png`} width="25" alt={item.num1} />
+                <img src={`${cdn}history/${item.num2}.png`} width="25" alt={item.num2} />
+                <img src={`${cdn}history/${item.num3}.png`} width="25" alt={item.num3} />
+                <img src={`${cdn}history/${item.num4}.png`} width="25" alt={item.num4} />
+                <img src={`${cdn}history/${item.num5}.png`} width="25" alt={item.num5} />
+                <img src={`${cdn}history/${item.num6}.png`} width="25" alt={item.num6} />
                 <span style={{ marginLeft: 10 }}>{`(${item.money})`}</span>
                 <span style={{ marginLeft: 10 }}>{item.name}</span>
               </li>

@@ -1,8 +1,7 @@
 /**
  * display in console（在控制台显示）
- * @param {string} env
  */
-export default function displayInConsole(env) {
+export default function displayInConsole() {
   if (import.meta.env.DEV) {
     return;
   }

@@ -19,10 +19,7 @@ const Translate = () => {
     languages.forEach((language) => {
       axios
         .jsonp(
-          "https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=auto&tl=" +
-            language +
-            "&q=" +
-            zhCnText
+          "https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=auto&tl=" + language + "&q=" + zhCnText
         )
         .then((resp) => {
           console.log(resp);

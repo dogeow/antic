@@ -1,15 +1,8 @@
 import ErrorOutline from "@mui/icons-material/ErrorOutline";
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import {
-  Grid,
-  Hidden,
-  Pagination,
-  PaginationItem,
-  Skeleton,
-  TextField,
-} from "@mui/material";
+import { Grid, Hidden, Pagination, PaginationItem, Skeleton, TextField } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import makeStyles from "@mui/styles/makeStyles";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import random from "lodash/random";
 import React, { useEffect, useState } from "react";
@@ -44,20 +37,14 @@ const Weibo = () => {
 
   useEffect(() => {
     const selectDate = dayjs(selectedDate).format("YYYY-MM-DD");
-    axios
-      .get(`weibo?date=${selectDate}&page[number]=${currPage}`)
-      .then(({ data }) => {
-        setData(data);
-      });
+    axios.get(`weibo?date=${selectDate}&page[number]=${currPage}`).then(({ data }) => {
+      setData(data);
+    });
   }, [selectedDate, currPage]);
 
   return (
     <>
-      <Alert
-        severity="warning"
-        style={{ marginBottom: 20 }}
-        onClick={() => handleDateChange(new Date("2022-02-28"))}
-      >
+      <Alert severity="warning" style={{ marginBottom: 20 }} onClick={() => handleDateChange(new Date("2022-02-28"))}>
         该功能已停止更新，只有旧数据。最后更新日期是：2022-02-28。点击该警示框跳转到该日期。
       </Alert>
       <Grid container spacing={2} justifyContent="center">
@@ -95,32 +82,20 @@ const Weibo = () => {
                       <td>{weibo.per_page * (currPage - 1) + index + 1}</td>
                       <td>
                         <span style={{ float: "left" }}>
-                          <a href={`https://s.weibo.com${item.url}`}>
-                            {item.title}
-                          </a>
+                          <a href={`https://s.weibo.com${item.url}`}>{item.title}</a>
                         </span>
-                        {item.emoji && (
-                          <span
-                            dangerouslySetInnerHTML={{ __html: item.emoji }}
-                          />
-                        )}
+                        {item.emoji && <span dangerouslySetInnerHTML={{ __html: item.emoji }} />}
                       </td>
                       <Hidden only="xs">
                         <td>{item.rank}</td>
-                        <td style={{ textAlign: "right" }}>
-                          {item.updated_at}
-                        </td>
+                        <td style={{ textAlign: "right" }}>{item.updated_at}</td>
                       </Hidden>
                     </tr>
                   ))
                 : Array.from(new Array(20)).map((item, index) => (
                     <tr key={index}>
                       <td colSpan={2}>
-                        <Skeleton
-                          variant="rectangular"
-                          width={`${random(20, 88)}%`}
-                          height={20}
-                        />
+                        <Skeleton variant="rectangular" width={`${random(20, 88)}%`} height={20} />
                       </td>
                     </tr>
                   ))}
@@ -134,11 +109,7 @@ const Weibo = () => {
             hidePrevButton={currPage <= 1}
             hideNextButton={currPage >= weibo.last_page}
             renderItem={(item) => (
-              <PaginationItem
-                {...item}
-                disabled={item.page === currPage}
-                onClick={() => setCurrPage(item.page)}
-              />
+              <PaginationItem {...item} disabled={item.page === currPage} onClick={() => setCurrPage(item.page)} />
             )}
           />
         </Grid>

@@ -71,11 +71,7 @@ const BookmarkCreate = () => {
         <Button variant="contained" color="primary" onClick={handleUrlSave}>
           添加
         </Button>
-        {success && (
-          <span style={{ color: "green", marginLeft: 20, fontSize: "1rem" }}>
-            添加成功
-          </span>
-        )}
+        {success && <span style={{ color: "green", marginLeft: 20, fontSize: "1rem" }}>添加成功</span>}
       </Grid>
     </Grid>
   );

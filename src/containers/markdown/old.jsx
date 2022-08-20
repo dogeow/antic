@@ -117,8 +117,7 @@ const PostCreate = () => {
         setErrors(errors);
         Swal.fire(
           errors.message,
-          (undefined !== errors.title ? errors.title[0] : "") +
-            (undefined !== errors.content ? errors.content[0] : ""),
+          (undefined !== errors.title ? errors.title[0] : "") + (undefined !== errors.content ? errors.content[0] : ""),
           "error"
         );
         setSuccess(false);
@@ -140,9 +139,7 @@ const PostCreate = () => {
     setPost({ ...post, title: event.target.value });
   };
 
-  const buttonClassname = errors
-    ? clsx({ [classes.buttonError]: errors })
-    : clsx({ [classes.buttonSuccess]: success });
+  const buttonClassname = errors ? clsx({ [classes.buttonError]: errors }) : clsx({ [classes.buttonSuccess]: success });
 
   const uploadImage = (blob) => {
     const formData = new FormData();
@@ -225,13 +222,7 @@ const PostCreate = () => {
             useCommandShortcut
             language="zh-CN"
             usageStatistics={false}
-            plugins={[
-              [codeSyntaxHightlight, { hljs }],
-              colorSyntax,
-              tableMergedCell,
-              uml,
-              [chart, chartOptions],
-            ]}
+            plugins={[[codeSyntaxHightlight, { hljs }], colorSyntax, tableMergedCell, uml, [chart, chartOptions]]}
             onChange={handleEditorChange}
             hooks={{
               addImageBlobHook: onAddImageBlob,
@@ -241,12 +232,7 @@ const PostCreate = () => {
       </Grid>
       {/* 保存按钮 */}
       <Grid item xs={12} style={{ position: "relative", textAlign: "center" }}>
-        <Fab
-          aria-label="save"
-          color="primary"
-          className={buttonClassname}
-          onClick={handlePost}
-        >
+        <Fab aria-label="save" color="primary" className={buttonClassname} onClick={handlePost}>
           {success ? <CheckIcon /> : errors ? <ErrorIcon /> : <SaveIcon />}
         </Fab>
         <CircularProgress

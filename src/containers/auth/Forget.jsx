@@ -1,13 +1,6 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import {
-  Avatar,
-  Button,
-  Container,
-  InputAdornment,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Avatar, Button, Container, InputAdornment, TextField, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useState } from "react";
 import swal from "sweetalert2";
@@ -80,12 +73,8 @@ const Forget = () => {
               onChange={(e) => setAccount(e.target.value)}
               error={inputErrors && inputErrors.account}
               placeholder="手机号码或 Email 地址"
-              InputLabelProps={
-                inputErrors && inputErrors.account ? { shrink: true } : {}
-              }
-              helperText={
-                inputErrors && inputErrors.account ? inputErrors.account[0] : ""
-              }
+              InputLabelProps={inputErrors && inputErrors.account ? { shrink: true } : {}}
+              helperText={inputErrors && inputErrors.account ? inputErrors.account[0] : ""}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

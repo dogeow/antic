@@ -4,15 +4,7 @@ import { useLazyQuery } from "@apollo/client";
 import CheckIcon from "@mui/icons-material/Check";
 import ErrorIcon from "@mui/icons-material/ErrorOutline";
 import SaveIcon from "@mui/icons-material/Save";
-import {
-  Autocomplete,
-  CircularProgress,
-  Fab,
-  FormControlLabel,
-  Grid,
-  Switch,
-  TextField,
-} from "@mui/material";
+import { Autocomplete, CircularProgress, Fab, FormControlLabel, Grid, Switch, TextField } from "@mui/material";
 import { green, red } from "@mui/material/colors";
 import makeStyles from "@mui/styles/makeStyles";
 import clsx from "clsx";
@@ -161,9 +153,7 @@ export default () => {
 
   const editorRef = useRef(null);
 
-  const buttonClassname = errors
-    ? clsx({ [classes.buttonError]: errors })
-    : clsx({ [classes.buttonSuccess]: success });
+  const buttonClassname = errors ? clsx({ [classes.buttonError]: errors }) : clsx({ [classes.buttonSuccess]: success });
 
   const handlePost = () => {
     if (success) {
@@ -282,9 +272,7 @@ export default () => {
             options={categories}
             getOptionLabel={(option) => option.name}
             isOptionEqualToValue={(option, value) => option.name === value.name}
-            renderInput={(params) => (
-              <TextField {...params} label="分类" variant="outlined" />
-            )}
+            renderInput={(params) => <TextField {...params} label="分类" variant="outlined" />}
           />
         )}
       </Grid>
@@ -330,24 +318,12 @@ export default () => {
       <Grid container alignItems="center" justifyContent="center">
         <Grid item>
           <FormControlLabel
-            control={
-              <Switch
-                checked={!!post.public}
-                onChange={handlePublicChange}
-                name="public"
-                color="primary"
-              />
-            }
+            control={<Switch checked={!!post.public} onChange={handlePublicChange} name="public" color="primary" />}
             label="公开"
           />
         </Grid>
         <Grid item>
-          <Fab
-            aria-label="save"
-            color="primary"
-            className={buttonClassname}
-            onClick={handlePost}
-          >
+          <Fab aria-label="save" color="primary" className={buttonClassname} onClick={handlePost}>
             {success ? <CheckIcon /> : errors ? <ErrorIcon /> : <SaveIcon />}
           </Fab>
           <CircularProgress

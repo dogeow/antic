@@ -91,9 +91,7 @@ export default () => {
       } else {
         setMonsters(
           produce((draft) => {
-            const monster = draft.find(
-              (monster) => monster.id === e.data.monster
-            );
+            const monster = draft.find((monster) => monster.id === e.data.monster);
             if (monster) {
               monster.x = e.data.monster.x;
               monster.y = e.data.monster.y;
@@ -142,18 +140,8 @@ export default () => {
             alt={`map-tile-${key}`}
           />
         ))}
-        <img
-          id="character"
-          alt="character"
-          className="images-buffer"
-          src="assets/heroes/heroes.png"
-        />
-        <img
-          id="monster"
-          alt="monster"
-          className="images-buffer"
-          src="assets/monsters/monster.png"
-        />
+        <img id="character" alt="character" className="images-buffer" src="assets/heroes/heroes.png" />
+        <img id="monster" alt="monster" className="images-buffer" src="assets/monsters/monster.png" />
       </div>
       <canvas id="canvas" ref={canvasRef} width="800px" height="800px" />
     </>

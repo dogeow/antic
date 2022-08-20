@@ -48,12 +48,7 @@ const Ndd = () => {
         margin="normal"
         onChange={handleChange("q")}
       />
-      <Button
-        variant="contained"
-        color="primary"
-        type="submit"
-        onClick={handleSearch}
-      >
+      <Button variant="contained" color="primary" type="submit" onClick={handleSearch}>
         搜索
       </Button>
       <div id="result">
@@ -63,10 +58,7 @@ const Ndd = () => {
               <div>
                 <a href={result.url}>{result.title}</a>
               </div>
-              <div
-                className="text-xs"
-                dangerouslySetInnerHTML={{ __html: result.intro }}
-              />
+              <div className="text-xs" dangerouslySetInnerHTML={{ __html: result.intro }} />
             </div>
           ))}
       </div>
