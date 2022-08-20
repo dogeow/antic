@@ -17,10 +17,7 @@ export default function bootstrap() {
   // Chrome 控制台信息
   consoleInfo("production");
 
-  changeTitle(
-    `记得回来！- ${import.meta.env.VITE_NAME}`,
-    `欢迎回来！- ${import.meta.env.VITE_NAME}`
-  );
+  changeTitle(`记得回来！- ${import.meta.env.VITE_NAME}`, `欢迎回来！- ${import.meta.env.VITE_NAME}`);
 
   /**
    * Echo exposes an expressive API for subscribing to channels and listening

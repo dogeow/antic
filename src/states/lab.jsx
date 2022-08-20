@@ -1,4 +1,3 @@
-import { isMobile } from "react-device-detect";
 import { atom } from "recoil";
 
 // 夜晚模式
@@ -10,25 +9,30 @@ if (isRest) {
 } else {
   paletteMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
-
 export const paletteModeState = atom({
   key: "paletteMode",
   default: paletteMode,
 });
 
-export const isMobileState = atom({
-  key: "isMobile",
-  default: isMobile,
+// 当前登陆用户
+export const userState = atom({
+  key: "user",
+  default: {
+    token: localStorage.token || "",
+    userId: localStorage.userId || "",
+    userEmail: localStorage.userEmail || "",
+    userName: localStorage.userName || "",
+  },
 });
-
-export const toggleDrawerState = atom({
-  key: "toggleDrawer",
-  default: false,
-});
-
 export const isExpiredState = atom({
   key: "isExpired",
   default: localStorage.token === undefined,
+});
+
+// 所有登陆用户
+export const usersState = atom({
+  key: "users",
+  default: [],
 });
 
 export const isSnackOpenState = atom({
@@ -39,19 +43,4 @@ export const isSnackOpenState = atom({
 export const snackMessageState = atom({
   key: "snackMessage",
   default: "",
-});
-
-export const userState = atom({
-  key: "user",
-  default: {
-    token: localStorage.token || "",
-    userId: localStorage.userId || "",
-    userEmail: localStorage.userEmail || "",
-    userName: localStorage.userName || "",
-  },
-});
-
-export const usersState = atom({
-  key: "users",
-  default: [],
 });

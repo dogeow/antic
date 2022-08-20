@@ -1,11 +1,4 @@
-import {
-  Divider,
-  Link,
-  List,
-  ListItemButton,
-  ListItemText,
-  SwipeableDrawer,
-} from "@mui/material";
+import { Divider, Link, List, ListItemButton, ListItemText, SwipeableDrawer } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import PropTypes from "prop-types";
 import * as React from "react";
@@ -33,23 +26,14 @@ const TemporaryDrawer = (props) => {
   const anchor = "left";
 
   const toggleDrawer = (event) => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
+    if (event && event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
       return;
     }
     props.onClick();
   };
 
   const sideList = () => (
-    <div
-      className={classes.list}
-      role="presentation"
-      onClick={toggleDrawer}
-      onKeyDown={toggleDrawer}
-    >
+    <div className={classes.list} role="presentation" onClick={toggleDrawer} onKeyDown={toggleDrawer}>
       <List>
         {appConfig.menus.map((menu, index) => (
           <ListItemButton to={menu.url} component={RouteLink} key={index}>
@@ -71,11 +55,7 @@ const TemporaryDrawer = (props) => {
         ))}
         <Divider />
         <ListItemButton to="/about" component={RouteLink}>
-          <img
-            src={anticPic}
-            alt="antic"
-            style={{ height: 20, marginRight: 4 }}
-          />
+          <img src={anticPic} alt="antic" style={{ height: 20, marginRight: 4 }} />
           <ListItemText primary="关于我" />
         </ListItemButton>
       </List>
@@ -84,11 +64,7 @@ const TemporaryDrawer = (props) => {
 
   return (
     <div>
-      <SwipeableDrawer
-        open={props.open}
-        onClose={toggleDrawer}
-        onOpen={toggleDrawer}
-      >
+      <SwipeableDrawer open={props.open} onClose={toggleDrawer} onOpen={toggleDrawer}>
         {sideList(anchor)}
       </SwipeableDrawer>
     </div>

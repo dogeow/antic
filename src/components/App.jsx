@@ -13,14 +13,13 @@ import { useRecoilState } from "recoil";
 import themeCustomization from "../config/theme";
 import axios from "../instance/axios";
 import Routes from "../routes";
-import { isMobileState, paletteModeState, userState } from "../states";
+import { paletteModeState, userState } from "../states";
 import ScrollToTop from "./ScrollToTop";
 
 dayjs.locale("zh-cn");
 
 export default () => {
   const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
-  const [isMobile, setIsMobile] = useRecoilState(isMobileState);
   const [user, setUser] = useRecoilState(userState);
 
   useEffect(() => {

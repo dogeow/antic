@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/* 手机浏览器的高度问题 */
 .app {
   height: 100vh;
   /* Fallback for browsers that do not support Custom Properties */

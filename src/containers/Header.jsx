@@ -44,7 +44,6 @@ import {
   isSnackOpenState,
   paletteModeState,
   snackMessageState,
-  toggleDrawerState,
   usersState,
   userState,
 } from "../states";
@@ -94,7 +93,7 @@ const Header = () => {
   const [isSnackOpen, setIsSnackOpen] = useRecoilState(isSnackOpenState);
   const [isExpired, setIsExpired] = useRecoilState(isExpiredState);
   const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
-  const [toggleDrawer, setToggleDrawer] = useRecoilState(toggleDrawerState);
+  const [toggleDrawer, setToggleDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
@@ -217,10 +216,7 @@ const Header = () => {
 
   return (
     <header>
-      <Drawer
-        open={toggleDrawer}
-        onClick={() => setToggleDrawer(!toggleDrawer)}
-      />
+      <Drawer open={toggleDrawer} onClick={() => setToggleDrawer(!toggleDrawer)} />
       <AppBar position="static" component="div">
         <Container
           maxWidth="lg"
@@ -273,11 +269,7 @@ const Header = () => {
               </div>
             </Hidden>
             <Hidden mdUp>
-              <Tooltip
-                title="搜索笔记"
-                aria-label="搜索笔记"
-                onClick={handleSearch}
-              >
+              <Tooltip title="搜索笔记" aria-label="搜索笔记" onClick={handleSearch}>
                 <IconButton color="inherit" size="large">
                   <SearchIcon />
                 </IconButton>
@@ -287,29 +279,15 @@ const Header = () => {
               <Tooltip
                 title="切换白天或夜晚主题"
                 aria-label="切换白天或夜晚主题"
-                onClick={() =>
-                  setPaletteMode(paletteMode === "light" ? "dark" : "light")
-                }
+                onClick={() => setPaletteMode(paletteMode === "light" ? "dark" : "light")}
               >
                 <IconButton color="inherit" size="large">
-                  {paletteMode === "dark" ? (
-                    <NightsStayIcon />
-                  ) : (
-                    <WbSunnyIcon />
-                  )}
+                  {paletteMode === "dark" ? <NightsStayIcon /> : <WbSunnyIcon />}
                 </IconButton>
               </Tooltip>
-              <Tooltip
-                title="播放音乐"
-                aria-label="播放音乐"
-                onClick={playMusic}
-              >
+              <Tooltip title="播放音乐" aria-label="播放音乐" onClick={playMusic}>
                 <IconButton color="inherit" size="large">
-                  {playing === true ? (
-                    <PauseCircleOutlineIcon />
-                  ) : (
-                    <PlayCircleOutlineIcon />
-                  )}
+                  {playing === true ? <PauseCircleOutlineIcon /> : <PlayCircleOutlineIcon />}
                 </IconButton>
               </Tooltip>
             </Hidden>
@@ -339,10 +317,7 @@ const Header = () => {
                     onClick={handleProfileMenu}
                     size="large"
                   >
-                    <Avatar
-                      alt={user.userName}
-                      src={getGravatarAddress(user.userEmail)}
-                    />
+                    <Avatar alt={user.userName} src={getGravatarAddress(user.userEmail)} />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -360,10 +335,7 @@ const Header = () => {
                   open={profileOpen}
                   onClose={handleCloseProfile}
                 >
-                  <RouteLink
-                    to={`/user/${user.userId}`}
-                    onClick={handleCloseProfile}
-                  >
+                  <RouteLink to={`/user/${user.userId}`} onClick={handleCloseProfile}>
                     <div style={{ textAlign: "center", fontSize: "1rem" }}>
                       <Avatar
                         alt={user.userName}
@@ -383,10 +355,7 @@ const Header = () => {
                           }}
                           key={index}
                         >
-                          <Avatar
-                            alt={user.userName}
-                            src={getGravatarAddress(user.userEmail)}
-                          />
+                          <Avatar alt={user.userName} src={getGravatarAddress(user.userEmail)} />
                           <span
                             style={{
                               margin: "0 10px 0 10px",
@@ -405,9 +374,7 @@ const Header = () => {
                   <RouteLink to="/login" onClick={() => handleCloseProfile()}>
                     <MenuItem>
                       <PersonAddIcon style={{ width: 40 }} />
-                      <span style={{ margin: "0 10px 0 10px" }}>
-                        添加其他账号
-                      </span>
+                      <span style={{ margin: "0 10px 0 10px" }}>添加其他账号</span>
                     </MenuItem>
                   </RouteLink>
                   <MenuItem
@@ -435,21 +402,13 @@ const Header = () => {
                     }}
                   >
                     <LogoutIcon style={{ width: 40 }} />
-                    <span style={{ margin: "0 10px 0 10px" }}>
-                      {localStorage.users ? "注销所有账号" : "注销"}
-                    </span>
+                    <span style={{ margin: "0 10px 0 10px" }}>{localStorage.users ? "注销所有账号" : "注销"}</span>
                   </MenuItem>
                 </Menu>
               </div>
             )}
             <Tooltip title="更多" aria-label="更多" onClick={handleMenu}>
-              <IconButton
-                aria-label="show more"
-                aria-controls="menu"
-                aria-haspopup="true"
-                color="inherit"
-                size="large"
-              >
+              <IconButton aria-label="show more" aria-controls="menu" aria-haspopup="true" color="inherit" size="large">
                 <MoreIcon />
               </IconButton>
             </Tooltip>
@@ -487,9 +446,7 @@ const Header = () => {
       <Settings
         open={settingsOpen}
         onClose={handleSettingClose}
-        onThemeClick={() =>
-          setPaletteMode(paletteMode === "light" ? "dark" : "light")
-        }
+        onThemeClick={() => setPaletteMode(paletteMode === "light" ? "dark" : "light")}
         paletteMode={paletteMode}
       />
       <Snackbar
