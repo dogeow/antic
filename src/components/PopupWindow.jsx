@@ -1,4 +1,4 @@
-import { toParams, toQuery } from "../helpers/index";
+import { toParams, toQuery } from "../helpers/index.js";
 
 class PopupWindow {
   constructor(id, url, options = {}) {
@@ -32,10 +32,7 @@ class PopupWindow {
             return;
           }
 
-          if (
-            popup.location.href === this.url ||
-            popup.location.pathname === "blank"
-          ) {
+          if (popup.location.href === this.url || popup.location.pathname === "blank") {
             return;
           }
 

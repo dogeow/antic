@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
 
-import { getHost } from "../../helpers";
+import { getHost } from "../../helpers/index.js";
 
 const useStyles = makeStyles(() => ({
   card: {
@@ -27,11 +27,7 @@ const Menu = ({ url, name }) => {
       <a href={url} target="_blank" rel="noopener noreferrer">
         <Card className={classes.card}>
           <CardContent>
-            <Typography
-              variant="body1"
-              component="h3"
-              className={classes.intro}
-            >
+            <Typography variant="body1" component="h3" className={classes.intro}>
               {name}
             </Typography>
             <Typography color="textSecondary" className={classes.intro}>

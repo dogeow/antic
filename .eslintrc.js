@@ -3,12 +3,19 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ["plugin:react/recommended", "google", "prettier", "prettier/react", "plugin:prettier/recommended"],
+  extends: [
+    "plugin:react/recommended",
+    "google",
+    "prettier",
+    "prettier/react",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
+  ],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
   },
-  parser: "babel-eslint",
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -16,7 +23,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module",
   },
-  plugins: ["react", "prettier", "simple-import-sort", "react-hooks"],
+  plugins: ["react", "prettier", "simple-import-sort", "react-hooks", "@typescript-eslint"],
   rules: {
     "prettier/prettier": ["error", { printWidth: 120 }],
     "require-jsdoc": 0,

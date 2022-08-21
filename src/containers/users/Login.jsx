@@ -26,7 +26,7 @@ import { useRecoilState } from "recoil";
 
 import Copyright from "../../components/site/Copyright";
 import config from "../../config";
-import { logged } from "../../helpers";
+import { logged } from "../../helpers/index.js";
 import axios from "../../instance/axios";
 import { isExpiredState, usersState, userState } from "../../states";
 import LoginGuest from "../auth/LoginGuest";

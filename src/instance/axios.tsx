@@ -17,7 +17,6 @@ if (localStorage.token) {
 
 instance.interceptors.request.use(
   (request) => {
-    window.request = true;
     if (import.meta.env.DEV) {
       console.group("请求");
       window.console.log(request);

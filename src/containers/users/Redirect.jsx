@@ -1,4 +1,4 @@
-import { toParams } from "../../helpers";
+import { toParams } from "../../helpers/index.js";
 
 export default function () {
   const params = toParams(window.location.search.replace(/^\?/, ""));

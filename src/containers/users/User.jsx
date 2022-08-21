@@ -1,24 +1,20 @@
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
-import md5 from "md5";
 import * as React from "react";
 import { useRecoilState } from "recoil";
+import { Md5 } from "ts-md5";
 
-import { gravatarCdn } from "../../config/services";
+import { gravatarCdn } from "../../config/services.js";
 import { userState } from "../../states";
 
 const User = () => {
   const [user, setUser] = useRecoilState(userState);
-  const avatar = `${gravatarCdn}/${md5(user.userEmail)}.jpg?d=monsterid&s=300`;
+  const avatar = `${gravatarCdn}/${Md5.hashStr(user.userEmail)}.jpg?d=monsterid&s=300`;
 
   return (
     <Grid container spacing={2} alignItems="center">
       <Grid item>
-        <Avatar
-          alt={user.userName}
-          src={avatar}
-          style={{ width: 150, height: 150 }}
-        />
+        <Avatar alt={user.userName} src={avatar} style={{ width: 150, height: 150 }} />
       </Grid>
       <Grid item>
         <div>ID：{user.userId}</div>
