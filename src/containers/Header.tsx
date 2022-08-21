@@ -37,8 +37,8 @@ import Logo from "../components/Logo";
 import Search from "../components/Search";
 import Settings from "../components/Settings";
 import { getGravatarAddress, logout } from "../helpers/index";
-import { emptyUser } from "../objects/user.js";
-import { logoutRequest } from "../requests/user.js";
+import { emptyUser } from "../objects/user";
+import { logoutRequest } from "../requests/user";
 import {
   isExpiredState,
   isSnackOpenState,

@@ -2,27 +2,19 @@ import { css, cx } from "emotion";
 import React, { forwardRef } from "react";
 import ReactDOM from "react-dom";
 
-export const Button = forwardRef(
-  ({ className, active, reversed, ...props }, ref) => (
-    <span
-      {...props}
-      ref={ref}
-      className={cx(
-        className,
-        css`
-          cursor: pointer;
-          color: ${reversed
-            ? active
-              ? "white"
-              : "#aaa"
-            : active
-            ? "black"
-            : "#ccc"};
-        `
-      )}
-    />
-  )
-);
+export const Button = forwardRef(({ className, active, reversed, ...props }, ref) => (
+  <span
+    {...props}
+    ref={ref}
+    className={cx(
+      className,
+      css`
+        cursor: pointer;
+        color: ${reversed ? (active ? "white" : "#aaa") : active ? "black" : "#ccc"};
+      `
+    )}
+  />
+));
 
 export const EditorValue = forwardRef(({ className, value, ...props }, ref) => {
   const textLines = value.document.nodes

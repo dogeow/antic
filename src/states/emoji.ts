@@ -4,13 +4,6 @@ import { atom, selector } from "recoil";
 
 import facesJson from "../resources/face.json";
 
-interface Face {
-  fileName: string;
-  name: string;
-  category: string;
-  tag: string[];
-}
-
 /**
  * 标签筛选
  *

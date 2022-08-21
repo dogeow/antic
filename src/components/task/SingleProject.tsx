@@ -13,8 +13,8 @@ import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useNavigate, useParams } from "react-router-dom";
 
-import AlertDialog from "../../components/AlertDialog";
 import axios from "../../instance/axios.js";
+import AlertDialog from "../AlertDialog";
 
 const useStyles = makeStyles(() => ({
   green: {

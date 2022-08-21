@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import React from "react";
 
-import ExternalLink from "../components/ExternalLink";
 import graphQl from "../resources/svg/graphQl";
 import laravel from "../resources/svg/laravel";
 import materialUi from "../resources/svg/materialUi";
 import react from "../resources/svg/react";
+import ExternalLink from "./ExternalLink";
 
 const Img = styled.img`
   width: 20px;

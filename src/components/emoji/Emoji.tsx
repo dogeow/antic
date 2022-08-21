@@ -22,7 +22,7 @@ import {
   searchState,
   selectedCategoryState,
   selectedTagState,
-} from "../../states/emoji.js";
+} from "../../states";
 import BootNav from "./BootNav";
 import Filter from "./Filter";
 import FilterStatistics from "./FilterStatistics";
@@ -31,7 +31,7 @@ const customSpinConfig = {
   lines: 10,
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   hr: {
     width: "100%",
     border: "none",
@@ -41,16 +41,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Emoji = ({ loading, ...props }) => {
+const Emoji = () => {
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useRecoilState(selectedCategoryState);
   const filteredFaces = useRecoilValue(filteredEmojiListState);
   const [search, setSearch] = useRecoilState(searchState);
   const [faceIsLoading, setFaceIsLoading] = useRecoilState(faceIsLoadingState);
   const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
   const [pageLimit, setPageLimit] = useRecoilState(pageLimitState);
   const [displayTag, setDisplayTag] = useRecoilState(displayTagState);
-  const [selectedTag, setSelectedTag] = useRecoilState(selectedTagState);
   const [expandTag, setExpandTag] = useRecoilState(expandTagState);
   const [expandCategory, setExpandCategory] = useRecoilState(expandCategoryState);
   const [visible, setVisible] = useState(false);

@@ -4,14 +4,11 @@ import StarIcon from "@mui/icons-material/Star";
 import algoliasearch from "algoliasearch/lite";
 import React from "react";
 
-import Link from "../components/Link";
 import { ClearIcon } from "./ClearIcon";
+import Link from "./Link";
 import { SearchIcon } from "./SearchIcon";
 
-const searchClient = algoliasearch(
-  import.meta.env.VITE_ALGOLIA_APP_ID,
-  import.meta.env.VITE_ALGOLIA_APP_KEY
-);
+const searchClient = algoliasearch(import.meta.env.VITE_ALGOLIA_APP_ID, import.meta.env.VITE_ALGOLIA_APP_KEY);
 
 export default function Autocomplete(props) {
   const [autocompleteState, setAutocompleteState] = React.useState({
@@ -113,11 +110,7 @@ export default function Autocomplete(props) {
   return (
     <div className="aa-Autocomplete" {...autocomplete.getRootProps({})}>
       <div style={{ display: "flex", padding: 4 }}>
-        <form
-          ref={formRef}
-          className="aa-Form"
-          {...autocomplete.getFormProps({ inputElement: inputRef.current })}
-        >
+        <form ref={formRef} className="aa-Form" {...autocomplete.getFormProps({ inputElement: inputRef.current })}>
           <div className="aa-InputWrapperPrefix">
             <label className="aa-Label" {...autocomplete.getLabelProps({})}>
               <SearchIcon />
@@ -156,57 +149,34 @@ export default function Autocomplete(props) {
       {autocompleteState.isOpen && (
         <div
           ref={panelRef}
-          className={[
-            "aa-Panel",
-            "aa-Panel--desktop",
-            autocompleteState.status === "stalled" && "aa-Panel--stalled",
-          ]
+          className={["aa-Panel", "aa-Panel--desktop", autocompleteState.status === "stalled" && "aa-Panel--stalled"]
             .filter(Boolean)
             .join(" ")}
           {...autocomplete.getPanelProps({})}
           style={{ position: "unset", overflow: "scroll", height: "85vh" }}
         >
-          <div
-            className="aa-PanelLayout"
-            style={{ height: "unset", maxHeight: "unset" }}
-          >
+          <div className="aa-PanelLayout" style={{ height: "unset", maxHeight: "unset" }}>
             {autocompleteState.collections.map((collection, index) => {
               const { source, items } = collection;
 
               return (
                 <section key={`source-${index}`} className="aa-Source">
-                  <h3 style={{ color: "blue", padding: "10px 5px" }}>
-                    {source.sourceId}
-                  </h3>
+                  <h3 style={{ color: "blue", padding: "10px 5px" }}>{source.sourceId}</h3>
                   {items.length > 0 && (
-                    <ul
-                      className="aa-List"
-                      {...autocomplete.getListProps()}
-                      onClick={props.closeSearch}
-                    >
+                    <ul className="aa-List" {...autocomplete.getListProps()} onClick={props.closeSearch}>
                       {items.map((item) => {
                         return (
                           <Link
-                            to={
-                              item.__autocomplete_indexName === "bookmarks"
-                                ? item.url
-                                : `/posts/${item.id}`
-                            }
+                            to={item.__autocomplete_indexName === "bookmarks" ? item.url : `/posts/${item.id}`}
                             key={item.objectID}
                           >
-                            <li
-                              className="aa-Item"
-                              {...autocomplete.getItemProps({ item, source })}
-                            >
+                            <li className="aa-Item" {...autocomplete.getItemProps({ item, source })}>
                               <div className="aa-ItemIcon">
-                                {item.__autocomplete_indexName ===
-                                "bookmarks" ? (
+                                {item.__autocomplete_indexName === "bookmarks" ? (
                                   <StarIcon style={{ color: "orange" }} />
                                 ) : (
                                   <img
-                                    src={`${
-                                      import.meta.env.VITE_CDN_URL
-                                    }/logo/${item.category}.svg`}
+                                    src={`${import.meta.env.VITE_CDN_URL}/logo/${item.category}.svg`}
                                     alt={item.name}
                                     width="40"
                                     height="40"
@@ -234,12 +204,7 @@ export default function Autocomplete(props) {
                                 type="button"
                                 title="Select"
                               >
-                                <svg
-                                  fill="currentColor"
-                                  viewBox="0 0 24 24"
-                                  width="20"
-                                  height="20"
-                                >
+                                <svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20">
                                   <path d="M18.984 6.984h2.016v6h-15.188l3.609 3.609-1.406 1.406-6-6 6-6 1.406 1.406-3.609 3.609h13.172v-4.031z"></path>
                                 </svg>
                               </button>

@@ -51,11 +51,9 @@ const Upload = (props) => {
       }}
     >
       <input {...getInputProps()} />
-      {!data && isDragActive ? (
-        <p style={{ textAlign: "center" }}>拖放文件到这里</p>
-      ) : (
-        <p style={{ textAlign: "center" }}>拖放文件到这里，或点击选择文件</p>
-      )}
+      <p style={{ textAlign: "center" }}>
+        {!data && isDragActive ? "拖放文件到这里" : "拖放文件到这里，或点击选择文件"}
+      </p>
       {data && <img src={data.url} alt="上传的图片" style={{ maxWidth: "100%" }} />}
     </Grid>
   );

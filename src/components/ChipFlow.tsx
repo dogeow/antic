@@ -10,16 +10,8 @@ const ChipFlow = (props) => {
             <Badge badgeContent={item.count}>
               <Chip
                 label={item.name}
-                variant={
-                  props.currentSelect === item[[props.type]]
-                    ? "default"
-                    : "outlined"
-                }
-                color={
-                  props.currentSelect === item[[props.type]]
-                    ? "primary"
-                    : "default"
-                }
+                variant={props.currentSelect === item[[props.type]] ? "default" : "outlined"}
+                color={props.currentSelect === item[[props.type]] ? "primary" : "default"}
                 onClick={() => {
                   props.onHandleClick(item[props.type]);
                 }}

@@ -2,9 +2,9 @@ import Grid from "@mui/material/Grid";
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import ExternalLink from "../components/ExternalLink";
 import PowerBy from "../components/PowerBy";
 import IcpIcon from "../resources/svg/ICP";
+import ExternalLink from "./ExternalLink";
 import Heart from "./Heart";
 
 const greenWaveUnderline = {
