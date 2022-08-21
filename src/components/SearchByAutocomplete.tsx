@@ -2,7 +2,7 @@ import { createAutocomplete } from "@algolia/autocomplete-core";
 import { getAlgoliaHits } from "@algolia/autocomplete-preset-algolia";
 import StarIcon from "@mui/icons-material/Star";
 import algoliasearch from "algoliasearch/lite";
-import React from "react";
+import * as React from "react";
 
 import { ClearIcon } from "./ClearIcon";
 import Link from "./Link";

@@ -2,7 +2,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
-import React from "react";
+import * as React from "react";
 
 export default (props) => (
   <TextField
@@ -24,15 +24,9 @@ export default (props) => (
       startAdornment: (
         <InputAdornment position="start">
           {props.displayPassword ? (
-            <VisibilityIcon
-              onClick={props.handlePassword}
-              className="pointer"
-            />
+            <VisibilityIcon onClick={props.handlePassword} className="pointer" />
           ) : (
-            <VisibilityOffIcon
-              onClick={props.handlePassword}
-              className="pointer"
-            />
+            <VisibilityOffIcon onClick={props.handlePassword} className="pointer" />
           )}
         </InputAdornment>
       ),

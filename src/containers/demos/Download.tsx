@@ -1,7 +1,7 @@
 import * as FileSaver from "file-saver";
-import React from "react";
+import * as React from "react";
 
-import axios from "../../instance/axios.js";
+import axios from "../../instance/axios";
 
 export default () => {
   React.useEffect(() => {

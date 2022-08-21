@@ -21,10 +21,8 @@ export default function SimpleBackdrop(props: { open: boolean }) {
   const classes = useStyles();
 
   return (
-    <div>
-      <Backdrop className={classes.backdrop} open={props.open !== undefined ? props.open : true}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    </div>
+    <Backdrop className={classes.backdrop} open={props.open !== undefined ? props.open : true}>
+      <CircularProgress color="inherit" />
+    </Backdrop>
   );
 }

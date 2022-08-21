@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import makeStyles from "@mui/styles/makeStyles";
-import React from "react";
+import * as React from "react";
 
 import ToLogin from "../../components/auth/ToLogin";
 

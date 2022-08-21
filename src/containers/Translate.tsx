@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
-import React from "react";
+import * as React from "react";
 
 import axios from "../instance/axios.js";
 

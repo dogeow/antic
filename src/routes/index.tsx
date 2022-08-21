@@ -57,7 +57,6 @@ const Markdown = lazy(() => import("../containers/markdown"));
 const Download = lazy(() => import("../containers/demos/Download"));
 const NoMatch = lazy(() => import("../containers/NoMatch"));
 const Diff = lazy(() => import("../containers/tools/Diff"));
-const Data = lazy(() => import("../containers/Data"));
 const Game = lazy(() => import("../containers/game"));
 const Pic = lazy(() => import("../containers/Pic"));
 const Site = lazy(() => import("../containers/Site"));
@@ -148,7 +147,6 @@ export default () => (
 
         {/* 测试 */}
         <Route path="/test" element={<Test />} />
-        <Route path="/data" element={<Data />} />
         <Route path="/game" element={<Game />} />
 
         {/* 聊天室*/}

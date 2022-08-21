@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import React from "react";
+import * as React from "react";
 import { Md5 } from "ts-md5";
 
 const Avatar = styled.img`

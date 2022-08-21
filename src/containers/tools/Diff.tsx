@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import React from "react";
+import * as React from "react";
 import ReactDiffViewer from "react-diff-viewer";
 
 export default () => {
@@ -27,11 +27,7 @@ export default () => {
         </Grid>
       </Grid>
       <div style={{ overflow: "auto", height: "40vh" }}>
-        <ReactDiffViewer
-          oldValue={oldValue}
-          newValue={newValue}
-          splitView={true}
-        />
+        <ReactDiffViewer oldValue={oldValue} newValue={newValue} splitView={true} />
       </div>
     </div>
   );

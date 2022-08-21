@@ -1,18 +1,18 @@
 import { Typography } from "@mui/material";
-import React from "react";
+import * as React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
-import { logged } from "../../helpers/index.js";
+import { logged } from "../../helpers";
 import axios from "../../instance/axios.js";
 import { isExpiredState, usersState, userState } from "../../states";
 
 export default () => {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const [user, setUser] = useRecoilState(userState);
-  const [users, setUsers] = useRecoilState(usersState);
-  const [isExpired, setIsExpired] = useRecoilState(isExpiredState);
+  const [, setUser] = useRecoilState(userState);
+  const [, setUsers] = useRecoilState(usersState);
+  const [, setIsExpired] = useRecoilState(isExpiredState);
 
   return (
     <Typography

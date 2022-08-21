@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import makeStyles from "@mui/styles/makeStyles";
-import React from "react";
+import * as React from "react";
 
 const useStyles = makeStyles({
   "@global": {

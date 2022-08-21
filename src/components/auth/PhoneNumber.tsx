@@ -2,7 +2,7 @@ import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import withStyles from "@mui/styles/withStyles";
-import React from "react";
+import * as React from "react";
 
 const ValidationTextField = withStyles({
   root: {

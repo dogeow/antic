@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import { Editor } from "@toast-ui/react-editor";
 import Prism from "prismjs";
-import React from "react";
+import * as React from "react";
 
 import "prismjs/components/prism-markup-templating.js";
 import "prismjs/components/prism-javascript.js";

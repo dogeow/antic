@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import React from "react";
+import * as React from "react";
 
 import Upload from "../Upload";
 

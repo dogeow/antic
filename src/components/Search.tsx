@@ -1,6 +1,6 @@
 import "@algolia/autocomplete-theme-classic";
 
-import React from "react";
+import * as React from "react";
 
 import Autocomplete from "./SearchByAutocomplete";
 
@@ -34,10 +34,7 @@ export default function App(props) {
             right: 20,
           }}
         >
-          <img
-            src="https://upyun.dogeow.com/search-by-algolia-light-background.svg"
-            alt="algolia"
-          />
+          <img src="https://upyun.dogeow.com/search-by-algolia-light-background.svg" alt="algolia" />
         </div>
       </div>
     )

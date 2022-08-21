@@ -1,5 +1,5 @@
 import { Badge, Chip, Grid } from "@mui/material";
-import React from "react";
+import * as React from "react";
 
 const ChipFlow = (props) => {
   return (

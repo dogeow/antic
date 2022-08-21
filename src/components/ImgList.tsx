@@ -1,12 +1,7 @@
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import {
-  IconButton,
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
-} from "@mui/material";
+import { IconButton, ImageList, ImageListItem, ImageListItemBar } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import React from "react";
+import * as React from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,8 +20,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.light,
   },
   titleBar: {
-    background:
-      "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
+    background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
   },
 }));
 

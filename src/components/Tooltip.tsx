@@ -1,7 +1,7 @@
 import Tooltip from "@mui/material/Tooltip";
 import Zoom from "@mui/material/Zoom";
 import dayjs from "dayjs";
-import React from "react";
+import * as React from "react";
 
 export default function ({ content, time }) {
   return (

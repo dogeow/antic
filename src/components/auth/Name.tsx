@@ -1,7 +1,7 @@
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
-import React from "react";
+import * as React from "react";
 
 export default (props) => (
   <TextField
