@@ -7,7 +7,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import scrollToElement from "scroll-to-element";
 import Swal from "sweetalert2";
 
-import { currentPageState, faceIsLoadingState, filteredEmojiListState, pageLimitState } from "../../states";
+import { currentPageState, faceIsLoadingState, filteredEmojiListState, pageLimitState } from "../../states/index.js";
 
 const BootNav = (props) => {
   const filteredFaces = useRecoilValue(filteredEmojiListState);

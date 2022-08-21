@@ -10,7 +10,7 @@ import Avatar from "../components/Gravatar";
 import Loading from "../components/Loading";
 import { logged } from "../helpers/index.js";
 import axios from "../instance/axios";
-import { chatBoardState, isExpiredState, peopleState, usersState, userState } from "../states";
+import { chatBoardState, isExpiredState, peopleState, usersState, userState } from "../states/index.js";
 import Expire from "./Expire";
 
 let timer = null;

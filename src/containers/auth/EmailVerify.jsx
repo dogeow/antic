@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import axios from "../../instance/axios";
-import { userState } from "../../states";
+import { userState } from "../../states/index.js";
 
 const Forget = () => {
   const navigate = useNavigate();

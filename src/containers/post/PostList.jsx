@@ -1,15 +1,6 @@
 import { useLazyQuery } from "@apollo/client";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import {
-  Chip,
-  Grid,
-  Hidden,
-  Pagination,
-  PaginationItem,
-  Paper,
-  Skeleton,
-  Typography,
-} from "@mui/material";
+import { Chip, Grid, Hidden, Pagination, PaginationItem, Paper, Skeleton, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -20,7 +11,7 @@ import { useRecoilState } from "recoil";
 import AllTags from "../../containers/post/AllTags";
 import Categories from "../../containers/post/Categories";
 import { CATEGORY, POST_LIST, TAG } from "../../graphql/post";
-import { postState } from "../../states";
+import { postState } from "../../states/index.js";
 
 dayjs.extend(relativeTime);
 
@@ -43,10 +34,7 @@ const PostList = (props) => {
   const [getPosts, { data }] = useLazyQuery(POST_LIST, {
     fetchPolicy: "no-cache",
   });
-  const [getPostsByCategory, { data: postsByCategory }] = useLazyQuery(
-    CATEGORY,
-    { fetchPolicy: "no-cache" }
-  );
+  const [getPostsByCategory, { data: postsByCategory }] = useLazyQuery(CATEGORY, { fetchPolicy: "no-cache" });
 
   const [getPostsByTag, { data: postsByTag }] = useLazyQuery(TAG);
 
@@ -80,11 +68,7 @@ const PostList = (props) => {
   }, [postsByTag, setPost]);
 
   const handlePage = (page) => {
-    getPosts(
-      currCategory
-        ? { variables: { page: page, categoryId: currCategory } }
-        : { variables: { page: page } }
-    );
+    getPosts(currCategory ? { variables: { page: page, categoryId: currCategory } } : { variables: { page: page } });
   };
 
   const changeCategory = (id) => {
@@ -138,10 +122,7 @@ const PostList = (props) => {
             <Typography variant="h5" component="div">
               笔记
             </Typography>
-            <AddCircleIcon
-              style={{ marginLeft: 5 }}
-              onClick={handlePostCreate}
-            />
+            <AddCircleIcon style={{ marginLeft: 5 }} onClick={handlePostCreate} />
           </Grid>
         </Grid>
         <Grid item container spacing={2}>
@@ -150,20 +131,11 @@ const PostList = (props) => {
               <Grid container spacing={2}>
                 {post.length
                   ? post.map((item) => (
-                      <Grid
-                        item
-                        container
-                        xs={12}
-                        key={item.id}
-                        spacing={2}
-                        style={{ flexWrap: "nowrap" }}
-                      >
+                      <Grid item container xs={12} key={item.id} spacing={2} style={{ flexWrap: "nowrap" }}>
                         {/* 分类 */}
                         <Grid item>
                           <img
-                            src={`${import.meta.env.VITE_CDN_URL}/logo/${
-                              item.category.name
-                            }.svg`}
+                            src={`${import.meta.env.VITE_CDN_URL}/logo/${item.category.name}.svg`}
                             alt={item.category.name}
                             width="20"
                             height="20"
@@ -172,11 +144,7 @@ const PostList = (props) => {
                         </Grid>
                         {/* 标题 */}
                         <Grid item style={{ flexGrow: 1 }}>
-                          <Typography
-                            variant="subtitle1"
-                            component="h2"
-                            onClick={() => handleEnterPost(item)}
-                          >
+                          <Typography variant="subtitle1" component="h2" onClick={() => handleEnterPost(item)}>
                             {item.title}
                           </Typography>
                         </Grid>
@@ -187,20 +155,13 @@ const PostList = (props) => {
                               {item.tags.length !== 0 &&
                                 item.tags.map((tag) => (
                                   <Grid item key={tag.id}>
-                                    <Chip
-                                      variant="outlined"
-                                      size="small"
-                                      label={tag.name}
-                                    />
+                                    <Chip variant="outlined" size="small" label={tag.name} />
                                   </Grid>
                                 ))}
                             </Grid>
                           </Grid>
                         </Hidden>
-                        <Grid
-                          item
-                          style={item.public ? null : { color: "red" }}
-                        >
+                        <Grid item style={item.public ? null : { color: "red" }}>
                           {dayjs(item.updated_at).fromNow()}
                         </Grid>
                       </Grid>
@@ -211,11 +172,7 @@ const PostList = (props) => {
                           <Skeleton width={40} height="28px" animation="wave" />
                         </Grid>
                         <Grid item xs>
-                          <Skeleton
-                            width="100%"
-                            height="28px"
-                            animation="wave"
-                          />
+                          <Skeleton width="100%" height="28px" animation="wave" />
                         </Grid>
                       </Grid>
                     ))}
@@ -230,11 +187,7 @@ const PostList = (props) => {
               hideNextButton={currPage >= pageCount}
               renderItem={(item) =>
                 pageCount > 0 && (
-                  <PaginationItem
-                    {...item}
-                    disabled={item.page === currPage}
-                    onClick={() => handlePage(item.page)}
-                  />
+                  <PaginationItem {...item} disabled={item.page === currPage} onClick={() => handlePage(item.page)} />
                 )
               }
             />

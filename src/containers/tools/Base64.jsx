@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 import ClipboardButton from "../../components/ClipboardButton";
-import { snackMessageState } from "../../states";
+import { snackMessageState } from "../../states/index.js";
 
 export default function () {
   const [base64Str, setBase64St] = useState("");

@@ -22,7 +22,7 @@ import {
   searchState,
   selectedCategoryState,
   selectedTagState,
-} from "../../states/emoji";
+} from "../../states/emoji.js";
 import BootNav from "./BootNav";
 import Filter from "./Filter";
 import FilterStatistics from "./FilterStatistics";

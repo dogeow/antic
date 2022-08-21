@@ -4,7 +4,7 @@ import { useDropzone } from "react-dropzone";
 import { useRecoilState } from "recoil";
 
 import axios from "../instance/axios";
-import { snackMessageState } from "../states";
+import { snackMessageState } from "../states/index.js";
 
 const Upload = (props) => {
   const [data, setData] = useState();

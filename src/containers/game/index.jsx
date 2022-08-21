@@ -5,7 +5,7 @@ import { useRecoilState } from "recoil";
 import { getPointOnCanvas, isCanvasSupported } from "../../helpers/canvas";
 import useCanvas from "../../hooks/useCanvas";
 import axios from "../../instance/axios";
-import { userState } from "../../states";
+import { userState } from "../../states/index.js";
 import { LAYERS, MAP_TILE_IMAGES, TILE_SIZE } from "./constants";
 import drawLayer from "./drawLayer";
 import drawMonster from "./drawMonster";

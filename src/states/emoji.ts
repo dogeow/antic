@@ -4,21 +4,29 @@ import { atom, selector } from "recoil";
 
 import facesJson from "../resources/face.json";
 
+interface Face {
+  fileName: string;
+  name: string;
+  category: string;
+  tag: string[];
+}
+
 /**
  * 标签筛选
- * @param {array} gifs 表情数组
+ *
+ * @param {array} faces 表情数组
  * @param {string} tagState 已被选择的标签
  * @return {array} 符合该标签的数组
  */
-function tagFilter(gifs, tagState) {
+function tagFilter(faces: Face[], tagState: string) {
   if (tagState === "全部") {
-    return gifs;
+    return faces;
   }
 
   const filter = [];
-  for (const gif of gifs) {
-    if (gif.tag.includes(tagState)) {
-      filter.push(gif);
+  for (const face of faces) {
+    if (face.tag.includes(tagState)) {
+      filter.push(face);
     }
   }
 
@@ -27,29 +35,28 @@ function tagFilter(gifs, tagState) {
 
 /**
  * 计算偏移量
- * @param {int} whichPage 第几页
- * @param {int} pageLimit 一页显示几张
+ * @param {number} whichPage 第几页
+ * @param {number} pageLimit 一页显示几张
  * @return {{start: number, end: number}}
  */
-function offset(whichPage, pageLimit) {
+function offset(whichPage: number, pageLimit: number) {
   return {
     start: (whichPage - 1) * pageLimit,
     end: (whichPage - 1) * pageLimit + pageLimit,
   };
 }
 
-function getCategoryAndTagData(data, selectedCategory, selectedTag) {
-  return tagFilter(categoryFilter(data, selectedCategory), selectedTag);
+function getCategoryAndTagData(faces: Face[], selectedCategory: string, selectedTag: string) {
+  return tagFilter(categoryFilter(faces, selectedCategory), selectedTag);
 }
 
 /**
  * 返回表情数组所有的标签
  *
- * @param {array} gifs 表情数组
- * @return {array}
+ * @return {array} 所有的标签
  */
 function allTag() {
-  let tagsList = [];
+  let tagsList: string[] = [];
   facesJson.map((gif) => {
     return (tagsList = tagsList.concat(gif.tag));
   });
@@ -60,17 +67,17 @@ function allTag() {
 /**
  * 分类筛选
  *
- * @param {array} gifs 表情数组
+ * @param {array} faces 表情数组
  * @param {string} category 点击了哪个分类
  * @return {array} 符合该分类的表情数组
  */
-function categoryFilter(gifs, category) {
+function categoryFilter(faces: Face[], category: string) {
   if (category === "全部") {
-    return gifs;
+    return faces;
   }
-  const filter = [];
-  gifs.map((gif) => {
-    return gif.category === category ? filter.push(gif) : null;
+  const filter: Face[] = [];
+  faces.map((face) => {
+    return face.category === category ? filter.push(face) : null;
   });
 
   return filter;
@@ -136,7 +143,7 @@ export const filteredEmojiListState = selector({
     const search = get(searchState);
 
     if (search !== "") {
-      const filter = [];
+      const filter: Face[] = [];
       facesJson.forEach((face) => {
         if (face.name.toLowerCase().indexOf(search.toLowerCase()) !== -1) {
           filter.push(face);
@@ -145,18 +152,11 @@ export const filteredEmojiListState = selector({
 
       return filter;
     } else {
-      const whichPageData = getCategoryAndTagData(
-        facesJson,
-        selectedCategory,
-        selectedTag
-      );
+      const whichPageData = getCategoryAndTagData(facesJson, selectedCategory, selectedTag);
 
       const whichPageDataRange = offset(currentPage, pageLimit);
 
-      return whichPageData.slice(
-        whichPageDataRange.start,
-        whichPageDataRange.end
-      );
+      return whichPageData.slice(whichPageDataRange.start, whichPageDataRange.end);
     }
   },
 });

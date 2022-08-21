@@ -1,18 +1,12 @@
 import AddIcon from "@mui/icons-material/Add";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import SubIcon from "@mui/icons-material/Remove";
-import {
-  Grid,
-  Input,
-  InputAdornment,
-  InputLabel,
-  TextField,
-} from "@mui/material";
+import { Grid, Input, InputAdornment, InputLabel, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 import ClipboardButton from "../../components/ClipboardButton";
-import { snackMessageState } from "../../states";
+import { snackMessageState } from "../../states/index.js";
 
 const emptyCost = { money: "", note: "", isCost: true };
 
@@ -78,9 +72,7 @@ const Money = () => {
 
     bills.map((bill) => {
       if (bill.money !== "" && bill.money !== 0) {
-        tempBillText += bill.isCost
-          ? " - " + bill.money + `（${bill.note}）`
-          : " + " + bill.money + `（${bill.note}）`;
+        tempBillText += bill.isCost ? " - " + bill.money + `（${bill.note}）` : " + " + bill.money + `（${bill.note}）`;
       }
     });
 
@@ -102,14 +94,7 @@ const Money = () => {
     <Grid container>
       <Grid item xs={12}>
         <h2 style={{ textAlign: "center" }}>
-          <TextField
-            id="remaining"
-            label="余额"
-            type="number"
-            required
-            value={remaining}
-            onChange={remainingChange}
-          />
+          <TextField id="remaining" label="余额" type="number" required value={remaining} onChange={remainingChange} />
         </h2>
         {bills.map((bill, index) => (
           <Grid container spacing={2} key={index}>
@@ -124,23 +109,14 @@ const Money = () => {
                 required
                 onChange={(e) => changeMoney(e, index)}
                 startAdornment={
-                  <InputAdornment
-                    position="start"
-                    onClick={() => toggleIsCostState(index)}
-                  >
+                  <InputAdornment position="start" onClick={() => toggleIsCostState(index)}>
                     {bill.isCost ? <SubIcon /> : <AddIcon />}
                   </InputAdornment>
                 }
               />
             </Grid>
             <Grid item xs={8}>
-              <TextField
-                id="note"
-                label="备注"
-                required
-                fullWidth
-                onChange={(e) => changeNote(e, index)}
-              />
+              <TextField id="note" label="备注" required fullWidth onChange={(e) => changeNote(e, index)} />
             </Grid>
           </Grid>
         ))}

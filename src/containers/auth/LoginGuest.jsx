@@ -5,7 +5,7 @@ import { useRecoilState } from "recoil";
 
 import { logged } from "../../helpers/index.js";
 import axios from "../../instance/axios";
-import { isExpiredState, usersState, userState } from "../../states";
+import { isExpiredState, usersState, userState } from "../../states/index.js";
 
 export default () => {
   const navigate = useNavigate();

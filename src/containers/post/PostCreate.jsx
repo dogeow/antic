@@ -92,7 +92,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-import { postState } from "../../states";
+import { postState } from "../../states/index.js";
 
 export default () => {
   const classes = useStyles();

@@ -19,7 +19,7 @@ import GitHubLogin from "../../components/GithubLogin";
 import Loading from "../../components/Loading";
 import Copyright from "../../components/site/Copyright";
 import axios from "../../instance/axios";
-import { userState } from "../../states";
+import { userState } from "../../states/index.js";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

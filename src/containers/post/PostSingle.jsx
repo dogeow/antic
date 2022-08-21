@@ -11,7 +11,7 @@ import { useRecoilState } from "recoil";
 
 import AlertDialog from "../../components/AlertDialog";
 import { DELETE_POST_BY_ID, POST_BY_ID } from "../../graphql/post";
-import { postState } from "../../states";
+import { postState } from "../../states/index.js";
 import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
 
@@ -116,10 +116,7 @@ const PostSingle = () => {
           </div>
           {menu && (
             <div className={classes.toc}>
-              <ReactMarkdownHeading
-                markdown={post?.content ? post.content : ""}
-                hyperlink={true}
-              />
+              <ReactMarkdownHeading markdown={post?.content ? post.content : ""} hyperlink={true} />
             </div>
           )}
         </div>
@@ -131,9 +128,7 @@ const PostSingle = () => {
               <Grid item>
                 <Link to={`/posts?filter[category.name]=${post.category.name}`}>
                   <img
-                    src={`${import.meta.env.VITE_CDN_URL}/logo/${
-                      post.category.name
-                    }.svg`}
+                    src={`${import.meta.env.VITE_CDN_URL}/logo/${post.category.name}.svg`}
                     alt={post.category.name}
                     width="20"
                     height="20"
@@ -143,9 +138,7 @@ const PostSingle = () => {
             )}
             <Grid item style={{ flexGrow: 1 }}>
               <Typography variant="h6" component="h2">
-                {parseInt(localStorage?.postId) === id
-                  ? localStorage.postTitle
-                  : post.title}
+                {parseInt(localStorage?.postId) === id ? localStorage.postTitle : post.title}
               </Typography>
             </Grid>
             <Grid item>
@@ -161,12 +154,7 @@ const PostSingle = () => {
         )}
       </Grid>
       <Grid item container spacing={1}>
-        <PostHeader
-          edit={false}
-          post={post}
-          handleEdit={handleEdit}
-          handleDelete={handleAlertDialogToggle}
-        />
+        <PostHeader edit={false} post={post} handleEdit={handleEdit} handleDelete={handleAlertDialogToggle} />
       </Grid>
       <Grid item xs={12}>
         <PostBody post={post} />
