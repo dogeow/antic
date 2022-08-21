@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
 import * as React from "react";
 
-import axios from "../instance/axios.js";
+import axios from "../instance/axios";
 
 const languages = ["ko", "tr", "ms", "th", "tw"];
 

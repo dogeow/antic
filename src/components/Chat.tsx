@@ -8,10 +8,10 @@ import { useRecoilState } from "recoil";
 
 import Avatar from "../components/Gravatar";
 import { logged } from "../helpers";
-import axios from "../instance/axios.js";
+import axios from "../instance/axios";
 import { chatBoardState, isExpiredState, peopleState, usersState, userState } from "../states";
 import Expire from "./Expire";
-import Loading from "./Loading.js";
+import Loading from "./Loading";
 
 let timer = null;
 

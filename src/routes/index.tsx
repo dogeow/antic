@@ -32,7 +32,6 @@ const NewProject = lazy(() => import("../components/task/NewProject"));
 const SingleProject = lazy(() => import("../components/task/SingleProject"));
 const Nav = lazy(() => import("../components/Nav"));
 const A2Z = lazy(() => import("../containers/tools/A2Z"));
-const Piano = lazy(() => import("../components/Piano"));
 const BookmarkCreate = lazy(() => import("../containers/BookmarkCreate"));
 const Ndd = lazy(() => import("../components/Ndd"));
 const User = lazy(() => import("../containers/users/User"));
@@ -104,7 +103,6 @@ export default () => (
         <Route path="/emoji" element={<Emoji />} />
         <Route path="/emoji/create" element={<EmojiCreate />} />
         <Route path="/nav" element={<Nav />} />
-        <Route path="/piano" element={<Piano />} />
         <Route path="/bookmark/create" element={<BookmarkCreate />} />
         <Route path="/demo" element={<Demo />} />
         <Route path="/demos/calculator" element={<Calculator />} />

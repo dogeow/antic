@@ -20,7 +20,7 @@ import Swal from "sweetalert2";
 import CodeBlock from "../../components/CodeBlock";
 import { POST_BY_ID } from "../../graphql/post";
 import axios from "../../instance/axios";
-import Tags from "./Tags.js";
+import Tags from "./Tags";
 
 const useStyles = makeStyles((theme) => {
   const background = theme.palette.background.default;

@@ -1,14 +1,6 @@
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ShareIcon from "@mui/icons-material/Share";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  IconButton,
-  Typography,
-} from "@mui/material";
+import { Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from "@mui/material";
 import Collapse from "@mui/material/Collapse";
 import { red } from "@mui/material/colors";
 import makeStyles from "@mui/styles/makeStyles";
@@ -36,14 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard({
-  title,
-  subHeader,
-  img,
-  link,
-  intro,
-  feeling,
-}) {
+export default function RecipeReviewCard({ title, subHeader, img, link, intro, feeling }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -56,18 +41,11 @@ export default function RecipeReviewCard({
       <CardHeader title={title} subheader={subHeader} />
       <CardMedia
         className={classes.media}
-        image={`${
-          import.meta.env.VITE_CDN_URL
-        }/like/${img}!/compress/true/fw/800`}
+        image={`${import.meta.env.VITE_CDN_URL}/like/${img}!/compress/true/fw/800`}
         title="Paella dish"
       />
       <CardContent style={{ minHeight: "11em" }}>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          component="p"
-          dangerouslySetInnerHTML={{ __html: intro }}
-        />
+        <Typography variant="body2" color="textSecondary" component="p" dangerouslySetInnerHTML={{ __html: intro }} />
       </CardContent>
       <CardActions disableSpacing>
         <a href={link} target="_blank" rel="noopener noreferrer">

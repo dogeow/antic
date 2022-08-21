@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
-import axios from "../../instance/axios.js";
+import axios from "../../instance/axios";
 import { userState } from "../../states";
 
 const Forget = () => {

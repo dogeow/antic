@@ -13,7 +13,7 @@ import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useNavigate, useParams } from "react-router-dom";
 
-import axios from "../../instance/axios.js";
+import axios from "../../instance/axios";
 import AlertDialog from "../AlertDialog";
 
 const useStyles = makeStyles(() => ({
@@ -46,7 +46,7 @@ const PROJECT_BY_ID = gql`
   }
 `;
 
-const getItemStyle = (isDragging, draggableStyle) => ({
+const getItemStyle = (isDragging: boolean, draggableStyle) => ({
   userSelect: "none",
 
   background: isDragging ? "gray" : "none",

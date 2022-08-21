@@ -17,7 +17,7 @@ const Avatar = styled.img`
     `};
 `;
 
-import { gravatarCdn } from "../config/services.js";
+import { gravatarCdn } from "../config/services";
 
 export default function (props) {
   return (

@@ -6,13 +6,13 @@ import { useRecoilState } from "recoil";
 
 import face from "../../resources/face.json";
 import { paletteModeState } from "../../states";
-import { selectedCategoryState } from "../../states/emoji.js";
+import { selectedCategoryState } from "../../states";
 
 const CategoriesElem = () => {
   const [selectedCategory, setSelectedCategory] = useRecoilState(selectedCategoryState);
-  const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
+  const [paletteMode] = useRecoilState(paletteModeState);
 
-  let categories = [];
+  let categories: string[] = [];
   const total = {}; // 统计各个分类的图片张数
   face.map(function (single) {
     total[single.category] = ++total[single.category] || 1;

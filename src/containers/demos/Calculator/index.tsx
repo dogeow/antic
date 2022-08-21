@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { toCelsius, toFahrenheit, tryConvert } from "../../../helpers/index.js";
+import { toCelsius, toFahrenheit, tryConvert } from "../../../helpers";
 import BoilingVerdict from "./BoilingVerdict";
 import TemperatureInput from "./TemperatureInput";
 

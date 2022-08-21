@@ -3,12 +3,12 @@ import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { useRecoilState } from "recoil";
 
-import axios from "../instance/axios.js";
+import axios from "../instance/axios";
 import { snackMessageState } from "../states";
 
 const Upload = (props) => {
   const [data, setData] = useState();
-  const [snackMessage, setSnackMessage] = useRecoilState(snackMessageState);
+  const [, setSnackMessage] = useRecoilState(snackMessageState);
 
   const onDrop = useCallback(
     (acceptedFiles) => {

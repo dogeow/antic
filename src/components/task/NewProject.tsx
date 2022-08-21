@@ -3,10 +3,10 @@ import Grid from "@mui/material/Grid";
 import Input from "@mui/material/Input";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import clsx from "clsx";
-import React, { useState } from "react";
+import React, { FormEventHandler, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import axios from "../../instance/axios.js";
+import axios from "../../instance/axios";
 
 const NewProject = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const NewProject = () => {
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState({});
 
-  const handleCreateNewProject = (event) => {
+  const handleCreateNewProject: FormEventHandler = (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault();
 
     axios

@@ -5,7 +5,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import * as React from "react";
 
 import Tooltip from "../../components/Tooltip";
-import Tags from "./Tags.js";
+import Tags from "./Tags";
 
 dayjs.extend(relativeTime);
 

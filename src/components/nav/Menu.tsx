@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
 
-import { getHost } from "../../helpers/index.js";
+import { getHost } from "../../helpers";
 
 const useStyles = makeStyles(() => ({
   card: {

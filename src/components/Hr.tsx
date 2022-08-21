@@ -4,10 +4,7 @@ import * as React from "react";
 
 const useStyles = makeStyles((theme) => ({
   hr: {
-    border:
-      theme.palette.mode === "dark"
-        ? "1px dashed rgba(211,224,233,.15)"
-        : "1px dashed rgba(211,224,233,1)",
+    border: theme.palette.mode === "dark" ? "1px dashed rgba(211,224,233,.15)" : "1px dashed rgba(211,224,233,1)",
   },
 }));
 

@@ -5,16 +5,6 @@ export default (ctx, monsters) => {
     const x = monster.x * TILE_SIZE;
     const y = monster.y * TILE_SIZE;
 
-    ctx.drawImage(
-      document.querySelector("#monster"),
-      0,
-      0,
-      32,
-      32,
-      x,
-      y,
-      32,
-      32
-    );
+    ctx.drawImage(document.querySelector("#monster"), 0, 0, 32, 32, x, y, 32, 32);
   }
 };

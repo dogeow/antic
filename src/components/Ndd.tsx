@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
 
-import axios from "../instance/axios.js";
+import axios from "../instance/axios";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {

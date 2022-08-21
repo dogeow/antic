@@ -20,7 +20,7 @@ import {
 import React, { useState } from "react";
 import swal from "sweetalert2";
 
-import axios from "../../instance/axios.js";
+import axios from "../../instance/axios";
 
 const NoMatch = () => {
   const [value, setValue] = useState("");

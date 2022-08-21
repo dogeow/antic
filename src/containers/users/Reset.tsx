@@ -7,7 +7,7 @@ import swal from "sweetalert2";
 
 import Password from "../../components/auth/Password";
 import PasswordConfirmation from "../../components/auth/PasswordConfirmation";
-import axios from "../../instance/axios.js";
+import axios from "../../instance/axios";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

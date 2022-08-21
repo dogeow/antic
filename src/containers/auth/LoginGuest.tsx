@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import { logged } from "../../helpers";
-import axios from "../../instance/axios.js";
+import axios from "../../instance/axios";
 import { isExpiredState, usersState, userState } from "../../states";
 
 export default () => {

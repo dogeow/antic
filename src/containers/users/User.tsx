@@ -4,11 +4,11 @@ import * as React from "react";
 import { useRecoilState } from "recoil";
 import { Md5 } from "ts-md5";
 
-import { gravatarCdn } from "../../config/services.js";
+import { gravatarCdn } from "../../config/services";
 import { userState } from "../../states";
 
 const User = () => {
-  const [user, setUser] = useRecoilState(userState);
+  const [user] = useRecoilState(userState);
   const avatar = `${gravatarCdn}/${Md5.hashStr(user.userEmail)}.jpg?d=monsterid&s=300`;
 
   return (

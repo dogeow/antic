@@ -1,4 +1,4 @@
-import axios from "../instance/axios.js";
+import axios from "../instance/axios";
 
 export const logoutRequest = (token) =>
   axios.post(

@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
-import axios from "../../instance/axios.js";
+import axios from "../../instance/axios";
 
 const Api = () => {
   const [api, setApi] = useState([]);

@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import axios from "../../instance/axios.js";
+import axios from "../../instance/axios";
 
 const Moon = () => {
   const navigate = useNavigate();
