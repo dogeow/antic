@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import React, { useEffect, useState } from "react";
 
-import axios from "../instance/axios";
+import axios from "../instance/axios.js";
 
 export default () => {
   const [pics, setPics] = useState([]);

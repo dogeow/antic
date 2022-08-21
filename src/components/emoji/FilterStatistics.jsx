@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid";
 import * as React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 
-import { currentPageState, filteredEmojiListState, pageLimitState } from "../../states/index.js";
+import { currentPageState, filteredEmojiListState, pageLimitState } from "../../states";
 
 const FilterStatistics = (props) => {
   const [currentPage, setCurrentPage] = useRecoilState(currentPageState);

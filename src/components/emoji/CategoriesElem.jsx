@@ -5,8 +5,8 @@ import * as React from "react";
 import { useRecoilState } from "recoil";
 
 import face from "../../resources/face.json";
+import { paletteModeState } from "../../states";
 import { selectedCategoryState } from "../../states/emoji.js";
-import { paletteModeState } from "../../states/index.js";
 
 const CategoriesElem = () => {
   const [selectedCategory, setSelectedCategory] = useRecoilState(selectedCategoryState);

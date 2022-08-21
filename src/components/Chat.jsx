@@ -7,11 +7,11 @@ import { isMobile } from "react-device-detect";
 import { useRecoilState } from "recoil";
 
 import Avatar from "../components/Gravatar";
-import Loading from "../components/Loading";
 import { logged } from "../helpers/index.js";
-import axios from "../instance/axios";
-import { chatBoardState, isExpiredState, peopleState, usersState, userState } from "../states/index.js";
+import axios from "../instance/axios.js";
+import { chatBoardState, isExpiredState, peopleState, usersState, userState } from "../states";
 import Expire from "./Expire";
+import Loading from "./Loading.js";
 
 let timer = null;
 

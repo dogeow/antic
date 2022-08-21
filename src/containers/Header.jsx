@@ -37,8 +37,8 @@ import Logo from "../components/Logo";
 import Search from "../components/Search";
 import Settings from "../components/Settings";
 import { getGravatarAddress, logout } from "../helpers/index";
-import { emptyUser } from "../objects/user";
-import { logoutRequest } from "../requests/user";
+import { emptyUser } from "../objects/user.js";
+import { logoutRequest } from "../requests/user.js";
 import {
   isExpiredState,
   isSnackOpenState,
@@ -46,7 +46,7 @@ import {
   snackMessageState,
   usersState,
   userState,
-} from "../states/index.js";
+} from "../states";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;

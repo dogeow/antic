@@ -1,4 +1,4 @@
-import axios from "instance/axios";
+import axios from "instance/axios.js";
 import React, { useState } from "react";
 import swal from "sweetalert2";
 

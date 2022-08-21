@@ -3,7 +3,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useRecoilState } from "recoil";
 
-import { paletteModeState } from "../states/index.js";
+import { paletteModeState } from "../states";
 
 const CodeBlock = (props) => {
   const { language, value } = props;

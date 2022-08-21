@@ -11,12 +11,13 @@ const useStyles = makeStyles((theme) => ({
 
 /**
  * 帏幕
+ *
  * @param {object} props
  * @param {bool} props.open
  * @return {JSX.Element}
  * @constructor
  */
-export default function SimpleBackdrop(props) {
+export default function SimpleBackdrop(props: { open: boolean }) {
   const classes = useStyles();
 
   return (

@@ -11,7 +11,7 @@ import { useRecoilState } from "recoil";
 import AllTags from "../../containers/post/AllTags";
 import Categories from "../../containers/post/Categories";
 import { CATEGORY, POST_LIST, TAG } from "../../graphql/post";
-import { postState } from "../../states/index.js";
+import { postState } from "../../states";
 
 dayjs.extend(relativeTime);
 

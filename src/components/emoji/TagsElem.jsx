@@ -5,7 +5,7 @@ import { isMobile } from "react-device-detect";
 import { useRecoilState } from "recoil";
 
 import face from "../../resources/face.json";
-import { displayTagState, expandTagState, paletteModeState, selectedTagState } from "../../states/index.js";
+import { displayTagState, expandTagState, paletteModeState, selectedTagState } from "../../states";
 
 const TagsElem = () => {
   const [selectedTag, setSelectedTag] = useRecoilState(selectedTagState);

@@ -5,7 +5,7 @@ import { useRecoilState } from "recoil";
 import { Md5 } from "ts-md5";
 
 import { gravatarCdn } from "../../config/services.js";
-import { userState } from "../../states/index.js";
+import { userState } from "../../states";
 
 const User = () => {
   const [user, setUser] = useRecoilState(userState);

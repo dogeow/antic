@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import * as React from "react";
 import { useRecoilState } from "recoil";
 
-import { expandCategoryState, paletteModeState, selectedCategoryState } from "../../states/index.js";
+import { expandCategoryState, paletteModeState, selectedCategoryState } from "../../states";
 import CategoriesElem from "./CategoriesElem";
 
 const Category = () => {

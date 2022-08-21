@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
 
-import axios from "../../instance/axios";
+import axios from "../../instance/axios.js";
 
 const UserSetting = () => {
   const [currPassword, setCurrPassword] = useState("");

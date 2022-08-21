@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import React, { useEffect, useState } from "react";
 
-import axios from "../instance/axios";
+import axios from "../instance/axios.js";
 
 dayjs.extend(relativeTime);
 

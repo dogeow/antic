@@ -20,7 +20,7 @@ import Swal from "sweetalert2";
 import CodeBlock from "../../components/CodeBlock";
 import { POST_BY_ID } from "../../graphql/post";
 import axios from "../../instance/axios";
-import Tags from "../post/Tags";
+import Tags from "./Tags.js";
 
 const useStyles = makeStyles((theme) => {
   const background = theme.palette.background.default;
@@ -92,7 +92,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-import { postState } from "../../states/index.js";
+import { postState } from "../../states";
 
 export default () => {
   const classes = useStyles();

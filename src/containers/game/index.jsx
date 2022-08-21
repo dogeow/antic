@@ -2,10 +2,10 @@ import produce from "immer";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
-import { getPointOnCanvas, isCanvasSupported } from "../../helpers/canvas";
+import { getPointOnCanvas, isCanvasSupported } from "../../helpers/canvas.js";
 import useCanvas from "../../hooks/useCanvas";
-import axios from "../../instance/axios";
-import { userState } from "../../states/index.js";
+import axios from "../../instance/axios.js";
+import { userState } from "../../states";
 import { LAYERS, MAP_TILE_IMAGES, TILE_SIZE } from "./constants";
 import drawLayer from "./drawLayer";
 import drawMonster from "./drawMonster";

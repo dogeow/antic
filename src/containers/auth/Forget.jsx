@@ -5,7 +5,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import React, { useState } from "react";
 import swal from "sweetalert2";
 
-import axios from "../../instance/axios";
+import axios from "../../instance/axios.js";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

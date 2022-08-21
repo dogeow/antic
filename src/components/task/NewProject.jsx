@@ -6,7 +6,7 @@ import clsx from "clsx";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import axios from "../../instance/axios";
+import axios from "../../instance/axios.js";
 
 const NewProject = () => {
   const navigate = useNavigate();

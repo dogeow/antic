@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import React, { useEffect, useState } from "react";
 
-import axios from "../../instance/axios";
+import axios from "../../instance/axios.js";
 
 export default () => {
   const [mediawiki, setMediawiki] = useState("");

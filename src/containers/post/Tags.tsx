@@ -24,7 +24,7 @@ const TAGS = gql`
 `;
 
 import axios from "../../instance/axios";
-import { allTagsState, postState, tagsState, userState } from "../../states/index.js";
+import { allTagsState, postState, tagsState, userState } from "../../states";
 
 const Tags = ({ edit }) => {
   const classes = useStyles();

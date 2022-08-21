@@ -14,7 +14,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useNavigate, useParams } from "react-router-dom";
 
 import AlertDialog from "../../components/AlertDialog";
-import axios from "../../instance/axios";
+import axios from "../../instance/axios.js";
 
 const useStyles = makeStyles(() => ({
   green: {

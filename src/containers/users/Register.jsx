@@ -16,10 +16,10 @@ import PasswordConfirmation from "../../components/auth/PasswordConfirmation";
 import PhoneNumber from "../../components/auth/PhoneNumber";
 import Verify from "../../components/auth/Verify";
 import GitHubLogin from "../../components/GithubLogin";
-import Loading from "../../components/Loading";
+import Loading from "../../components/Loading.js";
 import Copyright from "../../components/site/Copyright";
-import axios from "../../instance/axios";
-import { userState } from "../../states/index.js";
+import axios from "../../instance/axios.js";
+import { userState } from "../../states";
 
 const useStyles = makeStyles((theme) => ({
   paper: {

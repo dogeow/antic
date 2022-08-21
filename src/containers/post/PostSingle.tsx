@@ -11,7 +11,7 @@ import { useRecoilState } from "recoil";
 
 import AlertDialog from "../../components/AlertDialog";
 import { DELETE_POST_BY_ID, POST_BY_ID } from "../../graphql/post";
-import { postState } from "../../states/index.js";
+import { postState } from "../../states";
 import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
 

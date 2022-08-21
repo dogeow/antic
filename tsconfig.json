@@ -4,10 +4,12 @@
     "target": "ESNext",
     "downlevelIteration": true,
     "esModuleInterop": true,
-    "typeRoots": ["./src/types", "./types"],
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext", "es6"],
     "allowJs": false,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -18,10 +20,21 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vite/client", "@types/node"]
+    "types": [
+      "vite/client",
+      "@types/node",
+      "react",
+      "jest",
+      "lodash",
+      "react-dom",
+      "react-router-dom",
+      "mui",
+    ],
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "include": [
-    "src"
+    "src",
+    "node_modules/**/*.d.ts",
+    "node_modules/@types/**/*.d.ts"
   ],
-  "typeRoots": ["./node_modules/@types", "./src/types"]
 }

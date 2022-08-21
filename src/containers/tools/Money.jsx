@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 import ClipboardButton from "../../components/ClipboardButton";
-import { snackMessageState } from "../../states/index.js";
+import { snackMessageState } from "../../states";
 
 const emptyCost = { money: "", note: "", isCost: true };
 
