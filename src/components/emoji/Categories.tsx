@@ -9,7 +9,7 @@ import CategoriesElem from "./CategoriesElem";
 const Category = () => {
   const [expandCategory, setExpandCategory] = useRecoilState(expandCategoryState);
   const [selectedCategory, setSelectedCategory] = useRecoilState(selectedCategoryState);
-  const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
+  const [paletteMode] = useRecoilState(paletteModeState);
   const color = selectedCategory === "全部" ? "secondary" : "primary";
 
   return (

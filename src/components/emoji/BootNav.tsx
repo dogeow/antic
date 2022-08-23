@@ -9,17 +9,13 @@ import Swal from "sweetalert2";
 
 import { currentPageState, faceIsLoadingState, filteredEmojiListState, pageLimitState } from "../../states";
 
-const BootNav = (props) => {
+const BootNav = () => {
   const filteredFaces = useRecoilValue(filteredEmojiListState);
   const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
-  const [pageLimit, setPageLimit] = useRecoilState(pageLimitState);
-  const [faceIsLoading, setFaceIsLoading] = useRecoilState(faceIsLoadingState);
+  const [pageLimit] = useRecoilState(pageLimitState);
+  const [, setFaceIsLoading] = useRecoilState(faceIsLoadingState);
 
-  const currentPageHandle = (value) => {
-    setCurrentPage(value);
-  };
-
-  const handlePageSwitch = (action) => {
+  const handlePageSwitch = (action: "Next" | "Previous") => {
     if (action === "Previous") {
       if (currentPage <= 1) {
         Swal.fire({

@@ -1,6 +1,7 @@
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
+import _ from "lodash";
 import * as React from "react";
 import { useRecoilState } from "recoil";
 
@@ -13,33 +14,35 @@ const CategoriesElem = () => {
   const [paletteMode] = useRecoilState(paletteModeState);
 
   let categories: string[] = [];
-  const total = {}; // 统计各个分类的图片张数
+  // 统计各个分类的图片张数
+  const total: {
+    [propName: string]: number;
+  } = {};
   face.map(function (single) {
     total[single.category] = ++total[single.category] || 1;
 
     return (categories = categories.concat(single.category));
   });
-  const uniqCategories = new Set(categories);
+  const uniqCategories = _.uniq(categories);
 
-  const categoriesElem = [];
-  for (const category of uniqCategories) {
-    categoriesElem.push(
-      <Grid item key={category} style={{ display: "inline-block", position: "relative" }}>
-        <Badge badgeContent={total[category]}>
-          <Button
-            variant={paletteMode === "dark" ? "outlined" : "contained"}
-            color={selectedCategory.indexOf(category) !== -1 ? "secondary" : "primary"}
-            key={category}
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category}
-          </Button>
-        </Badge>
-      </Grid>
-    );
-  }
-
-  return categoriesElem;
+  return (
+    <div>
+      {uniqCategories.map((category, index) => (
+        <Grid item key={index} style={{ display: "inline-block", position: "relative" }}>
+          <Badge badgeContent={total[category]}>
+            <Button
+              variant={paletteMode === "dark" ? "outlined" : "contained"}
+              color={selectedCategory.indexOf(category) !== -1 ? "secondary" : "primary"}
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category}
+            </Button>
+          </Badge>
+        </Grid>
+      ))}
+    </div>
+  );
 };
 
 export default CategoriesElem;

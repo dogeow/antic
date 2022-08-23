@@ -1,11 +1,12 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
+import { DefaultTheme } from "@mui/styles/defaultTheme";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import zhCNLocale from "dayjs/locale/zh-cn";
 import Echo from "laravel-echo";
-import React, { useEffect } from "react";
+import React, { ChangeEventHandler, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
@@ -19,7 +20,7 @@ dayjs.locale("zh-cn");
 
 export default () => {
   const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
-  const [user, setUser] = useRecoilState(userState);
+  const [user] = useRecoilState(userState);
 
   useEffect(() => {
     window.Echo = new Echo({
@@ -56,7 +57,7 @@ export default () => {
 
   // 网站主题跟随电脑系统主题
   useEffect(() => {
-    const handle = (e) => {
+    const handle = (e: MediaQueryListEvent) => {
       const newColorScheme = e.matches ? "dark" : "light";
       setPaletteMode(newColorScheme);
     };
@@ -87,7 +88,7 @@ export default () => {
   return (
     <BrowserRouter>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={zhCNLocale}>
-        <ThemeProvider theme={themeCustomization({ paletteMode })}>
+        <ThemeProvider theme={themeCustomization({ paletteMode }) as DefaultTheme}>
           <CssBaseline />
           <ScrollToTop />
           <Routes />

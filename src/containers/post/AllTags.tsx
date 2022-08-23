@@ -1,27 +1,15 @@
-import { useQuery } from "@apollo/client";
 import Skeleton from "@mui/material/Skeleton";
-import _ from "lodash";
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import ChipFlow from "../../components/ChipFlow";
-import { TAGS } from "../../graphql/post";
 
 const AllTags = (props) => {
-  const [items, setItems] = useState([]);
   const [tag, setTag] = useState(undefined);
 
-  const { data } = useQuery(TAGS);
-
-  useEffect(() => {
-    if (data) {
-      setItems(_.orderBy(data.TagsCount, ["count"], ["desc"]));
-    }
-  }, [data]);
-
-  return items.length ? (
+  return props.tags.length ? (
     <ChipFlow
-      items={items}
+      items={props.tags}
       type="name"
       currentSelect={tag}
       onHandleClick={(tag) => {

@@ -4,13 +4,14 @@ import { Chip, Grid, Hidden, Pagination, PaginationItem, Paper, Skeleton, Typogr
 import makeStyles from "@mui/styles/makeStyles";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import AllTags from "../../containers/post/AllTags";
 import Categories from "../../containers/post/Categories";
-import { CATEGORY, POST_LIST, TAG } from "../../graphql/post";
+import { CATEGORY, POST, POST_LIST, TAG } from "../../graphql/post";
 import { postState } from "../../states";
 
 dayjs.extend(relativeTime);
@@ -29,9 +30,15 @@ const PostList = (props) => {
   const [pageCount, setPageCount] = useState();
   const [currPage, setCurrPage] = useState(1);
   const [currCategory, setCurrCategory] = useState();
-  const [currTag, setCurrTag] = useState();
+  const [, setCurrTag] = useState();
+  const [categories, setCategories] = useState([]);
+  const [tags, setTags] = useState([]);
 
   const [getPosts, { data }] = useLazyQuery(POST_LIST, {
+    fetchPolicy: "no-cache",
+  });
+
+  const [getPostsWithCategoriesAndTags, { data: allData }] = useLazyQuery(POST, {
     fetchPolicy: "no-cache",
   });
   const [getPostsByCategory, { data: postsByCategory }] = useLazyQuery(CATEGORY, { fetchPolicy: "no-cache" });
@@ -39,16 +46,18 @@ const PostList = (props) => {
   const [getPostsByTag, { data: postsByTag }] = useLazyQuery(TAG);
 
   useEffect(() => {
-    getPosts();
-  }, [getPosts]);
+    getPostsWithCategoriesAndTags();
+  }, [getPostsWithCategoriesAndTags]);
 
   useEffect(() => {
-    if (data) {
-      setPost(data.posts.data);
-      setCurrPage(data.posts.paginatorInfo.currentPage);
-      setPageCount(data.posts.paginatorInfo.lastPage);
+    if (allData) {
+      setPost(allData.posts.data);
+      setCurrPage(allData.posts.paginatorInfo.currentPage);
+      setPageCount(allData.posts.paginatorInfo.lastPage);
+      setCategories(_.orderBy(allData.categories, ["count"], ["desc"]));
+      setTags(_.orderBy(allData.TagsCount, ["count"], ["desc"]));
     }
-  }, [data, setPost]);
+  }, [allData]);
 
   useEffect(() => {
     if (postsByCategory) {
@@ -111,7 +120,7 @@ const PostList = (props) => {
           </Grid>
           <Grid item>
             <Paper className={classes.paper}>
-              <Categories changeCategory={changeCategory} />
+              <Categories changeCategory={changeCategory} categories={categories} />
             </Paper>
           </Grid>
         </Grid>
@@ -203,7 +212,7 @@ const PostList = (props) => {
           </Grid>
           <Grid item>
             <Paper className={classes.paper}>
-              <AllTags changeTag={changeTag} />
+              <AllTags changeTag={changeTag} tags={tags} />
             </Paper>
           </Grid>
         </Grid>

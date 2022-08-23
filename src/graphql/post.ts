@@ -1,5 +1,41 @@
 import { gql } from "@apollo/client";
 
+const POST = gql`
+  query ($page: Int, $categoryId: Int) {
+    posts(category_id: $categoryId, first: 8, page: $page, orderBy: [{ column: UPDATED_AT, order: DESC }]) {
+      data {
+        id
+        title
+        updated_at
+        public
+        category {
+          id
+          name
+        }
+        tags {
+          id
+          name
+        }
+      }
+      paginatorInfo {
+        perPage
+        currentPage
+        lastPage
+      }
+    }
+    TagsCount {
+      id
+      name
+      count
+    }
+    categories {
+      id
+      name
+      count
+    }
+  }
+`;
+
 const POST_LIST = gql`
   query ($page: Int, $categoryId: Int) {
     posts(category_id: $categoryId, first: 8, page: $page, orderBy: [{ column: UPDATED_AT, order: DESC }]) {
@@ -128,4 +164,4 @@ const DELETE_POST_BY_ID = gql`
   }
 `;
 
-export { POST_LIST, CATEGORY, TAG, TAGS, CATEGORIES, POST_BY_ID, DELETE_POST_BY_ID };
+export { POST, POST_LIST, CATEGORY, TAG, TAGS, CATEGORIES, POST_BY_ID, DELETE_POST_BY_ID };

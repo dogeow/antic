@@ -32,10 +32,7 @@ const About = () => {
             <h3>{category}</h3>
             <ul>
               {aboutMe[category].map((item) => (
-                <li
-                  key={item.id}
-                  dangerouslySetInnerHTML={{ __html: item.content }}
-                />
+                <li key={item.id} dangerouslySetInnerHTML={{ __html: item.content }} />
               ))}
             </ul>
           </div>

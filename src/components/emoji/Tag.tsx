@@ -8,7 +8,7 @@ import TagsElem from "./TagsElem";
 
 const Tag = () => {
   const [selectedTag, setSelectedTag] = useRecoilState(selectedTagState);
-  const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
+  const [paletteMode] = useRecoilState(paletteModeState);
   const [expandTag, setExpandTag] = useRecoilState(expandTagState);
   const color = selectedTag === "全部" ? "secondary" : "primary";
 

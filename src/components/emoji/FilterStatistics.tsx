@@ -4,9 +4,9 @@ import { useRecoilState, useRecoilValue } from "recoil";
 
 import { currentPageState, filteredEmojiListState, pageLimitState } from "../../states";
 
-const FilterStatistics = (props) => {
-  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
-  const [pageLimit, setPageLimit] = useRecoilState(pageLimitState);
+const FilterStatistics = () => {
+  const [currentPage] = useRecoilState(currentPageState);
+  const [pageLimit] = useRecoilState(pageLimitState);
   const filteredFaces = useRecoilValue(filteredEmojiListState);
 
   return (

@@ -36,7 +36,7 @@ import Drawer from "../components/Drawer";
 import Logo from "../components/Logo";
 import Search from "../components/Search";
 import Settings from "../components/Settings";
-import { getGravatarAddress, logout } from "../helpers/index";
+import { getGravatarAddress, logout } from "../helpers";
 import { emptyUser } from "../objects/user";
 import { logoutRequest } from "../requests/user";
 import {
@@ -128,7 +128,7 @@ const Header = () => {
   const onKeyDown = useCallback(
     ({ key }) => {
       // 不在搜索时才记录 Meta
-      if (searching === false) {
+      if (!searching) {
         if (key === "k" && metaKey) {
           handleSearch();
           setMetaKey(false);

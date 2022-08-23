@@ -20,8 +20,6 @@ import {
   filteredEmojiListState,
   pageLimitState,
   searchState,
-  selectedCategoryState,
-  selectedTagState,
 } from "../../states";
 import BootNav from "./BootNav";
 import Filter from "./Filter";
@@ -44,11 +42,11 @@ const useStyles = makeStyles(() => ({
 const Emoji = () => {
   const navigate = useNavigate();
   const filteredFaces = useRecoilValue(filteredEmojiListState);
-  const [search, setSearch] = useRecoilState(searchState);
+  const [, setSearch] = useRecoilState(searchState);
   const [faceIsLoading, setFaceIsLoading] = useRecoilState(faceIsLoadingState);
   const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
-  const [pageLimit, setPageLimit] = useRecoilState(pageLimitState);
-  const [displayTag, setDisplayTag] = useRecoilState(displayTagState);
+  const [pageLimit] = useRecoilState(pageLimitState);
+  const [displayTag] = useRecoilState(displayTagState);
   const [expandTag, setExpandTag] = useRecoilState(expandTagState);
   const [expandCategory, setExpandCategory] = useRecoilState(expandCategoryState);
   const [visible, setVisible] = useState(false);

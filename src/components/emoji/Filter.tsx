@@ -4,11 +4,10 @@ import * as React from "react";
 import Category from "./Categories";
 import Tag from "./Tag";
 
-const Filter = (props) => {
+const Filter = () => {
   return (
     <Grid container style={{ marginTop: 6 }}>
-      {/*  标记数量的数字需要空间 */}
-      <Category {...props} />
+      <Category />
       <Tag />
     </Grid>
   );

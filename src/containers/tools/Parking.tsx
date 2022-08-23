@@ -29,10 +29,7 @@ const Parking = () => {
         </ul>
       </div>
       <div>
-        <a
-          href="https://www.cheboyi.com/wap/index/park22/14926"
-          target="'_blank"
-        >
+        <a href="https://www.cheboyi.com/wap/index/park22/14926" target="'_blank">
           或者直接打开
         </a>
       </div>

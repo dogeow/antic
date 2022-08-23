@@ -17,7 +17,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { ChangeEventHandler, useState } from "react";
 import swal from "sweetalert2";
 
 import axios from "../../instance/axios";
@@ -58,7 +58,7 @@ const NoMatch = () => {
       });
   };
 
-  const handleMouseDownSearch = (event) => {
+  const handleMouseDownSearch = (event: MouseEvent) => {
     event.preventDefault();
   };
 
