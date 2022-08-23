@@ -67,6 +67,7 @@
     "react-router-dom": "6",
     "react-scroll-up-button": "^1.6.4",
     "react-spinner-children": "^1.0.8",
+    "react-syntax-highlighter": "^15.5.0",
     "react-use": "^17.2.3",
     "react-viewer": "^3.2.2",
     "recharts": "^2.1.9",

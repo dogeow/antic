@@ -26,9 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function flatten(text, child) {
-  return typeof child === "string"
-    ? text + child
-    : React.Children.toArray(child.props.children).reduce(flatten, text);
+  return typeof child === "string" ? text + child : React.Children.toArray(child.props.children).reduce(flatten, text);
 }
 
 function HeadingRenderer(props) {
@@ -42,10 +40,7 @@ const PostBody = ({ post }) => {
 
   return post?.content ? (
     <div id="post" style={{ overflowWrap: "break-word" }}>
-      <ReactMarkdown
-        renderers={{ code: CodeBlock, heading: HeadingRenderer }}
-        plugins={[gfm, remarkToc]}
-      >
+      <ReactMarkdown renderers={{ code: CodeBlock, heading: HeadingRenderer }} plugins={[gfm, remarkToc]}>
         {post.content}
       </ReactMarkdown>
     </div>

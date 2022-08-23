@@ -25,7 +25,7 @@ function DebugObserver() {
   return null;
 }
 
-const container = document.querySelector("#root") as Element;
+const container = document.querySelector("#root") as HTMLElement;
 const root = createRoot(container);
 
 root.render(

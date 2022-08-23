@@ -42,18 +42,6 @@ const useStyles = makeStyles((theme) => {
       right: 10,
       zIndex: 1,
     },
-    "@global":
-      theme.palette.mode === "dark"
-        ? {
-            code: {
-              backgroundColor: theme.palette.background.paper,
-            },
-          }
-        : {
-            code: {
-              backgroundColor: "#eee",
-            },
-          },
   };
 });
 
