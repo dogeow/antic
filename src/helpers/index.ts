@@ -125,19 +125,19 @@ export function toQuery(params, delimiter = "&") {
  */
 export const mbStrWidth = (str: string) => {
   const strLength = str.length;
-  let strCOde = 0;
+  let strCode = 0;
   let mbStrLength = 0;
   for (let i = 0; i < strLength; i++) {
-    strCOde = str.charCodeAt(i);
-    if (strCOde >= 0x0000 && strCOde <= 0x0019) {
+    strCode = str.charCodeAt(i);
+    if (strCode >= 0x0000 && strCode <= 0x0019) {
       mbStrLength += 0;
-    } else if (strCOde >= 0x0020 && strCOde <= 0x1fff) {
+    } else if (strCode >= 0x0020 && strCode <= 0x1fff) {
       mbStrLength += 1;
-    } else if (strCOde >= 0x2000 && strCOde <= 0xff60) {
+    } else if (strCode >= 0x2000 && strCode <= 0xff60) {
       mbStrLength += 2;
-    } else if (strCOde >= 0xff61 && strCOde <= 0xff9f) {
+    } else if (strCode >= 0xff61 && strCode <= 0xff9f) {
       mbStrLength += 1;
-    } else if (strCOde >= 0xffa0) {
+    } else if (strCode >= 0xffa0) {
       mbStrLength += 2;
     }
   }
