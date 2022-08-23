@@ -3,23 +3,14 @@ type: docker
 name: default
 
 steps:
-  - name: pnpm install
+  - name: yarn install
     image: node
-    before_script:
-      - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
-      - pnpm config set store-dir .pnpm-store
-    cache:
-      key:
-        files:
-          - pnpm-lock.yaml
-      paths:
-        - .pnpm-store
     volumes:
       - name: cache
         path: /drone/src/node_modules
     commands:
-      - pnpm install --registry https://registry.npm.taobao.org/
-  - name: pnpm build
+      - yarn install --registry https://registry.npm.taobao.org/
+  - name: yarn build
     image: node
     volumes:
       - name: cache
@@ -64,7 +55,7 @@ steps:
       VITE_GITHUB_CLIENT_ID:
         from_secret: REACT_APP_GITHUB_CLIENT_ID
     commands:
-      - pnpm build
+      - yarn build
   - name: rsync
     image: drillster/drone-rsync
     settings:
