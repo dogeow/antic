@@ -7,7 +7,7 @@ import { Link as RouteLink } from "react-router-dom";
 
 import HomeFooter from "../components/HomeFooter";
 import Hr from "../components/Hr";
-import config from "../config";
+import { backgroundImg } from "../config";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
       theme.palette.mode === "dark"
         ? `url(${import.meta.env.VITE_CDN_URL}/bg/tesla-vector-roadster.png!/compress/true/fw/400)`
         : `url(${import.meta.env.VITE_CDN_URL}/bg/${
-            config.backgroundImg[Math.floor(Math.random() * backgroundImg.length)]
+            backgroundImg[Math.floor(Math.random() * backgroundImg.length)]
           }!/compress/true/fw/400)`,
     backgroundPosition: "right 20px bottom",
     backgroundRepeat: "no-repeat",
