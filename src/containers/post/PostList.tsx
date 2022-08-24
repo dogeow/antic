@@ -55,7 +55,7 @@ const PostList = (props) => {
       setCurrPage(allData.posts.paginatorInfo.currentPage);
       setPageCount(allData.posts.paginatorInfo.lastPage);
       setCategories(_.orderBy(allData.categories, ["count"], ["desc"]));
-      setTags(_.orderBy(allData.TagsCount, ["count"], ["desc"]));
+      setTags(_.orderBy(allData.tagsCount, ["count"], ["desc"]));
     }
   }, [allData]);
 

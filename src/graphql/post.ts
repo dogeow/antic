@@ -23,7 +23,7 @@ const POST = gql`
         lastPage
       }
     }
-    TagsCount {
+    tagsCount {
       id
       name
       count
@@ -128,7 +128,7 @@ const CATEGORIES = gql`
 
 const TAGS = gql`
   query {
-    TagsCount {
+    tagsCount {
       id
       name
       count
