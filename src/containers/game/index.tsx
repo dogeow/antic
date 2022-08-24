@@ -15,11 +15,23 @@ import { checkMapCollision } from "./utils";
 export default () => {
   const [users, setUsers] = useState([]);
   const [monsters, setMonsters] = useState([]);
-  const [user, setUser] = useRecoilState(userState);
+  const [user] = useRecoilState(userState);
 
   if (!isCanvasSupported()) {
     return <div>不支持 Canvas</div>;
   }
+
+  const draw = (ctx, frameCount) => {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    drawLayer(ctx, LAYERS[0]);
+    drawLayer(ctx, LAYERS[1]);
+
+    drawMonster(ctx, monsters);
+    drawUsers(ctx, users);
+  };
+
+  const canvasRef = useCanvas(draw);
 
   const game = useCallback((e) => {
     const canvas = e.target;
@@ -112,22 +124,11 @@ export default () => {
   // 点击事件
   useEffect(() => {
     // 监听事件
-    document.addEventListener("mousedown", game);
+    const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+    canvas.addEventListener("mousedown", game);
 
-    return () => document.removeEventListener("mousedown", game);
-  }, [game]);
-
-  const draw = (ctx, frameCount) => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-    drawLayer(ctx, LAYERS[0]);
-    drawLayer(ctx, LAYERS[1]);
-
-    drawMonster(ctx, monsters);
-    drawUsers(ctx, users);
-  };
-
-  const canvasRef = useCanvas(draw);
+    return () => canvas.removeEventListener("mousedown", game);
+  }, []);
 
   return (
     <>
