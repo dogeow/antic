@@ -38,6 +38,7 @@
     "algoliasearch": "4.8.6",
     "axios": "^0.27.2",
     "babel-plugin-recharts": "^2.0.0",
+    "beautiful-react-hooks": "^3.11.1",
     "clipboard": "^2.0.6",
     "clsx": "^1.1.1",
     "dayjs": "^1.10.7",

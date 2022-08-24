@@ -10,36 +10,36 @@ const Music = () => {
   const [no, setNo] = useState(0);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  const handleListItemClick = (event, index) => {
+  const audio = useRef<HTMLAudioElement>(null);
+
+  const handleListItemClick = (event: React.MouseEvent<HTMLElement>, index: number) => {
     setSelectedIndex(index);
   };
 
-  const audio = useRef(null);
-
-  const musicEnd = () => {
-    if (no === musics.length) {
-      setNo(0);
-    } else {
-      setNo(no + 1);
-      audio.current.autoplay = 1;
-    }
-  };
-
   useEffect(() => {
+    const musicEnd = () => {
+      if (no === musics.length) {
+        setNo(0);
+      } else {
+        setNo(no + 1);
+        audio.current.autoplay = true;
+      }
+    };
+
     audio.current.addEventListener("ended", () => musicEnd(), false);
 
     return audio.current.removeEventListener("ended", () => musicEnd(), false);
-  });
+  }, [audio, no]);
 
-  const playMusic = (index) => {
+  const playMusic = (index: number) => {
     setNo(index);
-    audio.current.autoplay = 1;
+    audio.current.autoplay = true;
   };
 
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
-        <List component="nav" dense="true" aria-label="main mailbox folders">
+        <List component="nav" dense={true} aria-label="main mailbox folders">
           {musics.map((music, index) => {
             return (
               <ListItemButton
@@ -61,7 +61,7 @@ const Music = () => {
           id="music"
           ref={audio}
           src={`${import.meta.env.VITE_CDN_URL}/music/${musics[no]}`}
-          controls="controls"
+          controls={true}
           preload="auto"
           controlsList="nodownload"
         >
