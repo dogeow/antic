@@ -138,7 +138,14 @@ const Emoji = () => {
       </Grid>
       <Viewer visible={visible} onClose={() => setVisible(false)} images={face} activeIndex={index} />
       <BootNav />
-      <ClipLoader loading={faceIsLoading} color={"blue"} />
+      <ClipLoader
+        loading={faceIsLoading}
+        color={"blue"}
+        cssOverride={{
+          margin: "auto",
+          width: "60",
+        }}
+      />
     </Grid>
   );
 };
