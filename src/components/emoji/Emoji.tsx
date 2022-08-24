@@ -5,7 +5,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import imagesLoaded from "imagesloaded";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Spinner from "react-spinner-children";
+import ClipLoader from "react-spinners/ClipLoader";
 import Viewer from "react-viewer";
 import { useRecoilState, useRecoilValue } from "recoil";
 import Swal from "sweetalert2";
@@ -24,10 +24,6 @@ import {
 import BootNav from "./BootNav";
 import Filter from "./Filter";
 import FilterStatistics from "./FilterStatistics";
-
-const customSpinConfig = {
-  lines: 10,
-};
 
 const useStyles = makeStyles(() => ({
   hr: {
@@ -142,7 +138,7 @@ const Emoji = () => {
       </Grid>
       <Viewer visible={visible} onClose={() => setVisible(false)} images={face} activeIndex={index} />
       <BootNav />
-      <Spinner loaded={!faceIsLoading} config={customSpinConfig} />
+      <ClipLoader loading={!faceIsLoading} />
     </Grid>
   );
 };
