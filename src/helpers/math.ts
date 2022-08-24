@@ -5,6 +5,6 @@
  * @param {int} min 最小值
  * @return {int} 随机整数
  */
-export function randomInt(max, min) {
+export function randomInt(max: number, min: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }

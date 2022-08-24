@@ -317,7 +317,7 @@ const Header = () => {
                     onClick={handleProfileMenu}
                     size="large"
                   >
-                    <Avatar alt={user.userName} src={getGravatarAddress(user.userEmail)} />
+                    <Avatar alt={user.userName} src={getGravatarAddress(user.userEmail, 80)} />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -339,7 +339,7 @@ const Header = () => {
                     <div style={{ textAlign: "center", fontSize: "1rem" }}>
                       <Avatar
                         alt={user.userName}
-                        src={getGravatarAddress(user.userEmail)}
+                        src={getGravatarAddress(user.userEmail, 160)}
                         style={{ width: 80, height: 80, margin: "20px auto" }}
                       />
                       {user.userName}

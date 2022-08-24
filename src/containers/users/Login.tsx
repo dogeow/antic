@@ -30,6 +30,7 @@ import { logged } from "../../helpers";
 import axios from "../../instance/axios";
 import { isExpiredState, usersState, userState } from "../../states";
 import LoginGuest from "../auth/LoginGuest";
+
 const random = Math.floor(Math.random() * config.wallpaper.length);
 
 const useStyles = makeStyles((theme) => ({
@@ -87,35 +88,41 @@ export default () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    axios.get("sanctum/csrf-cookie").then((response) => {
-      axios
-        .post("user/login", {
-          account,
-          password,
-          remember_me: rememberMe,
-        })
-        .then(({ data }) => {
-          logged(data);
-          const userData = {
-            token: "Bearer " + data.access_token,
-            userId: data.id,
-            userName: data.name,
-            userEmail: data.email,
-          };
-          setUser(userData);
-          setUsers((oldUsers) => [...oldUsers, userData]);
-          setIsExpired(false);
-          if (state) {
-            navigate(state.from);
-          } else {
-            navigate("/");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          setInputErrors(error?.data?.errors);
-        });
-    });
+    const login = async () => {
+      const csrf = await axios.get("sanctum/csrf-cookie");
+      if (csrf.status !== 204) {
+        return;
+      }
+
+      const post = await axios.post("user/login", {
+        account,
+        password,
+        remember_me: rememberMe,
+      });
+      if (post.status !== 201) {
+        setInputErrors(post?.data?.errors);
+        return;
+      }
+
+      const data = await post.data;
+      logged(data);
+      const userData = {
+        token: "Bearer " + data.access_token,
+        userId: data.id,
+        userName: data.name,
+        userEmail: data.email,
+      };
+      setUser(userData);
+      setUsers((oldUsers) => [...oldUsers, userData]);
+      setIsExpired(false);
+      if (state) {
+        navigate(state.from);
+      } else {
+        navigate("/");
+      }
+    };
+
+    login();
   };
 
   const handlePassword = () => {
@@ -234,7 +241,6 @@ export default () => {
                 enterDelay={200}
                 TransitionComponent={Zoom}
                 arrow
-                interactive="true"
                 style={{ alignSelf: "center" }}
                 onClick={handleOpen}
               >

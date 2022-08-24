@@ -33,8 +33,8 @@ export default function Chat() {
   const [people, setPeople] = useRecoilState(peopleState);
   const [chatBoard, setChatBoard] = useRecoilState(chatBoardState);
   const [user, setUser] = useRecoilState(userState);
-  const [users, setUsers] = useRecoilState(usersState);
-  const [isExpired, setIsExpired] = useRecoilState(isExpiredState);
+  const [, setUsers] = useRecoilState(usersState);
+  const [, setIsExpired] = useRecoilState(isExpiredState);
 
   const [error, setError] = useState({});
   const [inputFocus, setInputFocus] = useState(false);
@@ -222,7 +222,7 @@ export default function Chat() {
                 toggleError();
                 return;
               }
-              axios.get("sanctum/csrf-cookie").then((response) => {
+              axios.get("sanctum/csrf-cookie").then(() => {
                 axios
                   .post("/user/guest", { name })
                   .then(({ data }) => {

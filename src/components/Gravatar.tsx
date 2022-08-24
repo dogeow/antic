@@ -1,7 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import * as React from "react";
-import { Md5 } from "ts-md5";
 
 const Avatar = styled.img`
   vertical-align: middle;
@@ -17,19 +16,17 @@ const Avatar = styled.img`
     `};
 `;
 
-import { gravatarCdn } from "../config/services";
+import { getGravatarAddress } from "../helpers";
 
-export default function (props) {
+const Gravatar = (props: { size: number; marginLeft: number; alt: string; email: string }) => {
   return (
     <Avatar
       alt={props.alt}
-      src={
-        props.email
-          ? `${gravatarCdn}/${Md5.hashStr(props.email)}.jpg?d=monsterid&s=${props.size * 2}`
-          : `${import.meta.env.VITE_CDN_URL}/Robot.svg`
-      }
+      src={props.email ? getGravatarAddress(props.email, props.size * 2) : `${import.meta.env.VITE_CDN_URL}/Robot.svg`}
       size={props.size}
       marginLeft={props.marginLeft}
     />
   );
-}
+};
+
+export default Gravatar;

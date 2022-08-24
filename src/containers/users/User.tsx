@@ -5,11 +5,12 @@ import { useRecoilState } from "recoil";
 import { Md5 } from "ts-md5";
 
 import { gravatarCdn } from "../../config/services";
+import { getGravatarAddress } from "../../helpers";
 import { userState } from "../../states";
 
 const User = () => {
   const [user] = useRecoilState(userState);
-  const avatar = `${gravatarCdn}/${Md5.hashStr(user.userEmail)}.jpg?d=monsterid&s=300`;
+  const avatar = getGravatarAddress(user.userEmail, 300);
 
   return (
     <Grid container spacing={2} alignItems="center">

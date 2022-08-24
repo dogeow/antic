@@ -11,7 +11,6 @@ export default function ({ content, time }) {
       disableFocusListener
       disableTouchListener
       enterDelay={200}
-      interactive="true"
       placement="top"
       TransitionComponent={Zoom}
     >
