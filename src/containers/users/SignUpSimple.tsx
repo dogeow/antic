@@ -1,7 +1,7 @@
 import axios from "instance/axios";
 import React, { useState } from "react";
 
-import config from "../../config";
+import config from "../../config/index.json";
 
 function SignUpSimple() {
   const [name, setName] = useState("");

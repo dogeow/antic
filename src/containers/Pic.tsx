@@ -3,6 +3,12 @@ import React, { useEffect, useState } from "react";
 
 import axios from "../instance/axios";
 
+type Pic = {
+  id: number;
+  name: string;
+  folder: string;
+};
+
 export default () => {
   const [pics, setPics] = useState([]);
 
@@ -15,7 +21,7 @@ export default () => {
   return (
     <Grid container spacing={1}>
       <Grid item container spacing={1}>
-        {pics.map((pic) => (
+        {pics.map((pic: Pic) => (
           <Grid item key={pic.id} xs={6} md={3} lg={4}>
             <img
               style={{ width: "100%" }}

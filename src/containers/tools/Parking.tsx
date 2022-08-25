@@ -1,8 +1,13 @@
 import { gql, useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 
+type Park = {
+  id: number;
+  status: boolean;
+};
+
 const Parking = () => {
-  const [parking, setParking] = useState([]);
+  const [parks, setParks] = useState([]);
 
   const { data } = useQuery(gql`
     query {
@@ -14,16 +19,16 @@ const Parking = () => {
   `);
 
   useEffect(() => {
-    data && setParking(data.parking);
+    data && setParks(data.parking);
   }, [data]);
 
   return (
     <>
       <div>
         <ul style={{ paddingInlineStart: "inherit" }}>
-          {parking.map((item) => (
-            <li key={item.id} style={{ color: item.status ? "green" : "red" }}>
-              {item.id}
+          {parks.map((park: Park) => (
+            <li key={park.id} style={{ color: park.status ? "green" : "red" }}>
+              {park.id}
             </li>
           ))}
         </ul>

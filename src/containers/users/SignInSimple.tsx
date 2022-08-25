@@ -2,7 +2,7 @@ import axios from "instance/axios";
 import React, { useState } from "react";
 import swal from "sweetalert2";
 
-import config from "../../config";
+import config from "../../config/index.json";
 
 function SignInSimple() {
   const [email, setEmail] = useState("");

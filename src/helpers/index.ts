@@ -34,7 +34,7 @@ export const logout = () => {
  * @param {string} url
  * @return {string|boolean}
  */
-export const getHost = (url) => {
+export const getHost = (url: string) => {
   const reg = /^(http(?:s):\/\/.*?)(\/|$)/;
   const result = reg.exec(url);
 

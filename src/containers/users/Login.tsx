@@ -25,7 +25,7 @@ import { Link as RouteLink, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import Copyright from "../../components/site/Copyright";
-import config from "../../config";
+import config from "../../config/index.json";
 import { logged } from "../../helpers";
 import axios from "../../instance/axios";
 import { isExpiredState, usersState, userState } from "../../states";

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
 const useCanvas = (draw) => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;

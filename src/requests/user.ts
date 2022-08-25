@@ -1,6 +1,6 @@
 import axios from "../instance/axios";
 
-export const logoutRequest = (token) =>
+export const logoutRequest = (token: string) =>
   axios.post(
     "/user/logout",
     {},

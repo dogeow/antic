@@ -7,7 +7,7 @@ import { Link as RouteLink } from "react-router-dom";
 
 import HomeFooter from "../components/HomeFooter";
 import Hr from "../components/Hr";
-import { backgroundImg } from "../config";
+import { backgroundImg } from "../config/index.json";
 
 const useStyles = makeStyles((theme) => ({
   footer: {

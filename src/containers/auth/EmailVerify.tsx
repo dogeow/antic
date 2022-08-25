@@ -11,12 +11,12 @@ import { userState } from "../../states";
 const Forget = () => {
   const navigate = useNavigate();
   const [isSuccess, setIsSuccess] = useState(false);
-  const [user, setUser] = useRecoilState(userState);
+  const [, setUser] = useRecoilState(userState);
   const { secret } = useParams();
 
   useEffect(() => {
     if (secret) {
-      axios.post("/emailVerify", { secret }).then((response) => {
+      axios.post("/emailVerify", { secret }).then(() => {
         setIsSuccess(true);
       });
     }
