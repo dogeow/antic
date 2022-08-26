@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     border: "10px solid transparent",
     padding: 15,
     marginBottom: 5,
-    borderImage: "url(/images/border.png) 30 stretch",
+    borderImage: "url(/images/border-image-4.png) 30 stretch",
     listStyle: "none",
   },
 }));
@@ -23,7 +23,7 @@ const fontSizeDefault = 2;
 
 const SelfTalk = () => {
   const [fontSize, setFontSize] = useState(fontSizeDefault);
-  const classes = useStyles({ fontSize: `${fontSize}em` });
+  const classes = useStyles({ fontSize: `${fontSize}rem` });
   const [quotes, setQuotes] = useState([]);
 
   const { data } = useQuery(gql`
@@ -61,20 +61,13 @@ const SelfTalk = () => {
 
   return (
     <div>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap"
-        rel="stylesheet"
-      />
+      <link href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap" rel="stylesheet" />
       <div className={classes.quote}>
-        {quotes.map((quote) => (
+        {quotes.map((quote: Quote) => (
           <p key={quote.id}>{quote.content}</p>
         ))}
       </div>
-      <SpeedDial
-        actions={actions}
-        onHandleAdd={handleAdd}
-        onHandleSub={handleSub}
-      />
+      <SpeedDial actions={actions} onHandleAdd={handleAdd} onHandleSub={handleSub} />
     </div>
   );
 };

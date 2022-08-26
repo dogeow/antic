@@ -1,6 +1,7 @@
 import { useLazyQuery } from "@apollo/client";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { Chip, Grid, Hidden, Pagination, PaginationItem, Paper, Skeleton, Typography } from "@mui/material";
+import { Chip, Grid, Hidden, Pagination, PaginationItem, Paper, Skeleton, Theme, Typography } from "@mui/material";
+import { PaginationRenderItemParams } from "@mui/material/Pagination/Pagination";
 import makeStyles from "@mui/styles/makeStyles";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -16,7 +17,7 @@ import { postState } from "../../states";
 
 dayjs.extend(relativeTime);
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   paper: {
     padding: theme.spacing(2),
     margin: "auto",
@@ -27,10 +28,10 @@ const PostList = (props) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [post, setPost] = useRecoilState(postState);
-  const [pageCount, setPageCount] = useState();
+  const [pageCount, setPageCount] = useState<number>(0);
   const [currPage, setCurrPage] = useState(1);
-  const [currCategory, setCurrCategory] = useState();
-  const [, setCurrTag] = useState();
+  const [currCategory, setCurrCategory] = useState<number>();
+  const [, setCurrTag] = useState<string>();
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
 
@@ -76,11 +77,11 @@ const PostList = (props) => {
     }
   }, [postsByTag, setPost]);
 
-  const handlePage = (page) => {
+  const handlePage = (page: number) => {
     getPosts(currCategory ? { variables: { page: page, categoryId: currCategory } } : { variables: { page: page } });
   };
 
-  const changeCategory = (id) => {
+  const changeCategory = (id: number) => {
     setCurrTag(undefined);
     setCurrCategory(id);
     if (id) {
@@ -90,7 +91,7 @@ const PostList = (props) => {
     }
   };
 
-  const changeTag = (name) => {
+  const changeTag = (name: string) => {
     setCurrCategory(undefined);
     setCurrTag(name);
     getPostsByTag({ variables: { name } });
@@ -194,7 +195,7 @@ const PostList = (props) => {
               count={pageCount}
               hidePrevButton={currPage <= 1}
               hideNextButton={currPage >= pageCount}
-              renderItem={(item) =>
+              renderItem={(item: PaginationRenderItemParams) =>
                 pageCount > 0 && (
                   <PaginationItem {...item} disabled={item.page === currPage} onClick={() => handlePage(item.page)} />
                 )
