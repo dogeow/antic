@@ -35,10 +35,6 @@ const PostList = (props) => {
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
 
-  const [getPosts, { data }] = useLazyQuery(POST_LIST, {
-    fetchPolicy: "no-cache",
-  });
-
   const [getPostsWithCategoriesAndTags, { data: allData }] = useLazyQuery(POST, {
     fetchPolicy: "no-cache",
   });
@@ -61,16 +57,6 @@ const PostList = (props) => {
   }, [allData]);
 
   useEffect(() => {
-    if (data) {
-      setPost(data.posts.data);
-      setCurrPage(data.posts.paginatorInfo.currentPage);
-      setPageCount(data.posts.paginatorInfo.lastPage);
-      setCategories(_.orderBy(data.categories, ["count"], ["desc"]));
-      setTags(_.orderBy(data.tagsCount, ["count"], ["desc"]));
-    }
-  }, [data]);
-
-  useEffect(() => {
     if (postsByCategory) {
       setPost(postsByCategory.posts.data);
       setCurrPage(postsByCategory.posts.paginatorInfo.currentPage);
@@ -88,7 +74,9 @@ const PostList = (props) => {
   }, [postsByTag, setPost]);
 
   const handlePage = (page: number) => {
-    getPosts(currCategory ? { variables: { page: page, categoryId: currCategory } } : { variables: { page: page } });
+    getPostsWithCategoriesAndTags(
+      currCategory ? { variables: { page: page, categoryId: currCategory } } : { variables: { page: page } }
+    );
   };
 
   const changeCategory = (id: number) => {
@@ -97,7 +85,7 @@ const PostList = (props) => {
     if (id) {
       getPostsByCategory({ variables: { id } });
     } else {
-      getPosts();
+      getPostsWithCategoriesAndTags();
     }
   };
 
