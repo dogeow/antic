@@ -61,6 +61,16 @@ const PostList = (props) => {
   }, [allData]);
 
   useEffect(() => {
+    if (data) {
+      setPost(data.posts.data);
+      setCurrPage(data.posts.paginatorInfo.currentPage);
+      setPageCount(data.posts.paginatorInfo.lastPage);
+      setCategories(_.orderBy(data.categories, ["count"], ["desc"]));
+      setTags(_.orderBy(data.tagsCount, ["count"], ["desc"]));
+    }
+  }, [data]);
+
+  useEffect(() => {
     if (postsByCategory) {
       setPost(postsByCategory.posts.data);
       setCurrPage(postsByCategory.posts.paginatorInfo.currentPage);
