@@ -1,19 +1,17 @@
-/* eslint-disable */
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import "prismjs/themes/prism.css";
 import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css";
+import "prismjs/components/prism-markup-templating.js";
+import "prismjs/components/prism-javascript.js";
+import "prismjs/components/prism-php.js";
+import "prismjs/components/prism-bash.js";
 
 import Grid from "@mui/material/Grid";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import { Editor } from "@toast-ui/react-editor";
 import Prism from "prismjs";
 import * as React from "react";
-
-import "prismjs/components/prism-markup-templating.js";
-import "prismjs/components/prism-javascript.js";
-import "prismjs/components/prism-php.js";
-import "prismjs/components/prism-bash.js";
 
 const PostCreate = () => {
   const editorRef = React.createRef();

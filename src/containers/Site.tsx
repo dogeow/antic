@@ -5,7 +5,8 @@ import makeStyles from "@mui/styles/makeStyles";
 import { DataGrid } from "@mui/x-data-grid";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import useSWR from "swr";
 
 import axios from "../instance/axios";
 
@@ -20,9 +21,16 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+function fetcher() {
+  return axios.get("site").then((res) => res.data.sites);
+}
+
 const Site = () => {
   const classes = useStyles();
-  const [sites, setSites] = useState([]);
+
+  const { data: sites, error } = useSWR("/site", fetcher);
+  if (error) return <div>failed to load</div>;
+  if (!sites) return <div>loading...</div>;
 
   const columns = [
     {
@@ -61,17 +69,6 @@ const Site = () => {
       headerName: "备注",
     },
   ];
-
-  useEffect(() => {
-    axios
-      .get("site")
-      .then((json) => {
-        setSites(json.data.sites);
-      })
-      .catch((error) => {
-        window.console.log(error);
-      });
-  }, []);
 
   return (
     <div style={{ width: "100%" }}>
