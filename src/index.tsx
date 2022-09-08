@@ -5,9 +5,11 @@ import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { RecoilRoot, Snapshot } from "recoil";
 import { useRecoilSnapshot } from "recoil";
+import { SWRConfig } from "swr";
 
 import bootstrap from "./bootstrap";
 import App from "./components/App";
+import axios from "./instance/axios";
 import client from "./instance/graphQL";
 import reportWebVitals from "./reportWebVitals";
 
@@ -31,10 +33,16 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <RecoilRoot>
-        {/* {import.meta.env.DEV && <DebugObserver />}*/}
-        <App />
-      </RecoilRoot>
+      <SWRConfig
+        value={{
+          fetcher: (resource, init) => axios.get(resource, init).then((res) => res.data),
+        }}
+      >
+        <RecoilRoot>
+          {import.meta.env.DEV && <DebugObserver />}
+          <App />
+        </RecoilRoot>
+      </SWRConfig>
     </ApolloProvider>
   </React.StrictMode>
 );
