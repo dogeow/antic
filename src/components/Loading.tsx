@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
  * @return {JSX.Element}
  * @constructor
  */
-export default function SimpleBackdrop(props: { open: boolean }) {
+export default function SimpleBackdrop(props: { open?: boolean }) {
   const classes = useStyles();
 
   return (

@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+*,::after,::before {
+  box-sizing: border-box;
+}
+
 /* 手机浏览器的高度问题，搜索以上句子可以找到相配合的地方 */
 .app {
   height: 100vh;
@@ -262,7 +266,11 @@ kbd {
 
 :not(pre) > code {
   font-family: monospace;
-  padding: 3px;
+  border-radius: 2px;
+  padding: 1px 4px;
+  background-color: #f8f9fa;
+  color: #000;
+  border: 1px solid #eaecf0;
 }
 
 .hr {
@@ -270,3 +278,25 @@ kbd {
   margin-top: 2rem;
   padding-top: 2rem;
 }
+
+.dCoYYQ {
+  height: 8px;
+  left: 0px;
+  position: fixed;
+  top: 112px;
+  width: 100%;
+  z-index: 1;
+}
+
+ .dCoYYQ::after {
+   background: linear-gradient(90deg, rgb(255, 192, 1) 0%, rgb(215, 226, 0) 16.15%, rgb(128, 211, 74) 33.85%, rgb(0, 214, 136) 50.52%, rgb(1, 208, 192) 66.15%, rgb(0, 198, 255) 81.25%, rgb(42, 130, 255) 100%);
+   content: "";
+   height: 100%;
+   left: 0px;
+   position: absolute;
+   top: 0px;
+   transform: scaleX(var(--progress-width,0));
+   transform-origin: 0px 0px;
+   width: 100%;
+   will-change: transform;
+ }

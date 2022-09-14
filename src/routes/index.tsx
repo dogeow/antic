@@ -60,7 +60,8 @@ const Game = lazy(() => import("../containers/game"));
 const Pic = lazy(() => import("../containers/Pic"));
 const Site = lazy(() => import("../containers/Site"));
 const Translate = lazy(() => import("../containers/Translate"));
-const Test = lazy(() => import("../containers/Test"));
+const Test = lazy(() => import("../containers/Post/Test"));
+// const Test = lazy(() => import("../containers/Test"));
 
 export default () => (
   <Suspense fallback={<Loading />}>

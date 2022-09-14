@@ -97,6 +97,10 @@ const PostSingle = () => {
 
   return (
     <>
+      <div
+        className="BlogPostTemplateStyles__StyledBlogPostProgressBar-sc-1eyll4b-3 dCoYYQ"
+        style={{ "--progress-width": 0.354716 }}
+      ></div>
       {tocButtonDisplay && (
         <div>
           <div className={classes.displayToc} onClick={handleToggleMenu}>
