@@ -38,20 +38,20 @@ const Site = () => {
       ),
     },
     {
-      field: "online",
+      field: "is_online",
       headerName: "在线",
       renderCell: (params) =>
-        params.row.online ? (
+        params.row.is_online ? (
           <RadioButtonChecked className={classes.root} />
         ) : (
           <RadioButtonChecked style={{ color: "red" }} />
         ),
     },
     {
-      field: "today_latest",
+      field: "is_new",
       headerName: "更新",
       renderCell: (params) =>
-        params.row?.today_latest?.status ? <Check className={classes.root} /> : <Close style={{ color: "red" }} />,
+        params.row.is_new ? <Check className={classes.root} /> : <Close style={{ color: "red" }} />,
     },
     {
       field: "last_updated_at",
@@ -73,7 +73,7 @@ const Site = () => {
         rowsPerPageOptions={[10, 50]}
         disableSelectionOnClick
         autoHeight
-      ></DataGrid>
+      />
     </div>
   );
 };
