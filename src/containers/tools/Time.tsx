@@ -1,10 +1,9 @@
 import MuiAlert from "@mui/material/Alert";
-import Input from "@mui/material/Input";
 import Snackbar from "@mui/material/Snackbar";
 import dayjs from "dayjs";
-import _, { isInteger } from "lodash";
 import * as React from "react";
 
+import TimeConvert from "../../components/api/TimeConvert";
 import ClipboardButton from "../../components/ClipboardButton";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -46,7 +45,6 @@ const nextDayEndDateTime = dayjs(nextDayStartDateTime).unix();
 
 const Time = () => {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
 
   const handleClick = () => {
     setOpen(true);
@@ -67,21 +65,7 @@ const Time = () => {
   return (
     <div>
       <h2>转换</h2>
-      <div>
-        <Input
-          onChange={(e) => {
-            setValue(e.target.value);
-          }}
-        />
-        <span>
-          {" => "}
-          {value
-            ? /\d{4}-/.test(value)
-              ? dayjs(value).unix()
-              : dayjs.unix(Number(value)).format("YYYY-MM-DD HH:mm:ss")
-            : ""}
-        </span>
-      </div>
+      <TimeConvert />
       <h2>昨天</h2>
       <div>
         开始时间戳：{yesterdayStartUnix}
