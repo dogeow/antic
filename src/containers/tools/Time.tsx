@@ -1,6 +1,8 @@
 import MuiAlert from "@mui/material/Alert";
+import Input from "@mui/material/Input";
 import Snackbar from "@mui/material/Snackbar";
 import dayjs from "dayjs";
+import _, { isInteger } from "lodash";
 import * as React from "react";
 
 import ClipboardButton from "../../components/ClipboardButton";
@@ -21,41 +23,30 @@ const nowDateTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
 const nowUnixTime = dayjs().unix();
 
 // 今天结束
-const todayEndDateTime = dayjs(todayDate)
-  .add(86400, "second")
-  .format("YYYY-MM-DD HH:mm:ss");
+const todayEndDateTime = dayjs(todayDate).add(86400, "second").format("YYYY-MM-DD HH:mm:ss");
 const todayEndUnixTime = todayStartUnixTime + 86400 - 1;
 
 // 昨天
 const yesterdayStartUnix = dayjs(todayStartDateTime).subtract(1, "days").unix();
-const yesterdayStartTime = dayjs(todayStartDateTime)
-  .subtract(1, "days")
-  .format("YYYY-MM-DD HH:mm:ss");
+const yesterdayStartTime = dayjs(todayStartDateTime).subtract(1, "days").format("YYYY-MM-DD HH:mm:ss");
 
 // 明天
 const tomorrowStartUnix = dayjs(todayStartDateTime).add(1, "days").unix();
-const tomorrowStartTime = dayjs(todayStartDateTime)
-  .add(1, "days")
-  .format("YYYY-MM-DD HH:mm:ss");
+const tomorrowStartTime = dayjs(todayStartDateTime).add(1, "days").format("YYYY-MM-DD HH:mm:ss");
 
 // 这个月
-const monthStartDateTime = dayjs()
-  .startOf("month")
-  .format("YYYY-MM-DD 00:00:00");
+const monthStartDateTime = dayjs().startOf("month").format("YYYY-MM-DD 00:00:00");
 const monthStartUnixTime = dayjs(monthStartDateTime).unix();
 // 上月
-const lastDayStartDateTime = dayjs(monthStartDateTime)
-  .subtract(1, "month")
-  .format("YYYY-MM-DD HH:mm:ss");
+const lastDayStartDateTime = dayjs(monthStartDateTime).subtract(1, "month").format("YYYY-MM-DD HH:mm:ss");
 const lastDayEndUnixTime = dayjs(lastDayStartDateTime).unix();
 // 下个月
-const nextDayStartDateTime = dayjs(monthStartDateTime)
-  .add(1, "month")
-  .format("YYYY-MM-DD HH:mm:ss");
+const nextDayStartDateTime = dayjs(monthStartDateTime).add(1, "month").format("YYYY-MM-DD HH:mm:ss");
 const nextDayEndDateTime = dayjs(nextDayStartDateTime).unix();
 
 const Time = () => {
   const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
 
   const handleClick = () => {
     setOpen(true);
@@ -75,6 +66,20 @@ const Time = () => {
 
   return (
     <div>
+      <h2>转换</h2>
+      <div>
+        <Input
+          onChange={(e) => {
+            setValue(e.target.value);
+          }}
+        />
+        <span>
+          {" => "}
+          {value && value.startsWith("2")
+            ? dayjs(value).unix()
+            : dayjs.unix(Number(value)).format("YYYY-MM-DD HH:mm:ss")}
+        </span>
+      </div>
       <h2>昨天</h2>
       <div>
         开始时间戳：{yesterdayStartUnix}
