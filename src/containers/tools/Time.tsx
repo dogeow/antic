@@ -75,9 +75,11 @@ const Time = () => {
         />
         <span>
           {" => "}
-          {value && value.startsWith("2")
-            ? dayjs(value).unix()
-            : dayjs.unix(Number(value)).format("YYYY-MM-DD HH:mm:ss")}
+          {value
+            ? /\d{4}-/.test(value)
+              ? dayjs(value).unix()
+              : dayjs.unix(Number(value)).format("YYYY-MM-DD HH:mm:ss")
+            : ""}
         </span>
       </div>
       <h2>昨天</h2>
