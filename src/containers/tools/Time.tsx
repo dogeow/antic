@@ -2,6 +2,7 @@ import MuiAlert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import dayjs from "dayjs";
 import * as React from "react";
+import { useEffect } from "react";
 
 import TimeConvert from "../../components/api/TimeConvert";
 import ClipboardButton from "../../components/ClipboardButton";
@@ -16,10 +17,6 @@ const todayDate = dayjs().format("YYYY-MM-DD"); // 2020-04-22
 // 今天开始
 const todayStartDateTime = `${todayDate} 00:00:00`; // 2020-04-22 00:00:00
 const todayStartUnixTime = dayjs(todayStartDateTime).unix(); // 1587484800
-
-// 现在
-const nowDateTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
-const nowUnixTime = dayjs().unix();
 
 // 今天结束
 const todayEndDateTime = dayjs(todayDate).add(86400, "second").format("YYYY-MM-DD HH:mm:ss");
@@ -45,6 +42,18 @@ const nextDayEndDateTime = dayjs(nextDayStartDateTime).unix();
 
 const Time = () => {
   const [open, setOpen] = React.useState(false);
+  const [nowDateTime, setNowDateTime] = React.useState("");
+  const [nowUnixTime, setNowUnixTime] = React.useState("");
+
+  useEffect(() => {
+    setInterval(() => {
+      setNowDateTime(dayjs().format("YYYY-MM-DD HH:mm:ss"));
+      setNowUnixTime(dayjs().unix());
+    }, 1000);
+    return () => {
+      clearInterval();
+    };
+  }, []);
 
   const handleClick = () => {
     setOpen(true);
@@ -66,6 +75,15 @@ const Time = () => {
     <div>
       <h2>转换</h2>
       <TimeConvert />
+      <h2>现在</h2>
+      <div>
+        当前日期时间：{nowDateTime}
+        {getClipboardButton(nowDateTime)}
+      </div>
+      <div>
+        当前日期时间戳：{nowUnixTime}
+        {getClipboardButton(nowUnixTime)}
+      </div>
       <h2>昨天</h2>
       <div>
         开始时间戳：{yesterdayStartUnix}
@@ -80,14 +98,6 @@ const Time = () => {
       <div>
         开始时间戳：{todayStartUnixTime}
         {getClipboardButton(todayStartUnixTime)}
-      </div>
-      <div>
-        当前日期时间：{nowDateTime}
-        {getClipboardButton(nowDateTime)}
-      </div>
-      <div>
-        当前日期时间戳：{nowUnixTime}
-        {getClipboardButton(nowUnixTime)}
       </div>
       <div>
         结束时间：{todayEndDateTime}
