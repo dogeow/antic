@@ -19,7 +19,9 @@ const todayStartDateTime = `${todayDate} 00:00:00`; // 2020-04-22 00:00:00
 const todayStartUnixTime = dayjs(todayStartDateTime).unix(); // 1587484800
 
 // 今天结束
-const todayEndDateTime = dayjs(todayDate).add(86400, "second").format("YYYY-MM-DD HH:mm:ss");
+const todayEndDateTime = dayjs(todayDate)
+  .add(86400 - 1, "second")
+  .format("YYYY-MM-DD HH:mm:ss");
 const todayEndUnixTime = todayStartUnixTime + 86400 - 1;
 
 // 昨天
