@@ -9,7 +9,7 @@ steps:
       - name: cache
         path: /drone/src/node_modules
     commands:
-      - yarn install --registry https://registry.npm.taobao.org/
+      - yarn install
   - name: yarn build
     image: node
     volumes:
