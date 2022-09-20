@@ -16,12 +16,6 @@ steps:
       - name: cache
         path: /drone/src/node_modules
     environment:
-      DOMAIN:
-        from_secret: DOMAIN
-      API_DOMAIN:
-        from_secret: API_DOMAIN
-      PROTOCOL:
-        from_secret: PROTOCOL
       SKIP_PREFLIGHT_CHECK:
         from_secret: SKIP_PREFLIGHT_CHECK
       VITE_DOMAIN:
