@@ -2,6 +2,8 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import * as React from "react";
 
+import { CDN_URL } from "../config/services";
+
 const Avatar = styled.img`
   vertical-align: middle;
   ${(props) =>
@@ -22,7 +24,7 @@ const Gravatar = (props: { size: number; marginLeft: number; alt: string; email:
   return (
     <Avatar
       alt={props.alt}
-      src={props.email ? getGravatarAddress(props.email, props.size * 2) : `${import.meta.env.VITE_CDN_URL}/Robot.svg`}
+      src={props.email ? getGravatarAddress(props.email, props.size * 2) : `${CDN_URL}/Robot.svg`}
       size={props.size}
       marginLeft={props.marginLeft}
     />

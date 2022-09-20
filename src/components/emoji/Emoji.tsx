@@ -10,6 +10,7 @@ import Viewer from "react-viewer";
 import { useRecoilState, useRecoilValue } from "recoil";
 import Swal from "sweetalert2";
 
+import { CDN_RUL } from "../../config/services";
 import faces from "../../resources/face.json";
 import {
   currentPageState,
@@ -58,7 +59,7 @@ const Emoji = () => {
 
   const face = [];
   Object.entries(faces).forEach((item) => {
-    item.src = `${import.meta.env.VITE_CDN_URL}/emoji/${item.fileName}`;
+    item.src = `${CDN_URL}/emoji/${item.fileName}`;
     item.alt = item.fileName;
     face.push(item);
   });
@@ -117,7 +118,7 @@ const Emoji = () => {
             <Grid key={index} item xs={4} style={{ textAlign: "center" }}>
               <img
                 id={index}
-                src={`${import.meta.env.VITE_CDN_URL}/emoji/${item.fileName}`}
+                src={`${CDN_URL}/emoji/${item.fileName}`}
                 alt={item.name}
                 width="100"
                 onClick={() => {

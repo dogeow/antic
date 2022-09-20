@@ -4,12 +4,13 @@ import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { CDN_RUL } from "../../config/services";
 import axios from "../../instance/axios";
 
 const Moon = () => {
   const navigate = useNavigate();
 
-  const cdn = `${import.meta.env.VITE_CDN_URL}/moon/`;
+  const cdn = `${CDN_URL}/moon/`;
   const [num, setNum] = useState([]);
   const [name, setName] = useState(localStorage.getItem("name"));
   const [status, setStatus] = useState("");

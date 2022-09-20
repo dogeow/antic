@@ -10,11 +10,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
+import { CDN_URL } from "../../config/services";
 import AllTags from "../../containers/post/AllTags";
 import Categories from "../../containers/post/Categories";
 import { CATEGORY, POST, POST_LIST, TAG } from "../../graphql/post";
 import { postState } from "../../states";
-
 dayjs.extend(relativeTime);
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -153,7 +153,7 @@ const PostList = (props) => {
                         {/* 分类 */}
                         <Grid item>
                           <img
-                            src={`${import.meta.env.VITE_CDN_URL}/logo/${item.category.name}.svg`}
+                            src={`${CDN_URL}/logo/${item.category.name}.svg`}
                             alt={item.category.name}
                             width="20"
                             height="20"

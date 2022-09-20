@@ -26,6 +26,7 @@ import { useRecoilState } from "recoil";
 
 import Copyright from "../../components/site/Copyright";
 import config from "../../config/index.json";
+import { OSS_URL } from "../../config/services";
 import { logged } from "../../helpers";
 import axios from "../../instance/axios";
 import { isExpiredState, usersState, userState } from "../../states";
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    backgroundImage: `url(${import.meta.env.VITE_OSS_URL}/wallpaper/${config.wallpaper[random]})`,
+    backgroundImage: `url(${OSS_URL}/wallpaper/${config.wallpaper[random]})`,
     backgroundRepeat: "no-repeat",
     backgroundColor: theme.palette.mode === "dark" ? theme.palette.grey[900] : theme.palette.grey[50],
     backgroundSize: "cover",

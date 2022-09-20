@@ -7,6 +7,8 @@ import makeStyles from "@mui/styles/makeStyles";
 import clsx from "clsx";
 import * as React from "react";
 
+import { CDN_URL } from "../config/services";
+
 const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,
@@ -39,11 +41,7 @@ export default function RecipeReviewCard({ title, subHeader, img, link, intro, f
   return (
     <Card>
       <CardHeader title={title} subheader={subHeader} />
-      <CardMedia
-        className={classes.media}
-        image={`${import.meta.env.VITE_CDN_URL}/like/${img}!/compress/true/fw/800`}
-        title="Paella dish"
-      />
+      <CardMedia className={classes.media} image={`${CDN_URL}/like/${img}!/compress/true/fw/800`} title="Paella dish" />
       <CardContent style={{ minHeight: "11em" }}>
         <Typography variant="body2" color="textSecondary" component="p" dangerouslySetInnerHTML={{ __html: intro }} />
       </CardContent>

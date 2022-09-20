@@ -1,8 +1,8 @@
 import Grid from "@mui/material/Grid";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useSWR from "swr";
 
-import axios from "../instance/axios";
+import { OSS_URL } from "../config/services";
 
 type Pic = {
   id: number;
@@ -20,11 +20,7 @@ export default () => {
       <Grid item container spacing={1}>
         {data.pics.map((pic: Pic) => (
           <Grid item key={pic.id} xs={6} md={3} lg={4}>
-            <img
-              style={{ width: "100%" }}
-              src={`${import.meta.env.VITE_OSS_URL}/${pic.folder}/${pic.name}`}
-              alt={pic.name}
-            />
+            <img style={{ width: "100%" }} src={`${OSS_URL}/${pic.folder}/${pic.name}`} alt={pic.name} />
           </Grid>
         ))}
       </Grid>

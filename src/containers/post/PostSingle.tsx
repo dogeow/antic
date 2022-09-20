@@ -10,6 +10,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import AlertDialog from "../../components/AlertDialog";
+import { CDN_RUL } from "../../config/services";
 import { DELETE_POST_BY_ID, POST_BY_ID } from "../../graphql/post";
 import { postState } from "../../states";
 import PostBody from "./PostBody";
@@ -120,7 +121,7 @@ const PostSingle = () => {
               <Grid item>
                 <Link to={`/posts?filter[category.name]=${post.category.name}`}>
                   <img
-                    src={`${import.meta.env.VITE_CDN_URL}/logo/${post.category.name}.svg`}
+                    src={`${CDN_URL}/logo/${post.category.name}.svg`}
                     alt={post.category.name}
                     width="20"
                     height="20"

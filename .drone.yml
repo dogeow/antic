@@ -34,10 +34,6 @@ steps:
         from_secret: REACT_APP_API_URL
       VITE_FUNDEBUG_API_KEY:
         from_secret: REACT_APP_FUNDEBUG_API_KEY
-      VITE_CDN_URL:
-        from_secret: REACT_APP_CDN_URL
-      VITE_OSS_URL:
-        from_secret: REACT_APP_OSS_URL
       VITE_ALGOLIA_APP_ID:
         from_secret: REACT_APP_ALGOLIA_APP_ID
       VITE_ALGOLIA_APP_KEY:

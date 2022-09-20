@@ -4,6 +4,7 @@ import StarIcon from "@mui/icons-material/Star";
 import algoliasearch from "algoliasearch/lite";
 import * as React from "react";
 
+import { CDN_URL } from "../config/services";
 import { ClearIcon } from "./ClearIcon";
 import Link from "./Link";
 import { SearchIcon } from "./SearchIcon";
@@ -176,7 +177,7 @@ export default function Autocomplete(props) {
                                   <StarIcon style={{ color: "orange" }} />
                                 ) : (
                                   <img
-                                    src={`${import.meta.env.VITE_CDN_URL}/logo/${item.category}.svg`}
+                                    src={`${CDN_URL}/logo/${item.category}.svg`}
                                     alt={item.name}
                                     width="40"
                                     height="40"

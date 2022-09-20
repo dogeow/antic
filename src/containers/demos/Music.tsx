@@ -4,6 +4,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import React, { useEffect, useRef, useState } from "react";
 
+import { CDN_URL } from "../../config/services";
 const musics = ["大声说爱我 - 刘依纯.mp3", "和楽器バンド - 東風破.mp3"];
 
 const Music = () => {
@@ -60,7 +61,7 @@ const Music = () => {
         <audio
           id="music"
           ref={audio}
-          src={`${import.meta.env.VITE_CDN_URL}/music/${musics[no]}`}
+          src={`${CDN_URL}/music/${musics[no]}`}
           controls={true}
           preload="auto"
           controlsList="nodownload"

@@ -3,6 +3,7 @@ import "video.js/dist/video-js.min.css";
 import * as React from "react";
 
 import VideoJs from "../../components/Video";
+import { CDN_URL } from "../../config/services";
 
 const videoJsOptions = {
   autoplay: false,
@@ -10,7 +11,7 @@ const videoJsOptions = {
   controls: true,
   sources: [
     {
-      src: `${import.meta.env.VITE_CDN_URL}medias/mv.mp4`,
+      src: `${CDN_URL}medias/mv.mp4`,
       type: "video/mp4",
     },
   ],

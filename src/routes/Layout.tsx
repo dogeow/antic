@@ -6,6 +6,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import ScrollUpButton from "react-scroll-up-button";
 
 import Loading from "../components/Loading";
+import { CDN_URL } from "../config/services";
 import Footer from "../containers/Footer";
 import Header from "../containers/Header";
 
@@ -59,7 +60,7 @@ export default () => {
           TransitionClassName="AnyClassForTransition"
           style={{ outline: "none", boxShadow: "none" }}
         >
-          <img src={`${import.meta.env.VITE_CDN_URL}/bfr.png`} width="24" alt="Back to top arrow" />
+          <img src={`${CDN_URL}/bfr.png`} width="24" alt="Back to top arrow" />
         </ScrollUpButton>
       )}
     </Grid>
