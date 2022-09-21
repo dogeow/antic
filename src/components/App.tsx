@@ -18,6 +18,11 @@ import ScrollToTop from "./ScrollToTop";
 
 dayjs.locale("zh-cn");
 
+const changeVh = () => {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+};
+
 export default () => {
   const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
   const [user] = useRecoilState(userState);
@@ -60,17 +65,13 @@ export default () => {
       setPaletteMode(newColorScheme);
     };
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", handle);
+
     return () => {
       window.matchMedia("(prefers-color-scheme: dark)").removeEventListener("change", handle);
     };
   }, [setPaletteMode]);
 
-  const changeVh = () => {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-  };
-
-  // 手机浏览器的高度问题，搜索以上句子可以找到相配合的地方
+  // 手机浏览器的高度问题，搜索上半句可以找到相配合的地方
   useEffect(() => {
     changeVh();
 
