@@ -27,6 +27,19 @@ export default () => {
   const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
   const [user] = useRecoilState(userState);
 
+  // 手机浏览器的高度问题（搜索可以找到相配合的地方）
+  useEffect(() => {
+    changeVh();
+
+    window.addEventListener("resize", () => {
+      changeVh();
+    });
+
+    return () => {
+      window.removeEventListener("resize", changeVh, false);
+    };
+  }, []);
+
   useEffect(() => {
     window.Echo = new Echo({
       broadcaster: "pusher",
@@ -38,23 +51,24 @@ export default () => {
       encrypted: true,
       disableStats: true,
       enabledTransports: ["ws", "wss"],
-      authorizer: (channel: { name: string }) => ({
-        authorize: localStorage.getItem("token")
-          ? (socketId: any, callback: (arg0: boolean, arg1: any) => void) => {
-              axios
-                .post("/broadcasting/auth", {
-                  socket_id: socketId,
-                  channel_name: channel.name,
-                })
-                .then((response) => {
-                  callback(false, response.data);
-                })
-                .catch((error) => {
-                  callback(true, error);
-                });
+      authorizer: (channel: { name: string }) =>
+        localStorage.getItem("token")
+          ? {
+              authorize: (socketId: any, callback: (arg0: boolean, arg1: any) => void) => {
+                axios
+                  .post("/broadcasting/auth", {
+                    socket_id: socketId,
+                    channel_name: channel.name,
+                  })
+                  .then((response) => {
+                    callback(false, response.data);
+                  })
+                  .catch((error) => {
+                    callback(true, error);
+                  });
+              },
             }
-          : () => {},
-      }),
+          : {},
     });
   }, [user.token]);
 
@@ -71,23 +85,10 @@ export default () => {
     };
   }, [setPaletteMode]);
 
-  // 手机浏览器的高度问题，搜索上半句可以找到相配合的地方
-  useEffect(() => {
-    changeVh();
-
-    window.addEventListener("resize", () => {
-      changeVh();
-    });
-
-    return () => {
-      window.removeEventListener("resize", changeVh, false);
-    };
-  }, []);
-
   return (
     <BrowserRouter>
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={zhCNLocale}>
-        <ThemeProvider theme={themeCustomization({ paletteMode }) as DefaultTheme}>
+        <ThemeProvider theme={themeCustomization({ paletteMode })}>
           <CssBaseline />
           <ScrollToTop />
           <Routes />

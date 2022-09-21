@@ -23,18 +23,17 @@
     "types": [
       "vite/client",
       "@types/node",
-//      "react",
-//      "jest",
-//      "lodash",
-//      "react-dom",
-//      "react-router-dom",
-//      "@mui",
+      "react",
+      "jest",
+      "lodash",
+      "react-dom",
+      "react-router-dom",
+      "@mui",
     ],
     "typeRoots": ["./node_modules/@types", "./src/types"]
   },
+
   "include": [
     "src",
-//    "node_modules/**/*.d.ts",
-//    "node_modules/@types/**/*.d.ts"
   ],
 }

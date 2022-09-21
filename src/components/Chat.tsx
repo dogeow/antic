@@ -42,7 +42,7 @@ export default function Chat() {
   const messagesEndRef = useRef(null);
   const peopleRef = useRef(null);
 
-  const [open, setOpen] = useState(user.token === "");
+  const [open, setOpen] = useState(!!user.token);
 
   const toggleError = () => {
     setError(!error);
@@ -67,6 +67,51 @@ export default function Chat() {
   };
 
   useEffect(() => {
+    if (user.token === null) {
+      setOpen(true);
+      return;
+    }
+
+    window.Echo.join("chat")
+      .here((herePeople: ChatPeople[]) => {
+        setLoading(false);
+        const newPeople = _.uniqBy([...people, ...herePeople], "id");
+        setPeople(newPeople);
+        if (_.find(newPeople, ["id", parseInt(user.userId)])) {
+          setAlertMessage("您已加入房间");
+          setAlertOpen(true);
+        }
+      })
+      .joining((user: ChatPeople[]) => {
+        const index = people.findIndex((person) => person.id === user.id);
+        if (index) {
+          const newPeople = replaceItemAtIndex(people, index, {
+            ...user,
+            active: true,
+          });
+          setPeople(newPeople);
+        } else {
+          const newPeople = _.uniqBy([user, ...people], "id");
+          if (people !== newPeople) {
+            setPeople(newPeople);
+          }
+        }
+        setAlertMessage(`${user.name} 加入了房间`);
+        setAlertOpen(true);
+      })
+      .leaving((user: ChatPeople[]) => {
+        setPeople(
+          produce((draft) => {
+            const person = draft.find((person) => person.id === user.id);
+            person.active = false;
+          })
+        );
+        setAlertMessage(`${user.name} 退出了房间`);
+        setAlertOpen(true);
+      });
+  }, [user.token, people]);
+
+  useEffect(() => {
     let typingTime;
 
     window.Echo.private("chat").listenForWhisper("typing", (e) => {
@@ -87,51 +132,6 @@ export default function Chat() {
       }
     };
   }, [user.token]);
-
-  useEffect(() => {
-    if (user.token === null) {
-      setOpen(true);
-      return;
-    }
-
-    window.Echo.join("chat")
-      .here((herePeople) => {
-        setLoading(false);
-        const newPeople = _.uniqBy([...people, ...herePeople], "id");
-        setPeople(newPeople);
-        if (_.find(newPeople, ["id", parseInt(user.userId)])) {
-          setAlertMessage("您已加入房间");
-          setAlertOpen(true);
-        }
-      })
-      .joining((user) => {
-        const index = people.findIndex((person) => person.id === user.id);
-        if (index) {
-          const newPeople = replaceItemAtIndex(people, index, {
-            ...user,
-            active: true,
-          });
-          setPeople(newPeople);
-        } else {
-          const newPeople = _.uniqBy([user, ...people], "id");
-          if (people !== newPeople) {
-            setPeople(newPeople);
-          }
-        }
-        setAlertMessage(`${user.name} 加入了房间`);
-        setAlertOpen(true);
-      })
-      .leaving((user) => {
-        setPeople(
-          produce((draft) => {
-            const person = draft.find((person) => person.id === user.id);
-            person.active = false;
-          })
-        );
-        setAlertMessage(`${user.name} 退出了房间`);
-        setAlertOpen(true);
-      });
-  }, [user.token, people]);
 
   useEffect(() => {
     scrollToBottom();
