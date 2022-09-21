@@ -1,3 +1,4 @@
+import { PaletteMode } from "@mui/material";
 import { atom } from "recoil";
 
 // 夜晚模式
@@ -11,7 +12,7 @@ if (isRest) {
 }
 export const paletteModeState = atom({
   key: "paletteMode",
-  default: paletteMode,
+  default: paletteMode as PaletteMode,
 });
 
 // 当前登陆用户

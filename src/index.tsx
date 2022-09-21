@@ -15,18 +15,6 @@ import reportWebVitals from "./reportWebVitals";
 
 bootstrap();
 
-function DebugObserver() {
-  const snapshot: Snapshot = useRecoilSnapshot();
-  useEffect(() => {
-    console.debug("The following atoms were modified:");
-    for (const node of snapshot.getNodes_UNSTABLE({ isModified: true })) {
-      console.debug(node.key, snapshot.getLoadable(node));
-    }
-  }, [snapshot]);
-
-  return null;
-}
-
 const container = document.querySelector("#root") as HTMLElement;
 const root = createRoot(container);
 
@@ -51,3 +39,15 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+function DebugObserver() {
+  const snapshot: Snapshot = useRecoilSnapshot();
+  useEffect(() => {
+    console.debug("The following atoms were modified:");
+    for (const node of snapshot.getNodes_UNSTABLE({ isModified: true })) {
+      console.debug(node.key, snapshot.getLoadable(node));
+    }
+  }, [snapshot]);
+
+  return null;
+}

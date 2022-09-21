@@ -6,7 +6,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import zhCNLocale from "dayjs/locale/zh-cn";
 import Echo from "laravel-echo";
-import React, { ChangeEventHandler, useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
@@ -33,25 +33,23 @@ export default () => {
       encrypted: true,
       disableStats: true,
       enabledTransports: ["ws", "wss"],
-      authorizer: (channel, options) => {
-        return {
-          authorize: localStorage.getItem("token")
-            ? (socketId, callback) => {
-                axios
-                  .post("/broadcasting/auth", {
-                    socket_id: socketId,
-                    channel_name: channel.name,
-                  })
-                  .then((response) => {
-                    callback(false, response.data);
-                  })
-                  .catch((error) => {
-                    callback(true, error);
-                  });
-              }
-            : () => {},
-        };
-      },
+      authorizer: (channel: { name: string }) => ({
+        authorize: localStorage.getItem("token")
+          ? (socketId: any, callback: (arg0: boolean, arg1: any) => void) => {
+              axios
+                .post("/broadcasting/auth", {
+                  socket_id: socketId,
+                  channel_name: channel.name,
+                })
+                .then((response) => {
+                  callback(false, response.data);
+                })
+                .catch((error) => {
+                  callback(true, error);
+                });
+            }
+          : () => {},
+      }),
     });
   }, [user.token]);
 
