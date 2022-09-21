@@ -2,7 +2,9 @@ const plugins = [
   [
     'recharts',
     'babel-plugin-direct-import',
-    {modules: ['@mui/material', '@mui/icons-material']}
+    {
+      modules: ['@mui/material', '@mui/icons-material']
+    }
   ],
   [
     '@babel/plugin-syntax-jsx'

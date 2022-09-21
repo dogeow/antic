@@ -5,7 +5,7 @@ jobs:
   build:
     executor:
       name: node/default
-      tag: '14.19.1'
+      tag: '16.17.0'
     steps:
       - checkout
       - run: yarn
