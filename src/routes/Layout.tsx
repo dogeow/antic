@@ -3,10 +3,9 @@ import Grid from "@mui/material/Grid";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { Suspense } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import ScrollUpButton from "react-scroll-up-button";
 
 import Loading from "../components/Loading";
-import { CDN_URL } from "../config/services";
+import ScrollButton from "../components/ScrollButton";
 import Footer from "../containers/Footer";
 import Header from "../containers/Header";
 
@@ -53,16 +52,7 @@ export default () => {
         </Suspense>
       </Grid>
       {["/"].includes(location.pathname) && <Footer />}
-      {["/"].includes(location.pathname) || (
-        <ScrollUpButton
-          ShowAtPosition={500}
-          ContainerClassName="AnyClassForContainer"
-          TransitionClassName="AnyClassForTransition"
-          style={{ outline: "none", boxShadow: "none" }}
-        >
-          <img src={`${CDN_URL}/bfr.png`} width="24" alt="Back to top arrow" />
-        </ScrollUpButton>
-      )}
+      {["/"].includes(location.pathname) || <ScrollButton />}
     </Grid>
   );
 };

@@ -15,7 +15,7 @@ export default ({ mode }: { mode: string }) => {
       alias: {
         "@": path.resolve(__dirname, "src"),
       },
-      extensions: [".js", ".ts", ".tsx", ".jsx"],
+      extensions: [".js", ".jsx", ".ts", ".tsx"],
     },
   });
 };

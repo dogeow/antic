@@ -10,7 +10,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import AlertDialog from "../../components/AlertDialog";
-import { CDN_RUL } from "../../config/services";
+import { CDN_URL } from "../../config/services";
 import { DELETE_POST_BY_ID, POST_BY_ID } from "../../graphql/post";
 import { postState } from "../../states";
 import PostBody from "./PostBody";

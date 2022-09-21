@@ -10,7 +10,7 @@ import Viewer from "react-viewer";
 import { useRecoilState, useRecoilValue } from "recoil";
 import Swal from "sweetalert2";
 
-import { CDN_RUL } from "../../config/services";
+import { CDN_URL } from "../../config/services";
 import faces from "../../resources/face.json";
 import {
   currentPageState,

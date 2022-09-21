@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { CDN_RUL } from "../../config/services";
+import { CDN_URL } from "../../config/services";
 import axios from "../../instance/axios";
 
 const Moon = () => {

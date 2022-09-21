@@ -1,6 +1,5 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
-import { DefaultTheme } from "@mui/styles/defaultTheme";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
@@ -54,7 +53,7 @@ export default () => {
       authorizer: (channel: { name: string }) =>
         localStorage.getItem("token")
           ? {
-              authorize: (socketId: any, callback: (arg0: boolean, arg1: any) => void) => {
+              authorize: (socketId: string, callback: (arg0: boolean, arg1: any) => void) => {
                 axios
                   .post("/broadcasting/auth", {
                     socket_id: socketId,

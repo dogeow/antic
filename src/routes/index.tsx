@@ -3,11 +3,11 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Loading from "../components/Loading";
+import Redirect from "../containers/users/Redirect";
 import Layout from "./Layout";
 
 const PostList = lazy(() => import("../containers/post/PostList"));
 const Login = lazy(() => import("../containers/users/Login"));
-const Redirect = lazy(() => import("../containers/users/Redirect"));
 const SelfTalk = lazy(() => import("../containers/me/SelfTalk"));
 const PoweredBy = lazy(() => import("../containers/site/PoweredBy"));
 const Emoji = lazy(() => import("../components/emoji/Emoji"));
@@ -73,9 +73,6 @@ export default () => (
       <Route path="/" element={<Layout />}>
         <Route index element={<PostList />} />
 
-        <Route path="/sites" element={<Site />} />
-        <Route path="/pics" element={<Pic />} />
-
         {/* Auth */}
         <Route path="/register" element={<Register />} />
         <Route path="/reset/:secret" element={<Reset />} />
@@ -83,6 +80,12 @@ export default () => (
         <Route path="/forget/:secret" element={<EmailVerify />} />
         <Route path="/user/:id" element={<User />} />
         <Route path="/user/:id/setting" element={<UserSetting />} />
+
+        {/* 聊天室*/}
+        <Route path="/chat" element={<Chat />} />
+
+        <Route path="/sites" element={<Site />} />
+        <Route path="/pics" element={<Pic />} />
 
         {/* Posts */}
         <Route path="/posts" element={<PostList />} />
@@ -112,7 +115,7 @@ export default () => (
         <Route path="/download" element={<Download />} />
         <Route path="/moon" element={<Moon />} />
 
-        {/* 小工具 持续更新 */}
+        {/* 小工具 */}
         <Route path="/diff" element={<Diff />} />
         <Route path="/a-z" element={<A2Z />} />
         <Route path="/ndd" element={<Ndd />} />
@@ -140,16 +143,11 @@ export default () => (
         <Route path="/cars" element={<Cars />} />
         <Route path="/docs" element={<Docs />} />
 
-        {/* 开发中 */}
+        {/* 开发中、测试 */}
         <Route path="/markdown" element={<Markdown />} />
         <Route path="/translate" element={<Translate />} />
-
-        {/* 测试 */}
         <Route path="/test" element={<Test />} />
         <Route path="/game" element={<Game />} />
-
-        {/* 聊天室*/}
-        <Route path="/chat" element={<Chat />} />
 
         <Route path="*" element={<NoMatch />} />
       </Route>
