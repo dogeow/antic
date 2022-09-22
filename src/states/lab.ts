@@ -29,7 +29,7 @@ export const userState = atom({
 });
 export const isExpiredState = atom({
   key: "isExpired",
-  default: getItem("user.accessToken"),
+  default: getItem("user.accessToken") === null,
 });
 
 // 所有登陆用户
