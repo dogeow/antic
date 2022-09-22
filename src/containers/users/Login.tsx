@@ -70,9 +70,9 @@ export default () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const classes = useStyles();
-  const [user, setUser] = useRecoilState(userState);
-  const [users, setUsers] = useRecoilState(usersState);
-  const [isExpired, setIsExpired] = useRecoilState(isExpiredState);
+  const [, setUser] = useRecoilState(userState);
+  const [, setUsers] = useRecoilState(usersState);
+  const [, setIsExpired] = useRecoilState(isExpiredState);
   const [account, setAccount] = useState("");
   const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState("");
@@ -109,10 +109,10 @@ export default () => {
       const data = await post.data;
       logged(data);
       const userData = {
-        token: "Bearer " + data.accessToken,
-        userId: data.id,
-        userName: data.name,
-        userEmail: data.email,
+        accessToken: "Bearer " + data.accessToken,
+        id: data.id,
+        name: data.name,
+        email: data.email,
       };
       setUser(userData);
       setUsers((oldUsers) => [...oldUsers, userData]);

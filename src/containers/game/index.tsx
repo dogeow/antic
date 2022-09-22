@@ -54,7 +54,7 @@ export default () => {
         } else {
           draft.push({
             id: userId,
-            name: localStorage.userName,
+            name: getItem("user.name"),
             x,
             y,
           });

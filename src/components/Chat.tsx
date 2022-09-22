@@ -7,6 +7,7 @@ import { isMobile } from "react-device-detect";
 import { useRecoilState } from "recoil";
 
 import Avatar from "../components/Gravatar";
+import { replaceItemAtIndex } from "../helpers";
 import { getItem } from "../helpers";
 import { logged } from "../helpers/auth";
 import axios from "../instance/axios";
@@ -15,14 +16,6 @@ import Expire from "./Expire";
 import Loading from "./Loading";
 
 let timer = null;
-
-function replaceItemAtIndex(arr, index, newValue) {
-  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
-}
-
-function removeItemAtIndex(arr, index) {
-  return [...arr.slice(0, index), ...arr.slice(index + 1)];
-}
 
 export default function Chat() {
   const [alertMessage, setAlertMessage] = useState("");
@@ -275,7 +268,7 @@ export default function Chat() {
                 return content.id === getItem("user.id") ? (
                   <Grid item xs={12} key={index} style={{ textAlign: "right" }}>
                     <span style={{ marginRight: 4 }}>{content.message}</span>
-                    <Avatar alt={content.name} email={user.userEmail} size={24} />
+                    <Avatar alt={content.name} email={user.email} size={24} />
                   </Grid>
                 ) : (
                   <Grid item xs={12} key={index}>

@@ -319,7 +319,7 @@ const Header = () => {
                     onClick={handleProfileMenu}
                     size="large"
                   >
-                    <Avatar alt={user.userName} src={getGravatarAddress(user.userEmail, 80)} />
+                    <Avatar alt={user.name} src={getGravatarAddress(user.email, 80)} />
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -340,16 +340,16 @@ const Header = () => {
                   <RouteLink to={`/user/${user.id}`} onClick={handleCloseProfile}>
                     <div style={{ textAlign: "center", fontSize: "1rem" }}>
                       <Avatar
-                        alt={user.userName}
-                        src={getGravatarAddress(user.userEmail, 160)}
+                        alt={user.name}
+                        src={getGravatarAddress(user.email, 160)}
                         style={{ width: 80, height: 80, margin: "20px auto" }}
                       />
-                      {user.userName}
+                      {user.name}
                     </div>
                   </RouteLink>
                   {users.map((user, index) => {
                     return (
-                      user.userEmail !== user.userEmail && (
+                      user.email !== user.email && (
                         <MenuItem
                           onClick={() => {
                             setUser(user);
@@ -357,16 +357,16 @@ const Header = () => {
                           }}
                           key={index}
                         >
-                          <Avatar alt={user.userName} src={getGravatarAddress(user.userEmail)} />
+                          <Avatar alt={user.name} src={getGravatarAddress(user.email)} />
                           <span
                             style={{
                               margin: "0 10px 0 10px",
                               fontSize: "0.8rem",
                             }}
                           >
-                            {user.userName}
+                            {user.name}
                             <br />
-                            {user.userEmail}
+                            {user.email}
                           </span>
                         </MenuItem>
                       )
