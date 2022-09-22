@@ -8,7 +8,7 @@ import { useRecoilState } from "recoil";
 
 import Avatar from "../components/Gravatar";
 import { getItem } from "../helpers";
-import { logged } from "../helpers";
+import { logged } from "../helpers/auth";
 import axios from "../instance/axios";
 import { chatBoardState, isExpiredState, peopleState, usersState, userState } from "../states";
 import Expire from "./Expire";

@@ -3,7 +3,7 @@ import * as React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
-import { logged } from "../../helpers";
+import { logged } from "../../helpers/auth";
 import axios from "../../instance/axios";
 import { isExpiredState, usersState, userState } from "../../states";
 

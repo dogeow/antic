@@ -1,20 +1,8 @@
 import { Md5 } from "ts-md5";
 
 import { gravatarCdn } from "../config/services";
-import axios from "../instance/axios";
 
-/**
- * 登录
- *
- * @param {object} data
- */
-export const logged = (data: { accessToken: string; id: number; name: string; email: string }) => {
-  const accessToken = `Bearer ${data.accessToken}`;
-  setItem("user", { ...data, accessToken });
-  axios.defaults.headers.common.Authorization = accessToken;
-};
-
-export const isJSON = (str: string) => {
+export const isJson = (str: string) => {
   try {
     const obj = JSON.parse(str);
     return !!(typeof obj == "object" && obj);
@@ -34,7 +22,7 @@ export const getItem = (key: string) => {
       return null;
     }
 
-    if (isJSON(data)) {
+    if (isJson(data)) {
       data = JSON.parse(data);
       if (data === null) {
         return null;
@@ -51,13 +39,6 @@ export const getItem = (key: string) => {
 
 export const setItem = (key: string, data: any) => {
   localStorage.setItem(key, JSON.stringify(data));
-};
-
-/**
- * 注销
- */
-export const logout = () => {
-  localStorage.removeItem("user");
 };
 
 /**
