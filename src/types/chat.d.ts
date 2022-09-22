@@ -1,6 +1,8 @@
 type ChatPeople = {
   id: number;
-  active: boolean;
+  active?: boolean;
   name: string;
-  email: string;
+  email?: string;
 };
+
+type Content = { name: string; id: number; message: string };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Expire = (props) => {
+const Expire = (props: { delay: number; children: string }) => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const Expire = (props) => {
     return () => clearTimeout(visibleTimer);
   }, [props.delay]);
 
-  return visible && <span>{props.children}</span>;
+  return visible ? <span>{props.children}</span> : null;
 };
 
 export default Expire;

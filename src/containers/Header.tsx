@@ -37,8 +37,9 @@ import Drawer from "../components/Drawer";
 import Logo from "../components/Logo";
 import Search from "../components/Search";
 import Settings from "../components/Settings";
-import { getGravatarAddress, logout } from "../helpers";
+import { getGravatarAddress } from "../helpers";
 import { getItem } from "../helpers";
+import { logout } from "../helpers/auth";
 import { emptyUser } from "../objects/user";
 import { logoutRequest } from "../requests/user";
 import {

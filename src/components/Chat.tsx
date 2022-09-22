@@ -69,14 +69,14 @@ export default function Chat() {
     window.Echo.join("chat")
       .here((herePeople: ChatPeople[]) => {
         setLoading(false);
-        const newPeople = _.uniqBy([...people, ...herePeople], "id");
+        const newPeople: ChatPeople[] = _.uniqBy([...people, ...herePeople], "id");
         setPeople(newPeople);
         if (_.find(newPeople, ["id", parseInt(user.id)])) {
           setAlertMessage("您已加入房间");
           setAlertOpen(true);
         }
       })
-      .joining((user: ChatPeople[]) => {
+      .joining((user: ChatPeople) => {
         const index = people.findIndex((person) => person.id === user.id);
         if (index) {
           const newPeople = replaceItemAtIndex(people, index, {
@@ -93,10 +93,10 @@ export default function Chat() {
         setAlertMessage(`${user.name} 加入了房间`);
         setAlertOpen(true);
       })
-      .leaving((user: ChatPeople[]) => {
+      .leaving((user: ChatPeople) => {
         setPeople(
           produce((draft) => {
-            const person = draft.find((person) => person.id === user.id);
+            const person: ChatPeople = draft.find((person) => person.id === user.id);
             person.active = false;
           })
         );
@@ -106,8 +106,6 @@ export default function Chat() {
   }, [user.token, people]);
 
   useEffect(() => {
-    let typingTime;
-
     window.Echo.private("chat").listenForWhisper("typing", (e) => {
       setTyping(undefined);
       setTyping(e.id);
@@ -121,9 +119,6 @@ export default function Chat() {
       window.Echo.private("chat").stopListeningForWhisper("typing");
       window.Echo.private("chat").stopListening(".chat");
       window.Echo.leave("chat");
-      if (typingTime) {
-        clearTimeout(typingTime);
-      }
     };
   }, [user.token]);
 
@@ -264,7 +259,7 @@ export default function Chat() {
               机器人请在开头加上一个空格，比如「 时间」、「 ip」、「 md5 123456」、「 单复数 category」
             </Grid>
             {chatBoard.length > 0 &&
-              chatBoard.map((content, index) => {
+              chatBoard.map((content: Content, index) => {
                 return content.id === getItem("user.id") ? (
                   <Grid item xs={12} key={index} style={{ textAlign: "right" }}>
                     <span style={{ marginRight: 4 }}>{content.message}</span>
@@ -312,7 +307,7 @@ export default function Chat() {
           }}
           alignContent={isMobile && inputFocus ? "flex-end" : "flex-start"}
         >
-          {people.map((person) => {
+          {people.map((person: ChatPeople) => {
             return (
               <Grid item xs={12} container key={person.id}>
                 <Grid item xs={12}>
@@ -322,7 +317,7 @@ export default function Chat() {
                 <Grid item>
                   <span style={{ marginLeft: 4 }}>
                     {person.name}
-                    {person.active === false && "（离线）"}
+                    {!person.active && "（离线）"}
                   </span>
                 </Grid>
               </Grid>

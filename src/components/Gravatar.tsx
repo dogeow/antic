@@ -20,7 +20,7 @@ const Avatar = styled.img`
 
 import { getGravatarAddress } from "../helpers";
 
-const Gravatar = (props: { size: number; marginLeft: number; alt: string; email: string }) => {
+const Gravatar = (props: { size: number; alt: string; email: string; marginLeft?: number }) => {
   return (
     <Avatar
       alt={props.alt}
