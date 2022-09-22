@@ -1,11 +1,11 @@
-import Button from "@mui/material/Button";
+import { Button, Theme } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
 
 import axios from "../instance/axios";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   "@global": {
     em: {
       color: "#dd4b39",

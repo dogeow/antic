@@ -1,5 +1,5 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Avatar, Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
+import { Avatar, Box, Button, Container, Grid, TextField, Theme, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
@@ -8,7 +8,7 @@ import axios from "../instance/axios";
 import ToLogin from "./Auth/ToLogin";
 import Copyright from "./site/Copyright";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Register = ({ history }) => {
+const Register = () => {
   const classes = useStyles();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

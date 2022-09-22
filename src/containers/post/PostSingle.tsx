@@ -1,8 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
+import { Skeleton, Theme, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import Skeleton from "@mui/material/Skeleton";
-import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useEffect, useState } from "react";
 import ReactMarkdownHeading from "react-markdown-heading";
@@ -16,7 +15,7 @@ import { postState } from "../../states";
 import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles((theme: Theme) => {
   return {
     toc: {
       [theme.breakpoints.up("md")]: {

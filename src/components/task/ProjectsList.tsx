@@ -1,12 +1,9 @@
-import Badge from "@mui/material/Badge";
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
+import { Badge, Button, Grid, Paper, Theme } from "@mui/material/";
 import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   margin: {
     margin: theme.spacing(2),
   },

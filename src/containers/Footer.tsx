@@ -1,5 +1,5 @@
 import GitHub from "@mui/icons-material/GitHub";
-import { Container, Grid, IconButton, Tooltip, Typography } from "@mui/material";
+import { Container, Grid, IconButton, Theme, Tooltip, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import clsx from "clsx";
 import * as React from "react";
@@ -10,7 +10,7 @@ import Hr from "../components/Hr";
 import { backgroundImg } from "../config/index.json";
 import { CDN_URL } from "../config/services";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   footer: {
     backgroundImage:
       theme.palette.mode === "dark"

@@ -21,6 +21,7 @@ import {
   Menu,
   MenuItem,
   Snackbar,
+  Theme,
   Toolbar,
   Tooltip,
   useMediaQuery,
@@ -53,7 +54,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   blank: {
     flexGrow: 1,
   },

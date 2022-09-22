@@ -1,6 +1,6 @@
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ShareIcon from "@mui/icons-material/Share";
-import { Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from "@mui/material";
+import { Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Theme, Typography } from "@mui/material";
 import Collapse from "@mui/material/Collapse";
 import { red } from "@mui/material/colors";
 import makeStyles from "@mui/styles/makeStyles";
@@ -9,7 +9,7 @@ import * as React from "react";
 
 import { CDN_URL } from "../config/services";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   media: {
     height: 0,
     paddingTop: "100%", // 16:9

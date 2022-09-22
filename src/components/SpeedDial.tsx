@@ -1,10 +1,8 @@
-import SpeedDial from "@mui/material/SpeedDial";
-import SpeedDialAction from "@mui/material/SpeedDialAction";
-import SpeedDialIcon from "@mui/material/SpeedDialIcon";
+import { SpeedDial, SpeedDialAction, SpeedDialIcon, Theme } from "@mui/material/";
 import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   speedDial: {
     position: "fixed",
     "&.MuiSpeedDial-directionUp": {

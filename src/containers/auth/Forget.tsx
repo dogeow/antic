@@ -1,13 +1,13 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { Avatar, Button, Container, InputAdornment, TextField, Typography } from "@mui/material";
+import { Avatar, Button, Container, InputAdornment, TextField, Theme, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useState } from "react";
 import swal from "sweetalert2";
 
 import axios from "../../instance/axios";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   paper: {
     marginTop: theme.spacing(6),
     display: "flex",

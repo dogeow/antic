@@ -1,6 +1,5 @@
 import { Divider, Link, List, ListItemButton, ListItemText, SwipeableDrawer } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import PropTypes from "prop-types";
 import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
@@ -69,11 +68,6 @@ const TemporaryDrawer = (props) => {
       </SwipeableDrawer>
     </div>
   );
-};
-
-TemporaryDrawer.propTypes = {
-  onClick: PropTypes.func,
-  open: PropTypes.bool,
 };
 
 export default TemporaryDrawer;

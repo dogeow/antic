@@ -15,6 +15,7 @@ import {
   InputAdornment,
   Paper,
   TextField,
+  Theme,
   Tooltip,
   Typography,
   Zoom,
@@ -34,7 +35,7 @@ import LoginGuest from "../auth/LoginGuest";
 
 const random = Math.floor(Math.random() * config.wallpaper.length);
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     height: "100vh",
   },

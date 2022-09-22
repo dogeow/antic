@@ -1,12 +1,12 @@
 import { gql, useQuery } from "@apollo/client";
-import Autocomplete from "@mui/material/Autocomplete";
+import { Autocomplete, Theme } from "@mui/material";
 import Chip from "@mui/material/Chip";
 import TextField from "@mui/material/TextField";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   tags: {
     "& > *": {
       margin: theme.spacing(0.5),

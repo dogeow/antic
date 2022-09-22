@@ -2,7 +2,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
-import { AppBar, Avatar, Box, Container, Grid, Tab, Tabs, Typography } from "@mui/material";
+import { AppBar, Avatar, Box, Container, Grid, Tab, Tabs, Theme, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -21,7 +21,7 @@ import Copyright from "../../components/site/Copyright";
 import axios from "../../instance/axios";
 import { userState } from "../../states";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   paper: {
     marginTop: theme.spacing(6),
     display: "flex",

@@ -1,5 +1,5 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Avatar, Button, Container, Grid, Typography } from "@mui/material";
+import { Avatar, Button, Container, Grid, Theme, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -9,7 +9,7 @@ import Password from "../../components/auth/Password";
 import PasswordConfirmation from "../../components/auth/PasswordConfirmation";
 import axios from "../../instance/axios";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   paper: {
     marginTop: theme.spacing(6),
     display: "flex",
