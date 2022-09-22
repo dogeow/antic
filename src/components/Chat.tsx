@@ -7,6 +7,7 @@ import { isMobile } from "react-device-detect";
 import { useRecoilState } from "recoil";
 
 import Avatar from "../components/Gravatar";
+import { getItem } from "../helpers";
 import { logged } from "../helpers";
 import axios from "../instance/axios";
 import { chatBoardState, isExpiredState, peopleState, usersState, userState } from "../states";
@@ -77,7 +78,7 @@ export default function Chat() {
         setLoading(false);
         const newPeople = _.uniqBy([...people, ...herePeople], "id");
         setPeople(newPeople);
-        if (_.find(newPeople, ["id", parseInt(user.userId)])) {
+        if (_.find(newPeople, ["id", parseInt(user.id)])) {
           setAlertMessage("您已加入房间");
           setAlertOpen(true);
         }
@@ -144,8 +145,8 @@ export default function Chat() {
     setChatBoard((chatBoard) => [
       ...chatBoard,
       {
-        id: localStorage.userId,
-        name: localStorage.userName,
+        id: getItem("user.id"),
+        name: getItem("user.name"),
         message,
       },
     ]);
@@ -185,7 +186,7 @@ export default function Chat() {
 
   const triggerChange = () => {
     window.Echo.private("chat").whisper("typing", {
-      id: parseInt(localStorage.userId),
+      id: parseInt(getItem("user.id")),
     });
   };
 
@@ -228,10 +229,10 @@ export default function Chat() {
                   .then(({ data }) => {
                     logged(data);
                     const userData = {
-                      token: "Bearer " + data.access_token,
-                      userId: data.id,
-                      userName: data.name,
-                      userEmail: data.email,
+                      accessToken: "Bearer " + data.accessToken,
+                      user: data.id,
+                      name: data.name,
+                      email: data.email,
                     };
                     setUser(userData);
                     setUsers((oldUsers) => [...oldUsers, userData]);
@@ -271,7 +272,7 @@ export default function Chat() {
             </Grid>
             {chatBoard.length > 0 &&
               chatBoard.map((content, index) => {
-                return content.id === localStorage.userId ? (
+                return content.id === getItem("user.id") ? (
                   <Grid item xs={12} key={index} style={{ textAlign: "right" }}>
                     <span style={{ marginRight: 4 }}>{content.message}</span>
                     <Avatar alt={content.name} email={user.userEmail} size={24} />

@@ -14,23 +14,17 @@
 
 - ES6
 - React Hook
-- React Router
+- [React-Router](https://reacttraining.com/react-router/)
 - Recoil
 - React Redux
 - Apollo GraphQL
+- [Material-UI](https://material-ui.com/zh/)
 
 ## 后端
 
 使用 [Laravel](https://learnku.com/laravel) - 为艺术家创造的 PHP 框架。
 
 GitHub 地址：https://github.com/dogeow/antic-api
-
-## 驱动
-- [Redux](https://cn.redux.js.org/)
-- [React-Redux](https://www.redux.org.cn/)
-- [React-Router](https://reacttraining.com/react-router/)
-- [React](https://zh-hans.reactjs.org/)
-- [Material-UI](https://material-ui.com/zh/)
 
 ## 致谢
 

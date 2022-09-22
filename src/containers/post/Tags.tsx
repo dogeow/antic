@@ -64,7 +64,7 @@ const Tags = ({ edit }) => {
             label={option}
             {...getTagProps({ index })}
             onDelete={
-              user.userId && edit
+              user.id && edit
                 ? (option) => {
                     axios
                       .delete(`/posts/${post.id}/tag`, {

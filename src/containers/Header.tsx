@@ -37,6 +37,7 @@ import Logo from "../components/Logo";
 import Search from "../components/Search";
 import Settings from "../components/Settings";
 import { getGravatarAddress, logout } from "../helpers";
+import { getItem } from "../helpers";
 import { emptyUser } from "../objects/user";
 import { logoutRequest } from "../requests/user";
 import {
@@ -335,7 +336,7 @@ const Header = () => {
                   open={profileOpen}
                   onClose={handleCloseProfile}
                 >
-                  <RouteLink to={`/user/${user.userId}`} onClick={handleCloseProfile}>
+                  <RouteLink to={`/user/${user.id}`} onClick={handleCloseProfile}>
                     <div style={{ textAlign: "center", fontSize: "1rem" }}>
                       <Avatar
                         alt={user.userName}
@@ -390,7 +391,7 @@ const Header = () => {
                           });
                         });
                       }
-                      if (localStorage.token) {
+                      if (getItem("user.accessToken")) {
                         logoutRequest(user.token).then(() => {
                           setUser(emptyUser);
                           logout();

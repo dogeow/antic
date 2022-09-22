@@ -108,7 +108,7 @@ export default () => {
       const data = await post.data;
       logged(data);
       const userData = {
-        token: "Bearer " + data.access_token,
+        token: "Bearer " + data.accessToken,
         userId: data.id,
         userName: data.name,
         userEmail: data.email,

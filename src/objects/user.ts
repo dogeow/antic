@@ -1,6 +1,6 @@
 export const emptyUser = {
-  userId: "",
-  userEmail: "",
-  userName: "",
-  token: "",
+  id: "",
+  email: "",
+  name: "",
+  accessToken: "",
 };

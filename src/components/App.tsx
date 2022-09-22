@@ -10,6 +10,7 @@ import { BrowserRouter } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import themeCustomization from "../config/theme";
+import { getItem } from "../helpers";
 import axios from "../instance/axios";
 import Routes from "../routes";
 import { paletteModeState, userState } from "../states";
@@ -50,24 +51,23 @@ export default () => {
       encrypted: true,
       disableStats: true,
       enabledTransports: ["ws", "wss"],
-      authorizer: (channel: { name: string }) =>
-        localStorage.getItem("token")
-          ? {
-              authorize: (socketId: string, callback: (arg0: boolean, arg1: any) => void) => {
-                axios
-                  .post("/broadcasting/auth", {
-                    socket_id: socketId,
-                    channel_name: channel.name,
-                  })
-                  .then((response) => {
-                    callback(false, response.data);
-                  })
-                  .catch((error) => {
-                    callback(true, error);
-                  });
-              },
+      authorizer: (channel: { name: string }) => ({
+        authorize: getItem("user.accessToken")
+          ? (socketId: string, callback: (arg0: boolean, arg1: any) => void) => {
+              axios
+                .post("/broadcasting/auth", {
+                  socket_id: socketId,
+                  channel_name: channel.name,
+                })
+                .then((response) => {
+                  callback(false, response.data);
+                })
+                .catch((error) => {
+                  callback(true, error);
+                });
             }
-          : {},
+          : () => {},
+      }),
     });
   }, [user.token]);
 

@@ -16,7 +16,7 @@ function SignInSimple() {
         password,
       })
       .then(({ data }) => {
-        const accessToken = data.access_token;
+        const accessToken = data.accessToken;
         if (accessToken) {
           swal.fire("提示️", "登录成功", "success");
           localStorage.token = `Bearer ${accessToken}`;

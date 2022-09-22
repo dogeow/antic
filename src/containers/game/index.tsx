@@ -2,6 +2,7 @@ import produce from "immer";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
+import { getItem } from "../../helpers";
 import { getPointOnCanvas, isCanvasSupported } from "../../helpers/canvas";
 import useCanvas from "../../hooks/useCanvas";
 import axios from "../../instance/axios";
@@ -45,7 +46,7 @@ export default () => {
 
     setUsers(
       produce((draft) => {
-        const userId = parseInt(localStorage.userId);
+        const userId = parseInt(getItem("user.id"));
         const user = draft.find((user) => user.id === userId);
         if (user) {
           user.x = x;

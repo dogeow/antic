@@ -8,24 +8,56 @@ import axios from "../instance/axios";
  *
  * @param {object} data
  */
-// eslint-disable-next-line camelcase
-export const logged = (data: { access_token: string; id: number; name: string; email: string }) => {
-  const token = `Bearer ${data.access_token}`;
-  localStorage.token = token;
-  localStorage.userId = data.id;
-  localStorage.userName = data.name;
-  localStorage.userEmail = data.email;
-  axios.defaults.headers.common.Authorization = token;
+export const logged = (data: { accessToken: string; id: number; name: string; email: string }) => {
+  const accessToken = `Bearer ${data.accessToken}`;
+  setItem("user", { ...data, accessToken });
+  axios.defaults.headers.common.Authorization = accessToken;
+};
+
+export const isJSON = (str: string) => {
+  try {
+    const obj = JSON.parse(str);
+    return !!(typeof obj == "object" && obj);
+  } catch (e) {
+    return false;
+  }
+};
+
+export const getItem = (key: string) => {
+  if (key.includes(".")) {
+    const keys = key.split(".");
+    if (keys.length < 2) {
+      return null;
+    }
+    let data = localStorage.getItem(keys[0]);
+    if (data === null) {
+      return null;
+    }
+
+    if (isJSON(data)) {
+      data = JSON.parse(data);
+      if (data === null) {
+        return null;
+      }
+      return data[keys[1]];
+    } else {
+      return null;
+    }
+  } else {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : data;
+  }
+};
+
+export const setItem = (key: string, data: any) => {
+  localStorage.setItem(key, JSON.stringify(data));
 };
 
 /**
  * 注销
  */
 export const logout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("userId");
-  localStorage.removeItem("userName");
-  localStorage.removeItem("userEmail");
+  localStorage.removeItem("user");
 };
 
 /**

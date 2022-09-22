@@ -1,6 +1,8 @@
 import { PaletteMode } from "@mui/material";
 import { atom } from "recoil";
 
+import { getItem } from "../helpers";
+
 // 夜晚模式
 let paletteMode;
 const hour = new Date().getHours();
@@ -18,16 +20,16 @@ export const paletteModeState = atom({
 // 当前登陆用户
 export const userState = atom({
   key: "user",
-  default: {
-    token: localStorage.token || "",
-    userId: localStorage.userId || "",
-    userEmail: localStorage.userEmail || "",
-    userName: localStorage.userName || "",
+  default: getItem("user") || {
+    id: "",
+    name: "",
+    email: "",
+    accessToken: "",
   },
 });
 export const isExpiredState = atom({
   key: "isExpired",
-  default: localStorage.token === undefined,
+  default: getItem("user.accessToken"),
 });
 
 // 所有登陆用户

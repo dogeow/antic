@@ -29,10 +29,10 @@ const Forget = () => {
       })
       .then(({ data }) => {
         setUser({
-          token: data.access_token,
-          userId: data.id,
-          userName: data.name,
-          userEmail: data.email,
+          accessToken: data.accessToken,
+          id: data.id,
+          name: data.name,
+          email: data.email,
         });
         navigate("/");
       });

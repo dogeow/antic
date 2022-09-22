@@ -14,23 +14,17 @@ Learn the React, Use:
 
 - ES6
 - React Hook
-- React Router
+- [React-Router](https://reacttraining.com/react-router/)
 - Recoil
 - React Redux
 - Apollo GraphQL
+- [Material-UI](https://material-ui.com/zh/)
 
 ## Backend
 
 Use [Laravel](https://learnku.com/laravel) - The PHP Framework For Web Artisans.
 
 GitHub Link: https://github.com/dogeow/antic-api
-
-## Power by
-- [Redux](https://cn.redux.js.org/)
-- [React-Redux](https://www.redux.org.cn/)
-- [React-Router](https://reacttraining.com/react-router/)
-- [React](https://zh-hans.reactjs.org/)
-- [Material-UI](https://material-ui.com/zh/)
 
 ## Acknowledgements
 

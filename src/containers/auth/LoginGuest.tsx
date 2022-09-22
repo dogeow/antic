@@ -22,10 +22,10 @@ export default () => {
         axios.post("user/guest").then(({ data }) => {
           logged(data);
           const userData = {
-            token: "Bearer " + data.access_token,
-            userId: data.id,
-            userName: data.name,
-            userEmail: data.email,
+            accessToken: "Bearer " + data.accessToken,
+            id: data.id,
+            name: data.name,
+            email: data.email,
           };
           setUser(userData);
           setUsers((oldUsers) => [...oldUsers, userData]);
