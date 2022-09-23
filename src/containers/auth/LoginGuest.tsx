@@ -19,6 +19,11 @@ export default () => {
       variant="body2"
       style={{ color: "#f50057" }}
       onClick={() => {
+        const csrf = await axios.get("sanctum/csrf-cookie");
+        if (csrf.status !== 204) {
+          return;
+        }
+
         axios.post("user/guest").then(({ data }) => {
           logged(data);
           const userData = {
