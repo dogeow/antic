@@ -89,20 +89,18 @@ const Music = () => {
       <Grid item xs={12}>
         <h2>播放列表</h2>
         <List component="nav" dense={true} aria-label="main mailbox folders">
-          {musics.map((music, index) => {
-            return (
-              <ListItemButton
-                key={index}
-                selected={no === index}
-                onClick={(event) => {
-                  handleListItemClick(event, index);
-                  playMusic(index);
-                }}
-              >
-                <ListItemText primary={`${index + 1} ${music}`} />
-              </ListItemButton>
-            );
-          })}
+          {musics.map((music, index) => (
+            <ListItemButton
+              key={index}
+              selected={no === index}
+              onClick={(event) => {
+                handleListItemClick(event, index);
+                playMusic(index);
+              }}
+            >
+              <ListItemText primary={`${index + 1} ${music}`} />
+            </ListItemButton>
+          ))}
         </List>
       </Grid>
     </Grid>
