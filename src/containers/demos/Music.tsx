@@ -1,12 +1,14 @@
-import Grid from "@mui/material/Grid";
-import List from "@mui/material/List";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
+import styled from "@emotion/styled";
+import { Button, Grid, GridProps, List, ListItemButton, ListItemText } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 
 import { CDN_URL } from "../../config/services";
 
 const musics = ["大声说爱我 - 刘依纯.mp3", "和楽器バンド - 東風破.mp3"];
+
+const GridCenter = styled(Grid)<GridProps>(() => ({
+  textAlign: "center",
+}));
 
 const Music = () => {
   const [no, setNo] = useState(0);
@@ -36,6 +38,52 @@ const Music = () => {
   return (
     <Grid container spacing={2}>
       <Grid item xs={12}>
+        <audio
+          id="music"
+          ref={audio}
+          src={`${CDN_URL}/music/${musics[no]}`}
+          controls={true}
+          preload="auto"
+          controlsList="nodownload"
+          style={{ width: "100%" }}
+        >
+          你的浏览器不支持audio标签
+        </audio>
+      </Grid>
+      <Grid item container spacing={1} justifyContent="space-around" justifyItems="center" alignItems="center">
+        <GridCenter item xs={6} md={3}>
+          <Button variant="outlined" onClick={() => audio.current.play()}>
+            播放声音
+          </Button>
+        </GridCenter>
+        <GridCenter item xs={6} md={3}>
+          <Button variant="outlined" onClick={() => audio.current.pause()}>
+            暂停声音
+          </Button>
+        </GridCenter>
+        <GridCenter item xs={6} md={3}>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              audio.current.volume += 0.1;
+            }}
+          >
+            提高音量
+          </Button>
+        </GridCenter>
+        <GridCenter item xs={6} md={3}>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              audio.current.volume -= 0.1;
+            }}
+          >
+            降低音量
+          </Button>
+        </GridCenter>
+      </Grid>
+      <Grid item xs={12}>
+        <h2>播放列表</h2>
         <List component="nav" dense={true} aria-label="main mailbox folders">
           {musics.map((music, index) => {
             return (
@@ -47,47 +95,11 @@ const Music = () => {
                   playMusic(index);
                 }}
               >
-                <ListItemText primary={music} />
+                <ListItemText primary={`${index + 1} ${music}`} />
               </ListItemButton>
             );
           })}
         </List>
-      </Grid>
-      <Grid item xs={12}>
-        <audio
-          id="music"
-          ref={audio}
-          src={`${CDN_URL}/music/${musics[no]}`}
-          controls={true}
-          preload="auto"
-          controlsList="nodownload"
-        >
-          你的浏览器不支持audio标签
-        </audio>
-      </Grid>
-      <Grid item xs={12} spacing={1}>
-        <button type="button" onClick={() => audio.current.play()}>
-          播放声音
-        </button>
-        <button type="button" onClick={() => audio.current.pause()}>
-          暂停声音
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            audio.current.volume += 0.1;
-          }}
-        >
-          提高音量
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            audio.current.volume -= 0.1;
-          }}
-        >
-          降低音量
-        </button>
       </Grid>
     </Grid>
   );
