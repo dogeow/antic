@@ -13,21 +13,26 @@ const GridCenter = styled(Grid)<GridProps>(() => ({
 const Music = () => {
   const [no, setNo] = useState(0);
 
-  const audio = useRef<HTMLAudioElement>(null);
+  const audio = useRef<HTMLAudioElement>(new Audio());
 
   const handleListItemClick = (event: React.MouseEvent<HTMLElement>, index: number) => {
     setNo(index);
   };
 
   useEffect(() => {
+    const { current } = audio;
+    if (current === null) {
+      return;
+    }
+
     const musicEnd = () => {
       setNo(no + 1 === musics.length ? 0 : no + 1);
-      audio.current.autoplay = true;
+      current.autoplay = true;
     };
 
-    audio.current.addEventListener("ended", () => musicEnd());
+    current.addEventListener("ended", () => musicEnd());
 
-    return audio.current.removeEventListener("ended", () => musicEnd());
+    return current.removeEventListener("ended", () => musicEnd());
   }, [audio, no]);
 
   const playMusic = (index: number) => {
