@@ -5,16 +5,21 @@ import { useState } from "react";
 import ChipFlow from "../../components/ChipFlow";
 
 const AllTags = (props) => {
-  const [tag, setTag] = useState(undefined);
+  const [currTag, setCurrTag] = useState(undefined);
 
   return props.tags.length ? (
     <ChipFlow
       items={props.tags}
       type="name"
-      currentSelect={tag}
+      currentSelect={currTag}
       onHandleClick={(tag) => {
-        setTag(tag);
-        props.changeTag(tag);
+        if (currTag === tag) {
+          setCurrTag(undefined);
+          props.changeTag(undefined);
+        } else {
+          setCurrTag(tag);
+          props.changeTag(tag);
+        }
       }}
     />
   ) : (

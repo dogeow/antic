@@ -78,7 +78,6 @@ const PostList = (props) => {
 
   useEffect(() => {
     if (postsByTag) {
-      console.log(postsByTag.tag.data.map((item) => item.posts[0]));
       setPost(postsByTag.tag.data.map((item) => item.posts[0]));
       setCurrPage(postsByTag.tag.paginatorInfo.currentPage);
       setPageCount(postsByTag.tag.paginatorInfo.lastPage);
@@ -102,7 +101,11 @@ const PostList = (props) => {
   const changeTag = (name: string) => {
     setCurrCategory(undefined);
     setCurrTag(name);
-    getPostsByTag({ variables: { name } });
+    if (name) {
+      getPostsByTag({ variables: { name } });
+    } else {
+      getPosts();
+    }
   };
 
   const handleEnterPost = (item) => {
