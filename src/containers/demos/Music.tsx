@@ -2,9 +2,8 @@ import styled from "@emotion/styled";
 import { Button, Grid, GridProps, List, ListItemButton, ListItemText } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 
+import { musics } from "../../config/index.json";
 import { CDN_URL } from "../../config/services";
-
-const musics = ["大声说爱我 - 刘依纯.mp3", "和楽器バンド - 東風破.mp3"];
 
 const GridCenter = styled(Grid)<GridProps>(() => ({
   textAlign: "center",
