@@ -18,7 +18,7 @@ export default () => {
     <Typography
       variant="body2"
       style={{ color: "#f50057" }}
-      onClick={() => {
+      onClick={async () => {
         const csrf = await axios.get("sanctum/csrf-cookie");
         if (csrf.status !== 204) {
           return;
