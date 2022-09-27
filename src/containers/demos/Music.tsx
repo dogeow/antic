@@ -5,31 +5,27 @@ import ListItemText from "@mui/material/ListItemText";
 import React, { useEffect, useRef, useState } from "react";
 
 import { CDN_URL } from "../../config/services";
+
 const musics = ["大声说爱我 - 刘依纯.mp3", "和楽器バンド - 東風破.mp3"];
 
 const Music = () => {
   const [no, setNo] = useState(0);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const audio = useRef<HTMLAudioElement>(null);
 
   const handleListItemClick = (event: React.MouseEvent<HTMLElement>, index: number) => {
-    setSelectedIndex(index);
+    setNo(index);
   };
 
   useEffect(() => {
     const musicEnd = () => {
-      if (no === musics.length) {
-        setNo(0);
-      } else {
-        setNo(no + 1);
-        audio.current.autoplay = true;
-      }
+      setNo(no + 1 === musics.length ? 0 : no + 1);
+      audio.current.autoplay = true;
     };
 
-    audio.current.addEventListener("ended", () => musicEnd(), false);
+    audio.current.addEventListener("ended", () => musicEnd());
 
-    return audio.current.removeEventListener("ended", () => musicEnd(), false);
+    return audio.current.removeEventListener("ended", () => musicEnd());
   }, [audio, no]);
 
   const playMusic = (index: number) => {
@@ -45,7 +41,7 @@ const Music = () => {
             return (
               <ListItemButton
                 key={index}
-                selected={selectedIndex === index}
+                selected={no === index}
                 onClick={(event) => {
                   handleListItemClick(event, index);
                   playMusic(index);
