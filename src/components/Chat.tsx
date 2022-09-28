@@ -36,7 +36,7 @@ export default function Chat() {
   const messagesEndRef = useRef(null);
   const peopleRef = useRef(null);
 
-  const [open, setOpen] = useState(!!user.token);
+  const [open, setOpen] = useState(!!user.accessToken);
 
   const toggleError = () => {
     setError(!error);
@@ -61,7 +61,7 @@ export default function Chat() {
   };
 
   useEffect(() => {
-    if (user.token === null) {
+    if (user.accessToken === null) {
       setOpen(true);
       return;
     }
@@ -103,7 +103,7 @@ export default function Chat() {
         setAlertMessage(`${user.name} 退出了房间`);
         setAlertOpen(true);
       });
-  }, [user.token, people]);
+  }, [user.accessToken, people]);
 
   useEffect(() => {
     window.Echo.private("chat").listenForWhisper("typing", (e) => {
@@ -120,7 +120,7 @@ export default function Chat() {
       window.Echo.private("chat").stopListening(".chat");
       window.Echo.leave("chat");
     };
-  }, [user.token]);
+  }, [user.accessToken]);
 
   useEffect(() => {
     scrollToBottom();

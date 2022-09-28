@@ -386,7 +386,7 @@ const Header = () => {
                       const requests = [];
                       if (localStorage.users) {
                         JSON.parse(localStorage.users).map((user) => {
-                          requests.push(logoutRequest(user.token));
+                          requests.push(logoutRequest(user.accessToken));
                           Promise.all(requests).then(function ([acct, perms]) {
                             localStorage.removeItem("users");
                             setUsers([]);
@@ -394,7 +394,7 @@ const Header = () => {
                         });
                       }
                       if (getItem("user.accessToken")) {
-                        logoutRequest(user.token).then(() => {
+                        logoutRequest(user.accessToken).then(() => {
                           setUser(emptyUser);
                           logout();
                         });

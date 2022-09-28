@@ -69,7 +69,7 @@ export default () => {
           : () => {},
       }),
     });
-  }, [user.token]);
+  }, [user.accessToken]);
 
   // 网站主题跟随电脑系统主题
   useEffect(() => {

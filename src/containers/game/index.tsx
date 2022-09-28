@@ -120,7 +120,7 @@ export default () => {
       window.Echo.private("game").stopListening(".game");
       window.Echo.leave("game");
     };
-  }, [user.token]);
+  }, [user.accessToken]);
 
   // 点击事件
   useEffect(() => {
