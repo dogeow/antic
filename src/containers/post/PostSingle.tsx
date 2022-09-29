@@ -80,20 +80,22 @@ const PostSingle = () => {
     }
   }, [data, post.content]);
 
-  const handleScroll = (event) => {
-    // 滚动条高度
-    const clientHeight = document.documentElement.clientHeight; // 可视区域高度
-    const scrollTop = document.documentElement.scrollTop; // 滚动条滚动高度
-    const scrollHeight = document.documentElement.scrollHeight; // 滚动内容高度
-    const res = scrollHeight - scrollTop - clientHeight;
-    const percentage = (scrollHeight - res) / scrollHeight;
-    setPercentage(percentage);
-  };
-
   useEffect(() => {
+    const handleScroll = (event) => {
+      const scrollTop = document.documentElement.scrollTop; // 滚动条滚动高度
+      if (scrollTop === 0) {
+        setPercentage(0);
+      } else {
+        const clientHeight = document.documentElement.clientHeight; // 可视区域高度
+        const scrollHeight = document.documentElement.scrollHeight; // 滚动内容高度
+        const remaining = scrollHeight - scrollTop - clientHeight; // 剩余可滚动高度
+        setPercentage((scrollHeight - remaining) / scrollHeight);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+  }, []);
 
   const handleEdit = () => {
     navigate(`/posts/${id}/edit`);
