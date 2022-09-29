@@ -8,29 +8,17 @@ export default function PowerBy() {
         <ul>
           <li>前后端分离，使用 JWT</li>
           <li>
-            <a
-              href="https://zh-hans.reactjs.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://zh-hans.reactjs.org/" target="_blank" rel="noopener noreferrer">
               React
             </a>
           </li>
           <li>
-            <a
-              href="https://material-ui.com/zh/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://material-ui.com/zh/" target="_blank" rel="noopener noreferrer">
               Material UI 风格
             </a>
           </li>
           <li>
-            <a
-              href=" https://laravel.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href=" https://laravel.com" target="_blank" rel="noopener noreferrer">
               Laravel
             </a>
           </li>

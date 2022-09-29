@@ -33,11 +33,7 @@ export default function Copywriting() {
       <Grid item xs={12} style={{ fontSize: "2em", textAlign: "center" }}>
         <ButtonGroup aria-label="outlined button group">
           {emojis.map((emoji) => (
-            <Button
-              onClick={() => handleClick(emoji)}
-              style={{ fontFamily: "auto" }}
-              key={emoji}
-            >
+            <Button onClick={() => handleClick(emoji)} style={{ fontFamily: "auto" }} key={emoji}>
               {emoji}
             </Button>
           ))}

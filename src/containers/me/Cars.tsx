@@ -2,6 +2,8 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 
+import { CDN_URL } from "../../config/services";
+
 const cars = [
   {
     name: "Supra",
@@ -41,9 +43,7 @@ export default function Cars() {
             {Array.from(new Array(car.imagesCount).keys()).map((value) => (
               <Grid item key={value} xs={12} md={4}>
                 <img
-                  src={`https://upyun.dogeow.com/cars/${car.name}/${
-                    value + 1
-                  }.${car.extension}!/compress/true/fw/800`}
+                  src={`${CDN_URL}/cars/${car.name}/${value + 1}.${car.extension}!/compress/true/fw/800`}
                   width="100%"
                   alt={`${car.name}_${value + 1}`}
                   style={{ paddingBottom: 16 }}

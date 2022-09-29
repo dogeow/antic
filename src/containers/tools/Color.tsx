@@ -13,11 +13,7 @@ const Color = () => {
   return (
     <Grid container component={Container} maxWidth="xs" spacing={2}>
       <Grid item xs={12}>
-        <TextField
-          label="Hex RGB"
-          value={color.colorHex()}
-          onChange={handleChange}
-        />
+        <TextField label="Hex RGB" value={color.colorHex()} onChange={handleChange} />
       </Grid>
       <Grid item xs={12}>
         <TextField label="RGB" value={color} onChange={handleChange} />
@@ -43,9 +39,7 @@ const Color = () => {
         />
       </Grid>
       <Grid item xs={12}>
-        <div
-          style={{ background: color, width: 1, height: 100, margin: "0 auto" }}
-        />
+        <div style={{ background: color, width: 1, height: 100, margin: "0 auto" }} />
       </Grid>
     </Grid>
   );

@@ -17,7 +17,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import React, { ChangeEventHandler, useState } from "react";
+import React, { useState } from "react";
 import swal from "sweetalert2";
 
 import axios from "../../instance/axios";

@@ -1,17 +1,9 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const ABOUT_ME = gql`
-  query {
-    aboutMe {
-      id
-      content
-      category
-    }
-  }
-`;
+import { ABOUT_ME } from "../../graphql/lab";
 
 const About = () => {
   const [aboutMe, setAboutMe] = useState([]);

@@ -15,7 +15,7 @@ const Money = () => {
   const [billText, setBillText] = useState("");
   const [remaining, setRemaining] = useState("");
   const [newRemaining, setNewRemaining] = useState("");
-  const [snackMessage, setSnackMessage] = useRecoilState(snackMessageState);
+  const [setSnackMessage] = useRecoilState(snackMessageState);
 
   const toggleIsCostState = (billIndex) => {
     setBills(

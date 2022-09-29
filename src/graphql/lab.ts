@@ -8,4 +8,14 @@ const QUOTES = gql`
   }
 `;
 
+const ABOUT_ME = gql`
+  query {
+    aboutMe {
+      id
+      content
+      category
+    }
+  }
+`;
+
 export { QUOTES };

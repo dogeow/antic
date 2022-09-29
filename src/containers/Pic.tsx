@@ -4,12 +4,6 @@ import useSWR from "swr";
 
 import { OSS_URL } from "../config/services";
 
-type Pic = {
-  id: number;
-  name: string;
-  folder: string;
-};
-
 export default () => {
   const { data, error } = useSWR("/pics");
   if (error) return <div>failed to load</div>;
