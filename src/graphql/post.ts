@@ -126,7 +126,7 @@ const CATEGORIES = gql`
   }
 `;
 
-const TAGS = gql`
+const TAGS_WITH_COUNT = gql`
   query {
     tagsCount {
       id
@@ -173,4 +173,4 @@ const TAGS = gql`
   }
 `;
 
-export { POST, POST_LIST, CATEGORY, TAG, TAGS, CATEGORIES, POST_BY_ID, DELETE_POST_BY_ID };
+export { POST, POST_LIST, CATEGORY, TAG, TAGS, TAGS_WITH_COUNT, CATEGORIES, POST_BY_ID, DELETE_POST_BY_ID };

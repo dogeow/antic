@@ -6,7 +6,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
-import { TAGS } from "../../graphql/post";
+import { TAGS_WITH_COUNT } from "../../graphql/post";
 
 const useStyles = makeStyles((theme: Theme) => ({
   tags: {
@@ -27,7 +27,7 @@ const Tags = ({ edit }) => {
   const [post] = useRecoilState<Post>(postState);
   const [user] = useRecoilState(userState);
 
-  const { data } = useQuery(TAGS);
+  const { data } = useQuery(TAGS_WITH_COUNT);
 
   useEffect(() => {
     if (data) {
