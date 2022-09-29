@@ -70,14 +70,14 @@ export default () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const classes = useStyles();
-  const [, setUser] = useRecoilState(userState);
-  const [, setUsers] = useRecoilState(usersState);
+  const [, setUser] = useRecoilState<User>(userState);
+  const [, setUsers] = useRecoilState<User[]>(usersState);
   const [, setIsExpired] = useRecoilState(isExpiredState);
   const [account, setAccount] = useState("");
   const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [inputErrors, setInputErrors] = useState(false);
+  const [inputErrors, setInputErrors] = useState<InputErrors>();
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -106,13 +106,18 @@ export default () => {
           setInputErrors(error?.data?.errors);
         });
 
-      const data = await post.data;
+      if (post === undefined) {
+        return;
+      }
+
+      const data = post.data;
+
       logged(data);
       const userData = {
-        accessToken: "Bearer " + data.accessToken,
         id: data.id,
         name: data.name,
         email: data.email,
+        accessToken: "Bearer " + data.accessToken,
       };
       setUser(userData);
       setUsers((oldUsers) => [...oldUsers, userData]);
@@ -167,10 +172,10 @@ export default () => {
               autoComplete="account"
               autoFocus
               onChange={(e) => setAccount(e.target.value)}
-              error={inputErrors && inputErrors.account}
-              placeholder={inputErrors && inputErrors.account ? inputErrors.account : "手机号码或 Email 地址"}
-              InputLabelProps={inputErrors && inputErrors.account ? { shrink: true } : {}}
-              helperText={inputErrors && inputErrors.account ? inputErrors.account[0] : ""}
+              error={!!inputErrors?.account}
+              placeholder={inputErrors?.account ? inputErrors.account[0] : "手机号码或 Email 地址"}
+              InputLabelProps={inputErrors?.account ? { shrink: true } : {}}
+              helperText={inputErrors?.account ? inputErrors.account[0] : ""}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -198,10 +203,10 @@ export default () => {
               id="password"
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
-              error={inputErrors && inputErrors.password}
-              placeholder={inputErrors && inputErrors.password ? inputErrors.password : null}
-              InputLabelProps={inputErrors && inputErrors.password ? { shrink: true } : {}}
-              helperText={inputErrors && inputErrors.password ? inputErrors.password[0] : ""}
+              error={!!inputErrors?.password}
+              placeholder={inputErrors?.password ? inputErrors.password[0] : undefined}
+              InputLabelProps={inputErrors?.password ? { shrink: true } : {}}
+              helperText={inputErrors?.password ? inputErrors.password[0] : ""}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -214,13 +219,7 @@ export default () => {
                 ),
                 endAdornment: password !== "" && (
                   <InputAdornment position="end">
-                    <IconButton
-                      aria-label="Clear"
-                      onClick={() => setPassword("")}
-                      edge="end"
-                      tabIndex="-1"
-                      size="large"
-                    >
+                    <IconButton aria-label="Clear" onClick={() => setPassword("")} edge="end" size="large">
                       <ClearIcon />
                     </IconButton>
                   </InputAdornment>

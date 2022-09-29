@@ -35,7 +35,7 @@ export const isExpiredState = atom({
 // 所有登陆用户
 export const usersState = atom({
   key: "users",
-  default: [],
+  default: <User[]>[],
 });
 
 export const isSnackOpenState = atom({
