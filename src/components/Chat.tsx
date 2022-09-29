@@ -196,10 +196,10 @@ export default function Chat() {
             type="text"
             fullWidth
             required
-            error={Object.keys(error).length !== 0}
-            placeholder={Object.keys(error).length !== 0 ? "请输入昵称" : ""}
-            InputLabelProps={Object.keys(error).length !== 0 ? { shrink: true } : {}}
-            helperText={Object.keys(error).length !== 0 && "请输入昵称"}
+            error={!!Object.keys(error).length}
+            placeholder={Object.keys(error).length ? "请输入昵称" : ""}
+            InputLabelProps={Object.keys(error).length ? { shrink: true } : {}}
+            helperText={Object.keys(error).length && "请输入昵称"}
             onChange={handleNameChange}
           />
         </DialogContent>
