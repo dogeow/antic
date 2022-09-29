@@ -188,14 +188,14 @@ export default function Chat() {
       >
         <DialogContent>
           <TextField
-            autoFocus
-            value={name}
-            margin="dense"
             id="name"
-            label="昵称"
             type="text"
-            fullWidth
+            label="昵称"
+            value={name}
             required
+            margin="dense"
+            fullWidth
+            autoFocus
             error={!!Object.keys(error).length}
             placeholder={Object.keys(error).length ? "请输入昵称" : ""}
             InputLabelProps={Object.keys(error).length ? { shrink: true } : {}}
