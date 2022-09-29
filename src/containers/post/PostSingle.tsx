@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useEffect, useState } from "react";
 import ReactMarkdownHeading from "react-markdown-heading";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Params, useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import AlertDialog from "../../components/AlertDialog";
@@ -48,11 +48,12 @@ const useStyles = makeStyles((theme: Theme) => {
 
 const PostSingle = () => {
   const classes = useStyles();
-  const { id } = useParams();
+  const { id }: Readonly<Params> = useParams();
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
   const [tocButtonDisplay, setTocButtonDisplay] = useState(false);
   const [post, setPost] = useRecoilState<Post>(postState);
   const [menu, setMenu] = useState(false);
+  const [percentage, setPercentage] = useState(0);
 
   const navigate = useNavigate();
 
@@ -63,7 +64,7 @@ const PostSingle = () => {
   };
 
   const { data } = useQuery(POST_BY_ID, {
-    variables: { id: parseInt(id, 10) },
+    variables: { id: parseInt(id as string, 10) },
   });
 
   useEffect(() => {
@@ -78,6 +79,21 @@ const PostSingle = () => {
       }
     }
   }, [data, post.content]);
+
+  const handleScroll = (event) => {
+    // 滚动条高度
+    const clientHeight = document.documentElement.clientHeight; // 可视区域高度
+    const scrollTop = document.documentElement.scrollTop; // 滚动条滚动高度
+    const scrollHeight = document.documentElement.scrollHeight; // 滚动内容高度
+    const res = scrollHeight - scrollTop - clientHeight;
+    const percentage = (scrollHeight - res) / scrollHeight;
+    setPercentage(percentage);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
   const handleEdit = () => {
     navigate(`/posts/${id}/edit`);
@@ -98,10 +114,7 @@ const PostSingle = () => {
 
   return (
     <>
-      <div
-        className="BlogPostTemplateStyles__StyledBlogPostProgressBar-sc-1eyll4b-3 dCoYYQ"
-        style={{ "--progress-width": 0.354716 }}
-      ></div>
+      <div className="dCoYYQ" style={{ "--progress-width": percentage }}></div>
       {tocButtonDisplay && (
         <div>
           <div className={classes.displayToc} onClick={handleToggleMenu}>

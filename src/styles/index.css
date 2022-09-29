@@ -281,9 +281,9 @@ kbd {
 
 .dCoYYQ {
   height: 8px;
-  left: 0px;
+  left: 0;
   position: fixed;
-  top: 112px;
+  top: 0;
   width: 100%;
   z-index: 1;
 }
@@ -292,11 +292,11 @@ kbd {
    background: linear-gradient(90deg, rgb(255, 192, 1) 0%, rgb(215, 226, 0) 16.15%, rgb(128, 211, 74) 33.85%, rgb(0, 214, 136) 50.52%, rgb(1, 208, 192) 66.15%, rgb(0, 198, 255) 81.25%, rgb(42, 130, 255) 100%);
    content: "";
    height: 100%;
-   left: 0px;
+   left: 0;
    position: absolute;
-   top: 0px;
+   top: 0;
    transform: scaleX(var(--progress-width,0));
-   transform-origin: 0px 0px;
+   transform-origin: 0 0;
    width: 100%;
    will-change: transform;
  }
