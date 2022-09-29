@@ -36,7 +36,7 @@ export default function Chat() {
   const messagesEndRef = useRef(null);
   const peopleRef = useRef(null);
 
-  const [open, setOpen] = useState(!!user.accessToken);
+  const [open, setOpen] = useState(user.accessToken === "");
 
   const toggleError = () => {
     setError(!error);
