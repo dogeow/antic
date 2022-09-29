@@ -18,4 +18,4 @@ const ABOUT_ME = gql`
   }
 `;
 
-export { QUOTES };
+export { QUOTES, ABOUT_ME };
