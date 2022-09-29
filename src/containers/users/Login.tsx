@@ -96,15 +96,15 @@ export default () => {
         return;
       }
 
-      const post = await axios.post("user/login", {
-        account,
-        password,
-        remember_me: rememberMe,
-      });
-      if (post.status !== 201) {
-        setInputErrors(post?.data?.errors);
-        return;
-      }
+      const post = await axios
+        .post("user/login", {
+          account,
+          password,
+          remember_me: rememberMe,
+        })
+        .catch((error) => {
+          setInputErrors(error?.data?.errors);
+        });
 
       const data = await post.data;
       logged(data);

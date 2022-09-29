@@ -38,8 +38,8 @@ export default function Chat() {
 
   const [open, setOpen] = useState(user.accessToken === "");
 
-  const toggleError = () => {
-    setError(!error);
+  const toggleError = (error) => {
+    setError(error);
   };
 
   const handleToggleInputFocus = (value) => {
@@ -188,27 +188,27 @@ export default function Chat() {
       >
         <DialogContent>
           <TextField
-            id="name"
-            type="text"
-            label="昵称"
-            value={name}
-            required
-            margin="dense"
-            fullWidth
             autoFocus
+            value={name}
+            margin="dense"
+            id="name"
+            label="昵称"
+            type="text"
+            fullWidth
+            required
             error={!!Object.keys(error).length}
             placeholder={Object.keys(error).length ? "请输入昵称" : ""}
             InputLabelProps={Object.keys(error).length ? { shrink: true } : {}}
-            helperText={Object.keys(error).length && "请输入昵称"}
+            helperText={Object.keys(error).length !== 0 && "请输入昵称"}
             onChange={handleNameChange}
           />
         </DialogContent>
         <DialogActions>
           <Button
             onClick={() => {
+              setName("");
               if (name.trim() === "") {
-                setName("");
-                toggleError();
+                toggleError({ error: "请输入昵称" });
                 return;
               }
               axios.get("sanctum/csrf-cookie").then(() => {
