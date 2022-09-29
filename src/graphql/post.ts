@@ -164,4 +164,13 @@ const DELETE_POST_BY_ID = gql`
   }
 `;
 
+const TAGS = gql`
+  query {
+    tags {
+      id
+      name
+    }
+  }
+`;
+
 export { POST, POST_LIST, CATEGORY, TAG, TAGS, CATEGORIES, POST_BY_ID, DELETE_POST_BY_ID };

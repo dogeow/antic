@@ -6,6 +6,8 @@ import makeStyles from "@mui/styles/makeStyles";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
+import { TAGS } from "../../graphql/post";
+
 const useStyles = makeStyles((theme: Theme) => ({
   tags: {
     "& > *": {
@@ -13,15 +15,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
 }));
-
-const TAGS = gql`
-  query {
-    tags {
-      id
-      name
-    }
-  }
-`;
 
 import axios from "../../instance/axios";
 import { allTagsState, postState, tagsState, userState } from "../../states";
@@ -31,8 +24,8 @@ const Tags = ({ edit }) => {
 
   const [allTags, setAllTags] = useRecoilState(allTagsState);
   const [tags, setTags] = useRecoilState(tagsState);
-  const [post, setPost] = useRecoilState(postState);
-  const [user, setUser] = useRecoilState(userState);
+  const [post] = useRecoilState<Post>(postState);
+  const [user] = useRecoilState(userState);
 
   const { data } = useQuery(TAGS);
 

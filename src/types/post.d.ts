@@ -1,6 +1,7 @@
 interface Post {
   id: number;
   title: string;
+  content: string;
   category: {
     id: number;
     name: string;

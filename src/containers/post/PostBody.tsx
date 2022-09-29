@@ -1,13 +1,14 @@
-import Skeleton from "@mui/material/Skeleton";
+import { Skeleton, Theme } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
+import { Children, createElement } from "react";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import remarkToc from "remark-toc";
 
 import CodeBlock from "../../components/CodeBlock";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   "@global": {
     "#post a": {
       background:
@@ -25,17 +26,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function flatten(text, child) {
+function flatten(text: string, child: string | React.ReactNode) {
   return typeof child === "string" ? text + child : React.Children.toArray(child.props.children).reduce(flatten, text);
 }
 
 function HeadingRenderer(props) {
-  const children = React.Children.toArray(props.children);
+  const children = Children.toArray(props.children);
   const text = children.reduce(flatten, "");
-  return React.createElement("h" + props.level, { id: text }, props.children);
+  return createElement("h" + props.level, { id: text }, props.children);
 }
 
-const PostBody = ({ post }) => {
+const PostBody = ({ post }: { post: Post }) => {
   useStyles();
 
   return post?.content ? (

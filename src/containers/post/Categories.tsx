@@ -4,18 +4,18 @@ import { useState } from "react";
 
 import ChipFlow from "../../components/ChipFlow";
 
-export default (props) => {
-  const [currCategory, setCurrCategory] = useState(undefined);
+export default (props: { categories: Category[]; changeCategory: { (arg: number | null): void } }) => {
+  const [currCategory, setCurrCategory] = useState<string>("");
 
   return props.categories.length ? (
     <ChipFlow
       items={props.categories}
       type="id"
       currentSelect={currCategory}
-      onHandleClick={(category) => {
+      onHandleClick={(category: string) => {
         if (currCategory === category) {
-          setCurrCategory(undefined);
-          props.changeCategory(undefined);
+          setCurrCategory("");
+          props.changeCategory(null);
         } else {
           setCurrCategory(category);
           props.changeCategory(parseInt(category));

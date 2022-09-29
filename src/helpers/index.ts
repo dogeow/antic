@@ -1,6 +1,6 @@
 import { Md5 } from "ts-md5";
 
-import { gravatarCdn } from "../config/services";
+import { GRAVATAR_CDN } from "../config/services";
 
 export const isJson = (str: string) => {
   try {
@@ -60,10 +60,10 @@ export const getHost = (url: string) => {
 
 export const getGravatarAddress = (email: string, width: number, type = "monsterid") => {
   if (email) {
-    return `${gravatarCdn}/${Md5.hashStr(email)}.jpg?d=${type}&s=${width}`;
+    return `${GRAVATAR_CDN}/${Md5.hashStr(email)}.jpg?d=${type}&s=${width}`;
   }
 
-  return gravatarCdn;
+  return GRAVATAR_CDN;
 };
 
 /**

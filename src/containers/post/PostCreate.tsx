@@ -101,14 +101,17 @@ export default () => {
   const theId = params.id;
   const { state } = useLocation();
 
-  const [post, setPost] = useRecoilState(postState);
+  const [post, setPost] = useRecoilState<Post>(postState);
   const [id, setId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState(false);
   const [edit, setEdit] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState<Category>({
+    id: 0,
+    name: "",
+  });
   const [inputValue, setInputValue] = useState("");
 
   const [getPost, { data }] = useLazyQuery(POST_BY_ID);
@@ -316,7 +319,7 @@ export default () => {
       <Grid container alignItems="center" justifyContent="center">
         <Grid item>
           <FormControlLabel
-            control={<Switch checked={!!post.public} onChange={handlePublicChange} name="public" color="primary" />}
+            control={<Switch checked={post.public} onChange={handlePublicChange} name="public" color="primary" />}
             label="公开"
           />
         </Grid>

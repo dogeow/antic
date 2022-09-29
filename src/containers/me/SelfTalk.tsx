@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import AddIcon from "@mui/icons-material/Add";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -6,6 +6,8 @@ import makeStyles from "@mui/styles/makeStyles";
 import React, { useEffect, useState } from "react";
 
 import SpeedDial from "../../components/SpeedDial";
+import { QUOTE_FONT } from "../../config/services";
+import { QUOTES } from "../../graphql/lab";
 
 const useStyles = makeStyles(() => ({
   quote: {
@@ -26,13 +28,7 @@ const SelfTalk = () => {
   const classes = useStyles({ fontSize: `${fontSize}rem` });
   const [quotes, setQuotes] = useState([]);
 
-  const { data } = useQuery(gql`
-    query {
-      quotes {
-        content
-      }
-    }
-  `);
+  const { data } = useQuery(QUOTES);
 
   useEffect(() => {
     data && setQuotes(data.quotes);
@@ -61,7 +57,7 @@ const SelfTalk = () => {
 
   return (
     <div>
-      <link href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap" rel="stylesheet" />
+      <link href={QUOTE_FONT} rel="stylesheet" />
       <div className={classes.quote}>
         {quotes.map((quote: Quote) => (
           <p key={quote.id}>{quote.content}</p>

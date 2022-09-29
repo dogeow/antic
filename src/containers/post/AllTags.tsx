@@ -4,18 +4,18 @@ import { useState } from "react";
 
 import ChipFlow from "../../components/ChipFlow";
 
-const AllTags = (props) => {
-  const [currTag, setCurrTag] = useState(undefined);
+const AllTags = (props: { tags: Tag[]; changeTag: { (arg: string): void } }) => {
+  const [currTag, setCurrTag] = useState<string>("");
 
   return props.tags.length ? (
     <ChipFlow
       items={props.tags}
       type="name"
       currentSelect={currTag}
-      onHandleClick={(tag) => {
+      onHandleClick={(tag: string) => {
         if (currTag === tag) {
-          setCurrTag(undefined);
-          props.changeTag(undefined);
+          setCurrTag("");
+          props.changeTag("");
         } else {
           setCurrTag(tag);
           props.changeTag(tag);
