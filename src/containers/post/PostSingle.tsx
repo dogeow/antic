@@ -4,7 +4,6 @@ import { Skeleton, Theme, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useEffect, useState } from "react";
-import ReactMarkdownHeading from "react-markdown-heading";
 import { Link, Params, useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
@@ -19,12 +18,7 @@ import PostHeader from "./PostHeader";
 const useStyles = makeStyles((theme: Theme) => {
   return {
     toc: {
-      [theme.breakpoints.up("md")]: {
-        display: "block",
-      },
-      [theme.breakpoints.down("xl")]: {
-        display: "none",
-      },
+      display: "block",
       position: "fixed",
       top: 145,
       right: 10,
@@ -122,11 +116,7 @@ const PostSingle = () => {
           <div className={classes.displayToc} onClick={handleToggleMenu}>
             <FormatListNumberedIcon />
           </div>
-          {menu && (
-            <div className={classes.toc}>
-              <ReactMarkdownHeading markdown={post?.content ? post.content : ""} hyperlink={true} />
-            </div>
-          )}
+          {menu && <div className={classes.toc}>此功能正在修复中</div>}
         </div>
       )}
       <Grid item xs={12}>
