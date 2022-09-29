@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+figure {
+  margin: 0;
+}
+
 /* 手机浏览器的高度问题（搜索可以找到相配合的地方） */
 .app {
   height: 100vh;
