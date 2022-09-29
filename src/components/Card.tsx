@@ -1,7 +1,15 @@
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ShareIcon from "@mui/icons-material/Share";
-import { Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Theme, Typography } from "@mui/material";
-import Collapse from "@mui/material/Collapse";
+import { ExpandMore as ExpandMoreIcon, Share as ShareIcon } from "@mui/icons-material";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Collapse,
+  IconButton,
+  Theme,
+  Typography,
+} from "@mui/material";
 import { red } from "@mui/material/colors";
 import makeStyles from "@mui/styles/makeStyles";
 import clsx from "clsx";
@@ -30,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function RecipeReviewCard({ title, subHeader, img, link, intro, feeling }) {
+export default function RecipeReviewCard({ title, subHeader, img, link, intro, feeling }: TextObject) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 

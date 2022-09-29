@@ -14,7 +14,7 @@ import drawUsers from "./drawUsers";
 import { checkMapCollision } from "./utils";
 
 export default () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<GameUser[]>([]);
   const [monsters, setMonsters] = useState([]);
   const [user] = useRecoilState(userState);
 
@@ -22,7 +22,7 @@ export default () => {
     return <div>不支持 Canvas</div>;
   }
 
-  const draw = (ctx, frameCount) => {
+  const draw = (ctx: CanvasRenderingContext2D, frameCount: number) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
     drawLayer(ctx, LAYERS[0]);
@@ -47,7 +47,7 @@ export default () => {
     setUsers(
       produce((draft) => {
         const userId = parseInt(getItem("user.id"));
-        const user = draft.find((user) => user.id === userId);
+        const user = draft.find((user: GameUser) => user.id === userId);
         if (user) {
           user.x = x;
           user.y = y;
@@ -82,11 +82,11 @@ export default () => {
   // WebSocket
   useEffect(() => {
     window.Echo.join("game")
-      .here((users) => {
+      .here((users: GameUser[]) => {
         setUsers(users);
       })
-      .joining((user) => {})
-      .leaving((user) => {});
+      .joining((user: GameUser) => {})
+      .leaving((user: GameUser) => {});
 
     window.Echo.private("game").listen(".game", (e) => {
       if (e.data.x && e.data.y) {
@@ -142,8 +142,8 @@ export default () => {
             alt={`map-tile-${key}`}
           />
         ))}
-        <img id="character" alt="character" className="images-buffer" src="assets/heroes/heroes.png" />
-        <img id="monster" alt="monster" className="images-buffer" src="assets/monsters/monster.png" />
+        <img id="character" alt="character" className="images-buffer" src="/assets/heroes/heroes.png" />
+        <img id="monster" alt="monster" className="images-buffer" src="/assets/monsters/monster.png" />
       </div>
       <canvas id="canvas" ref={canvasRef} width="800px" height="800px" />
     </>

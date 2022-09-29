@@ -28,6 +28,7 @@ import {
 } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
 import makeStyles from "@mui/styles/makeStyles";
+import { AxiosResponse } from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { Link as RouteLink, useLocation } from "react-router-dom";
 import { useEvent } from "react-use";
@@ -384,9 +385,9 @@ const Header = () => {
                   <MenuItem
                     onClick={() => {
                       setMobileMoreAnchorEl(null);
-                      const requests = [];
-                      if (localStorage.users) {
-                        JSON.parse(localStorage.users).map((user) => {
+                      const requests: Promise<AxiosResponse>[] = [];
+                      if (getItem("users")) {
+                        (JSON.parse(localStorage.users) as User[]).map((user) => {
                           axios.defaults.headers.common.Authorization = user.accessToken;
                           requests.push(logoutRequest(user.accessToken));
                           Promise.all(requests).then(function ([acct, perms]) {

@@ -1,11 +1,4 @@
-export function getPointOnCanvas(
-  canvas: HTMLCanvasElement,
-  x: number,
-  y: number
-): {
-  x: number;
-  y: number;
-} {
+export function getPointOnCanvas(canvas: HTMLCanvasElement, x: number, y: number): Point {
   const bbox = canvas.getBoundingClientRect();
 
   return {
