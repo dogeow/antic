@@ -2,7 +2,7 @@ import { atom } from "recoil";
 
 export const postState = atom({
   key: "post",
-  default: {},
+  default: <Post[]>{},
 });
 
 export const tagsState = atom({

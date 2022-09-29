@@ -251,30 +251,28 @@ export default () => {
     <Grid container spacing={2} justifyContent="center" alignItems="center">
       {/* 头部 */}
       <Grid item xs={12} md={2}>
-        {categories.length !== 0 && (
-          <Autocomplete
-            id="combo-box-demo"
-            autoHighlight
-            size="small"
-            value={category}
-            onChange={(event, newValue) => {
-              setCategory(newValue);
-              if (newValue) {
-                setInputValue(newValue.name);
-              } else {
-                setInputValue("");
-              }
-            }}
-            inputValue={inputValue || ""}
-            onInputChange={(event, newInputValue) => {
-              setInputValue(newInputValue);
-            }}
-            options={categories}
-            getOptionLabel={(option) => option.name}
-            isOptionEqualToValue={(option, value) => option.name === value.name}
-            renderInput={(params) => <TextField {...params} label="分类" variant="outlined" />}
-          />
-        )}
+        <Autocomplete
+          id="combo-box-demo"
+          autoHighlight
+          size="small"
+          value={category}
+          onChange={(event, newValue) => {
+            setCategory(newValue);
+            if (newValue) {
+              setInputValue(newValue.name);
+            } else {
+              setInputValue("");
+            }
+          }}
+          inputValue={inputValue || ""}
+          onInputChange={(event, newInputValue) => {
+            setInputValue(newInputValue);
+          }}
+          options={categories.length !== 0 ? categories : []}
+          getOptionLabel={(option) => option.name}
+          isOptionEqualToValue={(option, value) => option.name === value.name}
+          renderInput={(params) => <TextField {...params} label="分类" variant="outlined" />}
+        />
       </Grid>
       <Grid item xs={12} md>
         <TextField

@@ -14,7 +14,9 @@ import { CDN_URL } from "../../config/services";
 import AllTags from "../../containers/post/AllTags";
 import Categories from "../../containers/post/Categories";
 import { CATEGORY, POST, POST_LIST, TAG } from "../../graphql/post";
+import { setItem } from "../../helpers";
 import { postState } from "../../states";
+
 dayjs.extend(relativeTime);
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -24,10 +26,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const PostList = (props) => {
+const PostList = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const [post, setPost] = useRecoilState(postState);
+  const [posts, setPosts] = useRecoilState<Post[]>(postState);
   const [pageCount, setPageCount] = useState<number>(0);
   const [currPage, setCurrPage] = useState(1);
   const [currCategory, setCurrCategory] = useState<number>();
@@ -39,7 +41,7 @@ const PostList = (props) => {
     fetchPolicy: "no-cache",
   });
 
-  const [getPostsWithCategoriesAndTags, { data: allData }] = useLazyQuery(POST, {
+  const [getPostsWithCategoriesAndTags, { data: allPost }] = useLazyQuery(POST, {
     fetchPolicy: "no-cache",
   });
   const [getPostsByCategory, { data: postsByCategory }] = useLazyQuery(CATEGORY, { fetchPolicy: "no-cache" });
@@ -51,18 +53,18 @@ const PostList = (props) => {
   }, [getPostsWithCategoriesAndTags]);
 
   useEffect(() => {
-    if (allData) {
-      setPost(allData.posts.data);
-      setCurrPage(allData.posts.paginatorInfo.currentPage);
-      setPageCount(allData.posts.paginatorInfo.lastPage);
-      setCategories(_.orderBy(allData.categories, ["count"], ["desc"]));
-      setTags(_.orderBy(allData.tagsCount, ["count"], ["desc"]));
+    if (allPost) {
+      setPosts(allPost.posts.data);
+      setCurrPage(allPost.posts.paginatorInfo.currentPage);
+      setPageCount(allPost.posts.paginatorInfo.lastPage);
+      setCategories(_.orderBy(allPost.categories, ["count"], ["desc"]));
+      setTags(_.orderBy(allPost.tagsCount, ["count"], ["desc"]));
     }
-  }, [allData]);
+  }, [allPost]);
 
   useEffect(() => {
     if (data) {
-      setPost(data.posts.data);
+      setPosts(data.posts.data);
       setCurrPage(data.posts.paginatorInfo.currentPage);
       setPageCount(data.posts.paginatorInfo.lastPage);
     }
@@ -70,19 +72,19 @@ const PostList = (props) => {
 
   useEffect(() => {
     if (postsByCategory) {
-      setPost(postsByCategory.posts.data);
+      setPosts(postsByCategory.posts.data);
       setCurrPage(postsByCategory.posts.paginatorInfo.currentPage);
       setPageCount(postsByCategory.posts.paginatorInfo.lastPage);
     }
-  }, [postsByCategory, setPost]);
+  }, [postsByCategory, setPosts]);
 
   useEffect(() => {
     if (postsByTag) {
-      setPost(postsByTag.tag.data.map((item) => item.posts[0]));
+      setPosts(postsByTag.tag.data.map((item) => item.posts[0]));
       setCurrPage(postsByTag.tag.paginatorInfo.currentPage);
       setPageCount(postsByTag.tag.paginatorInfo.lastPage);
     }
-  }, [postsByTag, setPost]);
+  }, [postsByTag, setPosts]);
 
   const handlePage = (page: number) => {
     getPosts(currCategory ? { variables: { page: page, categoryId: currCategory } } : { variables: { page: page } });
@@ -109,15 +111,14 @@ const PostList = (props) => {
   };
 
   const handleEnterPost = (item) => {
-    localStorage.postTitle = item.title;
-    localStorage.postId = item.id;
+    setItem("post", {
+      id: item.id,
+      title: item.title,
+    });
     navigate(`/posts/${item.id}`);
   };
 
   const handlePostCreate = () => {
-    if (props.post?.id) {
-      setPost({ tags: [], category: { id: "", name: "" } });
-    }
     navigate("/posts/create");
   };
 
@@ -150,31 +151,31 @@ const PostList = (props) => {
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               <Grid container spacing={2}>
-                {post.length
-                  ? post.map((item) => (
-                      <Grid item container xs={12} key={item.id} spacing={2} style={{ flexWrap: "nowrap" }}>
+                {posts.length
+                  ? posts.map((post) => (
+                      <Grid item container xs={12} key={post.id} spacing={2} style={{ flexWrap: "nowrap" }}>
                         {/* 分类 */}
                         <Grid item>
                           <img
-                            src={`${CDN_URL}/logo/${item.category.name}.svg`}
-                            alt={item.category.name}
+                            src={`${CDN_URL}/logo/${post.category.name}.svg`}
+                            alt={post.category.name}
                             width="20"
                             height="20"
-                            onClick={() => changeCategory(item?.category.id)}
+                            onClick={() => changeCategory(post?.category.id)}
                           />
                         </Grid>
                         {/* 标题 */}
                         <Grid item style={{ flexGrow: 1 }}>
-                          <Typography variant="subtitle1" component="h2" onClick={() => handleEnterPost(item)}>
-                            {item.title}
+                          <Typography variant="subtitle1" component="h2" onClick={() => handleEnterPost(post)}>
+                            {post.title}
                           </Typography>
                         </Grid>
                         {/* 标签 */}
                         <Hidden lgDown>
                           <Grid item>
                             <Grid container spacing={1}>
-                              {item.tags.length !== 0 &&
-                                item.tags.map((tag) => (
+                              {post.tags.length !== 0 &&
+                                post.tags.map((tag) => (
                                   <Grid item key={tag.id}>
                                     <Chip variant="outlined" size="small" label={tag.name} />
                                   </Grid>
@@ -182,9 +183,7 @@ const PostList = (props) => {
                             </Grid>
                           </Grid>
                         </Hidden>
-                        <Grid item style={item.public ? null : { color: "red" }}>
-                          {dayjs(item.updated_at).fromNow()}
-                        </Grid>
+                        <Grid item>{dayjs(post.updated_at).fromNow()}</Grid>
                       </Grid>
                     ))
                   : Array.from(new Array(8)).map((value, index) => (

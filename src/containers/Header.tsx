@@ -40,6 +40,7 @@ import Settings from "../components/Settings";
 import { getGravatarAddress } from "../helpers";
 import { getItem } from "../helpers";
 import { logout } from "../helpers/auth";
+import axios from "../instance/axios";
 import { emptyUser } from "../objects/user";
 import { logoutRequest } from "../requests/user";
 import {
@@ -386,6 +387,7 @@ const Header = () => {
                       const requests = [];
                       if (localStorage.users) {
                         JSON.parse(localStorage.users).map((user) => {
+                          axios.defaults.headers.common.Authorization = user.accessToken;
                           requests.push(logoutRequest(user.accessToken));
                           Promise.all(requests).then(function ([acct, perms]) {
                             localStorage.removeItem("users");

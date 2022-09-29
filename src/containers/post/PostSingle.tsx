@@ -11,6 +11,7 @@ import { useRecoilState } from "recoil";
 import AlertDialog from "../../components/AlertDialog";
 import { CDN_URL } from "../../config/services";
 import { DELETE_POST_BY_ID, POST_BY_ID } from "../../graphql/post";
+import { getItem } from "../../helpers";
 import { postState } from "../../states";
 import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
@@ -50,7 +51,7 @@ const PostSingle = () => {
   const { id } = useParams();
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
   const [tocButtonDisplay, setTocButtonDisplay] = useState(false);
-  const [post, setPost] = useRecoilState(postState);
+  const [post, setPost] = useRecoilState<Post>(postState);
   const [menu, setMenu] = useState(false);
 
   const navigate = useNavigate();
@@ -130,7 +131,7 @@ const PostSingle = () => {
             )}
             <Grid item style={{ flexGrow: 1 }}>
               <Typography variant="h6" component="h2">
-                {parseInt(localStorage?.postId) === id ? localStorage.postTitle : post.title}
+                {getItem("post.id") === id ? getItem("post.title") : post.title}
               </Typography>
             </Grid>
             <Grid item>

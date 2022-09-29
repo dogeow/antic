@@ -25,6 +25,7 @@ module.exports = {
   },
   plugins: ["react", "prettier", "simple-import-sort", "react-hooks", "@typescript-eslint"],
   rules: {
+    "camelcase": "off",
     "prettier/prettier": ["error", { printWidth: 120 }],
     "require-jsdoc": 0,
     "no-unused-vars": 0,
