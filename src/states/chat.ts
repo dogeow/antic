@@ -7,6 +7,7 @@ export const peopleState = atom({
       id: 0,
       name: "机器人",
       email: null,
+      active: true,
     },
   ],
 });
