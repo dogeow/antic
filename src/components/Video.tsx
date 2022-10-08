@@ -1,15 +1,11 @@
-// taken from https://github.com/videojs/video.js/blob/master/docs/guides/react.md
+// taken from https://videojs.com/guides/react/
 import * as React from "react";
 import videojs from "video.js";
 
 export default class VideoPlayer extends React.Component {
   componentDidMount() {
     // instantiate video.js
-    this.player = videojs(
-      this.videoNode,
-      this.props,
-      function onPlayerReady() {}
-    );
+    this.player = videojs(this.videoNode, this.props, function onPlayerReady() {});
   }
 
   // destroy player on unmount
@@ -25,11 +21,7 @@ export default class VideoPlayer extends React.Component {
   render() {
     return (
       <div data-vjs-player>
-        <video
-          ref={(node) => (this.videoNode = node)}
-          className="video-js"
-          data-setup='{"fluid": true}'
-        />
+        <video ref={(node) => (this.videoNode = node)} className="video-js" data-setup='{"fluid": true}' />
       </div>
     );
   }

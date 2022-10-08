@@ -5,7 +5,7 @@ import { GRAVATAR_CDN } from "../config/services";
 export const isJson = (str: string) => {
   try {
     const obj = JSON.parse(str);
-    return !!(typeof obj == "object" && obj);
+    return !!(typeof obj === "object" && obj);
   } catch (e) {
     return false;
   }
@@ -253,10 +253,10 @@ export const colorRgb = function (str: string) {
   return sColor;
 };
 
-export const replaceItemAtIndex = (arr, index, newValue) => {
+export const replaceItemAtIndex = (arr: [], index: number, newValue: any) => {
   return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
 };
 
-export const removeItemAtIndex = (arr, index) => {
+export const removeItemAtIndex = (arr: [], index: number) => {
   return [...arr.slice(0, index), ...arr.slice(index + 1)];
 };

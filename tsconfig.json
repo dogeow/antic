@@ -13,6 +13,7 @@
     "skipLibCheck": true,
 //    "allowSyntheticDefaultImports": true, // import * as React from 'react'、import React = require('react') 或者开启这个选项
     "strict": true,
+    "suppressImplicitAnyIndexErrors": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     "moduleResolution": "Node",
