@@ -34,7 +34,6 @@ export default function Chat() {
   const [inputFocus, setInputFocus] = useState(false);
 
   const messagesEndRef = useRef(null);
-  const peopleRef = useRef(null);
 
   const [open, setOpen] = useState(user.accessToken === "");
 
@@ -60,8 +59,19 @@ export default function Chat() {
     }
   };
 
+  const offline = (user) =>
+    setPeople(
+      produce((draft) => {
+        const person: ChatPeople = draft.find((person) => person.id === user.id);
+        if (person) {
+          person.active = false;
+        }
+      })
+    );
+
   useEffect(() => {
-    if (user.accessToken === null) {
+    if (user.accessToken === "") {
+      offline(user);
       setOpen(true);
       return;
     }
@@ -94,12 +104,7 @@ export default function Chat() {
         setAlertOpen(true);
       })
       .leaving((user: ChatPeople) => {
-        setPeople(
-          produce((draft) => {
-            const person: ChatPeople = draft.find((person) => person.id === user.id);
-            person.active = false;
-          })
-        );
+        offline(user);
         setAlertMessage(`${user.name} 退出了房间`);
         setAlertOpen(true);
       });
@@ -218,7 +223,7 @@ export default function Chat() {
                     logged(data);
                     const userData = {
                       accessToken: "Bearer " + data.accessToken,
-                      user: data.id,
+                      id: data.id,
                       name: data.name,
                       email: data.email,
                     };
@@ -298,7 +303,6 @@ export default function Chat() {
           container
           spacing={1}
           xs={3}
-          ref={peopleRef}
           style={{
             borderLeftWidth: 2,
             borderLeftColor: "rgba(0, 0, 0, 0.1)",

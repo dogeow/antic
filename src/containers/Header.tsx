@@ -29,6 +29,7 @@ import {
 import { alpha, useTheme } from "@mui/material/styles";
 import makeStyles from "@mui/styles/makeStyles";
 import { AxiosResponse } from "axios";
+import produce from "immer";
 import React, { useCallback, useEffect, useState } from "react";
 import { Link as RouteLink, useLocation } from "react-router-dom";
 import { useEvent } from "react-use";
@@ -398,7 +399,11 @@ const Header = () => {
                       }
                       if (getItem("user.accessToken")) {
                         logoutRequest(user.accessToken).then(() => {
-                          setUser(emptyUser);
+                          setUser(
+                            produce((draft: User) => {
+                              draft.accessToken = "";
+                            })
+                          );
                           logout();
                         });
                         setIsExpired(true);
