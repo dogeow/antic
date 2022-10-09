@@ -30,7 +30,7 @@ const Api = () => {
   };
 
   useEffect(() => {
-    axios.post("api").then(({ data }) => {
+    axios.get("api").then(({ data }) => {
       setApi(data);
     });
   }, []);
