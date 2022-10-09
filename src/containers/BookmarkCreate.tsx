@@ -13,7 +13,7 @@ const BookmarkCreate = () => {
 
   const handleGetTitle = () => {
     axios
-      .post("/url-title", { url })
+      .get("/url-title", { url })
       .then(({ data }) => {
         setTitle(data.title);
       })

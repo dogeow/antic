@@ -2,6 +2,7 @@ import MuiAlert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import dayjs from "dayjs";
 import * as React from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 
 import TimeConvert from "../../components/api/TimeConvert";
@@ -43,9 +44,9 @@ const nextDayStartDateTime = dayjs(monthStartDateTime).add(1, "month").format("Y
 const nextDayEndDateTime = dayjs(nextDayStartDateTime).unix();
 
 const Time = () => {
-  const [open, setOpen] = React.useState(false);
-  const [nowDateTime, setNowDateTime] = React.useState("");
-  const [nowUnixTime, setNowUnixTime] = React.useState("");
+  const [open, setOpen] = useState(false);
+  const [nowDateTime, setNowDateTime] = useState("");
+  const [nowUnixTime, setNowUnixTime] = useState("");
 
   useEffect(() => {
     setInterval(() => {
@@ -76,7 +77,7 @@ const Time = () => {
   return (
     <div>
       <h2>转换</h2>
-      <TimeConvert />
+      <TimeConvert onOpen={handleClick} />
       <h2>现在</h2>
       <div>
         当前日期时间：{nowDateTime}
