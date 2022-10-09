@@ -1,4 +1,5 @@
-import Input from "@mui/material/Input";
+import ClearIcon from "@mui/icons-material/Clear";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
 import dayjs from "dayjs";
 import * as React from "react";
 import { useEffect, useState } from "react";
@@ -25,11 +26,21 @@ const TimeConvert = (props) => {
 
   return (
     <div>
-      <Input
+      <TextField
+        variant="standard"
+        value={value}
         placeholder={"输入日期时间或时间戳"}
         onChange={(e) => {
-          e.target.value = e.target.value.replace(/[^\d -:]/g, "");
-          setValue(e.target.value);
+          setValue(e.target.value.replace(/[^\d -:]/g, ""));
+        }}
+        InputProps={{
+          endAdornment: value !== "" && (
+            <InputAdornment position="end">
+              <IconButton aria-label="Clear" onClick={() => setValue("")} edge="end" size="small">
+                <ClearIcon />
+              </IconButton>
+            </InputAdornment>
+          ),
         }}
       />
       <span>
