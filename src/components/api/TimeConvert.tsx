@@ -31,7 +31,10 @@ const TimeConvert = (props) => {
         value={value}
         placeholder={"输入日期时间或时间戳"}
         onChange={(e) => {
-          setValue(e.target.value.replace(/[^\d -:]/g, ""));
+          setValue(() => {
+            const newValue = e.target.value.replace(/[^\d -:]/g, "");
+            return newValue !== " " ? newValue : "";
+          });
         }}
         InputProps={{
           endAdornment: value !== "" && (
