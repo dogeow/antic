@@ -42,7 +42,7 @@ export default function Autocomplete(props) {
                         hitsPerPage: 10,
                         highlightPreTag: "<mark>",
                         highlightPostTag: "</mark>",
-                        attributesToSnippet: ["title:10", "content:10"],
+                        attributesToSnippet: ["title:10", "content:20"],
                         snippetEllipsisText: "…",
                       },
                     },
@@ -113,7 +113,11 @@ export default function Autocomplete(props) {
       <div style={{ display: "flex", padding: 4 }}>
         <form ref={formRef} className="aa-Form" {...autocomplete.getFormProps({ inputElement: inputRef.current })}>
           <div className="aa-InputWrapperPrefix">
-            <label className="aa-Label" {...autocomplete.getLabelProps({})}>
+            <label
+              className="aa-Label"
+              {...autocomplete.getLabelProps({})}
+              style={{ alignItems: "center", display: "flex", padding: "0 8px" }}
+            >
               <SearchIcon />
             </label>
           </div>
@@ -167,50 +171,68 @@ export default function Autocomplete(props) {
                     <ul className="aa-List" {...autocomplete.getListProps()} onClick={props.closeSearch}>
                       {items.map((item) => {
                         return (
-                          <Link
-                            to={item.__autocomplete_indexName === "bookmarks" ? item.url : `/posts/${item.id}`}
-                            key={item.objectID}
-                          >
-                            <li className="aa-Item" {...autocomplete.getItemProps({ item, source })}>
-                              <div className="aa-ItemIcon">
-                                {item.__autocomplete_indexName === "bookmarks" ? (
-                                  <StarIcon style={{ color: "orange" }} />
-                                ) : (
-                                  <img
-                                    src={`${CDN_URL}/logo/${item.category}.svg`}
-                                    alt={item.name}
-                                    width="40"
-                                    height="40"
-                                  />
-                                )}
-                              </div>
-                              <div className="aa-ItemContent">
-                                <div
-                                  className="aa-ItemContentTitle"
-                                  dangerouslySetInnerHTML={{
-                                    __html: item._snippetResult.title.value,
-                                  }}
-                                />
-                                <div
-                                  className="aa-ItemContentDescription"
-                                  dangerouslySetInnerHTML={{
-                                    __html: item._snippetResult?.content
-                                      ? item._snippetResult.content.value
-                                      : item._snippetResult.url.value,
-                                  }}
-                                />
-                              </div>
-                              <button
-                                className="aa-ItemActionButton aa-TouchOnly aa-ActiveOnly"
-                                type="button"
-                                title="Select"
+                          <div style={{ margin: "8px, 0", padding: 8 }} key={item.objectID}>
+                            <Link to={item.__autocomplete_indexName === "bookmarks" ? item.url : `/posts/${item.id}`}>
+                              <li
+                                style={{
+                                  display: "flex",
+                                  borderRadius: 4,
+                                  padding: 8,
+                                  border: "1px solid #ccc",
+                                  boxShadow:
+                                    "0px 2px 1px -1pxrgba(0,0,0,0.2),0px 1px 1px 0pxrgba(0,0,0,0.14),0px 1px 3px 0pxrgba(0,0,0,0.12)",
+                                  backgroundImage:
+                                    "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
+                                }}
+                                {...autocomplete.getItemProps({ item, source })}
                               >
-                                <svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20">
-                                  <path d="M18.984 6.984h2.016v6h-15.188l3.609 3.609-1.406 1.406-6-6 6-6 1.406 1.406-3.609 3.609h13.172v-4.031z"></path>
-                                </svg>
-                              </button>
-                            </li>
-                          </Link>
+                                <div className="aa-ItemIcon">
+                                  {item.__autocomplete_indexName === "bookmarks" ? (
+                                    <StarIcon style={{ color: "orange" }} />
+                                  ) : (
+                                    <img
+                                      src={`${CDN_URL}/logo/${item.category}.svg`}
+                                      alt={item.name}
+                                      width="40"
+                                      height="40"
+                                    />
+                                  )}
+                                </div>
+                                <div
+                                  style={{
+                                    padding: "0 8px",
+                                    cursor: "pointer",
+                                    lineHeight: "1.25em",
+                                    overflow: "hidden",
+                                  }}
+                                >
+                                  <div
+                                    className="aa-ItemContentTitle"
+                                    dangerouslySetInnerHTML={{
+                                      __html: item._snippetResult.title.value,
+                                    }}
+                                  />
+                                  <div
+                                    className="aa-ItemContentDescription"
+                                    dangerouslySetInnerHTML={{
+                                      __html: item._snippetResult?.content
+                                        ? item._snippetResult.content.value
+                                        : item._snippetResult.url.value,
+                                    }}
+                                  />
+                                </div>
+                                <button
+                                  className="aa-ItemActionButton aa-TouchOnly aa-ActiveOnly"
+                                  type="button"
+                                  title="Select"
+                                >
+                                  <svg fill="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                                    <path d="M18.984 6.984h2.016v6h-15.188l3.609 3.609-1.406 1.406-6-6 6-6 1.406 1.406-3.609 3.609h13.172v-4.031z"></path>
+                                  </svg>
+                                </button>
+                              </li>
+                            </Link>
+                          </div>
                         );
                       })}
                     </ul>
