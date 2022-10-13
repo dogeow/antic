@@ -1,5 +1,5 @@
 import { createAutocomplete } from "@algolia/autocomplete-core";
-import { getAlgoliaHits } from "@algolia/autocomplete-preset-algolia";
+import { getAlgoliaResults } from "@algolia/autocomplete-preset-algolia";
 import StarIcon from "@mui/icons-material/Star";
 import algoliasearch from "algoliasearch/lite";
 import * as React from "react";
@@ -32,7 +32,7 @@ export default function Autocomplete(props) {
             {
               sourceId: "posts",
               getItems({ query }) {
-                return getAlgoliaHits({
+                return getAlgoliaResults({
                   searchClient,
                   queries: [
                     {
@@ -56,7 +56,7 @@ export default function Autocomplete(props) {
             {
               sourceId: "bookmarks",
               getItems({ query }) {
-                return getAlgoliaHits({
+                return getAlgoliaResults({
                   searchClient,
                   queries: [
                     {
