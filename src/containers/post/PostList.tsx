@@ -153,9 +153,9 @@ const PostList = () => {
               <Grid container spacing={2}>
                 {posts.length
                   ? posts.map((post) => (
-                      <Grid item container xs={12} key={post.id} spacing={2} style={{ flexWrap: "nowrap" }}>
+                      <Grid item container xs={12} key={post.id} style={{ flexWrap: "nowrap" }}>
                         {/* 分类 */}
-                        <Grid item>
+                        <Grid item style={{ marginRight: 8 }}>
                           <img
                             src={`${CDN_URL}/logo/${post.category.name}.svg`}
                             alt={post.category.name}
@@ -183,7 +183,9 @@ const PostList = () => {
                             </Grid>
                           </Grid>
                         </Hidden>
-                        <Grid item>{dayjs(post.updated_at).fromNow()}</Grid>
+                        <Grid item style={{ marginLeft: 8 }}>
+                          {dayjs(post.updated_at).fromNow()}
+                        </Grid>
                       </Grid>
                     ))
                   : Array.from(new Array(8)).map((value, index) => (
