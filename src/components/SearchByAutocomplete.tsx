@@ -171,7 +171,7 @@ export default function Autocomplete(props) {
                     <ul className="aa-List" {...autocomplete.getListProps()} onClick={props.closeSearch}>
                       {items.map((item) => {
                         return (
-                          <div style={{ margin: "8px, 0", padding: 8 }} key={item.objectID}>
+                          <div style={{ margin: 8 }} key={item.objectID}>
                             <Link to={item.__autocomplete_indexName === "bookmarks" ? item.url : `/posts/${item.id}`}>
                               <li
                                 style={{
@@ -179,10 +179,6 @@ export default function Autocomplete(props) {
                                   borderRadius: 4,
                                   padding: 8,
                                   border: "1px solid #ccc",
-                                  boxShadow:
-                                    "0px 2px 1px -1pxrgba(0,0,0,0.2),0px 1px 1px 0pxrgba(0,0,0,0.14),0px 1px 3px 0pxrgba(0,0,0,0.12)",
-                                  backgroundImage:
-                                    "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
                                 }}
                                 {...autocomplete.getItemProps({ item, source })}
                               >
