@@ -12,35 +12,32 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-// 今天日期
-const todayDate = dayjs().format("YYYY-MM-DD"); // 2020-04-22
+const fullFormat = "YYYY-MM-DD HH:mm:ss";
 
 // 今天开始
-const todayStartDateTime = `${todayDate} 00:00:00`; // 2020-04-22 00:00:00
-const todayStartUnixTime = dayjs(todayStartDateTime).unix(); // 1587484800
+const todayStartDateTime = dayjs().startOf("day").format(fullFormat); // 2020-04-22 00:00:00
+const todayStartUnixTime = dayjs().startOf("day").unix(); // 1587484800
 
 // 今天结束
-const todayEndDateTime = dayjs(todayDate)
-  .add(86400 - 1, "second")
-  .format("YYYY-MM-DD HH:mm:ss");
-const todayEndUnixTime = todayStartUnixTime + 86400 - 1;
+const todayEndDateTime = dayjs().endOf("day").format(fullFormat);
+const todayEndUnixTime = dayjs().endOf("day").unix();
 
 // 昨天
 const yesterdayStartUnix = dayjs(todayStartDateTime).subtract(1, "days").unix();
-const yesterdayStartTime = dayjs(todayStartDateTime).subtract(1, "days").format("YYYY-MM-DD HH:mm:ss");
+const yesterdayStartTime = dayjs(todayStartDateTime).subtract(1, "days").format(fullFormat);
 
 // 明天
 const tomorrowStartUnix = dayjs(todayStartDateTime).add(1, "days").unix();
-const tomorrowStartTime = dayjs(todayStartDateTime).add(1, "days").format("YYYY-MM-DD HH:mm:ss");
+const tomorrowStartTime = dayjs(todayStartDateTime).add(1, "days").format(fullFormat);
 
 // 这个月
 const monthStartDateTime = dayjs().startOf("month").format("YYYY-MM-DD 00:00:00");
 const monthStartUnixTime = dayjs(monthStartDateTime).unix();
 // 上月
-const lastDayStartDateTime = dayjs(monthStartDateTime).subtract(1, "month").format("YYYY-MM-DD HH:mm:ss");
+const lastDayStartDateTime = dayjs(monthStartDateTime).subtract(1, "month").format(fullFormat);
 const lastDayEndUnixTime = dayjs(lastDayStartDateTime).unix();
 // 下个月
-const nextDayStartDateTime = dayjs(monthStartDateTime).add(1, "month").format("YYYY-MM-DD HH:mm:ss");
+const nextDayStartDateTime = dayjs(monthStartDateTime).add(1, "month").format(fullFormat);
 const nextDayEndDateTime = dayjs(nextDayStartDateTime).unix();
 
 const Time = () => {
@@ -50,7 +47,7 @@ const Time = () => {
 
   useEffect(() => {
     setInterval(() => {
-      setNowDateTime(dayjs().format("YYYY-MM-DD HH:mm:ss"));
+      setNowDateTime(dayjs().format(fullFormat));
       setNowUnixTime(dayjs().unix());
     }, 1000);
     return () => {
