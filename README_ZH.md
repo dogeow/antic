@@ -1,6 +1,6 @@
 # Lab
 
-[![Build Status](https://drone.dogeow.com/api/badges/dogeow/antic/status.svg)](http://drone.dogeow.com:880/dogeow/antic)
+[![Build Status](https://drone.dogeow.com/api/badges/dogeow/antic/status.svg)](https://drone.dogeow.com/dogeow/antic)
 [![CircleCI](https://circleci.com/gh/dogeow/antic.svg?style=shield)](https://circleci.com/gh/dogeow/antic)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
