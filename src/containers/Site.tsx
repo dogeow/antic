@@ -7,7 +7,6 @@ import { GridRenderCellParams } from "@mui/x-data-grid/models/params/gridCellPar
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import * as React from "react";
-import { useEffect } from "react";
 import useSWR from "swr";
 
 dayjs.extend(relativeTime);
@@ -23,14 +22,6 @@ const useStyles = makeStyles(() => ({
 
 const Site = () => {
   const classes = useStyles();
-
-  useEffect(() => {
-    if (!("Notification" in window)) {
-      console.log("This browser does not support desktop notification");
-    } else {
-      Notification.requestPermission();
-    }
-  }, []);
 
   const { data, error } = useSWR("/site");
   if (error) return <div>failed to load</div>;
@@ -77,21 +68,6 @@ const Site = () => {
 
   return (
     <div style={{ width: "100%" }}>
-      <button
-        onClick={() => {
-          const options = {
-            body: "This is the body of the Notification",
-            icon: "https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            dir: "ltr",
-          };
-          const notification = new Notification("Notification Demo", options);
-          setTimeout(() => {
-            notification.close();
-          }, 1000);
-        }}
-      >
-        测试通知
-      </button>
       <DataGrid
         rows={data.sites}
         columns={columns}
