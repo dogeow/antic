@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import _ from "lodash";
+import { groupBy } from "lodash";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,7 @@ const About = () => {
 
   useEffect(() => {
     if (data) {
-      setAboutMe(_.groupBy(data.aboutMe, "category"));
+      setAboutMe(groupBy(data.aboutMe, "category"));
     }
   }, [data]);
 

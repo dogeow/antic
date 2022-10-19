@@ -1,7 +1,7 @@
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import _ from "lodash";
+import { uniq } from "lodash";
 import * as React from "react";
 import { useRecoilState } from "recoil";
 
@@ -23,7 +23,7 @@ const CategoriesElem = () => {
 
     return (categories = categories.concat(single.category));
   });
-  const uniqCategories = _.uniq(categories);
+  const uniqCategories = uniq(categories);
 
   return (
     <div>

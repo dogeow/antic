@@ -5,7 +5,7 @@ import { PaginationRenderItemParams } from "@mui/material/Pagination/Pagination"
 import makeStyles from "@mui/styles/makeStyles";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import _ from "lodash";
+import { orderBy } from "lodash";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -57,8 +57,8 @@ const PostList = () => {
       setPosts(allPost.posts.data);
       setCurrPage(allPost.posts.paginatorInfo.currentPage);
       setPageCount(allPost.posts.paginatorInfo.lastPage);
-      setCategories(_.orderBy(allPost.categories, ["count"], ["desc"]));
-      setTags(_.orderBy(allPost.tagsCount, ["count"], ["desc"]));
+      setCategories(orderBy(allPost.categories, ["count"], ["desc"]));
+      setTags(orderBy(allPost.tagsCount, ["count"], ["desc"]));
     }
   }, [allPost]);
 

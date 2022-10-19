@@ -1,7 +1,7 @@
 import SendIcon from "@mui/icons-material/Send";
 import { Button, Dialog, DialogActions, DialogContent, Grid, InputAdornment, Snackbar, TextField } from "@mui/material";
 import produce from "immer";
-import _ from "lodash";
+import { find, uniqBy } from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { useRecoilState } from "recoil";
@@ -79,9 +79,9 @@ export default function Chat() {
     window.Echo.join("chat")
       .here((herePeople: ChatPeople[]) => {
         setLoading(false);
-        const newPeople: ChatPeople[] = _.uniqBy([...people, ...herePeople], "id");
+        const newPeople: ChatPeople[] = uniqBy([...people, ...herePeople], "id");
         setPeople(newPeople);
-        if (_.find(newPeople, ["id", parseInt(user.id)])) {
+        if (find(newPeople, ["id", parseInt(user.id)])) {
           setAlertMessage("您已加入房间");
           setAlertOpen(true);
         }
@@ -95,7 +95,7 @@ export default function Chat() {
           });
           setPeople(newPeople);
         } else {
-          const newPeople = _.uniqBy([user, ...people], "id");
+          const newPeople = uniqBy([user, ...people], "id");
           if (people !== newPeople) {
             setPeople(newPeople);
           }
@@ -272,7 +272,7 @@ export default function Chat() {
                   </Grid>
                 ) : (
                   <Grid item xs={12} key={index}>
-                    <Avatar alt={content.name} email={_.find(people, ["id", content.id])["email"]} size={24} />
+                    <Avatar alt={content.name} email={find(people, ["id", content.id])["email"]} size={24} />
                     <span style={{ marginLeft: 4 }}>{content.message}</span>
                   </Grid>
                 );
