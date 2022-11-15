@@ -380,7 +380,7 @@ const Header = () => {
                   <RouteLink to="/login" onClick={() => handleCloseProfile()}>
                     <MenuItem>
                       <PersonAddIcon style={{ width: 40 }} />
-                      <span style={{ margin: "0 10px 0 10px" }}>t添加其他账号</span>
+                      <span style={{ margin: "0 10px 0 10px" }}>添加其他账号</span>
                     </MenuItem>
                   </RouteLink>
                   <MenuItem
