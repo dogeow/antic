@@ -12,6 +12,7 @@ if (isRest) {
 } else {
   paletteMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
+document.documentElement.setAttribute("data-prefers-color-scheme", paletteMode);
 export const paletteModeState = atom({
   key: "paletteMode",
   default: paletteMode as PaletteMode,

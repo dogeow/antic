@@ -285,7 +285,13 @@ const Header = () => {
               <Tooltip
                 title="切换白天或夜晚主题"
                 aria-label="切换白天或夜晚主题"
-                onClick={() => setPaletteMode(paletteMode === "light" ? "dark" : "light")}
+                onClick={() => {
+                  setPaletteMode(paletteMode === "light" ? "dark" : "light");
+                  document.documentElement.setAttribute(
+                    "data-prefers-color-scheme",
+                    paletteMode === "light" ? "dark" : "light"
+                  );
+                }}
               >
                 <IconButton color="inherit" size="large">
                   {paletteMode === "dark" ? <NightsStayIcon /> : <WbSunnyIcon />}
@@ -442,6 +448,10 @@ const Header = () => {
                 onClick={() => {
                   setAnchorEl(null);
                   setPaletteMode(paletteMode === "light" ? "dark" : "light");
+                  document.documentElement.setAttribute(
+                    "data-prefers-color-scheme",
+                    paletteMode === "light" ? "dark" : "light"
+                  );
                 }}
               >
                 切换为
@@ -457,7 +467,13 @@ const Header = () => {
       <Settings
         open={settingsOpen}
         onClose={handleSettingClose}
-        onThemeClick={() => setPaletteMode(paletteMode === "light" ? "dark" : "light")}
+        onThemeClick={() => {
+          setPaletteMode(paletteMode === "light" ? "dark" : "light");
+          document.documentElement.setAttribute(
+            "data-prefers-color-scheme",
+            paletteMode === "light" ? "dark" : "light"
+          );
+        }}
         paletteMode={paletteMode}
       />
       <Snackbar

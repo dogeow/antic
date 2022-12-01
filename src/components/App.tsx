@@ -76,6 +76,7 @@ export default () => {
     const handle = (e: MediaQueryListEvent) => {
       const newColorScheme = e.matches ? "dark" : "light";
       setPaletteMode(newColorScheme);
+      document.documentElement.setAttribute("data-prefers-color-scheme", paletteMode);
     };
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", handle);
 
