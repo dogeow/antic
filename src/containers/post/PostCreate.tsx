@@ -258,7 +258,6 @@ export default () => {
           id="combo-box-demo"
           autoHighlight
           size="small"
-          value={category}
           onChange={(event, newValue) => {
             setCategory(newValue);
             if (newValue) {
