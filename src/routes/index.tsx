@@ -61,6 +61,7 @@ const Pic = lazy(() => import("../containers/Pic"));
 const Site = lazy(() => import("../containers/Site"));
 const Translate = lazy(() => import("../containers/Translate"));
 const Test = lazy(() => import("../containers/post/Test"));
+const Mui = lazy(() => import("../containers/Mui"));
 // const Test = lazy(() => import("../containers/Test"));
 
 export default () => (
@@ -147,6 +148,7 @@ export default () => (
         <Route path="/markdown" element={<Markdown />} />
         <Route path="/translate" element={<Translate />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/mui" element={<Mui />} />
         <Route path="/game" element={<Game />} />
 
         <Route path="*" element={<NoMatch />} />
