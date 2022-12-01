@@ -4,9 +4,17 @@ import { Link } from "react-router-dom";
 const Demo = () => (
   <div>
     <div>
-      <h3>小工具</h3>
+      <h3>小项目</h3>
+      <div>
+        <ul>
+          <li>
+            <Link to="/things">物品管理</Link>
+          </li>
+        </ul>
+      </div>
     </div>
     <div>
+      <h3>小工具</h3>
       <ul>
         <li>
           <Link to="/diff">文本对比</Link>
@@ -68,8 +76,6 @@ const Demo = () => (
     </div>
     <div>
       <h3>学习</h3>
-    </div>
-    <div>
       <ul>
         <li>
           <a href="/demos/react-test.html" target="_blank">
@@ -141,12 +147,12 @@ const Demo = () => (
     </div>
     <div>
       <h3>自用工具（弃用）</h3>
+      <ul>
+        <li>
+          <Link to="/demos/parking">停车（爬虫)</Link>
+        </li>
+      </ul>
     </div>
-    <ul>
-      <li>
-        <Link to="/demos/parking">停车（爬虫)</Link>
-      </li>
-    </ul>
   </div>
 );
 

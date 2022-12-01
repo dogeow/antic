@@ -1,6 +1,8 @@
 import "./styles/index.css";
 
 import { ApolloProvider } from "@apollo/client";
+import { ConfigProvider } from "antd-mobile";
+import zhCN from "antd-mobile/es/locales/zh-CN";
 import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { RecoilRoot, Snapshot } from "recoil";
@@ -40,7 +42,9 @@ root.render(
       >
         <RecoilRoot>
           {import.meta.env.DEV && <DebugObserver />}
-          <App />
+          <ConfigProvider locale={zhCN}>
+            <App />
+          </ConfigProvider>
         </RecoilRoot>
       </SWRConfig>
     </ApolloProvider>

@@ -62,6 +62,10 @@ const Site = lazy(() => import("../containers/Site"));
 const Translate = lazy(() => import("../containers/Translate"));
 const Test = lazy(() => import("../containers/post/Test"));
 const Mui = lazy(() => import("../containers/Mui"));
+const Thing = lazy(() => import("../projects/things/Thing"));
+const ThingCreate = lazy(() => import("../projects/things/ThingCreate"));
+const ThingPhoto = lazy(() => import("../projects/things/Photo"));
+const ThingTag = lazy(() => import("../projects/things/Tag"));
 // const Test = lazy(() => import("../containers/Test"));
 
 export default () => (
@@ -143,6 +147,11 @@ export default () => (
         <Route path="/like" element={<Like />} />
         <Route path="/cars" element={<Cars />} />
         <Route path="/docs" element={<Docs />} />
+
+        <Route path="/things" element={<Thing />} />
+        <Route path="/things/create" element={<ThingCreate />} />
+        <Route path="/things/tags" element={<ThingTag />} />
+        <Route path="/things/photos" element={<ThingPhoto />} />
 
         {/* 开发中、测试 */}
         <Route path="/markdown" element={<Markdown />} />

@@ -40,6 +40,8 @@
     "@videojs/vhs-utils": "^2.3.0",
     "@vitejs/plugin-react": "^2.0.0",
     "algoliasearch": "4.8.6",
+    "antd-mobile": "^5.26.0",
+    "antd-mobile-icons": "^0.3.0",
     "axios": "^0.27.2",
     "babel-plugin-recharts": "^2.0.0",
     "beautiful-react-hooks": "^3.11.1",
