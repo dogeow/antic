@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { Autocomplete, Theme } from "@mui/material";
 import Chip from "@mui/material/Chip";
 import TextField from "@mui/material/TextField";
@@ -7,6 +7,9 @@ import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
 import { TAGS } from "../../graphql/post";
+import { removeItemAtIndex } from "../../helpers";
+import axios from "../../instance/axios";
+import { allTagsState, postState, tagsState, userState } from "../../states";
 
 const useStyles = makeStyles((theme: Theme) => ({
   tags: {
@@ -15,9 +18,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
 }));
-
-import axios from "../../instance/axios";
-import { allTagsState, postState, tagsState, userState } from "../../states";
 
 const Tags = ({ edit }) => {
   const classes = useStyles();
@@ -33,7 +33,7 @@ const Tags = ({ edit }) => {
     if (data) {
       setAllTags(data.tags);
     }
-  }, [data]);
+  }, [data, setAllTags]);
 
   return edit ? (
     <Autocomplete
@@ -42,35 +42,21 @@ const Tags = ({ edit }) => {
       autoHighlight
       options={allTags.map((option) => option.name)}
       freeSolo
-      value={tags.map((tag) => tag.name)}
-      onChange={(event, newValue) => {
-        axios.post(`/posts/${post.id}/tag`, { name: event.target.value }).then(({ data }) => {
-          setTags((tags) => [...tags, data]);
-        });
+      onChange={(event) => {
+        setTags((tags) => [...tags, allTags[event.target.dataset.optionIndex]]);
       }}
+      value={tags.map((tag) => tag.name)}
       renderTags={(value, getTagProps) =>
         value.map((option, index) => (
           <Chip
-            key={index}
+            label={option}
             variant="outlined"
             size="small"
-            label={option}
+            key={index}
             {...getTagProps({ index })}
-            onDelete={
-              user.id && edit
-                ? (option) => {
-                    axios
-                      .delete(`/posts/${post.id}/tag`, {
-                        data: { name: option },
-                      })
-                      .then(({ data: count }) => {
-                        if (count === 1) {
-                          // todo
-                        }
-                      });
-                  }
-                : undefined
-            }
+            onDelete={() => {
+              setTags(removeItemAtIndex(tags, index));
+            }}
           />
         ))
       }
