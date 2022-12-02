@@ -167,7 +167,7 @@ const DELETE_POST_BY_ID = gql`
 
 const TAGS = gql`
   query {
-    tags {
+    tags(isUnique: true) {
       id
       name
     }
