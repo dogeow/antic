@@ -8,6 +8,7 @@ import { useRecoilState } from "recoil";
 
 import { TAGS } from "../../graphql/post";
 import { removeItemAtIndex } from "../../helpers";
+import axios from "../../instance/axios";
 import { allTagsState, postState } from "../../states";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -37,10 +38,20 @@ const Tags = ({ edit }) => {
       multiple
       id="tags-filled"
       autoHighlight
-      options={allTags.map((option) => option.name)}
+      options={allTags.map((option: { name: string }) => option.name)}
       freeSolo
-      onChange={(event) => {
-        setPost({ ...post, tags: [...post.tags, allTags[event.target.dataset.optionIndex]] });
+      onChange={(event, newValue) => {
+        if (undefined === event.target.dataset.optionIndex) {
+          axios.post(`/posts/${post.id}/tag`, { name: event.target.value }).then(({ data }) => {
+            setPost({ ...post, tags: [...post.tags, data] });
+          });
+          const newPost = { ...post, tags: newValue };
+          setPost(newPost);
+        } else {
+          const newTags = allTags[event.target.dataset.optionIndex];
+          const newPost = { ...post, tags: [...post.tags, newTags] };
+          setPost(newPost);
+        }
       }}
       value={post.tags.map((tag) => tag.name)}
       renderTags={(value, getTagProps) =>

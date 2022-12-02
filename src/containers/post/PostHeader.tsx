@@ -9,18 +9,27 @@ import Tags from "./Tags";
 
 dayjs.extend(relativeTime);
 
-const PostHeader = ({ post, edit = true }) => {
+const PostHeader = ({ post, edit = true }, props) => {
   return post ? (
-    <Grid container spacing={1}>
+    <Grid item container spacing={1}>
+      <Grid item xs={12}>
+        <Tags post={post} edit={edit} />
+      </Grid>
       <Grid item>
-        <Tooltip content="发布于" time={post.created_at} />
+        <Tooltip content="发布于 " time={post.created_at} />
       </Grid>
       {post.created_at !== post.updated_at && (
         <Grid item>
-          <Tooltip content="更新于" time={post.updated_at} />
+          <Tooltip content="更新于 " time={post.updated_at} />
         </Grid>
       )}
-      <Tags post={post} edit={edit} />
+      <Grid item xs={12}>
+        <span style={{ color: "gray" }}>
+          <a onClick={props.handleEdit}>编辑</a>
+          {" | "}
+          <a onClick={props.handleDelete}>删除</a>
+        </span>
+      </Grid>
     </Grid>
   ) : (
     <Grid item xs={12}>
