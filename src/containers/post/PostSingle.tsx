@@ -119,7 +119,7 @@ const PostSingle = () => {
         </div>
       )}
       {post ? (
-        <Grid container spacing={1}>
+        <Grid container alignItems="center" spacing={1}>
           {post?.category && (
             <Grid item>
               <Link to={`/posts?filter[category.name]=${post.category.name}`}>
