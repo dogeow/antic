@@ -8,8 +8,7 @@ import { useRecoilState } from "recoil";
 
 import { TAGS } from "../../graphql/post";
 import { removeItemAtIndex } from "../../helpers";
-import axios from "../../instance/axios";
-import { allTagsState, postState, tagsState, userState } from "../../states";
+import { allTagsState, postState } from "../../states";
 
 const useStyles = makeStyles((theme: Theme) => ({
   tags: {
@@ -23,9 +22,7 @@ const Tags = ({ edit }) => {
   const classes = useStyles();
 
   const [allTags, setAllTags] = useRecoilState(allTagsState);
-  const [tags, setTags] = useRecoilState(tagsState);
-  const [post] = useRecoilState<Post>(postState);
-  const [user] = useRecoilState(userState);
+  const [post, setPost] = useRecoilState<Post>(postState);
 
   const { data } = useQuery(TAGS);
 
@@ -43,9 +40,9 @@ const Tags = ({ edit }) => {
       options={allTags.map((option) => option.name)}
       freeSolo
       onChange={(event) => {
-        setTags((tags) => [...tags, allTags[event.target.dataset.optionIndex]]);
+        setPost({ ...post, tags: [...post.tags, allTags[event.target.dataset.optionIndex]] });
       }}
-      value={tags.map((tag) => tag.name)}
+      value={post.tags.map((tag) => tag.name)}
       renderTags={(value, getTagProps) =>
         value.map((option, index) => (
           <Chip
@@ -55,7 +52,7 @@ const Tags = ({ edit }) => {
             key={index}
             {...getTagProps({ index })}
             onDelete={() => {
-              setTags(removeItemAtIndex(tags, index));
+              setPost({ ...post, tags: removeItemAtIndex(post.tags, index) });
             }}
           />
         ))
@@ -66,7 +63,7 @@ const Tags = ({ edit }) => {
     />
   ) : (
     <div className={classes.tags}>
-      {tags.map((tag, index) => (
+      {post.tags.map((tag, index) => (
         <Chip key={index} label={tag.name} variant="outlined" size="small" />
       ))}
     </div>
