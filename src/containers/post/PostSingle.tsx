@@ -1,15 +1,14 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 import { Skeleton, Theme, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useEffect, useState } from "react";
-import { Link, Params, useNavigate, useParams } from "react-router-dom";
+import { Link, Params, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
-import AlertDialog from "../../components/AlertDialog";
 import { CDN_URL } from "../../config/services";
-import { DELETE_POST_BY_ID, POST_BY_ID } from "../../graphql/post";
+import { POST_BY_ID } from "../../graphql/post";
 import { getItem } from "../../helpers";
 import { postState } from "../../states";
 import PostBody from "./PostBody";
@@ -42,15 +41,10 @@ const useStyles = makeStyles((theme: Theme) => {
 const PostSingle = () => {
   const classes = useStyles();
   const { id }: Readonly<Params> = useParams();
-  const [alertDialogOpen, setAlertDialogOpen] = useState(false);
   const [tocButtonDisplay, setTocButtonDisplay] = useState(false);
   const [post, setPost] = useRecoilState<Post>(postState);
   const [menu, setMenu] = useState(false);
   const [percentage, setPercentage] = useState(0);
-
-  const navigate = useNavigate();
-
-  const [deletePost] = useMutation(DELETE_POST_BY_ID);
 
   const handleToggleMenu = () => {
     setMenu(!menu);
@@ -90,23 +84,6 @@ const PostSingle = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleEdit = () => {
-    navigate(`/posts/${id}/edit`);
-  };
-
-  const handleDelete = () => {
-    setAlertDialogOpen(!alertDialogOpen);
-  };
-
-  const confirmDelete = () => {
-    deletePost({ variables: { id: id } });
-    navigate("/posts");
-  };
-
-  const handleAlertDialogToggle = () => {
-    setAlertDialogOpen(!alertDialogOpen);
-  };
-
   return (
     <>
       <div className="dCoYYQ" style={{ "--progress-width": percentage }}></div>
@@ -142,18 +119,11 @@ const PostSingle = () => {
         <Skeleton variant="rectangular" height={41} width="40%" />
       )}
       <Grid item container spacing={1}>
-        <PostHeader post={post} edit={false} handleEdit={handleEdit} handleDelete={handleDelete} />
+        <PostHeader post={post} edit={false} />
       </Grid>
       <Grid item xs={12}>
         <PostBody post={post} />
       </Grid>
-      <AlertDialog
-        open={alertDialogOpen}
-        handleClose={handleAlertDialogToggle}
-        title="删除此文章"
-        content="删除后，无法找回"
-        agree={confirmDelete}
-      />
     </>
   );
 };
