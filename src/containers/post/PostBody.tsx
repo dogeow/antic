@@ -36,6 +36,7 @@ function HeadingRenderer(props) {
   return createElement("h" + props.level, { id: text }, props.children);
 }
 
+// 文章正文
 const PostBody = ({ post }: { post: Post }) => {
   useStyles();
 
@@ -46,7 +47,7 @@ const PostBody = ({ post }: { post: Post }) => {
       </ReactMarkdown>
     </div>
   ) : (
-    <Skeleton variant="rectangular" height="60vh" />
+    <Skeleton variant="rectangular" height="60vh" style={{ marginTop: 10 }} />
   );
 };
 

@@ -8,8 +8,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Hr() {
+export default function Hr(props) {
   const classes = useStyles();
 
-  return <Grid item xs={12} className={classes.hr} />;
+  return <Grid item xs={12} className={classes.hr} style={props.style} />;
 }

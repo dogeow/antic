@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Params, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
+import Hr from "../../components/Hr";
 import { CDN_URL } from "../../config/services";
 import { POST_BY_ID } from "../../graphql/post";
 import { getItem } from "../../helpers";
@@ -121,6 +122,7 @@ const PostSingle = () => {
       <Grid item container spacing={1}>
         <PostHeader post={post} edit={false} />
       </Grid>
+      <Hr style={{ margin: 10 }} />
       <Grid item xs={12}>
         <PostBody post={post} />
       </Grid>
