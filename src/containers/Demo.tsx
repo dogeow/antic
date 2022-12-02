@@ -151,6 +151,9 @@ const Demo = () => (
         <li>
           <Link to="/demos/parking">停车（爬虫)</Link>
         </li>
+        <li>
+          <Link to="/weibo">微博热搜榜</Link>
+        </li>
       </ul>
     </div>
   </div>
