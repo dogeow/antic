@@ -224,12 +224,7 @@ const Header = () => {
     <header>
       <Drawer open={toggleDrawer} onClick={() => setToggleDrawer(!toggleDrawer)} />
       <AppBar position="static" component="div">
-        <Container
-          maxWidth="lg"
-          classes={{
-            root: classes.containerRoot,
-          }}
-        >
+        <Container maxWidth="lg" style={{ paddingRight: 0 }}>
           <Toolbar>
             <IconButton
               edge="start"
