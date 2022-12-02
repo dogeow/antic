@@ -144,6 +144,7 @@ const POST_BY_ID = gql`
       content
       created_at
       updated_at
+      public
       category {
         id
         name
