@@ -63,9 +63,8 @@ const Tags = ({ edit }) => {
     />
   ) : (
     <div className={classes.tags}>
-      {post.tags.map((tag, index) => (
-        <Chip key={index} label={tag.name} variant="outlined" size="small" />
-      ))}
+      {post.tags &&
+        post.tags.map((tag, index) => <Chip key={index} label={tag.name} variant="outlined" size="small" />)}
     </div>
   );
 };
