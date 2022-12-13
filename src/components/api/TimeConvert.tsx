@@ -3,25 +3,27 @@ import { IconButton, InputAdornment, TextField } from "@mui/material";
 import dayjs from "dayjs";
 import * as React from "react";
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 
+import { snackState } from "../../states";
 import ClipboardButton from "../ClipboardButton";
 
 const TimeConvert = (props) => {
   const [value, setValue] = useState("");
   const [toValue, setToValue] = useState("");
+  const [, setSnack] = useRecoilState(snackState);
 
   const getClipboardButton = (value) => {
     return <ClipboardButton text={value} handleClick={props.onOpen} />;
   };
 
   useEffect(() => {
-    setToValue(
-      value
-        ? /\d{4}-/.test(value)
-          ? dayjs(value).unix().toString()
-          : dayjs.unix(Number(value)).format("YYYY-MM-DD HH:mm:ss")
-        : ""
-    );
+    const newValue = value
+      ? /\d{4}-/.test(value)
+        ? dayjs(value).unix().toString()
+        : dayjs.unix(Number(value)).format("YYYY-MM-DD HH:mm:ss")
+      : "";
+    setToValue(newValue);
   }, [value]);
 
   return (
@@ -33,7 +35,10 @@ const TimeConvert = (props) => {
         onChange={(e) => {
           setValue(() => {
             const newValue = e.target.value.replace(/[^\d -:]/g, "");
-            return newValue !== " " ? newValue : "";
+            if (/[^\d -:]/g.test(e.target.value)) {
+              setSnack("只能输入 YYYY-MM-DD HH:mm:ss 格式");
+            }
+            return newValue;
           });
         }}
         InputProps={{

@@ -1,5 +1,5 @@
 import { PaletteMode } from "@mui/material";
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 
 import { getItem } from "../helpers";
 
@@ -47,4 +47,17 @@ export const isSnackOpenState = atom({
 export const snackMessageState = atom({
   key: "snackMessage",
   default: "",
+});
+
+export const snackState = selector({
+  key: "snack",
+  get: ({ get }) => {
+    const isOpen = get(isSnackOpenState);
+    const message = get(snackMessageState);
+    return [isOpen, message];
+  },
+  set: ({ get, set }, message) => {
+    set(snackMessageState, message);
+    set(isSnackOpenState, true);
+  },
 });

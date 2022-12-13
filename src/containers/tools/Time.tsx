@@ -30,12 +30,12 @@ const yesterdayStartTime = dayjs(todayStartDateTime).subtract(1, "days").format(
 const tomorrowStartUnix = dayjs(todayStartDateTime).add(1, "days").unix();
 const tomorrowStartTime = dayjs(todayStartDateTime).add(1, "days").format(fullFormat);
 
-// 上月
-const lastDayStartDateTime = dayjs(monthStartDateTime).subtract(1, "month").format(fullFormat);
-const lastDayEndUnixTime = dayjs(lastDayStartDateTime).unix();
 // 这个月
 const monthStartDateTime = dayjs().startOf("month").format("YYYY-MM-DD 00:00:00");
 const monthStartUnixTime = dayjs(monthStartDateTime).unix();
+// 上月
+const lastDayStartDateTime = dayjs(monthStartDateTime).subtract(1, "month").format(fullFormat);
+const lastDayEndUnixTime = dayjs(lastDayStartDateTime).unix();
 // 下个月
 const nextDayStartDateTime = dayjs(monthStartDateTime).add(1, "month").format(fullFormat);
 const nextDayEndDateTime = dayjs(nextDayStartDateTime).unix();

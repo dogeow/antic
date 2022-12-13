@@ -9,7 +9,7 @@ import { snackMessageState } from "../../states";
 
 export default function () {
   const [base64Str, setBase64St] = useState("");
-  const [setSnackMessage] = useRecoilState(snackMessageState);
+  const [, setSnackMessage] = useRecoilState(snackMessageState);
 
   const handleClick = () => {
     setSnackMessage("复制成功");
