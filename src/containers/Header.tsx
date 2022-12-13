@@ -43,7 +43,6 @@ import { getGravatarAddress } from "../helpers";
 import { getItem } from "../helpers";
 import { logout } from "../helpers/auth";
 import axios from "../instance/axios";
-import { emptyUser } from "../objects/user";
 import { logoutRequest } from "../requests/user";
 import {
   isExpiredState,
