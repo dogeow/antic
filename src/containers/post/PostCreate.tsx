@@ -288,7 +288,7 @@ export default () => {
         />
       </Grid>
       <Grid item xs={12} md>
-        <Tags edit={true} post={post} />
+        <Tags mode="create" post={post} />
       </Grid>
       {/* 正文 */}
       <Grid item xs={12}>

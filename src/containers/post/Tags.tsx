@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Tags = ({ edit }) => {
+const Tags = ({ mode = "show" }) => {
   const classes = useStyles();
 
   const [allTags, setAllTags] = useRecoilState(allTagsState);
@@ -33,7 +33,7 @@ const Tags = ({ edit }) => {
     }
   }, [data, setAllTags]);
 
-  return edit ? (
+  return ["edit", "create"].indexOf(mode) ? (
     <Autocomplete
       multiple
       id="tags-filled"
@@ -53,7 +53,7 @@ const Tags = ({ edit }) => {
           setPost(newPost);
         }
       }}
-      value={post.tags.map((tag) => tag.name)}
+      value={["edit", "show"].indexOf(mode) ? post.tags.map((tag) => tag.name) : []}
       renderTags={(value, getTagProps) =>
         value.map((option, index) => (
           <Chip

@@ -41,7 +41,7 @@ const PostHeader = ({ post, edit = true }, props) => {
     <>
       <Grid item container spacing={1}>
         <Grid item xs={12}>
-          <Tags post={post} edit={edit} />
+          <Tags post={post} mode="edit" />
         </Grid>
         <Grid item>
           <Tooltip content="发布于 " time={post.created_at} />
