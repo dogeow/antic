@@ -19,6 +19,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
+const modes = ["edit", "create", "show"];
+
 const Tags = ({ mode = "show" }) => {
   const classes = useStyles();
 
