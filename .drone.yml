@@ -49,7 +49,7 @@ steps:
   - name: rsync
     image: drillster/drone-rsync
     settings:
-      user: root
+      user: ecs-user
       key:
         from_secret: ssh_key
       hosts:
