@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import * as React from "react";
 import ReactDiffViewer from "react-diff-viewer";
 
-function keepSpace(str) {
+function keepSpace(str: string) {
   return str.replace(/(?<=[a-zA-z0-9])(?=[\u4e00-\u9fa5])|(?<=[\u4e00-\u9fa5])(?=[a-zA-z0-9])/g, " ");
 }
 
