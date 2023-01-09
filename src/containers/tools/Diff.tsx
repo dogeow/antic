@@ -1,19 +1,43 @@
+import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import * as React from "react";
 import ReactDiffViewer from "react-diff-viewer";
+
+function keepSpace(str) {
+  return str.replace(/(?<=[a-zA-z0-9])(?=[\u4e00-\u9fa5])|(?<=[\u4e00-\u9fa5])(?=[a-zA-z0-9])/g, " ");
+}
 
 export default () => {
   const [oldValue, setOldValue] = React.useState("");
   const [newValue, setNewValue] = React.useState("");
 
+  const [checked, setChecked] = React.useState(true);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked);
+
+    if (event.target.checked && oldValue) {
+      setNewValue(keepSpace(oldValue));
+    }
+  };
+
   return (
     <div style={{ width: "100%", height: "40vh" }}>
+      <div>
+        <Checkbox checked={checked} onChange={handleChange} inputProps={{ "aria-label": "controlled" }} />
+        中英文加上空格
+      </div>
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <textarea
             value={oldValue}
             placeholder="请输入要对比的内容"
-            onChange={(e) => setOldValue(e.target.value)}
+            onChange={(e) => {
+              setOldValue(e.target.value);
+              if (checked && newValue === "") {
+                setNewValue(keepSpace(e.target.value));
+              }
+            }}
             style={{ width: "100%", height: "40vh", overflow: "auto" }}
           />
         </Grid>
