@@ -1,17 +1,18 @@
 import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import * as React from "react";
+import { useState } from "react";
 import ReactDiffViewer from "react-diff-viewer";
 
 function keepSpace(str: string) {
-  return str.replace(/(?<=[a-zA-z0-9])(?=[\u4e00-\u9fa5])|(?<=[\u4e00-\u9fa5])(?=[a-zA-z0-9])/g, " ");
+  return str.replace(/(?<=[a-zA-Z0-9])(?=[\u4e00-\u9fa5])|(?<=[\u4e00-\u9fa5])(?=[a-zA-Z0-9])/g, " ");
 }
 
 export default () => {
-  const [oldValue, setOldValue] = React.useState("");
-  const [newValue, setNewValue] = React.useState("");
+  const [oldValue, setOldValue] = useState("");
+  const [newValue, setNewValue] = useState("");
 
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = useState(true);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
