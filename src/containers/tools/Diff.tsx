@@ -16,8 +16,13 @@ export default () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
 
-    if (event.target.checked && oldValue) {
-      setNewValue(keepSpace(oldValue));
+    if (event.target.checked) {
+      if (oldValue) {
+        setOldValue(keepSpace(oldValue));
+      }
+      if (newValue) {
+        setNewValue(keepSpace(oldValue));
+      }
     }
   };
 
@@ -33,9 +38,10 @@ export default () => {
             value={oldValue}
             placeholder="请输入要对比的内容"
             onChange={(e) => {
-              setOldValue(e.target.value);
-              if (checked && newValue === "") {
-                setNewValue(keepSpace(e.target.value));
+              if (checked) {
+                setOldValue(keepSpace(e.target.value));
+              } else {
+                setOldValue(e.target.value);
               }
             }}
             style={{ width: "100%", height: "40vh", overflow: "auto" }}
@@ -45,7 +51,13 @@ export default () => {
           <textarea
             value={newValue}
             placeholder="请输入要对比的内容"
-            onChange={(e) => setNewValue(e.target.value)}
+            onChange={(e) => {
+              if (checked) {
+                setNewValue(keepSpace(e.target.value));
+              } else {
+                setNewValue(e.target.value);
+              }
+            }}
             style={{ width: "100%", height: "40vh", overflow: "auto" }}
           />
         </Grid>
