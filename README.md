@@ -4,8 +4,6 @@
 [![CircleCI](https://circleci.com/gh/dogeow/antic.svg?style=shield)](https://circleci.com/gh/dogeow/antic)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-[//]: # (![GitHub Action]&#40;https://github.com/dogeow/antic/workflows/React/badge.svg&#41;)
-
 [中文](README_ZH.md)
 
 ## Intro
