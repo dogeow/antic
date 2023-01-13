@@ -20,10 +20,6 @@ steps:
         from_secret: SKIP_PREFLIGHT_CHECK
       VITE_DOMAIN:
         from_secret: REACT_APP_DOMAIN
-      VITE_URL:
-        from_secret: REACT_APP_URL
-      VITE_API_DOMAIN:
-        from_secret: REACT_APP_API_DOMAIN
       VITE_API_URL:
         from_secret: REACT_APP_API_URL
       VITE_FUNDEBUG_API_KEY:
