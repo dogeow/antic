@@ -7,18 +7,18 @@ import changeTitle from "./components/site/ChangeTitle";
  * Sentry、Chrome 控制台信息、更改页面标题
  */
 export default function bootstrap() {
-  // Sentry
   if (import.meta.env.PROD) {
+    // Sentry
     import("@sentry/react").then((Sentry) => {
       Sentry.init({ dsn: import.meta.env.VITE_SENTRY_DSN });
     });
+
+    // Chrome 控制台信息
+    consoleInfo();
   }
 
-  // Chrome 控制台信息
-  consoleInfo();
-
   // 更改页面标题
-  changeTitle(`记得回来！- ${import.meta.env.VITE_NAME}`, `欢迎回来！- ${import.meta.env.VITE_NAME}`);
+  changeTitle(`随时欢迎回来！- ${import.meta.env.VITE_NAME}`, `欢迎回来！- ${import.meta.env.VITE_NAME}`);
 
   /**
    * Echo exposes an expressive API for subscribing to channels and listening

@@ -66,7 +66,9 @@ export default () => {
                   callback(true, error);
                 });
             }
-          : () => {},
+          : () => {
+              return false;
+            },
       }),
     });
   }, [user.accessToken]);

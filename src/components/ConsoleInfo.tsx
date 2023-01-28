@@ -2,10 +2,6 @@
  * display in console（在控制台显示）
  */
 export default function displayInConsole() {
-  if (import.meta.env.DEV) {
-    return;
-  }
-
   window.console.log(
     `%c
   .---.          ,-----.     ,---.  ,---.     .-''-.

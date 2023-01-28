@@ -8,12 +8,12 @@ import { useRecoilState } from "recoil";
 import { snackState } from "../../states";
 import ClipboardButton from "../ClipboardButton";
 
-const TimeConvert = (props) => {
+const TimeConvert = (props: { onOpen: () => void }) => {
   const [value, setValue] = useState("");
   const [toValue, setToValue] = useState("");
   const [, setSnack] = useRecoilState(snackState);
 
-  const getClipboardButton = (value) => {
+  const getClipboardButton = (value: string) => {
     return <ClipboardButton text={value} handleClick={props.onOpen} />;
   };
 
@@ -36,7 +36,7 @@ const TimeConvert = (props) => {
           setValue(() => {
             const newValue = e.target.value.replace(/[^\d -:]/g, "");
             if (/[^\d -:]/g.test(e.target.value)) {
-              setSnack("只能输入 YYYY-MM-DD HH:mm:ss 格式");
+              setSnack([true, "只能输入 YYYY-MM-DD HH:mm:ss 格式"]);
             }
             return newValue;
           });
