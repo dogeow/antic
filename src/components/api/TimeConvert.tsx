@@ -36,7 +36,10 @@ const TimeConvert = (props: { onOpen: () => void }) => {
           setValue(() => {
             const newValue = e.target.value.replace(/[^\d -:]/g, "");
             if (/[^\d -:]/g.test(e.target.value)) {
-              setSnack([true, "只能输入 YYYY-MM-DD HH:mm:ss 格式"]);
+              setSnack({
+                isOpen: true,
+                message: "只能输入 YYYY-MM-DD HH:mm:ss 格式",
+              });
             }
             return newValue;
           });
