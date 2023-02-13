@@ -261,7 +261,7 @@ export default function Chat() {
             style={{ overflowY: "auto", height: "60vh" }}
           >
             <Grid item xs={12}>
-              机器人请在开头加上一个空格，比如「 时间」、「 ip」、「 md5 123456」、「 单复数 category」
+              机器人请在开头加上一个「/」，比如「/时间」、「/ip」、「/md5 123456」、「/单复数 category」
             </Grid>
             {chatBoard.length > 0 &&
               chatBoard.map((content: Content, index) => {
