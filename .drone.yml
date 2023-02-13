@@ -19,27 +19,27 @@ steps:
       SKIP_PREFLIGHT_CHECK:
         from_secret: SKIP_PREFLIGHT_CHECK
       VITE_DOMAIN:
-        from_secret: REACT_APP_DOMAIN
+        from_secret: VITE_DOMAIN
       VITE_API_URL:
-        from_secret: REACT_APP_API_URL
+        from_secret: VITE_API_URL
       VITE_FUNDEBUG_API_KEY:
-        from_secret: REACT_APP_FUNDEBUG_API_KEY
+        from_secret: VITE_FUNDEBUG_API_KEY
       VITE_ALGOLIA_APP_ID:
-        from_secret: REACT_APP_ALGOLIA_APP_ID
+        from_secret: VITE_ALGOLIA_APP_ID
       VITE_ALGOLIA_APP_KEY:
-        from_secret: REACT_APP_ALGOLIA_APP_KEY
+        from_secret: VITE_ALGOLIA_APP_KEY
       VITE_NAME:
-        from_secret: REACT_APP_NAME
+        from_secret: VITE_NAME
       VITE_SENTRY_DSN:
-        from_secret: REACT_APP_SENTRY_DSN
+        from_secret: VITE_SENTRY_DSN
       VITE_PUSHER_APP_KEY:
-        from_secret: REACT_APP_PUSHER_APP_KEY
+        from_secret: VITE_PUSHER_APP_KEY
       VITE_PUSHER_HOST:
-        from_secret: REACT_APP_PUSHER_HOST
+        from_secret: VITE_PUSHER_HOST
       VITE_PUSHER_PORT:
-        from_secret: REACT_APP_PUSHER_PORT
+        from_secret: VITE_PUSHER_PORT
       VITE_GITHUB_CLIENT_ID:
-        from_secret: REACT_APP_GITHUB_CLIENT_ID
+        from_secret: VITE_GITHUB_CLIENT_ID
     commands:
       - yarn build
   - name: rsync
