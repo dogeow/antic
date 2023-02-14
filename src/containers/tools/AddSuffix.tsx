@@ -38,17 +38,17 @@ const AddSuffix = () => {
   return (
     <div>
       <div>
-        <TextareaAutosize name="suffix" value={suffix} onChange={changeSuffix} />
+        <TextareaAutosize name="suffix" value={suffix} onChange={changeSuffix} placeholder="后缀" />
       </div>
       <Grid container spacing={1}>
         <Grid item xs={5}>
-          <TextareaAutosize name="mediawiki" value={source} onChange={changeSource} />
+          <TextareaAutosize name="mediawiki" value={source} onChange={changeSource} placeholder="源内容" />
         </Grid>
         <Grid item xs={2} style={{ alignSelf: "center", textAlign: "center" }}>
           <ArrowForwardIcon />
         </Grid>
         <Grid item xs={5}>
-          <TextareaAutosize name="markdown" value={target} />
+          <TextareaAutosize name="markdown" value={target} placeholder="目标内容" />
         </Grid>
       </Grid>
     </div>
