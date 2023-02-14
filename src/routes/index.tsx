@@ -66,6 +66,7 @@ const Thing = lazy(() => import("../projects/things/Thing"));
 const ThingCreate = lazy(() => import("../projects/things/ThingCreate"));
 const ThingPhoto = lazy(() => import("../projects/things/Photo"));
 const ThingTag = lazy(() => import("../projects/things/Tag"));
+const AddSuffix = lazy(() => import("../containers/tools/AddSuffix"));
 // const Test = lazy(() => import("../containers/Test"));
 
 export default () => (
@@ -130,6 +131,7 @@ export default () => (
         <Route path="/mediawiki-to-markdown" element={<MediaWikiToMarkdown />} />
         <Route path="/copywriting" element={<Copywriting />} />
         <Route path="/php-function" element={<PHPFunction />} />
+        <Route path="/add-suffix" element={<AddSuffix />} />
 
         {/* API */}
         <Route path="/api" element={<Api />} />
