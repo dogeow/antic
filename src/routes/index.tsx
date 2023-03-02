@@ -67,6 +67,7 @@ const ThingCreate = lazy(() => import("../projects/things/ThingCreate"));
 const ThingPhoto = lazy(() => import("../projects/things/Photo"));
 const ThingTag = lazy(() => import("../projects/things/Tag"));
 const AddSuffix = lazy(() => import("../containers/tools/AddSuffix"));
+const Ai = lazy(() => import("../containers/tools/Ai"));
 // const Test = lazy(() => import("../containers/Test"));
 
 export default () => (
@@ -161,6 +162,7 @@ export default () => (
         <Route path="/test" element={<Test />} />
         <Route path="/mui" element={<Mui />} />
         <Route path="/game" element={<Game />} />
+        <Route path="/ai" element={<Ai />} />
 
         <Route path="*" element={<NoMatch />} />
       </Route>
