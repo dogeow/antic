@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>代码小抄</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入 Prism.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+  <!-- 引入 Prism.js 的 CSS 样式 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css"/>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+  <style>
+    .resize-x {
+      resize: horizontal;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+<div class="flex h-screen">
+  <div id="sidebar" class="w-1/4 p-4 bg-gray-200 overflow-y-auto border-r border-gray-300">
+    <h2 class="font-bold mb-4">分类</h2>
+    <ul>
+      <li><a href="#category1" class="text-gray-700 hover:underline">分类1</a></li>
+      <li><a href="#category2" class="text-gray-700 hover:underline">分类2</a></li>
+      <li><a href="#category3" class="text-gray-700 hover:underline">分类3</a></li>
+      <!-- 将以上的“分类”替换为您自己的分类名称，每个都用<li>标签包裹，用<a>标签创建锚连接-->
+    </ul>
+  </div>
+  <div id="splitter" class="flex items-center px-2 border-l border-r border-gray-300 cursor-col-resize">
+    <i class="fas fa-grip-horizontal text-gray-400"></i>
+  </div>
+  <div id="main-content" class="w-3/4 p-4 overflow-y-auto">
+    <h1 class="font-bold text-3xl mb-4">我的代码小抄</h1>
+    <p class="mb-4">下面是我收集的一些有用的代码片段：</p>
+    <ul>
+      <li id="category1" class="mb-4">
+        <h2 class="font-bold text-lg">代码片段 1</h2>
+        <p class="mb-2">这里是代码片段 1 的描述。</p>
+        <pre><code class="language-javascript">
+DB::listen(function ($query) {
+    if ($query->time >= 100) {
+        $location = collect(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS))->filter(function ($trace) {
+            if (isset($trace['file'])) {
+                return ! str_contains($trace['file'], 'vendor/');
+            }
+
+            return false;
+        })->first();
+
+        $bindings = implode(', ', $query->bindings); // format the bindings as string
+
+        Log::info("
+Sql: $query->sql
+Bindings: $bindings
+Time: $query->time
+File: {$location['file']}
+Line: {$location['line']}");
+    }
+});
+        </code></pre>
+      </li>
+      <li id="category2" class="mb-4">
+        <h2 class="font-bold text-lg">代码片段 2</h2>
+        <p class="mb-2">这里是代码片段 2 的描述。</p>
+        <pre><code>// 这里是代码片段 2 的代码。</code></pre>
+      </li>
+      <li id="category3" class="mb-4">
+        <h2 class="font-bold text-lg">代码片段 3</h2>
+        <p class="mb-2">这里是代码片段 3 的描述。</p>
+        <pre><code>// 这里是代码片段 3 的代码。</code></pre>
+      </li>
+      <!-- 将以上的“代码片段”替换为您自己的代码片段名称和描述，并在每个<li>标签中添加一个id属性，以便用作锚连接的目标-->
+    </ul>
+  </div>
+</div>
+<script>
+  // 初始化 Prism.js
+  Prism.highlightAll();
+
+  const sidebar = document.getElementById("sidebar");
+  const mainContent = document.getElementById("main-content");
+  const splitter = document.getElementById('splitter');
+
+  splitter.addEventListener("mousedown", (event) => {
+    event.preventDefault();
+
+    const startX = event.clientX;
+    const startWidth = parseFloat(getComputedStyle(sidebar).width);
+
+    document.addEventListener("mousemove", mousemove);
+    document.addEventListener("mouseup", mouseup);
+
+    function mousemove(event) {
+      const dx = event.clientX - startX;
+      sidebar.style.width = `${startWidth + dx}px`;
+      mainContent.style.flexGrow = '1';
+    }
+
+    function mouseup() {
+      document.removeEventListener("mousemove", mousemove);
+      document.removeEventListener("mouseup", mouseup);
+    }
+  });
+</script>
+</body>
+</html>
