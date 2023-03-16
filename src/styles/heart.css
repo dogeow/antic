@@ -4,7 +4,7 @@
 
 .heart {
   position: absolute;
-  margin: auto;
+  margin: 5px 10px;
   background-color: pink;
   height: var(--width);
   width: var(--width);
