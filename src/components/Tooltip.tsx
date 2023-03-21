@@ -3,7 +3,7 @@ import Zoom from "@mui/material/Zoom";
 import dayjs from "dayjs";
 import * as React from "react";
 
-export default function ({ content, time }) {
+export default function ({ content, time }: { content: string; time: string }) {
   return (
     <Tooltip
       title={dayjs(time).format("YYYY-MM-DD HH:mm:ss")}

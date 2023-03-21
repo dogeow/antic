@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import * as React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Params, useNavigate, useParams } from "react-router-dom";
 
 import AlertDialog from "../../components/AlertDialog";
 import Tooltip from "../../components/Tooltip";
@@ -14,8 +14,15 @@ import Tags from "./Tags";
 
 dayjs.extend(relativeTime);
 
+const renderTooltip = (content: string, time: string) => (
+  <Grid item>
+    <Tooltip content={content} time={time} />
+  </Grid>
+);
+
 const PostHeader = ({ post, edit = true }, props) => {
   const navigate = useNavigate();
+  const { id }: Readonly<Params> = useParams();
 
   const [alertDialogOpen, setAlertDialogOpen] = useState(false);
   const [deletePost] = useMutation(DELETE_POST_BY_ID);
@@ -25,7 +32,7 @@ const PostHeader = ({ post, edit = true }, props) => {
   };
 
   const confirmDelete = () => {
-    deletePost({ variables: { id: id } });
+    deletePost({ variables: { id } });
     navigate("/posts");
   };
 
@@ -37,20 +44,25 @@ const PostHeader = ({ post, edit = true }, props) => {
     setAlertDialogOpen(!alertDialogOpen);
   };
 
-  return post ? (
+  const { created_at, updated_at } = post;
+  const isUpdatedAtDifferent = created_at !== updated_at;
+
+  if (!post) {
+    return (
+      <Grid item xs={12}>
+        <Skeleton variant="rectangular" height={20} width="60%" />
+      </Grid>
+    );
+  }
+
+  return (
     <>
       <Grid item container spacing={1}>
         <Grid item xs={12}>
           <Tags post={post} mode="edit" />
         </Grid>
-        <Grid item>
-          <Tooltip content="发布于 " time={post.created_at} />
-        </Grid>
-        {post.created_at !== post.updated_at && (
-          <Grid item>
-            <Tooltip content="更新于 " time={post.updated_at} />
-          </Grid>
-        )}
+        {renderTooltip("发布于 ", created_at)}
+        {isUpdatedAtDifferent && renderTooltip("更新于 ", updated_at)}
         <Grid item xs={12}>
           <span style={{ color: "gray" }}>
             <a onClick={handleEdit}>编辑</a>
@@ -67,10 +79,6 @@ const PostHeader = ({ post, edit = true }, props) => {
         agree={confirmDelete}
       />
     </>
-  ) : (
-    <Grid item xs={12}>
-      <Skeleton variant="rectangular" height={20} width="60%" />
-    </Grid>
   );
 };
 
