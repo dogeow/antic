@@ -13,13 +13,19 @@ const useStyles = makeStyles(() => ({
   },
   intro: {
     overflow: "hidden",
-    WebkitLineClamp: 2,
-    WebkitBoxOrient: "vertical",
+    textOverflow: "ellipsis",
     display: "-webkit-box",
+    WebkitLineClamp: 2,
+    writingMode: "vertical-rl",
   },
 }));
 
-const Menu = ({ url, name }) => {
+interface MenuProps {
+  url: string;
+  name: string;
+}
+
+const Menu: React.FC<MenuProps> = ({ url, name }) => {
   const classes = useStyles();
 
   return (

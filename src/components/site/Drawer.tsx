@@ -3,8 +3,8 @@ import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
-import appConfig from "../config/index.json";
-import anticPic from "../resources/svg/antic";
+import appConfig from "../../config/index.json";
+import anticPic from "../../resources/svg/antic";
 
 const useStyles = makeStyles({
   list: {

@@ -1,18 +1,30 @@
 import { SpeedDial, SpeedDialAction, SpeedDialIcon, Theme } from "@mui/material/";
-import makeStyles from "@mui/styles/makeStyles";
+import { createStyles, makeStyles } from "@mui/styles";
 import * as React from "react";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  speedDial: {
-    position: "fixed",
-    "&.MuiSpeedDial-directionUp": {
-      bottom: theme.spacing(2),
-      right: theme.spacing(2),
-    },
-  },
-}));
+interface Action {
+  name: string;
+  icon: JSX.Element;
+  action: () => void;
+}
 
-export default function SpeedDials(props) {
+interface Props {
+  actions: Action[];
+}
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    speedDial: {
+      position: "fixed",
+      "&.MuiSpeedDial-directionUp": {
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+      },
+    },
+  })
+);
+
+const SpeedDials: React.FC<Props> = ({ actions }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -34,7 +46,7 @@ export default function SpeedDials(props) {
       open={open}
       direction="up"
     >
-      {props.actions.map((action) => (
+      {actions.map((action) => (
         <SpeedDialAction
           key={action.name}
           icon={action.icon}
@@ -47,4 +59,6 @@ export default function SpeedDials(props) {
       ))}
     </SpeedDial>
   );
-}
+};
+
+export default SpeedDials;

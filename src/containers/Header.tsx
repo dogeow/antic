@@ -35,10 +35,10 @@ import { Link as RouteLink, useLocation } from "react-router-dom";
 import { useEvent } from "react-use";
 import { useRecoilState } from "recoil";
 
-import Drawer from "../components/Drawer";
-import Logo from "../components/Logo";
 import Search from "../components/Search";
 import Settings from "../components/Settings";
+import Drawer from "../components/site/Drawer";
+import Logo from "../components/site/Logo";
 import { getGravatarAddress } from "../helpers";
 import { getItem } from "../helpers";
 import { logout } from "../helpers/auth";

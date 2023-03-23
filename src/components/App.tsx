@@ -14,7 +14,7 @@ import { getItem } from "../helpers";
 import axios from "../instance/axios";
 import Routes from "../routes";
 import { paletteModeState, userState } from "../states";
-import ScrollToTop from "./ScrollToTop";
+import ScrollToTop from "./display/ScrollToTop";
 
 dayjs.locale("zh-cn");
 

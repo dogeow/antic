@@ -13,7 +13,7 @@ import axios from "../instance/axios";
 import { chatBoardState, isExpiredState, peopleState, usersState, userState } from "../states";
 import Expire from "./display/Expire";
 import Avatar from "./display/Gravatar";
-import Loading from "./Loading";
+import Loading from "./display/Loading";
 
 let timer = null;
 

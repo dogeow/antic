@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { CDN_URL } from "../config/services";
+import { CDN_URL } from "../../config/services";
 
 const scrollHeight = 500;
 const defaultBottom = -200;

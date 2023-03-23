@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Params, useNavigate, useParams } from "react-router-dom";
 
 import AlertDialog from "../../components/AlertDialog";
-import Tooltip from "../../components/Tooltip";
+import Tooltip from "../../components/display/Tooltip";
 import { DELETE_POST_BY_ID } from "../../graphql/post";
 import Tags from "./Tags";
 

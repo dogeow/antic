@@ -4,8 +4,8 @@ import makeStyles from "@mui/styles/makeStyles";
 import React, { Suspense } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
-import Loading from "../components/Loading";
-import ScrollButton from "../components/ScrollButton";
+import Loading from "../components/display/Loading";
+import ScrollButton from "../components/display/ScrollButton";
 import Footer from "../containers/Footer";
 import Header from "../containers/Header";
 

@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Ndd = () => {
+const Search = () => {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     q: "",
@@ -66,4 +66,4 @@ const Ndd = () => {
   );
 };
 
-export default Ndd;
+export default Search;

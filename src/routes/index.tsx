@@ -2,7 +2,7 @@ import * as React from "react";
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Loading from "../components/Loading";
+import Loading from "../components/display/Loading";
 import Redirect from "../containers/users/Redirect";
 import Layout from "./Layout";
 
@@ -31,7 +31,7 @@ const NewProject = lazy(() => import("../components/task/NewProject"));
 const SingleProject = lazy(() => import("../components/task/SingleProject"));
 const Nav = lazy(() => import("../components/Nav"));
 const BookmarkCreate = lazy(() => import("../containers/BookmarkCreate"));
-const Ndd = lazy(() => import("../components/Ndd"));
+const Search = lazy(() => import("../components/GoogleSearch"));
 const User = lazy(() => import("../containers/users/User"));
 const UserSetting = lazy(() => import("../containers/users/UserSetting"));
 const Demo = lazy(() => import("../containers/Demo"));
@@ -52,7 +52,6 @@ const Download = lazy(() => import("../containers/demos/Download"));
 const NoMatch = lazy(() => import("../containers/NoMatch"));
 const Diff = lazy(() => import("../containers/tools/Diff"));
 const Game = lazy(() => import("../containers/game"));
-const Pic = lazy(() => import("../containers/Pic"));
 const Site = lazy(() => import("../containers/Site"));
 const Test = lazy(() => import("../containers/post/Test"));
 const MuiX = lazy(() => import("../containers/MuiX"));
@@ -84,9 +83,9 @@ export default () => (
 
         {/* 聊天室*/}
         <Route path="/chat" element={<Chat />} />
+        <Route path="/ai" element={<Ai />} />
 
         <Route path="/sites" element={<Site />} />
-        <Route path="/pics" element={<Pic />} />
 
         {/* Posts */}
         <Route path="/posts" element={<PostList />} />
@@ -118,7 +117,7 @@ export default () => (
 
         {/* 小工具 */}
         <Route path="/diff" element={<Diff />} />
-        <Route path="/ndd" element={<Ndd />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/base64" element={<Base64 />} />
         <Route path="/money" element={<Money />} />
         <Route path="/color" element={<Color />} />
@@ -150,7 +149,6 @@ export default () => (
         <Route path="/test" element={<Test />} />
         <Route path="/mui-x" element={<MuiX />} />
         <Route path="/game" element={<Game />} />
-        <Route path="/ai" element={<Ai />} />
 
         <Route path="*" element={<NoMatch />} />
       </Route>
