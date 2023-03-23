@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import Heart from "../Heart";
+import Heart from "../display/Heart";
 
 const BuiltBy = () => (
   <>

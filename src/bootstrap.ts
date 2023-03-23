@@ -1,6 +1,6 @@
 import pusher from "pusher-js";
 
-import consoleInfo from "./components/ConsoleInfo";
+import consoleInfo from "./components/bootstrap/ConsoleInfo";
 import changeTitle from "./components/site/ChangeTitle";
 
 /**

@@ -40,7 +40,7 @@ const Demo = lazy(() => import("../containers/Demo"));
 const Calculator = lazy(() => import("../containers/demos/Calculator"));
 const Parking = lazy(() => import("../containers/tools/Parking"));
 const Font = lazy(() => import("../containers/demos/Font"));
-const Like = lazy(() => import("../components/Like"));
+const Like = lazy(() => import("../containers/Like"));
 const Video = lazy(() => import("../containers/demos/Video"));
 const Music = lazy(() => import("../containers/demos/Music"));
 const Copywriting = lazy(() => import("../containers/tools/Copywriting"));

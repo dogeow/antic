@@ -5,8 +5,8 @@ import clsx from "clsx";
 import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
+import Hr from "../components/display/Hr";
 import HomeFooter from "../components/footer";
-import Hr from "../components/Hr";
 import { backgroundImg } from "../config/index.json";
 import { CDN_URL } from "../config/services";
 

@@ -1,11 +1,4 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import PropTypes from "prop-types";
 import * as React from "react";
 
@@ -19,13 +12,7 @@ import * as React from "react";
  * @return {JSX.Element}
  * @constructor
  */
-export default function AlertDialog({
-  open,
-  handleClose,
-  title,
-  content,
-  agree,
-}) {
+export default function AlertDialog({ open, handleClose, title, content, agree }) {
   return (
     <Dialog
       open={open}

@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Params, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
-import Hr from "../../components/Hr";
+import Hr from "../../components/display/Hr";
 import { CDN_URL } from "../../config/services";
 import { POST_BY_ID } from "../../graphql/post";
 import { getItem } from "../../helpers";

@@ -5,7 +5,7 @@ import graphQl from "../../resources/svg/graphQl";
 import laravel from "../../resources/svg/laravel";
 import materialUi from "../../resources/svg/materialUi";
 import react from "../../resources/svg/react";
-import ExternalLink from "../ExternalLink";
+import ExternalLink from "../link/ExternalLink";
 
 const Img = styled.img`
   width: 20px;

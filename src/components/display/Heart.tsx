@@ -1,4 +1,4 @@
-import "../styles/heart.css";
+import "../../styles/heart.css";
 
 import * as React from "react";
 

@@ -1,7 +1,11 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-export default ({ to, children, ...props }) => {
+interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  to?: string;
+}
+
+export default ({ to, children, ...props }: Props) => {
   if (!to) return <span {...props}>{children}</span>;
 
   if (/^https?:\/\//.test(to))

@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid";
 import * as React from "react";
 
 import IcpIcon from "../../resources/svg/ICP";
-import ExternalLink from "../ExternalLink";
+import ExternalLink from "../link/ExternalLink";
 import BuiltBy from "./BuiltBy";
 import PowerBy from "./PoweredBy";
 

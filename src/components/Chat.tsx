@@ -6,13 +6,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { useRecoilState } from "recoil";
 
-import Avatar from "../components/Gravatar";
 import { replaceItemAtIndex } from "../helpers";
 import { getItem } from "../helpers";
 import { logged } from "../helpers/auth";
 import axios from "../instance/axios";
 import { chatBoardState, isExpiredState, peopleState, usersState, userState } from "../states";
-import Expire from "./Expire";
+import Expire from "./display/Expire";
+import Avatar from "./display/Gravatar";
 import Loading from "./Loading";
 
 let timer = null;

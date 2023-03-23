@@ -6,7 +6,7 @@ import * as React from "react";
 
 import { CDN_URL } from "../config/services";
 import { ClearIcon } from "./ClearIcon";
-import Link from "./Link";
+import Link from "./link/Link";
 import { SearchIcon } from "./SearchIcon";
 
 const searchClient = algoliasearch(import.meta.env.VITE_ALGOLIA_APP_ID, import.meta.env.VITE_ALGOLIA_APP_KEY);
