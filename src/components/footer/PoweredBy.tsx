@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import * as React from "react";
 
-import graphQl from "../resources/svg/graphQl";
-import laravel from "../resources/svg/laravel";
-import materialUi from "../resources/svg/materialUi";
-import react from "../resources/svg/react";
-import ExternalLink from "./ExternalLink";
+import graphQl from "../../resources/svg/graphQl";
+import laravel from "../../resources/svg/laravel";
+import materialUi from "../../resources/svg/materialUi";
+import react from "../../resources/svg/react";
+import ExternalLink from "../ExternalLink";
 
 const Img = styled.img`
   width: 20px;
@@ -14,7 +14,7 @@ const Img = styled.img`
 
 export default () => (
   <>
-    Power By{" "}
+    Powered By{" "}
     <ExternalLink href="https://reactjs.org">
       <Img src={react} alt="React" />
     </ExternalLink>
