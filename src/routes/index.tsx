@@ -23,14 +23,13 @@ const Forget = lazy(() => import("../containers/auth/Forget"));
 const EmailVerify = lazy(() => import("../containers/auth/EmailVerify"));
 const Api = lazy(() => import("../containers/tools/Api"));
 const Time = lazy(() => import("../containers/tools/Time"));
-const About = lazy(() => import("../containers/site/About"));
+const About = lazy(() => import("../containers/About"));
 const Weibo = lazy(() => import("../containers/demos/Weibo"));
 const WeiboAbout = lazy(() => import("../containers/demos/WeiboAbout"));
 const Project = lazy(() => import("../components/task/Project"));
 const NewProject = lazy(() => import("../components/task/NewProject"));
 const SingleProject = lazy(() => import("../components/task/SingleProject"));
 const Nav = lazy(() => import("../components/Nav"));
-const A2Z = lazy(() => import("../containers/tools/A2Z"));
 const BookmarkCreate = lazy(() => import("../containers/BookmarkCreate"));
 const Ndd = lazy(() => import("../components/Ndd"));
 const User = lazy(() => import("../containers/users/User"));
@@ -42,7 +41,6 @@ const Font = lazy(() => import("../containers/demos/Font"));
 const Like = lazy(() => import("../containers/Like"));
 const Video = lazy(() => import("../containers/demos/Video"));
 const Music = lazy(() => import("../containers/demos/Music"));
-const Copywriting = lazy(() => import("../containers/tools/Copywriting"));
 const Moon = lazy(() => import("../containers/demos/Moon"));
 const PHPFunction = lazy(() => import("../containers/tools/PHPFunction"));
 const Chat = lazy(() => import("../components/Chat"));
@@ -120,13 +118,11 @@ export default () => (
 
         {/* 小工具 */}
         <Route path="/diff" element={<Diff />} />
-        <Route path="/a-z" element={<A2Z />} />
         <Route path="/ndd" element={<Ndd />} />
         <Route path="/base64" element={<Base64 />} />
         <Route path="/money" element={<Money />} />
         <Route path="/color" element={<Color />} />
         <Route path="/mediawiki-to-markdown" element={<MediaWikiToMarkdown />} />
-        <Route path="/copywriting" element={<Copywriting />} />
         <Route path="/php-function" element={<PHPFunction />} />
         <Route path="/add-suffix" element={<AddSuffix />} />
 

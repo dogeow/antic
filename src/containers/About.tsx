@@ -3,7 +3,7 @@ import { groupBy } from "lodash";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { ABOUT_ME } from "../../graphql/lab";
+import { ABOUT_ME } from "../graphql/lab";
 
 const About = () => {
   const [aboutMe, setAboutMe] = useState([]);
