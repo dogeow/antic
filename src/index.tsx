@@ -3,6 +3,7 @@ import "./styles/index.css";
 import { ApolloProvider } from "@apollo/client";
 import { ConfigProvider } from "antd-mobile";
 import zhCN from "antd-mobile/es/locales/zh-CN";
+import { AxiosRequestConfig } from "axios";
 import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { RecoilRoot, Snapshot } from "recoil";
@@ -32,14 +33,15 @@ function DebugObserver() {
   return null;
 }
 
+const swrFetcher = async (resource: string, init?: AxiosRequestConfig) => {
+  const { data } = await axios.get(resource, init);
+  return data;
+};
+
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <SWRConfig
-        value={{
-          fetcher: (resource, init) => axios.get(resource, init).then((res) => res.data),
-        }}
-      >
+      <SWRConfig value={{ fetcher: swrFetcher }}>
         <RecoilRoot>
           {import.meta.env.DEV && <DebugObserver />}
           <ConfigProvider locale={zhCN}>
