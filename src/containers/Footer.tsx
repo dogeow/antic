@@ -56,17 +56,11 @@ const Footer = () => {
         </Grid>
         <Grid item xs={12} sm={3}>
           <Typography variant="h5" component="h3">
-            网站
+            其他
           </Typography>
           <ul>
             <li>
               <RouteLink to="/project/1">代办事项</RouteLink>
-            </li>
-            <li>
-              <RouteLink to="/docs">网站文档</RouteLink>
-            </li>
-            <li>
-              <RouteLink to="/powered_by">Powered by</RouteLink>
             </li>
             <Tooltip title="GitHub 存储库" aria-label="GitHub 存储库">
               <IconButton

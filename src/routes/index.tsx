@@ -9,7 +9,6 @@ import Layout from "./Layout";
 const PostList = lazy(() => import("../containers/post/PostList"));
 const Login = lazy(() => import("../containers/users/Login"));
 const SelfTalk = lazy(() => import("../containers/me/SelfTalk"));
-const PoweredBy = lazy(() => import("../containers/site/PoweredBy"));
 const Emoji = lazy(() => import("../components/emoji/Emoji"));
 const EmojiCreate = lazy(() => import("../components/emoji/EmojiCreate"));
 const PostCreate = lazy(() => import("../containers/post/PostCreate"));
@@ -50,7 +49,6 @@ const Chat = lazy(() => import("../components/Chat"));
 const Base64 = lazy(() => import("../containers/tools/Base64"));
 const Money = lazy(() => import("../containers/tools/Money"));
 const Color = lazy(() => import("../containers/tools/Color"));
-const Docs = lazy(() => import("../containers/site/Docs"));
 const MediaWikiToMarkdown = lazy(() => import("../containers/tools/MediaWikiToMarkdown"));
 const Download = lazy(() => import("../containers/demos/Download"));
 const NoMatch = lazy(() => import("../containers/NoMatch"));
@@ -144,10 +142,8 @@ export default () => (
         <Route path="/about" element={<About />} />
         <Route path="/self-talk" element={<SelfTalk />} />
         <Route path="/like" element={<Like />} />
-        <Route path="/powered_by" element={<PoweredBy />} />
         <Route path="/like" element={<Like />} />
         <Route path="/cars" element={<Cars />} />
-        <Route path="/docs" element={<Docs />} />
 
         <Route path="/things" element={<Thing />} />
         <Route path="/things/create" element={<ThingCreate />} />
