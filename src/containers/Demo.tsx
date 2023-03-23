@@ -78,7 +78,7 @@ const Demo = () => (
       <h3>学习</h3>
       <ul>
         <li>
-          <a href="/demos/react-test.html" target="_blank">
+          <a href="/codes/react-test.html" target="_blank">
             React 单文件测试
           </a>
         </li>
@@ -131,7 +131,7 @@ const Demo = () => (
           <Link to="/music">音频测试</Link>
         </li>
         <li>
-          <a href="/demos/mv.html" target="_blank">
+          <a href="/examples/mv.html" target="_blank">
             MV 测试
           </a>
         </li>

@@ -52,16 +52,14 @@ const Money = lazy(() => import("../containers/tools/Money"));
 const Color = lazy(() => import("../containers/tools/Color"));
 const Docs = lazy(() => import("../containers/site/Docs"));
 const MediaWikiToMarkdown = lazy(() => import("../containers/tools/MediaWikiToMarkdown"));
-const Markdown = lazy(() => import("../containers/markdown"));
 const Download = lazy(() => import("../containers/demos/Download"));
 const NoMatch = lazy(() => import("../containers/NoMatch"));
 const Diff = lazy(() => import("../containers/tools/Diff"));
 const Game = lazy(() => import("../containers/game"));
 const Pic = lazy(() => import("../containers/Pic"));
 const Site = lazy(() => import("../containers/Site"));
-const Translate = lazy(() => import("../containers/Translate"));
 const Test = lazy(() => import("../containers/post/Test"));
-const Mui = lazy(() => import("../containers/Mui"));
+const MuiX = lazy(() => import("../containers/MuiX"));
 const Thing = lazy(() => import("../projects/things/Thing"));
 const ThingCreate = lazy(() => import("../projects/things/ThingCreate"));
 const ThingPhoto = lazy(() => import("../projects/things/Photo"));
@@ -157,10 +155,8 @@ export default () => (
         <Route path="/things/photos" element={<ThingPhoto />} />
 
         {/* 开发中、测试 */}
-        <Route path="/markdown" element={<Markdown />} />
-        <Route path="/translate" element={<Translate />} />
         <Route path="/test" element={<Test />} />
-        <Route path="/mui" element={<Mui />} />
+        <Route path="/mui-x" element={<MuiX />} />
         <Route path="/game" element={<Game />} />
         <Route path="/ai" element={<Ai />} />
 

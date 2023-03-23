@@ -63,7 +63,6 @@
     "jest-config": "^29.1.2",
     "laravel-echo": "^1.13.1",
     "lodash": "^4.17.20",
-    "prismjs": "^1.27.0",
     "prop-types": "^15.7.2",
     "prosemirror-transform": "^1.7.0",
     "pusher-js": "^7.1.0-beta",

@@ -21,7 +21,7 @@ import {
   Zoom,
 } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import React, { useState } from "react";
+import React, { MouseEventHandler, ReactEventHandler, useState } from "react";
 import { Link as RouteLink, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
@@ -88,8 +88,9 @@ export default () => {
     setOpen(true);
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+
     const login = async () => {
       const csrf = await axios.get("sanctum/csrf-cookie");
       if (csrf.status !== 204) {
@@ -161,16 +162,16 @@ export default () => {
           </Grid>
           <form className={classes.form} noValidate>
             <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
               id="account"
               label="账号"
               name="account"
               value={account}
-              autoComplete="account"
+              required
+              fullWidth
+              margin="normal"
+              variant="outlined"
               autoFocus
+              autoComplete="account"
               onChange={(e) => setAccount(e.target.value)}
               error={!!inputErrors?.account}
               placeholder={inputErrors?.account ? inputErrors.account[0] : "手机号码或 Email 地址"}
@@ -192,15 +193,15 @@ export default () => {
               }}
             />
             <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
+              id="password"
+              type={displayPassword ? "text" : "password"}
               name="password"
               value={password}
               label="密码"
-              type={displayPassword ? "text" : "password"}
-              id="password"
+              required
+              fullWidth
+              margin="normal"
+              variant="outlined"
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
               error={!!inputErrors?.password}

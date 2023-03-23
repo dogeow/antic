@@ -110,7 +110,7 @@ const PostList = () => {
     }
   };
 
-  const handleEnterPost = (item) => {
+  const handleEnterPost = (item: Post) => {
     setItem("post", {
       id: item.id,
       title: item.title,

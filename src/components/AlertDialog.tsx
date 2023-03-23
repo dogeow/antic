@@ -2,17 +2,23 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import PropTypes from "prop-types";
 import * as React from "react";
 
+interface Props {
+  open: boolean;
+  handleClose: () => void;
+  title: string;
+  content: string;
+  agree: () => void;
+}
+
 /**
- *
  * @param {boolean} open
- * @param {function} handleClose
+ * @param {() => void} handleClose
  * @param {string} title
  * @param {string} content
- * @param {function}agree
+ * @param {() => void} agree
  * @return {JSX.Element}
- * @constructor
  */
-export default function AlertDialog({ open, handleClose, title, content, agree }) {
+const AlertDialog: React.FC<Props> = ({ open, handleClose, title, content, agree }) => {
   return (
     <Dialog
       open={open}
@@ -34,12 +40,6 @@ export default function AlertDialog({ open, handleClose, title, content, agree }
       </DialogActions>
     </Dialog>
   );
-}
-
-AlertDialog.propTypes = {
-  open: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  agree: PropTypes.func.isRequired,
 };
+
+export default AlertDialog;

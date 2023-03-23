@@ -143,6 +143,9 @@ const Ai = () => {
   return (
     <Grid container spacing={1} maxWidth={"sm"} minWidth={"xs"} alignItems={"center"} justifyContent={"center"}>
       <Grid item xs={12}>
+        <Alert severity="error">KEY 额度用完了，等绑定信用卡后再用吧。</Alert>
+      </Grid>
+      <Grid item xs={12}>
         <TextField
           label="问题"
           required
