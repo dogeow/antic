@@ -42,9 +42,6 @@ const Demo = () => (
           </Link>
         </li>
         <li>
-          <Link to="/copywriting">文案编辑</Link>
-        </li>
-        <li>
           <Link to="/money">记账</Link>
         </li>
         <li>
@@ -56,9 +53,6 @@ const Demo = () => (
           <Link to="/demos/calculator">
             <span role="img">🌡</span> 摄氏度、华氏度转换（React 官方 Example）
           </Link>
-        </li>
-        <li>
-          <Link to="/a-z">A-Z</Link>
         </li>
         <li>
           <Link to="/api/time">⌚ ️时间、时间戳</Link>
@@ -134,14 +128,6 @@ const Demo = () => (
           <a href="/examples/mv.html" target="_blank">
             MV 测试
           </a>
-        </li>
-        <li>
-          <Link to="/piano">
-            <span role="img" aria-label="钢琴">
-              🎹
-            </span>{" "}
-            钢琴（卡农）
-          </Link>
         </li>
       </ul>
     </div>
