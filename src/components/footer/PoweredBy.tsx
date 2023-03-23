@@ -14,7 +14,7 @@ const Img = styled.img`
 
 export default () => (
   <>
-    Powered By{" "}
+    Powered By 🫴{" "}
     <ExternalLink href="https://reactjs.org">
       <Img src={react} alt="React" />
     </ExternalLink>

@@ -5,7 +5,7 @@ import Heart from "../Heart";
 
 const BuiltBy = () => (
   <>
-    ⛏ Built By{" "}
+    Built By ⛏{"👷‍♂ "}️
     <Link
       to="/about"
       style={{
