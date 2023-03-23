@@ -11,7 +11,7 @@ const videoJsOptions = {
   controls: true,
   sources: [
     {
-      src: `${CDN_URL}medias/mv.mp4`,
+      src: `${CDN_URL}/medias/mv.mp4`,
       type: "video/mp4",
     },
   ],
