@@ -23,6 +23,7 @@ function ThingCreate() {
   const formRef = React.createRef();
 
   const [fileList, setFileList] = useState([]);
+  const [hasExpiredTime, setHasExpiredTime] = useState(false); // 新增状态来跟踪是否选择了过期时间
 
   const onFinish = (values) => {
     axios
@@ -156,12 +157,15 @@ function ThingCreate() {
           trigger="onConfirm"
           onClick={(e, datePickerRef) => {
             datePickerRef.current?.open();
+            // 选择过期时间后，更新状态为true
+            setHasExpiredTime(true);
           }}
         >
           <DatePicker>{(value) => (value ? dayjs(value).format("YYYY-MM-DD") : "请选择日期")}</DatePicker>
         </Form.Item>
         <Form.Item name="is_expiration_reminder" label="过期提醒" childElementPosition="right">
-          <Switch />
+          {/* 根据hasExpiredTime状态来更新disabled属性 */}
+          <Switch disabled={!hasExpiredTime} />
         </Form.Item>
       </Form>
       <div className="bottom">
