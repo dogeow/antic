@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     minHeight: 200,
     paddingTop: 16,
   },
-  "@global": {
-    li: {
+  list: {
+    "& li": {
       listStyleType: "circle",
     },
   },
@@ -39,8 +39,8 @@ const Footer = () => {
           <Typography variant="h5" component="h3">
             说明
           </Typography>
-          <ul>
-            <li>该实验室的各项功能都是测试版本</li>
+          <ul className={classes.list}>
+            <li>实验室，顾名思义，东西都是实验品</li>
             <li>拥抱新技术、新生态，做一个现代化的程序员</li>
             <li>因实验室只有自己在访问和使用，所以没有其他人的注册和信息</li>
             <li>If there is any copyright infringement, please notify us at once and we&apos;ll delete it.</li>
@@ -50,7 +50,7 @@ const Footer = () => {
           <Typography variant="h5" component="h3">
             长期计划
           </Typography>
-          <ul>
+          <ul className={classes.list}>
             <li>健康</li>
             <li>英语</li>
             <li>PHP + JavaScript</li>
