@@ -4,7 +4,12 @@ import * as React from "react";
 
 import Autocomplete from "./SearchByAutocomplete";
 
-export default function App(props) {
+interface Props {
+  searching: boolean;
+  closeSearch: () => void;
+}
+
+export default function App(props: Props) {
   return (
     props.searching && (
       <div

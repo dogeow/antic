@@ -48,6 +48,7 @@ import {
   isExpiredState,
   isSnackOpenState,
   paletteModeState,
+  severityState,
   snackMessageState,
   usersState,
   userState,
@@ -95,6 +96,7 @@ const Header = () => {
   const [user, setUser] = useRecoilState(userState);
   const [users, setUsers] = useRecoilState(usersState);
   const [snackMessage, setSnackMessage] = useRecoilState(snackMessageState);
+  const [severity] = useRecoilState(severityState);
   const [isSnackOpen, setIsSnackOpen] = useRecoilState(isSnackOpenState);
   const [isExpired, setIsExpired] = useRecoilState(isExpiredState);
   const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
@@ -483,7 +485,7 @@ const Header = () => {
         }}
       >
         <Alert
-          severity="success"
+          severity={severity}
           onClose={(event, reason) => {
             if (reason === "clickaway") {
               return;

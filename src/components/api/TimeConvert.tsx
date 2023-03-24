@@ -1,5 +1,8 @@
+import "./myStyle.css";
+
 import ClearIcon from "@mui/icons-material/Clear";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
+import { Grid } from "@mui/material";
 import dayjs from "dayjs";
 import * as React from "react";
 import { useEffect, useState } from "react";
@@ -27,40 +30,40 @@ const TimeConvert = (props: { onOpen: () => void }) => {
   }, [value]);
 
   return (
-    <div>
-      <TextField
-        variant="standard"
-        value={value}
-        placeholder={"输入日期时间或时间戳"}
-        onChange={(e) => {
-          setValue(() => {
-            const newValue = e.target.value.replace(/[^\d -:]/g, "");
-            if (/[^\d -:]/g.test(e.target.value)) {
-              setSnack({
-                isOpen: true,
-                message: "只能输入 YYYY-MM-DD HH:mm:ss 格式",
-              });
-            }
-            return newValue;
-          });
-        }}
-        InputProps={{
-          endAdornment: value !== "" && (
-            <InputAdornment position="end">
-              <IconButton aria-label="Clear" onClick={() => setValue("")} edge="end" size="small">
-                <ClearIcon />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-      <span>
-        {" => "}
-        {value === "" && "?"}
-        {toValue}
-      </span>
-      {toValue && getClipboardButton(toValue)}
-    </div>
+    <Grid container spacing={1}>
+      <Grid item xs={12} md="auto">
+        <TextField
+          value={value}
+          placeholder={"输入日期时间或时间戳"}
+          onChange={(e) => {
+            setValue(() => {
+              const newValue = e.target.value.replace(/[^\d -:]/g, "");
+              if (/[^\d -:]/g.test(e.target.value)) {
+                setSnack({
+                  severity: "warning",
+                  isOpen: true,
+                  message: "只能输入 YYYY-MM-DD HH:mm:ss 格式",
+                });
+              }
+              return newValue;
+            });
+          }}
+          InputProps={{
+            endAdornment: value !== "" && (
+              <InputAdornment position="end">
+                <IconButton aria-label="Clear" onClick={() => setValue("")} edge="end" size="small">
+                  <ClearIcon />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Grid>
+      <Grid item xs={12} md={6} className="arrow-text-wrapper">
+        <span>{toValue || "?"}</span>
+        {toValue && getClipboardButton(toValue)}
+      </Grid>
+    </Grid>
   );
 };
 

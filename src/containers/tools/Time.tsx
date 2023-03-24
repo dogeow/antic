@@ -1,3 +1,4 @@
+import { Grid } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import dayjs from "dayjs";
@@ -7,6 +8,7 @@ import { useEffect } from "react";
 
 import TimeConvert from "../../components/api/TimeConvert";
 import ClipboardButton from "../../components/ClipboardButton";
+import Hr from "../../components/display/Hr";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -75,73 +77,80 @@ const Time = () => {
     <div>
       <h2>转换</h2>
       <TimeConvert onOpen={handleClick} />
-      <h2>现在</h2>
-      <div>
-        当前日期时间：{nowDateTime}
-        {getClipboardButton(nowDateTime)}
-      </div>
-      <div>
-        当前日期时间戳：{nowUnixTime}
-        {getClipboardButton(nowUnixTime)}
-      </div>
-      <h2>昨天</h2>
-      <div>
-        开始时间戳：{yesterdayStartUnix}
-        {getClipboardButton(yesterdayStartUnix)}({yesterdayStartTime}
-        {getClipboardButton(yesterdayStartTime)})
-      </div>
-      <h2>今天</h2>
-      <div>
-        开始时间：{todayStartDateTime}
-        {getClipboardButton(todayStartDateTime)}
-      </div>
-      <div>
-        开始时间戳：{todayStartUnixTime}
-        {getClipboardButton(todayStartUnixTime)}
-      </div>
-      <div>
-        结束时间：{todayEndDateTime}
-        {getClipboardButton(todayEndDateTime)}
-      </div>
-      <div>
-        结束时间戳：{todayEndUnixTime}
-        {getClipboardButton(todayEndUnixTime)}
-      </div>
-      <h2>明天</h2>
-      <div>
-        开始时间戳：{tomorrowStartUnix}
-        {getClipboardButton(tomorrowStartUnix)}({tomorrowStartTime}
-        {getClipboardButton(tomorrowStartTime)})
-      </div>
-      <h2>月份 </h2>
-      <div>
-        上月开始：{lastDayStartDateTime}
-        {getClipboardButton(lastDayStartDateTime)}（{lastDayEndUnixTime}
-        {getClipboardButton(lastDayEndUnixTime)}）
-      </div>
-      <div>
-        本月开始：{monthStartDateTime}
-        {getClipboardButton(monthStartDateTime)}（{monthStartUnixTime}
-        {getClipboardButton(monthStartUnixTime)}）
-      </div>
-      <div>
-        下月开始：{nextDayStartDateTime}
-        {getClipboardButton(nextDayStartDateTime)}（{nextDayEndDateTime}
-        {getClipboardButton(nextDayEndDateTime)}）
-      </div>
-      <Snackbar
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        open={open}
-        autoHideDuration={2000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          复制成功
-        </Alert>
-      </Snackbar>
+      <Hr style={{ marginTop: 20 }} />
+      <Grid container spacing={1} justifyItems={""}>
+        <Grid item>
+          <h2>现在</h2>
+          <div>
+            当前日期时间：{nowDateTime}
+            {getClipboardButton(nowDateTime)}
+          </div>
+          <div>
+            当前日期时间戳：{nowUnixTime}
+            {getClipboardButton(nowUnixTime)}
+          </div>
+          <h2>昨天</h2>
+          <div>
+            开始时间戳：{yesterdayStartUnix}
+            {getClipboardButton(yesterdayStartUnix)}({yesterdayStartTime}
+            {getClipboardButton(yesterdayStartTime)})
+          </div>
+          <h2>今天</h2>
+          <div>
+            开始时间：{todayStartDateTime}
+            {getClipboardButton(todayStartDateTime)}
+          </div>
+          <div>
+            开始时间戳：{todayStartUnixTime}
+            {getClipboardButton(todayStartUnixTime)}
+          </div>
+          <div>
+            结束时间：{todayEndDateTime}
+            {getClipboardButton(todayEndDateTime)}
+          </div>
+          <div>
+            结束时间戳：{todayEndUnixTime}
+            {getClipboardButton(todayEndUnixTime)}
+          </div>
+          <h2>明天</h2>
+          <div>
+            开始时间戳：{tomorrowStartUnix}
+            {getClipboardButton(tomorrowStartUnix)}({tomorrowStartTime}
+            {getClipboardButton(tomorrowStartTime)})
+          </div>
+        </Grid>
+        <Grid item>
+          <h2>月份 </h2>
+          <div>
+            上月开始：{lastDayStartDateTime}
+            {getClipboardButton(lastDayStartDateTime)}（{lastDayEndUnixTime}
+            {getClipboardButton(lastDayEndUnixTime)}）
+          </div>
+          <div>
+            本月开始：{monthStartDateTime}
+            {getClipboardButton(monthStartDateTime)}（{monthStartUnixTime}
+            {getClipboardButton(monthStartUnixTime)}）
+          </div>
+          <div>
+            下月开始：{nextDayStartDateTime}
+            {getClipboardButton(nextDayStartDateTime)}（{nextDayEndDateTime}
+            {getClipboardButton(nextDayEndDateTime)}）
+          </div>
+        </Grid>
+        <Snackbar
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "center",
+          }}
+          open={open}
+          autoHideDuration={2000}
+          onClose={handleClose}
+        >
+          <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
+            复制成功
+          </Alert>
+        </Snackbar>
+      </Grid>
     </div>
   );
 };
