@@ -80,7 +80,6 @@ function ThingCreate() {
           </Button>
         }
       >
-        <Form.Header>添加物品</Form.Header>
         <Form.Item label="名称" name="name" rules={[{ required: true, message: "名称不能为空" }]}>
           <Input placeholder="又大手大脚买了什么？" clearable />
         </Form.Item>
