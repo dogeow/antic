@@ -161,7 +161,9 @@ function ThingCreate() {
             setHasExpiredTime(true);
           }}
         >
-          <DatePicker>{(value) => (value ? dayjs(value).format("YYYY-MM-DD") : "请选择日期")}</DatePicker>
+          <DatePicker min={dayjs().add(1, "day").toDate()}>
+            {(value) => (value ? dayjs(value).format("YYYY-MM-DD") : "请选择日期")}
+          </DatePicker>
         </Form.Item>
         <Form.Item name="is_expiration_reminder" label="过期提醒" childElementPosition="right">
           {/* 根据hasExpiredTime状态来更新disabled属性 */}
