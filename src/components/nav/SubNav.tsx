@@ -4,12 +4,23 @@ import * as React from "react";
 
 import Menu from "./Menu";
 
-const SubNav = (props) => (
+interface MenuItem {
+  type: "url" | "folder";
+  name: string;
+  url: string;
+  children?: MenuItem[];
+}
+
+interface SubNavProps {
+  data: MenuItem[];
+}
+
+const SubNav: React.FC<SubNavProps> = ({ data }) => (
   <Grid container spacing={2}>
     <Grid container spacing={2} style={{ marginBottom: 20 }}>
-      {props.data.map((menu, index) => menu.type === "url" && <Menu key={index} name={menu.name} url={menu.url} />)}
+      {data.map((menu, index) => menu.type === "url" && <Menu key={index} name={menu.name} url={menu.url} />)}
     </Grid>
-    {props.data.map(
+    {data.map(
       (menu, index) =>
         menu.type === "folder" && (
           <Grid key={index} container spacing={0} style={{ marginBottom: 20 }}>
@@ -19,9 +30,8 @@ const SubNav = (props) => (
               </Typography>
             </Grid>
             <Grid container spacing={2}>
-              {menu.children.map((menu, index) => (
-                <Menu url={menu.url} name={menu.name} key={index} />
-              ))}
+              {menu.children &&
+                menu.children.map((childMenu, index) => <Menu url={childMenu.url} name={childMenu.name} key={index} />)}
             </Grid>
           </Grid>
         )

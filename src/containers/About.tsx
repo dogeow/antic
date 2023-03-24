@@ -5,8 +5,14 @@ import { Link } from "react-router-dom";
 
 import { ABOUT_ME } from "../graphql/lab";
 
-const About = () => {
-  const [aboutMe, setAboutMe] = useState([]);
+interface AboutData {
+  id: number;
+  category: string;
+  content: string;
+}
+
+const About: React.FC = () => {
+  const [aboutMe, setAboutMe] = useState<{ [category: string]: any }>({});
 
   const { data } = useQuery(ABOUT_ME);
 
@@ -23,7 +29,7 @@ const About = () => {
           <div key={category}>
             <h3>{category}</h3>
             <ul>
-              {aboutMe[category].map((item) => (
+              {aboutMe[category].map((item: AboutData) => (
                 <li key={item.id} dangerouslySetInnerHTML={{ __html: item.content }} />
               ))}
             </ul>

@@ -1,31 +1,36 @@
 import { Divider, Link, List, ListItemButton, ListItemText, SwipeableDrawer } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "@mui/styles";
 import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
 import appConfig from "../../config/index.json";
 import anticPic from "../../resources/svg/antic";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
   list: {
     width: 250,
   },
-});
+}));
+
+interface TemporaryDrawerProps {
+  open: boolean;
+  onClick: () => void;
+}
 
 /**
  * 抽屉柜
- * @param {object} props
- * @param {function} props.onClick
+ * @param {TemporaryDrawerProps} props
  * @return {JSX.Element}
- * @constructor
  */
-
-const TemporaryDrawer = (props) => {
+const TemporaryDrawer: React.FC<TemporaryDrawerProps> = (props) => {
   const classes = useStyles();
-  const anchor = "left";
 
-  const toggleDrawer = (event) => {
-    if (event && event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+  const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      ((event as React.KeyboardEvent).key === "Tab" || (event as React.KeyboardEvent).key === "Shift")
+    ) {
       return;
     }
     props.onClick();
@@ -64,7 +69,7 @@ const TemporaryDrawer = (props) => {
   return (
     <div>
       <SwipeableDrawer open={props.open} onClose={toggleDrawer} onOpen={toggleDrawer}>
-        {sideList(anchor)}
+        {sideList()}
       </SwipeableDrawer>
     </div>
   );

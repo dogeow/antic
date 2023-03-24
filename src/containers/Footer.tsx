@@ -1,7 +1,6 @@
 import GitHub from "@mui/icons-material/GitHub";
 import { Container, Grid, IconButton, Theme, Tooltip, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import clsx from "clsx";
 import * as React from "react";
 import { Link as RouteLink } from "react-router-dom";
 
@@ -22,6 +21,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     minHeight: 200,
     paddingTop: 16,
   },
+  "@global": {
+    li: {
+      listStyleType: "circle",
+    },
+  },
 }));
 
 const Footer = () => {
@@ -30,7 +34,7 @@ const Footer = () => {
   return (
     <Grid container component={Container} maxWidth="lg">
       <Hr />
-      <Grid item container className={clsx(classes.footer, classes.ul)}>
+      <Grid item container className={classes.footer}>
         <Grid item xs={12} sm={5}>
           <Typography variant="h5" component="h3">
             说明

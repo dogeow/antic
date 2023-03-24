@@ -36,6 +36,7 @@
     "@types/node": "^18.7.8",
     "@types/react": "^18.0.17",
     "@types/react-beautiful-dnd": "^13.1.2",
+    "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-dom": "^18.0.6",
     "@videojs/vhs-utils": "^2.3.0",
     "@vitejs/plugin-react": "^2.0.0",
