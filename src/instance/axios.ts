@@ -25,12 +25,9 @@ instance.interceptors.request.use(
       window.console.log(request);
       console.groupEnd();
     }
-
     return request;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
 instance.interceptors.response.use(
@@ -40,13 +37,11 @@ instance.interceptors.response.use(
       window.console.log(response);
       console.groupEnd();
     }
-
     const newToken = response.headers.authorization;
     if (newToken) {
       const user = getItem("user");
       setItem("user", { ...user, accessToken: newToken });
     }
-
     return response;
   },
   (error) => {
@@ -54,25 +49,23 @@ instance.interceptors.response.use(
       if (error.response.config.url === "/user/logout") {
         return error;
       }
-
-      switch (error.response.status) {
+      const { status } = error.response;
+      switch (status) {
         case 400:
           window.console.log(error);
           Swal.fire("提示️", error.response.data.message, "error");
           break;
-        case 401: {
+        case 401:
           const text = getItem("user.accessToken") ? "登录状态过期" : "尚未登录账号";
           Swal.fire("提示️", text, "warning");
           localStorage.removeItem("token");
           break;
-        }
         case 422:
           break;
         default:
           Swal.fire("提示️", error.response.statusText || error.response.message, "error");
       }
     }
-
     return Promise.reject(error.response);
   }
 );
