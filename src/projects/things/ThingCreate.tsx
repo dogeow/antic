@@ -1,5 +1,3 @@
-import "./things.css";
-
 import {
   Button,
   DatePicker,
@@ -170,9 +168,7 @@ function ThingCreate() {
           <Switch disabled={!hasExpiredTime} />
         </Form.Item>
       </Form>
-      <div className="bottom">
-        <Bottom />
-      </div>
+      <Bottom />
     </div>
   );
 }

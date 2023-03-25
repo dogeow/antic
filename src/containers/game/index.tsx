@@ -6,7 +6,7 @@ import { getItem } from "../../helpers";
 import { getPointOnCanvas, isCanvasSupported } from "../../helpers/canvas";
 import useCanvas from "../../hooks/useCanvas";
 import axios from "../../instance/axios";
-import { userState } from "../../states";
+import { snackState, userState } from "../../states";
 import { LAYERS, MAP_TILE_IMAGES, TILE_SIZE } from "./constants";
 import drawLayer from "./drawLayer";
 import drawMonster from "./drawMonster";
@@ -16,6 +16,7 @@ import { checkMapCollision } from "./utils";
 export default () => {
   const [users, setUsers] = useState<GameUser[]>([]);
   const [monsters, setMonsters] = useState([]);
+  const [, setSnackState] = useRecoilState(snackState);
   const [user] = useRecoilState(userState);
 
   if (!isCanvasSupported()) {
@@ -41,6 +42,14 @@ export default () => {
     y = Math.floor(y / TILE_SIZE);
 
     if (checkMapCollision(x, y)) {
+      return;
+    }
+
+    if (!getItem("user.name")) {
+      setSnackState({
+        message: "请先登录",
+        severity: "warning",
+      });
       return;
     }
 

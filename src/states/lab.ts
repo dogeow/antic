@@ -62,14 +62,18 @@ export const snackState = selector({
     const severity = get(severityState);
     return { isOpen, message, severity };
   },
-  set: ({ get, set }, data) => {
-    const { isOpen, message, severity } = data as {
-      isOpen: boolean;
+  set: ({ set }, data) => {
+    const {
+      message,
+      isOpen = false,
+      severity = "success",
+    } = data as {
       message: string;
-      severity: "success" | "info" | "warning" | "error";
+      severity?: "success" | "info" | "warning" | "error";
+      isOpen?: boolean;
     };
     set(snackMessageState, message);
     set(severityState, severity);
-    set(isSnackOpenState, true);
+    set(isSnackOpenState, isOpen);
   },
 });

@@ -67,9 +67,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export default () => {
+  const classes = useStyles();
   const navigate = useNavigate();
   const { state } = useLocation();
-  const classes = useStyles();
+
   const [, setUser] = useRecoilState<User>(userState);
   const [, setUsers] = useRecoilState<User[]>(usersState);
   const [, setIsExpired] = useRecoilState(isExpiredState);

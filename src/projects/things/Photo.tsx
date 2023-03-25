@@ -1,6 +1,4 @@
-import "./things.css";
-
-import { DotLoading, Grid, Image, InfiniteScroll, Skeleton, Space } from "antd-mobile";
+import { DotLoading, Image, InfiniteScroll, Skeleton, Space } from "antd-mobile";
 import React, { useState } from "react";
 
 import axios from "../../instance/axios";
@@ -67,9 +65,7 @@ function Photo() {
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore}>
         <InfiniteScrollContent hasMore={hasMore} />
       </InfiniteScroll>
-      <div className="bottom">
-        <Bottom />
-      </div>
+      <Bottom />
     </div>
   );
 }
