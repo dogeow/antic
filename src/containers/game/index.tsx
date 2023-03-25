@@ -48,7 +48,7 @@ export default () => {
     if (!getItem("user.name")) {
       setSnackState({
         message: "请先登录",
-        severity: "warning",
+        severity: "error",
       });
       return;
     }

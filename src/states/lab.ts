@@ -49,31 +49,29 @@ export const snackMessageState = atom({
   default: "",
 });
 
-export const severityState = atom({
+export const severityState = atom<"success" | "info" | "warning" | "error">({
   key: "severityState",
   default: "success",
 });
 
+interface snackObject {
+  message: string;
+  severity?: "success" | "info" | "warning" | "error";
+  isOpen?: boolean;
+}
+
 export const snackState = selector({
   key: "snack",
-  get: ({ get }) => {
-    const isOpen = get(isSnackOpenState);
+  get: ({ get }): snackObject => {
     const message = get(snackMessageState);
     const severity = get(severityState);
-    return { isOpen, message, severity };
+    const isOpen = get(isSnackOpenState);
+    return { message, severity, isOpen };
   },
   set: ({ set }, data) => {
-    const {
-      message,
-      isOpen = false,
-      severity = "success",
-    } = data as {
-      message: string;
-      severity?: "success" | "info" | "warning" | "error";
-      isOpen?: boolean;
-    };
+    const { isOpen, message, severity } = data as snackObject;
     set(snackMessageState, message);
-    set(severityState, severity);
-    set(isSnackOpenState, isOpen);
+    set(severityState, severity || "success");
+    set(isSnackOpenState, isOpen || true);
   },
 });
