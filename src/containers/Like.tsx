@@ -18,6 +18,16 @@ const LIKES = gql`
   }
 `;
 
+interface Like {
+  id: number;
+  name: string;
+  sub_header: string;
+  img: string;
+  link: string;
+  intro: string;
+  feeling: string;
+}
+
 const Like = () => {
   const [like, setLike] = useState([]);
 
@@ -31,7 +41,7 @@ const Like = () => {
 
   return (
     <Grid container justifyContent="flex-start" spacing={2}>
-      {like.map((item) => (
+      {like.map((item: Like) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={item.id}>
           <Card
             title={item.name}
