@@ -1,5 +1,3 @@
-import "./myStyle.css";
-
 import ClearIcon from "@mui/icons-material/Clear";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { Grid } from "@mui/material";
