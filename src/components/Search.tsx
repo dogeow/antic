@@ -1,17 +1,16 @@
 import "@algolia/autocomplete-theme-classic";
 
 import * as React from "react";
+import { useRecoilState } from "recoil";
 
+import { isSearchOpenState } from "../states";
 import Autocomplete from "./SearchByAutocomplete";
 
-interface Props {
-  searching: boolean;
-  closeSearch: () => void;
-}
+export default function App() {
+  const [searching, setSearching] = useRecoilState(isSearchOpenState);
 
-export default function App(props: Props) {
   return (
-    props.searching && (
+    searching && (
       <div
         className="container"
         style={{
@@ -30,7 +29,9 @@ export default function App(props: Props) {
           openOnFocus={true}
           debug={true}
           autoFocus={true}
-          closeSearch={props.closeSearch}
+          closeSearch={() => {
+            setSearching(false);
+          }}
         />
         <div
           style={{

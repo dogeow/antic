@@ -23,7 +23,7 @@ const Categories = () => {
         </Breadcrumbs>
       </Grid>
       <Grid item xs={12}>
-        <ChipFlow path="categories" onHandleClick={handleClick} />
+        <ChipFlow onHandleClick={handleClick} />
       </Grid>
     </Grid>
   );

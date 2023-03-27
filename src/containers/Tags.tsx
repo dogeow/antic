@@ -10,7 +10,7 @@ const Tags = () => {
     navigate(`/posts?filter[tags.name]=${tags}`);
   };
 
-  return <ChipFlow path="tags" onHandleClick={handleClick} />;
+  return <ChipFlow onHandleClick={handleClick} />;
 };
 
 export default Tags;

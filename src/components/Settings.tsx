@@ -1,25 +1,37 @@
 import { Dialog, DialogContent, DialogTitle, FormControl, FormControlLabel, Switch } from "@mui/material";
 import * as React from "react";
+import { useRecoilState } from "recoil";
 
 import { exitFullscreen, fullscreen } from "../helpers/browser";
+import { isSettingsOpenState, paletteModeState } from "../states";
 
-const Settings = (props) => {
+const Settings = () => {
+  const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
+  const [settingsOpen, setSettingsOpen] = useRecoilState(isSettingsOpenState);
   const [isFullscreen, setIsFullscreen] = React.useState(false);
 
-  function handleClose() {
-    props.onClose();
-  }
-
   return (
-    <Dialog onClose={handleClose} aria-labelledby="simple-dialog" open={props.open}>
+    <Dialog
+      onClose={() => {
+        setSettingsOpen(false);
+      }}
+      aria-labelledby="simple-dialog"
+      open={settingsOpen}
+    >
       <DialogTitle id="simple-dialog-title">网站设置</DialogTitle>
       <DialogContent>
         <FormControl>
           <FormControlLabel
             control={
               <Switch
-                checked={props.paletteMode === "dark"}
-                onClick={props.onThemeClick}
+                checked={paletteMode === "dark"}
+                onClick={() => {
+                  setPaletteMode(paletteMode === "light" ? "dark" : "light");
+                  document.documentElement.setAttribute(
+                    "data-prefers-color-scheme",
+                    paletteMode === "light" ? "dark" : "light"
+                  );
+                }}
                 value="paletteMode"
                 inputProps={{ "aria-label": "黑夜模式" }}
               />

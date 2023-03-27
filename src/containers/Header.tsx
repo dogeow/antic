@@ -6,10 +6,8 @@ import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
 import PersonIcon from "@mui/icons-material/Person";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import SearchIcon from "@mui/icons-material/Search";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import {
-  Alert as MuiAlert,
   AppBar,
   Avatar,
   Button,
@@ -17,10 +15,8 @@ import {
   Divider,
   Hidden,
   IconButton,
-  InputBase,
   Menu,
   MenuItem,
-  Snackbar,
   Theme,
   Toolbar,
   Tooltip,
@@ -30,15 +26,13 @@ import { alpha, useTheme } from "@mui/material/styles";
 import makeStyles from "@mui/styles/makeStyles";
 import { AxiosResponse } from "axios";
 import produce from "immer";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link as RouteLink, useLocation } from "react-router-dom";
-import { useEvent } from "react-use";
 import { useRecoilState } from "recoil";
 
-import Search from "../components/Search";
-import Settings from "../components/Settings";
 import Drawer from "../components/site/Drawer";
 import Logo from "../components/site/Logo";
+import SearchButton from "../containers/SearchButton";
 import { getGravatarAddress } from "../helpers";
 import { getItem } from "../helpers";
 import { logout } from "../helpers/auth";
@@ -46,17 +40,13 @@ import axios from "../instance/axios";
 import { logoutRequest } from "../requests/user";
 import {
   isExpiredState,
+  isSettingsOpenState,
   isSnackOpenState,
   paletteModeState,
-  severityState,
   snackMessageState,
   usersState,
   userState,
 } from "../states";
-
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 const useStyles = makeStyles((theme: Theme) => ({
   blank: {
@@ -65,26 +55,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   containerRoot: {
     paddingLeft: 0,
     paddingRight: 0,
-  },
-  search: {
-    display: "flex",
-    padding: 4,
-    alignItems: "center",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-  },
-  searchIcon: {
-    paddingRight: 4,
-  },
-  inputInput: {
-    width: "8ch",
-    color: "white",
-    textAlign: "center",
-    padding: "unset",
-    fontSize: "1.5rem",
   },
 }));
 
@@ -95,20 +65,17 @@ const Header = () => {
   const matches = useMediaQuery(theme.breakpoints.up("md"));
   const [user, setUser] = useRecoilState(userState);
   const [users, setUsers] = useRecoilState(usersState);
-  const [snackMessage, setSnackMessage] = useRecoilState(snackMessageState);
-  const [severity] = useRecoilState(severityState);
-  const [isSnackOpen, setIsSnackOpen] = useRecoilState(isSnackOpenState);
   const [isExpired, setIsExpired] = useRecoilState(isExpiredState);
   const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
+  const [, setSnackMessage] = useRecoilState(snackMessageState);
+  const [, setIsSnackOpen] = useRecoilState(isSnackOpenState);
+  const [, setSettingsOpen] = useRecoilState(isSettingsOpenState);
   const profileOpen = Boolean(mobileMoreAnchorEl);
-  const [settingsOpen, setSettingsOpen] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [searching, setSearching] = useState(false);
-  const [metaKey, setMetaKey] = useState(false);
 
   useEffect(() => {
     if (playing) {
@@ -132,37 +99,6 @@ const Header = () => {
     }
   }, [playing]);
 
-  const onKeyDown = useCallback(
-    ({ key }) => {
-      // 不在搜索时才记录 Meta
-      if (!searching) {
-        if (key === "k" && metaKey) {
-          handleSearch();
-          setMetaKey(false);
-        } else if (key === "Meta") {
-          setMetaKey(true);
-        } else {
-          setMetaKey(false);
-        }
-      } else {
-        if (key === "Escape") {
-          setSearching(false);
-          setMetaKey(false);
-        }
-      }
-    },
-    [searching, metaKey]
-  );
-
-  const onKeyUp = useCallback(({ key }) => {
-    if (key === "Meta") {
-      setMetaKey(false);
-    }
-  }, []);
-
-  useEvent("keyup", onKeyUp);
-  useEvent("keydown", onKeyDown);
-
   /**
    * 设置开关
    */
@@ -170,10 +106,6 @@ const Header = () => {
     setAnchorEl(null);
     setSettingsOpen(true);
   }
-
-  const handleSettingClose = () => {
-    setSettingsOpen(false);
-  };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -189,14 +121,6 @@ const Header = () => {
 
   const handleCloseProfile = () => {
     setMobileMoreAnchorEl(null);
-  };
-
-  const handleSearch = () => {
-    setSearching(true);
-  };
-
-  const closeSearch = () => {
-    setSearching(false);
   };
 
   const playMusic = () => {
@@ -256,27 +180,7 @@ const Header = () => {
               </div>
             )}
             <div className={classes.blank} />
-            <Hidden lgDown>
-              <div className={classes.search} onFocus={handleSearch}>
-                <InputBase
-                  placeholder="⌘ + k"
-                  classes={{
-                    input: classes.inputInput,
-                  }}
-                  inputProps={{ "aria-label": "search" }}
-                />
-                <div className={classes.searchIcon} onClick={handleSearch}>
-                  <SearchIcon />
-                </div>
-              </div>
-            </Hidden>
-            <Hidden mdUp>
-              <Tooltip title="搜索笔记" aria-label="搜索笔记" onClick={handleSearch}>
-                <IconButton color="inherit" size="large">
-                  <SearchIcon />
-                </IconButton>
-              </Tooltip>
-            </Hidden>
+            <SearchButton />
             <Hidden only="xs">
               <Tooltip
                 title="切换白天或夜晚主题"
@@ -295,7 +199,7 @@ const Header = () => {
               </Tooltip>
               <Tooltip title="播放音乐" aria-label="播放音乐" onClick={playMusic}>
                 <IconButton color="inherit" size="large">
-                  {playing === true ? <PauseCircleOutlineIcon /> : <PlayCircleOutlineIcon />}
+                  {playing ? <PauseCircleOutlineIcon /> : <PlayCircleOutlineIcon />}
                 </IconButton>
               </Tooltip>
             </Hidden>
@@ -459,44 +363,6 @@ const Header = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      <Search searching={searching} closeSearch={closeSearch} />
-      <Settings
-        open={settingsOpen}
-        onClose={handleSettingClose}
-        onThemeClick={() => {
-          setPaletteMode(paletteMode === "light" ? "dark" : "light");
-          document.documentElement.setAttribute(
-            "data-prefers-color-scheme",
-            paletteMode === "light" ? "dark" : "light"
-          );
-        }}
-        paletteMode={paletteMode}
-      />
-      <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        open={isSnackOpen}
-        autoHideDuration={2000}
-        onClose={(event, reason) => {
-          if (reason === "clickaway") {
-            return;
-          }
-
-          setIsSnackOpen(!isSnackOpen);
-        }}
-      >
-        <Alert
-          severity={severity}
-          onClose={(event, reason) => {
-            if (reason === "clickaway") {
-              return;
-            }
-
-            setIsSnackOpen(!isSnackOpen);
-          }}
-        >
-          {snackMessage}
-        </Alert>
-      </Snackbar>
     </header>
   );
 };

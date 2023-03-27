@@ -75,3 +75,13 @@ export const snackState = selector({
     set(isSnackOpenState, isOpen || true);
   },
 });
+
+export const isSettingsOpenState = atom({
+  key: "isSettingsOpen",
+  default: false,
+});
+
+export const isSearchOpenState = atom({
+  key: "isSearchOpen",
+  default: false,
+});

@@ -6,8 +6,11 @@ import { Outlet, useLocation } from "react-router-dom";
 
 import Loading from "../components/display/Loading";
 import ScrollButton from "../components/display/ScrollButton";
+import Search from "../components/Search";
+import Settings from "../components/Settings";
 import Footer from "../containers/Footer";
 import Header from "../containers/Header";
+import Snack from "../containers/Snack";
 
 const useStyles = makeStyles({
   main: {
@@ -53,6 +56,9 @@ export default () => {
       </Grid>
       {["/"].includes(location.pathname) && <Footer />}
       {["/"].includes(location.pathname) || <ScrollButton />}
+      <Search />
+      <Settings />
+      <Snack />
     </Grid>
   );
 };

@@ -9,15 +9,15 @@ type Item = {
 
 type Props = {
   type: keyof Item;
-  currentSelect: string;
-  items: Item[];
+  currentSelect?: string;
+  items?: Item[];
   onHandleClick: (selected: string) => void;
 };
 
 const ChipFlow: React.FC<Props> = (props) => {
   return (
     <Grid container spacing={2}>
-      {props.items.length !== 0 &&
+      {props.items &&
         props.items.map((item) => (
           <Grid item key={item.id || item.name}>
             <Badge badgeContent={item.count}>
