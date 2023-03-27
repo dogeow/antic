@@ -1,6 +1,16 @@
 import { gql, useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 
+interface Bookmark {
+  id: string;
+  title: string;
+  url: string;
+}
+
+interface BookmarkData {
+  bookmarks: Bookmark[];
+}
+
 const BOOKMARKS = gql`
   query {
     bookmarks {
@@ -11,9 +21,9 @@ const BOOKMARKS = gql`
   }
 `;
 
-export default () => {
-  const { data } = useQuery(BOOKMARKS);
-  const [bookmarks, setBookmarks] = useState([]);
+const Bookmarks = () => {
+  const { data } = useQuery<BookmarkData>(BOOKMARKS);
+  const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
 
   useEffect(() => {
     if (data) {
@@ -35,3 +45,5 @@ export default () => {
     </div>
   );
 };
+
+export default Bookmarks;
