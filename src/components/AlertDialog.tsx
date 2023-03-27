@@ -1,5 +1,4 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
-import PropTypes from "prop-types";
 import * as React from "react";
 
 interface Props {

@@ -9,7 +9,7 @@ import Autocomplete from "./SearchByAutocomplete";
 export default function App() {
   const [searching, setSearching] = useRecoilState(isSearchOpenState);
 
-  return searching ? (
+  return !searching ? (
     <></>
   ) : (
     <div

@@ -3,8 +3,10 @@ import { getAlgoliaResults } from "@algolia/autocomplete-preset-algolia";
 import StarIcon from "@mui/icons-material/Star";
 import algoliasearch from "algoliasearch/lite";
 import * as React from "react";
+import { useRecoilState } from "recoil";
 
 import { CDN_URL } from "../config/services";
+import { isSearchOpenState } from "../states";
 import { ClearIcon } from "./ClearIcon";
 import Link from "./link/Link";
 import { SearchIcon } from "./SearchIcon";
@@ -12,6 +14,7 @@ import { SearchIcon } from "./SearchIcon";
 const searchClient = algoliasearch(import.meta.env.VITE_ALGOLIA_APP_ID, import.meta.env.VITE_ALGOLIA_APP_KEY);
 
 export default function Autocomplete(props) {
+  const [, setSearching] = useRecoilState(isSearchOpenState);
   const [autocompleteState, setAutocompleteState] = React.useState({
     collections: [],
     completion: null,
@@ -146,7 +149,9 @@ export default function Autocomplete(props) {
             backgroundColor: "none",
             marginLeft: 4,
           }}
-          onClick={props.closeSearch}
+          onClick={() => {
+            setSearching(false);
+          }}
         >
           取消
         </button>

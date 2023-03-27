@@ -3,6 +3,7 @@ import "./myStyle.css";
 import ClearIcon from "@mui/icons-material/Clear";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { Grid } from "@mui/material";
+import makeStyles from "@mui/styles/makeStyles";
 import dayjs from "dayjs";
 import * as React from "react";
 import { useEffect, useState } from "react";
@@ -11,7 +12,17 @@ import { useRecoilState } from "recoil";
 import { snackState } from "../../states";
 import ClipboardButton from "../ClipboardButton";
 
+const useStyles = makeStyles({
+  arrowTextWrapper: {
+    lineHeight: 56,
+    "&::before": {
+      content: '"=> "',
+    },
+  },
+});
+
 const TimeConvert = (props: { onOpen: () => void }) => {
+  const classes = useStyles();
   const [value, setValue] = useState("");
   const [toValue, setToValue] = useState("");
   const [, setSnack] = useRecoilState(snackState);
@@ -59,7 +70,7 @@ const TimeConvert = (props: { onOpen: () => void }) => {
           }}
         />
       </Grid>
-      <Grid item xs={12} md={6} className="arrow-text-wrapper">
+      <Grid item xs={12} md={6} className={classes.arrowTextWrapper}>
         <span>{toValue || "?"}</span>
         {toValue && getClipboardButton(toValue)}
       </Grid>

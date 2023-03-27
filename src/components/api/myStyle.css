@@ -1,7 +1,0 @@
-.arrow-text-wrapper {
-  line-height: 56px;
-}
-
-.arrow-text-wrapper::before {
-  content: "=> ";
-}
