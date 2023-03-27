@@ -16,6 +16,7 @@ const PostSingle = lazy(() => import("../containers/post/PostSingle"));
 const Cars = lazy(() => import("../containers/me/Cars"));
 const Reset = lazy(() => import("../containers/users/Reset"));
 const Bookmarks = lazy(() => import("../containers/Bookmarks"));
+const BookmarksOld = lazy(() => import("../containers/BookmarksOld"));
 const AllCategories = lazy(() => import("../containers/post/AllCategories"));
 const Tags = lazy(() => import("../containers/Tags"));
 const Register = lazy(() => import("../containers/users/Register"));
@@ -102,6 +103,7 @@ export default () => (
 
         {/* Demos */}
         <Route path="/bookmarks" element={<Bookmarks />} />
+        <Route path="/bookmarks-old" element={<BookmarksOld />} />
         <Route path="/weibo" element={<Weibo />} />
         <Route path="/weibo/about" element={<WeiboAbout />} />
         <Route path="/emoji" element={<Emoji />} />

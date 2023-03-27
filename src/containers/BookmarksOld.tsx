@@ -3,7 +3,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TreeItem from "@mui/lab/TreeItem";
 import TreeView from "@mui/lab/TreeView";
 import * as React from "react";
-import chromeBookmarks from "resources/Bookmarks.json";
+
+import chromeBookmarks from "../resources/Bookmarks.json";
 
 const subFolder = (project) => {
   if (project.type === "folder") {
@@ -17,12 +18,7 @@ const subFolder = (project) => {
   if (project.type === "url") {
     // 单个链接
     return (
-      <a
-        key={project.id}
-        href={project.url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a key={project.id} href={project.url} target="_blank" rel="noopener noreferrer">
         <TreeItem nodeId={project.id} label={project.name} />
       </a>
     );
@@ -38,10 +34,7 @@ const bookmarksOld = chromeBookmarks.roots.bookmark_bar.children;
 
 const Bookmarks = () => {
   return (
-    <TreeView
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpandIcon={<ChevronRightIcon />}
-    >
+    <TreeView defaultCollapseIcon={<ExpandMoreIcon />} defaultExpandIcon={<ChevronRightIcon />}>
       {bookmarksOld.map((children) => subFolder(children))}
     </TreeView>
   );
