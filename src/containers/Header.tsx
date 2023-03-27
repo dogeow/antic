@@ -22,7 +22,7 @@ import {
   Tooltip,
   useMediaQuery,
 } from "@mui/material";
-import { alpha, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import makeStyles from "@mui/styles/makeStyles";
 import { AxiosResponse } from "axios";
 import produce from "immer";
@@ -48,7 +48,7 @@ import {
   userState,
 } from "../states";
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   blank: {
     flexGrow: 1,
   },
