@@ -188,13 +188,19 @@ li a:hover {
 .object_rocket {
   position: absolute;
   pointer-events: none;
-  animation: rocket-movement 30s linear infinite both alternate;
+  animation: rocket-movement 100s linear infinite both alternate;
 }
 
 .object_moon {
   position: absolute;
   top: 12%;
   left: 25%;
+}
+
+.object_earth {
+  position: absolute;
+  top: 70%;
+  left: 40%;
 }
 
 .object_astronaut {

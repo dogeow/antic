@@ -21,6 +21,9 @@ const NotFoundPage = () => {
           <div className="box_astronaut">
             <img className="object_astronaut" src="/images/404/astronaut.svg" width="140px" />
           </div>
+          <div className="earth-moon">
+            <img className="object_earth" src="/images/404/earth.png" width="100px" />
+          </div>
         </div>
         <div className="glowing_stars">
           <div className="star"></div>
