@@ -6,7 +6,7 @@ import ChipFlow from "../components/ChipFlow";
 const Tags = () => {
   const navigate = useNavigate();
 
-  const handleClick = (tags) => {
+  const handleClick = (tags: string) => {
     navigate(`/posts?filter[tags.name]=${tags}`);
   };
 

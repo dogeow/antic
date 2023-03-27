@@ -41,6 +41,7 @@ steps:
       VITE_GITHUB_CLIENT_ID:
         from_secret: VITE_GITHUB_CLIENT_ID
     commands:
+      - export NODE_OPTIONS=--max-old-space-size=8096
       - yarn build
   - name: rsync
     image: drillster/drone-rsync

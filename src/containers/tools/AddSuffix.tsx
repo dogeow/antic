@@ -13,7 +13,7 @@ const AddSuffix = () => {
     setSource(e.target.value);
     const target = e.target.value
       .split("\n")
-      .map((line) => {
+      .map((line: string) => {
         if (line !== "") {
           return line + suffix;
         }

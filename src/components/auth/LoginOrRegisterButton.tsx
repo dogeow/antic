@@ -1,11 +1,10 @@
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
+import { Button, Grid, Theme } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
 
 import ToLogin from "../../components/auth/ToLogin";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },

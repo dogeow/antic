@@ -23,10 +23,11 @@ export default () => {
       });
   }, [mediawiki]);
 
-  const changeMediawiki = (e) => {
+  const changeMediawiki = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMediawiki(e.target.value);
   };
-  const changeMarkdown = (e) => {
+
+  const changeMarkdown = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMarkdown(e.target.value);
   };
 

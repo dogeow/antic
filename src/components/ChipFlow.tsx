@@ -8,7 +8,7 @@ type Item = {
 };
 
 type Props = {
-  type: keyof Item;
+  type?: keyof Item;
   currentSelect?: string;
   items?: Item[];
   onHandleClick: (selected: string) => void;

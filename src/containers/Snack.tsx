@@ -1,10 +1,10 @@
 import { Alert as MuiAlert, Snackbar } from "@mui/material";
-import React from "react";
+import React, { forwardRef } from "react";
 import { useRecoilState } from "recoil";
 
 import { isSnackOpenState, severityState, snackMessageState } from "../states";
 
-const Alert = React.forwardRef(function Alert(props, ref) {
+const Alert = forwardRef((props, ref) => {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 

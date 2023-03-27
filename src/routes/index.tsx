@@ -54,7 +54,6 @@ const NoMatch = lazy(() => import("../containers/NoMatch"));
 const Diff = lazy(() => import("../containers/tools/Diff"));
 const Game = lazy(() => import("../containers/game"));
 const Site = lazy(() => import("../containers/Site"));
-const Test = lazy(() => import("../containers/post/Test"));
 const MuiX = lazy(() => import("../containers/MuiX"));
 const Thing = lazy(() => import("../projects/things/Thing"));
 const ThingCreate = lazy(() => import("../projects/things/ThingCreate"));
@@ -62,7 +61,7 @@ const ThingPhoto = lazy(() => import("../projects/things/Photo"));
 const ThingTag = lazy(() => import("../projects/things/Tag"));
 const AddSuffix = lazy(() => import("../containers/tools/AddSuffix"));
 const Ai = lazy(() => import("../containers/tools/Ai"));
-// const Test = lazy(() => import("../containers/Test"));
+const Test = lazy(() => import("../containers/Test"));
 
 export default () => (
   <Suspense fallback={<Loading />}>
@@ -139,9 +138,9 @@ export default () => (
         <Route path="/about" element={<About />} />
         <Route path="/self-talk" element={<SelfTalk />} />
         <Route path="/like" element={<Like />} />
-        <Route path="/like" element={<Like />} />
         <Route path="/cars" element={<Cars />} />
 
+        {/* 物品管理 */}
         <Route path="/things" element={<Thing />} />
         <Route path="/things/create" element={<ThingCreate />} />
         <Route path="/things/tags" element={<ThingTag />} />
