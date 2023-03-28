@@ -6,8 +6,17 @@ import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
+import makeStyles from "@mui/styles/makeStyles";
 import axios from "axios";
 import * as React from "react";
+
+const useStyles = makeStyles(() => ({
+  ul: {
+    "& > li": {
+      listStyleType: "decimal",
+    },
+  },
+}));
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -27,7 +36,7 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 1.5 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -43,6 +52,7 @@ function a11yProps(index: number) {
 }
 
 export default function ControlledAccordions() {
+  const classes = useStyles();
   const [bookmarks, setBookmarks] = React.useState([]);
   const [expanded, setExpanded] = React.useState<string | false>(false);
   const [value, setValue] = React.useState(0);
@@ -54,6 +64,8 @@ export default function ControlledAccordions() {
   }, []);
 
   const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+    // 切换不同的 panel，tab 设置为 0
+    setValue(0);
     setExpanded(isExpanded ? panel : false);
   };
 
@@ -90,7 +102,7 @@ export default function ControlledAccordions() {
                   aria-label="scrollable auto tabs example"
                 >
                   {Object.keys(bookmark).map((subCategory, index) => {
-                    return <Tab label={subCategory} key={index} />;
+                    return <Tab label={subCategory} key={index} {...a11yProps} />;
                   })}
                 </Tabs>
               </Box>
@@ -98,9 +110,15 @@ export default function ControlledAccordions() {
                 const items = bookmark[subCategory];
                 return (
                   <TabPanel value={value} index={index} key={index}>
-                    {items.map((item, index) => (
-                      <div key={index}>{item["title"]}</div>
-                    ))}
+                    <ul className={classes.ul}>
+                      {items.map((item, index) => (
+                        <li key={index}>
+                          <a href={item["url"]} target="_blank" rel="noreferrer">
+                            {item["title"]}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
                   </TabPanel>
                 );
               })}
