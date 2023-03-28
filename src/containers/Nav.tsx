@@ -93,7 +93,7 @@ export default function ControlledAccordions() {
               <Typography sx={{ color: "text.secondary" }}></Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: "background.paper" }}>
+              <Box sx={{ bgcolor: "background.paper" }}>
                 <Tabs
                   value={value}
                   onChange={handleTabChange}
