@@ -12,11 +12,7 @@ const useStyles = makeStyles(() => ({
     minHeight: 152,
   },
   intro: {
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    display: "-webkit-box",
-    WebkitLineClamp: 2,
-    writingMode: "vertical-rl",
+    wordWrap: "break-word",
   },
 }));
 

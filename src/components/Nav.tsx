@@ -1,7 +1,6 @@
 import { Box, Grid, Tab, Tabs } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
-import PropTypes from "prop-types";
 import * as React from "react";
 
 import chromeBookmarks from "../resources/Bookmarks.json";
@@ -27,11 +26,6 @@ function TabPanel(props) {
     </Typography>
   );
 }
-
-TabPanel.propTypes = {
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
 
 function a11yProps(index) {
   return {
@@ -71,9 +65,7 @@ export default function Nav() {
         >
           {bookmarks.map(
             (project, index) =>
-              project.type === "folder" && (
-                <Tab key={index} label={project.name} {...a11yProps(index)} />
-              )
+              project.type === "folder" && <Tab key={index} label={project.name} {...a11yProps(index)} />
           )}
         </Tabs>
       </Grid>

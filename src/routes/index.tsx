@@ -62,6 +62,8 @@ const ThingTag = lazy(() => import("../projects/things/Tag"));
 const AddSuffix = lazy(() => import("../containers/tools/AddSuffix"));
 const Ai = lazy(() => import("../containers/tools/Ai"));
 const Test = lazy(() => import("../containers/Test"));
+const PostTest = lazy(() => import("../containers/PostTest"));
+const NavNew = lazy(() => import("../containers/Nav"));
 
 export default () => (
   <Suspense fallback={<Loading />}>
@@ -102,6 +104,7 @@ export default () => (
 
         {/* Demos */}
         <Route path="/bookmarks" element={<Bookmarks />} />
+        <Route path="/nav-new" element={<NavNew />} />
         <Route path="/bookmarks-old" element={<BookmarksOld />} />
         <Route path="/weibo" element={<Weibo />} />
         <Route path="/weibo/about" element={<WeiboAbout />} />
@@ -150,6 +153,7 @@ export default () => (
         <Route path="/test" element={<Test />} />
         <Route path="/mui-x" element={<MuiX />} />
         <Route path="/game" element={<Game />} />
+        <Route path="/post-test" element={<PostTest />} />
 
         <Route path="*" element={<NoMatch />} />
       </Route>
