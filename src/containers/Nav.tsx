@@ -7,8 +7,9 @@ import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
-import axios from "axios";
 import * as React from "react";
+
+import axios from "../instance/axios";
 
 const useStyles = makeStyles(() => ({
   ul: {
@@ -58,7 +59,7 @@ export default function ControlledAccordions() {
   const [value, setValue] = React.useState(0);
 
   React.useEffect(() => {
-    axios.get("http://127.0.0.1:8000/bookmarks").then((res) => {
+    axios.get("/bookmarks").then((res) => {
       setBookmarks(res.data);
     });
   }, []);
