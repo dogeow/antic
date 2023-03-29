@@ -78,6 +78,8 @@ export default function ControlledAccordions() {
     <div style={{ width: "100%" }}>
       {Object.keys(bookmarks).map((category, index) => {
         const bookmark = bookmarks[category];
+        const subCategoryCount = Object.keys(bookmark).length;
+        const count = Object.values(bookmark).reduce((acc, cur) => acc + cur.length, 0);
 
         return (
           <Accordion
@@ -91,7 +93,9 @@ export default function ControlledAccordions() {
               id={`panel${index + 1}bh-header`}
             >
               <Typography sx={{ width: "33%", flexShrink: 0 }}>{category}</Typography>
-              <Typography sx={{ color: "text.secondary" }}></Typography>
+              <Typography sx={{ color: "text.secondary" }}>
+                {subCategoryCount} 分类 ｜ {count} 链接
+              </Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Box sx={{ bgcolor: "background.paper" }}>
