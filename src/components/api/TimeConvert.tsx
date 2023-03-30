@@ -12,7 +12,7 @@ import ClipboardButton from "../ClipboardButton";
 
 const useStyles = makeStyles({
   arrowTextWrapper: {
-    lineHeight: 56,
+    lineHeight: "56px",
     "&::before": {
       content: '"=> "',
     },

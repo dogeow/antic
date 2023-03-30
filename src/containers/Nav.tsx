@@ -93,9 +93,7 @@ export default function ControlledAccordions() {
               id={`panel${index + 1}bh-header`}
             >
               <Typography sx={{ width: "33%", flexShrink: 0 }}>{category}</Typography>
-              <Typography sx={{ color: "text.secondary" }}>
-                {subCategoryCount} 分类 ｜ {count} 链接
-              </Typography>
+              <Typography sx={{ color: "text.secondary" }}>{`${subCategoryCount} 分类 ｜ ${count} 链接`}</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Box sx={{ bgcolor: "background.paper" }}>
