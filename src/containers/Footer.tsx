@@ -40,9 +40,8 @@ const Footer = () => {
             说明
           </Typography>
           <ul className={classes.list}>
-            <li>实验室，顾名思义，东西都是实验品</li>
             <li>拥抱新技术、新生态，做一个现代化的程序员</li>
-            <li>因实验室只有自己在访问和使用，所以没有其他人的注册和信息</li>
+            <li>如果您有任何意见或建议，请随时联系：QQ5968251</li>
             <li>If there is any copyright infringement, please notify us at once and we&apos;ll delete it.</li>
           </ul>
         </Grid>
