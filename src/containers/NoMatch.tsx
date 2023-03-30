@@ -37,13 +37,14 @@ const useStyles = makeStyles(() => ({
     padding: "0.8rem 0.8rem",
     border: "1px solid whitesmoke",
     borderRadius: "100px",
+    backgroundColor: "#00426b",
     display: "block",
     letterSpacing: "0.2rem",
     fontSize: "1rem",
+    zIndex: 100,
     transition: "all 0.3s ease-in",
     "&:hover": {
       backgroundColor: "#0264a0",
-      color: "#fff",
       transform: "scale(1.05)",
       boxShadow: "0 20px 20px rgba(0, 0, 0, 0.1)",
     },
@@ -87,6 +88,8 @@ const useStyles = makeStyles(() => ({
     animation: "$moveAstronaut 50s infinite linear both alternate",
   },
   image404: {
+    position: "relative",
+    zIndex: "100",
     pointerEvents: "none",
   },
   stars: {
