@@ -2,20 +2,28 @@ import { makeStyles } from "@mui/styles";
 import React from "react";
 
 const useStyles = makeStyles({
-  heart: {
+  root: {
+    "--width": "12px",
     position: "relative",
     margin: "5px 10px",
-    height: "12px",
-    width: "12px",
+  },
+
+  heart: {
+    position: "absolute",
+    backgroundColor: "pink",
+    height: "var(--width)",
+    width: "var(--width)",
     transform: "rotate(-45deg)",
-    animation: "$beat 1s infinite",
-    "&::before, &::after": {
-      content: '""',
+    animationName: "$beat",
+    animationDuration: "1s",
+    animationIterationCount: "infinite",
+    "&::after, &::before": {
       backgroundColor: "pink",
+      content: '""',
       borderRadius: "50%",
       position: "absolute",
-      height: "12px",
-      width: "12px",
+      width: "var(--width)",
+      height: "var(--width)",
     },
     "&::after": {
       top: "0px",
@@ -40,7 +48,11 @@ const useStyles = makeStyles({
 function Heart() {
   const classes = useStyles();
 
-  return <span className={classes.heart}></span>;
+  return (
+    <span className={classes.root}>
+      <span className={classes.heart}></span>
+    </span>
+  );
 }
 
 export default Heart;
