@@ -2,14 +2,15 @@ import MuiAlert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
-import Snackbar from "@mui/material/Snackbar";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
 
 import ClipboardButton from "../../components/ClipboardButton";
+import { snackState } from "../../states";
 
 const useStyles = makeStyles((theme) => ({
   response: {
@@ -38,11 +39,17 @@ function processMatch(jsonObj) {
 const Ai = () => {
   const classes = useStyles();
   const [content, setContent] = React.useState("");
-  const [response, setResponse] = React.useState("");
-  const [open, setOpen] = useState(false);
+  const [response] = React.useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [responseChunks, setResponseChunks] = useState([]);
+  const [, setSnack] = useRecoilState(snackState);
+
+  const handleClick = () => {
+    setSnack({
+      message: "复制成功",
+    });
+  };
 
   const getClipboardButton = (value) => {
     return (
@@ -51,18 +58,6 @@ const Ai = () => {
         <ClipboardButton text={value} handleClick={handleClick} />
       </div>
     );
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  const handleClick = () => {
-    setOpen(true);
   };
 
   const handleInputValueChange = (event) => {
@@ -182,19 +177,6 @@ const Ai = () => {
       <Grid item xs={12}>
         {getClipboardButton(response)}
       </Grid>
-      <Snackbar
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        open={open}
-        autoHideDuration={2000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          复制成功
-        </Alert>
-      </Snackbar>
     </Grid>
   );
 };

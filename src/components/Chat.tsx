@@ -1,5 +1,5 @@
 import SendIcon from "@mui/icons-material/Send";
-import { Button, Dialog, DialogActions, DialogContent, Grid, InputAdornment, Snackbar, TextField } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, Grid, InputAdornment, TextField } from "@mui/material";
 import produce from "immer";
 import { find, uniqBy } from "lodash";
 import React, { useEffect, useRef, useState } from "react";
@@ -10,7 +10,7 @@ import { replaceItemAtIndex } from "../helpers";
 import { getItem } from "../helpers";
 import { logged } from "../helpers/auth";
 import axios from "../instance/axios";
-import { chatBoardState, isExpiredState, peopleState, usersState, userState } from "../states";
+import { chatBoardState, isExpiredState, peopleState, snackState, usersState, userState } from "../states";
 import Expire from "./display/Expire";
 import Avatar from "./display/Gravatar";
 import Loading from "./display/Loading";
@@ -18,8 +18,6 @@ import Loading from "./display/Loading";
 let timer = null;
 
 export default function Chat() {
-  const [alertMessage, setAlertMessage] = useState("");
-  const [alertOpen, setAlertOpen] = useState(false);
   const [loading, setLoading] = useState(window?.Echo?.socketId() === null);
   const [typing, setTyping] = useState(undefined);
   const [message, setMessage] = useState("");
@@ -29,6 +27,7 @@ export default function Chat() {
   const [user, setUser] = useRecoilState(userState);
   const [, setUsers] = useRecoilState(usersState);
   const [, setIsExpired] = useRecoilState(isExpiredState);
+  const [, setSnack] = useRecoilState(snackState);
 
   const [error, setError] = useState({});
   const [inputFocus, setInputFocus] = useState(false);
@@ -82,8 +81,9 @@ export default function Chat() {
         const newPeople: ChatPeople[] = uniqBy([...people, ...herePeople], "id");
         setPeople(newPeople);
         if (find(newPeople, ["id", parseInt(user.id)])) {
-          setAlertMessage("您已加入房间");
-          setAlertOpen(true);
+          setSnack({
+            message: "您已加入房间",
+          });
         }
       })
       .joining((user: ChatPeople) => {
@@ -100,13 +100,15 @@ export default function Chat() {
             setPeople(newPeople);
           }
         }
-        setAlertMessage(`${user.name} 加入了房间`);
-        setAlertOpen(true);
+        setSnack({
+          message: `${user.name} 加入了房间`,
+        });
       })
       .leaving((user: ChatPeople) => {
         offline(user);
-        setAlertMessage(`${user.name} 退出了房间`);
-        setAlertOpen(true);
+        setSnack({
+          message: `${user.name} 退出了房间`,
+        });
       });
   }, [user.accessToken, people]);
 
@@ -161,14 +163,6 @@ export default function Chat() {
     if (e.key === "Enter") {
       handlePost();
     }
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setAlertOpen(false);
   };
 
   const handleChange = (e) => {
@@ -329,13 +323,6 @@ export default function Chat() {
           })}
         </Grid>
       </Grid>
-      <Snackbar
-        open={alertOpen}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        autoHideDuration={2000}
-        message={alertMessage}
-        onClose={handleClose}
-      />
     </>
   );
 }
