@@ -1,5 +1,5 @@
 import { PaletteMode } from "@mui/material";
-import { atom, DefaultValue, selector } from "recoil";
+import { atom, selector } from "recoil";
 
 import { getItem } from "../helpers";
 
@@ -76,11 +76,13 @@ export const snackState = selector({
   },
 });
 
+// 网站设置
 export const isSettingsOpenState = atom({
   key: "isSettingsOpen",
   default: false,
 });
 
+// 搜索框
 export const isSearchOpenState = atom({
   key: "isSearchOpen",
   default: false,

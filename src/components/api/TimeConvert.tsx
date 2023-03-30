@@ -19,14 +19,21 @@ const useStyles = makeStyles({
   },
 });
 
-const TimeConvert = (props: { onOpen: () => void }) => {
+const TimeConvert = () => {
   const classes = useStyles();
+
   const [value, setValue] = useState("");
   const [toValue, setToValue] = useState("");
   const [, setSnack] = useRecoilState(snackState);
 
+  const handleClick = () => {
+    setSnack({
+      message: "复制成功",
+    });
+  };
+
   const getClipboardButton = (value: string) => {
-    return <ClipboardButton text={value} handleClick={props.onOpen} />;
+    return <ClipboardButton text={value} handleClick={handleClick} />;
   };
 
   useEffect(() => {

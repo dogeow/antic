@@ -1,18 +1,15 @@
 import { Grid } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
 import dayjs from "dayjs";
 import * as React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useRecoilState } from "recoil";
 
 import TimeConvert from "../../components/api/TimeConvert";
 import ClipboardButton from "../../components/ClipboardButton";
 import Hr from "../../components/display/Hr";
-
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+import { snackState } from "../../states";
 
 const fullFormat = "YYYY-MM-DD HH:mm:ss";
 
@@ -43,9 +40,9 @@ const nextDayStartDateTime = dayjs(monthStartDateTime).add(1, "month").format(fu
 const nextDayEndDateTime = dayjs(nextDayStartDateTime).unix();
 
 const Time = () => {
-  const [open, setOpen] = useState(false);
   const [nowDateTime, setNowDateTime] = useState("");
   const [nowUnixTime, setNowUnixTime] = useState("");
+  const [, setSnack] = useRecoilState(snackState);
 
   useEffect(() => {
     setInterval(() => {
@@ -58,15 +55,9 @@ const Time = () => {
   }, []);
 
   const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
+    setSnack({
+      message: "复制成功",
+    });
   };
 
   const getClipboardButton = (value) => {
@@ -76,7 +67,7 @@ const Time = () => {
   return (
     <div>
       <h2>转换</h2>
-      <TimeConvert onOpen={handleClick} />
+      <TimeConvert />
       <Hr style={{ marginTop: 20 }} />
       <Grid container spacing={1} justifyItems={""}>
         <Grid item>
@@ -137,19 +128,6 @@ const Time = () => {
             {getClipboardButton(nextDayEndDateTime)}）
           </div>
         </Grid>
-        <Snackbar
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "center",
-          }}
-          open={open}
-          autoHideDuration={2000}
-          onClose={handleClose}
-        >
-          <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-            复制成功
-          </Alert>
-        </Snackbar>
       </Grid>
     </div>
   );
