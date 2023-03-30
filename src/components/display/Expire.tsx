@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-const Expire = (props: { delay: number; children: string }) => {
+interface ExpireProps {
+  // 过期时间，单位毫秒
+  delay: number;
+  // 文本内容
+  children: string;
+}
+
+const Expire = (props: ExpireProps) => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -11,7 +18,7 @@ const Expire = (props: { delay: number; children: string }) => {
     return () => clearTimeout(visibleTimer);
   }, [props.delay]);
 
-  return visible ? <span>{props.children}</span> : null;
+  return visible ? <span>{props.children}</span> : <></>;
 };
 
 export default Expire;

@@ -1,44 +1,42 @@
 import { css, SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
-import * as React from "react";
+import React, { FC, useMemo } from "react";
 
 import { CDN_URL } from "../../config/services";
 import { getGravatarAddress } from "../../helpers";
 
 interface AvatarProps {
-  marginLeft?: number;
-  size?: number;
+  marginLeftValue?: number;
+  size?: string;
   css?: SerializedStyles;
 }
 
 const Avatar = styled.img<AvatarProps>`
   vertical-align: middle;
-  ${({ marginLeft }) =>
-    marginLeft &&
+  ${({ marginLeftValue }) =>
+    marginLeftValue &&
     css`
-      margin-left: ${marginLeft}px;
+      margin-left: ${marginLeftValue}px;
     `};
   ${({ size }) =>
     size &&
     css`
-      width: ${size}px;
+      width: ${size};
     `};
 `;
 
-const Gravatar: React.FC<{ size: number; alt: string; email: string; marginLeft?: number }> = ({
+const Gravatar: FC<{ size: string; alt: string; email: string; marginLeftValue?: number }> = ({
   size,
   alt,
   email,
-  marginLeft,
+  marginLeftValue,
 }) => {
-  return (
-    <Avatar
-      alt={alt}
-      src={email ? getGravatarAddress(email, size * 2) : `${CDN_URL}/Robot.svg`}
-      size={size}
-      marginLeft={marginLeft}
-    />
+  const gravatarAddress = useMemo(
+    () => (email ? getGravatarAddress(email, parseInt(size) * 2) : `${CDN_URL}/Robot.svg`),
+    [email, size]
   );
+
+  return <Avatar alt={alt} src={gravatarAddress} size={size} marginLeftValue={marginLeftValue} />;
 };
 
 export default Gravatar;

@@ -6,10 +6,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
-import TimeConvert from "../../components/api/TimeConvert";
 import ClipboardButton from "../../components/ClipboardButton";
 import Hr from "../../components/display/Hr";
 import { snackState } from "../../states";
+import TimeConvert from "../TimeConvert";
 
 const fullFormat = "YYYY-MM-DD HH:mm:ss";
 

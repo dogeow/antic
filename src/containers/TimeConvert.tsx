@@ -7,8 +7,8 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
-import { snackState } from "../../states";
-import ClipboardButton from "../ClipboardButton";
+import ClipboardButton from "../components/ClipboardButton";
+import { snackState } from "../states";
 
 const useStyles = makeStyles({
   arrowTextWrapper: {

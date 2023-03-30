@@ -8,7 +8,7 @@ import PowerBy from "./PoweredBy";
 
 export default function Footer() {
   return (
-    <Grid item container justifyContent="center" spacing={2} style={{ marginBottom: 20 }}>
+    <Grid item container justifyContent="center" spacing={2} style={{ paddingTop: "2rem" }}>
       <Grid item container justifyContent="center" spacing={1}>
         <Grid item>
           <PowerBy />

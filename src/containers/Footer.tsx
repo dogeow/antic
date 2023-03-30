@@ -33,7 +33,7 @@ const Footer = () => {
 
   return (
     <Grid container component={Container} maxWidth="lg">
-      <Hr />
+      <Hr style={{ margin: "2rem 0" }} />
       <Grid item container className={classes.footer}>
         <Grid item xs={12} sm={5}>
           <Typography variant="h5" component="h3">
