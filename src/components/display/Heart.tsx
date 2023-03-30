@@ -2,20 +2,29 @@ import { makeStyles } from "@mui/styles";
 import React from "react";
 
 const useStyles = makeStyles({
-  root: {
-    "--width": "12px",
-  },
-
   heart: {
-    position: "absolute",
+    position: "relative",
     margin: "5px 10px",
-    backgroundColor: "pink",
-    height: "var(--width)",
-    width: "var(--width)",
+    height: "12px",
+    width: "12px",
     transform: "rotate(-45deg)",
-    animationName: "$beat",
-    animationDuration: "1s",
-    animationIterationCount: "infinite",
+    animation: "$beat 1s infinite",
+    "&::before, &::after": {
+      content: '""',
+      backgroundColor: "pink",
+      borderRadius: "50%",
+      position: "absolute",
+      height: "12px",
+      width: "12px",
+    },
+    "&::after": {
+      top: "0px",
+      left: "6px",
+    },
+    "&::before": {
+      top: "-6px",
+      left: "0px",
+    },
   },
 
   "@keyframes beat": {
@@ -26,41 +35,12 @@ const useStyles = makeStyles({
       transform: "scale(0.8) rotate(-45deg)",
     },
   },
-
-  heartAfter: {
-    backgroundColor: "pink",
-    content: '""',
-    borderRadius: "50%",
-    position: "absolute",
-    width: "var(--width)",
-    height: "var(--width)",
-    top: "0px",
-    left: "6px",
-  },
-
-  heartBefore: {
-    backgroundColor: "pink",
-    content: '""',
-    borderRadius: "50%",
-    position: "absolute",
-    width: "var(--width)",
-    height: "var(--width)",
-    top: "-6px",
-    left: "0px",
-  },
 });
 
 function Heart() {
   const classes = useStyles();
 
-  return (
-    <span className={classes.root}>
-      <span className={classes.heart}>
-        <span className={classes.heartAfter}></span>
-        <span className={classes.heartBefore}></span>
-      </span>
-    </span>
-  );
+  return <span className={classes.heart}></span>;
 }
 
 export default Heart;
