@@ -31,6 +31,7 @@ import { useRecoilState } from "recoil";
 
 import Drawer from "../components/site/Drawer";
 import Logo from "../components/site/Logo";
+import config from "../config/index.json";
 import SearchButton from "../containers/SearchButton";
 import { getGravatarAddress } from "../helpers";
 import { getItem } from "../helpers";
@@ -164,18 +165,11 @@ const Header = () => {
             </Link>
             {matches && (
               <div style={{ marginLeft: 6 }}>
-                <Button color="inherit" component={Link} to="/chat">
-                  聊天室
-                </Button>
-                <Button color="inherit" component={Link} to="/game">
-                  游戏
-                </Button>
-                <Button color="inherit" component={Link} to="/api">
-                  API
-                </Button>
-                <Button color="inherit" component={Link} to="/demo">
-                  DEMO
-                </Button>
+                {config.menus.map((menu, index) => (
+                  <Button color="inherit" component={Link} to={menu.url} key={index}>
+                    {menu.name}
+                  </Button>
+                ))}
               </div>
             )}
             <div className={classes.blank} />

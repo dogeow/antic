@@ -8,8 +8,8 @@ import PowerBy from "./PoweredBy";
 
 export default function Footer() {
   return (
-    <Grid item container justifyContent="center" spacing={2} style={{ paddingTop: "2rem" }}>
-      <Grid item container justifyContent="center" spacing={1}>
+    <Grid item container justifyContent="center" spacing={4} style={{ paddingTop: "2rem" }}>
+      <Grid item container justifyContent="center" spacing={2} style={{ opacity: 0.8 }}>
         <Grid item>
           <PowerBy />
         </Grid>
@@ -17,10 +17,10 @@ export default function Footer() {
           <BuiltBy />
         </Grid>
       </Grid>
-      <Grid item container justifyContent="center" spacing={1} style={{ opacity: 0.6 }}>
+      <Grid item container justifyContent="center" spacing={2} style={{ opacity: 0.6 }}>
         <Grid item>
           <ExternalLink href={"http://www.beian.gov.cn/"}>
-            <img src={IcpIcon} alt="" style={{ verticalAlign: "top" }} />
+            <img src={IcpIcon} alt="ICP 图标" style={{ display: "inlineBlock", verticalAlign: "middle" }} />
             闽公网安备35020302033650号
           </ExternalLink>
         </Grid>

@@ -8,24 +8,28 @@
   ],
   "menus": [
     {
+      "name": "导航",
+      "url": "/nav"
+    },
+    {
       "name": "聊天室",
       "url": "/chat"
     },
     {
-      "name": "物品管理",
-      "url": "/things"
-    },
-    {
-      "name": "游戏",
-      "url": "/game"
-    },
-    {
-      "name": "一些 Demo",
+      "name": "Demo",
       "url": "/demo"
     },
     {
       "name": "API",
       "url": "/api"
+    },
+    {
+      "name": "背包",
+      "url": "/things"
+    },
+    {
+      "name": "游戏",
+      "url": "/game"
     }
   ],
   "externalMenus": [
