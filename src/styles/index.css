@@ -1,35 +1,10 @@
 @charset "UTF-8";
 
+/* reset start */
 *,::after,::before {
   box-sizing: border-box;
 }
 
-/* 手机浏览器的高度问题（搜索可以找到相配合的地方） */
-.app {
-  height: 100vh;
-  /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
-}
-
-/* 渐变。「明亮 / 黑暗」主题切换时的渐变。 */
-body {
-  transition-property: background-color;
-  transition-duration: 1s;
-}
-
-/* reset start */
-figure {
-  margin: 0;
-}
-
-ul {
-  list-style-type: none;
-  text-align: initial;
-  padding-inline-start: 20px;
-}
-/* reset end */
-
-/* 更改默认行为 start */
 a:visited {
   color: unset;
 }
@@ -43,124 +18,14 @@ a:hover {
   color: unset;
 }
 
-blockquote {
-  position: relative;
-  margin: 16px 0;
-  padding: 5px 8px 5px 30px;
-  background: none repeat scroll 0 0 rgba(102, 128, 153, 0.05);
-  border: none;
-  border-left: 10px solid #d6dbdf;
-}
-/* 更改默认行为 end */
-
-/* 鼠标样式 start */
-html {
-  cursor: url("../resources/cursor/pointer.cur"), auto;
+figure {
+  margin: 0;
 }
 
-a:hover,
-button:hover,
-button,
-li.MuiButtonBase-root,
-input.MuiSwitch-input,
-.pointer {
-  cursor: url("../resources/cursor/link.cur"), auto;
-}
-
-input {
-  cursor: url("../resources/cursor/text.cur"), auto;
-}
-/* 鼠标样式 end */
-
-.quote {
-  font-family: cursive;
-  font-size: 18px;
-  padding-bottom: 10px;
-}
-
-.table-of-contents {
-  display: block;
-  position: fixed;
-  top: 85px;
-  right: 0;
-  min-width: 100px;
-  max-width: 350px;
-  max-height: 500px;
-  overflow-y: scroll;
-  border: 1px solid #aaa;
-  border-radius: 0 0 1px 1px;
-  -moz-border-radius: 0 0 1px 1px;
-  background: rgba(249, 249, 249, 0.85);
-  padding: 12px;
-  box-shadow: 0 1px 8px #000;
-  -webkit-box-shadow: 0 1px 8px #000;
-  -moz-box-shadow: 0 1px 8px #000;
-}
-
-h2:hover .header-anchor {
-  opacity: 1;
-}
-
-h3:hover .header-anchor {
-  opacity: 1;
-}
-
-h4:hover .header-anchor {
-  opacity: 1;
-}
-
-.header-anchor {
-  opacity: 0.2;
-}
-
-.AnyClassForContainer {
-  position: fixed;
-  right: 12px;
-  bottom: -200px;
-  transition: bottom 1.5s;
-  cursor: pointer;
-  font-size: 20px;
-  padding: 10px;
-}
-
-.AnyClassForTransition {
-  bottom: 50px;
-}
-
-#containerimg {
-  background: #f1f1fa;
-  width: 400px;
-  height: 300px;
-  display: block;
-  margin: 10px auto;
-  border: 0;
-}
-
-#container {
-  height: calc(100vh - 310px);
-  overflow-y: scroll;
-}
-
-.top-jumper {
-  position: fixed;
-  right: 11%;
-  bottom: 15%;
-  width: 42px;
-  height: 42px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 12px;
-}
-.top-jumper:before {
-  content: "▲";
-  display: block;
-  text-align: center;
-  color: #aaa;
-  line-height: 42px;
-}
-.top-jumper:hover:before {
-  content: "回顶部";
+ul {
+  list-style-type: none;
+  text-align: initial;
+  padding-inline-start: 20px;
 }
 
 kbd {
@@ -181,30 +46,50 @@ kbd {
   border: 1px solid #eaecf0;
 }
 
+blockquote {
+  position: relative;
+  margin: 16px 0;
+  padding: 5px 8px 5px 30px;
+  background: none repeat scroll 0 0 rgba(102, 128, 153, 0.05);
+  border: none;
+  border-left: 10px solid #d6dbdf;
+}
+/* reset end */
+
+/* 手机浏览器的高度问题（搜索可以找到相配合的地方） */
+.app {
+  height: 100vh;
+  /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+/* 渐变。「明亮 / 黑暗」主题切换时的渐变。 */
+body {
+  transition-property: background-color;
+  transition-duration: 1s;
+}
+
+/* 鼠标样式 start */
+html {
+  cursor: url("../resources/cursor/pointer.cur"), auto;
+}
+
+a:hover,
+button:hover,
+button,
+li.MuiButtonBase-root,
+input.MuiSwitch-input,
+.pointer {
+  cursor: url("../resources/cursor/link.cur"), auto;
+}
+
+input {
+  cursor: url("../resources/cursor/text.cur"), auto;
+}
+/* 鼠标样式 end */
+
 .hr {
   border-top: 1px dashed rgba(211, 224, 233, 0.15);
   margin-top: 2rem;
   padding-top: 2rem;
 }
-
-.tocButton {
-  height: 8px;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1;
-}
-
- .tocButton::after {
-   background: linear-gradient(90deg, rgb(255, 192, 1) 0%, rgb(215, 226, 0) 16.15%, rgb(128, 211, 74) 33.85%, rgb(0, 214, 136) 50.52%, rgb(1, 208, 192) 66.15%, rgb(0, 198, 255) 81.25%, rgb(42, 130, 255) 100%);
-   content: "";
-   height: 100%;
-   left: 0;
-   position: absolute;
-   top: 0;
-   transform: scaleX(var(--progress-width,0));
-   transform-origin: 0 0;
-   width: 100%;
-   will-change: transform;
- }

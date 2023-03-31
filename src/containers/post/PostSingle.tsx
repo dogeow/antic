@@ -1,3 +1,5 @@
+import "../../styles/post.css";
+
 import { useQuery } from "@apollo/client";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 import { Skeleton, Theme, Typography } from "@mui/material";
@@ -15,7 +17,7 @@ import { postState } from "../../states";
 import PostBody from "./PostBody";
 import PostHeader from "./PostHeader";
 
-const useStyles = makeStyles((theme: Theme) => {
+const useStyles = makeStyles(() => {
   return {
     toc: {
       display: "block",
@@ -69,7 +71,7 @@ const PostSingle = () => {
   }, [data, post.content]);
 
   useEffect(() => {
-    const handleScroll = (event) => {
+    const handleScroll = () => {
       const scrollTop = document.documentElement.scrollTop; // 滚动条滚动高度
       if (scrollTop === 0) {
         setPercentage(0);
