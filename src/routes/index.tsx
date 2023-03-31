@@ -30,7 +30,7 @@ const WeiboAbout = lazy(() => import("../containers/demos/WeiboAbout"));
 const Project = lazy(() => import("../components/task/Project"));
 const NewProject = lazy(() => import("../components/task/NewProject"));
 const SingleProject = lazy(() => import("../components/task/SingleProject"));
-const Nav = lazy(() => import("../components/Nav"));
+const Nav = lazy(() => import("../containers/nav"));
 const BookmarkCreate = lazy(() => import("../containers/BookmarkCreate"));
 const Search = lazy(() => import("../components/GoogleSearch"));
 const User = lazy(() => import("../containers/users/User"));
@@ -63,8 +63,6 @@ const AddSuffix = lazy(() => import("../containers/tools/AddSuffix"));
 const Ai = lazy(() => import("../containers/tools/Ai"));
 const Test = lazy(() => import("../containers/Test"));
 const PostTest = lazy(() => import("../containers/PostTest"));
-const NavNew = lazy(() => import("../containers/Nav"));
-
 export default () => (
   <Suspense fallback={<Loading />}>
     <Routes>
@@ -104,7 +102,6 @@ export default () => (
 
         {/* Demos */}
         <Route path="/bookmarks" element={<Bookmarks />} />
-        <Route path="/nav-new" element={<NavNew />} />
         <Route path="/bookmarks-old" element={<BookmarksOld />} />
         <Route path="/weibo" element={<Weibo />} />
         <Route path="/weibo/about" element={<WeiboAbout />} />

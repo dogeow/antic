@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
 
-import axios from "../instance/axios";
+import axios from "../../instance/axios";
 
 const useStyles = makeStyles(() => ({
   ul: {

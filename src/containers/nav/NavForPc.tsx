@@ -3,8 +3,8 @@ import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
 
-import chromeBookmarks from "../resources/Bookmarks.json";
-import SubNav from "./nav/SubNav";
+import SubNav from "../../components/nav/SubNav";
+import chromeBookmarks from "../../resources/Bookmarks.json";
 
 const bookmarks = chromeBookmarks.roots.bookmark_bar.children;
 
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Nav() {
+export default function NavForPc() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
