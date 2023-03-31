@@ -67,11 +67,12 @@ const Footer = () => {
             </li>
             <Tooltip title="GitHub 存储库" aria-label="GitHub 存储库">
               <IconButton
-                color="inherit"
                 component="a"
                 href="https://github.com/dogeow/antic"
-                target="_blank"
+                color="inherit"
                 size="large"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <GitHub fontSize="small" />
               </IconButton>

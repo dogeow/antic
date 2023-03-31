@@ -21,7 +21,7 @@ import {
   Zoom,
 } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
-import React, { MouseEventHandler, ReactEventHandler, useState } from "react";
+import React, { useState } from "react";
 import { Link as RouteLink, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 

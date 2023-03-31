@@ -36,7 +36,7 @@ const Bookmarks = () => {
       {bookmarks.map((bookmark) => {
         return (
           <div key={bookmark.id}>
-            <a href={bookmark.url} target="_blank" rel="noreferrer">
+            <a href={bookmark.url} target="_blank" rel="noopener noreferrer">
               {bookmark.title}
             </a>
           </div>

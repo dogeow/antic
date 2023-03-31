@@ -116,7 +116,7 @@ export default function ControlledAccordions() {
                     <ul className={classes.ul}>
                       {items.map((item, index) => (
                         <li key={index}>
-                          <a href={item["url"]} target="_blank" rel="noreferrer">
+                          <a href={item["url"]} target="_blank" rel="noopener noreferrer">
                             {item["title"]}
                           </a>
                         </li>

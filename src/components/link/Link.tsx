@@ -10,7 +10,7 @@ export default ({ to, children, ...props }: Props) => {
 
   if (/^https?:\/\//.test(to))
     return (
-      <a href={to} {...props} rel="noreferrer" target="_blank">
+      <a href={to} {...props} rel="noopener noreferrer" target="_blank">
         {children}
       </a>
     );

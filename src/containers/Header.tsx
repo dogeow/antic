@@ -17,7 +17,6 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Theme,
   Toolbar,
   Tooltip,
   useMediaQuery,
@@ -27,7 +26,7 @@ import makeStyles from "@mui/styles/makeStyles";
 import { AxiosResponse } from "axios";
 import produce from "immer";
 import React, { useEffect, useState } from "react";
-import { Link as RouteLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import Drawer from "../components/site/Drawer";
@@ -160,21 +159,21 @@ const Header = () => {
             >
               <MenuIcon />
             </IconButton>
-            <RouteLink to="/">
+            <Link to="/">
               <Logo shadow={true} />
-            </RouteLink>
+            </Link>
             {matches && (
               <div style={{ marginLeft: 6 }}>
-                <Button color="inherit" component={RouteLink} to="/chat">
+                <Button color="inherit" component={Link} to="/chat">
                   聊天室
                 </Button>
-                <Button color="inherit" component={RouteLink} to="/game">
+                <Button color="inherit" component={Link} to="/game">
                   游戏
                 </Button>
-                <Button color="inherit" component={RouteLink} to="/api">
+                <Button color="inherit" component={Link} to="/api">
                   API
                 </Button>
-                <Button color="inherit" component={RouteLink} to="/demo">
+                <Button color="inherit" component={Link} to="/demo">
                   DEMO
                 </Button>
               </div>
@@ -205,18 +204,11 @@ const Header = () => {
             </Hidden>
             {isExpired ? (
               <Tooltip title="登录" aria-label="登录">
-                <IconButton
-                  color="inherit"
-                  component={RouteLink}
-                  href="https://github.com/dogeow/antic"
-                  to={{
-                    pathname: "/login",
-                    state: { from: pathname },
-                  }}
-                  size="large"
-                >
-                  <PersonIcon />
-                </IconButton>
+                <Link to={{ pathname: "/login" }} state={{ from: pathname }}>
+                  <IconButton color="inherit" size="large">
+                    <PersonIcon />
+                  </IconButton>
+                </Link>
               </Tooltip>
             ) : (
               <div>
@@ -247,7 +239,7 @@ const Header = () => {
                   open={profileOpen}
                   onClose={handleCloseProfile}
                 >
-                  <RouteLink to={`/user/${user.id}`} onClick={handleCloseProfile}>
+                  <Link to={`/user/${user.id}`} onClick={handleCloseProfile}>
                     <div style={{ textAlign: "center", fontSize: "1rem" }}>
                       <Avatar
                         alt={user.name}
@@ -256,7 +248,7 @@ const Header = () => {
                       />
                       {user.name}
                     </div>
-                  </RouteLink>
+                  </Link>
                   {users.map((user, index) => {
                     return (
                       user.email !== user.email && (
@@ -283,12 +275,12 @@ const Header = () => {
                     );
                   })}
                   <Divider />
-                  <RouteLink to="/login" onClick={() => handleCloseProfile()}>
+                  <Link to="/login" onClick={() => handleCloseProfile()}>
                     <MenuItem>
                       <PersonAddIcon style={{ width: 40 }} />
                       <span style={{ margin: "0 10px 0 10px" }}>添加其他账号</span>
                     </MenuItem>
-                  </RouteLink>
+                  </Link>
                   <MenuItem
                     onClick={() => {
                       setMobileMoreAnchorEl(null);
