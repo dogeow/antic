@@ -1,3 +1,5 @@
+import "../../styles/weibo.css";
+
 import ErrorOutline from "@mui/icons-material/ErrorOutline";
 import { Grid, Hidden, Pagination, PaginationItem, Skeleton, TextField } from "@mui/material";
 import Alert from "@mui/material/Alert";

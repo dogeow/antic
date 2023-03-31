@@ -1,0 +1,11 @@
+.boil {
+  border-left: 1px solid red;
+}
+
+.hot {
+  border-left: 1px solid orange;
+}
+
+.new {
+  border-left: 1px solid green;
+}

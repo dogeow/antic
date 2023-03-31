@@ -87,7 +87,7 @@ const PostSingle = () => {
 
   return (
     <>
-      <div className="dCoYYQ" style={{ "--progress-width": percentage }}></div>
+      <div className="tocButton" style={{ "--progress-width": percentage }}></div>
       {tocButtonDisplay && (
         <div>
           <div className={classes.displayToc} onClick={handleToggleMenu}>

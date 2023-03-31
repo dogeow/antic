@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-figure {
-  margin: 0;
-}
-
 /* 手机浏览器的高度问题（搜索可以找到相配合的地方） */
 .app {
   height: 100vh;
@@ -18,15 +14,20 @@ figure {
 /* 渐变。「明亮 / 黑暗」主题切换时的渐变。 */
 body {
   transition-property: background-color;
-  transition-duration: 2s;
+  transition-duration: 1s;
 }
 
-/* reset */
+/* reset start */
+figure {
+  margin: 0;
+}
+
 ul {
   list-style-type: none;
   text-align: initial;
   padding-inline-start: 20px;
 }
+/* reset end */
 
 /* 更改默认行为 start */
 a:visited {
@@ -60,7 +61,7 @@ html {
 a:hover,
 button:hover,
 button,
-li.MuiListItem-button,
+li.MuiButtonBase-root,
 input.MuiSwitch-input,
 .pointer {
   cursor: url("../resources/cursor/link.cur"), auto;
@@ -71,42 +72,10 @@ input {
 }
 /* 鼠标样式 end */
 
-/* 微博热搜榜 start */
-.boil {
-  border-left: 1px solid red;
-}
-
-.hot {
-  border-left: 1px solid orange;
-}
-
-.new {
-  border-left: 1px solid green;
-}
-/* 微博热搜榜 end */
-
 .quote {
   font-family: cursive;
   font-size: 18px;
   padding-bottom: 10px;
-}
-
-#favicon {
-  position: relative;
-  animation: antic 4s 1s;
-  animation-direction: alternate;
-}
-
-@keyframes antic {
-  0% {
-    left: 0;
-  }
-  50% {
-    left: 233px;
-  }
-  100% {
-    left: 0;
-  }
 }
 
 .table-of-contents {
@@ -195,16 +164,11 @@ h4:hover .header-anchor {
 }
 
 kbd {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -o-border-radius: 4px;
-  -khtml-border-radius: 4px;
   border-radius: 4px;
   border: 1px solid #aaa;
-  padding: 0 3px 1px 3px;
-  margin: 0 0 0 0;
+  padding: 0 0.2em 0.1em 0.2em;
   vertical-align: baseline;
-  line-height: 1.8em;
+  line-height: 1.4rem;
   white-space: nowrap;
 }
 
@@ -223,7 +187,7 @@ kbd {
   padding-top: 2rem;
 }
 
-.dCoYYQ {
+.tocButton {
   height: 8px;
   left: 0;
   position: fixed;
@@ -232,7 +196,7 @@ kbd {
   z-index: 1;
 }
 
- .dCoYYQ::after {
+ .tocButton::after {
    background: linear-gradient(90deg, rgb(255, 192, 1) 0%, rgb(215, 226, 0) 16.15%, rgb(128, 211, 74) 33.85%, rgb(0, 214, 136) 50.52%, rgb(1, 208, 192) 66.15%, rgb(0, 198, 255) 81.25%, rgb(42, 130, 255) 100%);
    content: "";
    height: 100%;

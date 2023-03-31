@@ -12,17 +12,7 @@ export default (ctx, grid) => {
       const img = document.querySelector(`#map-tile-img-${item}`);
       const x = j * TILE_SIZE;
       const y = i * TILE_SIZE;
-      ctx.drawImage(
-        img,
-        0,
-        0,
-        TILE_SIZE,
-        TILE_SIZE,
-        x,
-        y,
-        TILE_SIZE,
-        TILE_SIZE
-      );
+      ctx.drawImage(img, 0, 0, TILE_SIZE, TILE_SIZE, x, y, TILE_SIZE, TILE_SIZE);
     }
   }
 };
