@@ -15,8 +15,6 @@ const PostCreate = lazy(() => import("../containers/post/PostCreate"));
 const PostSingle = lazy(() => import("../containers/post/PostSingle"));
 const Cars = lazy(() => import("../containers/myself/Cars"));
 const Reset = lazy(() => import("../containers/users/Reset"));
-const Bookmarks = lazy(() => import("../containers/Bookmarks"));
-const BookmarksOld = lazy(() => import("../containers/BookmarksOld"));
 const AllCategories = lazy(() => import("../containers/post/AllCategories"));
 const Tags = lazy(() => import("../containers/Tags"));
 const Register = lazy(() => import("../containers/users/Register"));
@@ -43,11 +41,9 @@ const Like = lazy(() => import("../containers/myself/Like"));
 const Video = lazy(() => import("../containers/demos/Video"));
 const Music = lazy(() => import("../containers/demos/Music"));
 const Moon = lazy(() => import("../containers/demos/Moon"));
-const PHPFunction = lazy(() => import("../containers/tools/PHPFunction"));
 const Chat = lazy(() => import("../components/Chat"));
 const Base64 = lazy(() => import("../containers/tools/Base64"));
 const Money = lazy(() => import("../containers/tools/Money"));
-const Color = lazy(() => import("../containers/tools/Color"));
 const MediaWikiToMarkdown = lazy(() => import("../containers/tools/MediaWikiToMarkdown"));
 const Download = lazy(() => import("../containers/demos/Download"));
 const NoMatch = lazy(() => import("../containers/NoMatch"));
@@ -63,6 +59,7 @@ const AddSuffix = lazy(() => import("../containers/tools/AddSuffix"));
 const Ai = lazy(() => import("../containers/tools/Ai"));
 const Test = lazy(() => import("../containers/Test"));
 const PostTest = lazy(() => import("../containers/PostTest"));
+
 export default () => (
   <Suspense fallback={<Loading />}>
     <Routes>
@@ -101,8 +98,6 @@ export default () => (
         <Route path="/project/:id" element={<SingleProject />} />
 
         {/* Demos */}
-        <Route path="/bookmarks" element={<Bookmarks />} />
-        <Route path="/bookmarks-old" element={<BookmarksOld />} />
         <Route path="/weibo" element={<Weibo />} />
         <Route path="/weibo/about" element={<WeiboAbout />} />
         <Route path="/emoji" element={<Emoji />} />
@@ -121,9 +116,7 @@ export default () => (
         <Route path="/search" element={<Search />} />
         <Route path="/base64" element={<Base64 />} />
         <Route path="/money" element={<Money />} />
-        <Route path="/color" element={<Color />} />
         <Route path="/mediawiki-to-markdown" element={<MediaWikiToMarkdown />} />
-        <Route path="/php-function" element={<PHPFunction />} />
         <Route path="/add-suffix" element={<AddSuffix />} />
 
         {/* API */}

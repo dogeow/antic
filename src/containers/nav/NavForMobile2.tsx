@@ -4,7 +4,7 @@ import TreeItem from "@mui/lab/TreeItem";
 import TreeView from "@mui/lab/TreeView";
 import * as React from "react";
 
-import chromeBookmarks from "../resources/Bookmarks.json";
+import chromeBookmarks from "../../resources/Bookmarks.json";
 
 const subFolder = (project) => {
   if (project.type === "folder") {
@@ -30,12 +30,12 @@ const subFolder = (project) => {
   return array;
 };
 
-const bookmarksOld = chromeBookmarks.roots.bookmark_bar.children;
+const navForMobile2 = chromeBookmarks.roots.bookmark_bar.children;
 
 const Bookmarks = () => {
   return (
     <TreeView defaultCollapseIcon={<ExpandMoreIcon />} defaultExpandIcon={<ChevronRightIcon />}>
-      {bookmarksOld.map((children) => subFolder(children))}
+      {navForMobile2.map((children) => subFolder(children))}
     </TreeView>
   );
 };

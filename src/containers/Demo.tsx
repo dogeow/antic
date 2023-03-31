@@ -23,9 +23,6 @@ const Demo = () => (
           <Link to="/mediawiki-to-markdown">MediaWiki 转 Markdown</Link>
         </li>
         <li>
-          <Link to="/color">颜色查看器</Link>
-        </li>
-        <li>
           <Link to="/base64">Base64</Link>
         </li>
         <li>
@@ -51,12 +48,6 @@ const Demo = () => (
         </li>
         <li>
           <Link to="/api/time">⌚ ️时间、时间戳</Link>
-        </li>
-        <li>
-          <Link to="/php-function">🐘 PHP 函数</Link>
-        </li>
-        <li>
-          <Link to="/bookmarks">🔖 谷歌书签</Link>
         </li>
         <li>
           <Link to="/nav">🧭 网址导航</Link>
