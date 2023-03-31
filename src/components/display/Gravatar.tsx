@@ -12,7 +12,7 @@ interface AvatarProps {
 }
 
 interface Gravatar {
-  email: string;
+  email?: string;
   marginLeftValue?: number;
   alt: string;
   size: number;

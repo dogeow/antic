@@ -5,19 +5,19 @@ import * as React from "react";
 
 export default (props) => (
   <TextField
-    variant="outlined"
-    required
-    fullWidth
     id="email"
     name="email"
     label="Email 地址"
     value={props.email}
+    required
+    fullWidth
+    variant="outlined"
     autoComplete="email"
     placeholder="username@example.com"
     onChange={(e) => props.setEmail(e.target.value)}
+    error={!!props.error}
     InputLabelProps={props.error && { shrink: true }}
     helperText={props.error?.[0]}
-    error={!!props.error}
     InputProps={{
       startAdornment: (
         <InputAdornment position="start">

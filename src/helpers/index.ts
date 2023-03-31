@@ -48,7 +48,7 @@ export const setItem = (key: string, data: any) => {
  * @return {string|boolean}
  */
 export const getHost = (url: string) => {
-  const reg = /^(http(?:s):\/\/.*?)(\/|$)/;
+  const reg = /^(http?:s:\/\/.*?)(\/|$)/;
   const result = reg.exec(url);
 
   if (result) {

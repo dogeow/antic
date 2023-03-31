@@ -1,5 +1,6 @@
 import SendIcon from "@mui/icons-material/Send";
 import { Button, Dialog, DialogActions, DialogContent, Grid, InputAdornment, TextField } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import produce from "immer";
 import { find, uniqBy } from "lodash";
 import React, { useEffect, useRef, useState } from "react";
@@ -15,9 +16,20 @@ import Expire from "./display/Expire";
 import Avatar from "./display/Gravatar";
 import Loading from "./display/Loading";
 
+const useStyle = makeStyles(() => ({
+  userList: {
+    borderLeftWidth: 2,
+    borderLeftColor: "rgba(0, 0, 0, 0.1)",
+    borderLeftStyle: "solid",
+    paddingRight: 4,
+  },
+}));
+
 let timer = null;
 
 export default function Chat() {
+  const classes = useStyle();
+
   const [loading, setLoading] = useState(window?.Echo?.socketId() === null);
   const [typing, setTyping] = useState(undefined);
   const [message, setMessage] = useState("");
@@ -297,19 +309,14 @@ export default function Chat() {
           container
           spacing={1}
           xs={3}
-          style={{
-            borderLeftWidth: 2,
-            borderLeftColor: "rgba(0, 0, 0, 0.1)",
-            borderLeftStyle: "solid",
-            paddingRight: 4,
-          }}
+          className={classes.userList}
           alignContent={isMobile && inputFocus ? "flex-end" : "flex-start"}
         >
           {people.map((person: ChatPeople) => {
             return (
               <Grid item xs={12} container key={person.id}>
                 <Grid item xs={12}>
-                  <Avatar alt={person.name} email={person.email} size={24} marginLeft={4} />
+                  <Avatar alt={person.name} email={person.email} size={24} marginLeftValue={4} />
                   {typing === person.id && <Expire delay={2000}> 输入中...</Expire>}
                 </Grid>
                 <Grid item>
