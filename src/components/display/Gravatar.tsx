@@ -7,8 +7,15 @@ import { getGravatarAddress } from "../../helpers";
 
 interface AvatarProps {
   marginLeftValue?: number;
-  size?: string;
+  size?: number;
   css?: SerializedStyles;
+}
+
+interface Gravatar {
+  email: string;
+  marginLeftValue?: number;
+  alt: string;
+  size: number;
 }
 
 const Avatar = styled.img<AvatarProps>`
@@ -21,18 +28,13 @@ const Avatar = styled.img<AvatarProps>`
   ${({ size }) =>
     size &&
     css`
-      width: ${size};
+      width: ${size}px;
     `};
 `;
 
-const Gravatar: FC<{ size: string; alt: string; email: string; marginLeftValue?: number }> = ({
-  size,
-  alt,
-  email,
-  marginLeftValue,
-}) => {
+const Gravatar: FC<Gravatar> = ({ email, size, alt, marginLeftValue }) => {
   const gravatarAddress = useMemo(
-    () => (email ? getGravatarAddress(email, parseInt(size) * 2) : `${CDN_URL}/Robot.svg`),
+    () => (email ? getGravatarAddress(email, size * 2) : `${CDN_URL}/Robot.svg`),
     [email, size]
   );
 

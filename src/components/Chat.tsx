@@ -266,7 +266,7 @@ export default function Chat() {
                   </Grid>
                 ) : (
                   <Grid item xs={12} key={index}>
-                    <Avatar alt={content.name} email={find(people, ["id", content.id])["email"]} size={24} />
+                    <Avatar email={find(people, ["id", content.id])["email"]} size={24} alt={content.name} />
                     <span style={{ marginLeft: 4 }}>{content.message}</span>
                   </Grid>
                 );
