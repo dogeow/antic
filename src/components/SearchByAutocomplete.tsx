@@ -6,8 +6,8 @@ import * as React from "react";
 import { useRecoilState } from "recoil";
 
 import { CDN_URL } from "../config/services";
+import { ClearIcon } from "../resources/ClearIcon";
 import { isSearchOpenState } from "../states";
-import { ClearIcon } from "./ClearIcon";
 import Link from "./link/Link";
 import { SearchIcon } from "./SearchIcon";
 

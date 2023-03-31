@@ -85,7 +85,7 @@ export default () => {
     return () => {
       window.matchMedia("(prefers-color-scheme: dark)").removeEventListener("change", handle);
     };
-  }, [setPaletteMode]);
+  }, [paletteMode, setPaletteMode]);
 
   return (
     <BrowserRouter>

@@ -9,14 +9,6 @@ interface Props {
   agree: () => void;
 }
 
-/**
- * @param {boolean} open
- * @param {() => void} handleClose
- * @param {string} title
- * @param {string} content
- * @param {() => void} agree
- * @return {JSX.Element}
- */
 const AlertDialog: React.FC<Props> = ({ open, handleClose, title, content, agree }) => {
   return (
     <Dialog
