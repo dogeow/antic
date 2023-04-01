@@ -13,17 +13,17 @@ import Header from "../containers/Header";
 import Snack from "../containers/Snack";
 
 const useStyles = makeStyles({
-  main: {
+  app: {
+    minHeight: "100vh",
+  },
+  // 适合展示
+  other: {
     paddingLeft: 0,
     paddingRight: 0,
   },
-  backToTop: {
-    position: "fixed",
-    width: 50,
-    height: 50,
-    right: 0,
-    bottom: 0,
-    zIndex: 9,
+  main: {
+    marginTop: "2rem",
+    flexGrow: 1,
   },
 });
 
@@ -31,33 +31,29 @@ export default () => {
   const classes = useStyles();
   const location = useLocation();
 
+  const isIndex = location.pathname === "/";
+  const isNotIndex = !isIndex;
+  const isNavOrCars = ["/cars"].includes(location.pathname);
+
   return (
-    <Grid id="app" container direction="column" style={{ minHeight: "100vh" }}>
+    <Grid container direction="column" className={classes.app}>
+      {/* 头部 */}
       <Header />
-      <Grid
-        container
-        component={Container}
-        maxWidth="lg"
-        classes={["/nav", "/cars"].includes(location.pathname) ? { root: classes.main } : undefined}
-        style={
-          location.pathname === "/"
-            ? {
-                display: "flex",
-                marginTop: 16,
-                marginBottom: 16,
-                flexGrow: 1,
-              }
-            : { display: "flex", marginTop: 16, marginBottom: 16 }
-        }
-      >
+      {/* 主要内容 */}
+      <Container maxWidth="lg" classes={isNavOrCars ? { root: classes.other } : { root: classes.main }}>
         <Suspense fallback={<Loading />}>
           <Outlet />
         </Suspense>
-      </Grid>
-      {["/"].includes(location.pathname) && <Footer />}
-      {["/"].includes(location.pathname) || <ScrollButton />}
+      </Container>
+      {/* 尾部 */}
+      {isIndex && <Footer />}
+      {/* 滚动条 */}
+      {isNotIndex && <ScrollButton />}
+      {/* 顶部搜索 */}
       <Search />
+      {/* 系统设置 */}
       <Settings />
+      {/* 提示 */}
       <Snack />
     </Grid>
   );

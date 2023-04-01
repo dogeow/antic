@@ -58,7 +58,6 @@ const ThingTag = lazy(() => import("../projects/things/Tag"));
 const AddSuffix = lazy(() => import("../containers/tools/AddSuffix"));
 const Ai = lazy(() => import("../containers/tools/Ai"));
 const Test = lazy(() => import("../containers/Test"));
-const PostTest = lazy(() => import("../containers/PostTest"));
 
 export default () => (
   <Suspense fallback={<Loading />}>
@@ -143,7 +142,6 @@ export default () => (
         <Route path="/test" element={<Test />} />
         <Route path="/mui-x" element={<MuiX />} />
         <Route path="/game" element={<Game />} />
-        <Route path="/post-test" element={<PostTest />} />
 
         <Route path="*" element={<NoMatch />} />
       </Route>

@@ -16,10 +16,12 @@ const Index = () => {
 
   return (
     <>
-      <FormControlLabel
-        control={<Switch checked={checked} onChange={handleChange} inputProps={{ "aria-label": "controlled" }} />}
-        label="树形显示"
-      />
+      {isMobile && (
+        <FormControlLabel
+          control={<Switch checked={checked} onChange={handleChange} inputProps={{ "aria-label": "controlled" }} />}
+          label="树形显示"
+        />
+      )}
       {isMobile ? checked ? <NavForMobile2 /> : <NavForMobile /> : <NavForPc />}
     </>
   );
