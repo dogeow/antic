@@ -1,10 +1,9 @@
 import { Box, Grid, Tab, Tabs } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import SubNav from "../../components/nav/SubNav";
-import axios from "../../instance/axios";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -40,16 +39,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NavForPc() {
+export default function NavForPc({ bookmarks }) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [bookmarks, setBookmarks] = useState([]);
-
-  useEffect(() => {
-    axios.get("/bookmarks").then((res) => {
-      setBookmarks(res.data);
-    });
-  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

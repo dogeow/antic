@@ -3,44 +3,31 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TreeItem from "@mui/lab/TreeItem";
 import TreeView from "@mui/lab/TreeView";
 import * as React from "react";
-import { useEffect, useState } from "react";
 
-import axios from "../../instance/axios";
+const Bookmarks = ({ bookmarks }) => (
+  <TreeView defaultCollapseIcon={<ExpandMoreIcon />} defaultExpandIcon={<ChevronRightIcon />}>
+    {Object.keys(bookmarks).map((mainCategory) => {
+      const subBookmarks = bookmarks[mainCategory];
 
-const Bookmarks = () => {
-  const [bookmarks, setBookmarks] = useState([]);
+      return (
+        <TreeItem key={mainCategory} nodeId={mainCategory} label={mainCategory}>
+          {Object.keys(subBookmarks).map((subCategory, index) => {
+            const bookmarks = subBookmarks[subCategory];
 
-  useEffect(() => {
-    axios.get("/bookmarks").then((res) => {
-      setBookmarks(res.data);
-    });
-  }, []);
-
-  return (
-    <TreeView defaultCollapseIcon={<ExpandMoreIcon />} defaultExpandIcon={<ChevronRightIcon />}>
-      {Object.keys(bookmarks).map((mainCategory) => {
-        const subBookmarks = bookmarks[mainCategory];
-
-        return (
-          <TreeItem key={mainCategory} nodeId={mainCategory} label={mainCategory}>
-            {Object.keys(subBookmarks).map((subCategory, index) => {
-              const bookmarks = subBookmarks[subCategory];
-
-              return (
-                <TreeItem key={subCategory} nodeId={subCategory} label={subCategory}>
-                  {bookmarks.map((bookmark, index) => (
-                    <a key={index} href={bookmark.url} target="_blank" rel="noopener noreferrer">
-                      <TreeItem nodeId={bookmark.title} label={bookmark.title} />
-                    </a>
-                  ))}
-                </TreeItem>
-              );
-            })}
-          </TreeItem>
-        );
-      })}
-    </TreeView>
-  );
-};
+            return (
+              <TreeItem key={subCategory} nodeId={subCategory} label={subCategory}>
+                {bookmarks.map((bookmark, index) => (
+                  <a key={index} href={bookmark.url} target="_blank" rel="noopener noreferrer">
+                    <TreeItem nodeId={bookmark.title} label={bookmark.title} />
+                  </a>
+                ))}
+              </TreeItem>
+            );
+          })}
+        </TreeItem>
+      );
+    })}
+  </TreeView>
+);
 
 export default Bookmarks;

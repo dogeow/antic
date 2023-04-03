@@ -7,9 +7,7 @@ import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
-import React, { useEffect, useState } from "react";
-
-import axios from "../../instance/axios";
+import React, { useState } from "react";
 
 const useStyles = makeStyles(() => ({
   ul: {
@@ -52,17 +50,10 @@ function a11yProps(index: number) {
   };
 }
 
-export default function ControlledAccordions() {
+export default function ControlledAccordions({ bookmarks }) {
   const classes = useStyles();
-  const [bookmarks, setBookmarks] = useState([]);
   const [expanded, setExpanded] = useState<string | false>(false);
   const [value, setValue] = useState(0);
-
-  useEffect(() => {
-    axios.get("/bookmarks").then((res) => {
-      setBookmarks(res.data);
-    });
-  }, []);
 
   const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
     // 切换不同的 panel，tab 设置为 0
