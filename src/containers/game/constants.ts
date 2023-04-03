@@ -1,3 +1,5 @@
+import { CDN_URL } from "../../config/services";
+
 export const TILE_SIZE = 32;
 
 export const MAP_DIMENSIONS = {
@@ -7,11 +9,11 @@ export const MAP_DIMENSIONS = {
 };
 
 export const MAP_TILE_IMAGES = {
-  1: "assets/map/floor_sand_stone_1.png",
-  2: "assets/map/floor_sand_rock_1.png",
-  3: "assets/map/floor_sand_stone_5.png",
-  4: "assets/map/tree_1_yellow.png",
-  5: "assets/map/stone_2_brown1.png",
+  1: `${CDN_URL}/game/map/floor_sand_stone_1.png`,
+  2: `${CDN_URL}/game/map/floor_sand_rock_1.png`,
+  3: `${CDN_URL}/game/map/floor_sand_stone_5.png`,
+  4: `${CDN_URL}/game/map/tree_1_yellow.png`,
+  5: `${CDN_URL}/game/map/stone_2_brown1.png`,
 };
 
 export const LAYERS = [
