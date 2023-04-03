@@ -24,20 +24,15 @@ const Index = () => {
   return (
     <>
       {isMobile && (
-        <FormControlLabel
-          control={<Switch checked={checked} onChange={handleChange} inputProps={{ "aria-label": "controlled" }} />}
-          label="树形显示"
-        />
+        <>
+          <FormControlLabel
+            control={<Switch checked={checked} onChange={handleChange} inputProps={{ "aria-label": "controlled" }} />}
+            label="树形显示"
+          />
+          {checked ? <NavForMobile2 bookmarks={bookmarks} /> : <NavForMobile bookmarks={bookmarks} />}
+        </>
       )}
-      {isMobile ? (
-        checked ? (
-          <NavForMobile2 bookmarks={bookmarks} />
-        ) : (
-          <NavForMobile bookmarks={bookmarks} />
-        )
-      ) : (
-        <NavForPc bookmarks={bookmarks} />
-      )}
+      {!isMobile && <NavForPc bookmarks={bookmarks} />}
     </>
   );
 };
