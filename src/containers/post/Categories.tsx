@@ -1,8 +1,9 @@
-import Skeleton from "@mui/material/Skeleton";
+import { Grid, Skeleton } from "@mui/material";
 import * as React from "react";
 import { useState } from "react";
 
 import ChipFlow from "../../components/ChipFlow";
+import { generateRandomInt } from "../../helpers/math";
 
 export default (props: { categories: Category[]; changeCategory: { (arg: number | null): void } }) => {
   const [currCategory, setCurrCategory] = useState<string>("");
@@ -23,6 +24,12 @@ export default (props: { categories: Category[]; changeCategory: { (arg: number 
       }}
     />
   ) : (
-    <Skeleton variant="rectangular" height="24rem" />
+    <Grid item container spacing={1}>
+      {Array.from(new Array(20)).map((item, index) => (
+        <Grid item xs={"auto"} key={index}>
+          <Skeleton variant="rounded" width={`${generateRandomInt(3, 5)}rem`} height="2rem" />
+        </Grid>
+      ))}
+    </Grid>
   );
 };
