@@ -7,7 +7,7 @@ import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 
 import axios from "../../instance/axios";
 
@@ -54,11 +54,11 @@ function a11yProps(index: number) {
 
 export default function ControlledAccordions() {
   const classes = useStyles();
-  const [bookmarks, setBookmarks] = React.useState([]);
-  const [expanded, setExpanded] = React.useState<string | false>(false);
-  const [value, setValue] = React.useState(0);
+  const [bookmarks, setBookmarks] = useState([]);
+  const [expanded, setExpanded] = useState<string | false>(false);
+  const [value, setValue] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     axios.get("/bookmarks").then((res) => {
       setBookmarks(res.data);
     });

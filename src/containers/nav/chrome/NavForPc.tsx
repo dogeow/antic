@@ -1,10 +1,14 @@
 import { Box, Grid, Tab, Tabs } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
-import React, { useEffect, useState } from "react";
+import * as React from "react";
 
 import SubNav from "../../components/nav/SubNav";
-import axios from "../../instance/axios";
+import chromeBookmarks from "../../resources/Bookmarks.json";
+
+const bookmarks = chromeBookmarks.roots.bookmark_bar.children;
+
+// const other = chromeBookmarks['roots']['other']['children'];
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -42,14 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavForPc() {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
-  const [bookmarks, setBookmarks] = useState([]);
-
-  useEffect(() => {
-    axios.get("/bookmarks").then((res) => {
-      setBookmarks(res.data);
-    });
-  }, []);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -66,21 +63,21 @@ export default function NavForPc() {
           aria-label="Vertical tabs example"
           className={classes.tabs}
         >
-          {Object.keys(bookmarks).map((category, index) => (
-            <Tab key={index} label={category} {...a11yProps(index)} />
-          ))}
+          {bookmarks.map(
+            (project, index) =>
+              project.type === "folder" && <Tab key={index} label={project.name} {...a11yProps(index)} />
+          )}
         </Tabs>
       </Grid>
       <Grid item xs={8} sm={9} md={10}>
-        {Object.keys(bookmarks).map((category, index) => {
-          const subCategories = bookmarks[category];
-
-          return (
-            <TabPanel key={index} value={value} index={index}>
-              <SubNav data={subCategories} />
-            </TabPanel>
-          );
-        })}
+        {bookmarks.map(
+          (project, index) =>
+            project.type === "folder" && (
+              <TabPanel key={index} value={value} index={index}>
+                <SubNav data={project.children} />
+              </TabPanel>
+            )
+        )}
       </Grid>
     </Grid>
   );

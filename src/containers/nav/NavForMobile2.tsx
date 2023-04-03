@@ -3,39 +3,42 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TreeItem from "@mui/lab/TreeItem";
 import TreeView from "@mui/lab/TreeView";
 import * as React from "react";
+import { useEffect, useState } from "react";
 
-import chromeBookmarks from "../../resources/Bookmarks.json";
-
-const subFolder = (project) => {
-  if (project.type === "folder") {
-    // 文件夹
-    return (
-      <TreeItem key={project.id} nodeId={project.id} label={project.name}>
-        {subFolder(project.children)}
-      </TreeItem>
-    );
-  }
-  if (project.type === "url") {
-    // 单个链接
-    return (
-      <a key={project.id} href={project.url} target="_blank" rel="noopener noreferrer">
-        <TreeItem nodeId={project.id} label={project.name} />
-      </a>
-    );
-  }
-  // 子目录下的所有物件
-  const array = [];
-  project.map((children) => array.push(subFolder(children)));
-
-  return array;
-};
-
-const navForMobile2 = chromeBookmarks.roots.bookmark_bar.children;
+import axios from "../../instance/axios";
 
 const Bookmarks = () => {
+  const [bookmarks, setBookmarks] = useState([]);
+
+  useEffect(() => {
+    axios.get("/bookmarks").then((res) => {
+      setBookmarks(res.data);
+    });
+  }, []);
+
   return (
     <TreeView defaultCollapseIcon={<ExpandMoreIcon />} defaultExpandIcon={<ChevronRightIcon />}>
-      {navForMobile2.map((children) => subFolder(children))}
+      {Object.keys(bookmarks).map((mainCategory) => {
+        const subBookmarks = bookmarks[mainCategory];
+
+        return (
+          <TreeItem key={mainCategory} nodeId={mainCategory} label={mainCategory}>
+            {Object.keys(subBookmarks).map((subCategory, index) => {
+              const bookmarks = subBookmarks[subCategory];
+
+              return (
+                <TreeItem key={subCategory} nodeId={subCategory} label={subCategory}>
+                  {bookmarks.map((bookmark, index) => (
+                    <a key={index} href={bookmark.url} target="_blank" rel="noopener noreferrer">
+                      <TreeItem nodeId={bookmark.title} label={bookmark.title} />
+                    </a>
+                  ))}
+                </TreeItem>
+              );
+            })}
+          </TreeItem>
+        );
+      })}
     </TreeView>
   );
 };
