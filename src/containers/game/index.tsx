@@ -2,6 +2,7 @@ import produce from "immer";
 import React, { useCallback, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
+import { CDN_URL } from "../../config/services";
 import { getItem } from "../../helpers";
 import { getPointOnCanvas, isCanvasSupported } from "../../helpers/canvas";
 import useCanvas from "../../hooks/useCanvas";
@@ -151,8 +152,8 @@ export default () => {
             alt={`map-tile-${key}`}
           />
         ))}
-        <img id="character" alt="character" className="images-buffer" src="/assets/heroes/heroes.png" />
-        <img id="monster" alt="monster" className="images-buffer" src="/assets/monsters/monster.png" />
+        <img id="character" alt="character" className="images-buffer" src={`${CDN_URL}/game/heroes/heroes.png`} />
+        <img id="monster" alt="monster" className="images-buffer" src={`${CDN_URL}/game/monsters/monster.png`} />
       </div>
       <canvas id="canvas" ref={canvasRef} width="800px" height="800px" />
     </>

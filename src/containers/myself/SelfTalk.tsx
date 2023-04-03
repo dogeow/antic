@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 
 import SpeedDial from "../../components/display/SpeedDial";
 import { QUOTE_FONT } from "../../config/services";
+import { CDN_URL } from "../../config/services";
 import { QUOTES } from "../../graphql/lab";
 
 const useStyles = makeStyles(() => ({
@@ -16,7 +17,7 @@ const useStyles = makeStyles(() => ({
     border: "10px solid transparent",
     padding: 15,
     marginBottom: 5,
-    borderImage: "url(/images/border-image-4.png) 30 stretch",
+    borderImage: `url(${CDN_URL}/border/border-image-4.png) 30 stretch`,
     listStyle: "none",
   },
 }));
