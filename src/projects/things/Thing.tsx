@@ -7,12 +7,6 @@ import React, { useCallback, useState } from "react";
 import axios from "../../instance/axios";
 import Bottom from "./Bottom";
 
-const useStyles = makeStyles({
-  tags: {
-    margin: "0 2px",
-  },
-});
-
 const InfiniteScrollContent = ({ hasMore }) => {
   return (
     <>
@@ -29,8 +23,6 @@ const InfiniteScrollContent = ({ hasMore }) => {
 };
 
 function Thing() {
-  const styles = useStyles();
-
   const [things, setThings] = useState([]);
   const [paginate, setPaginate] = useState({
     current_page: 0,
@@ -78,7 +70,7 @@ function Thing() {
                     <h2 style={{ fontSize: "1rem" }}>{thing.name}</h2>
                     <div>
                       {thing.tags.map((tag) => (
-                        <Tag round color="#2db7f5" className={styles.tag} key={tag.id}>
+                        <Tag round color="#2db7f5" style={{ margin: "0 4px" }} key={tag.id}>
                           {tag.name}
                         </Tag>
                       ))}
