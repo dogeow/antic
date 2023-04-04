@@ -27,6 +27,8 @@ const useStyle = makeStyles(() => ({
 
 let timer = null;
 
+const intro = "机器人请在开头加上一个「/」，比如「/时间」、「/ip」、「/md5 123456」、「/单复数 category」";
+
 export default function Chat() {
   const classes = useStyle();
 
@@ -40,13 +42,11 @@ export default function Chat() {
   const [, setUsers] = useRecoilState(usersState);
   const [, setIsExpired] = useRecoilState(isExpiredState);
   const [, setSnack] = useRecoilState(snackState);
-
+  const [open, setOpen] = useState(user.accessToken === "");
   const [error, setError] = useState({});
   const [inputFocus, setInputFocus] = useState(false);
 
   const messagesEndRef = useRef(null);
-
-  const [open, setOpen] = useState(user.accessToken === "");
 
   const toggleError = (error) => {
     setError(error);
@@ -267,7 +267,7 @@ export default function Chat() {
             style={{ overflowY: "auto", height: "60vh" }}
           >
             <Grid item xs={12}>
-              机器人请在开头加上一个「/」，比如「/时间」、「/ip」、「/md5 123456」、「/单复数 category」
+              {intro}
             </Grid>
             {chatBoard.length > 0 &&
               chatBoard.map((content: Content, index) => {
@@ -312,22 +312,20 @@ export default function Chat() {
           className={classes.userList}
           alignContent={isMobile && inputFocus ? "flex-end" : "flex-start"}
         >
-          {people.map((person: ChatPeople) => {
-            return (
-              <Grid item xs={12} container key={person.id}>
-                <Grid item xs={12}>
-                  <Avatar alt={person.name} email={person.email} size={24} marginLeftValue={4} />
-                  {typing === person.id && <Expire delay={2000}> 输入中...</Expire>}
-                </Grid>
-                <Grid item>
-                  <span style={{ marginLeft: 4 }}>
-                    {person.name}
-                    {!person.active && "（离线）"}
-                  </span>
-                </Grid>
+          {people.map((person: ChatPeople) => (
+            <Grid item xs={12} container key={person.id}>
+              <Grid item xs={12}>
+                <Avatar alt={person.name} email={person.email} size={24} marginLeftValue={4} />
+                {typing === person.id && <Expire delay={2000}> 输入中...</Expire>}
               </Grid>
-            );
-          })}
+              <Grid item>
+                <span style={{ marginLeft: 4 }}>
+                  {person.name}
+                  {!person.active && "（离线）"}
+                </span>
+              </Grid>
+            </Grid>
+          ))}
         </Grid>
       </Grid>
     </>

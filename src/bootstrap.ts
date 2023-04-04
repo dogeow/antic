@@ -4,7 +4,7 @@ import consoleInfo from "./components/bootstrap/ConsoleInfo";
 import changeTitle from "./components/site/ChangeTitle";
 
 /**
- * Sentry、Chrome 控制台信息、更改页面标题
+ * Sentry, Display info on Chrome console, Change title of page.
  */
 export default function bootstrap() {
   if (import.meta.env.PROD) {
