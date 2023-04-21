@@ -2,6 +2,7 @@ import MuiAlert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
+import { Theme } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
@@ -12,7 +13,7 @@ import { useRecoilState } from "recoil";
 import ClipboardButton from "../../components/ClipboardButton";
 import { snackState } from "../../states";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   response: {
     width: "100%",
     textAlign: "left",
