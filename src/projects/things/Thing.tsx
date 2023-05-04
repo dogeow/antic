@@ -69,6 +69,7 @@ function Thing() {
                   <div style={{ marginLeft: 4 }}>
                     <h2 style={{ fontSize: "1rem" }}>{thing.name}</h2>
                     <div>
+                      <span style={{ fontSize: "0.8rem", marginRight: "0.5rem" }}>{thing.place.name}</span>
                       {thing.tags.map((tag) => (
                         <Tag round color="#2db7f5" style={{ margin: "0 4px" }} key={tag.id}>
                           {tag.name}
