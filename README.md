@@ -31,3 +31,9 @@ GitHub Link: https://github.com/dogeow/antic-api
 Many thanks to Jetbrains for kindly providing a license for me to work on this and other open-source projects.
 
 [![](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/?from=https://github.com/dogeow)
+
+## License
+
+This software is released under the MIT license.
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdogeow%2Fantic.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdogeow%2Fantic?ref=badge_large)
