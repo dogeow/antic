@@ -31,3 +31,9 @@ GitHub 地址：https://github.com/dogeow/antic-api
 非常感谢 Jetbrains 为我提供了一份许可证书，用来开发这个和其他开源项目。
 
 [![](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/?from=https://github.com/dogeow)
+
+## License
+
+该软件使用 MIT 许可证发布。
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdogeow%2Fantic.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdogeow%2Fantic?ref=badge_large)
