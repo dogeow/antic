@@ -28,9 +28,9 @@ GitHub 地址：https://github.com/dogeow/antic-api
 
 ### JetBrains 支持了该项目
 
-非常感谢 Jetbrains 为我提供了一份许可证书，用来开发这个和其他开源项目。
+非常感谢 Jetbrains 为我提供了一份许可证书，用来开发这个开源项目。
 
-[![](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/?from=https://github.com/dogeow)
+[![](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://jb.gg/OpenSourceSupport)
 
 ## License
 
