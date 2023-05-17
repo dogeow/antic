@@ -28,7 +28,7 @@ GitHub Link: https://github.com/dogeow/antic-api
 
 ### Project supported by JetBrains
 
-Many thanks to Jetbrains for kindly providing a license for me to work on this open-source projects from 2022 to 2024.
+Many thanks to Jetbrains for kindly providing a license for me to work on this open-source projects.
 
 [![](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://jb.gg/OpenSourceSupport)
 
