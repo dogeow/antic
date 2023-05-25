@@ -1,20 +1,21 @@
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { AppBar, Avatar, Box, Container, Grid, Tab, Tabs, Theme, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import swal from "sweetalert2";
 
-import Email from "../../components/auth/Email";
 import LoginOrRegisterButton from "../../components/auth/LoginOrRegisterButton";
-import Name from "../../components/auth/Name";
-import Password from "../../components/auth/Password";
-import PasswordConfirmation from "../../components/auth/PasswordConfirmation";
 import PhoneNumber from "../../components/auth/PhoneNumber";
 import Verify from "../../components/auth/Verify";
+import CustomTextField from "../../components/CustomTextField";
 import Loading from "../../components/display/Loading";
 import GitHubLogin from "../../components/GithubLogin";
 import Copyright from "../../components/site/Copyright";
@@ -77,7 +78,7 @@ const Register = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [inputErrors, setInputErrors] = useState({});
   const [tabIndex, setTabIndex] = useState(0);
-  const [user, setUser] = useRecoilState(userState);
+  const [, setUser] = useRecoilState(userState);
   const [open, setOpen] = useState(false);
 
   const handleChange = (event, newValue) => {
@@ -151,6 +152,56 @@ const Register = () => {
     setDisplayPassword(!displayPassword);
   };
 
+  const PasswordField = () => (
+    <CustomTextField
+      id={"password"}
+      type={displayPassword ? "text" : "password"}
+      label={"密码"}
+      value={password}
+      placeholder={"8个字符以上"}
+      onChange={setPassword}
+      error={inputErrors?.password}
+      icon={
+        displayPassword ? (
+          <VisibilityIcon onClick={handlePassword} className="pointer" />
+        ) : (
+          <VisibilityOffIcon onClick={handlePassword} className="pointer" />
+        )
+      }
+    />
+  );
+
+  const PasswordConfirmationField = () => (
+    <CustomTextField
+      id={"password_confirmation"}
+      type={displayPassword ? "text" : "password"}
+      label={"确认密码"}
+      value={passwordConfirmation}
+      placeholder={""}
+      onChange={setPasswordConfirmation}
+      error={inputErrors?.password_confirmation}
+      icon={
+        displayPassword ? (
+          <VisibilityIcon onClick={handlePassword} className="pointer" />
+        ) : (
+          <VisibilityOffIcon onClick={handlePassword} className="pointer" />
+        )
+      }
+    />
+  );
+
+  const NameField = () => (
+    <CustomTextField
+      id={"name"}
+      label={"昵称"}
+      value={name}
+      placeholder={"4-16个字符（一个中文为 2 个字符）"}
+      onChange={setName}
+      error={inputErrors?.name}
+      icon={<AccountCircle />}
+    />
+  );
+
   return (
     <Container component="main" maxWidth="xs">
       <Loading open={open} />
@@ -173,28 +224,24 @@ const Register = () => {
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Name name={name} onSetName={setName} error={inputErrors?.name} />
+                  <NameField />
                 </Grid>
                 <Grid item xs={12}>
-                  <Email email={email} setEmail={setEmail} error={inputErrors?.email} />
-                </Grid>
-                <Grid item xs={12}>
-                  <Password
-                    password={password}
-                    displayPassword={displayPassword}
-                    handlePassword={handlePassword}
-                    setPassword={setPassword}
-                    error={inputErrors?.password}
+                  <CustomTextField
+                    id={"email"}
+                    label={"邮箱"}
+                    value={email}
+                    placeholder={"username@example.com"}
+                    onChange={setEmail}
+                    error={inputErrors?.email}
+                    icon={<MailOutlineIcon />}
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <PasswordConfirmation
-                    passwordConfirmation={passwordConfirmation}
-                    displayPassword={displayPassword}
-                    handlePassword={handlePassword}
-                    setPasswordConfirmation={setPasswordConfirmation}
-                    error={inputErrors?.password_confirmation}
-                  />
+                  <PasswordField />
+                </Grid>
+                <Grid item xs={12}>
+                  <PasswordConfirmationField />
                 </Grid>
               </Grid>
               <LoginOrRegisterButton handleRegister={handleRegister} />
@@ -204,7 +251,7 @@ const Register = () => {
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Name name={name} onSetName={setName} error={inputErrors?.name} />
+                  <NameField />
                 </Grid>
                 <Grid item xs={12}>
                   <PhoneNumber
@@ -218,22 +265,10 @@ const Register = () => {
                   <Verify verify={verify} setVerify={setVerify} error={inputErrors?.verify} />
                 </Grid>
                 <Grid item xs={12}>
-                  <Password
-                    password={password}
-                    displayPassword={displayPassword}
-                    handlePassword={handlePassword}
-                    setPassword={setPassword}
-                    error={inputErrors?.password}
-                  />
+                  <PasswordField />
                 </Grid>
                 <Grid item xs={12}>
-                  <PasswordConfirmation
-                    passwordConfirmation={passwordConfirmation}
-                    displayPassword={displayPassword}
-                    handlePassword={handlePassword}
-                    setPasswordConfirmation={setPasswordConfirmation}
-                    error={inputErrors?.password_confirmation}
-                  />
+                  <PasswordConfirmationField />
                 </Grid>
               </Grid>
               <LoginOrRegisterButton handleRegister={handleRegister} />
