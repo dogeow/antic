@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        env:
+          HTTP_PROXY: http://host.docker.internal:7890
+          HTTPS_PROXY: http://host.docker.internal:7890
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
