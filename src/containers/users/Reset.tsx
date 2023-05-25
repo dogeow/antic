@@ -1,4 +1,6 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { Avatar, Button, Container, Grid, Theme, Typography } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useState } from "react";
@@ -7,6 +9,7 @@ import swal from "sweetalert2";
 
 import Password from "../../components/auth/Password";
 import PasswordConfirmation from "../../components/auth/PasswordConfirmation";
+import CustomTextField from "../../components/CustomTextField";
 import axios from "../../instance/axios";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -85,21 +88,39 @@ const Forget = () => {
           <form className={classes.form} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <Password
-                  password={password}
-                  displayPassword={displayPassword}
-                  handlePassword={handlePassword}
-                  setPassword={setPassword}
+                <CustomTextField
+                  id={"password"}
+                  type={displayPassword ? "text" : "password"}
+                  label={"密码"}
+                  value={password}
+                  placeholder={"8个字符以上"}
+                  onChange={setPassword}
                   error={inputErrors?.password}
+                  icon={
+                    displayPassword ? (
+                      <VisibilityIcon onClick={handlePassword} className="pointer" />
+                    ) : (
+                      <VisibilityOffIcon onClick={handlePassword} className="pointer" />
+                    )
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
-                <PasswordConfirmation
-                  passwordConfirmation={passwordConfirmation}
-                  displayPassword={displayPassword}
-                  handlePassword={handlePassword}
-                  setPasswordConfirmation={setPasswordConfirmation}
+                <CustomTextField
+                  id={"password_confirmation"}
+                  type={displayPassword ? "text" : "password"}
+                  label={"确认密码"}
+                  value={passwordConfirmation}
+                  placeholder={""}
+                  onChange={setPasswordConfirmation}
                   error={inputErrors?.password_confirmation}
+                  icon={
+                    displayPassword ? (
+                      <VisibilityIcon onClick={handlePassword} className="pointer" />
+                    ) : (
+                      <VisibilityOffIcon onClick={handlePassword} className="pointer" />
+                    )
+                  }
                 />
               </Grid>
             </Grid>
