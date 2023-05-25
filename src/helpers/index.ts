@@ -11,29 +11,21 @@ export const isJson = (str: string) => {
   }
 };
 
+const getJsonItem = (key: string) => {
+  const data = localStorage.getItem(key);
+  if (data !== null && isJson(data)) {
+    return JSON.parse(data);
+  }
+  return null;
+};
+
 export const getItem = (key: string) => {
   if (key.includes(".")) {
-    const keys = key.split(".");
-    if (keys.length < 2) {
-      return null;
-    }
-    let data = localStorage.getItem(keys[0]);
-    if (data === null) {
-      return null;
-    }
-
-    if (isJson(data)) {
-      data = JSON.parse(data);
-      if (data === null) {
-        return null;
-      }
-      return data[keys[1]];
-    } else {
-      return null;
-    }
+    const [parentKey, childKey] = key.split(".");
+    const data = getJsonItem(parentKey);
+    return data !== null ? data[childKey] : null;
   } else {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : data;
+    return getJsonItem(key);
   }
 };
 
