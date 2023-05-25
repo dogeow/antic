@@ -1,18 +1,14 @@
-import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import NightsStayIcon from "@mui/icons-material/NightsStay";
 import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
 import PersonIcon from "@mui/icons-material/Person";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import {
   AppBar,
-  Avatar,
   Button,
   Container,
-  Divider,
   Hidden,
   IconButton,
   Menu,
@@ -23,30 +19,16 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import makeStyles from "@mui/styles/makeStyles";
-import { AxiosResponse } from "axios";
-import produce from "immer";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
 import Drawer from "../components/site/Drawer";
 import Logo from "../components/site/Logo";
 import config from "../config/index.json";
+import ProfileMenu from "../containers/ProfileMenu";
 import SearchButton from "../containers/SearchButton";
-import { getGravatarAddress } from "../helpers";
-import { getItem } from "../helpers";
-import { logout } from "../helpers/auth";
-import axios from "../instance/axios";
-import { logoutRequest } from "../requests/user";
-import {
-  isExpiredState,
-  isSettingsOpenState,
-  isSnackOpenState,
-  paletteModeState,
-  snackMessageState,
-  usersState,
-  userState,
-} from "../states";
+import { isExpiredState, isSettingsOpenState, paletteModeState, usersState, userState } from "../states";
 
 const useStyles = makeStyles(() => ({
   blank: {
@@ -63,18 +45,12 @@ const Header = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
-  const [user, setUser] = useRecoilState(userState);
-  const [users, setUsers] = useRecoilState(usersState);
-  const [isExpired, setIsExpired] = useRecoilState(isExpiredState);
+  const [isExpired] = useRecoilState(isExpiredState);
   const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
   const [toggleDrawer, setToggleDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const isMenuOpen = Boolean(anchorEl);
-  const [, setSnackMessage] = useRecoilState(snackMessageState);
-  const [, setIsSnackOpen] = useRecoilState(isSnackOpenState);
   const [, setSettingsOpen] = useRecoilState(isSettingsOpenState);
-  const profileOpen = Boolean(mobileMoreAnchorEl);
   const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
@@ -102,26 +78,21 @@ const Header = () => {
   /**
    * 设置开关
    */
-  function handleSettingOpen() {
+  const handleSettingOpen = useCallback(() => {
     setAnchorEl(null);
     setSettingsOpen(true);
-  }
+  }, [setAnchorEl, setSettingsOpen]);
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  const handleMenu = useCallback(
+    (event) => {
+      setAnchorEl(event.currentTarget);
+    },
+    [setAnchorEl]
+  );
 
-  const handleProfileMenu = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
-
-  const handleMobileMenuClose = () => {
+  const handleMobileMenuClose = useCallback(() => {
     setAnchorEl(null);
-  };
-
-  const handleCloseProfile = () => {
-    setMobileMoreAnchorEl(null);
-  };
+  }, [setAnchorEl]);
 
   const playMusic = () => {
     const audio = document.getElementById("music");
@@ -205,110 +176,7 @@ const Header = () => {
                 </Link>
               </Tooltip>
             ) : (
-              <div>
-                <Tooltip title="个人中心" aria-label="个人中心">
-                  <IconButton
-                    aria-label="account of current user"
-                    aria-controls="profile"
-                    aria-haspopup="true"
-                    color="inherit"
-                    onClick={handleProfileMenu}
-                    size="large"
-                  >
-                    <Avatar alt={user.name} src={getGravatarAddress(user.email, 80)} />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  id="profile"
-                  anchorEl={mobileMoreAnchorEl}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={profileOpen}
-                  onClose={handleCloseProfile}
-                >
-                  <Link to={`/user/${user.id}`} onClick={handleCloseProfile}>
-                    <div style={{ textAlign: "center", fontSize: "1rem" }}>
-                      <Avatar
-                        alt={user.name}
-                        src={getGravatarAddress(user.email, 160)}
-                        style={{ width: 80, height: 80, margin: "20px auto" }}
-                      />
-                      {user.name}
-                    </div>
-                  </Link>
-                  {users.map((user, index) => {
-                    return (
-                      user.email !== user.email && (
-                        <MenuItem
-                          onClick={() => {
-                            setUser(user);
-                            handleCloseProfile();
-                          }}
-                          key={index}
-                        >
-                          <Avatar alt={user.name} src={getGravatarAddress(user.email, 160)} />
-                          <span
-                            style={{
-                              margin: "0 10px 0 10px",
-                              fontSize: "0.8rem",
-                            }}
-                          >
-                            {user.name}
-                            <br />
-                            {user.email}
-                          </span>
-                        </MenuItem>
-                      )
-                    );
-                  })}
-                  <Divider />
-                  <Link to="/login" onClick={() => handleCloseProfile()}>
-                    <MenuItem>
-                      <PersonAddIcon style={{ width: 40 }} />
-                      <span style={{ margin: "0 10px 0 10px" }}>添加其他账号</span>
-                    </MenuItem>
-                  </Link>
-                  <MenuItem
-                    onClick={() => {
-                      setMobileMoreAnchorEl(null);
-                      const requests: Promise<AxiosResponse>[] = [];
-                      if (getItem("users")) {
-                        (JSON.parse(localStorage.users) as User[]).map((user) => {
-                          axios.defaults.headers.common.Authorization = user.accessToken;
-                          requests.push(logoutRequest(user.accessToken));
-                          Promise.all(requests).then(function ([acct, perms]) {
-                            localStorage.removeItem("users");
-                            setUsers([]);
-                          });
-                        });
-                      }
-                      if (getItem("user.accessToken")) {
-                        logoutRequest(user.accessToken).then(() => {
-                          setUser(
-                            produce((draft: User) => {
-                              draft.accessToken = "";
-                            })
-                          );
-                          logout();
-                        });
-                        setIsExpired(true);
-                      }
-                      setSnackMessage("退出成功");
-                      setIsSnackOpen(true);
-                    }}
-                  >
-                    <LogoutIcon style={{ width: 40 }} />
-                    <span style={{ margin: "0 10px 0 10px" }}>{localStorage.users ? "注销所有账号" : "注销"}</span>
-                  </MenuItem>
-                </Menu>
-              </div>
+              <ProfileMenu />
             )}
             <Tooltip title="更多" aria-label="更多" onClick={handleMenu}>
               <IconButton aria-label="show more" aria-controls="menu" aria-haspopup="true" color="inherit" size="large">
