@@ -28,7 +28,7 @@ import Logo from "../components/site/Logo";
 import config from "../config/index.json";
 import ProfileMenu from "../containers/ProfileMenu";
 import SearchButton from "../containers/SearchButton";
-import { isExpiredState, isSettingsOpenState, paletteModeState, usersState, userState } from "../states";
+import { isExpiredState, isSettingsOpenState, paletteModeState } from "../states";
 
 const useStyles = makeStyles(() => ({
   blank: {
