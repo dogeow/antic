@@ -5,10 +5,9 @@ import { Avatar, Button, Container, Grid, Theme, Typography } from "@mui/materia
 import makeStyles from "@mui/styles/makeStyles";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import swal from "sweetalert2";
 
-import Password from "../../components/auth/Password";
-import PasswordConfirmation from "../../components/auth/PasswordConfirmation";
 import CustomTextField from "../../components/CustomTextField";
 import axios from "../../instance/axios";
 
@@ -35,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const Forget = () => {
   const navigate = useNavigate();
   const classes = useStyles();
-  const [user, setUser] = useRecoilState(userState);
+  const [, setUser] = useRecoilState(userState);
   const [inputErrors, setInputErrors] = useState({});
   const [displayPassword, setDisplayPassword] = useState(false);
   const [password, setPassword] = useState("");
