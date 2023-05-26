@@ -1,133 +1,176 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
+interface LinkItem {
+  to: string;
+  label: string;
+  emoji?: string;
+  isAnchor?: boolean;
+}
+
+interface LinkSectionProps {
+  title: string;
+  links: LinkItem[];
+}
+
+const LinkSection: React.FC<LinkSectionProps> = ({ title, links }) => (
+  <div>
+    <h3>{title}</h3>
+    <ul>
+      {links.map(({ to, label, emoji, isAnchor }) =>
+        isAnchor ? (
+          <li key={label}>
+            <a href={to} target="_blank" rel="noopener noreferrer">
+              {emoji && <span role="img">{emoji}</span>}
+              {label}
+            </a>
+          </li>
+        ) : (
+          <li key={label}>
+            <Link to={to}>
+              {emoji && <span role="img">{emoji}</span>}
+              {label}
+            </Link>
+          </li>
+        )
+      )}
+    </ul>
+  </div>
+);
+
 const Demo = () => (
   <div>
-    <div>
-      <h3>小项目</h3>
-      <div>
-        <ul>
-          <li>
-            <Link to="/things">物品管理</Link>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div>
-      <h3>小工具</h3>
-      <ul>
-        <li>
-          <Link to="/diff">文本对比</Link>
-        </li>
-        <li>
-          <Link to="/mediawiki-to-markdown">MediaWiki 转 Markdown</Link>
-        </li>
-        <li>
-          <Link to="/base64">Base64</Link>
-        </li>
-        <li>
-          <Link to="/music">音乐播放器</Link>
-        </li>
-        <li>
-          <Link to="/moon">
-            <span role="img">🥮</span> 博饼
-          </Link>
-        </li>
-        <li>
-          <Link to="/money">记账</Link>
-        </li>
-        <li>
-          <a href="/demos/jqueryselectors" target="_blank">
-            jQuery 选择器在线测试
-          </a>
-        </li>
-        <li>
-          <Link to="/demos/calculator">
-            <span role="img">🌡</span> 摄氏度、华氏度转换（React 官方 Example）
-          </Link>
-        </li>
-        <li>
-          <Link to="/api/time">⌚ ️时间、时间戳</Link>
-        </li>
-        <li>
-          <Link to="/nav">🧭 网址导航</Link>
-        </li>
-      </ul>
-    </div>
-    <div>
-      <h3>学习</h3>
-      <ul>
-        <li>
-          <a href="/codes/react-test.html" target="_blank">
-            React 单文件测试
-          </a>
-        </li>
-        <li>
-          <a href="/demos/tailwind" target="_blank">
-            Tailwind CSS 学习
-          </a>
-        </li>
-        <li>
-          <Link to="/demos/font">Typography 字体展示</Link>
-        </li>
-      </ul>
-    </div>
-    <div>
-      <h3>Canvas</h3>
-    </div>
-    <div>
-      <ul>
-        <li>
-          <a href="/demos/canvas/threejs_load_images.html" target="_blank">
-            Three.js 加载图片
-          </a>
-        </li>
-        <li>
-          <a href="/demos/canvas/3d.html" target="_blank">
-            Emoji 3D(Three.js)
-          </a>
-        </li>
-        <li>
-          <a href="/demos/canvas/like.html" target="_blank">
-            喜欢的（Three.js）
-          </a>
-        </li>
-        <li>
-          <a href="/demos/canvas/cherry.html" target="_blank">
-            <span role="img" aria-label="cherry">
-              🌸
-            </span>{" "}
-            樱花
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div>
-      <h3>音视频</h3>
-    </div>
-    <div>
-      <ul>
-        <li>
-          <Link to="/music">音频测试</Link>
-        </li>
-        <li>
-          <a href="/examples/mv.html" target="_blank">
-            MV 测试
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div>
-      <h3>自用工具（弃用）</h3>
-      <ul>
-        <li>
-          <Link to="/demos/parking">停车（爬虫)</Link>
-        </li>
-        <li>
-          <Link to="/weibo">微博热搜榜</Link>
-        </li>
-      </ul>
-    </div>
+    <LinkSection
+      title="小项目"
+      links={[
+        {
+          to: "/things",
+          label: "物品管理",
+        },
+      ]}
+    />
+    <LinkSection
+      title="小工具"
+      links={[
+        {
+          to: "/diff",
+          label: "文本对比",
+        },
+        {
+          to: "/mediawiki-to-markdown",
+          label: "MediaWiki 转 Markdown",
+        },
+        {
+          to: "/base64",
+          label: "Base64",
+        },
+        {
+          to: "/music",
+          label: "音乐播放器",
+        },
+        {
+          to: "/moon",
+          emoji: "🥮",
+          label: "博饼",
+        },
+        {
+          to: "/money",
+          label: "记账",
+        },
+        {
+          to: "/demos/jqueryselectors",
+          label: "jQuery 选择器在线测试",
+          isAnchor: true,
+        },
+        {
+          to: "/demos/calculator",
+          emoji: "🌡",
+          label: "摄氏度、华氏度转换（React 官方 Example）",
+        },
+        {
+          to: "/api/time",
+          emoji: "⌚",
+          label: "️时间、时间戳",
+        },
+        {
+          to: "/nav",
+          emoji: "🧭",
+          label: "网址导航",
+        },
+      ]}
+    />
+    <LinkSection
+      title="学习"
+      links={[
+        {
+          to: "/codes/react-test.html",
+          label: "React 单文件测试",
+          isAnchor: true,
+        },
+        {
+          to: "/demos/tailwind",
+          label: "Tailwind CSS 学习",
+          isAnchor: true,
+        },
+        {
+          to: "/demos/font",
+          label: "Typography 字体展示",
+          isAnchor: true,
+        },
+      ]}
+    />
+    <LinkSection
+      title="Canvas"
+      links={[
+        {
+          to: "/demos/canvas/threejs_load_images.html",
+          label: "Three.js 加载图片",
+          isAnchor: true,
+        },
+        {
+          to: "/demos/canvas/3d.html",
+          label: "Emoji 3D(Three.js)",
+          isAnchor: true,
+        },
+        {
+          to: "/demos/canvas/like.html",
+          label: "喜欢的（Three.js）",
+          isAnchor: true,
+        },
+        {
+          to: "/demos/canvas/cherry.html",
+          label: "樱花",
+          emoji: "🌸",
+          isAnchor: true,
+        },
+      ]}
+    />
+    <LinkSection
+      title="音视频"
+      links={[
+        {
+          to: "/music",
+          label: "音频测试",
+        },
+        {
+          to: "/examples/mv.html",
+          label: "MV 测试",
+        },
+      ]}
+    />
+    <LinkSection
+      title="自用工具（弃用）"
+      links={[
+        {
+          to: "/demos/parking",
+          label: "停车（爬虫)",
+        },
+        {
+          to: "/weibo",
+          label: "微博热搜榜",
+        },
+      ]}
+    />
   </div>
 );
 
