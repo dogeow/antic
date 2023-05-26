@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 
 import axios from "../instance/axios";
-import ToLogin from "./Auth/ToLogin";
+import ToLogin from "./auth/ToLogin";
 import Copyright from "./site/Copyright";
 
 const useStyles = makeStyles((theme: Theme) => ({
