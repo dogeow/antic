@@ -10,15 +10,17 @@ const linkStyle: CSSProperties = {
   textDecorationColor: "green",
 };
 
-const BuiltBy = () => (
-  <>
-    Built By {"🔨👷‍♂ "}️
-    <Link to="/about" style={linkStyle}>
-      小李世界
-    </Link>
-    {" with "}
-    <Heart />
-  </>
-);
+const BuiltBy = () => {
+  return (
+    <div>
+      <span>Built By {"🔨👷‍♂ "}️</span>
+      <Link to="/about" style={linkStyle}>
+        小李世界
+      </Link>
+      <span> with </span>
+      <Heart />
+    </div>
+  );
+};
 
 export default BuiltBy;

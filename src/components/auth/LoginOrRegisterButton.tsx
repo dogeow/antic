@@ -1,18 +1,9 @@
-import { Button, Grid, Theme } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { Button, Grid } from "@mui/material";
 import * as React from "react";
 
 import ToLogin from "../../components/auth/ToLogin";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
 export default (props) => {
-  const classes = useStyles();
-
   return (
     <>
       <Button
@@ -20,7 +11,7 @@ export default (props) => {
         fullWidth
         variant="contained"
         color="primary"
-        className={classes.submit}
+        sx={{ mt: 3, mb: 2 }}
         onClick={props.handleRegister}
       >
         注册
