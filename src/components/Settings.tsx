@@ -10,6 +10,22 @@ const Settings = () => {
   const [settingsOpen, setSettingsOpen] = useRecoilState(isSettingsOpenState);
   const [isFullscreen, setIsFullscreen] = React.useState(false);
 
+  const handlePaletteModeChange = () => {
+    const newPaletteMode = paletteMode === "light" ? "dark" : "light";
+    setPaletteMode(newPaletteMode);
+    document.documentElement.setAttribute("data-prefers-color-scheme", newPaletteMode);
+  };
+
+  const handleFullscreenChange = () => {
+    if (isFullscreen) {
+      exitFullscreen();
+      setIsFullscreen(false);
+    } else {
+      fullscreen();
+      setIsFullscreen(true);
+    }
+  };
+
   return (
     <Dialog
       onClose={() => {
@@ -25,13 +41,7 @@ const Settings = () => {
             control={
               <Switch
                 checked={paletteMode === "dark"}
-                onClick={() => {
-                  setPaletteMode(paletteMode === "light" ? "dark" : "light");
-                  document.documentElement.setAttribute(
-                    "data-prefers-color-scheme",
-                    paletteMode === "light" ? "dark" : "light"
-                  );
-                }}
+                onChange={handlePaletteModeChange}
                 value="paletteMode"
                 inputProps={{ "aria-label": "黑夜模式" }}
               />
@@ -42,17 +52,7 @@ const Settings = () => {
             control={
               <Switch
                 checked={isFullscreen}
-                onClick={
-                  isFullscreen
-                    ? () => {
-                        exitFullscreen();
-                        setIsFullscreen(false);
-                      }
-                    : () => {
-                        fullscreen();
-                        setIsFullscreen(true);
-                      }
-                }
+                onChange={handleFullscreenChange}
                 value="fullscreen"
                 inputProps={{ "aria-label": "全屏模式" }}
               />

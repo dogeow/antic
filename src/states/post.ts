@@ -3,7 +3,16 @@ import { atom } from "recoil";
 export const postState = atom({
   key: "post",
   default: <Post>{
+    id: 0,
+    title: "",
+    content: "",
+    category: {
+      id: 0,
+      name: "",
+    },
     tags: [],
+    public: false,
+    updated_at: "",
   },
 });
 

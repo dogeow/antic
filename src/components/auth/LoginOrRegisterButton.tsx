@@ -3,7 +3,11 @@ import * as React from "react";
 
 import ToLogin from "../../components/auth/ToLogin";
 
-export default (props) => {
+interface Props {
+  handleRegister: () => void;
+}
+
+const MyComponent: React.FC<Props> = ({ handleRegister }) => {
   return (
     <>
       <Button
@@ -12,7 +16,7 @@ export default (props) => {
         variant="contained"
         color="primary"
         sx={{ mt: 3, mb: 2 }}
-        onClick={props.handleRegister}
+        onClick={handleRegister}
       >
         注册
       </Button>
@@ -24,3 +28,5 @@ export default (props) => {
     </>
   );
 };
+
+export default MyComponent;
