@@ -5,6 +5,26 @@ import { atom, selector } from "recoil";
 import facesJson from "../resources/face.json";
 
 /**
+ * 分类筛选
+ *
+ * @param {array} faces 表情数组
+ * @param {string} category 点击了哪个分类
+ * @return {array} 符合该分类的表情数组
+ */
+function categoryFilter(faces: Face[], category: string) {
+  if (category === "全部") {
+    return faces;
+  }
+
+  const filter: Face[] = [];
+  faces.map((face) => {
+    return face.category === category ? filter.push(face) : null;
+  });
+
+  return filter;
+}
+
+/**
  * 标签筛选
  *
  * @param {array} faces 表情数组
@@ -55,25 +75,6 @@ function allTag() {
   });
 
   return uniq(tagsList);
-}
-
-/**
- * 分类筛选
- *
- * @param {array} faces 表情数组
- * @param {string} category 点击了哪个分类
- * @return {array} 符合该分类的表情数组
- */
-function categoryFilter(faces: Face[], category: string) {
-  if (category === "全部") {
-    return faces;
-  }
-  const filter: Face[] = [];
-  faces.map((face) => {
-    return face.category === category ? filter.push(face) : null;
-  });
-
-  return filter;
 }
 
 export const displayTagState = atom({
@@ -157,6 +158,6 @@ export const filteredEmojiListState = selector({
 export const filteredNum = selector({
   key: "filteredNum",
   get: ({ get }) => {
-    const faces = get(facesState);
+    get(facesState);
   },
 });

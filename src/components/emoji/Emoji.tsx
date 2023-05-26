@@ -3,10 +3,9 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import makeStyles from "@mui/styles/makeStyles";
 import imagesLoaded from "imagesloaded";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
-import Viewer from "react-viewer";
 import { useRecoilState, useRecoilValue } from "recoil";
 import Swal from "sweetalert2";
 
@@ -19,7 +18,6 @@ import {
   faceIsLoadingState,
   filteredEmojiListState,
   isCategoryExpandedState,
-  pageLimitState,
   searchState,
 } from "../../states";
 import BootNav from "./BootNav";
@@ -41,13 +39,10 @@ const Emoji = () => {
   const filteredFaces = useRecoilValue(filteredEmojiListState);
   const [, setSearch] = useRecoilState(searchState);
   const [faceIsLoading, setFaceIsLoading] = useRecoilState(faceIsLoadingState);
-  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
-  const [pageLimit] = useRecoilState(pageLimitState);
+  const [, setCurrentPage] = useRecoilState(currentPageState);
   const [displayTag] = useRecoilState(displayTagState);
   const [expandTag, setExpandTag] = useRecoilState(expandTagState);
   const [expandCategory, setExpandCategory] = useRecoilState(isCategoryExpandedState);
-  const [visible, setVisible] = useState(false);
-  const [index, setIndex] = useState(0);
   const classes = useStyles();
 
   useEffect(() => {
@@ -57,12 +52,13 @@ const Emoji = () => {
     return () => imgLoad.off("done");
   }, [setFaceIsLoading]);
 
-  const face = [];
-  Object.entries(faces).forEach((item) => {
-    item.src = `${CDN_URL}/emoji/${item.fileName}`;
-    item.alt = item.fileName;
-    face.push(item);
-  });
+  useMemo(() => {
+    return Object.entries(faces).map((item) => {
+      item.src = `${CDN_URL}/emoji/${item.fileName}`;
+      item.alt = item.fileName;
+      return item;
+    });
+  }, [faces]);
 
   const toggleTag = () => {
     setExpandTag(!expandTag);
@@ -72,11 +68,11 @@ const Emoji = () => {
     setExpandCategory(!expandCategory);
   };
 
-  const handleUpload = () => {
+  const handleUpload = useCallback(() => {
     navigate("/emoji/create");
-  };
+  }, [navigate]);
 
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     Swal.fire({
       title: "搜索",
       input: "text",
@@ -93,39 +89,24 @@ const Emoji = () => {
         return null;
       },
     });
-  };
+  }, [setSearch, setCurrentPage, setFaceIsLoading]);
 
   return (
     <Grid container>
-      <Button variant="contained" onClick={() => handleSearch()}>
+      <Button variant="contained" onClick={handleSearch}>
         搜索
       </Button>
-      <Button variant="contained" color="secondary" onClick={() => handleUpload()} style={{ marginLeft: 20 }}>
+      <Button variant="contained" color="secondary" onClick={handleUpload} style={{ marginLeft: 20 }}>
         上传
       </Button>
       <hr className={classes.hr} />
-      <Filter
-        toggleTag={toggleTag}
-        expandTag={expandTag}
-        expandCategory={expandCategory}
-        toggleCategory={toggleCategory}
-        displayTag={displayTag}
-      />
+      <Filter />
       <FilterStatistics />
       <Grid id="emoji" container justifyContent="center" alignItems="flex-end" spacing={2} style={{ marginBottom: 80 }}>
         {filteredFaces.length > 0 ? (
-          filteredFaces.map((item, index) => (
-            <Grid key={index} item xs={4} style={{ textAlign: "center" }}>
-              <img
-                id={index}
-                src={`${CDN_URL}/emoji/${item.fileName}`}
-                alt={item.name}
-                width="100"
-                onClick={() => {
-                  setVisible(true);
-                  setIndex((currentPage - 1) * pageLimit + index);
-                }}
-              />
+          filteredFaces.map((item) => (
+            <Grid key={item.fileName} item xs={4} style={{ textAlign: "center" }}>
+              <img id={item.fileName} src={`${CDN_URL}/emoji/${item.fileName}`} alt={item.name} width="100" />
               <Typography variant="body2" component="h3">
                 {item.name.split(".")[0]}
               </Typography>
@@ -137,7 +118,6 @@ const Emoji = () => {
           </Grid>
         )}
       </Grid>
-      <Viewer visible={visible} onClose={() => setVisible(false)} images={face} activeIndex={index} />
       <BootNav />
       <ClipLoader
         loading={faceIsLoading}
