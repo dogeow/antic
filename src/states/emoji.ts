@@ -81,8 +81,8 @@ export const displayTagState = atom({
   default: allTag(),
 });
 
-export const expandCategoryState = atom({
-  key: "expandCategoryState",
+export const isCategoryExpandedState = atom({
+  key: "isCategoryExpandedState",
   default: !isMobile,
 });
 

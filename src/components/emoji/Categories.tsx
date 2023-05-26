@@ -3,37 +3,39 @@ import Grid from "@mui/material/Grid";
 import * as React from "react";
 import { useRecoilState } from "recoil";
 
-import { expandCategoryState, paletteModeState, selectedCategoryState } from "../../states";
+import { isCategoryExpandedState, paletteModeState, selectedCategoryState } from "../../states";
 import CategoriesElem from "./CategoriesElem";
 
+const ALL_CATEGORY = "全部";
+
 const Category = () => {
-  const [expandCategory, setExpandCategory] = useRecoilState(expandCategoryState);
+  const [isCategoryExpanded, setIsCategoryExpanded] = useRecoilState(isCategoryExpandedState);
   const [selectedCategory, setSelectedCategory] = useRecoilState(selectedCategoryState);
   const [paletteMode] = useRecoilState(paletteModeState);
-  const color = selectedCategory === "全部" ? "secondary" : "primary";
+  const color = selectedCategory === ALL_CATEGORY ? "secondary" : "primary";
 
   return (
     <Grid container alignItems="center">
       <Grid item>
-        <Button variant="contained" onClick={() => setExpandCategory(!expandCategory)}>
-          {expandCategory ? "分类 <<" : "分类 >>"}
+        <Button variant="contained" onClick={() => setIsCategoryExpanded(!isCategoryExpanded)}>
+          {isCategoryExpanded ? "分类 <<" : "分类 >>"}
         </Button>
       </Grid>
       {"："}
       <Grid item>
-        {expandCategory ? (
+        {isCategoryExpanded ? (
           <Button
             variant={paletteMode === "dark" ? "outlined" : "contained"}
             color={color}
-            onClick={() => setSelectedCategory("全部")}
+            onClick={() => setSelectedCategory(ALL_CATEGORY)}
           >
-            全部
+            {ALL_CATEGORY}
           </Button>
         ) : (
           selectedCategory
         )}
       </Grid>
-      {expandCategory && <CategoriesElem />}
+      {isCategoryExpanded && <CategoriesElem />}
     </Grid>
   );
 };

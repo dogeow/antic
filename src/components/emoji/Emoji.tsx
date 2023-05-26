@@ -15,10 +15,10 @@ import faces from "../../resources/face.json";
 import {
   currentPageState,
   displayTagState,
-  expandCategoryState,
   expandTagState,
   faceIsLoadingState,
   filteredEmojiListState,
+  isCategoryExpandedState,
   pageLimitState,
   searchState,
 } from "../../states";
@@ -45,7 +45,7 @@ const Emoji = () => {
   const [pageLimit] = useRecoilState(pageLimitState);
   const [displayTag] = useRecoilState(displayTagState);
   const [expandTag, setExpandTag] = useRecoilState(expandTagState);
-  const [expandCategory, setExpandCategory] = useRecoilState(expandCategoryState);
+  const [expandCategory, setExpandCategory] = useRecoilState(isCategoryExpandedState);
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
   const classes = useStyles();
