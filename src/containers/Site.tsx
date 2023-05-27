@@ -1,7 +1,7 @@
 import Check from "@mui/icons-material/Check";
 import Close from "@mui/icons-material/Close";
 import RadioButtonChecked from "@mui/icons-material/RadioButtonChecked";
-import makeStyles from "@mui/styles/makeStyles";
+import { Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { GridRenderCellParams } from "@mui/x-data-grid/models/params/gridCellParams";
 import dayjs from "dayjs";
@@ -11,19 +11,16 @@ import useSWR from "swr";
 
 dayjs.extend(relativeTime);
 
-const useStyles = makeStyles(() => ({
-  tableRoot: {
-    overflowX: "auto",
-  },
-  root: {
-    color: "green",
-  },
-}));
+interface SiteData {
+  domain: string;
+  is_online: boolean;
+  is_new: boolean;
+  last_updated_at: string | null;
+  note: string;
+}
 
 const Site = () => {
-  const classes = useStyles();
-
-  const { data, error } = useSWR("/site");
+  const { data, error } = useSWR<{ sites: SiteData[] }>("/site");
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
@@ -43,16 +40,16 @@ const Site = () => {
       headerName: "在线",
       renderCell: (params: GridRenderCellParams) =>
         params.row.is_online ? (
-          <RadioButtonChecked className={classes.root} />
+          <RadioButtonChecked sx={{ color: "green" }} />
         ) : (
-          <RadioButtonChecked style={{ color: "red" }} />
+          <RadioButtonChecked sx={{ color: "red" }} />
         ),
     },
     {
       field: "is_new",
       headerName: "更新",
       renderCell: (params: GridRenderCellParams) =>
-        params.row.is_new ? <Check className={classes.root} /> : <Close style={{ color: "red" }} />,
+        params.row.is_new ? <Check sx={{ color: "green" }} /> : <Close sx={{ color: "red" }} />,
     },
     {
       field: "last_updated_at",
@@ -67,7 +64,7 @@ const Site = () => {
   ];
 
   return (
-    <div style={{ width: "100%" }}>
+    <Box sx={{ width: "100%" }}>
       <DataGrid
         rows={data.sites}
         columns={columns}
@@ -76,7 +73,7 @@ const Site = () => {
         disableSelectionOnClick
         autoHeight
       />
-    </div>
+    </Box>
   );
 };
 

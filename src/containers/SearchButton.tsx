@@ -1,38 +1,13 @@
 import SearchIcon from "@mui/icons-material/Search";
-import { Hidden, IconButton, InputBase, Theme, Tooltip } from "@mui/material";
+import { Hidden, IconButton, InputBase, Tooltip } from "@mui/material";
 import { alpha } from "@mui/material/styles";
-import makeStyles from "@mui/styles/makeStyles";
 import React, { useCallback, useState } from "react";
 import { useEvent } from "react-use";
 import { useRecoilState } from "recoil";
 
 import { isSearchOpenState } from "../states";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  search: {
-    display: "flex",
-    padding: 4,
-    alignItems: "center",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-  },
-  searchIcon: {
-    paddingRight: 4,
-  },
-  inputInput: {
-    width: "8ch",
-    color: "white",
-    textAlign: "center",
-    padding: "unset",
-    fontSize: "1.5rem",
-  },
-}));
-
 const SearchButton = () => {
-  const classes = useStyles();
   const [searching, setSearching] = useRecoilState(isSearchOpenState);
   const [metaKey, setMetaKey] = useState(false);
 
@@ -74,15 +49,31 @@ const SearchButton = () => {
   return (
     <>
       <Hidden lgDown>
-        <div className={classes.search} onFocus={handleSearch}>
+        <div
+          sx={(theme) => ({
+            display: "flex",
+            padding: 4,
+            alignItems: "center",
+            borderRadius: theme.shape.borderRadius,
+            backgroundColor: alpha(theme.palette.common.white, 0.15),
+            "&:hover": {
+              backgroundColor: alpha(theme.palette.common.white, 0.25),
+            },
+          })}
+          onFocus={handleSearch}
+        >
           <InputBase
             placeholder="⌘ + k"
-            classes={{
-              input: classes.inputInput,
+            sx={{
+              width: "8ch",
+              color: "white",
+              textAlign: "center",
+              padding: "unset",
+              fontSize: "1.5rem",
             }}
             inputProps={{ "aria-label": "search" }}
           />
-          <div className={classes.searchIcon} onClick={handleSearch}>
+          <div sx={{ paddingRight: 4 }} onClick={handleSearch}>
             <SearchIcon />
           </div>
         </div>

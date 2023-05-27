@@ -18,7 +18,6 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import makeStyles from "@mui/styles/makeStyles";
 import React, { useCallback, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -30,25 +29,14 @@ import ProfileMenu from "../containers/ProfileMenu";
 import SearchButton from "../containers/SearchButton";
 import { isExpiredState, isSettingsOpenState, paletteModeState } from "../states";
 
-const useStyles = makeStyles(() => ({
-  blank: {
-    flexGrow: 1,
-  },
-  containerRoot: {
-    paddingLeft: 0,
-    paddingRight: 0,
-  },
-}));
-
-const Header = () => {
+const Header: React.FC = () => {
   const { pathname } = useLocation();
-  const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
   const [isExpired] = useRecoilState(isExpiredState);
   const [paletteMode, setPaletteMode] = useRecoilState(paletteModeState);
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(anchorEl);
   const [, setSettingsOpen] = useRecoilState(isSettingsOpenState);
   const [playing, setPlaying] = useState(false);
@@ -120,7 +108,7 @@ const Header = () => {
     <header>
       <Drawer open={toggleDrawer} onClick={() => setToggleDrawer(!toggleDrawer)} />
       <AppBar position="static" component="div">
-        <Container maxWidth="lg" style={{ paddingRight: 0 }}>
+        <Container maxWidth="lg" sx={{ paddingRight: 0 }}>
           <Toolbar>
             <IconButton
               edge="start"
@@ -143,7 +131,7 @@ const Header = () => {
                 ))}
               </div>
             )}
-            <div className={classes.blank} />
+            <div style={{ flexGrow: 1 }} />
             <SearchButton />
             <Hidden only="xs">
               <Tooltip
