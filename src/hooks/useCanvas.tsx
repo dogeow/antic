@@ -1,26 +1,30 @@
 import { useEffect, useRef } from "react";
 
-const useCanvas = (draw: (ctx: CanvasRenderingContext2D, frameCount: number) => void) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+type DrawFunction = (ctx: CanvasRenderingContext2D, frameCount: number) => void;
+
+const useCanvas = (draw: DrawFunction) => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const context = (canvas as HTMLCanvasElement).getContext("2d") as CanvasRenderingContext2D;
+    const context = canvas?.getContext("2d");
 
-    let frameCount = 0;
-    let animationFrameId: number;
+    if (context) {
+      let frameCount = 0;
+      let animationFrameId: number;
 
-    const render = () => {
-      frameCount++;
-      draw(context, frameCount);
-      animationFrameId = window.requestAnimationFrame(render);
-    };
+      const render = () => {
+        frameCount++;
+        draw(context, frameCount);
+        animationFrameId = window.requestAnimationFrame(render);
+      };
 
-    render();
+      render();
 
-    return () => {
-      window.cancelAnimationFrame(animationFrameId);
-    };
+      return () => {
+        window.cancelAnimationFrame(animationFrameId);
+      };
+    }
   }, [draw]);
 
   return canvasRef;
