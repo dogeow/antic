@@ -1,45 +1,19 @@
 import { ExpandMore as ExpandMoreIcon, Share as ShareIcon } from "@mui/icons-material";
-import {
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Collapse,
-  IconButton,
-  Theme,
-  Typography,
-} from "@mui/material";
-import { red } from "@mui/material/colors";
-import makeStyles from "@mui/styles/makeStyles";
-import clsx from "clsx";
+import { Card, CardActions, CardContent, CardHeader, CardMedia, Collapse, IconButton, Typography } from "@mui/material";
 import * as React from "react";
 
 import { CDN_URL } from "../config/services";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  media: {
-    height: 0,
-    paddingTop: "100%", // 16:9
-    backgroundSize: "contain",
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: "rotate(180deg)",
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
-}));
+interface TextObject {
+  title: string;
+  subHeader: string;
+  img: string;
+  link: string;
+  intro: string;
+  feeling: string;
+}
 
-export default function RecipeReviewCard({ title, subHeader, img, link, intro, feeling }: TextObject) {
-  const classes = useStyles();
+const RecipeReviewCard: React.FC<TextObject> = ({ title, subHeader, img, link, intro, feeling }) => {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -49,8 +23,16 @@ export default function RecipeReviewCard({ title, subHeader, img, link, intro, f
   return (
     <Card>
       <CardHeader title={title} subheader={subHeader} />
-      <CardMedia className={classes.media} image={`${CDN_URL}/like/${img}!/compress/true/fw/800`} title="Paella dish" />
-      <CardContent style={{ minHeight: "11em" }}>
+      <CardMedia
+        sx={{
+          height: 0,
+          paddingTop: "100%", // 16:9
+          backgroundSize: "contain",
+        }}
+        image={`${CDN_URL}/like/${img}!/compress/true/fw/800`}
+        title="Paella dish"
+      />
+      <CardContent sx={{ minHeight: "11em" }}>
         <Typography variant="body2" color="textSecondary" component="p" dangerouslySetInnerHTML={{ __html: intro }} />
       </CardContent>
       <CardActions disableSpacing>
@@ -60,9 +42,11 @@ export default function RecipeReviewCard({ title, subHeader, img, link, intro, f
           </IconButton>
         </a>
         <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
+          sx={{
+            transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
+            marginLeft: "auto",
+            transition: "0.3s",
+          }}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
@@ -78,4 +62,6 @@ export default function RecipeReviewCard({ title, subHeader, img, link, intro, f
       </Collapse>
     </Card>
   );
-}
+};
+
+export default RecipeReviewCard;
