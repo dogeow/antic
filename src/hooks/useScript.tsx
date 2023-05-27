@@ -10,7 +10,10 @@ const useScript = (url: string) => {
     document.body.appendChild(script);
 
     return () => {
-      document.body.removeChild(script);
+      const loadedScript = document.querySelector(`script[src="${url}"]`);
+      if (loadedScript) {
+        document.body.removeChild(loadedScript);
+      }
     };
   }, [url]);
 };
