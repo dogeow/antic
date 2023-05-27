@@ -7,7 +7,6 @@ import Grid from "@mui/material/Grid";
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input/Input";
 import Typography from "@mui/material/Typography";
-import makeStyles from "@mui/styles/makeStyles";
 import update from "immutability-helper";
 import React, { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
@@ -15,20 +14,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import axios from "../../instance/axios";
 import AlertDialog from "../AlertDialog";
-
-const useStyles = makeStyles(() => ({
-  green: {
-    color: "green",
-  },
-  input: {
-    padding: "2px 0 5px",
-  },
-  "@global": {
-    h3: {
-      borderBottom: "#e0e0e0 1px solid",
-    },
-  },
-}));
 
 const PROJECT_BY_ID = gql`
   query ($id: Int!) {
@@ -46,31 +31,18 @@ const PROJECT_BY_ID = gql`
   }
 `;
 
-const getItemStyle = (isDragging: boolean, draggableStyle) => ({
-  userSelect: "none",
-
-  background: isDragging ? "gray" : "none",
-
-  ...draggableStyle,
-});
-
-const getListStyle = (isDraggingOver) => ({
-  background: isDraggingOver ? "none" : "noe",
-});
-
-const SingleProject = () => {
-  const classes = useStyles();
+const SingleProject: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const [project, setProject] = useState({});
-  const [tasks, setTasks] = useState([]);
-  const [focus, setFocus] = useState("");
-  const [title, setTitle] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [project, setProject] = useState<any>({});
+  const [tasks, setTasks] = useState<any[]>([]);
+  const [focus, setFocus] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [errors, setErrors] = useState<any[]>([]);
 
-  const [editId, setEditId] = useState();
-  const [alertDialogOpen, setAlertDialogOpen] = useState(false);
+  const [editId, setEditId] = useState<number | undefined>();
+  const [alertDialogOpen, setAlertDialogOpen] = useState<boolean>(false);
 
   const { data } = useQuery(PROJECT_BY_ID, {
     variables: { id: parseInt(id) },
@@ -83,7 +55,7 @@ const SingleProject = () => {
     }
   }, [data]);
 
-  const handleFieldChange = (event) => {
+  const handleFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
   };
 
@@ -184,7 +156,12 @@ const SingleProject = () => {
         content="删除后，任务也将一同被删除！"
         agree={handleMarkProjectAsCompleted}
       />
-      <Grid container spacing={2} justifyContent="space-between">
+      <Grid
+        container
+        spacing={2}
+        justifyContent="space-between"
+        sx={{ "@global": { h3: { borderBottom: "#e0e0e0 1px solid" } } }}
+      >
         <Grid item>
           <Typography variant="h4" component="h1">
             {project.name}
@@ -234,7 +211,11 @@ const SingleProject = () => {
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="droppable">
               {(provided, snapshot) => (
-                <div {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+                <div
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                  style={{ background: snapshot.isDraggingOver ? "none" : "noe" }}
+                >
                   {tasks.map((task, index) => (
                     <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
                       {(provided, snapshot) => (
@@ -246,7 +227,11 @@ const SingleProject = () => {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
+                          style={{
+                            userSelect: "none",
+                            background: snapshot.isDragging ? "gray" : "none",
+                            ...provided.draggableProps.style,
+                          }}
                         >
                           <Grid item>
                             {task.is_completed ? (
@@ -262,7 +247,11 @@ const SingleProject = () => {
                             {index === editId ? (
                               <Input
                                 fullWidth
-                                classes={{ input: classes.input }}
+                                sx={{
+                                  input: {
+                                    padding: "2px 0 5px",
+                                  },
+                                }}
                                 value={task.title}
                                 onFocus={() => handleFocus(task)}
                                 onBlur={() => handleEditPut(task)}

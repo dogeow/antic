@@ -1,7 +1,6 @@
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import makeStyles from "@mui/styles/makeStyles";
 import imagesLoaded from "imagesloaded";
 import React, { useCallback, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,28 +10,11 @@ import Swal from "sweetalert2";
 
 import { CDN_URL } from "../../config/services";
 import faces from "../../resources/face.json";
-import {
-  currentPageState,
-  displayTagState,
-  expandTagState,
-  faceIsLoadingState,
-  filteredEmojiListState,
-  isCategoryExpandedState,
-  searchState,
-} from "../../states";
+import { currentPageState, faceIsLoadingState, filteredEmojiListState, searchState } from "../../states";
+import Hr from "../display/Hr";
 import BootNav from "./BootNav";
 import Filter from "./Filter";
 import FilterStatistics from "./FilterStatistics";
-
-const useStyles = makeStyles(() => ({
-  hr: {
-    width: "100%",
-    border: "none",
-    borderBottom: "1px dashed #DaDaDa",
-    height: "1px",
-    margin: "10px 10px",
-  },
-}));
 
 const Emoji = () => {
   const navigate = useNavigate();
@@ -40,10 +22,6 @@ const Emoji = () => {
   const [, setSearch] = useRecoilState(searchState);
   const [faceIsLoading, setFaceIsLoading] = useRecoilState(faceIsLoadingState);
   const [, setCurrentPage] = useRecoilState(currentPageState);
-  const [displayTag] = useRecoilState(displayTagState);
-  const [expandTag, setExpandTag] = useRecoilState(expandTagState);
-  const [expandCategory, setExpandCategory] = useRecoilState(isCategoryExpandedState);
-  const classes = useStyles();
 
   useEffect(() => {
     const imgLoad = imagesLoaded("#emoji");
@@ -59,14 +37,6 @@ const Emoji = () => {
       return item;
     });
   }, [faces]);
-
-  const toggleTag = () => {
-    setExpandTag(!expandTag);
-  };
-
-  const toggleCategory = () => {
-    setExpandCategory(!expandCategory);
-  };
 
   const handleUpload = useCallback(() => {
     navigate("/emoji/create");
@@ -99,7 +69,7 @@ const Emoji = () => {
       <Button variant="contained" color="secondary" onClick={handleUpload} style={{ marginLeft: 20 }}>
         上传
       </Button>
-      <hr className={classes.hr} />
+      <Hr />
       <Filter />
       <FilterStatistics />
       <Grid id="emoji" container justifyContent="center" alignItems="flex-end" spacing={2} style={{ marginBottom: 80 }}>

@@ -1,13 +1,5 @@
-import { Backdrop, CircularProgress, Theme } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { Backdrop, CircularProgress } from "@mui/material";
 import * as React from "react";
-
-const useStyles = makeStyles((theme: Theme) => ({
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: "#fff",
-  },
-}));
 
 /**
  * 帏幕
@@ -17,11 +9,15 @@ const useStyles = makeStyles((theme: Theme) => ({
  * @return {JSX.Element}
  * @constructor
  */
-export default function SimpleBackdrop(props: { open?: boolean }) {
-  const classes = useStyles();
-
+export default function SimpleBackdrop({ open = false }: { open?: boolean }): React.ReactElement {
   return (
-    <Backdrop className={classes.backdrop} open={props?.open || false}>
+    <Backdrop
+      sx={{
+        zIndex: (theme) => theme.zIndex.drawer + 1,
+        color: "#fff",
+      }}
+      open={open}
+    >
       <CircularProgress color="inherit" />
     </Backdrop>
   );

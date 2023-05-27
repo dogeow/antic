@@ -1,17 +1,19 @@
-import { Badge, Button, Grid, Paper, Theme } from "@mui/material/";
-import makeStyles from "@mui/styles/makeStyles";
+import { Badge, Button, Grid, Paper } from "@mui/material";
 import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  margin: {
-    margin: theme.spacing(2),
-  },
-}));
+interface Project {
+  id: number;
+  name: string;
+  description: string;
+  taskCount: number;
+}
 
-const ProjectsList = ({ projects }) => {
-  const classes = useStyles();
+interface Props {
+  projects: Project[];
+}
 
+const ProjectsList: React.FC<Props> = ({ projects }) => {
   return (
     <Paper>
       <Grid container spacing={2}>
@@ -26,7 +28,8 @@ const ProjectsList = ({ projects }) => {
                 color="secondary"
                 showZero
                 badgeContent={project.taskCount}
-                className={classes.margin}
+                // 使用sx替换makeStyles
+                sx={{ margin: 2 }}
               >
                 <Button variant="contained" color="primary">
                   {project.name} - {project.description}
