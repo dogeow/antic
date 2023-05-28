@@ -1,6 +1,5 @@
 import { Box, Grid, Tab, Tabs } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import makeStyles from "@mui/styles/makeStyles";
 import React, { useState } from "react";
 
 import SubNav from "../../components/nav/SubNav";
@@ -29,18 +28,7 @@ function a11yProps(index) {
   };
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    height: `calc(100% - ${theme.spacing(4)})`,
-  },
-  tabs: {
-    borderRight: `1px solid ${theme.palette.divider}`,
-  },
-}));
-
 export default function NavForPc({ bookmarks }) {
-  const classes = useStyles();
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -48,7 +36,10 @@ export default function NavForPc({ bookmarks }) {
   };
 
   return (
-    <Grid container className={classes.root}>
+    <Grid
+      container
+      sx={{ height: `calc(100% - ${(theme) => theme.spacing(4)})`, bgcolor: (theme) => theme.palette.background.paper }}
+    >
       <Grid item xs={4} sm={3} md={2}>
         <Tabs
           orientation="vertical"
@@ -56,7 +47,7 @@ export default function NavForPc({ bookmarks }) {
           value={value}
           onChange={handleChange}
           aria-label="Vertical tabs example"
-          className={classes.tabs}
+          sx={{ borderRight: (theme) => `1px solid ${theme.palette.divider}` }}
         >
           {Object.keys(bookmarks).map((category, index) => (
             <Tab key={index} label={category} {...a11yProps(index)} />

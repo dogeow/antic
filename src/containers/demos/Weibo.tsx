@@ -3,7 +3,6 @@ import "../../styles/weibo.css";
 import ErrorOutline from "@mui/icons-material/ErrorOutline";
 import { Grid, Hidden, Pagination, PaginationItem, Skeleton, TextField } from "@mui/material";
 import Alert from "@mui/material/Alert";
-import makeStyles from "@mui/styles/makeStyles";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import random from "lodash/random";
@@ -12,26 +11,30 @@ import { Link } from "react-router-dom";
 
 import axios from "../../instance/axios";
 
-const useStyles = makeStyles(() => ({
-  "@global": {
-    img: {
-      float: "left",
-      width: 16,
-      height: 16,
-      margin: "0 2px",
-    },
-  },
-}));
+interface WeiboItem {
+  id: string;
+  status: string;
+  url: string;
+  title: string;
+  emoji: string;
+  rank: number;
+  updated_at: string;
+}
 
-const Weibo = () => {
-  useStyles();
+interface WeiboData {
+  current_page: number;
+  last_page: number;
+  per_page: number;
+  data: WeiboItem[];
+}
 
-  const [weibo, setWeibo] = useState({});
-  const [selectedDate, handleDateChange] = useState(new Date());
-  const [pageCount, setPageCount] = useState();
-  const [currPage, setCurrPage] = useState(1);
+const Weibo: React.FC = () => {
+  const [weibo, setWeibo] = useState<WeiboData>();
+  const [selectedDate, handleDateChange] = useState<Date>(new Date());
+  const [pageCount, setPageCount] = useState<number>();
+  const [currPage, setCurrPage] = useState<number>(1);
 
-  const setData = (data) => {
+  const setData = (data: WeiboData) => {
     setWeibo(data);
     setCurrPage(data.current_page);
     setPageCount(data.last_page);
@@ -46,17 +49,21 @@ const Weibo = () => {
 
   return (
     <>
-      <Alert severity="warning" style={{ marginBottom: 20 }} onClick={() => handleDateChange(new Date("2022-02-28"))}>
+      <Alert severity="warning" sx={{ marginBottom: 2 }} onClick={() => handleDateChange(new Date("2022-02-28"))}>
         该功能已停止更新，只有旧数据。最后更新日期是：2022-02-28。点击该警示框跳转到该日期。
       </Alert>
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12}>
           <DatePicker
             label="日期"
-            format="YYYY-MM-DD"
+            inputFormat="YYYY-MM-DD"
             disableFuture
             value={selectedDate}
-            onChange={handleDateChange}
+            onChange={(value) => {
+              if (value) {
+                handleDateChange(value);
+              }
+            }}
             renderInput={(props) => <TextField {...props} />}
           />
           <div style={{ float: "right", marginRight: 12 }}>
@@ -78,7 +85,7 @@ const Weibo = () => {
               </tr>
             </thead>
             <tbody>
-              {weibo.data
+              {weibo?.data
                 ? weibo.data.map((item, index) => (
                     <tr key={item.id} className={item.status}>
                       <td>{weibo.per_page * (currPage - 1) + index + 1}</td>
@@ -109,7 +116,7 @@ const Weibo = () => {
             page={currPage}
             count={pageCount}
             hidePrevButton={currPage <= 1}
-            hideNextButton={currPage >= weibo.last_page}
+            hideNextButton={currPage >= weibo?.last_page}
             renderItem={(item) => (
               <PaginationItem {...item} disabled={item.page === currPage} onClick={() => setCurrPage(item.page)} />
             )}

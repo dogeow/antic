@@ -1,38 +1,20 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { Avatar, Button, Container, InputAdornment, TextField, Theme, Typography } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { Avatar, Button, Container, InputAdornment, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import swal from "sweetalert2";
 
 import axios from "../../instance/axios";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  paper: {
-    marginTop: theme.spacing(6),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
+interface InputErrors {
+  account?: string[];
+}
 
-const Forget = () => {
-  const classes = useStyles();
-  const [account, setAccount] = useState("");
-  const [inputErrors, setInputErrors] = useState({});
+const Forget: React.FC = () => {
+  const [account, setAccount] = useState<string>("");
+  const [inputErrors, setInputErrors] = useState<InputErrors>({});
 
-  const handleForget = (e) => {
+  const handleForget = (e: React.FormEvent) => {
     e.preventDefault();
 
     axios
@@ -51,15 +33,33 @@ const Forget = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+      <div
+        style={{
+          marginTop: 6,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Avatar
+          sx={{
+            margin: 1,
+            bgcolor: "secondary.main",
+          }}
+        >
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5" style={{ marginBottom: 10 }}>
+        <Typography component="h1" variant="h5" sx={{ marginBottom: 1 }}>
           忘记密码
         </Typography>
         <div>
-          <form className={classes.form} noValidate>
+          <form
+            style={{
+              width: "100%", // Fix IE 11 issue.
+              marginTop: 3,
+            }}
+            noValidate
+          >
             <TextField
               variant="outlined"
               margin="normal"
@@ -70,11 +70,11 @@ const Forget = () => {
               name="account"
               autoComplete="account"
               autoFocus
-              onChange={(e) => setAccount(e.target.value)}
-              error={inputErrors && inputErrors.account}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAccount(e.target.value)}
+              error={Boolean(inputErrors?.account)}
               placeholder="手机号码或 Email 地址"
-              InputLabelProps={inputErrors && inputErrors.account ? { shrink: true } : {}}
-              helperText={inputErrors && inputErrors.account ? inputErrors.account[0] : ""}
+              InputLabelProps={Boolean(inputErrors?.account) ? { shrink: true } : {}}
+              helperText={inputErrors?.account ? inputErrors.account[0] : ""}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -89,7 +89,7 @@ const Forget = () => {
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+            sx={{ margin: "3 0 2" }}
             onClick={handleForget}
           >
             发送重置密码的链接

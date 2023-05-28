@@ -1,29 +1,15 @@
 import ClearIcon from "@mui/icons-material/Clear";
-import { IconButton, InputAdornment, TextField } from "@mui/material";
-import { Grid } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { Grid, IconButton, InputAdornment, TextField } from "@mui/material";
 import dayjs from "dayjs";
-import * as React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 import ClipboardButton from "../components/ClipboardButton";
 import { snackState } from "../states";
 
-const useStyles = makeStyles({
-  arrowTextWrapper: {
-    lineHeight: "56px",
-    "&::before": {
-      content: '"=> "',
-    },
-  },
-});
-
-const TimeConvert = () => {
-  const classes = useStyles();
-
-  const [value, setValue] = useState("");
-  const [toValue, setToValue] = useState("");
+const TimeConvert: React.FC = () => {
+  const [value, setValue] = useState<string>("");
+  const [toValue, setToValue] = useState<string>("");
   const [, setSnack] = useRecoilState(snackState);
 
   const handleClick = () => {
@@ -51,7 +37,7 @@ const TimeConvert = () => {
         <TextField
           value={value}
           placeholder={"输入日期时间或时间戳"}
-          onChange={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setValue(() => {
               const newValue = e.target.value.replace(/[^\d -:]/g, "");
               if (/[^\d -:]/g.test(e.target.value)) {
@@ -75,7 +61,17 @@ const TimeConvert = () => {
           }}
         />
       </Grid>
-      <Grid item xs={12} md={6} className={classes.arrowTextWrapper}>
+      <Grid
+        item
+        xs={12}
+        md={6}
+        sx={{
+          lineHeight: "56px",
+          "&::before": {
+            content: '"=> "',
+          },
+        }}
+      >
         <span>{toValue || "?"}</span>
         {toValue && getClipboardButton(toValue)}
       </Grid>

@@ -6,16 +6,7 @@ import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
-import makeStyles from "@mui/styles/makeStyles";
 import React, { useState } from "react";
-
-const useStyles = makeStyles(() => ({
-  ul: {
-    "& > li": {
-      listStyleType: "decimal",
-    },
-  },
-}));
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -51,7 +42,6 @@ function a11yProps(index: number) {
 }
 
 export default function ControlledAccordions({ bookmarks }) {
-  const classes = useStyles();
   const [expanded, setExpanded] = useState<string | false>(false);
   const [value, setValue] = useState(0);
 
@@ -104,7 +94,7 @@ export default function ControlledAccordions({ bookmarks }) {
                 const items = bookmark[subCategory];
                 return (
                   <TabPanel value={value} index={index} key={index}>
-                    <ul className={classes.ul}>
+                    <ul sx={{ "& > li": { listStyleType: "decimal" } }}>
                       {items.map((item, index) => (
                         <li key={index}>
                           <a href={item["url"]} target="_blank" rel="noopener noreferrer">
