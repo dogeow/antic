@@ -53,7 +53,8 @@ const SearchButton = () => {
         <Box
           sx={(theme) => ({
             display: "flex",
-            padding: 4,
+            height: 40,
+            padding: 2,
             alignItems: "center",
             borderRadius: theme.shape.borderRadius,
             backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -66,15 +67,18 @@ const SearchButton = () => {
           <InputBase
             placeholder="⌘ + k"
             sx={{
-              width: "8ch",
-              color: "white",
-              textAlign: "center",
-              padding: "unset",
+              width: "6rem",
               fontSize: "1.5rem",
             }}
             inputProps={{ "aria-label": "search" }}
           />
-          <Box sx={{ paddingRight: 4 }} onClick={handleSearch}>
+          <Box
+            onClick={handleSearch}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
             <SearchIcon />
           </Box>
         </Box>
