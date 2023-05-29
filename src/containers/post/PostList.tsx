@@ -215,7 +215,7 @@ const PostList = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Paper className={classes.paper}>
+            <Paper>
               <AllTags changeTag={changeTag} tags={tags} />
             </Paper>
           </Grid>
