@@ -140,7 +140,7 @@ const PostList = () => {
         </Grid>
         <Grid item container spacing={2}>
           <Grid item xs={12}>
-            <Paper className={classes.paper}>
+            <Paper>
               <Grid container spacing={2}>
                 {posts.length
                   ? posts.map((post) => (
