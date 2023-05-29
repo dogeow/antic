@@ -1,8 +1,7 @@
 import { useQuery } from "@apollo/client";
-import { Autocomplete, Theme } from "@mui/material";
+import { Autocomplete } from "@mui/material";
 import Chip from "@mui/material/Chip";
 import TextField from "@mui/material/TextField";
-import makeStyles from "@mui/styles/makeStyles";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
@@ -11,19 +10,11 @@ import { removeItemAtIndex } from "../../helpers";
 import axios from "../../instance/axios";
 import { allTagsState, postState } from "../../states";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  tags: {
-    "& > *": {
-      margin: theme.spacing(0.5),
-    },
-  },
-}));
+interface TagsProps {
+  mode?: "edit" | "create" | "show";
+}
 
-const modes = ["edit", "create", "show"];
-
-const Tags = ({ mode = "show" }) => {
-  const classes = useStyles();
-
+const Tags: React.FC<TagsProps> = ({ mode = "show" }) => {
   const [allTags, setAllTags] = useRecoilState(allTagsState);
   const [post, setPost] = useRecoilState<Post>(postState);
 
@@ -67,6 +58,7 @@ const Tags = ({ mode = "show" }) => {
             onDelete={() => {
               setPost({ ...post, tags: removeItemAtIndex(post.tags, index) });
             }}
+            sx={{ margin: 0.5 }}
           />
         ))
       }
@@ -75,9 +67,17 @@ const Tags = ({ mode = "show" }) => {
       )}
     />
   ) : (
-    <div className={classes.tags}>
+    <div
+      sx={{
+        "& > *": {
+          margin: 0.5,
+        },
+      }}
+    >
       {post.tags &&
-        post.tags.map((tag, index) => <Chip key={index} label={tag.name} variant="outlined" size="small" />)}
+        post.tags.map((tag, index) => (
+          <Chip key={index} label={tag.name} variant="outlined" size="small" sx={{ margin: 0.5 }} />
+        ))}
     </div>
   );
 };

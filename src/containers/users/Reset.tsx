@@ -1,8 +1,7 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { Avatar, Button, Container, Grid, Theme, Typography } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { Avatar, Box, Button, Container, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -12,29 +11,8 @@ import CustomTextField from "../../components/CustomTextField";
 import axios from "../../instance/axios";
 import { userState } from "../../states";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  paper: {
-    marginTop: theme.spacing(6),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
 const Forget = () => {
   const navigate = useNavigate();
-  const classes = useStyles();
   const [, setUser] = useRecoilState(userState);
   const [inputErrors, setInputErrors] = useState({});
   const [displayPassword, setDisplayPassword] = useState(false);
@@ -77,15 +55,33 @@ const Forget = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+      <Box
+        sx={{
+          marginTop: 6,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Avatar
+          sx={{
+            margin: 1,
+            backgroundColor: "secondary.main",
+          }}
+        >
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5" style={{ marginBottom: 10 }}>
+        <Typography component="h1" variant="h5" sx={{ marginBottom: 1 }}>
           重置密码
         </Typography>
-        <div>
-          <form className={classes.form} noValidate>
+        <Box>
+          <form
+            sx={{
+              width: "100%", // Fix IE 11 issue.
+              marginTop: 3,
+            }}
+            noValidate
+          >
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <CustomTextField
@@ -125,18 +121,11 @@ const Forget = () => {
               </Grid>
             </Grid>
           </form>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={handleReset}
-          >
+          <Button type="submit" fullWidth variant="contained" color="primary" sx={{ margin: 3 }} onClick={handleReset}>
             修改
           </Button>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </Container>
   );
 };

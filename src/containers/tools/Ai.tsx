@@ -1,11 +1,9 @@
-import MuiAlert from "@mui/material/Alert";
+import MuiAlert, { AlertProps as MuiAlertProps } from "@mui/material/Alert";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
-import { Theme } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
@@ -13,17 +11,11 @@ import { useRecoilState } from "recoil";
 import ClipboardButton from "../../components/ClipboardButton";
 import { snackState } from "../../states";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  response: {
-    width: "100%",
-    textAlign: "left",
-    border: "1px solid #ccc",
-    borderRadius: theme.shape.borderRadius,
-    minHeight: "50vh",
-  },
-}));
+interface AlertProps extends MuiAlertProps {
+  ref?: React.Ref<HTMLDivElement>;
+}
 
-const Alert = React.forwardRef(function Alert(props, ref) {
+const Alert: React.FC<AlertProps> = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
@@ -38,7 +30,6 @@ function processMatch(jsonObj) {
 }
 
 const Ai = () => {
-  const classes = useStyles();
   const [content, setContent] = React.useState("");
   const [response] = React.useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -171,7 +162,18 @@ const Ai = () => {
         </Button>
       </Grid>
       <Grid item xs={12}>
-        <Typography className={classes.response} variant="body1" style={{ padding: 14, whiteSpace: "pre-wrap" }}>
+        <Typography
+          variant="body1"
+          sx={{
+            width: "100%",
+            textAlign: "left",
+            border: "1px solid #ccc",
+            borderRadius: 1,
+            minHeight: "50vh",
+            padding: 2,
+            whiteSpace: "pre-wrap",
+          }}
+        >
           {responseString}
         </Typography>
       </Grid>

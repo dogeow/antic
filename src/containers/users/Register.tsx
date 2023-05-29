@@ -6,8 +6,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { AppBar, Avatar, Box, Container, Grid, Tab, Tabs, Theme, Typography } from "@mui/material";
-import makeStyles from "@mui/styles/makeStyles";
+import { AppBar, Avatar, Box, Container, Grid, Tab, Tabs, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import swal from "sweetalert2";
@@ -21,26 +20,6 @@ import GitHubLogin from "../../components/GithubLogin";
 import Copyright from "../../components/site/Copyright";
 import axios from "../../instance/axios";
 import { userState } from "../../states";
-
-const useStyles = makeStyles((theme: Theme) => ({
-  paper: {
-    marginTop: theme.spacing(6),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -66,7 +45,6 @@ function a11yProps(index) {
 }
 
 const Register = () => {
-  const classes = useStyles();
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [sentPhone, setSentPhone] = useState("");
@@ -205,11 +183,18 @@ const Register = () => {
   return (
     <Container component="main" maxWidth="xs">
       <Loading open={open} />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          marginTop: 6,
+        }}
+      >
+        <Avatar sx={{ margin: 1, backgroundColor: "secondary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5" style={{ marginBottom: 10 }}>
+        <Typography component="h1" variant="h5" sx={{ marginBottom: 1 }}>
           注册
         </Typography>
         <div>
@@ -221,7 +206,7 @@ const Register = () => {
             </Tabs>
           </AppBar>
           <TabPanel value={tabIndex} index={0}>
-            <form className={classes.form} noValidate>
+            <form sx={{ width: "100%", marginTop: 3 }} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <NameField />
@@ -248,7 +233,7 @@ const Register = () => {
             </form>
           </TabPanel>
           <TabPanel value={tabIndex} index={1}>
-            <form className={classes.form} noValidate>
+            <form sx={{ width: "100%", marginTop: 3 }} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <NameField />
@@ -283,8 +268,8 @@ const Register = () => {
             />
           </TabPanel>
         </div>
-      </div>
-      <Box mt={5}>
+      </Box>
+      <Box sx={{ mt: 5 }}>
         <Copyright />
       </Box>
     </Container>
