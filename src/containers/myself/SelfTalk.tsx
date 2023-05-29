@@ -2,7 +2,8 @@ import { useQuery } from "@apollo/client";
 import AddIcon from "@mui/icons-material/Add";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { makeStyles, Theme } from "@mui/styles";
+import { Box } from "@mui/material";
+import { styled } from "@mui/system";
 import React, { useEffect, useState } from "react";
 
 import SpeedDial from "../../components/display/SpeedDial";
@@ -14,23 +15,20 @@ interface Props {
   fontSize: string;
 }
 
-const useStyles = makeStyles<Theme, Props>(() => ({
-  quote: {
-    fontFamily: '"Long Cang", cursive',
-    fontSize: (props) => props.fontSize,
-    border: "10px solid transparent",
-    padding: 15,
-    marginBottom: 5,
-    borderImage: `url(${CDN_URL}/border/border-image-4.png) 30 stretch`,
-    listStyle: "none",
-  },
+const QuoteBox = styled("div")<Props>(({ fontSize }) => ({
+  fontFamily: '"Long Cang", cursive',
+  fontSize,
+  border: "10px solid transparent",
+  padding: 15,
+  marginBottom: 5,
+  borderImage: `url(${CDN_URL}/border/border-image-4.png) 30 stretch`,
+  listStyle: "none",
 }));
 
 const fontSizeDefault = 2;
 
 const SelfTalk = () => {
   const [fontSize, setFontSize] = useState(fontSizeDefault);
-  const classes = useStyles({ fontSize: `${fontSize}rem` });
   const [quotes, setQuotes] = useState([]);
 
   const { data } = useQuery(QUOTES, { fetchPolicy: "cache-and-network" });
@@ -63,11 +61,11 @@ const SelfTalk = () => {
   const quoteList = quotes.map((quote: Quote) => <p key={quote.id}>{quote.content}</p>);
 
   return (
-    <div>
+    <Box>
       <link href={QUOTE_FONT} rel="stylesheet" />
-      <div className={classes.quote}>{quoteList}</div>
+      <QuoteBox fontSize={`${fontSize}rem`}>{quoteList}</QuoteBox>
       <SpeedDial actions={actions} onHandleAdd={handleAdd} onHandleSub={handleSub} />
-    </div>
+    </Box>
   );
 };
 

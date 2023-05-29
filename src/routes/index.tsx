@@ -81,8 +81,6 @@ export default () => (
         <Route path="/chat" element={<Chat />} />
         <Route path="/ai" element={<Ai />} />
 
-        <Route path="/sites" element={<Site />} />
-
         {/* Posts */}
         <Route path="/posts" element={<PostList />} />
         <Route path="/posts/create" element={<PostCreate />} />
@@ -109,6 +107,8 @@ export default () => (
         <Route path="/demos/font" element={<Font />} />
         <Route path="/download" element={<Download />} />
         <Route path="/moon" element={<Moon />} />
+        <Route path="/video" element={<Video />} />
+        <Route path="/music" element={<Music />} />
 
         {/* 小工具 */}
         <Route path="/diff" element={<Diff />} />
@@ -122,10 +122,6 @@ export default () => (
         <Route path="/api" element={<Api />} />
         <Route path="/api/time" element={<Time />} />
 
-        {/* Example 示例 */}
-        <Route path="/video" element={<Video />} />
-        <Route path="/music" element={<Music />} />
-
         {/* 关于我 */}
         <Route path="/about" element={<About />} />
         <Route path="/self-talk" element={<SelfTalk />} />
@@ -137,6 +133,8 @@ export default () => (
         <Route path="/things/create" element={<ThingCreate />} />
         <Route path="/things/tags" element={<ThingTag />} />
         <Route path="/things/photos" element={<ThingPhoto />} />
+
+        <Route path="/sites" element={<Site />} />
 
         {/* 开发中、测试 */}
         <Route path="/test" element={<Test />} />
