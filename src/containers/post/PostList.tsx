@@ -1,8 +1,7 @@
 import { useLazyQuery } from "@apollo/client";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { Chip, Grid, Hidden, Pagination, PaginationItem, Paper, Skeleton, Theme, Typography } from "@mui/material";
+import { Chip, Grid, Hidden, Pagination, PaginationItem, Paper, Skeleton, Typography } from "@mui/material";
 import { PaginationRenderItemParams } from "@mui/material/Pagination/Pagination";
-import makeStyles from "@mui/styles/makeStyles";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { orderBy } from "lodash";
@@ -19,15 +18,7 @@ import { postState } from "../../states";
 
 dayjs.extend(relativeTime);
 
-const useStyles = makeStyles((theme: Theme) => ({
-  paper: {
-    padding: theme.spacing(2),
-    margin: "auto",
-  },
-}));
-
 const PostList = () => {
-  const classes = useStyles();
   const navigate = useNavigate();
   const [posts, setPosts] = useRecoilState<Post[]>(postState);
   const [pageCount, setPageCount] = useState<number>(0);
@@ -132,7 +123,7 @@ const PostList = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Paper className={classes.paper}>
+            <Paper sx={{ padding: 2, margin: "auto" }}>
               <Categories changeCategory={changeCategory} categories={categories} />
             </Paper>
           </Grid>
@@ -140,11 +131,11 @@ const PostList = () => {
       </Hidden>
       <Grid item xs={12} md={6} container direction="column" spacing={1}>
         <Grid item container justifyContent="space-between">
-          <Grid item style={{ display: "flex", alignItems: "center" }}>
+          <Grid item sx={{ display: "flex", alignItems: "center" }}>
             <Typography variant="h5" component="div">
               笔记
             </Typography>
-            <AddCircleIcon style={{ marginLeft: 5 }} onClick={handlePostCreate} />
+            <AddCircleIcon sx={{ marginLeft: 5 }} onClick={handlePostCreate} />
           </Grid>
         </Grid>
         <Grid item container spacing={2}>

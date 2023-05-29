@@ -1,10 +1,9 @@
 import { Box, Grid, Tab, Tabs } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import makeStyles from "@mui/styles/makeStyles";
 import * as React from "react";
 
-import SubNav from "../../components/nav/SubNav";
-import chromeBookmarks from "../../resources/Bookmarks.json";
+import SubNav from "../../../components/nav/SubNav";
+import chromeBookmarks from "../../../resources/Bookmarks.json";
 
 const bookmarks = chromeBookmarks.roots.bookmark_bar.children;
 
@@ -34,18 +33,7 @@ function a11yProps(index) {
   };
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    height: `calc(100% - ${theme.spacing(4)})`,
-  },
-  tabs: {
-    borderRight: `1px solid ${theme.palette.divider}`,
-  },
-}));
-
 export default function NavForPc() {
-  const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -53,7 +41,13 @@ export default function NavForPc() {
   };
 
   return (
-    <Grid container className={classes.root}>
+    <Grid
+      container
+      sx={{
+        height: `calc(100% - ${(theme) => theme.spacing(4)})`,
+        backgroundColor: (theme) => theme.palette.background.paper,
+      }}
+    >
       <Grid item xs={4} sm={3} md={2}>
         <Tabs
           orientation="vertical"
@@ -61,7 +55,7 @@ export default function NavForPc() {
           value={value}
           onChange={handleChange}
           aria-label="Vertical tabs example"
-          className={classes.tabs}
+          sx={{ borderRight: (theme) => `1px solid ${theme.palette.divider}` }}
         >
           {bookmarks.map(
             (project, index) =>

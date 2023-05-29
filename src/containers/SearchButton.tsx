@@ -1,5 +1,6 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { Hidden, IconButton, InputBase, Tooltip } from "@mui/material";
+import Box from "@mui/material/Box";
 import { alpha } from "@mui/material/styles";
 import React, { useCallback, useState } from "react";
 import { useEvent } from "react-use";
@@ -49,7 +50,7 @@ const SearchButton = () => {
   return (
     <>
       <Hidden lgDown>
-        <div
+        <Box
           sx={(theme) => ({
             display: "flex",
             padding: 4,
@@ -73,10 +74,10 @@ const SearchButton = () => {
             }}
             inputProps={{ "aria-label": "search" }}
           />
-          <div sx={{ paddingRight: 4 }} onClick={handleSearch}>
+          <Box sx={{ paddingRight: 4 }} onClick={handleSearch}>
             <SearchIcon />
-          </div>
-        </div>
+          </Box>
+        </Box>
       </Hidden>
       <Hidden mdUp>
         <Tooltip title="搜索" aria-label="搜索" onClick={handleSearch}>
