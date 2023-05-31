@@ -206,7 +206,7 @@ const Register = () => {
             </Tabs>
           </AppBar>
           <TabPanel value={tabIndex} index={0}>
-            <form sx={{ width: "100%", marginTop: 3 }} noValidate>
+            <form style={{ width: "100%", marginTop: 3 }} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <NameField />
@@ -233,7 +233,7 @@ const Register = () => {
             </form>
           </TabPanel>
           <TabPanel value={tabIndex} index={1}>
-            <form sx={{ width: "100%", marginTop: 3 }} noValidate>
+            <form style={{ width: "100%", marginTop: 3 }} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <NameField />
@@ -243,7 +243,7 @@ const Register = () => {
                     phoneNumber={phoneNumber}
                     sentPhoneSuccess={sentPhoneSuccess}
                     setPhoneNumber={setPhoneNumber}
-                    error={inputErrors?.phone_number}
+                    inputErrors={inputErrors}
                   />
                 </Grid>
                 <Grid item xs={12}>

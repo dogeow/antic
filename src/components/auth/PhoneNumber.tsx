@@ -23,12 +23,19 @@ const ValidationTextField = withStyles({
   },
 })(CustomTextField);
 
-export default (props) =>
+interface Props {
+  phoneNumber: string;
+  sentPhoneSuccess: boolean;
+  setPhoneNumber: (value: string) => void;
+  inputErrors?: { phone_number?: string };
+}
+
+const PhoneNumberInput: React.FC<Props> = (props) =>
   props.phoneNumber.length === 11 && props.sentPhoneSuccess ? (
     <ValidationTextField
       id={"phone_number"}
       label={"手机号码"}
-      value={props.phone_number}
+      value={props.phoneNumber}
       placeholder={""}
       onChange={props.setPhoneNumber}
       error={props.inputErrors?.phone_number || "已发送验证码，五分钟内有效"}
@@ -38,10 +45,12 @@ export default (props) =>
     <ValidationTextField
       id={"phone_number"}
       label={"手机号码"}
-      value={props.phone_number}
+      value={props.phoneNumber}
       placeholder={""}
       onChange={props.setPhoneNumber}
       error={props.inputErrors?.phone_number}
       icon={<PhoneIphoneIcon />}
     />
   );
+
+export default PhoneNumberInput;
