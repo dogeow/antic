@@ -2,11 +2,20 @@ kind: pipeline
 type: docker
 name: default
 
+trigger:
+  event:
+    - push
+
+volumes:
+  - name: cache
+    host:
+      path: /tmp/drone/antic # need create the drone folder before git push.
+
 steps:
   - name: yarn install
     image: node
     volumes:
-      - name: cache
+      - name: cache # cache the node_modules folder to volume name:cache.
         path: /drone/src/node_modules
     commands:
       - yarn install --registry https://registry.npm.taobao.org/
@@ -41,7 +50,7 @@ steps:
       VITE_GITHUB_CLIENT_ID:
         from_secret: VITE_GITHUB_CLIENT_ID
     commands:
-      - export NODE_OPTIONS=--max-old-space-size=8096
+      - export NODE_OPTIONS=--max-old-space-size=8096 # no setting will cause the vite build error.
       - yarn build
   - name: rsync
     image: drillster/drone-rsync
@@ -54,16 +63,4 @@ steps:
       source: ./dist/*
       delete: true
       target: /var/www/antic/static
-#      script:
-#        - cd /var/www/antic
-#        - ls
-
-trigger:
-  event:
-    - push
-
-volumes:
-  - name: cache
-    host:
-      path: /tmp/antic/cache
 
