@@ -17,6 +17,20 @@ Learn the React, Use:
 - React Redux
 - Apollo GraphQL
 - [Material-UI](https://material-ui.com/zh/)
+- 
+## Scope of Application and Quality
+
+### Scope of Application
+
+- For personal learning, not suitable for production environments.
+- Can be learned together (although it has never happened).
+
+### Quality
+
+- Just say if it can run or not?
+
+> The scope and quality of the system you are building should be specified as part of the system requirements.
+> -- "The Pragmatic Programmer: From Journeyman to Master"
 
 ## Backend
 
