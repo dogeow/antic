@@ -2,6 +2,7 @@
   "name": "learn",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@algolia/autocomplete-core": "^1.7.1",
     "@algolia/autocomplete-preset-algolia": "^1.7.1",
