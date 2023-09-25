@@ -65,7 +65,7 @@ const Ai = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("https://api.dogeow.com/ai", {
+      const response = await fetch("https://api.mirror.dogeow.com/ai", {
         method: "POST",
         body: JSON.stringify({ content }),
         headers: {
