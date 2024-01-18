@@ -59,7 +59,7 @@ steps:
       key:
         from_secret: ssh_key
       hosts:
-        - 172.22.84.158
+        - 172.16.65.147
       source: ./dist/*
       delete: true
       target: /var/www/antic/static
