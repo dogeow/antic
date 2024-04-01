@@ -55,11 +55,11 @@ steps:
   - name: rsync
     image: drillster/drone-rsync
     settings:
-      user: ecs-user
+      user: ecs-user # 这个方式是否正确？
       key:
         from_secret: ssh_key
       hosts:
-        - 172.16.65.147
+        - 172.16.65.147 # 这个方式是否正确？
       source: ./dist/*
       delete: true
       target: /var/www/antic/static
