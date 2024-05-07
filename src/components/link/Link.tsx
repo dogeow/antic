@@ -5,12 +5,12 @@ interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   to?: string;
 }
 
-export default ({ to, children, ...props }: Props) => {
+const ExternalLink: React.FC<Props> = ({ to, children, ...props }) => {
   if (!to) return <span {...props}>{children}</span>;
 
   if (/^https?:\/\//.test(to))
     return (
-      <a href={to} {...props} rel="noopener noreferrer" target="_blank">
+      <a href={to} rel="noopener noreferrer" target="_blank" {...props}>
         {children}
       </a>
     );
@@ -21,3 +21,5 @@ export default ({ to, children, ...props }: Props) => {
     </Link>
   );
 };
+
+export default ExternalLink;
