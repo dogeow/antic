@@ -7,7 +7,7 @@ interface Props {
 
 export default function Link(props: Props) {
   return (
-    <a href={props.href} target="_blank" rel="noopener noreferrer">
+    <a href={props.href} rel="noopener noreferrer" target="_blank">
       {props.children}
     </a>
   );
