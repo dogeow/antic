@@ -123,7 +123,7 @@ const PostList = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Paper sx={{ padding: 2, margin: "auto" }}>
+            <Paper sx={{ p: 2, m: "auto" }}>
               <Categories changeCategory={changeCategory} categories={categories} />
             </Paper>
           </Grid>
@@ -135,60 +135,57 @@ const PostList = () => {
             <Typography variant="h5" component="div">
               笔记
             </Typography>
-            <AddCircleIcon sx={{ marginLeft: 5 }} onClick={handlePostCreate} />
+            <AddCircleIcon sx={{ ml: 5 }} onClick={handlePostCreate} />
           </Grid>
         </Grid>
-        <Grid item container spacing={2} sx={{ marginTop: 0 }}>
+        <Grid item container spacing={2} sx={{ mt: 0 }}>
           <Grid item xs={12}>
             <Paper>
               <Grid container spacing={2}>
                 {posts.length
                   ? posts.map((post) => (
-                      <Grid item container xs={12} key={post.id} style={{ flexWrap: "nowrap" }}>
-                        {/* 分类 */}
-                        <Grid item style={{ marginRight: 8 }}>
-                          <img
-                            src={`${CDN_URL}/logo/${post.category.name}.svg`}
-                            alt={post.category.name}
-                            width="20"
-                            height="20"
-                            onClick={() => changeCategory(post?.category.id)}
-                          />
-                        </Grid>
-                        {/* 标题 */}
-                        <Grid item style={{ flexGrow: 1 }}>
-                          <Typography variant="subtitle1" component="h2" onClick={() => handleEnterPost(post)}>
-                            {post.title}
-                          </Typography>
-                        </Grid>
-                        {/* 标签 */}
-                        <Hidden lgDown>
-                          <Grid item>
-                            <Grid container spacing={1}>
-                              {post.tags.length !== 0 &&
-                                post.tags.map((tag) => (
-                                  <Grid item key={tag.id}>
-                                    <Chip variant="outlined" size="small" label={tag.name} />
-                                  </Grid>
-                                ))}
-                            </Grid>
-                          </Grid>
-                        </Hidden>
-                        <Grid item style={{ marginLeft: 8 }}>
-                          {dayjs(post.updated_at).fromNow()}
-                        </Grid>
+                    <Grid item container xs={12} key={post.id} sx={{ flexWrap: "nowrap" }}>
+                      <Grid item sx={{ mr: 1 }}>
+                        <img
+                          src={`${CDN_URL}/logo/${post.category.name}.svg`}
+                          alt={post.category.name}
+                          width="20"
+                          height="20"
+                          onClick={() => changeCategory(post?.category.id)}
+                        />
                       </Grid>
-                    ))
-                  : Array.from(new Array(8)).map((value, index) => (
-                      <Grid item container xs={12} spacing={2} key={index}>
+                      <Grid item sx={{ flexGrow: 1 }}>
+                        <Typography variant="subtitle1" component="h2" onClick={() => handleEnterPost(post)}>
+                          {post.title}
+                        </Typography>
+                      </Grid>
+                      <Hidden lgDown>
                         <Grid item>
-                          <Skeleton width={40} height="28px" animation="wave" />
+                          <Grid container spacing={1}>
+                            {post.tags.length !== 0 &&
+                              post.tags.map((tag) => (
+                                <Grid item key={tag.id}>
+                                  <Chip variant="outlined" size="small" label={tag.name} />
+                                </Grid>
+                              ))}
+                          </Grid>
                         </Grid>
-                        <Grid item xs>
-                          <Skeleton width="100%" height="28px" animation="wave" />
-                        </Grid>
+                      </Hidden>
+                      <Grid item sx={{ ml: 1 }}>
+                        {dayjs(post.updated_at).fromNow()}
                       </Grid>
-                    ))}
+                    </Grid>
+                  ))
+                  : Array.from(new Array(8)).map((value, index) => (
+                    <Grid item container xs={12} spacing={2} key={index}>
+                      <Grid item>
+                        <Skeleton width={40} height="28px" animation="wave" />
+                      </Grid>
+                      <Grid item xs>
+                        <Skeleton width="100%" height="28px" animation="wave" />
+                      </Grid>
+                    </Grid>
+                  ))}
               </Grid>
             </Paper>
           </Grid>
@@ -215,7 +212,7 @@ const PostList = () => {
             </Typography>
           </Grid>
           <Grid item>
-            <Paper>
+            <Paper sx={{ p: 2 }}>
               <AllTags changeTag={changeTag} tags={tags} />
             </Paper>
           </Grid>
