@@ -138,7 +138,7 @@ const PostList = () => {
             <AddCircleIcon sx={{ marginLeft: 5 }} onClick={handlePostCreate} />
           </Grid>
         </Grid>
-        <Grid item container spacing={2}>
+        <Grid item container spacing={2} sx={{ marginTop: 0 }}>
           <Grid item xs={12}>
             <Paper>
               <Grid container spacing={2}>
